@@ -148,69 +148,69 @@ static void GiratinaIntervention_InitSpriteSystem(GiratinaInterventionContext *c
     context->models.summonBubble[1].looping = 1;
     context->models.summonBubble[1].animSpeed = FX32_HALF;
 
-    CutsceneModel_LoadMesh(&context->models.unk_934[0], 26, context->graphics->narc);
-    Easy3DObject_SetPosition(&context->models.unk_934[0].object, FX32_CONST(0), FX32_CONST(-90), FX32_CONST(0));
-    Easy3DObject_SetVisible(&context->models.unk_934[0].object, 0);
-    CutsceneModel_LoadAnim(0, &context->models.unk_934[0], 25, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(1, &context->models.unk_934[0], 27, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.whirlpool1OrGiratinaStage1, 26, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.whirlpool1OrGiratinaStage1.object, FX32_CONST(0), FX32_CONST(-90), FX32_CONST(0));
+    Easy3DObject_SetVisible(&context->models.whirlpool1OrGiratinaStage1.object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.whirlpool1OrGiratinaStage1, 25, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.whirlpool1OrGiratinaStage1, 27, context->graphics->narc, &context->graphics->allocator);
 
-    context->models.unk_934[0].loopSecondaryAnim = 1;
+    context->models.whirlpool1OrGiratinaStage1.loopSecondaryAnim = 1;
 
-    CutsceneModel_LoadMesh(&context->models.unk_934[1], 29, context->graphics->narc);
-    Easy3DObject_SetVisible(&context->models.unk_934[1].object, 0);
-    CutsceneModel_LoadAnim(0, &context->models.unk_934[1], 28, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(1, &context->models.unk_934[1], 30, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.whirlpool2OrGiratinaStage2, 29, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.whirlpool2OrGiratinaStage2.object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.whirlpool2OrGiratinaStage2, 28, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.whirlpool2OrGiratinaStage2, 30, context->graphics->narc, &context->graphics->allocator);
 
-    context->models.unk_934[1].loopSecondaryAnim = 1;
+    context->models.whirlpool2OrGiratinaStage2.loopSecondaryAnim = 1;
 
-    CutsceneModel_LoadMesh(&context->models.unk_934[2], 32, context->graphics->narc);
-    Easy3DObject_SetVisible(&context->models.unk_934[2].object, 0);
-    CutsceneModel_LoadAnim(0, &context->models.unk_934[2], 31, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(1, &context->models.unk_934[2], 33, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.giratinaStage3, 32, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.giratinaStage3.object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.giratinaStage3, 31, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.giratinaStage3, 33, context->graphics->narc, &context->graphics->allocator);
 
-    context->models.unk_934[2].loopSecondaryAnim = 1;
+    context->models.giratinaStage3.loopSecondaryAnim = 1;
 
-    CutsceneModel_LoadMesh(&context->models.unk_934[3], 35, context->graphics->narc);
-    Easy3DObject_SetVisible(&context->models.unk_934[3].object, 0);
-    CutsceneModel_LoadAnim(0, &context->models.unk_934[3], 34, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(1, &context->models.unk_934[3], 36, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.giratinaStage4, 35, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.giratinaStage4.object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.giratinaStage4, 34, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.giratinaStage4, 36, context->graphics->narc, &context->graphics->allocator);
 
-    context->models.unk_934[3].loopSecondaryAnim = 1;
+    context->models.giratinaStage4.loopSecondaryAnim = 1;
 
-    CutsceneModel_LoadMesh(&context->models.unk_934[4], 38, context->graphics->narc);
-    Easy3DObject_SetVisible(&context->models.unk_934[4].object, 0);
-    CutsceneModel_LoadAnim(0, &context->models.unk_934[4], 37, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(1, &context->models.unk_934[4], 39, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.giratinaStage5, 38, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.giratinaStage5.object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.giratinaStage5, 37, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.giratinaStage5, 39, context->graphics->narc, &context->graphics->allocator);
 
-    context->models.unk_934[4].loopSecondaryAnim = 1;
+    context->models.giratinaStage5.loopSecondaryAnim = 1;
 
-    CutsceneModel_LoadMesh(&context->models.unk_10DC[0], 41, context->graphics->narc);
-    Easy3DObject_SetVisible(&context->models.unk_10DC[0].object, 0);
-    CutsceneModel_LoadAnim(0, &context->models.unk_10DC[0], 40, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadMesh(&context->models.unk_10DC[1], 42, context->graphics->narc);
-    Easy3DObject_SetVisible(&context->models.unk_10DC[1].object, 0);
+    CutsceneModel_LoadMesh(&context->models.dialgaBallOrShadowPool, 41, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.dialgaBallOrShadowPool.object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.dialgaBallOrShadowPool, 40, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.palkiaBallOrRedEyes, 42, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.palkiaBallOrRedEyes.object, 0);
 
     if (TrainerInfo_Gender(context->args->trainerInfo) != 1) {
-        CutsceneModel_LoadMesh(&context->models.trainers[0], 61, context->graphics->narc);
-        CutsceneModel_LoadAnim(0, &context->models.trainers[0], 62, context->graphics->narc, &context->graphics->allocator);
+        CutsceneModel_LoadMesh(&context->models.trainerPlayer, 61, context->graphics->narc);
+        CutsceneModel_LoadAnim(0, &context->models.trainerPlayer, 62, context->graphics->narc, &context->graphics->allocator);
     } else {
-        CutsceneModel_LoadMesh(&context->models.trainers[0], 63, context->graphics->narc);
-        CutsceneModel_LoadAnim(0, &context->models.trainers[0], 64, context->graphics->narc, &context->graphics->allocator);
+        CutsceneModel_LoadMesh(&context->models.trainerPlayer, 63, context->graphics->narc);
+        CutsceneModel_LoadAnim(0, &context->models.trainerPlayer, 64, context->graphics->narc, &context->graphics->allocator);
     }
 
-    Easy3DObject_SetPosition(&context->models.trainers[0].object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+140));
+    Easy3DObject_SetPosition(&context->models.trainerPlayer.object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+140));
 
-    context->models.trainers[0].looping = 1;
-    context->models.trainers[0].animSpeed = (FX32_HALF >> 1);
-    context->models.trainers[0].pose = 2;
+    context->models.trainerPlayer.looping = 1;
+    context->models.trainerPlayer.animSpeed = (FX32_HALF >> 1);
+    context->models.trainerPlayer.pose = 2;
 
-    CutsceneModel_LoadMesh(&context->models.trainers[1], 13, context->graphics->narc);
-    Easy3DObject_SetPosition(&context->models.trainers[1].object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+60));
-    CutsceneModel_LoadAnim(0, &context->models.trainers[1], 14, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.trainerCyrus, 13, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.trainerCyrus.object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+60));
+    CutsceneModel_LoadAnim(0, &context->models.trainerCyrus, 14, context->graphics->narc, &context->graphics->allocator);
 
-    context->models.trainers[1].looping = 1;
-    context->models.trainers[1].animSpeed = (FX32_HALF >> 1);
-    context->models.trainers[1].pose = 2;
+    context->models.trainerCyrus.looping = 1;
+    context->models.trainerCyrus.animSpeed = (FX32_HALF >> 1);
+    context->models.trainerCyrus.pose = 2;
 }
 
 static void GiratinaIntervention_InitLakeGuardianLights(GiratinaInterventionContext *context)
@@ -379,7 +379,7 @@ BOOL GiratinaIntervention_Update(void *param)
         }
 
         SpearPillarCutscene_ShowMessage(context->graphics, context->args, 21);
-        PoseSequence_Start(&context->models.trainers[1], sCyrusDismissalPose);
+        PoseSequence_Start(&context->models.trainerCyrus, sCyrusDismissalPose);
 
         context->step++;
         context->timer = 0;
@@ -433,7 +433,7 @@ BOOL GiratinaIntervention_Update(void *param)
         }
 
         SpearPillarCutscene_ClearMessage(context->graphics);
-        PoseSequence_Start(&context->models.trainers[1], sCyrusPanToGiratinaPose);
+        PoseSequence_Start(&context->models.trainerCyrus, sCyrusPanToGiratinaPose);
 
         context->graphics->cameraPan.angleDeltaX = 0;
         context->graphics->cameraPan.angleDeltaY = 0;
@@ -456,15 +456,15 @@ BOOL GiratinaIntervention_Update(void *param)
         context->timer = 0;
         break;
     case GIRATINA_INTERVENTION_STEP_PLAY_GIRATINA_BGM:
-        context->models.unk_10DC[0].playing = 1;
-        Easy3DObject_SetVisible(&context->models.unk_10DC[0].object, 1);
+        context->models.dialgaBallOrShadowPool.playing = 1;
+        Easy3DObject_SetVisible(&context->models.dialgaBallOrShadowPool.object, 1);
         Sound_PlayBGM(SEQ_PL_EV_GIRA_sseq);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
         context->step++;
         break;
     case GIRATINA_INTERVENTION_STEP_GIRATINA_SHADOW_RISES:
         if ((++context->timer) == 60) {
-            PoseSequence_Start(&context->models.trainers[1], sCyrusShadowRisesPose);
+            PoseSequence_Start(&context->models.trainerCyrus, sCyrusShadowRisesPose);
         }
 
         if ((context->timer == 15) || (context->timer == 45) || (context->timer == 75) || (context->timer == 95) || (context->timer == 115) || (context->timer == 130) || (context->timer == 145)) {
@@ -472,36 +472,36 @@ BOOL GiratinaIntervention_Update(void *param)
             Sound_SetPitchForSequence(1477, 0xffff, (context->timer / 30 * 32) + (context->timer % 32 * 10));
         }
 
-        if (context->models.unk_10DC[0].playing == 0) {
-            Easy3DObject_SetVisible(&context->models.unk_10DC[0].object, 0);
-            Easy3DObject_SetVisible(&context->models.unk_10DC[1].object, 1);
-            Easy3DObject_SetVisible(&context->models.unk_934[0].object, 1);
+        if (context->models.dialgaBallOrShadowPool.playing == 0) {
+            Easy3DObject_SetVisible(&context->models.dialgaBallOrShadowPool.object, 0);
+            Easy3DObject_SetVisible(&context->models.palkiaBallOrRedEyes.object, 1);
+            Easy3DObject_SetVisible(&context->models.whirlpool1OrGiratinaStage1.object, 1);
 
-            context->models.unk_934[0].playing = 1;
+            context->models.whirlpool1OrGiratinaStage1.playing = 1;
             context->timer = 0;
             context->step++;
         }
         break;
     case GIRATINA_INTERVENTION_STEP_GIRATINA_RISE_MOVEMENT:
-        if (context->models.unk_934[0].object.position.y < FX32_CONST(-50)) {
-            context->models.unk_934[0].object.position.y += FX32_HALF;
+        if (context->models.whirlpool1OrGiratinaStage1.object.position.y < FX32_CONST(-50)) {
+            context->models.whirlpool1OrGiratinaStage1.object.position.y += FX32_HALF;
         } else {
             context->timer = 0;
             context->step++;
         }
         break;
     case GIRATINA_INTERVENTION_STEP_GIRATINA_RISE_COMPLETE:
-        if (context->models.unk_934[0].playing == 0) {
-            context->models.unk_934[1].object.position.y = context->models.unk_934[0].object.position.y;
-            context->models.unk_934[1].playing = 1;
-            context->models.unk_934[1].looping = 1;
+        if (context->models.whirlpool1OrGiratinaStage1.playing == 0) {
+            context->models.whirlpool2OrGiratinaStage2.object.position.y = context->models.whirlpool1OrGiratinaStage1.object.position.y;
+            context->models.whirlpool2OrGiratinaStage2.playing = 1;
+            context->models.whirlpool2OrGiratinaStage2.looping = 1;
             context->models.shockwave.playing = 1;
             context->models.shockwave.playSecondaryAnim = 1;
             context->models.distortionRipple.playing = 1;
             context->models.distortionRipple.loopSecondaryAnim = 1;
 
-            Easy3DObject_SetVisible(&context->models.unk_934[0].object, 0);
-            Easy3DObject_SetVisible(&context->models.unk_934[1].object, 1);
+            Easy3DObject_SetVisible(&context->models.whirlpool1OrGiratinaStage1.object, 0);
+            Easy3DObject_SetVisible(&context->models.whirlpool2OrGiratinaStage2.object, 1);
 
             context->step++;
         }
@@ -514,7 +514,7 @@ BOOL GiratinaIntervention_Update(void *param)
         }
 
         if (context->timer == 20) {
-            PoseSequence_Start(&context->models.trainers[1], sCyrusPushBackPose);
+            PoseSequence_Start(&context->models.trainerCyrus, sCyrusPushBackPose);
         }
 
         if (context->timer == 15 + 25) {
@@ -537,10 +537,10 @@ BOOL GiratinaIntervention_Update(void *param)
             context->models.summonBubble[1].object.position.z -= FX32_HALF;
         }
 
-        if (context->models.unk_934[1].object.position.y < FX32_CONST(0)) {
-            context->models.unk_934[1].object.position.y += FX32_HALF;
+        if (context->models.whirlpool2OrGiratinaStage2.object.position.y < FX32_CONST(0)) {
+            context->models.whirlpool2OrGiratinaStage2.object.position.y += FX32_HALF;
         } else {
-            context->models.unk_934[1].object.position.y = FX32_CONST(0);
+            context->models.whirlpool2OrGiratinaStage2.object.position.y = FX32_CONST(0);
             context->timer = 0;
             SpearPillarCutscene_ShowMessage(context->graphics, context->args, 24);
             context->step++;
@@ -556,26 +556,26 @@ BOOL GiratinaIntervention_Update(void *param)
         context->models.dropletSplash.playing = 1;
         context->models.dropletSplash.looping = 0;
         context->models.dropletSplash.playSecondaryAnim = 1;
-        context->models.unk_934[2].playing = 1;
+        context->models.giratinaStage3.playing = 1;
 
-        Easy3DObject_SetVisible(&context->models.unk_934[1].object, 0);
-        Easy3DObject_SetVisible(&context->models.unk_934[2].object, 1);
+        Easy3DObject_SetVisible(&context->models.whirlpool2OrGiratinaStage2.object, 0);
+        Easy3DObject_SetVisible(&context->models.giratinaStage3.object, 1);
         Sound_PlayPokemonCryEx(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_SPEAR_PILLAR_CUTSCENE, 0);
 
         context->timer = 0;
         context->step++;
         break;
     case GIRATINA_INTERVENTION_STEP_GIRATINA_TRANSFORM:
-        if (context->models.unk_934[2].playing == 0) {
+        if (context->models.giratinaStage3.playing == 0) {
             SpearPillarCutscene_ShowMessage(context->graphics, context->args, 25);
 
-            context->models.unk_934[3].playing = 1;
-            context->models.unk_934[3].looping = 1;
+            context->models.giratinaStage4.playing = 1;
+            context->models.giratinaStage4.looping = 1;
             context->models.dropletSplash.playing = 0;
 
             Easy3DObject_SetVisible(&context->models.dropletSplash.object, 0);
-            Easy3DObject_SetVisible(&context->models.unk_934[2].object, 0);
-            Easy3DObject_SetVisible(&context->models.unk_934[3].object, 1);
+            Easy3DObject_SetVisible(&context->models.giratinaStage3.object, 0);
+            Easy3DObject_SetVisible(&context->models.giratinaStage4.object, 1);
 
             context->step++;
         }
@@ -591,10 +591,10 @@ BOOL GiratinaIntervention_Update(void *param)
 
         Sound_PlayBGM(SEQ_PL_EV_GIRA2_sseq);
 
-        context->models.unk_934[4].playing = 1;
+        context->models.giratinaStage5.playing = 1;
 
-        Easy3DObject_SetVisible(&context->models.unk_934[3].object, 0);
-        Easy3DObject_SetVisible(&context->models.unk_934[4].object, 1);
+        Easy3DObject_SetVisible(&context->models.giratinaStage4.object, 0);
+        Easy3DObject_SetVisible(&context->models.giratinaStage5.object, 1);
         context->timer = 0;
         context->step++;
         break;
@@ -607,7 +607,7 @@ BOOL GiratinaIntervention_Update(void *param)
             SpearPillarCutscene_ShowMessage(context->graphics, context->args, 26);
         }
 
-        if (context->models.unk_934[4].playing == 0) {
+        if (context->models.giratinaStage5.playing == 0) {
             if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
                 Text_RemovePrinter(context->graphics->messagePrinter);
             }
@@ -650,8 +650,8 @@ BOOL GiratinaIntervention_Update(void *param)
 
     context->models.shadow[0].object.position = context->models.summonBubble[0].object.position;
     context->models.shadow[1].object.position = context->models.summonBubble[1].object.position;
-    context->models.shadow[2].object.position = context->models.trainers[0].object.position;
-    context->models.shadow[3].object.position = context->models.trainers[1].object.position;
+    context->models.shadow[2].object.position = context->models.trainerPlayer.object.position;
+    context->models.shadow[3].object.position = context->models.trainerCyrus.object.position;
     context->models.shadow[0].object.position.z -= (FX32_ONE * 2);
     context->models.shadow[1].object.position.z -= (FX32_ONE * 2);
     context->models.shadow[2].object.position.z -= (FX32_ONE * 2);
@@ -689,17 +689,17 @@ BOOL GiratinaIntervention_Exit(void *param)
         CutsceneModel_Release(&context->models.summonBubble[0], &context->graphics->allocator, 1);
         CutsceneModel_Release(&context->models.summonBubble[1], &context->graphics->allocator, 1);
 
-        CutsceneModel_Release(&context->models.unk_934[0], &context->graphics->allocator, 2);
-        CutsceneModel_Release(&context->models.unk_934[1], &context->graphics->allocator, 2);
-        CutsceneModel_Release(&context->models.unk_934[2], &context->graphics->allocator, 2);
-        CutsceneModel_Release(&context->models.unk_934[3], &context->graphics->allocator, 2);
-        CutsceneModel_Release(&context->models.unk_934[4], &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.whirlpool1OrGiratinaStage1, &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.whirlpool2OrGiratinaStage2, &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.giratinaStage3, &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.giratinaStage4, &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.giratinaStage5, &context->graphics->allocator, 2);
 
-        CutsceneModel_Release(&context->models.unk_10DC[0], &context->graphics->allocator, 1);
-        CutsceneModel_Release(&context->models.unk_10DC[1], &context->graphics->allocator, 0);
+        CutsceneModel_Release(&context->models.dialgaBallOrShadowPool, &context->graphics->allocator, 1);
+        CutsceneModel_Release(&context->models.palkiaBallOrRedEyes, &context->graphics->allocator, 0);
 
-        CutsceneModel_Release(&context->models.trainers[0], &context->graphics->allocator, 1);
-        CutsceneModel_Release(&context->models.trainers[1], &context->graphics->allocator, 1);
+        CutsceneModel_Release(&context->models.trainerPlayer, &context->graphics->allocator, 1);
+        CutsceneModel_Release(&context->models.trainerCyrus, &context->graphics->allocator, 1);
 
         context->step++;
         break;
@@ -724,20 +724,20 @@ static void GiratinaIntervention_UpdateScene(GiratinaInterventionContext *contex
     CutsceneModel_Update(&context->models.dropletSplash);
     CutsceneModel_Update(&context->models.distortionRipple);
 
-    CutsceneModel_Update(&context->models.unk_10DC[0]);
-    CutsceneModel_Update(&context->models.unk_10DC[1]);
+    CutsceneModel_Update(&context->models.dialgaBallOrShadowPool);
+    CutsceneModel_Update(&context->models.palkiaBallOrRedEyes);
 
-    CutsceneModel_Update(&context->models.unk_934[0]);
-    CutsceneModel_Update(&context->models.unk_934[1]);
-    CutsceneModel_Update(&context->models.unk_934[2]);
-    CutsceneModel_Update(&context->models.unk_934[3]);
-    CutsceneModel_Update(&context->models.unk_934[4]);
+    CutsceneModel_Update(&context->models.whirlpool1OrGiratinaStage1);
+    CutsceneModel_Update(&context->models.whirlpool2OrGiratinaStage2);
+    CutsceneModel_Update(&context->models.giratinaStage3);
+    CutsceneModel_Update(&context->models.giratinaStage4);
+    CutsceneModel_Update(&context->models.giratinaStage5);
 
     CutsceneModel_Update(&context->models.summonBubble[0]);
     CutsceneModel_Update(&context->models.summonBubble[1]);
 
-    CutsceneModel_Update(&context->models.trainers[0]);
-    CutsceneModel_Update(&context->models.trainers[1]);
+    CutsceneModel_Update(&context->models.trainerPlayer);
+    CutsceneModel_Update(&context->models.trainerCyrus);
 
     CutsceneModel_Update(&context->models.shadow[0]);
     CutsceneModel_Update(&context->models.shadow[1]);

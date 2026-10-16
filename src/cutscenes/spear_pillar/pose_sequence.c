@@ -68,7 +68,7 @@ void PoseSequence_UpdateMovement(CutsceneModel *model)
     int stepPose;
     PoseStep *step = model->poseSteps;
 
-    if ((model->poseRepeatsLeft == 0xFF) || (model->poseStepIndex == 0xFF)) {
+    if (model->poseRepeatsLeft == 0xFF || model->poseStepIndex == 0xFF) {
         return;
     }
 

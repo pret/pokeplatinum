@@ -11,8 +11,8 @@ typedef struct SpearPillarCutsceneArgs {
     const TrainerInfo *trainerInfo;
 } SpearPillarCutsceneArgs;
 
-int SpearPillarCutscene_Init(ApplicationManager *appMan, int *unused);
-int SpearPillarCutscene_Main(ApplicationManager *appMan, int *state);
-int SpearPillarCutscene_Exit(ApplicationManager *appMan, int *unused);
+BOOL SpearPillarCutscene_Init(ApplicationManager *appMan, int *unused);
+BOOL SpearPillarCutscene_Main(ApplicationManager *appMan, int *state);
+BOOL SpearPillarCutscene_Exit(ApplicationManager *appMan, int *unused);
 
 #endif // POKEPLATINUM_SPEAR_PILLAR_MAIN_H

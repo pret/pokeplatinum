@@ -47,7 +47,7 @@ static void SpearPillarCutscene_FreeGraphics(CutsceneGraphics *graphics);
 static void SpearPillarCutscene_InitBackgrounds(BgConfig *bgConfig);
 static void SpearPillarCutscene_VBlankCallback(void *param);
 
-int SpearPillarCutscene_Init(ApplicationManager *appMan, int *unused)
+BOOL SpearPillarCutscene_Init(ApplicationManager *appMan, int *unused)
 {
     SpearPillarCutsceneData *cutscene;
 
@@ -83,7 +83,7 @@ int SpearPillarCutscene_Init(ApplicationManager *appMan, int *unused)
 
     SpearPillarCutscene_ClearMessage(&cutscene->scene);
 
-    return 1;
+    return TRUE;
 }
 
 static const struct CutsceneStage {
@@ -96,7 +96,7 @@ static const struct CutsceneStage {
     { GiratinaIntervention_Init, GiratinaIntervention_Update, GiratinaIntervention_Exit },
 };
 
-int SpearPillarCutscene_Main(ApplicationManager *appMan, int *state)
+BOOL SpearPillarCutscene_Main(ApplicationManager *appMan, int *state)
 {
     SpearPillarCutsceneData *cutscene = ApplicationManager_Data(appMan);
 
@@ -127,7 +127,7 @@ int SpearPillarCutscene_Main(ApplicationManager *appMan, int *state)
         break;
     }
     case CUTSCENE_STATE_DONE:
-        return 1;
+        return TRUE;
     default:
         GF_ASSERT(FALSE);
         break;
@@ -135,10 +135,10 @@ int SpearPillarCutscene_Main(ApplicationManager *appMan, int *state)
 
     SpriteSystem_DrawSprites(cutscene->scene.spriteManager);
 
-    return 0;
+    return FALSE;
 }
 
-int SpearPillarCutscene_Exit(ApplicationManager *appMan, int *unused)
+BOOL SpearPillarCutscene_Exit(ApplicationManager *appMan, int *unused)
 {
     SpearPillarCutsceneData *cutscene = ApplicationManager_Data(appMan);
 
@@ -156,7 +156,7 @@ int SpearPillarCutscene_Exit(ApplicationManager *appMan, int *unused)
     Heap_Destroy(HEAP_ID_SPEAR_PILLAR_CUTSCENE);
     Sound_Set2PokemonCriesAllowed(0);
 
-    return 1;
+    return TRUE;
 }
 
 static void SpearPillarCutscene_InitSpriteSystem(CutsceneGraphics *graphics)
@@ -164,39 +164,41 @@ static void SpearPillarCutscene_InitSpriteSystem(CutsceneGraphics *graphics)
     graphics->spriteSystem = SpriteSystem_Alloc(HEAP_ID_SPEAR_PILLAR_CUTSCENE);
 
     const RenderOamTemplate oamTemplate = {
-        0,
-        128,
-        0,
-        32,
-        0,
-        128,
-        0,
-        32,
+        .mainOamStart = 0,
+        .mainOamCount = 128,
+        .mainAffineOamStart = 0,
+        .mainAffineOamCount = 32,
+        .subOamStart = 0,
+        .subOamCount = 128,
+        .subAffineOamStart = 0,
+        .subAffineOamCount = 32,
     };
     const CharTransferTemplateWithModes modes = {
-        48 + 48,
-        1024 * 0x40,
-        512 * 0x20,
-        GX_OBJVRAMMODE_CHAR_1D_64K,
-        GX_OBJVRAMMODE_CHAR_1D_32K
+        .maxTasks = 96,
+        .sizeMain = 1024 * 64,
+        .sizeSub = 512 * 32,
+        .modeMain = GX_OBJVRAMMODE_CHAR_1D_64K,
+        .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K
     };
-    BOOL initialized = SpriteSystem_Init(graphics->spriteSystem, &oamTemplate, &modes, 16 + 16);
+    BOOL initialized = SpriteSystem_Init(graphics->spriteSystem, &oamTemplate, &modes, 32);
 
     GF_ASSERT(initialized);
 
     BOOL success;
     const SpriteResourceCapacities capacities = {
-        48 + 48,
-        16 + 16,
-        64,
-        64,
-        16,
-        16,
+        .asStruct = {
+            .charCapacity = 96,
+            .plttCapacity = 32,
+            .cellCapacity = 64,
+            .animCapacity = 64,
+            .mcellCapacity = 16,
+            .manimCapacity = 16,
+        }
     };
 
     graphics->spriteManager = SpriteManager_New(graphics->spriteSystem);
 
-    success = SpriteSystem_InitSprites(graphics->spriteSystem, graphics->spriteManager, 64 + 64);
+    success = SpriteSystem_InitSprites(graphics->spriteSystem, graphics->spriteManager, 128);
     GF_ASSERT(success);
 
     success = SpriteSystem_InitManagerWithCapacities(graphics->spriteSystem, graphics->spriteManager, &capacities);

@@ -27,6 +27,8 @@
 #include "trainer_info.h"
 #include "unk_0202419C.h"
 
+#include "res/graphics/poketch/poketch.naix"
+
 enum DialgaPalkiaArrivalState {
     DIALGA_PALKIA_ARRIVAL_STATE_WAIT_FADE_IN,
     DIALGA_PALKIA_ARRIVAL_STATE_PAN_CAMERA,
@@ -70,31 +72,31 @@ static void DialgaPalkiaArrival_UpdateScene(DialgaPalkiaArrivalContext *context)
 
 static void DialgaPalkiaArrival_InitSubScreenBackground(BgConfig *bgConfig, PaletteData *plttData)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, bgConfig, 4, 0, 0, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, bgConfig, 4, 0, 0, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
-    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_SPEAR_PILLAR_CUTSCENE, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, unavailable_bg_tiles_NCGR_lz, bgConfig, 4, 0, 0, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, unavailable_NSCR_lz, bgConfig, 4, 0, 0, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__POKETCH, unavailable_bg_tiles_NCLR, HEAP_ID_SPEAR_PILLAR_CUTSCENE, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
 }
 
 static void DialgaPalkiaArrival_InitWhirlpool(DialgaPalkiaArrivalContext *context)
 {
-    CutsceneModel_LoadMesh(&context->models.unk_934[0], 84, context->graphics->narc);
-    CutsceneModel_LoadAnim(0, &context->models.unk_934[0], 82, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(1, &context->models.unk_934[0], 83, context->graphics->narc, &context->graphics->allocator);
-    Easy3DObject_SetPosition(&context->models.unk_934[0].object, FX32_CONST(-48), FX32_CONST(-5), FX32_CONST(-70));
+    CutsceneModel_LoadMesh(&context->models.whirlpool1OrGiratinaStage1, 84, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.whirlpool1OrGiratinaStage1, 82, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.whirlpool1OrGiratinaStage1, 83, context->graphics->narc, &context->graphics->allocator);
+    Easy3DObject_SetPosition(&context->models.whirlpool1OrGiratinaStage1.object, FX32_CONST(-48), FX32_CONST(-5), FX32_CONST(-70));
 
-    context->models.unk_934[0].playing = 0;
+    context->models.whirlpool1OrGiratinaStage1.playing = 0;
 
-    CutsceneModel_CloneMesh(&context->models.unk_934[0], &context->models.unk_934[1], 84, context->graphics->narc);
-    CutsceneModel_CloneAnim(0, &context->models.unk_934[0], &context->models.unk_934[1], 82, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_CloneAnim(1, &context->models.unk_934[0], &context->models.unk_934[1], 83, context->graphics->narc, &context->graphics->allocator);
-    Easy3DObject_SetPosition(&context->models.unk_934[1].object, FX32_CONST(+48), FX32_CONST(-5), FX32_CONST(-70));
+    CutsceneModel_CloneMesh(&context->models.whirlpool1OrGiratinaStage1, &context->models.whirlpool2OrGiratinaStage2, 84, context->graphics->narc);
+    CutsceneModel_CloneAnim(0, &context->models.whirlpool1OrGiratinaStage1, &context->models.whirlpool2OrGiratinaStage2, 82, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_CloneAnim(1, &context->models.whirlpool1OrGiratinaStage1, &context->models.whirlpool2OrGiratinaStage2, 83, context->graphics->narc, &context->graphics->allocator);
+    Easy3DObject_SetPosition(&context->models.whirlpool2OrGiratinaStage2.object, FX32_CONST(+48), FX32_CONST(-5), FX32_CONST(-70));
 
-    context->models.unk_934[1].playing = 0;
-    context->models.unk_934[0].scale = FX32_CONST(0.1);
-    context->models.unk_934[1].scale = FX32_CONST(0.1);
+    context->models.whirlpool2OrGiratinaStage2.playing = 0;
+    context->models.whirlpool1OrGiratinaStage1.scale = FX32_CONST(0.1);
+    context->models.whirlpool2OrGiratinaStage2.scale = FX32_CONST(0.1);
 
-    Easy3DObject_SetScale(&context->models.unk_934[0].object, context->models.unk_934[0].scale, FX32_CONST(1.0), context->models.unk_934[0].scale);
-    Easy3DObject_SetScale(&context->models.unk_934[1].object, context->models.unk_934[1].scale, FX32_CONST(1.0), context->models.unk_934[1].scale);
+    Easy3DObject_SetScale(&context->models.whirlpool1OrGiratinaStage1.object, context->models.whirlpool1OrGiratinaStage1.scale, FX32_CONST(1.0), context->models.whirlpool1OrGiratinaStage1.scale);
+    Easy3DObject_SetScale(&context->models.whirlpool2OrGiratinaStage2.object, context->models.whirlpool2OrGiratinaStage2.scale, FX32_CONST(1.0), context->models.whirlpool2OrGiratinaStage2.scale);
 }
 
 static void DialgaPalkiaArrival_InitCastModels(DialgaPalkiaArrivalContext *context)
@@ -104,25 +106,25 @@ static void DialgaPalkiaArrival_InitCastModels(DialgaPalkiaArrivalContext *conte
     CutsceneModel_LoadAnim(0, &context->models.shockwave, 22, context->graphics->narc, &context->graphics->allocator);
     CutsceneModel_LoadAnim(1, &context->models.shockwave, 23, context->graphics->narc, &context->graphics->allocator);
 
-    CutsceneModel_LoadMesh(&context->models.unk_10DC[0], 79, context->graphics->narc);
-    CutsceneModel_LoadAnim(0, &context->models.unk_10DC[0], 77, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(1, &context->models.unk_10DC[0], 78, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(2, &context->models.unk_10DC[0], 80, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(3, &context->models.unk_10DC[0], 81, context->graphics->narc, &context->graphics->allocator);
-    Easy3DObject_SetPosition(&context->models.unk_10DC[0].object, FX32_CONST(-48), FX32_CONST(-10), FX32_CONST(-70));
+    CutsceneModel_LoadMesh(&context->models.dialgaBallOrShadowPool, 79, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.dialgaBallOrShadowPool, 77, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.dialgaBallOrShadowPool, 78, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(2, &context->models.dialgaBallOrShadowPool, 80, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(3, &context->models.dialgaBallOrShadowPool, 81, context->graphics->narc, &context->graphics->allocator);
+    Easy3DObject_SetPosition(&context->models.dialgaBallOrShadowPool.object, FX32_CONST(-48), FX32_CONST(-10), FX32_CONST(-70));
 
-    context->models.unk_10DC[0].playing = 0;
-    context->models.unk_10DC[0].useAllAnimTracks = 0;
+    context->models.dialgaBallOrShadowPool.playing = 0;
+    context->models.dialgaBallOrShadowPool.useAllAnimTracks = 0;
 
-    CutsceneModel_LoadMesh(&context->models.unk_10DC[1], 79, context->graphics->narc);
-    CutsceneModel_LoadAnim(0, &context->models.unk_10DC[1], 77, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(1, &context->models.unk_10DC[1], 78, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(2, &context->models.unk_10DC[1], 80, context->graphics->narc, &context->graphics->allocator);
-    CutsceneModel_LoadAnim(3, &context->models.unk_10DC[1], 81, context->graphics->narc, &context->graphics->allocator);
-    Easy3DObject_SetPosition(&context->models.unk_10DC[1].object, FX32_CONST(+48), FX32_CONST(-10), FX32_CONST(-70));
+    CutsceneModel_LoadMesh(&context->models.palkiaBallOrRedEyes, 79, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.palkiaBallOrRedEyes, 77, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.palkiaBallOrRedEyes, 78, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(2, &context->models.palkiaBallOrRedEyes, 80, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(3, &context->models.palkiaBallOrRedEyes, 81, context->graphics->narc, &context->graphics->allocator);
+    Easy3DObject_SetPosition(&context->models.palkiaBallOrRedEyes.object, FX32_CONST(+48), FX32_CONST(-10), FX32_CONST(-70));
 
-    context->models.unk_10DC[1].playing = 0;
-    context->models.unk_10DC[1].useAllAnimTracks = 0;
+    context->models.palkiaBallOrRedEyes.playing = 0;
+    context->models.palkiaBallOrRedEyes.useAllAnimTracks = 0;
 
     for (int i = 0; i < 4; i++) {
         CutsceneModel_LoadMesh(&context->models.shadow[i], 65, context->graphics->narc);
@@ -152,26 +154,26 @@ static void DialgaPalkiaArrival_InitCastModels(DialgaPalkiaArrivalContext *conte
     Easy3DObject_SetVisible(&context->models.shadow[1].object, 0);
 
     if (TrainerInfo_Gender(context->args->trainerInfo) != 1) {
-        CutsceneModel_LoadMesh(&context->models.trainers[0], 61, context->graphics->narc);
-        CutsceneModel_LoadAnim(0, &context->models.trainers[0], 62, context->graphics->narc, &context->graphics->allocator);
+        CutsceneModel_LoadMesh(&context->models.trainerPlayer, 61, context->graphics->narc);
+        CutsceneModel_LoadAnim(0, &context->models.trainerPlayer, 62, context->graphics->narc, &context->graphics->allocator);
     } else {
-        CutsceneModel_LoadMesh(&context->models.trainers[0], 63, context->graphics->narc);
-        CutsceneModel_LoadAnim(0, &context->models.trainers[0], 64, context->graphics->narc, &context->graphics->allocator);
+        CutsceneModel_LoadMesh(&context->models.trainerPlayer, 63, context->graphics->narc);
+        CutsceneModel_LoadAnim(0, &context->models.trainerPlayer, 64, context->graphics->narc, &context->graphics->allocator);
     }
 
-    Easy3DObject_SetPosition(&context->models.trainers[0].object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+140));
+    Easy3DObject_SetPosition(&context->models.trainerPlayer.object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+140));
 
-    context->models.trainers[0].looping = 1;
-    context->models.trainers[0].animSpeed = (FX32_HALF >> 1);
-    context->models.trainers[0].pose = 2;
+    context->models.trainerPlayer.looping = 1;
+    context->models.trainerPlayer.animSpeed = (FX32_HALF >> 1);
+    context->models.trainerPlayer.pose = 2;
 
-    CutsceneModel_LoadMesh(&context->models.trainers[1], 13, context->graphics->narc);
-    Easy3DObject_SetPosition(&context->models.trainers[1].object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+60));
-    CutsceneModel_LoadAnim(0, &context->models.trainers[1], 14, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.trainerCyrus, 13, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.trainerCyrus.object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+60));
+    CutsceneModel_LoadAnim(0, &context->models.trainerCyrus, 14, context->graphics->narc, &context->graphics->allocator);
 
-    context->models.trainers[1].looping = 1;
-    context->models.trainers[1].animSpeed = (FX32_HALF >> 1);
-    context->models.trainers[1].pose = 2;
+    context->models.trainerCyrus.looping = 1;
+    context->models.trainerCyrus.animSpeed = (FX32_HALF >> 1);
+    context->models.trainerCyrus.pose = 2;
 }
 
 static void DialgaPalkiaArrival_ReleaseModels(DialgaPalkiaArrivalContext *context)
@@ -187,20 +189,20 @@ static void DialgaPalkiaArrival_ReleaseModels(DialgaPalkiaArrivalContext *contex
     CutsceneModel_Release(&context->models.summonBubble[0], &context->graphics->allocator, 1);
     CutsceneModel_Release(&context->models.summonBubble[1], &context->graphics->allocator, 1);
 
-    CutsceneModel_Release(&context->models.unk_934[0], &context->graphics->allocator, 2);
-    CutsceneModel_Release(&context->models.unk_934[1], &context->graphics->allocator, 2);
+    CutsceneModel_Release(&context->models.whirlpool1OrGiratinaStage1, &context->graphics->allocator, 2);
+    CutsceneModel_Release(&context->models.whirlpool2OrGiratinaStage2, &context->graphics->allocator, 2);
 
-    CutsceneModel_Release(&context->models.trainers[0], &context->graphics->allocator, 1);
-    CutsceneModel_Release(&context->models.trainers[1], &context->graphics->allocator, 1);
+    CutsceneModel_Release(&context->models.trainerPlayer, &context->graphics->allocator, 1);
+    CutsceneModel_Release(&context->models.trainerCyrus, &context->graphics->allocator, 1);
 }
 
 static void DialgaPalkiaArrival_ReleaseFallingBalls(DialgaPalkiaArrivalContext *context)
 {
-    CutsceneModel_Release(&context->models.unk_10DC[0], &context->graphics->allocator, 4);
-    CutsceneModel_Release(&context->models.unk_10DC[1], &context->graphics->allocator, 4);
+    CutsceneModel_Release(&context->models.dialgaBallOrShadowPool, &context->graphics->allocator, 4);
+    CutsceneModel_Release(&context->models.palkiaBallOrRedEyes, &context->graphics->allocator, 4);
 
-    context->models.unk_10DC[0].loaded = 0;
-    context->models.unk_10DC[1].loaded = 0;
+    context->models.dialgaBallOrShadowPool.loaded = 0;
+    context->models.palkiaBallOrRedEyes.loaded = 0;
 }
 
 static void DialgaPalkiaArrival_InitCamera(Camera *camera, VecFx32 *target)
@@ -226,14 +228,14 @@ static void DialgaPalkiaArrival_UpdateScene(DialgaPalkiaArrivalContext *context)
     CutsceneModel_Update(&context->models.summonBubble[0]);
     CutsceneModel_Update(&context->models.summonBubble[1]);
 
-    CutsceneModel_Update(&context->models.unk_10DC[0]);
-    CutsceneModel_Update(&context->models.unk_10DC[1]);
+    CutsceneModel_Update(&context->models.dialgaBallOrShadowPool);
+    CutsceneModel_Update(&context->models.palkiaBallOrRedEyes);
 
-    CutsceneModel_Update(&context->models.unk_934[0]);
-    CutsceneModel_Update(&context->models.unk_934[1]);
+    CutsceneModel_Update(&context->models.whirlpool1OrGiratinaStage1);
+    CutsceneModel_Update(&context->models.whirlpool2OrGiratinaStage2);
 
-    CutsceneModel_Update(&context->models.trainers[0]);
-    CutsceneModel_Update(&context->models.trainers[1]);
+    CutsceneModel_Update(&context->models.trainerPlayer);
+    CutsceneModel_Update(&context->models.trainerCyrus);
 
     CutsceneModel_Update(&context->models.shadow[0]);
     CutsceneModel_Update(&context->models.shadow[1]);
@@ -466,14 +468,14 @@ BOOL DialgaPalkiaArrival_Update(void *param)
         DialgaPalkiaArrival_InitCameraShake(context);
         SpearPillarCutscene_ClearMessage(context->graphics);
 
-        context->models.unk_10DC[0].playing = 1;
-        context->models.unk_10DC[0].useAllAnimTracks = 1;
+        context->models.dialgaBallOrShadowPool.playing = 1;
+        context->models.dialgaBallOrShadowPool.useAllAnimTracks = 1;
         context->state++;
     case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_PALKIA_BALL_DELAY:
         if ((++context->timer) >= 60) {
             context->graphics->cameraShake.intensity = 4;
-            context->models.unk_10DC[1].playing = 1;
-            context->models.unk_10DC[1].useAllAnimTracks = 1;
+            context->models.palkiaBallOrRedEyes.playing = 1;
+            context->models.palkiaBallOrRedEyes.useAllAnimTracks = 1;
             context->state++;
         }
         break;
@@ -520,7 +522,7 @@ BOOL DialgaPalkiaArrival_Update(void *param)
             context->graphics->cameraShake.intensity = 0xFF;
         }
 
-        if (context->models.unk_10DC[0].playing == 0) {
+        if (context->models.dialgaBallOrShadowPool.playing == 0) {
             context->graphics->cameraShake.intensity = 6;
             DialgaPalkiaArrival_InitSummonBubble(context, 0, SPECIES_DIALGA);
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX12_sseq, -70);
@@ -528,7 +530,7 @@ BOOL DialgaPalkiaArrival_Update(void *param)
         }
         break;
     case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_PALKIA_BALL_LAND:
-        if (context->models.unk_10DC[1].playing == 0) {
+        if (context->models.palkiaBallOrRedEyes.playing == 0) {
             context->graphics->cameraShake.intensity = 7;
             DialgaPalkiaArrival_InitSummonBubble(context, 1, SPECIES_PALKIA);
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX12_sseq, +70);
@@ -609,21 +611,21 @@ BOOL DialgaPalkiaArrival_Update(void *param)
                 .heapID = HEAP_ID_SPEAR_PILLAR_CUTSCENE
             };
 
-            context->models.unk_934[0].playing = 1;
-            context->models.unk_934[0].looping = 1;
-            context->models.unk_934[0].playSecondaryAnim = 1;
-            context->models.unk_934[1].playing = 1;
-            context->models.unk_934[1].looping = 1;
-            context->models.unk_934[1].playSecondaryAnim = 1;
+            context->models.whirlpool1OrGiratinaStage1.playing = 1;
+            context->models.whirlpool1OrGiratinaStage1.looping = 1;
+            context->models.whirlpool1OrGiratinaStage1.playSecondaryAnim = 1;
+            context->models.whirlpool2OrGiratinaStage2.playing = 1;
+            context->models.whirlpool2OrGiratinaStage2.looping = 1;
+            context->models.whirlpool2OrGiratinaStage2.playSecondaryAnim = 1;
             context->state++;
         }
         break;
     case DIALGA_PALKIA_ARRIVAL_STATE_GROW_WHIRLPOOL:
-        if (context->models.unk_934[0].scale < FX32_CONST(0.80)) {
-            context->models.unk_934[0].scale += FX32_CONST(0.02);
-            context->models.unk_934[1].scale += FX32_CONST(0.02);
-            Easy3DObject_SetScale(&context->models.unk_934[0].object, context->models.unk_934[0].scale, FX32_CONST(1.0), context->models.unk_934[0].scale);
-            Easy3DObject_SetScale(&context->models.unk_934[1].object, context->models.unk_934[1].scale, FX32_CONST(1.0), context->models.unk_934[1].scale);
+        if (context->models.whirlpool1OrGiratinaStage1.scale < FX32_CONST(0.80)) {
+            context->models.whirlpool1OrGiratinaStage1.scale += FX32_CONST(0.02);
+            context->models.whirlpool2OrGiratinaStage2.scale += FX32_CONST(0.02);
+            Easy3DObject_SetScale(&context->models.whirlpool1OrGiratinaStage1.object, context->models.whirlpool1OrGiratinaStage1.scale, FX32_CONST(1.0), context->models.whirlpool1OrGiratinaStage1.scale);
+            Easy3DObject_SetScale(&context->models.whirlpool2OrGiratinaStage2.object, context->models.whirlpool2OrGiratinaStage2.scale, FX32_CONST(1.0), context->models.whirlpool2OrGiratinaStage2.scale);
         } else {
             SpearPillarCutscene_ShowMessage(context->graphics, context->args, 18);
             context->state++;
@@ -644,11 +646,11 @@ BOOL DialgaPalkiaArrival_Update(void *param)
             break;
         }
 
-        if (context->models.unk_934[0].scale > FX32_CONST(0.10)) {
-            context->models.unk_934[0].scale -= FX32_CONST(0.02);
-            context->models.unk_934[1].scale -= FX32_CONST(0.02);
-            Easy3DObject_SetScale(&context->models.unk_934[0].object, context->models.unk_934[0].scale, FX32_CONST(1.0), context->models.unk_934[0].scale);
-            Easy3DObject_SetScale(&context->models.unk_934[1].object, context->models.unk_934[1].scale, FX32_CONST(1.0), context->models.unk_934[1].scale);
+        if (context->models.whirlpool1OrGiratinaStage1.scale > FX32_CONST(0.10)) {
+            context->models.whirlpool1OrGiratinaStage1.scale -= FX32_CONST(0.02);
+            context->models.whirlpool2OrGiratinaStage2.scale -= FX32_CONST(0.02);
+            Easy3DObject_SetScale(&context->models.whirlpool1OrGiratinaStage1.object, context->models.whirlpool1OrGiratinaStage1.scale, FX32_CONST(1.0), context->models.whirlpool1OrGiratinaStage1.scale);
+            Easy3DObject_SetScale(&context->models.whirlpool2OrGiratinaStage2.object, context->models.whirlpool2OrGiratinaStage2.scale, FX32_CONST(1.0), context->models.whirlpool2OrGiratinaStage2.scale);
         } else {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
             context->state++;
@@ -671,8 +673,8 @@ BOOL DialgaPalkiaArrival_Update(void *param)
 
     context->models.shadow[0].object.position = context->models.summonBubble[0].object.position;
     context->models.shadow[1].object.position = context->models.summonBubble[1].object.position;
-    context->models.shadow[2].object.position = context->models.trainers[0].object.position;
-    context->models.shadow[3].object.position = context->models.trainers[1].object.position;
+    context->models.shadow[2].object.position = context->models.trainerPlayer.object.position;
+    context->models.shadow[3].object.position = context->models.trainerCyrus.object.position;
 
     context->models.shadow[0].object.position.z -= (FX32_ONE * 2);
     context->models.shadow[1].object.position.z -= (FX32_ONE * 2);

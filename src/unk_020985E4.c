@@ -22,14 +22,14 @@ FS_EXTERN_OVERLAY(spear_pillar_cutscene);
 void sub_020985E4(FieldTask *param0, SaveData *saveData)
 {
     UnkStruct_0209862C *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0209862C));
-    SpearPillarCutsceneArgs *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(SpearPillarCutsceneArgs));
+    SpearPillarCutsceneArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(SpearPillarCutsceneArgs));
 
-    v1->options = SaveData_GetOptions(saveData);
-    v1->trainerInfo = SaveData_GetTrainerInfo(saveData);
-    v1->playerGender = TrainerInfo_Gender(v1->trainerInfo);
+    args->options = SaveData_GetOptions(saveData);
+    args->trainerInfo = SaveData_GetTrainerInfo(saveData);
+    args->playerGender = TrainerInfo_Gender(args->trainerInfo);
 
     v0->unk_00 = 0;
-    v0->unk_04 = v1;
+    v0->unk_04 = args;
 
     FieldTask_InitCall(param0, sub_0209862C, v0);
 }

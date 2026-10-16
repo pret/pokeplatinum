@@ -194,9 +194,15 @@ typedef struct CastModels {
     CutsceneModel shockwave;
     CutsceneModel dropletSplash;
     CutsceneModel summonBubble[2];
-    CutsceneModel unk_934[5]; // Dialga/Palkia stage: [0]/[1] are the twin whirlpools; Giratina stage: [0..4] are its 5-stage rise/transform sequence
-    CutsceneModel unk_10DC[2]; // Dialga/Palkia stage: the falling summon balls; Giratina stage: the shadow pool's growth + eyes-appearing effect
-    CutsceneModel trainers[2]; // 0 = player, 1 = Cyrus
+    CutsceneModel whirlpool1OrGiratinaStage1; // Dialga/Palkia stage: the left whirlpool; Giratina stage: its rising silhouette
+    CutsceneModel whirlpool2OrGiratinaStage2; // Dialga/Palkia stage: the right whirlpool; Giratina stage: its settled/floating form after rising
+    CutsceneModel giratinaStage3; // Giratina-only: its "shadow Pokemon" wing-spread form
+    CutsceneModel giratinaStage4; // Giratina-only: its lunge-ready transform stage
+    CutsceneModel giratinaStage5; // Giratina-only: its final attacking form
+    CutsceneModel dialgaBallOrShadowPool; // Dialga/Palkia stage: Dialga's falling summon ball; Giratina stage: the shadow pool
+    CutsceneModel palkiaBallOrRedEyes; // Dialga/Palkia stage: Palkia's falling summon ball; Giratina stage: the eyes-appearing effect
+    CutsceneModel trainerPlayer;
+    CutsceneModel trainerCyrus;
     CutsceneModel shadow[4];
 } CastModels;
 

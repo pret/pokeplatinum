@@ -9,6 +9,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
+#include "fx_util.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "message.h"
@@ -21,6 +22,10 @@
 #include "text.h"
 #include "trainer_info.h"
 
+#include "res/text/bank/spear_pillar.h"
+
+#define BAMS_PER_DEGREE (65535 / 360)
+
 int SpearPillarCutscene_ShowMessage(CutsceneGraphics *graphics, SpearPillarCutsceneArgs *args, int textId)
 {
     int printerId;
@@ -32,8 +37,8 @@ int SpearPillarCutscene_ShowMessage(CutsceneGraphics *graphics, SpearPillarCutsc
     msgLoader = graphics->messageLoader;
     rawMessage = MessageLoader_GetNewString(msgLoader, textId);
 
-    if (textId == 22) {
-        String *playerName = TrainerInfo_NameNewString(args->trainerInfo, 111);
+    if (textId == SpearPillar_Text_MyDreamWillBeReality) {
+        String *playerName = TrainerInfo_NameNewString(args->trainerInfo, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
         StringTemplate *nameTemplate = StringTemplate_Default(HEAP_ID_SPEAR_PILLAR_CUTSCENE);
 
         StringTemplate_SetString(nameTemplate, 0, playerName, 0, 1, GAME_LANGUAGE);
@@ -67,8 +72,8 @@ void SpearPillarCutscene_ClearMessage(CutsceneGraphics *graphics)
 
 void SpearPillarCutscene_InitLighting(CutsceneGraphics *unused)
 {
-    VecFx32 light0Direction = { 0, -FX32_ONE, -FX32_ONE };
-    VecFx32 light1Direction = { -2043, -3548, 110 };
+    VecFx32 light0Direction = VEC_FX32(0, -1, -1);
+    VecFx32 light1Direction = VEC_FX32(-0.49877, -0.86621, 0.02685);
 
     VEC_Normalize(&light0Direction, &light0Direction);
     NNS_G3dGlbLightVector(0, light0Direction.x, light0Direction.y, light0Direction.z);
@@ -96,9 +101,9 @@ void CameraPan_Start(CameraPan *cameraPan)
     CameraAngle cameraAngle;
 
     cameraPan->angleStep.framesRemaining = cameraPan->durationFrames;
-    cameraPan->angleStep.x = ((65535 / 360) * cameraPan->angleDeltaX / cameraPan->durationFrames);
-    cameraPan->angleStep.y = ((65535 / 360) * cameraPan->angleDeltaY / cameraPan->durationFrames);
-    cameraPan->angleStep.z = ((65535 / 360) * cameraPan->angleDeltaZ / cameraPan->durationFrames);
+    cameraPan->angleStep.x = (BAMS_PER_DEGREE * cameraPan->angleDeltaX / cameraPan->durationFrames);
+    cameraPan->angleStep.y = (BAMS_PER_DEGREE * cameraPan->angleDeltaY / cameraPan->durationFrames);
+    cameraPan->angleStep.z = (BAMS_PER_DEGREE * cameraPan->angleDeltaZ / cameraPan->durationFrames);
 
     cameraPan->positionStep.x = cameraPan->positionDeltaX / cameraPan->durationFrames;
     cameraPan->positionStep.y = cameraPan->positionDeltaY / cameraPan->durationFrames;
@@ -106,9 +111,9 @@ void CameraPan_Start(CameraPan *cameraPan)
 
     cameraAngle = Camera_GetAngle(cameraPan->camera);
 
-    cameraPan->cameraAngle.x = cameraAngle.x + ((65535 / 360) * cameraPan->angleDeltaX);
-    cameraPan->cameraAngle.y = cameraAngle.y + ((65535 / 360) * cameraPan->angleDeltaY);
-    cameraPan->cameraAngle.z = cameraAngle.z + ((65535 / 360) * cameraPan->angleDeltaZ);
+    cameraPan->cameraAngle.x = cameraAngle.x + (BAMS_PER_DEGREE * cameraPan->angleDeltaX);
+    cameraPan->cameraAngle.y = cameraAngle.y + (BAMS_PER_DEGREE * cameraPan->angleDeltaY);
+    cameraPan->cameraAngle.z = cameraAngle.z + (BAMS_PER_DEGREE * cameraPan->angleDeltaZ);
 }
 
 BOOL CameraPan_Update(CameraPan *cameraPan)
@@ -117,7 +122,7 @@ BOOL CameraPan_Update(CameraPan *cameraPan)
     CameraAngle cameraAngle = Camera_GetAngle(cameraPan->camera);
 
     if (cameraPan->angleStep.framesRemaining == 0) {
-        return 1;
+        return TRUE;
     }
 
     if ((--cameraPan->angleStep.framesRemaining) == 0) {
@@ -211,7 +216,7 @@ void CutsceneModel_LoadMesh(CutsceneModel *model, int narcMemberIndex, NARC *nar
     Easy3DObject_SetScale(&model->object, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
     Easy3DObject_SetVisible(&model->object, 1);
 
-    model->loaded = 1;
+    model->loaded = TRUE;
 }
 
 void CutsceneModel_CloneMesh(CutsceneModel *source, CutsceneModel *model, int narcMemberIndex, NARC *narc)
@@ -221,7 +226,7 @@ void CutsceneModel_CloneMesh(CutsceneModel *source, CutsceneModel *model, int na
     Easy3DObject_SetScale(&model->object, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
     Easy3DObject_SetVisible(&model->object, 1);
 
-    model->loaded = 1;
+    model->loaded = TRUE;
 }
 
 void CutsceneModel_LoadAnim(int index, CutsceneModel *model, int narcMemberIndex, NARC *narc, NNSFndAllocator *allocator)
