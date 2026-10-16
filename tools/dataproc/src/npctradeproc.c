@@ -1,8 +1,8 @@
 #include <stddef.h>
 #include <string.h>
 
-#include "common/common.h"
-#include "common/game_types.h"
+#include "common.h"
+#include "game_types.h"
 
 #include "constants/string.h"
 #include "overlay006/npc_trade.h"

@@ -18,47 +18,8 @@ repo_include = meson.global_source_root() / 'include'
 repo_build = meson.global_build_root()
 dataproc_templates_dir = meson.current_source_dir() / 'data'
 
-subdir('lib-v1')
+subdir('lib')
 subdir('src/common')
-
-dataproc_dep = declare_dependency(
-    include_directories: include_directories('lib/include'),
-    link_with: static_library(
-        'dataproc',
-        sources: files(
-            'lib/dataproc.c',
-            'lib/json.c',
-        ),
-
-        c_args: dataproc_strict_cflags,
-        include_directories: include_directories('lib/include'),
-        dependencies: dependency('yyjson'),
-        native: true,
-    ),
-)
-
-commonproc_dep = declare_dependency(
-    link_with: static_library(
-        'commonproc',
-        sources: files('src/common.c'),
-
-        c_args: [
-            dataproc_strict_cflags,
-            f'-DREPO_INCLUDE="@repo_include@"',
-            f'-DREPO_BUILD="@repo_build@"',
-            f'-DTEMPLATES_DIR="@dataproc_templates_dir@"',
-        ],
-
-        dependencies: [
-            dataproc_dep,
-            nitroarc_dep,
-            libenum_dep,
-            libexpr_dep,
-        ],
-        native: true,
-    ),
-    dependencies: [ dataproc_dep, nitroarc_dep, libenum_dep ],
-)
 
 cc = meson.get_compiler('c', native: true)
 speciesproc_exe = executable(

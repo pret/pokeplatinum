@@ -1,5 +1,6 @@
 common_dep = declare_dependency(
-    include_directories: include_directories('.'),
+    # common.h is one directory upward
+    include_directories: include_directories('..'),
 
     link_with: static_library(
         'dataproc_common',
@@ -21,15 +22,16 @@ common_dep = declare_dependency(
         ],
 
         dependencies: [
-            dataproc_v1_dep,
+            dataproc_dep,
             nitroarc_dep,
             libenum_dep,
             libexpr_dep,
         ],
 
         native: true,
+        include_directories: include_directories('..'),
     ),
 
     compile_args: [ '-Werror=incompatible-pointer-types', ],
-    dependencies: [ dataproc_v1_dep ],
+    dependencies: [ dataproc_dep ],
 )

@@ -2,8 +2,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include "common/common.h"
-#include "common/game_types.h"
+#include "common.h"
+#include "game_types.h"
 
 #include "constants/moves.h"
 #include "generated/frontier_trainers.h"

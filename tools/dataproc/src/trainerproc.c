@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "common/common.h"
-#include "common/game_types.h"
+#include "common.h"
+#include "game_types.h"
 
 #include "constants/battle.h"
 #include "constants/moves.h"

@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "common/common.h"
-#include "common/game_types.h"
+#include "common.h"
+#include "game_types.h"
 
 #undef  ALIGN_4 // MATCH DETAIL: We must re-define this to include a properly-sized ItemData struct.
 #define ALIGN_4

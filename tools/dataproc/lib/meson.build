@@ -1,6 +1,6 @@
-dataproc_v1_inc = include_directories('include')
-dataproc_v1_dep = declare_dependency(
-  include_directories: dataproc_v1_inc,
+dataproc_inc = include_directories('include')
+dataproc_dep = declare_dependency(
+  include_directories: dataproc_inc,
   link_with: static_library(
     'dataproc',
 
@@ -11,7 +11,7 @@ dataproc_v1_dep = declare_dependency(
 
     c_args: dataproc_strict_cflags,
     implicit_include_directories: true,
-    include_directories: dataproc_v1_inc,
+    include_directories: dataproc_inc,
     dependencies: dependency('yyjson'),
     native: true,
   ),
