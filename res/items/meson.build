@@ -46,11 +46,11 @@ item_data = custom_target('item_data',
         itemproc_exe,
         '-M', '@DEPFILE@',
         '-o', meson.current_build_dir(),
-        meson.global_build_root() / 'generated' / 'items.h', # TODO: replace with proper file() reference
+        c_consts_headers['items'],
         meson.current_source_dir() / 'data',
     ],
 
-    depends: item_icon_narc[1],
+    depends: item_icon_narc,
     depfile: 'item_data.d',
 )
 
