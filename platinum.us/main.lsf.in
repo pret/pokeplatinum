@@ -1495,17 +1495,17 @@ Overlay end_credits
 	Object src/cutscenes/end_credits/common.c
 }
 
-Overlay overlay100
+Overlay spear_pillar_cutscene
 {
 	After main
-	Object src/overlay100/ov100_021D0D80.c
-	Object src/overlay100/ov100_021D13E4.c
-	Object src/overlay100/ov100_021D1C44.c
-	Object src/overlay100/ov100_021D2F0C.c
-	Object src/overlay100/ov100_021D400C.c
-	Object src/overlay100/ov100_021D44C0.c
-	Object src/overlay100/ov100_021D46C8.c
-	Object src/overlay100/ov100_021D4E04.c
+	Object src/cutscenes/spear_pillar/main.c
+	Object src/cutscenes/spear_pillar/lake_guardians_arrival.c
+	Object src/cutscenes/spear_pillar/giratina_intervention.c
+	Object src/cutscenes/spear_pillar/dialga_palkia_arrival.c
+	Object src/cutscenes/spear_pillar/light_ball.c
+	Object src/cutscenes/spear_pillar/pose_sequence.c
+	Object src/cutscenes/spear_pillar/common.c
+	Object src/cutscenes/spear_pillar/screen_capture.c
 }
 
 Overlay overlay101

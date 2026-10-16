@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020985E4.h"
 #include "struct_defs/struct_0209862C.h"
 
+#include "cutscenes/spear_pillar/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
-#include "overlay100/ov100_021D0D80.h"
 
 #include "field_system.h"
 #include "field_task.h"
@@ -18,19 +17,19 @@
 #include "screen_fade.h"
 #include "trainer_info.h"
 
-FS_EXTERN_OVERLAY(overlay100);
+FS_EXTERN_OVERLAY(spear_pillar_cutscene);
 
 void sub_020985E4(FieldTask *param0, SaveData *saveData)
 {
     UnkStruct_0209862C *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0209862C));
-    UnkStruct_020985E4 *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_020985E4));
+    SpearPillarCutsceneArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(SpearPillarCutsceneArgs));
 
-    v1->options = SaveData_GetOptions(saveData);
-    v1->unk_08 = SaveData_GetTrainerInfo(saveData);
-    v1->unk_00 = TrainerInfo_Gender(v1->unk_08);
+    args->options = SaveData_GetOptions(saveData);
+    args->trainerInfo = SaveData_GetTrainerInfo(saveData);
+    args->playerGender = TrainerInfo_Gender(args->trainerInfo);
 
     v0->unk_00 = 0;
-    v0->unk_04 = v1;
+    v0->unk_04 = args;
 
     FieldTask_InitCall(param0, sub_0209862C, v0);
 }
@@ -51,10 +50,10 @@ BOOL sub_0209862C(FieldTask *param0)
 
         {
             static const ApplicationManagerTemplate v2 = {
-                ov100_021D0D80,
-                ov100_021D0EA8,
-                ov100_021D0F44,
-                FS_OVERLAY_ID(overlay100)
+                SpearPillarCutscene_Init,
+                SpearPillarCutscene_Main,
+                SpearPillarCutscene_Exit,
+                FS_OVERLAY_ID(spear_pillar_cutscene)
             };
 
             FieldSystem_StartChildProcess(fieldSystem, &v2, v1->unk_04);
