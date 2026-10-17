@@ -40,7 +40,7 @@ u32 ov66_02231C24(const UnkStruct_ov66_0223177C *param0, u32 param1);
 BOOL ov66_02231C30(const UnkStruct_ov66_0223177C *param0, u32 param1);
 BOOL ov66_02231C3C(const UnkStruct_ov66_0223177C *param0, u32 param1);
 BOOL ov66_02231C48(const UnkStruct_ov66_0223177C *param0, u32 param1);
-UnkEnum_ov66_02231E6C ov66_02231C54(const UnkStruct_ov66_0223177C *param0);
+enum WiFiPlazaPlayerEvent ov66_02231C54(const UnkStruct_ov66_0223177C *param0);
 BOOL ov66_02231C60(const UnkStruct_ov66_0223177C *param0);
 int ov66_02231C78(const UnkStruct_ov66_0223177C *param0);
 BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02232068 *param1, int param2, String *param3, u32 heapID);
