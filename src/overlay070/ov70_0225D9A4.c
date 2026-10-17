@@ -200,7 +200,7 @@ typedef struct UnkStruct_ov70_0225DEE8_t {
     u8 unk_07;
     s32 unk_08;
     UnkStruct_ov70_0225DEE8_sub1 unk_0C;
-    UnkStruct_ov66_0222DFF8 *unk_34;
+    WiFiPlazaSystem *unk_34;
     UnkStruct_ov70_02263910 *unk_38;
     UnkStruct_ov70_0225E4EC unk_3C;
     UnkStruct_ov70_0225F350 unk_1E8;
@@ -798,7 +798,7 @@ int ov70_0225DDF8(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-UnkStruct_ov66_0222DFF8 *ov70_0225DEE8(UnkStruct_ov70_0225DEE8 *param0)
+WiFiPlazaSystem *ov70_0225DEE8(UnkStruct_ov70_0225DEE8 *param0)
 {
     return param0->unk_34;
 }
@@ -2055,7 +2055,7 @@ static void ov70_0225F3E4(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
 
 static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DEE8 *param1, BOOL param2, u32 heapID)
 {
-    UnkStruct_ov66_0222DFF8 *v0;
+    WiFiPlazaSystem *v0;
     UnkStruct_ov70_0225E4EC *v1;
     UnkStruct_ov70_0225F208 *v2;
     BOOL v3;

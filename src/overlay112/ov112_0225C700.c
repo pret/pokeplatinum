@@ -26,6 +26,7 @@
 #include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "play_time.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "screen_fade.h"
@@ -38,152 +39,152 @@
 #include "text.h"
 #include "vram_transfer.h"
 
-typedef struct {
-    u32 unk_00;
-} UnkStruct_ov112_0225D824;
+typedef struct WiFiPlazaNewsBlinkStage {
+    u32 tileIndex;
+} WiFiPlazaNewsBlinkStage;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    u16 unk_04;
-    u8 unk_06;
-    u8 unk_07;
-    u8 unk_08;
-    u8 unk_09;
-    TextColor unk_0C;
-} UnkStruct_ov112_0225D880;
+typedef struct WiFiPlazaNewsCaptionTemplate {
+    u8 tilemapLeft;
+    u8 tilemapTop;
+    u8 width;
+    u8 height;
+    u16 baseTile;
+    u8 palette;
+    u8 textX;
+    u8 textY;
+    u8 alignment;
+    TextColor textColor;
+} WiFiPlazaNewsCaptionTemplate;
 
-typedef struct {
-    void *unk_00;
-    NNSG2dScreenData *unk_04;
-} UnkStruct_ov112_0225CC84;
+typedef struct WiFiPlazaNewsDigits {
+    void *buffer;
+    NNSG2dScreenData *screenData;
+} WiFiPlazaNewsDigits;
 
-typedef struct {
-    UnkStruct_ov66_02231428 unk_00;
-    u8 unk_04;
-    u8 unk_05;
-    u16 unk_06;
-    u32 unk_08;
-} UnkStruct_ov112_0225CDF8;
+typedef struct WiFiPlazaNewsCountdown {
+    UnkStruct_ov66_02231428 remainingTime;
+    u8 waitingForTimeSync;
+    u8 needsRedraw;
+    u16 blinkCounter;
+    u32 secondsPerSegment;
+} WiFiPlazaNewsCountdown;
 
-typedef struct {
-    s16 unk_00;
-    u16 unk_02;
-} UnkStruct_ov112_0225CFD4;
+typedef struct WiFiPlazaNewsAnimState {
+    s16 animationFrame;
+    u16 animationState;
+} WiFiPlazaNewsAnimState;
 
-typedef struct {
-    u8 unk_00[4];
-} UnkStruct_ov112_0225D180;
+typedef struct WiFiPlazaNewsNamePalette {
+    u8 paletteIndices[WIFI_PLAZA_NEWS_NAME_PALETTE_ROW_COUNT];
+} WiFiPlazaNewsNamePalette;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    String *unk_08;
-    Window unk_0C;
-    UnkStruct_ov112_0225D180 unk_1C;
-} UnkStruct_ov112_0225D44C;
+typedef struct WiFiPlazaNewsNameEntry {
+    u8 active;
+    u8 paletteSlot;
+    u16 holdTimer;
+    u16 holdDuration;
+    u16 scrollRange;
+    String *name;
+    Window textWindow;
+    WiFiPlazaNewsNamePalette namePalette;
+} WiFiPlazaNewsNameEntry;
 
-typedef struct {
-    UnkStruct_ov112_0225D44C unk_00[3];
-    Window unk_60[3];
-    String *unk_90;
-    void *unk_94;
-    NNSG2dPaletteData *unk_98;
-} UnkStruct_ov112_0225D2D0;
+typedef struct WiFiPlazaNewsNameList {
+    WiFiPlazaNewsNameEntry entries[WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT];
+    Window windows[WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT];
+    String *pendingName;
+    void *paletteBuffer;
+    NNSG2dPaletteData *paletteData;
+} WiFiPlazaNewsNameList;
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u32 unk_08;
-} UnkStruct_ov112_0225D73C;
+typedef struct WiFiPlazaNewsFlash {
+    u16 active;
+    u16 frameCounter;
+    u16 blendColor;
+    u16 paletteIndex;
+    u32 soundEffect;
+} WiFiPlazaNewsFlash;
 
-typedef struct {
-    Window unk_00[4];
-    UnkStruct_ov112_0225D73C unk_40[4];
-} UnkStruct_ov112_0225D6DC;
+typedef struct WiFiPlazaNewsCaptions {
+    Window windows[WIFI_PLAZA_NEWS_CAPTION_COUNT];
+    WiFiPlazaNewsFlash newsFlashes[WIFI_PLAZA_NEWS_CAPTION_COUNT];
+} WiFiPlazaNewsCaptions;
 
-typedef struct {
-    BgConfig *unk_00;
-    SpriteList *unk_04;
-    G2dRenderer unk_08;
-    SpriteResourceCollection *unk_194[4];
-    NARC *unk_1A4;
-} UnkStruct_ov112_0225C9BC;
+typedef struct WiFiPlazaNewsGraphics {
+    BgConfig *bgConfig;
+    SpriteList *spriteList;
+    G2dRenderer renderer;
+    SpriteResourceCollection *spriteResources[WIFI_PLAZA_NEWS_SPRITE_RESOURCE_COUNT];
+    NARC *narc;
+} WiFiPlazaNewsGraphics;
 
-typedef struct {
-    UnkStruct_ov66_0223177C *unk_00;
-    const UnkStruct_ov66_02231428 *unk_04;
-    UnkStruct_ov112_0225C9BC unk_08;
-    UnkStruct_ov112_0225CC84 unk_1B0;
-    UnkStruct_ov112_0225CDF8 unk_1B8;
-    UnkStruct_ov112_0225CFD4 unk_1C4;
-    UnkStruct_ov112_0225D2D0 unk_1C8;
-    UnkStruct_ov112_0225D6DC unk_264;
-} UnkStruct_ov112_0225C970;
+typedef struct WiFiPlazaNewsData {
+    UnkStruct_ov66_0223177C *playerList;
+    const UnkStruct_ov66_02231428 *closeTime;
+    WiFiPlazaNewsGraphics graphics;
+    WiFiPlazaNewsDigits digits;
+    WiFiPlazaNewsCountdown countdown;
+    WiFiPlazaNewsAnimState animState;
+    WiFiPlazaNewsNameList nameList;
+    WiFiPlazaNewsCaptions captions;
+} WiFiPlazaNewsData;
 
-static void ov112_0225C964(void *param0);
-static void ov112_0225C970(UnkStruct_ov112_0225C970 *param0, const UnkStruct_ov66_0222DFF8 *param1);
-static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID);
-static void ov112_0225C9F4(UnkStruct_ov112_0225C9BC *param0);
-static void ov112_0225CA14(UnkStruct_ov112_0225C9BC *param0);
-static void ov112_0225CA20(UnkStruct_ov112_0225C9BC *param0);
-static void ov112_0225CA34(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID);
-static void ov112_0225CB60(UnkStruct_ov112_0225C9BC *param0);
-static void ov112_0225CB98(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID);
-static void ov112_0225CC38(UnkStruct_ov112_0225C9BC *param0);
-static void ov112_0225CC64(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, enum HeapID heapID);
-static void ov112_0225CC84(UnkStruct_ov112_0225CC84 *param0);
-static void ov112_0225CC90(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, u8 param3, u8 param4);
-static void ov112_0225CCE8(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, u8 param2, u8 param3, u32 param4, u32 param5, BOOL param6, BOOL param7, BOOL param8);
-static void ov112_0225CDA8(UnkStruct_ov112_0225CDF8 *param0, UnkStruct_ov112_0225C9BC *param1, UnkStruct_ov112_0225CC84 *param2, const UnkStruct_ov66_0223177C *param3, const UnkStruct_ov66_02231428 *param4, const UnkStruct_ov66_0222DFF8 *param5, enum HeapID heapID);
-static void ov112_0225CDF8(UnkStruct_ov112_0225CDF8 *param0);
-static BOOL ov112_0225CDFC(UnkStruct_ov112_0225CDF8 *param0, const UnkStruct_ov66_0223177C *param1, const UnkStruct_ov66_02231428 *param2);
-static void ov112_0225CE60(UnkStruct_ov112_0225CDF8 *param0, UnkStruct_ov112_0225CC84 *param1, UnkStruct_ov112_0225C9BC *param2);
-static void ov112_0225CE74(UnkStruct_ov112_0225CDF8 *param0, UnkStruct_ov112_0225CC84 *param1, UnkStruct_ov112_0225C9BC *param2);
-static void ov112_0225CE88(UnkStruct_ov112_0225CDF8 *param0, UnkStruct_ov112_0225CC84 *param1, UnkStruct_ov112_0225C9BC *param2);
-static void ov112_0225CFC0(UnkStruct_ov112_0225CFD4 *param0, UnkStruct_ov112_0225C9BC *param1, UnkStruct_ov112_0225CC84 *param2, const UnkStruct_ov66_0223177C *param3, const UnkStruct_ov66_0222DFF8 *param4, enum HeapID heapID);
-static void ov112_0225CFD4(UnkStruct_ov112_0225CFD4 *param0);
-static BOOL ov112_0225CFD8(UnkStruct_ov112_0225CFD4 *param0, const UnkStruct_ov66_0223177C *param1);
-static void ov112_0225D004(UnkStruct_ov112_0225CFD4 *param0, UnkStruct_ov112_0225CC84 *param1, UnkStruct_ov112_0225C9BC *param2, const UnkStruct_ov66_0223177C *param3, const UnkStruct_ov66_0222DFF8 *param4);
-static void ov112_0225D08C(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, const UnkStruct_ov66_0223177C *param2, const UnkStruct_ov66_0222DFF8 *param3, u32 param4);
-static void ov112_0225D144(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, const UnkStruct_ov66_0223177C *param2, const UnkStruct_ov66_0222DFF8 *param3, u32 param4);
-static void ov112_0225D164(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, const UnkStruct_ov66_0223177C *param2, const UnkStruct_ov66_0222DFF8 *param3, u32 param4);
-static void ov112_0225D180(UnkStruct_ov112_0225D180 *param0, const UnkStruct_ov66_0223177C *param1, int param2, const UnkStruct_ov66_0222DFF8 *param3);
-static void ov112_0225D1B8(const UnkStruct_ov112_0225D180 *param0, const NNSG2dPaletteData *param1, u32 param2);
-static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_0225C9BC *param1, enum HeapID heapID);
-static void ov112_0225D2D0(UnkStruct_ov112_0225D2D0 *param0);
-static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov66_0223177C *param1, const UnkStruct_ov66_0222DFF8 *param2, enum HeapID heapID);
-static void ov112_0225D3E0(UnkStruct_ov112_0225D2D0 *param0);
-static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, enum HeapID heapID);
-static void ov112_0225D44C(UnkStruct_ov112_0225D44C *param0);
-static void ov112_0225D460(UnkStruct_ov112_0225D44C *param0, const String *param1, u32 param2, const UnkStruct_ov112_0225D180 *param3, const NNSG2dPaletteData *param4);
-static void ov112_0225D4DC(UnkStruct_ov112_0225D44C *param0);
-static BOOL ov112_0225D4E4(UnkStruct_ov112_0225D44C *param0);
-static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C *param0, Window *param1);
-static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_0225C9BC *param1, enum HeapID heapID);
-static void ov112_0225D6DC(UnkStruct_ov112_0225D6DC *param0);
-static void ov112_0225D700(UnkStruct_ov112_0225D6DC *param0);
-static void ov112_0225D718(UnkStruct_ov112_0225D6DC *param0, u32 param1);
-static void ov112_0225D73C(UnkStruct_ov112_0225D73C *param0, u16 param1, u32 param2);
-static void ov112_0225D75C(UnkStruct_ov112_0225D73C *param0);
-static void ov112_0225D778(UnkStruct_ov112_0225D73C *param0);
-static void ov112_0225D784(UnkStruct_ov112_0225D73C *param0);
+static void WiFiPlazaNews_VBlankCallback(void *param);
+static void WiFiPlazaNews_Update(WiFiPlazaNewsData *plazaNewsData, const WiFiPlazaSystem *plazaSys);
+static void WiFiPlazaNewsGraphics_Init(WiFiPlazaNewsGraphics *graphics, enum HeapID heapID);
+static void WiFiPlazaNewsGraphics_Free(WiFiPlazaNewsGraphics *graphics);
+static void WiFiPlazaNewsGraphics_UpdateSpriteList(WiFiPlazaNewsGraphics *graphics);
+static void WiFiPlazaNewsGraphics_ApplyUpdates(WiFiPlazaNewsGraphics *graphics);
+static void WiFiPlazaNewsGraphics_InitBgLayers(WiFiPlazaNewsGraphics *graphics, enum HeapID heapID);
+static void WiFiPlazaNewsGraphics_FreeBgLayers(WiFiPlazaNewsGraphics *graphics);
+static void WiFiPlazaNewsGraphics_InitSprites(WiFiPlazaNewsGraphics *graphics, enum HeapID heapID);
+static void WiFiPlazaNewsGraphics_FreeSprites(WiFiPlazaNewsGraphics *graphics);
+static void WiFiPlazaNewsDigits_Init(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, enum HeapID heapID);
+static void WiFiPlazaNewsDigits_Free(WiFiPlazaNewsDigits *digits);
+static void WiFiPlazaNewsDigits_DrawSegment(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, u32 segmentState, u8 column, u8 row);
+static void WiFiPlazaNewsDigits_DrawIcon(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, u8 column, u8 row, u32 param4, u32 param5, BOOL param6, BOOL param7, BOOL param8);
+static void WiFiPlazaNewsCountdown_Init(WiFiPlazaNewsCountdown *countdown, WiFiPlazaNewsGraphics *graphics, WiFiPlazaNewsDigits *digits, const UnkStruct_ov66_0223177C *timeSource, const UnkStruct_ov66_02231428 *closeTime, const WiFiPlazaSystem *plazaSystem, enum HeapID heapID);
+static void WiFiPlazaNewsCountdown_Dummy(WiFiPlazaNewsCountdown *countdown);
+static BOOL WiFiPlazaNewsCountdown_Update(WiFiPlazaNewsCountdown *countdown, const UnkStruct_ov66_0223177C *timeSource, const UnkStruct_ov66_02231428 *closeTime);
+static void WiFiPlazaNewsCountdown_Draw(WiFiPlazaNewsCountdown *countdown, WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics);
+static void WiFiPlazaNewsCountdown_AdvanceBlink(WiFiPlazaNewsCountdown *countdown, WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics);
+static void WiFiPlazaNewsCountdown_DrawBar(WiFiPlazaNewsCountdown *countdown, WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics);
+static void WiFiPlazaNewsAnimState_Init(WiFiPlazaNewsAnimState *unused, WiFiPlazaNewsGraphics *graphics, WiFiPlazaNewsDigits *digits, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, enum HeapID heapID);
+static void WiFiPlazaNewsAnimState_Dummy(WiFiPlazaNewsAnimState *unused);
+static BOOL WiFiPlazaNewsAnimState_Update(WiFiPlazaNewsAnimState *animState, const UnkStruct_ov66_0223177C *playerList);
+static void WiFiPlazaNewsAnimState_Draw(WiFiPlazaNewsAnimState *animState, WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys);
+static void WiFiPlazaNewsDigits_DrawPlayerIcons(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, u32 iconFrame);
+static void WiFiPlazaNewsDigits_DrawJoinBlink(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, u32 animFrame);
+static void WiFiPlazaNewsDigits_DrawLeaveBlink(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, u32 animFrame);
+static void WiFiPlazaNewsNamePalette_Build(WiFiPlazaNewsNamePalette *namePalette, const UnkStruct_ov66_0223177C *playerList, int page, const WiFiPlazaSystem *plazaSys);
+static void WiFiPlazaNewsNamePalette_Transfer(const WiFiPlazaNewsNamePalette *namePalette, const NNSG2dPaletteData *plttData, u32 paletteSlot);
+static void WiFiPlazaNewsNameList_Init(WiFiPlazaNewsNameList *nameList, WiFiPlazaNewsGraphics *graphics, enum HeapID heapID);
+static void WiFiPlazaNewsNameList_Free(WiFiPlazaNewsNameList *nameList);
+static BOOL WiFiPlazaNewsNameList_Update(WiFiPlazaNewsNameList *nameList, UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, enum HeapID heapID);
+static void WiFiPlazaNewsNameList_Draw(WiFiPlazaNewsNameList *nameList);
+static void WiFiPlazaNewsNameEntry_Init(WiFiPlazaNewsNameEntry *entry, WiFiPlazaNewsGraphics *graphics, u32 windowIndex, enum HeapID heapID);
+static void WiFiPlazaNewsNameEntry_Free(WiFiPlazaNewsNameEntry *entry);
+static void WiFiPlazaNewsNameEntry_Show(WiFiPlazaNewsNameEntry *entry, const String *name, u32 holdDuration, const WiFiPlazaNewsNamePalette *namePltt, const NNSG2dPaletteData *plttData);
+static void WiFiPlazaNewsNameEntry_Hide(WiFiPlazaNewsNameEntry *entry);
+static BOOL WiFiPlazaNewsNameEntry_Update(WiFiPlazaNewsNameEntry *entry);
+static void WiFiPlazaNewsNameEntry_Draw(const WiFiPlazaNewsNameEntry *entry, Window *window);
+static void WiFiPlazaNewsCaptions_Init(WiFiPlazaNewsCaptions *newsCaptions, WiFiPlazaNewsGraphics *graphics, enum HeapID heapID);
+static void WiFiPlazaNewsCaptions_Free(WiFiPlazaNewsCaptions *newsCaptions);
+static void WiFiPlazaNewsCaptions_Update(WiFiPlazaNewsCaptions *newsCaptions);
+static void WiFiPlazaNewsCaptions_Flash(WiFiPlazaNewsCaptions *newsCaptions, u32 captionIndex);
+static void WiFiPlazaNewsFlash_Init(WiFiPlazaNewsFlash *newsFlash, u16 plttIndex, u32 seIndex);
+static void WiFiPlazaNewsFlash_Free(WiFiPlazaNewsFlash *newsFlash);
+static void WiFiPlazaNewsFlash_Start(WiFiPlazaNewsFlash *newsFlash);
+static void WiFiPlazaNewsFlash_Update(WiFiPlazaNewsFlash *newsFlash);
 
-static const CharTransferTemplate Unk_ov112_0225D814 = {
-    0x20,
-    0x18000,
-    0x4000,
-    0x6B
+static const CharTransferTemplate sCharTransferTemplate = {
+    .maxTasks = 32,
+    .sizeMain = 1024 * 96,
+    .sizeSub = 512 * 32,
+    .heapID = HEAP_ID_107
 };
 
-static const GXBanks Unk_ov112_0225D858 = {
+static const GXBanks sVramBanks = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_128_C,
@@ -196,14 +197,14 @@ static const GXBanks Unk_ov112_0225D858 = {
     GX_VRAM_TEXPLTT_NONE
 };
 
-static const GraphicsModes Unk_ov112_0225D834 = {
+static const GraphicsModes sGraphicsModes = {
     GX_DISPMODE_GRAPHICS,
     GX_BGMODE_0,
     GX_BGMODE_0,
     GX_BG0_AS_2D
 };
 
-static const u32 Unk_ov112_0225D844[5] = {
+static const u32 sBgLayers[WIFI_PLAZA_NEWS_BG_LAYER_COUNT] = {
     BG_LAYER_MAIN_0,
     BG_LAYER_MAIN_1,
     BG_LAYER_MAIN_2,
@@ -211,348 +212,334 @@ static const u32 Unk_ov112_0225D844[5] = {
     BG_LAYER_SUB_0
 };
 
-static const BgTemplate Unk_ov112_0225D8C0[5] = {
+static const BgTemplate sBgTemplates[WIFI_PLAZA_NEWS_BG_LAYER_COUNT] = {
     {
-        .x = 0x0,
-        .y = 0x0,
+        .x = 0,
+        .y = 0,
         .bufferSize = 0x800,
-        .baseTile = 0x0,
+        .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0xe800,
         .charBase = GX_BG_CHARBASE_0x00000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
-        .priority = 0x0,
-        .areaOver = 0x0,
+        .priority = 0,
+        .areaOver = 0,
         .mosaic = FALSE,
     },
     {
-        .x = 0x0,
-        .y = 0x0,
+        .x = 0,
+        .y = 0,
         .bufferSize = 0x800,
-        .baseTile = 0x0,
+        .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0xe000,
         .charBase = GX_BG_CHARBASE_0x10000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
-        .priority = 0x1,
-        .areaOver = 0x0,
+        .priority = 1,
+        .areaOver = 0,
         .mosaic = FALSE,
     },
     {
-        .x = 0x0,
-        .y = 0x0,
+        .x = 0,
+        .y = 0,
         .bufferSize = 0x800,
-        .baseTile = 0x0,
+        .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0xd800,
         .charBase = GX_BG_CHARBASE_0x10000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
-        .priority = 0x3,
-        .areaOver = 0x0,
+        .priority = 3,
+        .areaOver = 0,
         .mosaic = FALSE,
     },
     {
-        .x = 0x0,
-        .y = 0x0,
+        .x = 0,
+        .y = 0,
         .bufferSize = 0x800,
-        .baseTile = 0x0,
+        .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0xd000,
         .charBase = GX_BG_CHARBASE_0x10000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
-        .priority = 0x2,
-        .areaOver = 0x0,
+        .priority = 2,
+        .areaOver = 0,
         .mosaic = FALSE,
     },
     {
-        .x = 0x0,
-        .y = 0x0,
+        .x = 0,
+        .y = 0,
         .bufferSize = 0x800,
-        .baseTile = 0x0,
+        .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0xe800,
         .charBase = GX_BG_CHARBASE_0x00000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
-        .priority = 0x0,
-        .areaOver = 0x0,
+        .priority = 0,
+        .areaOver = 0,
         .mosaic = FALSE,
     }
 };
 
-static const u8 Unk_ov112_0225D804[3] = {
-    0xF,
-    0x12,
-    0x15
+static const u8 sNameListRowY[WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT] = {
+    15,
+    18,
+    21
 };
 
-static const u32 Unk_ov112_0225D808[3] = {
-    0x150,
-    0x120,
-    0xF0
+static const u32 sNameEntryHoldDurations[WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT] = {
+    336,
+    288,
+    240
 };
 
-static const UnkStruct_ov112_0225D824 Unk_ov112_0225D824[4] = {
-    { 0x1 },
-    { 0x4 },
-    { 0x5 },
-    { 0x6 }
+static const WiFiPlazaNewsBlinkStage sBlinkStages[WIFI_PLAZA_NEWS_BLINK_STAGE_COUNT] = {
+    { 1 },
+    { 4 },
+    { 5 },
+    { 6 }
 };
 
-static const UnkStruct_ov112_0225D880 Unk_ov112_0225D880[4] = {
-    { 0x6, 0x0, 0x14, 0x8, 0x1, 0xA, 0x50, 0x6, 0x1, TEXT_COLOR(3, 4, 0) },
-    { 0x0, 0x6, 0x6, 0x3, 0xA1, 0x7, 0x10, 0x4, 0x1, TEXT_COLOR(13, 14, 0) },
-    { 0xF, 0x6, 0x6, 0x5, 0xB3, 0x7, 0x18, 0x4, 0x1, TEXT_COLOR(13, 14, 0) },
-    { 0x4, 0xC, 0x12, 0x3, 0xD1, 0x7, 0x4, 0x4, 0x0, TEXT_COLOR(13, 14, 0) }
+static const WiFiPlazaNewsCaptionTemplate sCaptionTemplates[WIFI_PLAZA_NEWS_CAPTION_COUNT] = {
+    { .tilemapLeft = 6, .tilemapTop = 0, .width = 20, .height = 8, .baseTile = 1, .palette = 10, .textX = 80, .textY = 6, .alignment = TEXT_ALIGN_CENTER, .textColor = TEXT_COLOR(3, 4, 0) },
+    { .tilemapLeft = 0, .tilemapTop = 6, .width = 6, .height = 3, .baseTile = 161, .palette = 7, .textX = 16, .textY = 4, .alignment = TEXT_ALIGN_CENTER, .textColor = TEXT_COLOR(13, 14, 0) },
+    { .tilemapLeft = 15, .tilemapTop = 6, .width = 6, .height = 5, .baseTile = 179, .palette = 7, .textX = 24, .textY = 4, .alignment = TEXT_ALIGN_CENTER, .textColor = TEXT_COLOR(13, 14, 0) },
+    { .tilemapLeft = 4, .tilemapTop = 12, .width = 18, .height = 3, .baseTile = 209, .palette = 7, .textX = 4, .textY = 4, .alignment = TEXT_ALIGN_LEFT, .textColor = TEXT_COLOR(13, 14, 0) }
 };
 
-static u16 Unk_ov112_0225D960[4] = {
-    0x0,
-    0x18,
-    0x1A,
-    0x1E
+static u16 sFlashPaletteIndices[WIFI_PLAZA_NEWS_CAPTION_COUNT] = {
+    0,
+    24,
+    26,
+    30
 };
 
-static u32 Unk_ov112_0225D968[4] = {
-    0x0,
-    0x5DD,
-    0x5E4,
-    0x5E3
+static u32 sFlashSoundEffects[WIFI_PLAZA_NEWS_CAPTION_COUNT] = {
+    0,
+    1501,
+    1508,
+    1507
 };
 
-int ov112_0225C700(ApplicationManager *appMan, int *param1)
+BOOL WiFiPlazaNews_Init(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_ov112_0225C970 *v0;
-    UnkStruct_ov66_02230FA0 *v1 = ApplicationManager_Args(appMan);
+    WiFiPlazaNewsData *plazaNewsData;
+    WiFiPlazaApplicationArgs *args = ApplicationManager_Args(appMan);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_107, 0x50000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov112_0225C970), HEAP_ID_107);
-    memset(v0, 0, sizeof(UnkStruct_ov112_0225C970));
+    plazaNewsData = ApplicationManager_NewData(appMan, sizeof(WiFiPlazaNewsData), HEAP_ID_107);
+    memset(plazaNewsData, 0, sizeof(WiFiPlazaNewsData));
 
-    v0->unk_00 = v1->unk_00;
-    v0->unk_04 = v1->unk_04;
+    plazaNewsData->playerList = args->unk_00;
+    plazaNewsData->closeTime = args->unk_04;
 
-    ov112_0225C9BC(&v0->unk_08, HEAP_ID_107);
-    ov112_0225CC64(&v0->unk_1B0, &v0->unk_08, HEAP_ID_107);
-    ov112_0225CDA8(&v0->unk_1B8, &v0->unk_08, &v0->unk_1B0, v0->unk_00, v0->unk_04, v1->unk_08, HEAP_ID_107);
-    ov112_0225CFC0(&v0->unk_1C4, &v0->unk_08, &v0->unk_1B0, v0->unk_00, v1->unk_08, HEAP_ID_107);
-    ov112_0225D1EC(&v0->unk_1C8, &v0->unk_08, HEAP_ID_107);
-    ov112_0225D57C(&v0->unk_264, &v0->unk_08, HEAP_ID_107);
+    WiFiPlazaNewsGraphics_Init(&plazaNewsData->graphics, HEAP_ID_107);
+    WiFiPlazaNewsDigits_Init(&plazaNewsData->digits, &plazaNewsData->graphics, HEAP_ID_107);
+    WiFiPlazaNewsCountdown_Init(&plazaNewsData->countdown, &plazaNewsData->graphics, &plazaNewsData->digits, plazaNewsData->playerList, plazaNewsData->closeTime, args->unk_08, HEAP_ID_107);
+    WiFiPlazaNewsAnimState_Init(&plazaNewsData->animState, &plazaNewsData->graphics, &plazaNewsData->digits, plazaNewsData->playerList, args->unk_08, HEAP_ID_107);
+    WiFiPlazaNewsNameList_Init(&plazaNewsData->nameList, &plazaNewsData->graphics, HEAP_ID_107);
+    WiFiPlazaNewsCaptions_Init(&plazaNewsData->captions, &plazaNewsData->graphics, HEAP_ID_107);
 
-    SetVBlankCallback(ov112_0225C964, v0);
+    SetVBlankCallback(WiFiPlazaNews_VBlankCallback, plazaNewsData);
     DisableHBlank();
 
-    return 1;
+    return TRUE;
 }
 
-int ov112_0225C7C4(ApplicationManager *appMan, int *param1)
+BOOL WiFiPlazaNews_Main(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov112_0225C970 *v0;
-    UnkStruct_ov66_02230FA0 *v1;
-    BOOL v2;
+    WiFiPlazaNewsData *plazaNewsData;
+    WiFiPlazaApplicationArgs *args;
+    BOOL done;
 
-    v0 = ApplicationManager_Data(appMan);
-    v1 = ApplicationManager_Args(appMan);
+    plazaNewsData = ApplicationManager_Data(appMan);
+    args = ApplicationManager_Args(appMan);
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case WIFI_PLAZA_NEWS_MAIN_STATE_FADE_IN:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_107);
-        ov66_0222E31C(v1->unk_08, 1);
-        (*param1)++;
+        ov66_0222E31C(args->unk_08, 1);
+        (*state)++;
         break;
-    case 1:
-        v2 = IsScreenFadeDone();
+    case WIFI_PLAZA_NEWS_MAIN_STATE_WAIT_FADE_IN:
+        done = IsScreenFadeDone();
 
-        if (v2 == 1) {
-            (*param1)++;
+        if (done == 1) {
+            (*state)++;
         }
         break;
-    case 2:
-        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
-            if (ov66_0222E12C(v1->unk_08) == 1) {
-                ov66_0222E2A4(v1->unk_08);
+    case WIFI_PLAZA_NEWS_MAIN_STATE_RUN:
+        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (ov66_0222E12C(args->unk_08) == 1) || (ov66_02231760() == 1)) {
+            if (ov66_0222E12C(args->unk_08) == 1) {
+                ov66_0222E2A4(args->unk_08);
             }
-            (*param1) = 3;
+            (*state) = WIFI_PLAZA_NEWS_MAIN_STATE_FADE_OUT;
         } else {
-            v2 = ov112_0225CDFC(&v0->unk_1B8, v0->unk_00, v0->unk_04);
+            done = WiFiPlazaNewsCountdown_Update(&plazaNewsData->countdown, plazaNewsData->playerList, plazaNewsData->closeTime);
 
-            if (v2 == 1) {
-                ov112_0225D718(&v0->unk_264, 1);
+            if (done == 1) {
+                WiFiPlazaNewsCaptions_Flash(&plazaNewsData->captions, WIFI_PLAZA_NEWS_CAPTION_COUNTDOWN);
             }
 
-            v2 = ov112_0225CFD8(&v0->unk_1C4, v0->unk_00);
+            done = WiFiPlazaNewsAnimState_Update(&plazaNewsData->animState, plazaNewsData->playerList);
 
-            if (v2 == 1) {
-                ov112_0225D718(&v0->unk_264, 2);
+            if (done == 1) {
+                WiFiPlazaNewsCaptions_Flash(&plazaNewsData->captions, WIFI_PLAZA_NEWS_CAPTION_PLAYER_COUNT);
             }
 
-            v2 = ov112_0225D304(&v0->unk_1C8, v0->unk_00, v1->unk_08, HEAP_ID_107);
+            done = WiFiPlazaNewsNameList_Update(&plazaNewsData->nameList, plazaNewsData->playerList, args->unk_08, HEAP_ID_107);
 
-            if (v2 == 1) {
-                ov112_0225D718(&v0->unk_264, 3);
+            if (done == 1) {
+                WiFiPlazaNewsCaptions_Flash(&plazaNewsData->captions, WIFI_PLAZA_NEWS_CAPTION_LATEST_NAME);
             }
         }
         break;
-    case 3:
+    case WIFI_PLAZA_NEWS_MAIN_STATE_FADE_OUT:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_107);
-        (*param1)++;
+        (*state)++;
         break;
-    case 4:
-        v2 = IsScreenFadeDone();
+    case WIFI_PLAZA_NEWS_MAIN_STATE_WAIT_FADE_OUT:
+        done = IsScreenFadeDone();
 
-        if (v2 == 1) {
-            return 1;
+        if (done == 1) {
+            return TRUE;
         }
         break;
     }
 
-    ov112_0225C970(v0, v1->unk_08);
+    WiFiPlazaNews_Update(plazaNewsData, args->unk_08);
 
-    return 0;
+    return FALSE;
 }
 
-int ov112_0225C8FC(ApplicationManager *appMan, int *param1)
+BOOL WiFiPlazaNews_Exit(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_ov112_0225C970 *v0 = ApplicationManager_Data(appMan);
-    UnkStruct_ov66_02230FA0 *v1 = ApplicationManager_Args(appMan);
+    WiFiPlazaNewsData *plazaNewsData = ApplicationManager_Data(appMan);
+    WiFiPlazaApplicationArgs *args = ApplicationManager_Args(appMan);
 
-    ov112_0225D6DC(&v0->unk_264);
-    ov112_0225CDF8(&v0->unk_1B8);
-    ov112_0225CFD4(&v0->unk_1C4);
-    ov112_0225D2D0(&v0->unk_1C8);
-    ov112_0225CC84(&v0->unk_1B0);
+    WiFiPlazaNewsCaptions_Free(&plazaNewsData->captions);
+    WiFiPlazaNewsCountdown_Dummy(&plazaNewsData->countdown);
+    WiFiPlazaNewsAnimState_Dummy(&plazaNewsData->animState);
+    WiFiPlazaNewsNameList_Free(&plazaNewsData->nameList);
+    WiFiPlazaNewsDigits_Free(&plazaNewsData->digits);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
-    ov112_0225C9F4(&v0->unk_08);
+    WiFiPlazaNewsGraphics_Free(&plazaNewsData->graphics);
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_107);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov112_0225C964(void *param0)
+static void WiFiPlazaNews_VBlankCallback(void *param)
 {
-    UnkStruct_ov112_0225C970 *v0 = param0;
-    ov112_0225CA20(&v0->unk_08);
+    WiFiPlazaNewsData *plazaNewsData = param;
+    WiFiPlazaNewsGraphics_ApplyUpdates(&plazaNewsData->graphics);
 }
 
-static void ov112_0225C970(UnkStruct_ov112_0225C970 *param0, const UnkStruct_ov66_0222DFF8 *param1)
+static void WiFiPlazaNews_Update(WiFiPlazaNewsData *plazaNewsData, const WiFiPlazaSystem *plazaSys)
 {
-    ov112_0225CE60(&param0->unk_1B8, &param0->unk_1B0, &param0->unk_08);
-    ov112_0225D004(&param0->unk_1C4, &param0->unk_1B0, &param0->unk_08, param0->unk_00, param1);
-    ov112_0225D3E0(&param0->unk_1C8);
-    ov112_0225D700(&param0->unk_264);
-    ov112_0225CA14(&param0->unk_08);
+    WiFiPlazaNewsCountdown_Draw(&plazaNewsData->countdown, &plazaNewsData->digits, &plazaNewsData->graphics);
+    WiFiPlazaNewsAnimState_Draw(&plazaNewsData->animState, &plazaNewsData->digits, &plazaNewsData->graphics, plazaNewsData->playerList, plazaSys);
+    WiFiPlazaNewsNameList_Draw(&plazaNewsData->nameList);
+    WiFiPlazaNewsCaptions_Update(&plazaNewsData->captions);
+    WiFiPlazaNewsGraphics_UpdateSpriteList(&plazaNewsData->graphics);
 }
 
-static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID)
+static void WiFiPlazaNewsGraphics_Init(WiFiPlazaNewsGraphics *graphics, enum HeapID heapID)
 {
-    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, heapID);
+    graphics->narc = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, heapID);
 
     VramTransfer_New(48, heapID);
-    GXLayers_SetBanks(&Unk_ov112_0225D858);
+    GXLayers_SetBanks(&sVramBanks);
 
-    ov112_0225CA34(param0, heapID);
-    ov112_0225CB98(param0, heapID);
+    WiFiPlazaNewsGraphics_InitBgLayers(graphics, heapID);
+    WiFiPlazaNewsGraphics_InitSprites(graphics, heapID);
 }
 
-static void ov112_0225C9F4(UnkStruct_ov112_0225C9BC *param0)
+static void WiFiPlazaNewsGraphics_Free(WiFiPlazaNewsGraphics *graphics)
 {
-    NARC_dtor(param0->unk_1A4);
+    NARC_dtor(graphics->narc);
     VramTransfer_Free();
 
-    ov112_0225CB60(param0);
-    ov112_0225CC38(param0);
+    WiFiPlazaNewsGraphics_FreeBgLayers(graphics);
+    WiFiPlazaNewsGraphics_FreeSprites(graphics);
 }
 
-static void ov112_0225CA14(UnkStruct_ov112_0225C9BC *param0)
+static void WiFiPlazaNewsGraphics_UpdateSpriteList(WiFiPlazaNewsGraphics *graphics)
 {
-    SpriteList_Update(param0->unk_04);
+    SpriteList_Update(graphics->spriteList);
 }
 
-static void ov112_0225CA20(UnkStruct_ov112_0225C9BC *param0)
+static void WiFiPlazaNewsGraphics_ApplyUpdates(WiFiPlazaNewsGraphics *graphics)
 {
-    Bg_RunScheduledUpdates(param0->unk_00);
+    Bg_RunScheduledUpdates(graphics->bgConfig);
     RenderOam_Transfer();
     VramTransfer_Process();
 }
 
-static void ov112_0225CA34(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID)
+static void WiFiPlazaNewsGraphics_InitBgLayers(WiFiPlazaNewsGraphics *graphics, enum HeapID heapID)
 {
-    SetAllGraphicsModes(&Unk_ov112_0225D834);
+    SetAllGraphicsModes(&sGraphicsModes);
 
-    param0->unk_00 = BgConfig_New(heapID);
+    graphics->bgConfig = BgConfig_New(heapID);
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
 
-    {
-        int v0;
-
-        for (v0 = 0; v0 < 5; v0++) {
-            Bg_InitFromTemplate(param0->unk_00, Unk_ov112_0225D844[v0], &Unk_ov112_0225D8C0[v0], 0);
-            Bg_ClearTilesRange(Unk_ov112_0225D844[v0], 32, 0, heapID);
-            Bg_ClearTilemap(param0->unk_00, Unk_ov112_0225D844[v0]);
-        }
+    for (int i = 0; i < WIFI_PLAZA_NEWS_BG_LAYER_COUNT; i++) {
+        Bg_InitFromTemplate(graphics->bgConfig, sBgLayers[i], &sBgTemplates[i], 0);
+        Bg_ClearTilesRange(sBgLayers[i], 32, 0, heapID);
+        Bg_ClearTilemap(graphics->bgConfig, sBgLayers[i]);
     }
 
-    {
-        Graphics_LoadPaletteFromOpenNARC(param0->unk_1A4, 0, 0, 0, 0, heapID);
-        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(10), heapID);
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A4, 1, param0->unk_00, 1, 0, 0, 0, heapID);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 3, param0->unk_00, 1, 0, 0, 0, heapID);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 4, param0->unk_00, 2, 0, 0, 0, heapID);
-    }
+    Graphics_LoadPaletteFromOpenNARC(graphics->narc, 0, 0, 0, 0, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(10), heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(graphics->narc, 1, graphics->bgConfig, 1, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(graphics->narc, 3, graphics->bgConfig, 1, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(graphics->narc, 4, graphics->bgConfig, 2, 0, 0, 0, heapID);
 
-    {
-        Graphics_LoadPaletteFromOpenNARC(param0->unk_1A4, 0, 4, 0, 0, heapID);
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A4, 2, param0->unk_00, 4, 0, 0, 0, heapID);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 6, param0->unk_00, 4, 0, 0, 0, heapID);
-    }
+    Graphics_LoadPaletteFromOpenNARC(graphics->narc, 0, 4, 0, 0, heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(graphics->narc, 2, graphics->bgConfig, 4, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(graphics->narc, 6, graphics->bgConfig, 4, 0, 0, 0, heapID);
 }
 
-static void ov112_0225CB60(UnkStruct_ov112_0225C9BC *param0)
+static void WiFiPlazaNewsGraphics_FreeBgLayers(WiFiPlazaNewsGraphics *graphics)
 {
-    {
-        int v0;
-
-        for (v0 = 0; v0 < 5; v0++) {
-            Bg_FreeTilemapBuffer(param0->unk_00, Unk_ov112_0225D844[v0]);
-        }
+    for (int i = 0; i < WIFI_PLAZA_NEWS_BG_LAYER_COUNT; i++) {
+        Bg_FreeTilemapBuffer(graphics->bgConfig, sBgLayers[i]);
     }
 
-    Heap_Free(param0->unk_00);
+    Heap_Free(graphics->bgConfig);
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 }
 
-static void ov112_0225CB98(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID)
+static void WiFiPlazaNewsGraphics_InitSprites(WiFiPlazaNewsGraphics *graphics, enum HeapID heapID)
 {
-    int i;
-
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, heapID);
-    CharTransfer_InitWithVramModes(&Unk_ov112_0225D814, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+    CharTransfer_InitWithVramModes(&sCharTransferTemplate, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     PlttTransfer_Init(32, heapID);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    param0->unk_04 = SpriteList_InitRendering(32, &param0->unk_08, heapID);
+    graphics->spriteList = SpriteList_InitRendering(32, &graphics->renderer, heapID);
 
-    SetSubScreenViewRect(&param0->unk_08, 0, FX32_CONST(256));
+    SetSubScreenViewRect(&graphics->renderer, 0, FX32_CONST(256));
 
-    for (i = 0; i < 4; i++) {
-        param0->unk_194[i] = SpriteResourceCollection_New(32, i, heapID);
+    for (int i = 0; i < WIFI_PLAZA_NEWS_SPRITE_RESOURCE_COUNT; i++) {
+        graphics->spriteResources[i] = SpriteResourceCollection_New(32, i, heapID);
     }
 
     NetworkIcon_Init();
@@ -560,14 +547,12 @@ static void ov112_0225CB98(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov112_0225CC38(UnkStruct_ov112_0225C9BC *param0)
+static void WiFiPlazaNewsGraphics_FreeSprites(WiFiPlazaNewsGraphics *graphics)
 {
-    int v0;
+    SpriteList_Delete(graphics->spriteList);
 
-    SpriteList_Delete(param0->unk_04);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        SpriteResourceCollection_Delete(param0->unk_194[v0]);
+    for (int i = 0; i < WIFI_PLAZA_NEWS_SPRITE_RESOURCE_COUNT; i++) {
+        SpriteResourceCollection_Delete(graphics->spriteResources[i]);
     }
 
     CharTransfer_Free();
@@ -575,661 +560,648 @@ static void ov112_0225CC38(UnkStruct_ov112_0225C9BC *param0)
     RenderOam_Free();
 }
 
-static void ov112_0225CC64(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, enum HeapID heapID)
+static void WiFiPlazaNewsDigits_Init(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, enum HeapID heapID)
 {
-    param0->unk_00 = Graphics_GetScrnDataFromOpenNARC(param1->unk_1A4, 5, 0, &param0->unk_04, heapID);
+    digits->buffer = Graphics_GetScrnDataFromOpenNARC(graphics->narc, 5, 0, &digits->screenData, heapID);
 }
 
-static void ov112_0225CC84(UnkStruct_ov112_0225CC84 *param0)
+static void WiFiPlazaNewsDigits_Free(WiFiPlazaNewsDigits *digits)
 {
-    Heap_Free(param0->unk_00);
+    Heap_Free(digits->buffer);
 }
 
-static void ov112_0225CC90(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, u8 param3, u8 param4)
+static void WiFiPlazaNewsDigits_DrawSegment(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, u32 segmentState, u8 column, u8 row)
 {
-    Bg_CopyToTilemapRect(param1->unk_00, 3, 5 + (param3 * 1), 4 + (param4 * 2), 1, 2, param0->unk_04->rawData, 6 + param2, 0, param0->unk_04->screenWidth / 8, param0->unk_04->screenHeight / 8);
-    Bg_ScheduleTilemapTransfer(param1->unk_00, 3);
+    Bg_CopyToTilemapRect(graphics->bgConfig, BG_LAYER_MAIN_3, 5 + (column * 1), 4 + (row * 2), 1, 2, digits->screenData->rawData, 6 + segmentState, 0, digits->screenData->screenWidth / 8, digits->screenData->screenHeight / 8);
+    Bg_ScheduleTilemapTransfer(graphics->bgConfig, BG_LAYER_MAIN_3);
 }
 
-static void ov112_0225CCE8(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, u8 param2, u8 param3, u32 param4, u32 param5, BOOL param6, BOOL param7, BOOL param8)
+static void WiFiPlazaNewsDigits_DrawIcon(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, u8 column, u8 row, u32 param4, u32 param5, BOOL param6, BOOL param7, BOOL param8)
 {
-    u32 v0 = param4 % 3;
-    u32 v1 = param4 / 3;
+    u32 iconCol = param4 % 3;
+    u32 iconRow = param4 / 3;
 
     if (param7) {
-        v1 += 2;
+        iconRow += 2;
     }
 
     if (param5 == 1) {
-        v1++;
+        iconRow++;
     }
 
-    Bg_CopyToTilemapRect(param1->unk_00, 3, 21 + (param2 * 2), 4 + (param3 * 2), 2, 2, param0->unk_04->rawData, 0 + (v0 * 2), 0 + (v1 * 2), param0->unk_04->screenWidth / 8, param0->unk_04->screenHeight / 8);
+    Bg_CopyToTilemapRect(graphics->bgConfig, BG_LAYER_MAIN_3, 21 + (column * 2), 4 + (row * 2), 2, 2, digits->screenData->rawData, 0 + (iconCol * 2), 0 + (iconRow * 2), digits->screenData->screenWidth / 8, digits->screenData->screenHeight / 8);
 
     if (param8) {
-        Bg_ChangeTilemapRectPalette(param1->unk_00, 3, 21 + (param2 * 2), 4 + (param3 * 2), 2, 2, 4);
+        Bg_ChangeTilemapRectPalette(graphics->bgConfig, BG_LAYER_MAIN_3, 21 + (column * 2), 4 + (row * 2), 2, 2, 4);
     } else {
         if (param6) {
-            Bg_ChangeTilemapRectPalette(param1->unk_00, 3, 21 + (param2 * 2), 4 + (param3 * 2), 2, 2, 3);
+            Bg_ChangeTilemapRectPalette(graphics->bgConfig, BG_LAYER_MAIN_3, 21 + (column * 2), 4 + (row * 2), 2, 2, 3);
         }
     }
 
-    Bg_ScheduleTilemapTransfer(param1->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(graphics->bgConfig, BG_LAYER_MAIN_3);
 }
 
-static void ov112_0225CDA8(UnkStruct_ov112_0225CDF8 *param0, UnkStruct_ov112_0225C9BC *param1, UnkStruct_ov112_0225CC84 *param2, const UnkStruct_ov66_0223177C *param3, const UnkStruct_ov66_02231428 *param4, const UnkStruct_ov66_0222DFF8 *param5, enum HeapID heapID)
+static void WiFiPlazaNewsCountdown_Init(WiFiPlazaNewsCountdown *countdown, WiFiPlazaNewsGraphics *graphics, WiFiPlazaNewsDigits *digits, const UnkStruct_ov66_0223177C *timeSource, const UnkStruct_ov66_02231428 *closeTime, const WiFiPlazaSystem *plazaSystem, enum HeapID heapID)
 {
-    u32 v0;
-    u32 v1;
+    u32 secondsUntilClose;
+    u32 minutesUntilClose;
 
-    v0 = ov66_0222EB48(param5);
-    v1 = v0 / 60;
+    secondsUntilClose = ov66_0222EB48(plazaSystem);
+    minutesUntilClose = secondsUntilClose / SECONDS_PER_MINUTE;
 
-    param0->unk_00.unk_00_val2_unk_00 = 0;
-    param0->unk_00.unk_00_val2_unk_01 = v1 + 1;
-    param0->unk_00.unk_00_val2_unk_02 = 0;
-    param0->unk_08 = v0 / (4 * 10);
-    param0->unk_04 = 1;
-    param0->unk_06 = 0;
-    param0->unk_05 = 0;
+    countdown->remainingTime.unk_00_val2_unk_00 = 0;
+    countdown->remainingTime.unk_00_val2_unk_01 = minutesUntilClose + 1;
+    countdown->remainingTime.unk_00_val2_unk_02 = 0;
+    countdown->secondsPerSegment = secondsUntilClose / (WIFI_PLAZA_NEWS_COUNTDOWN_ROWS * WIFI_PLAZA_NEWS_COUNTDOWN_COLS);
+    countdown->waitingForTimeSync = 1;
+    countdown->blinkCounter = 0;
+    countdown->needsRedraw = 0;
 
-    ov112_0225CDFC(param0, param3, param4);
-    ov112_0225CE60(param0, param2, param1);
+    WiFiPlazaNewsCountdown_Update(countdown, timeSource, closeTime);
+    WiFiPlazaNewsCountdown_Draw(countdown, digits, graphics);
 }
 
-static void ov112_0225CDF8(UnkStruct_ov112_0225CDF8 *param0)
+static void WiFiPlazaNewsCountdown_Dummy(WiFiPlazaNewsCountdown *countdown)
 {
     return;
 }
 
-static BOOL ov112_0225CDFC(UnkStruct_ov112_0225CDF8 *param0, const UnkStruct_ov66_0223177C *param1, const UnkStruct_ov66_02231428 *param2)
+static BOOL WiFiPlazaNewsCountdown_Update(WiFiPlazaNewsCountdown *countdown, const UnkStruct_ov66_0223177C *timeSource, const UnkStruct_ov66_02231428 *closeTime)
 {
-    BOOL v0;
-    UnkStruct_ov66_02231428 v1;
-    UnkStruct_ov66_02231428 v2;
-    UnkStruct_ov66_02231428 v3;
-    BOOL v4 = 0;
+    BOOL hasTimeSync;
+    UnkStruct_ov66_02231428 currentTime;
+    UnkStruct_ov66_02231428 newRemainingTime;
+    UnkStruct_ov66_02231428 elapsedSinceLastUpdate;
+    BOOL needsRedraw = FALSE;
 
-    v0 = ov66_02231C10(param1, &v1);
+    hasTimeSync = ov66_02231C10(timeSource, &currentTime);
 
-    if (v0 == 0) {
-        return v4;
+    if (hasTimeSync == FALSE) {
+        return needsRedraw;
     }
 
-    if (param0->unk_04 == 1) {
-        param0->unk_04 = 0;
-        param0->unk_05 = 1;
-        v4 = 1;
+    if (countdown->waitingForTimeSync == 1) {
+        countdown->waitingForTimeSync = 0;
+        countdown->needsRedraw = TRUE;
+        needsRedraw = TRUE;
     }
 
-    ov66_022314BC(param2, &v1, &v2);
-    ov66_022314BC(&v2, &param0->unk_00, &v3);
+    ov66_022314BC(closeTime, &currentTime, &newRemainingTime);
+    ov66_022314BC(&newRemainingTime, &countdown->remainingTime, &elapsedSinceLastUpdate);
 
-    if ((v3.unk_00_val2_unk_02 >= param0->unk_08) || (v3.unk_00_val2_unk_01 > 0) || (v3.unk_00_val2_unk_00 > 0)) {
-        param0->unk_05 = 1;
-        param0->unk_00 = v2;
+    if ((elapsedSinceLastUpdate.unk_00_val2_unk_02 >= countdown->secondsPerSegment) || (elapsedSinceLastUpdate.unk_00_val2_unk_01 > 0) || (elapsedSinceLastUpdate.unk_00_val2_unk_00 > 0)) {
+        countdown->needsRedraw = TRUE;
+        countdown->remainingTime = newRemainingTime;
 
-        v4 = 1;
+        needsRedraw = TRUE;
     }
 
-    return v4;
+    return needsRedraw;
 }
 
-static void ov112_0225CE60(UnkStruct_ov112_0225CDF8 *param0, UnkStruct_ov112_0225CC84 *param1, UnkStruct_ov112_0225C9BC *param2)
+static void WiFiPlazaNewsCountdown_Draw(WiFiPlazaNewsCountdown *countdown, WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics)
 {
-    if (param0->unk_04 == 1) {
-        ov112_0225CE74(param0, param1, param2);
+    if (countdown->waitingForTimeSync == 1) {
+        WiFiPlazaNewsCountdown_AdvanceBlink(countdown, digits, graphics);
     } else {
-        ov112_0225CE88(param0, param1, param2);
+        WiFiPlazaNewsCountdown_DrawBar(countdown, digits, graphics);
     }
 }
 
-static void ov112_0225CE74(UnkStruct_ov112_0225CDF8 *param0, UnkStruct_ov112_0225CC84 *param1, UnkStruct_ov112_0225C9BC *param2)
+static void WiFiPlazaNewsCountdown_AdvanceBlink(WiFiPlazaNewsCountdown *countdown, WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics)
 {
-    param0->unk_06++;
+    countdown->blinkCounter++;
 
-    if (16 < param0->unk_06) {
-        param0->unk_06 = 0;
+    if (16 < countdown->blinkCounter) {
+        countdown->blinkCounter = 0;
     }
 }
 
-static void ov112_0225CE88(UnkStruct_ov112_0225CDF8 *param0, UnkStruct_ov112_0225CC84 *param1, UnkStruct_ov112_0225C9BC *param2)
+static void WiFiPlazaNewsCountdown_DrawBar(WiFiPlazaNewsCountdown *countdown, WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics)
 {
-    int v0, v1;
-    u32 v2;
-    u16 v3;
-    s32 v4, v5;
-    s32 v6;
+    int i, j;
+    u32 segmentsRemaining;
+    u16 segmentState;
+    s32 column, row;
+    s32 segmentIndex;
 
-    v2 = param0->unk_00.unk_00_val2_unk_02;
-    v2 += param0->unk_00.unk_00_val2_unk_01 * 60;
-    v2 += param0->unk_00.unk_00_val2_unk_00 * 3600;
-    v2 /= param0->unk_08;
+    segmentsRemaining = countdown->remainingTime.unk_00_val2_unk_02;
+    segmentsRemaining += countdown->remainingTime.unk_00_val2_unk_01 * SECONDS_PER_MINUTE;
+    segmentsRemaining += countdown->remainingTime.unk_00_val2_unk_00 * (SECONDS_PER_MINUTE * MINUTES_PER_HOUR);
+    segmentsRemaining /= countdown->secondsPerSegment;
 
-    if (param0->unk_05) {
-        param0->unk_06 = 0;
-        param0->unk_05 = 0;
+    if (countdown->needsRedraw) {
+        countdown->blinkCounter = 0;
+        countdown->needsRedraw = 0;
 
-        Bg_FillTilemapRect(param2->unk_00, 3, 0, 5, 4, 10 * 1, 4 * 2, 0);
-        Bg_ScheduleTilemapTransfer(param2->unk_00, 3);
+        Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_MAIN_3, 0, 5, 4, WIFI_PLAZA_NEWS_COUNTDOWN_COLS * 1, WIFI_PLAZA_NEWS_COUNTDOWN_ROWS * 2, 0);
+        Bg_ScheduleTilemapTransfer(graphics->bgConfig, BG_LAYER_MAIN_3);
 
-        for (v0 = 0; v0 < 4; v0++) {
-            v5 = (4 - 1) - v0;
+        for (i = 0; i < WIFI_PLAZA_NEWS_COUNTDOWN_ROWS; i++) {
+            row = (WIFI_PLAZA_NEWS_COUNTDOWN_ROWS - 1) - i;
 
-            for (v1 = 0; v1 < 10; v1++) {
-                v4 = (10 - 1) - v1;
-                v6 = ((v5 * 10) + v4);
+            for (j = 0; j < WIFI_PLAZA_NEWS_COUNTDOWN_COLS; j++) {
+                column = (WIFI_PLAZA_NEWS_COUNTDOWN_COLS - 1) - j;
+                segmentIndex = ((row * WIFI_PLAZA_NEWS_COUNTDOWN_COLS) + column);
 
-                if (v6 >= v2) {
-                    if (v6 == v2) {
-                        v3 = 1;
-                    } else if (v5 == (4 - 1)) {
-                        v3 = 2;
+                if (segmentIndex >= segmentsRemaining) {
+                    if (segmentIndex == segmentsRemaining) {
+                        segmentState = 1;
+                    } else if (row == (WIFI_PLAZA_NEWS_COUNTDOWN_ROWS - 1)) {
+                        segmentState = 2;
                     } else {
-                        v3 = 0;
+                        segmentState = 0;
                     }
 
-                    ov112_0225CC90(param1, param2, v3, v4, v5);
+                    WiFiPlazaNewsDigits_DrawSegment(digits, graphics, segmentState, column, row);
                 }
             }
         }
     } else {
-        if (v2 < (4 * 10)) {
-            u32 v7;
-            u32 v8;
-            u32 v9;
+        if (segmentsRemaining < (WIFI_PLAZA_NEWS_COUNTDOWN_ROWS * WIFI_PLAZA_NEWS_COUNTDOWN_COLS)) {
+            u32 blinkPhase;
+            u32 blinkFrame;
+            u32 blinkThreshold;
 
-            param0->unk_06++;
+            countdown->blinkCounter++;
 
-            v7 = param0->unk_06 % 32;
-            v4 = v2 % 10;
-            v5 = v2 / 10;
+            blinkPhase = countdown->blinkCounter % 32;
+            column = segmentsRemaining % WIFI_PLAZA_NEWS_COUNTDOWN_COLS;
+            row = segmentsRemaining / WIFI_PLAZA_NEWS_COUNTDOWN_COLS;
 
-            if (v7 == 0) {
-                v9 = (param0->unk_08 * 30) / 4;
-                v8 = 6;
+            if (blinkPhase == 0) {
+                blinkThreshold = (countdown->secondsPerSegment * 30) / WIFI_PLAZA_NEWS_BLINK_STAGE_COUNT;
+                blinkFrame = 6;
 
-                for (v0 = 0; v0 < 4; v0++) {
-                    if (v9 * (v0 + 1) > param0->unk_06) {
-                        v8 = Unk_ov112_0225D824[v0].unk_00;
+                for (i = 0; i < WIFI_PLAZA_NEWS_BLINK_STAGE_COUNT; i++) {
+                    if (blinkThreshold * (i + 1) > countdown->blinkCounter) {
+                        blinkFrame = sBlinkStages[i].tileIndex;
                         break;
                     }
                 }
 
-                ov112_0225CC90(param1, param2, v8, v4, v5);
-            } else if (v7 == (32 / 2)) {
-                ov112_0225CC90(param1, param2, 3, v4, v5);
+                WiFiPlazaNewsDigits_DrawSegment(digits, graphics, blinkFrame, column, row);
+            } else if (blinkPhase == (32 / 2)) {
+                WiFiPlazaNewsDigits_DrawSegment(digits, graphics, 3, column, row);
             }
         }
     }
 }
 
-static void ov112_0225CFC0(UnkStruct_ov112_0225CFD4 *param0, UnkStruct_ov112_0225C9BC *param1, UnkStruct_ov112_0225CC84 *param2, const UnkStruct_ov66_0223177C *param3, const UnkStruct_ov66_0222DFF8 *param4, enum HeapID heapID)
+static void WiFiPlazaNewsAnimState_Init(WiFiPlazaNewsAnimState *unused, WiFiPlazaNewsGraphics *graphics, WiFiPlazaNewsDigits *digits, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, enum HeapID heapID)
 {
-    ov112_0225D08C(param2, param1, param3, param4, 0);
+    WiFiPlazaNewsDigits_DrawPlayerIcons(digits, graphics, playerList, plazaSys, 0);
 }
 
-static void ov112_0225CFD4(UnkStruct_ov112_0225CFD4 *param0)
+static void WiFiPlazaNewsAnimState_Dummy(WiFiPlazaNewsAnimState *unused)
 {
     return;
 }
 
-static BOOL ov112_0225CFD8(UnkStruct_ov112_0225CFD4 *param0, const UnkStruct_ov66_0223177C *param1)
+static BOOL WiFiPlazaNewsAnimState_Update(WiFiPlazaNewsAnimState *animState, const UnkStruct_ov66_0223177C *playerList)
 {
-    u32 v0;
-    BOOL v1 = 0;
+    u32 eventType;
+    BOOL done = FALSE;
 
-    v0 = ov66_02231C54(param1);
+    eventType = ov66_02231C54(playerList);
 
-    switch (v0) {
-    case UnkEnum_ov66_02231E6C_00:
+    switch (eventType) {
+    case WIFI_PLAZA_PLAYER_EVENT_NONE:
         break;
-    case UnkEnum_ov66_02231E6C_01:
-        param0->unk_02 = 1;
-        v1 = 1;
+    case WIFI_PLAZA_PLAYER_EVENT_JOINED:
+        animState->animationState = WIFI_PLAZA_NEWS_ANIM_PHASE_JOIN_START;
+        done = TRUE;
         break;
-    case UnkEnum_ov66_02231E6C_02:
-        param0->unk_02 = 3;
-        v1 = 1;
+    case WIFI_PLAZA_PLAYER_EVENT_LEFT:
+        animState->animationState = WIFI_PLAZA_NEWS_ANIM_PHASE_LEAVE_START;
+        done = TRUE;
         break;
     }
 
-    return v1;
+    return done;
 }
 
-static void ov112_0225D004(UnkStruct_ov112_0225CFD4 *param0, UnkStruct_ov112_0225CC84 *param1, UnkStruct_ov112_0225C9BC *param2, const UnkStruct_ov66_0223177C *param3, const UnkStruct_ov66_0222DFF8 *param4)
+static void WiFiPlazaNewsAnimState_Draw(WiFiPlazaNewsAnimState *animState, WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys)
 {
-    switch (param0->unk_02) {
-    case 0:
+    switch (animState->animationState) {
+    case WIFI_PLAZA_NEWS_ANIM_PHASE_IDLE:
         break;
-    case 1:
-        param0->unk_02 = 2;
-        param0->unk_00 = 0;
+    case WIFI_PLAZA_NEWS_ANIM_PHASE_JOIN_START:
+        animState->animationState = WIFI_PLAZA_NEWS_ANIM_PHASE_JOIN_PLAYING;
+        animState->animationFrame = 0;
         break;
-    case 2:
-        ov112_0225D144(param1, param2, param3, param4, param0->unk_00);
-        param0->unk_00++;
+    case WIFI_PLAZA_NEWS_ANIM_PHASE_JOIN_PLAYING:
+        WiFiPlazaNewsDigits_DrawJoinBlink(digits, graphics, playerList, plazaSys, animState->animationFrame);
+        animState->animationFrame++;
 
-        if (param0->unk_00 >= 32) {
-            param0->unk_02 = 0;
+        if (animState->animationFrame >= WIFI_PLAZA_NEWS_ICON_BLINK_DURATION) {
+            animState->animationState = WIFI_PLAZA_NEWS_ANIM_PHASE_IDLE;
         }
         break;
-    case 3:
-        param0->unk_02 = 4;
-        param0->unk_00 = 0;
+    case WIFI_PLAZA_NEWS_ANIM_PHASE_LEAVE_START:
+        animState->animationState = WIFI_PLAZA_NEWS_ANIM_PHASE_LEAVE_PLAYING;
+        animState->animationFrame = 0;
         break;
-    case 4:
-        ov112_0225D164(param1, param2, param3, param4, param0->unk_00);
-        param0->unk_00++;
+    case WIFI_PLAZA_NEWS_ANIM_PHASE_LEAVE_PLAYING:
+        WiFiPlazaNewsDigits_DrawLeaveBlink(digits, graphics, playerList, plazaSys, animState->animationFrame);
+        animState->animationFrame++;
 
-        if (param0->unk_00 >= 32) {
-            param0->unk_02 = 0;
+        if (animState->animationFrame >= WIFI_PLAZA_NEWS_ICON_BLINK_DURATION) {
+            animState->animationState = WIFI_PLAZA_NEWS_ANIM_PHASE_IDLE;
         }
 
         break;
     }
 }
 
-static void ov112_0225D08C(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, const UnkStruct_ov66_0223177C *param2, const UnkStruct_ov66_0222DFF8 *param3, u32 param4)
+static void WiFiPlazaNewsDigits_DrawPlayerIcons(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, u32 iconFrame)
 {
-    int v0, v1;
+    int row, col;
     u32 v2;
     BOOL v3;
     BOOL v4;
     BOOL v5;
-    BOOL v6;
+    BOOL occupied;
     BOOL v7;
-    u32 v8;
-    u32 v9;
+    u32 slotIndex;
+    u32 drawFrame;
 
-    Bg_FillTilemapRect(param1->unk_00, 3, 0, 21, 4, 5 * 2, 4 * 2, 0);
+    Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_MAIN_3, 0, 21, 4, 5 * 2, 4 * 2, 0);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        for (v1 = 0; v1 < 5; v1++) {
-            v8 = (v0 * 5) + v1;
-            v6 = ov66_02231C18(param2, v8);
+    for (row = 0; row < 4; row++) {
+        for (col = 0; col < 5; col++) {
+            slotIndex = (row * 5) + col;
+            occupied = ov66_02231C18(playerList, slotIndex);
 
-            if (v6) {
-                v2 = ov66_02231C24(param2, v8);
-                v3 = ov66_02231C30(param2, v8);
-                v4 = ov66_02231C3C(param2, v8);
-                v5 = ov66_02231C48(param2, v8);
-                v7 = ov66_0222E924(param3, v8);
+            if (occupied) {
+                v2 = ov66_02231C24(playerList, slotIndex);
+                v3 = ov66_02231C30(playerList, slotIndex);
+                v4 = ov66_02231C3C(playerList, slotIndex);
+                v5 = ov66_02231C48(playerList, slotIndex);
+                v7 = ov66_0222E924(plazaSys, slotIndex);
 
-                if ((param4 == 2) && (v5 == 1)) {
-                    v9 = 0;
+                if ((iconFrame == 2) && (v5 == 1)) {
+                    drawFrame = 0;
                 } else {
-                    v9 = param4;
+                    drawFrame = iconFrame;
                 }
 
-                ov112_0225CCE8(param0, param1, v1, v0, v9, v2, v3, v4, v7);
+                WiFiPlazaNewsDigits_DrawIcon(digits, graphics, col, row, drawFrame, v2, v3, v4, v7);
             }
         }
     }
 }
 
-static void ov112_0225D144(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, const UnkStruct_ov66_0223177C *param2, const UnkStruct_ov66_0222DFF8 *param3, u32 param4)
+static void WiFiPlazaNewsDigits_DrawJoinBlink(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, u32 animFrame)
 {
-    u32 v0;
+    u32 blinkFrame;
 
-    if ((param4 % (32 / 4)) == 0) {
-        v0 = param4 / (32 / 4);
+    if ((animFrame % (WIFI_PLAZA_NEWS_ICON_BLINK_DURATION / 4)) == 0) {
+        blinkFrame = animFrame / (WIFI_PLAZA_NEWS_ICON_BLINK_DURATION / 4);
 
-        if ((v0 % 2) == 0) {
-            v0 = 2;
+        if ((blinkFrame % 2) == 0) {
+            blinkFrame = 2;
         } else {
-            v0 = 0;
+            blinkFrame = 0;
         }
 
-        ov112_0225D08C(param0, param1, param2, param3, v0);
+        WiFiPlazaNewsDigits_DrawPlayerIcons(digits, graphics, playerList, plazaSys, blinkFrame);
     }
 }
 
-static void ov112_0225D164(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, const UnkStruct_ov66_0223177C *param2, const UnkStruct_ov66_0222DFF8 *param3, u32 param4)
+static void WiFiPlazaNewsDigits_DrawLeaveBlink(WiFiPlazaNewsDigits *digits, WiFiPlazaNewsGraphics *graphics, const UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, u32 animFrame)
 {
-    u32 v0;
+    u32 blinkFrame;
 
-    if ((param4 % (32 / 4)) == 0) {
-        v0 = param4 / (32 / 4);
+    if ((animFrame % (WIFI_PLAZA_NEWS_ICON_BLINK_DURATION / 4)) == 0) {
+        blinkFrame = animFrame / (WIFI_PLAZA_NEWS_ICON_BLINK_DURATION / 4);
 
-        if ((v0 % 2) == 0) {
-            v0 = 1;
+        if ((blinkFrame % 2) == 0) {
+            blinkFrame = 1;
         } else {
-            v0 = 0;
+            blinkFrame = 0;
         }
 
-        ov112_0225D08C(param0, param1, param2, param3, v0);
+        WiFiPlazaNewsDigits_DrawPlayerIcons(digits, graphics, playerList, plazaSys, blinkFrame);
     }
 }
 
-static void ov112_0225D180(UnkStruct_ov112_0225D180 *param0, const UnkStruct_ov66_0223177C *param1, int param2, const UnkStruct_ov66_0222DFF8 *param3)
+static void WiFiPlazaNewsNamePalette_Build(WiFiPlazaNewsNamePalette *namePalette, const UnkStruct_ov66_0223177C *playerList, int page, const WiFiPlazaSystem *plazaSys)
 {
-    int v0;
-    u32 v1;
-    BOOL v2;
+    u32 slotIndex;
+    BOOL isHighlighted;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1 = ov66_02231D00(param1, param2, v0);
+    for (int i = 0; i < WIFI_PLAZA_NEWS_NAME_PALETTE_ROW_COUNT; i++) {
+        slotIndex = ov66_02231D00(playerList, page, i);
 
-        if (v1 != 20) {
-            v2 = ov66_0222E924(param3, v1);
+        if (slotIndex != 20) {
+            isHighlighted = ov66_0222E924(plazaSys, slotIndex);
 
-            if (v2 == 1) {
-                param0->unk_00[v0] = 9;
+            if (isHighlighted == 1) {
+                namePalette->paletteIndices[i] = 9;
             } else {
-                param0->unk_00[v0] = 5;
+                namePalette->paletteIndices[i] = 5;
             }
         }
     }
 }
 
-static void ov112_0225D1B8(const UnkStruct_ov112_0225D180 *param0, const NNSG2dPaletteData *param1, u32 param2)
+static void WiFiPlazaNewsNamePalette_Transfer(const WiFiPlazaNewsNamePalette *namePalette, const NNSG2dPaletteData *plttData, u32 paletteSlot)
 {
-    BOOL v0;
-    int v1;
-    const u8 *v2 = param1->pRawData;
+    BOOL success;
+    const u8 *data = plttData->pRawData;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v0 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, (param2 * 0x20) + (5 * 2) + (v1 * 0x4), (void *)(&v2[(7 * 0x20) + (param0->unk_00[v1] * 2)]), 0x4);
-        GF_ASSERT(v0);
+    for (int i = 0; i < WIFI_PLAZA_NEWS_NAME_PALETTE_ROW_COUNT; i++) {
+        success = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, (paletteSlot * 0x20) + (5 * 2) + (i * 0x4), (void *)(&data[(7 * 0x20) + (namePalette->paletteIndices[i] * 2)]), 0x4);
+        GF_ASSERT(success);
     }
 }
 
-static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_0225C9BC *param1, enum HeapID heapID)
+static void WiFiPlazaNewsNameList_Init(WiFiPlazaNewsNameList *nameList, WiFiPlazaNewsGraphics *graphics, enum HeapID heapID)
 {
-    int v0;
+    for (int i = 0; i < WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT; i++) {
+        WiFiPlazaNewsNameEntry_Init(&nameList->entries[i], graphics, i, heapID);
 
-    for (v0 = 0; v0 < 3; v0++) {
-        ov112_0225D408(&param0->unk_00[v0], param1, v0, heapID);
-
-        Window_Add(param1->unk_00, &param0->unk_60[v0], 3, 1, Unk_ov112_0225D804[v0], 30, 2, 7 + v0, 0x300 + ((30 * 2) * v0));
-        Window_FillTilemap(&param0->unk_60[v0], 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_60[v0]);
+        Window_Add(graphics->bgConfig, &nameList->windows[i], BG_LAYER_MAIN_3, 1, sNameListRowY[i], 30, 2, 7 + i, 0x300 + ((30 * 2) * i));
+        Window_FillTilemap(&nameList->windows[i], 0);
+        Window_ScheduleCopyToVRAM(&nameList->windows[i]);
     }
 
-    param0->unk_90 = String_Init(256, heapID);
-    param0->unk_94 = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A4, 0, &param0->unk_98, heapID);
+    nameList->pendingName = String_Init(256, heapID);
+    nameList->paletteBuffer = Graphics_GetPlttDataFromOpenNARC(graphics->narc, 0, &nameList->paletteData, heapID);
 
-    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
-    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (8 * 0x20) + (13 * 2));
-    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (9 * 0x20) + (13 * 2));
+    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)nameList->paletteData->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
+    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)nameList->paletteData->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (8 * 0x20) + (13 * 2));
+    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)nameList->paletteData->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (9 * 0x20) + (13 * 2));
 }
 
-static void ov112_0225D2D0(UnkStruct_ov112_0225D2D0 *param0)
+static void WiFiPlazaNewsNameList_Free(WiFiPlazaNewsNameList *nameList)
 {
-    int v0;
+    Heap_Free(nameList->paletteBuffer);
+    String_Free(nameList->pendingName);
 
-    Heap_Free(param0->unk_94);
-    String_Free(param0->unk_90);
-
-    for (v0 = 0; v0 < 3; v0++) {
-        Window_Remove(&param0->unk_60[v0]);
-        ov112_0225D44C(&param0->unk_00[v0]);
+    for (int i = 0; i < WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT; i++) {
+        Window_Remove(&nameList->windows[i]);
+        WiFiPlazaNewsNameEntry_Free(&nameList->entries[i]);
     }
 }
 
-static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov66_0223177C *param1, const UnkStruct_ov66_0222DFF8 *param2, enum HeapID heapID)
+static BOOL WiFiPlazaNewsNameList_Update(WiFiPlazaNewsNameList *nameList, UnkStruct_ov66_0223177C *playerList, const WiFiPlazaSystem *plazaSys, enum HeapID heapID)
 {
-    int v0;
-    BOOL v1;
-    int v2;
-    UnkStruct_ov112_0225D180 v3;
+    BOOL done;
+    int slotIndex;
+    WiFiPlazaNewsNamePalette namePltt;
     UnkStruct_ov66_02232068 v4;
 
-    ov66_0222E934(param2, &v4);
+    ov66_0222E934(plazaSys, &v4);
 
-    for (v0 = 3 - 1; v0 >= 0; v0--) {
-        if (param0->unk_00[v0].unk_00) {
-            v1 = ov112_0225D4E4(&param0->unk_00[v0]);
+    for (int i = WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT - 1; i >= 0; i--) {
+        if (nameList->entries[i].active) {
+            done = WiFiPlazaNewsNameEntry_Update(&nameList->entries[i]);
 
-            if (v1 == 1) {
-                if ((v0 + 1) < 3) {
-                    ov112_0225D460(&param0->unk_00[v0 + 1], param0->unk_00[v0].unk_08, Unk_ov112_0225D808[v0 + 1], &param0->unk_00[v0].unk_1C, param0->unk_98);
+            if (done == TRUE) {
+                if ((i + 1) < WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT) {
+                    WiFiPlazaNewsNameEntry_Show(&nameList->entries[i + 1], nameList->entries[i].name, sNameEntryHoldDurations[i + 1], &nameList->entries[i].namePalette, nameList->paletteData);
                 }
 
-                ov112_0225D4DC(&param0->unk_00[v0]);
+                WiFiPlazaNewsNameEntry_Hide(&nameList->entries[i]);
             }
         }
     }
 
-    if (param0->unk_00[0].unk_00 == 0) {
-        while (ov66_02231C60(param1) == 1) {
-            v2 = ov66_02231C78(param1);
-            v1 = ov66_02231C94(param1, &v4, v2, param0->unk_90, heapID);
+    if (nameList->entries[0].active == FALSE) {
+        while (ov66_02231C60(playerList) == 1) {
+            slotIndex = ov66_02231C78(playerList);
+            done = ov66_02231C94(playerList, &v4, slotIndex, nameList->pendingName, heapID);
 
-            if (v1 == 1) {
-                ov112_0225D180(&v3, param1, v2, param2);
-                ov112_0225D460(&param0->unk_00[0], param0->unk_90, Unk_ov112_0225D808[0], &v3, param0->unk_98);
-                ov66_02231C04(param1);
-                return 1;
+            if (done == TRUE) {
+                WiFiPlazaNewsNamePalette_Build(&namePltt, playerList, slotIndex, plazaSys);
+                WiFiPlazaNewsNameEntry_Show(&nameList->entries[0], nameList->pendingName, sNameEntryHoldDurations[0], &namePltt, nameList->paletteData);
+                ov66_02231C04(playerList);
+                return TRUE;
             }
 
-            ov66_02231C04(param1);
+            ov66_02231C04(playerList);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov112_0225D3E0(UnkStruct_ov112_0225D2D0 *param0)
+static void WiFiPlazaNewsNameList_Draw(WiFiPlazaNewsNameList *nameList)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_00[v0].unk_00 == 1) {
-            ov112_0225D4F8(&param0->unk_00[v0], &param0->unk_60[v0]);
+    for (int i = 0; i < WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT; i++) {
+        if (nameList->entries[i].active == TRUE) {
+            WiFiPlazaNewsNameEntry_Draw(&nameList->entries[i], &nameList->windows[i]);
         }
     }
 }
 
-static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, enum HeapID heapID)
+static void WiFiPlazaNewsNameEntry_Init(WiFiPlazaNewsNameEntry *entry, WiFiPlazaNewsGraphics *graphics, u32 windowIndex, enum HeapID heapID)
 {
-    param0->unk_00 = 0;
-    param0->unk_02 = 0;
-    param0->unk_08 = String_Init(256, heapID);
-    param0->unk_01 = 7 + param2;
+    entry->active = FALSE;
+    entry->holdTimer = 0;
+    entry->name = String_Init(256, heapID);
+    entry->paletteSlot = 7 + windowIndex;
 
-    Window_Add(param1->unk_00, &param0->unk_0C, 3, 0, 0, 180, 2, 7, 0);
+    Window_Add(graphics->bgConfig, &entry->textWindow, BG_LAYER_MAIN_3, 0, 0, WIFI_PLAZA_NEWS_NAME_TEXT_WIDTH, WIFI_PLAZA_NEWS_NAME_TEXT_HEIGHT, 7, 0);
 }
 
-static void ov112_0225D44C(UnkStruct_ov112_0225D44C *param0)
+static void WiFiPlazaNewsNameEntry_Free(WiFiPlazaNewsNameEntry *entry)
 {
-    String_Free(param0->unk_08);
-    Window_Remove(&param0->unk_0C);
+    String_Free(entry->name);
+    Window_Remove(&entry->textWindow);
 }
 
-static void ov112_0225D460(UnkStruct_ov112_0225D44C *param0, const String *param1, u32 param2, const UnkStruct_ov112_0225D180 *param3, const NNSG2dPaletteData *param4)
+static void WiFiPlazaNewsNameEntry_Show(WiFiPlazaNewsNameEntry *entry, const String *name, u32 holdDuration, const WiFiPlazaNewsNamePalette *namePltt, const NNSG2dPaletteData *plttData)
 {
-    String_Copy(param0->unk_08, param1);
+    String_Copy(entry->name, name);
 
-    param0->unk_00 = 1;
-    param0->unk_02 = 0;
-    param0->unk_04 = param2;
-    param0->unk_06 = Font_CalcStringWidth(FONT_MESSAGE, param1, 0);
-    param0->unk_06 += 256;
+    entry->active = TRUE;
+    entry->holdTimer = 0;
+    entry->holdDuration = holdDuration;
+    entry->scrollRange = Font_CalcStringWidth(FONT_MESSAGE, name, 0);
+    entry->scrollRange += HW_LCD_WIDTH;
 
-    GF_ASSERT((180 * 8) >= param0->unk_06);
+    GF_ASSERT((WIFI_PLAZA_NEWS_NAME_TEXT_WIDTH * 8) >= entry->scrollRange);
 
-    Window_FillTilemap(&param0->unk_0C, 0);
-    Text_AddPrinterWithParams(&param0->unk_0C, FONT_MESSAGE, param0->unk_08, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+    Window_FillTilemap(&entry->textWindow, 0);
+    Text_AddPrinterWithParams(&entry->textWindow, FONT_MESSAGE, entry->name, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
-    param0->unk_1C = *param3;
+    entry->namePalette = *namePltt;
 
-    ov112_0225D1B8(&param0->unk_1C, param4, param0->unk_01);
+    WiFiPlazaNewsNamePalette_Transfer(&entry->namePalette, plttData, entry->paletteSlot);
 }
 
-static void ov112_0225D4DC(UnkStruct_ov112_0225D44C *param0)
+static void WiFiPlazaNewsNameEntry_Hide(WiFiPlazaNewsNameEntry *entry)
 {
-    param0->unk_00 = 0;
+    entry->active = FALSE;
 }
 
-static BOOL ov112_0225D4E4(UnkStruct_ov112_0225D44C *param0)
+static BOOL WiFiPlazaNewsNameEntry_Update(WiFiPlazaNewsNameEntry *entry)
 {
-    BOOL v0 = 1;
+    BOOL done = TRUE;
 
-    if ((param0->unk_02 + 1) <= param0->unk_04) {
-        param0->unk_02++;
-        v0 = 0;
+    if ((entry->holdTimer + 1) <= entry->holdDuration) {
+        entry->holdTimer++;
+        done = FALSE;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C *param0, Window *param1)
+static void WiFiPlazaNewsNameEntry_Draw(const WiFiPlazaNewsNameEntry *entry, Window *window)
 {
-    s32 v0;
-    s32 v1;
-    s32 v2;
-    s32 v3;
+    s32 scrollOffset;
+    s32 destX;
+    s32 srcX;
+    s32 blitWidth;
 
-    v0 = (param0->unk_02 * param0->unk_06) / param0->unk_04;
+    scrollOffset = (entry->holdTimer * entry->scrollRange) / entry->holdDuration;
 
-    if (v0 < 256) {
-        v1 = 255 - v0;
-        v2 = 0;
-        v3 = v0;
+    if (scrollOffset < HW_LCD_WIDTH) {
+        destX = (HW_LCD_WIDTH - 1) - scrollOffset;
+        srcX = 0;
+        blitWidth = scrollOffset;
     } else {
-        v1 = 0;
-        v2 = v0 - 256;
-        v3 = (param0->unk_06 - v0);
+        destX = 0;
+        srcX = scrollOffset - HW_LCD_WIDTH;
+        blitWidth = (entry->scrollRange - scrollOffset);
 
-        if (v3 > 255) {
-            v3 = 255;
+        if (blitWidth > (HW_LCD_WIDTH - 1)) {
+            blitWidth = HW_LCD_WIDTH - 1;
         }
     }
 
-    Window_FillRectWithColor(param1, 0, 0, 0, 255, 2 * 8);
-    Window_BlitBitmapRectWithTransparency(param1, param0->unk_0C.pixels, v2, 0, 180 * 8, 2 * 8, v1, 0, v3, 2 * 8, 15);
-    Window_ScheduleCopyToVRAM(param1);
+    Window_FillRectWithColor(window, 0, 0, 0, HW_LCD_WIDTH - 1, WIFI_PLAZA_NEWS_NAME_TEXT_HEIGHT * 8);
+    Window_BlitBitmapRectWithTransparency(window, entry->textWindow.pixels, srcX, 0, WIFI_PLAZA_NEWS_NAME_TEXT_WIDTH * 8, WIFI_PLAZA_NEWS_NAME_TEXT_HEIGHT * 8, destX, 0, blitWidth, WIFI_PLAZA_NEWS_NAME_TEXT_HEIGHT * 8, 15);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_0225C9BC *param1, enum HeapID heapID)
+static void WiFiPlazaNewsCaptions_Init(WiFiPlazaNewsCaptions *newsCaptions, WiFiPlazaNewsGraphics *graphics, enum HeapID heapID)
 {
-    int v0;
-    MessageLoader *v1;
-    String *v2;
-    u32 v3;
-    String *v4;
-    u32 v5;
-    u32 v6, v7;
+    int i;
+    MessageLoader *msgLoader;
+    String *message;
+    u32 lineCount;
+    String *line;
+    u32 lineIndex;
+    u32 lineX, lineY;
 
-    memset(param0, 0, sizeof(UnkStruct_ov112_0225D6DC));
+    memset(newsCaptions, 0, sizeof(WiFiPlazaNewsCaptions));
 
-    v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, heapID);
-    v2 = String_Init(128, heapID);
+    msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, heapID);
+    message = String_Init(128, heapID);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        ov112_0225D73C(&param0->unk_40[v0], Unk_ov112_0225D960[v0], Unk_ov112_0225D968[v0]);
+    for (i = 0; i < WIFI_PLAZA_NEWS_CAPTION_COUNT; i++) {
+        WiFiPlazaNewsFlash_Init(&newsCaptions->newsFlashes[i], sFlashPaletteIndices[i], sFlashSoundEffects[i]);
 
-        Window_Add(param1->unk_00, &param0->unk_00[v0], 0, Unk_ov112_0225D880[v0].unk_00, Unk_ov112_0225D880[v0].unk_01, Unk_ov112_0225D880[v0].unk_02, Unk_ov112_0225D880[v0].unk_03, Unk_ov112_0225D880[v0].unk_06, Unk_ov112_0225D880[v0].unk_04);
+        Window_Add(graphics->bgConfig, &newsCaptions->windows[i], BG_LAYER_MAIN_0, sCaptionTemplates[i].tilemapLeft, sCaptionTemplates[i].tilemapTop, sCaptionTemplates[i].width, sCaptionTemplates[i].height, sCaptionTemplates[i].palette, sCaptionTemplates[i].baseTile);
 
-        Window_FillTilemap(&param0->unk_00[v0], 0);
+        Window_FillTilemap(&newsCaptions->windows[i], 0);
 
-        MessageLoader_GetString(v1, 0 + v0, v2);
+        MessageLoader_GetString(msgLoader, 0 + i, message);
 
-        v3 = String_NumLines(v2);
-        v7 = Unk_ov112_0225D880[v0].unk_08;
-        v4 = String_Init(String_Length(v2) + 1, heapID);
-        for (v5 = 0; v5 < v3; v5++) {
-            String_CopyLineNum(v4, v2, v5);
-            switch (Unk_ov112_0225D880[v0].unk_09) {
-            case 0:
-                v6 = Unk_ov112_0225D880[v0].unk_07;
+        lineCount = String_NumLines(message);
+        lineY = sCaptionTemplates[i].textY;
+        line = String_Init(String_Length(message) + 1, heapID);
+        for (lineIndex = 0; lineIndex < lineCount; lineIndex++) {
+            String_CopyLineNum(line, message, lineIndex);
+            switch (sCaptionTemplates[i].alignment) {
+            case TEXT_ALIGN_LEFT:
+                lineX = sCaptionTemplates[i].textX;
                 break;
-            case 1:
-                v6 = Unk_ov112_0225D880[v0].unk_07 - (Font_CalcMaxLineWidth(0, v4, 0) + 1) / 2;
+            case TEXT_ALIGN_CENTER:
+                lineX = sCaptionTemplates[i].textX - (Font_CalcMaxLineWidth(0, line, 0) + 1) / 2;
                 break;
-            case 2:
-                v6 = Unk_ov112_0225D880[v0].unk_07 - Font_CalcMaxLineWidth(0, v4, 0);
+            case TEXT_ALIGN_RIGHT:
+                lineX = sCaptionTemplates[i].textX - Font_CalcMaxLineWidth(0, line, 0);
                 break;
             }
-            Text_AddPrinterWithParamsAndColor(&param0->unk_00[v0], FONT_SYSTEM, v4, v6, v7, TEXT_SPEED_NO_TRANSFER, Unk_ov112_0225D880[v0].unk_0C, NULL);
-            v7 += 16;
+            Text_AddPrinterWithParamsAndColor(&newsCaptions->windows[i], FONT_SYSTEM, line, lineX, lineY, TEXT_SPEED_NO_TRANSFER, sCaptionTemplates[i].textColor, NULL);
+            lineY += 16;
         }
-        String_Free(v4);
+        String_Free(line);
 
-        Window_ScheduleCopyToVRAM(&param0->unk_00[v0]);
+        Window_ScheduleCopyToVRAM(&newsCaptions->windows[i]);
     }
-    String_Free(v2);
-    MessageLoader_Free(v1);
+    String_Free(message);
+    MessageLoader_Free(msgLoader);
 }
 
-static void ov112_0225D6DC(UnkStruct_ov112_0225D6DC *param0)
+static void WiFiPlazaNewsCaptions_Free(WiFiPlazaNewsCaptions *newsCaptions)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        Window_Remove(&param0->unk_00[v0]);
-        ov112_0225D75C(&param0->unk_40[v0]);
+    for (int i = 0; i < WIFI_PLAZA_NEWS_CAPTION_COUNT; i++) {
+        Window_Remove(&newsCaptions->windows[i]);
+        WiFiPlazaNewsFlash_Free(&newsCaptions->newsFlashes[i]);
     }
 }
 
-static void ov112_0225D700(UnkStruct_ov112_0225D6DC *param0)
+static void WiFiPlazaNewsCaptions_Update(WiFiPlazaNewsCaptions *newsCaptions)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        ov112_0225D784(&param0->unk_40[v0]);
+    for (int i = 0; i < WIFI_PLAZA_NEWS_CAPTION_COUNT; i++) {
+        WiFiPlazaNewsFlash_Update(&newsCaptions->newsFlashes[i]);
     }
 }
 
-static void ov112_0225D718(UnkStruct_ov112_0225D6DC *param0, u32 param1)
+static void WiFiPlazaNewsCaptions_Flash(WiFiPlazaNewsCaptions *newsCaptions, u32 captionIndex)
 {
-    GF_ASSERT(param1 < 4);
-    GF_ASSERT(param1 != 0);
+    GF_ASSERT(captionIndex < WIFI_PLAZA_NEWS_CAPTION_COUNT);
+    GF_ASSERT(captionIndex != WIFI_PLAZA_NEWS_CAPTION_STATIC);
 
-    ov112_0225D778(&param0->unk_40[param1]);
+    WiFiPlazaNewsFlash_Start(&newsCaptions->newsFlashes[captionIndex]);
 }
 
-static void ov112_0225D73C(UnkStruct_ov112_0225D73C *param0, u16 param1, u32 param2)
+static void WiFiPlazaNewsFlash_Init(WiFiPlazaNewsFlash *newsFlash, u16 plttIndex, u32 seIndex)
 {
-    memset(param0, 0, sizeof(UnkStruct_ov112_0225D73C));
-    param0->unk_06 = param1;
-    param0->unk_08 = param2;
+    memset(newsFlash, 0, sizeof(WiFiPlazaNewsFlash));
+    newsFlash->paletteIndex = plttIndex;
+    newsFlash->soundEffect = seIndex;
 }
 
-static void ov112_0225D75C(UnkStruct_ov112_0225D73C *param0)
+static void WiFiPlazaNewsFlash_Free(WiFiPlazaNewsFlash *newsFlash)
 {
-    memset(param0, 0, sizeof(UnkStruct_ov112_0225D73C));
+    memset(newsFlash, 0, sizeof(WiFiPlazaNewsFlash));
 }
 
-static void ov112_0225D778(UnkStruct_ov112_0225D73C *param0)
+static void WiFiPlazaNewsFlash_Start(WiFiPlazaNewsFlash *newsFlash)
 {
-    param0->unk_00 = 1;
-    param0->unk_02 = 0;
+    newsFlash->active = TRUE;
+    newsFlash->frameCounter = 0;
 }
 
-static void ov112_0225D784(UnkStruct_ov112_0225D73C *param0)
+static void WiFiPlazaNewsFlash_Update(WiFiPlazaNewsFlash *newsFlash)
 {
-    u32 v0;
-    u16 v1;
+    u32 blendRatio;
+    u16 targetColor;
 
-    if (param0->unk_02 > 28) {
-        param0->unk_00 = 0;
+    if (newsFlash->frameCounter > 28) {
+        newsFlash->active = FALSE;
     }
 
-    if (param0->unk_00 == 0) {
+    if (newsFlash->active == FALSE) {
         return;
     }
 
-    if (param0->unk_02 == 0) {
-        Sound_PlayEffect(param0->unk_08);
+    if (newsFlash->frameCounter == 0) {
+        Sound_PlayEffect(newsFlash->soundEffect);
     }
 
-    if (param0->unk_02 < 2) {
-        v0 = (param0->unk_02 * 16) / 2;
-    } else if (param0->unk_02 < 2 + 12) {
-        v0 = 16;
+    if (newsFlash->frameCounter < 2) {
+        blendRatio = (newsFlash->frameCounter * 16) / 2;
+    } else if (newsFlash->frameCounter < 2 + 12) {
+        blendRatio = 16;
     } else {
-        v0 = ((param0->unk_02 - (2 + 12)) * 16) / (28 - (2 + 12));
-        v0 = 16 - v0;
+        blendRatio = ((newsFlash->frameCounter - (2 + 12)) * 16) / (28 - (2 + 12));
+        blendRatio = 16 - blendRatio;
     }
 
-    v1 = 0xe;
+    targetColor = 0xe;
 
-    BlendPalette(&v1, &param0->unk_04, 1, v0, 0x19);
-    DC_FlushRange(&param0->unk_04, 2);
-    GX_LoadBGPltt(&param0->unk_04, param0->unk_06, 2);
+    BlendPalette(&targetColor, &newsFlash->blendColor, 1, blendRatio, 0x19);
+    DC_FlushRange(&newsFlash->blendColor, 2);
+    GX_LoadBGPltt(&newsFlash->blendColor, newsFlash->paletteIndex, 2);
 
-    param0->unk_02++;
+    newsFlash->frameCounter++;
 }

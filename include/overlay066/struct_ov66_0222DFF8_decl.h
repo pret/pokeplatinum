@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV66_0222DFF8_DECL_H
 #define POKEPLATINUM_STRUCT_OV66_0222DFF8_DECL_H
 
-typedef struct UnkStruct_ov66_0222DFF8_t UnkStruct_ov66_0222DFF8;
+typedef struct UnkStruct_ov66_0222DFF8_t WiFiPlazaSystem;
 
 #endif // POKEPLATINUM_STRUCT_OV66_0222DFF8_DECL_H
