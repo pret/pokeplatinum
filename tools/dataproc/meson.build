@@ -67,7 +67,7 @@ speciesproc_exe = executable(
     c_args: dataproc_cflags,
     include_directories: [ public_includes, toplevel_includes ],
     dependencies: [
-        commonproc_dep,
+        common_dep,
         cc.find_library('m', required: true),
     ],
     native: true,
