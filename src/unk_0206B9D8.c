@@ -292,13 +292,13 @@ static BOOL sub_0206BD1C(FieldTask *param0)
 
     switch (v3->unk_00) {
     case 0:
-        *v0 = sub_0204AFC4(fieldSystem, v1);
+        *v0 = BattleTower_ReceivePlayerData(fieldSystem, v1);
         break;
     case 1:
-        *v0 = sub_0204B020(fieldSystem, v1);
+        *v0 = BattleTower_ReceiveTrainers(fieldSystem, v1);
         break;
     case 2:
-        *v0 = sub_0204B044(fieldSystem, v1);
+        *v0 = BattleTower_ReceiveRetireChoice(fieldSystem, v1);
     }
 
     Heap_Free(v3);

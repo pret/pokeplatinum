@@ -254,15 +254,15 @@ BOOL ScrCmd_1E1(ScriptContext *ctx)
     switch (v3) {
     case 0:
         cmd = 62;
-        sub_0204B060(ctx->fieldSystem->battleTower, ctx->fieldSystem->saveData);
+        BattleTower_SendPlayerData(ctx->fieldSystem->battleTower, ctx->fieldSystem->saveData);
         break;
     case 1:
         cmd = 63;
-        sub_0204B0BC(ctx->fieldSystem->battleTower);
+        BattleTower_SendTrainers(ctx->fieldSystem->battleTower);
         break;
     case 2:
         cmd = 64;
-        sub_0204B0D4(ctx->fieldSystem->battleTower, v4);
+        BattleTower_SendRetireChoice(ctx->fieldSystem->battleTower, v4);
         break;
     }
 
