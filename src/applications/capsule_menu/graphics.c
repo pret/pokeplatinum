@@ -392,7 +392,7 @@ void CapsuleGraphics_OpenCapsuleSelectionMenu(BgConfig *bgConfig, Window *window
     int tilemapLeft, tilemapTop, width, height, baseTile, ySize;
     int stringIDs[4];
 
-    field = SealManger_CapsuleMenuField(appMan, capsuleIndex);
+    field = CapsuleManager_CapsuleSelectionField(appMan, capsuleIndex);
     baseTile = ((9 * 8) + ((27 * 2) + (0 + ((1 + (18 + 12)) + 9))));
     tilemapLeft = 21;
     width = 9;
