@@ -1,4 +1,4 @@
-#include "overlay112/ov112_0225C700.h"
+#include "wifi_plaza/news/main.h"
 
 #include <nitro.h>
 #include <string.h>

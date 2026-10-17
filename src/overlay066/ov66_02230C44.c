@@ -19,13 +19,13 @@
 #include "overlay068/ov68_0225C700.h"
 #include "overlay069/ov69_0225C700.h"
 #include "overlay070/ov70_0225D9A4.h"
-#include "overlay112/ov112_0225C700.h"
 #include "overlay113/ov113_0225C700.h"
 #include "overlay115/ov115_02260440.h"
 #include "overlay115/struct_ov115_02260440.h"
 #include "overlay116/ov116_022604C4.h"
 #include "overlay117/ov117_02260440.h"
 #include "overlay117/struct_ov117_02260440.h"
+#include "wifi_plaza/news/main.h"
 
 #include "game_overlay.h"
 #include "heap.h"
@@ -37,7 +37,7 @@ FS_EXTERN_OVERLAY(overlay67);
 FS_EXTERN_OVERLAY(overlay68);
 FS_EXTERN_OVERLAY(overlay69);
 FS_EXTERN_OVERLAY(overlay70);
-FS_EXTERN_OVERLAY(overlay112);
+FS_EXTERN_OVERLAY(wifi_plaza_news);
 FS_EXTERN_OVERLAY(overlay113);
 FS_EXTERN_OVERLAY(overlay114);
 FS_EXTERN_OVERLAY(overlay115);
@@ -464,10 +464,10 @@ static void ov66_02230FE4(UnkStruct_ov66_02230E4C *param0)
 
 static void ov66_02230FF0(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1)
 {
-    FS_EXTERN_OVERLAY(overlay112);
+    FS_EXTERN_OVERLAY(wifi_plaza_news);
 
     static const ApplicationManagerTemplate v0 = {
-        WiFiPlazaNews_Init, WiFiPlazaNews_Main, WiFiPlazaNews_Exit, FS_OVERLAY_ID(overlay112)
+        WiFiPlazaNews_Init, WiFiPlazaNews_Main, WiFiPlazaNews_Exit, FS_OVERLAY_ID(wifi_plaza_news)
     };
 
     ov66_02230CEC(param0, param1, &v0);
