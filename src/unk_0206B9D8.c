@@ -16,6 +16,7 @@
 
 #include "bag.h"
 #include "battle_frontier_save.h"
+#include "battle_tower.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_system.h"
@@ -31,7 +32,6 @@
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_0204AEE8.h"
 #include "wifi_battle_tower_save.h"
 
 #include "constdata/const_020F410C.h"

@@ -19,6 +19,7 @@
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
+#include "battle_tower.h"
 #include "field_overworld_state.h"
 #include "field_task.h"
 #include "game_records.h"
@@ -38,7 +39,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_0204AEE8.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 #include "wifi_battle_tower_save.h"

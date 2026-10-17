@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0204AEE8_H
-#define POKEPLATINUM_UNK_0204AEE8_H
+#ifndef POKEPLATINUM_BATTLE_TOWER_H
+#define POKEPLATINUM_BATTLE_TOWER_H
 
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/wifi_battle_tower_data.h"
@@ -22,4 +22,4 @@ u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 r
 BOOL sub_0204B3B8(BattleTower *battleTower, FrontierOpponent *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, BattleTowerPartnerData *param6, enum HeapID heapID);
 void sub_0204B404(BattleTower *battleTower, FrontierOpponent *param1, u16 partnerBattleTowerID, BOOL param3, const BattleTowerPartnerData *param4, enum HeapID heapID);
 
-#endif // POKEPLATINUM_UNK_0204AEE8_H
+#endif // POKEPLATINUM_BATTLE_TOWER_H
