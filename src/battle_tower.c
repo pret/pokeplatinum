@@ -1,4 +1,4 @@
-#include "unk_0204AEE8.h"
+#include "battle_tower.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -35,9 +35,9 @@
 #include "unk_02049D08.h"
 #include "wifi_battle_tower_save.h"
 
-static BOOL sub_0204B470(BattleTower *battleTower, FrontierTrainerBase *trainerData, u16 partnerBattleTowerID, FrontierPokemon *param3, u8 partySize, u16 *param5, u16 *param6, BattleTowerPartnerData *param7, enum HeapID heapID);
-static void *sub_0204B630(u16 param0, int param1);
-static void sub_0204B640(FrontierPokemonBase *param0, int param1);
+static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, FrontierTrainerBase *trainerData, u16 battleTowerTrainerID, FrontierPokemon *monDataDTO, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *partnerData, enum HeapID heapID);
+static void *BattleTower_GetTrainerBase(u16 trainerID, enum HeapID heapID);
+static void BattleTower_GetPokemonBase(FrontierPokemonBase *monData, int narcIdx);
 
 static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_TRAINER_CHERYL, OBJ_EVENT_GFX_CHERYL },
@@ -142,88 +142,85 @@ StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16
 
 u16 BattleTower_GetObjectIDFromTrainerClass(u8 trainerClass)
 {
-    for (int v0 = 0; v0 < (NELEMS(sTrainerClassToObjectID)); v0++) {
-        if (sTrainerClassToObjectID[v0][0] == trainerClass) {
-            return sTrainerClassToObjectID[v0][1];
+    for (int i = 0; i < (NELEMS(sTrainerClassToObjectID)); i++) {
+        if (sTrainerClassToObjectID[i][0] == trainerClass) {
+            return sTrainerClassToObjectID[i][1];
         }
     }
 
     return OBJ_EVENT_GFX_SCHOOL_KID_M;
 }
 
-u16 sub_0204AFC4(FieldSystem *fieldSystem, const u16 *param1)
+u16 BattleTower_ReceivePlayerData(FieldSystem *fieldSystem, const u16 *recvBuf)
 {
-    u16 v0 = 0;
+    u16 duplicateFlags = 0;
     BattleTower *battleTower = fieldSystem->battleTower;
 
-    battleTower->partnerGender = (u8)param1[0];
-    battleTower->unk_16[0] = param1[1];
-    battleTower->unk_16[1] = param1[2];
-    battleTower->unk_14 = param1[3];
+    battleTower->partnerGender = (u8)recvBuf[0];
+    battleTower->unk_16[0] = recvBuf[1];
+    battleTower->unk_16[1] = recvBuf[2];
+    battleTower->unk_14 = recvBuf[3];
     battleTower->partnerID = BT_PARTNERS_COUNT + battleTower->partnerGender;
 
     if ((battleTower->unk_2E[0] == battleTower->unk_16[0]) || (battleTower->unk_2E[0] == battleTower->unk_16[1])) {
-        v0 += 1;
+        duplicateFlags += 1;
     }
 
     if ((battleTower->unk_2E[1] == battleTower->unk_16[0]) || (battleTower->unk_2E[1] == battleTower->unk_16[1])) {
-        v0 += 2;
+        duplicateFlags += 2;
     }
 
-    return v0;
+    return duplicateFlags;
 }
 
-u16 sub_0204B020(FieldSystem *fieldSystem, const u16 *param1)
+u16 BattleTower_ReceiveTrainers(FieldSystem *fieldSystem, const u16 *recvBuf)
 {
-    int v0;
     BattleTower *battleTower = fieldSystem->battleTower;
 
     if (CommSys_CurNetId() == 0) {
         return 0;
     }
 
-    MI_CpuCopy8(param1, battleTower->trainerIDs, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
+    MI_CpuCopy8(recvBuf, battleTower->trainerIDs, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
     return 1;
 }
 
-u16 sub_0204B044(FieldSystem *fieldSystem, const u16 *param1)
+u16 BattleTower_ReceiveRetireChoice(FieldSystem *fieldSystem, const u16 *recvBuf)
 {
-    int v0;
     BattleTower *battleTower = fieldSystem->battleTower;
 
-    if (battleTower->unk_10_3 || param1[0]) {
+    if (battleTower->unk_10_3 || recvBuf[0]) {
         return 1;
     }
 
     return 0;
 }
 
-void sub_0204B060(BattleTower *battleTower, SaveData *saveData)
+void BattleTower_SendPlayerData(BattleTower *battleTower, SaveData *saveData)
 {
-    int v0;
-    Party *v1;
-    Pokemon *v2;
-    TrainerInfo *v3 = SaveData_GetTrainerInfo(saveData);
+    int i;
+    Party *party;
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
-    battleTower->unk_83E[0] = TrainerInfo_Gender(v3);
-    v1 = SaveData_GetParty(saveData);
+    battleTower->unk_83E[0] = TrainerInfo_Gender(trainerInfo);
+    party = SaveData_GetParty(saveData);
 
-    for (v0 = 0; v0 < 2; v0++) {
-        battleTower->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, battleTower->unk_2A[v0]), MON_DATA_SPECIES, NULL);
+    for (i = 0; i < 2; i++) {
+        battleTower->unk_83E[1 + i] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[i]), MON_DATA_SPECIES, NULL);
     }
 
     battleTower->unk_83E[3] = WifiBattleTowerRecord_UpdateRoomNum(battleTower->unk_74, 3, 0);
 }
 
-void sub_0204B0BC(BattleTower *battleTower)
+void BattleTower_SendTrainers(BattleTower *battleTower)
 {
     MI_CpuCopy8(battleTower->trainerIDs, battleTower->unk_83E, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
 }
 
-void sub_0204B0D4(BattleTower *battleTower, u16 param1)
+void BattleTower_SendRetireChoice(BattleTower *battleTower, u16 retire)
 {
-    battleTower->unk_10_3 = param1;
-    battleTower->unk_83E[0] = param1;
+    battleTower->unk_10_3 = retire;
+    battleTower->unk_83E[0] = retire;
 }
 
 static const u16 sBattleTowerTrainerRangesPerRoom[][2] = {
@@ -278,261 +275,261 @@ u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 r
     return trainerID;
 }
 
-static FrontierTrainerBase *sub_0204B184(FrontierOpponent *param0, u16 param1, enum HeapID heapID)
+static FrontierTrainerBase *BattleTower_GetTrainer(FrontierOpponent *opponent, u16 trainerID, enum HeapID heapID)
 {
-    MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
-    MI_CpuClear8(param0, sizeof(FrontierOpponent));
+    MI_CpuClear8(opponent, sizeof(FrontierOpponent));
 
-    FrontierTrainerBase *v0 = sub_0204B630(param1, heapID);
+    FrontierTrainerBase *trainerBase = BattleTower_GetTrainerBase(trainerID, heapID);
 
-    param0->trainer.trainerID = param1;
-    param0->trainer.introMsg[0] = 0xFFFF;
-    param0->trainer.introMsg[1] = param1 * 3;
-    param0->trainer.trainerType = v0->trainerType;
+    opponent->trainer.trainerID = trainerID;
+    opponent->trainer.introMsg[0] = 0xFFFF;
+    opponent->trainer.introMsg[1] = trainerID * 3;
+    opponent->trainer.trainerType = trainerBase->trainerType;
 
-    String *v2 = MessageLoader_GetNewString(v1, param1);
+    String *string = MessageLoader_GetNewString(msgLoader, trainerID);
 
-    String_ToChars(v2, &param0->trainer.trainerName[0], TRAINER_NAME_LEN + 1);
-    String_Free(v2);
-    MessageLoader_Free(v1);
+    String_ToChars(string, &opponent->trainer.trainerName[0], TRAINER_NAME_LEN + 1);
+    String_Free(string);
+    MessageLoader_Free(msgLoader);
 
-    return v0;
+    return trainerBase;
 }
 
-static const u16 Unk_020EBD50[] = {
+static const u16 sBattleTowerReservedItems[] = {
     ITEM_BRIGHTPOWDER,
     ITEM_LUM_BERRY,
     ITEM_LEFTOVERS,
     ITEM_QUICK_CLAW
 };
 
-static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemon *param1, u16 param2, u32 param3, u32 param4, u8 ivs, u8 param6, BOOL param7, enum HeapID heapID)
+static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemon *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, enum HeapID heapID)
 {
-    int v0;
-    u32 v2;
-    FrontierPokemonBase v4;
+    int i;
+    u32 randomPersonality;
+    FrontierPokemonBase monData;
 
-    MI_CpuClear8(param1, sizeof(FrontierPokemon));
-    sub_0204B640(&v4, param2);
+    MI_CpuClear8(monDataDTO, sizeof(FrontierPokemon));
+    BattleTower_GetPokemonBase(&monData, setID);
 
-    param1->species = v4.species;
-    param1->form = v4.form;
+    monDataDTO->species = monData.species;
+    monDataDTO->form = monData.form;
 
-    if (param7) {
-        param1->item = Unk_020EBD50[param6];
+    if (giveReservedItem) {
+        monDataDTO->item = sBattleTowerReservedItems[partyIndex];
     } else {
-        param1->item = v4.item;
+        monDataDTO->item = monData.item;
     }
 
     u8 friendship = MAX_FRIENDSHIP_VALUE;
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        param1->moves[v0] = v4.moves[v0];
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        monDataDTO->moves[i] = monData.moves[i];
 
-        if (v4.moves[v0] == MOVE_FRUSTRATION) {
+        if (monData.moves[i] == MOVE_FRUSTRATION) {
             friendship = 0;
         }
     }
 
-    param1->otID = param3;
+    monDataDTO->otID = otID;
 
-    if (param4 == 0) {
+    if (givenPersonality == 0) {
         do {
-            v2 = (BattleTower_GetRandom(battleTower) | BattleTower_GetRandom(battleTower) << 16);
-        } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param3, v2) == 1));
+            randomPersonality = (BattleTower_GetRandom(battleTower) | BattleTower_GetRandom(battleTower) << 16);
+        } while ((monData.nature != Pokemon_GetNatureOf(randomPersonality)) || (Pokemon_IsPersonalityShiny(otID, randomPersonality) == 1));
 
-        param1->personality = v2;
+        monDataDTO->personality = randomPersonality;
     } else {
-        param1->personality = param4;
-        v2 = param4;
+        monDataDTO->personality = givenPersonality;
+        randomPersonality = givenPersonality;
     }
 
-    param1->hpIV = ivs;
-    param1->atkIV = ivs;
-    param1->defIV = ivs;
-    param1->speedIV = ivs;
-    param1->spAtkIV = ivs;
-    param1->spDefIV = ivs;
+    monDataDTO->hpIV = ivs;
+    monDataDTO->atkIV = ivs;
+    monDataDTO->defIV = ivs;
+    monDataDTO->speedIV = ivs;
+    monDataDTO->spAtkIV = ivs;
+    monDataDTO->spDefIV = ivs;
 
-    int v1 = 0;
+    int evs = 0;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v4.evFlags & FlagIndex(v0)) {
-            v1++;
+    for (i = 0; i < STAT_MAX; i++) {
+        if (monData.evFlags & FlagIndex(i)) {
+            evs++;
         }
     }
 
-    if ((510 / v1) > 255) {
-        v1 = 255;
+    if ((MAX_EVS_ALL_STATS / evs) > MAX_EVS_SINGLE_STAT) {
+        evs = MAX_EVS_SINGLE_STAT;
     } else {
-        v1 = 510 / v1;
+        evs = MAX_EVS_ALL_STATS / evs;
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v4.evFlags & FlagIndex(v0)) {
-            param1->evList[v0] = v1;
+    for (i = 0; i < STAT_MAX; i++) {
+        if (monData.evFlags & FlagIndex(i)) {
+            monDataDTO->evList[i] = evs;
         }
     }
 
-    param1->combinedPPUps = 0;
-    param1->language = gGameLanguage;
+    monDataDTO->combinedPPUps = 0;
+    monDataDTO->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_2);
+    i = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_2);
 
-    if (v0) {
-        if (param1->personality & 1) {
-            param1->ability = v0;
+    if (i) {
+        if (monDataDTO->personality & 1) {
+            monDataDTO->ability = i;
         } else {
-            param1->ability = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_1);
+            monDataDTO->ability = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param1->ability = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_1);
+        monDataDTO->ability = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
     }
 
-    param1->friendship = friendship;
-    MessageLoader_GetSpeciesName(param1->species, heapID, &(param1->nickname[0]));
+    monDataDTO->friendship = friendship;
+    MessageLoader_GetSpeciesName(monDataDTO->species, heapID, &(monDataDTO->nickname[0]));
 
-    return v2;
+    return randomPersonality;
 }
 
-BOOL sub_0204B3B8(BattleTower *battleTower, FrontierOpponent *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, BattleTowerPartnerData *param6, enum HeapID heapID)
+BOOL BattleTower_CreatePartnerTrainerParty(BattleTower *battleTower, FrontierOpponent *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, BattleTowerPartnerData *partnerData, enum HeapID heapID)
 {
-    BOOL v0 = FALSE;
-    FrontierTrainerBase *trainerData = sub_0204B184(param1, partnerBattleTowerID, heapID);
-    v0 = sub_0204B470(battleTower, trainerData, partnerBattleTowerID, &param1->pokemon[0], partysize, param4, param5, param6, heapID);
+    BOOL result = FALSE;
+    FrontierTrainerBase *trainerBase = BattleTower_GetTrainer(opponentDataDTO, battleTowerTrainerID, heapID);
+    result = BattleTower_CreateRandomTrainerParty(battleTower, trainerBase, battleTowerTrainerID, &opponentDataDTO->pokemon[0], partySize, species, items, partnerData, heapID);
 
-    Heap_Free(trainerData);
+    Heap_Free(trainerBase);
 
-    return v0;
+    return result;
 }
 
-void sub_0204B404(BattleTower *battleTower, FrontierOpponent *param1, u16 partnerBattleTowerID, BOOL param3, const BattleTowerPartnerData *param4, enum HeapID heapID)
+void BattleTower_RestorePartnerParty(BattleTower *battleTower, FrontierOpponent *opponentDataDTO, u16 battleTowerTrainerID, BOOL giveReservedItem, const BattleTowerPartnerData *partnerData, enum HeapID heapID)
 {
     u8 ivs = 0;
-    FrontierTrainerBase *v2 = sub_0204B184(param1, partnerBattleTowerID, heapID);
-    ivs = BattleTower_GetIVsFromTrainerID(partnerBattleTowerID);
+    FrontierTrainerBase *trainerBase = BattleTower_GetTrainer(opponentDataDTO, battleTowerTrainerID, heapID);
+    ivs = BattleTower_GetIVsFromTrainerID(battleTowerTrainerID);
 
-    for (int v0 = 0; v0 < 2; v0++) {
-        sub_0204B1E8(battleTower, &(param1->pokemon[v0]), param4->monSetIDs[v0], param4->otID, param4->personalities[v0], ivs, v0, param3, heapID);
+    for (int i = 0; i < 2; i++) {
+        BattleTower_CopySetToPokemonDataDTO(battleTower, &(opponentDataDTO->pokemon[i]), partnerData->monSetIDs[i], partnerData->otID, partnerData->personalities[i], ivs, i, giveReservedItem, heapID);
     }
 
-    Heap_Free(v2);
+    Heap_Free(trainerBase);
 }
 
-static BOOL sub_0204B470(BattleTower *battleTower, FrontierTrainerBase *trainerData, u16 partnerBattleTowerID, FrontierPokemon *param3, u8 partySize, u16 *param5, u16 *param6, BattleTowerPartnerData *param7, enum HeapID heapID)
+static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, FrontierTrainerBase *trainerData, u16 battleTowerTrainerID, FrontierPokemon *monDataDTO, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *partnerData, enum HeapID heapID)
 {
-    int v0, v1;
+    int i;
     u8 ivs;
-    u8 v3;
-    u32 v4;
-    int v5;
-    int v6[4];
-    u32 v7[4];
-    int v8;
-    int v9;
-    BOOL v10 = FALSE;
-    FrontierPokemonBase v11;
-    FrontierPokemonBase v12;
+    u8 random;
+    u32 otID;
+    int setID;
+    int setIDs[BT_DOUBLES_PARTY_SIZE];
+    u32 personalities[BT_DOUBLES_PARTY_SIZE];
+    int partyIndex;
+    int dupeItemFailsafeCount;
+    BOOL giveReservedItem = FALSE;
+    FrontierPokemonBase monDataPrev;
+    FrontierPokemonBase monDataCurr;
 
-    GF_ASSERT(partySize <= 4);
+    GF_ASSERT(partySize <= BT_DOUBLES_PARTY_SIZE);
 
-    v8 = 0;
-    v9 = 0;
+    partyIndex = 0;
+    dupeItemFailsafeCount = 0;
 
-    while (v8 != partySize) {
-        v3 = BattleTower_GetRandom(battleTower) % trainerData->numSets;
-        v5 = trainerData->setIDs[v3];
+    while (partyIndex != partySize) {
+        random = BattleTower_GetRandom(battleTower) % trainerData->numSets;
+        setID = trainerData->setIDs[random];
 
-        sub_0204B640(&v12, v5);
+        BattleTower_GetPokemonBase(&monDataCurr, setID);
 
-        for (v0 = 0; v0 < v8; v0++) {
-            sub_0204B640(&v11, v6[v0]);
+        for (i = 0; i < partyIndex; i++) {
+            BattleTower_GetPokemonBase(&monDataPrev, setIDs[i]);
 
-            if (v11.species == v12.species) {
+            if (monDataPrev.species == monDataCurr.species) {
                 break;
             }
         }
 
-        if (v0 != v8) {
+        if (i != partyIndex) {
             continue;
         }
 
-        if (param5 != NULL) {
-            for (v0 = 0; v0 < partySize; v0++) {
-                if (param5[v0] == v12.species) {
+        if (species != NULL) {
+            for (i = 0; i < partySize; i++) {
+                if (species[i] == monDataCurr.species) {
                     break;
                 }
             }
 
-            if (v0 != partySize) {
+            if (i != partySize) {
                 continue;
             }
         }
 
-        if (v9 < 50) {
-            for (v0 = 0; v0 < v8; v0++) {
-                sub_0204B640(&v11, v6[v0]);
+        if (dupeItemFailsafeCount < 50) {
+            for (i = 0; i < partyIndex; i++) {
+                BattleTower_GetPokemonBase(&monDataPrev, setIDs[i]);
 
-                if ((v11.item) && (v11.item == v12.item)) {
+                if ((monDataPrev.item) && (monDataPrev.item == monDataCurr.item)) {
                     break;
                 }
             }
 
-            if (v0 != v8) {
-                v9++;
+            if (i != partyIndex) {
+                dupeItemFailsafeCount++;
                 continue;
             }
 
-            if (param6 != NULL) {
-                for (v0 = 0; v0 < partySize; v0++) {
-                    if ((param6[v0] == v12.item) && (param6[v0] != 0)) {
+            if (items != NULL) {
+                for (i = 0; i < partySize; i++) {
+                    if ((items[i] == monDataCurr.item) && (items[i] != 0)) {
                         break;
                     }
                 }
 
-                if (v0 != partySize) {
-                    v9++;
+                if (i != partySize) {
+                    dupeItemFailsafeCount++;
                     continue;
                 }
             }
         }
 
-        v6[v8] = v5;
-        v8++;
+        setIDs[partyIndex] = setID;
+        partyIndex++;
     }
 
-    ivs = BattleTower_GetIVsFromTrainerID(partnerBattleTowerID);
-    v4 = (BattleTower_GetRandom(battleTower) | (BattleTower_GetRandom(battleTower) << 16));
+    ivs = BattleTower_GetIVsFromTrainerID(battleTowerTrainerID);
+    otID = (BattleTower_GetRandom(battleTower) | (BattleTower_GetRandom(battleTower) << 16));
 
-    if (v9 >= 50) {
-        v10 = TRUE;
+    if (dupeItemFailsafeCount >= 50) {
+        giveReservedItem = TRUE;
     }
 
-    for (v0 = 0; v0 < v8; v0++) {
-        v7[v0] = sub_0204B1E8(battleTower, &(param3[v0]), v6[v0], v4, 0, ivs, v0, v10, heapID);
+    for (i = 0; i < partyIndex; i++) {
+        personalities[i] = BattleTower_CopySetToPokemonDataDTO(battleTower, &(monDataDTO[i]), setIDs[i], otID, 0, ivs, i, giveReservedItem, heapID);
     }
 
-    if (param7 == NULL) {
-        return v10;
+    if (partnerData == NULL) {
+        return giveReservedItem;
     }
 
-    param7->otID = v4;
+    partnerData->otID = otID;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        param7->monSetIDs[v0] = v6[v0];
-        param7->personalities[v0] = v7[v0];
+    for (i = 0; i < 2; i++) {
+        partnerData->monSetIDs[i] = setIDs[i];
+        partnerData->personalities[i] = personalities[i];
     }
 
-    return v10;
+    return giveReservedItem;
 }
 
-static void *sub_0204B630(u16 param0, int param1)
+static void *BattleTower_GetTrainerBase(u16 trainerID, enum HeapID heapID)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR, param0, param1);
+    return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR, trainerID, heapID);
 }
 
-static void sub_0204B640(FrontierPokemonBase *param0, int param1)
+static void BattleTower_GetPokemonBase(FrontierPokemonBase *monData, int narcIdx)
 {
-    NARC_ReadWholeMemberByIndexPair(param0, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM, param1);
+    NARC_ReadWholeMemberByIndexPair(monData, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM, narcIdx);
 }
