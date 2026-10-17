@@ -21,7 +21,7 @@ trainer_data = custom_target('trainer_data',
         trainerproc_exe,
         '-M', '@DEPFILE@',
         '-o', meson.current_build_dir(),
-        meson.global_build_root() / 'generated' / 'trainers.h',
+        c_consts_headers['trainers'],
         meson.current_source_dir() / 'data',
     ],
 
