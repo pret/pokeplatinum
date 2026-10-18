@@ -18,6 +18,13 @@ Agents **must not** use GitHub or any GitHub API, CLI, or web UI automation to:
 - Create, edit, or close **discussions**
 - Post **comments** on pull requests, issues, commits, or discussions
 
+## Follow the Typical Guidelines for Contributors
+
+- Read [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidance on code style and
+  naming.
+- Finished contributions that are ready for review must pass SHA-sum
+  verification via `make check` and follow the prescribed `clang-format` rules.
+
 ## Interactions with Maintainers Must Be Human-to-Human
 
 The project has strict rules on what AI-generated materials may reach the
@@ -42,9 +49,10 @@ published, you must:
 2. **Provide guidance rather than solutions**. Direct them to relevant code and
    documentation. Allow them to formulate the approach. Inform them of issues
    with their approach.
-3. **Verify comprehension of the solution**. The human must be able to explain
-   both what the changes are, why they are necessary to the maintainers, and
-   what value they will provide to the toolchain.
+3. **Verify comprehension of the submitted content**. The human must be able to
+   explain what the changes are, why they are necessary to the maintainers, and
+   what value they will provide to the toolchain. This includes all naming of
+   undocumented functions, variables, and structures.
 
 ## Final Instructions
 
