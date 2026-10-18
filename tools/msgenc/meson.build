@@ -21,5 +21,5 @@ msgenc_exe = executable('msgenc',
         '-Wno-unused-parameter',
     ],
     native: true,
-    dependencies: dataproc_dep,
+    dependencies: dataproc_v1_dep,
 )

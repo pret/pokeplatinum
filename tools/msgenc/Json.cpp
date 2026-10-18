@@ -3,6 +3,7 @@
 #include <cctype>
 #include <cstddef>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <fstream>
 #include <ios>
@@ -94,55 +95,53 @@ void Json::WriteHeader(const string &_filename) {
 
 // Read messages from JSON into memory to be converted
 int Json::FromFile(MessagesConverter &converter) {
-    int key = JSON_KEY_NOT_DEFINED;
+    dp_ctx *ctx = dp_ctx_new(&dp_json_reader);
+    dp_file *doc = dp_load(ctx, filename.c_str());
+    dp_node root = dp_root(doc);
 
-    if (dp_load(&this->doc, filename.c_str()) == 0) {
-        key = dp_u16(dp_get(&this->doc, ".key"));
-        key &= 0xFFFF;
-        key |= 0x10000;
+    int key = dp_u16_at(root, ".key");
+    key |= 0x10000;
 
-        datanode_t messages = dp_get(&this->doc, ".messages");
-        std::size_t numMessages = dp_arrlen(messages);
-        for (std::size_t i = 0; i < numMessages; i++) {
-            string message;
-            datanode_t elem = dp_arrelem(messages, i);
-            if (dp_hasmemb(elem, "en_US")) {
-                datanode_t content = dp_objmemb(elem, "en_US");
-                std::size_t numLines = 0;
-                switch (content.type) {
-                case DATAPROC_T_STRING:
-                    message.append(dp_string(content));
-                    break;
+    for (dp_each(elem, i, dp_at(root, ".messages"))) {
+        string message;
+        dp_node content = dp_try(elem, ".en_US");
+        if (!dp_missing(content)) {
+            switch (dp_type_of(content)) {
+            case DP_STRING:
+                message.append(dp_string(content));
+                break;
 
-                case DATAPROC_T_ARRAY:
-                    numLines = dp_arrlen(content);
-                    for (std::size_t j = 0; j < numLines; j++) {
-                        const char *line = dp_string(dp_arrelem(content, j));
-                        if (line) message.append(line);
-                    }
-                    break;
-
-                default:
-                    dp_error(&content, "expected an array or string");
-                    continue;
+            case DP_ARRAY:
+                for (dp_each(line, j, content)) {
+                    const char *s = dp_string(line);
+                    if (s) message.append(s);
                 }
-            }
-            else if (dp_hasmemb(elem, "garbage")) {
-                message.resize(dp_int(dp_objmemb(elem, "garbage")), ' ');
-            }
-            else {
-                dp_error(&elem, "expected a definition for one of 'garbage' or 'en_US'");
+                break;
+
+            default:
+                dp_error(content, "expected an array or string");
                 continue;
             }
-
-            converter.GetDecodedMessages().emplace_back(message); // emplace a copy
-            id_strings.emplace_back(dp_string(dp_objmemb(elem, "id")));
-            this->messages.push_back(message);
-            IncRowNoBuf();
         }
+        else if (dp_node garbage = dp_try(elem, ".garbage"); !dp_missing(garbage)) {
+            message.resize(dp_int(garbage), ' ');
+        }
+        else {
+            dp_error(elem, "expected a definition for one of 'garbage' or 'en_US'");
+            continue;
+        }
+
+        const char *id = dp_string_at(elem, ".id");
+        converter.GetDecodedMessages().emplace_back(message); // emplace a copy
+        id_strings.emplace_back(id ? id : "BAD_SYMBOL");
+        this->messages.push_back(message);
+        IncRowNoBuf();
     }
 
-    if (dp_report(&this->doc) == DIAG_ERROR) {
+    enum dp_level level = dp_report(doc);
+    dp_close(doc);
+    dp_ctx_free(ctx);
+    if (level == DP_LEVEL_ERROR) {
         throw std::runtime_error("JSON parse error");
     }
 
@@ -150,7 +149,6 @@ int Json::FromFile(MessagesConverter &converter) {
         WriteHeader(converter.GetHeaderFilename());
     }
 
-    dp_free(&this->doc);
     return key;
 }
 
@@ -160,37 +158,38 @@ void Json::ToFile(MessagesConverter &converter) {
     }
 
     auto it = id_strings.cbegin();
-    this->doc = dp_new();
-    datanode_t root = dp_set_obj(&this->doc);
-    dp_obj_putint(&root, "key", converter.GetKey());
+    dp_ctx *ctx = dp_ctx_new(&dp_json_reader);
+    dp_file *doc = dp_new(ctx, &dp_json_writer, filename.c_str());
+    dp_node root = dp_new_object(doc);
+    dp_put_int(root, "key", converter.GetKey());
 
-    datanode_t messages = dp_obj_putarray(&root, "messages");
+    dp_node messages = dp_put_array(root, "messages");
 
     char keybuf[256];
     string prefix = filename.substr(filename.find_last_of('/') + 1);
     prefix = prefix.substr(0, prefix.find_first_of('.'));
 
     for (const auto &message : converter.GetDecodedMessages()) {
-        datanode_t entry = dp_arr_appobject(&messages);
+        dp_node entry = dp_push_object(messages);
 
         if (it != id_strings.cend()) {
-            dp_obj_putstring(&entry, "id", it->c_str());
+            dp_put_string(entry, "id", it->c_str());
             it++;
         } else {
             std::snprintf(keybuf, 256, "%s_%s", prefix.c_str(), row_no_buf);
-            dp_obj_putstring(&entry, "id", keybuf);
+            dp_put_string(entry, "id", keybuf);
         }
 
         if (message.find_first_not_of(' ') == string::npos) {
-            dp_obj_putuint(&entry, "garbage", message.size());
+            dp_put_uint(entry, "garbage", message.size());
         } else {
             vector<string> message_lines = SplitMessage(message, true);
             if (message_lines.size() == 1) {
-                dp_obj_putstring(&entry, "en_US", message.c_str());
+                dp_put_string(entry, "en_US", message.c_str());
             } else {
-                datanode_t lines = dp_obj_putarray(&entry, "en_US");
+                dp_node lines = dp_put_array(entry, "en_US");
                 for (const auto& line : message_lines) {
-                    dp_arr_appstring(&lines, line.c_str());
+                    dp_push_string(lines, line.c_str());
                 }
             }
         }
@@ -198,9 +197,18 @@ void Json::ToFile(MessagesConverter &converter) {
         IncRowNoBuf();
     }
 
-    const char *output = dp_dump(&this->doc);
+    char *output = dp_dump(doc);
+    enum dp_level level = dp_report(doc);
+    dp_close(doc);
+    dp_ctx_free(ctx);
+    if (level == DP_LEVEL_ERROR) {
+        free(output);
+        throw std::runtime_error("JSON write error");
+    }
+
     ofstream jstrm(filename);
     jstrm << output << endl;
+    free(output);
 }
 
 vector<string> Json::SplitMessage(const string &message, bool preserve) {
