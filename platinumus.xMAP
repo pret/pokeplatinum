@@ -25178,7 +25178,7 @@
                                                            58](ManagedSprite_GetPriority,func) found in global src_sprite_system.c.o
                                                             59](GetSpritePriority,func) found in local src_sprite_system.c.o
                                                           57](CapsuleGraphics_OpenCapsuleSelectionMenu,func) found in global src_applications_capsule_menu_graphics.c.o
-                                                           58](SealManger_CapsuleMenuField,func) found in global src_applications_capsule_menu_manager.c.o
+                                                           58](CapsuleManager_CapsuleSelectionField,func) found in global src_applications_capsule_menu_manager.c.o
                                                            58](gSealListMenuEntries,object) found in global src_applications_capsule_menu_manager.c.o
                                                             59](ov76_0223D540,func) found in local src_applications_capsule_menu_manager.c.o
                                                             59](ov76_0223D530,func) found in local src_applications_capsule_menu_manager.c.o
@@ -121748,7 +121748,7 @@
   0223D42C 00000000 .text   $d	(src_applications_capsule_menu_manager.c.o)
   0223D430 0000002C .text   CapsuleManager_AnySealsOnCapsule	(src_applications_capsule_menu_manager.c.o)
   0223D430 00000000 .text   $t	(src_applications_capsule_menu_manager.c.o)
-  0223D45C 00000038 .text   SealManger_CapsuleMenuField	(src_applications_capsule_menu_manager.c.o)
+  0223D45C 00000038 .text   CapsuleManager_CapsuleSelectionField	(src_applications_capsule_menu_manager.c.o)
   0223D45C 00000000 .text   $t	(src_applications_capsule_menu_manager.c.o)
   0223D494 0000002E .text   CapsuleManager_UpdateStates	(src_applications_capsule_menu_manager.c.o)
   0223D494 00000000 .text   $t	(src_applications_capsule_menu_manager.c.o)
