@@ -25353,102 +25353,102 @@
                                         39](sub_020985E4,func) found in global src_unk_020985E4.c.o
                                          40](sub_0209862C,func) found in global src_unk_020985E4.c.o
                                           41](v2$19161,object) found in local src_unk_020985E4.c.o
-                                           42](ov100_021D0F44,func) found in global src_overlay100_ov100_021D0D80.c.o
-                                            43](ov100_021D111C,func) found in local src_overlay100_ov100_021D0D80.c.o
-                                           42](ov100_021D0EA8,func) found in global src_overlay100_ov100_021D0D80.c.o
-                                            43](Unk_ov100_021D5130,object) found in local src_overlay100_ov100_021D0D80.c.o
-                                             44](ov100_021D2C8C,func) found in global src_overlay100_ov100_021D1C44.c.o
-                                              45](ov100_021D2324,func) found in local src_overlay100_ov100_021D1C44.c.o
-                                              45](ov100_021D4E58,func) found in global src_overlay100_ov100_021D4E04.c.o
-                                              45](ov100_021D4AA4,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                               46](ov100_021D4A84,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                               46](ov100_021D4A90,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                             44](ov100_021D2428,func) found in global src_overlay100_ov100_021D1C44.c.o
-                                              45](ov100_021D4890,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                              45](ov100_021D4920,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                              45](ov100_021D46C8,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                              45](ov100_021D4788,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                              45](ov100_021D44C0,func) found in global src_overlay100_ov100_021D44C0.c.o
-                                              45](Unk_ov100_021D54D0,object) found in local src_overlay100_ov100_021D1C44.c.o
+                                           42](SpearPillarCutscene_Exit,func) found in global src_cutscenes_spear_pillar_main.c.o
+                                            43](SpearPillarCutscene_FreeGraphics,func) found in local src_cutscenes_spear_pillar_main.c.o
+                                           42](SpearPillarCutscene_Main,func) found in global src_cutscenes_spear_pillar_main.c.o
+                                            43](sCutsceneStages,object) found in local src_cutscenes_spear_pillar_main.c.o
+                                             44](GiratinaIntervention_Exit,func) found in global src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                              45](GiratinaIntervention_FreeLakeGuardianLights,func) found in local src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                              45](ScreenScrollTask_Free,func) found in global src_cutscenes_spear_pillar_screen_capture.c.o
+                                              45](CutsceneModel_Release,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                               46](CutsceneModel_ReleaseModel,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                               46](CutsceneModel_ReleaseAnim,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                             44](GiratinaIntervention_Update,func) found in global src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                              45](CameraPan_Start,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                              45](CameraPan_Update,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                              45](SpearPillarCutscene_ShowMessage,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                              45](SpearPillarCutscene_ClearMessage,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                              45](PoseSequence_Start,func) found in global src_cutscenes_spear_pillar_pose_sequence.c.o
+                                              45](sCyrusDismissalPose,object) found in local src_cutscenes_spear_pillar_giratina_intervention.c.o
                                               45](Sound_SetPitchForSequence,func) found in global src_sound.c.o
-                                              45](ov100_021D2E0C,func) found in local src_overlay100_ov100_021D1C44.c.o
-                                               46](ov100_021D47A0,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                                47](@15288,object) found in local src_overlay100_ov100_021D46C8.c.o
-                                               46](ov100_021D4844,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                               46](ov100_021D49B4,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                                47](ov100_021D45A4,func) found in global src_overlay100_ov100_021D44C0.c.o
-                                                47](ov100_021D4510,func) found in global src_overlay100_ov100_021D44C0.c.o
+                                              45](GiratinaIntervention_UpdateScene,func) found in local src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                               46](SpearPillarCutscene_InitLighting,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                                47](@15352,object) found in local src_cutscenes_spear_pillar_common.c.o
+                                               46](SpearPillarCutscene_UpdateCamera,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                               46](CutsceneModel_Update,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                                47](PoseSequence_UpdateMovement,func) found in global src_cutscenes_spear_pillar_pose_sequence.c.o
+                                                47](PoseSequence_UpdateAnimFrame,func) found in global src_cutscenes_spear_pillar_pose_sequence.c.o
                                                  48](Easy3DAnim_GetFrame,func) found in global src_easy3d_object.c.o
-                                                 48](Unk_ov100_021D5344,object) found in local src_overlay100_ov100_021D44C0.c.o
-                                              45](ov100_021D4BF0,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                             44](ov100_021D2340,func) found in global src_overlay100_ov100_021D1C44.c.o
-                                              45](ov100_021D1C98,func) found in local src_overlay100_ov100_021D1C44.c.o
-                                               46](ov100_021D4AC8,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                               46](ov100_021D4B4C,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                              45](ov100_021D2250,func) found in local src_overlay100_ov100_021D1C44.c.o
-                                               46](ov100_021D4414,func) found in global src_overlay100_ov100_021D400C.c.o
-                                                47](ov100_021D43BC,func) found in local src_overlay100_ov100_021D400C.c.o
+                                                 48](sPoseAnimFrames,object) found in local src_cutscenes_spear_pillar_pose_sequence.c.o
+                                              45](SpearPillarCutscene_UpdateBackgroundPulse,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                             44](GiratinaIntervention_Init,func) found in global src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                              45](GiratinaIntervention_InitSpriteSystem,func) found in local src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                               46](CutsceneModel_LoadMesh,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                               46](CutsceneModel_LoadAnim,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                              45](GiratinaIntervention_InitLakeGuardianLights,func) found in local src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                               46](LightBall_Update,func) found in global src_cutscenes_spear_pillar_light_ball.c.o
+                                                47](LightBall_UpdateDepth,func) found in local src_cutscenes_spear_pillar_light_ball.c.o
                                                  48](_fleq,notype) found in global FP_fastI_v5t_LE.a
                                                  48](_fgeq,notype) found in global FP_fastI_v5t_LE.a
-                                                47](Unk_ov100_021D5334,object) found in local src_overlay100_ov100_021D400C.c.o
-                                                 48](ov100_021D4318,func) found in local src_overlay100_ov100_021D400C.c.o
-                                                 48](ov100_021D42B0,func) found in local src_overlay100_ov100_021D400C.c.o
-                                                  49](ov100_021D4104,func) found in local src_overlay100_ov100_021D400C.c.o
-                                                   50](ov100_021D400C,func) found in local src_overlay100_ov100_021D400C.c.o
-                                                  49](v2$13485,object) found in local src_overlay100_ov100_021D400C.c.o
-                                                 48](ov100_021D4214,func) found in local src_overlay100_ov100_021D400C.c.o
-                                                 48](ov100_021D41FC,func) found in local src_overlay100_ov100_021D400C.c.o
-                                              45](ov100_021D4E3C,func) found in global src_overlay100_ov100_021D4E04.c.o
-                                               46](ov100_021D4E04,func) found in local src_overlay100_ov100_021D4E04.c.o
-                                                47](ov100_021D4E18,func) found in local src_overlay100_ov100_021D4E04.c.o
-                                              45](ov100_021D4E70,func) found in global src_overlay100_ov100_021D4E04.c.o
+                                                47](sLightBallStateHandlers,object) found in local src_cutscenes_spear_pillar_light_ball.c.o
+                                                 48](LightBall_Jitter,func) found in local src_cutscenes_spear_pillar_light_ball.c.o
+                                                 48](LightBall_Wander,func) found in local src_cutscenes_spear_pillar_light_ball.c.o
+                                                  49](LightBall_ApproachTarget,func) found in local src_cutscenes_spear_pillar_light_ball.c.o
+                                                   50](LightBall_ComputeApproachStep,func) found in local src_cutscenes_spear_pillar_light_ball.c.o
+                                                  49](wanderPoints$14176,object) found in local src_cutscenes_spear_pillar_light_ball.c.o
+                                                 48](LightBall_Orbit,func) found in local src_cutscenes_spear_pillar_light_ball.c.o
+                                                 48](LightBall_ApproachStartPosition,func) found in local src_cutscenes_spear_pillar_light_ball.c.o
+                                              45](ScreenScrollTask_Init,func) found in global src_cutscenes_spear_pillar_screen_capture.c.o
+                                               46](ScreenScrollTask_Start,func) found in local src_cutscenes_spear_pillar_screen_capture.c.o
+                                                47](ScreenScrollTask_Update,func) found in local src_cutscenes_spear_pillar_screen_capture.c.o
+                                              45](ScreenScrollTask_Scroll,func) found in global src_cutscenes_spear_pillar_screen_capture.c.o
                                                46](ScreenScrollManager_ScrollY,func) found in global src_screen_scroll_manager.c.o
                                                 47](ScreenScrollManager_UpdateScrollY,func) found in local src_screen_scroll_manager.c.o
-                                              45](ov100_021D1C44,func) found in local src_overlay100_ov100_021D1C44.c.o
-                                               46](.rodata,section) found in local src_overlay100_ov100_021D1C44.c.o
-                                              45](ov100_021D4DC8,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                              45](ov100_021D4DD8,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                             44](ov100_021D16C4,func) found in global src_overlay100_ov100_021D13E4.c.o
-                                              45](ov100_021D1A24,func) found in local src_overlay100_ov100_021D13E4.c.o
-                                             44](ov100_021D14A8,func) found in global src_overlay100_ov100_021D13E4.c.o
-                                              45](ov100_021D17B4,func) found in local src_overlay100_ov100_021D13E4.c.o
-                                              45](ov100_021D4C94,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                              45](v3$14625,object) found in local src_overlay100_ov100_021D13E4.c.o
-                                             44](ov100_021D13E4,func) found in global src_overlay100_ov100_021D13E4.c.o
-                                              45](ov100_021D1808,func) found in local src_overlay100_ov100_021D13E4.c.o
-                                              45](ov100_021D1A54,func) found in local src_overlay100_ov100_021D13E4.c.o
-                                               46](ov100_021D4438,func) found in global src_overlay100_ov100_021D400C.c.o
-                                                47](ov100_021D4264,func) found in local src_overlay100_ov100_021D400C.c.o
+                                              45](GiratinaIntervention_InitCamera,func) found in local src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                               46](.rodata,section) found in local src_cutscenes_spear_pillar_giratina_intervention.c.o
+                                              45](SpearPillarCutscene_SwapDisplay,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                              45](SpearPillarCutscene_SetBrightness,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                             44](LakeGuardiansArrival_Exit,func) found in global src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                              45](LakeGuardiansArrival_FreeLights,func) found in local src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                             44](LakeGuardiansArrival_Update,func) found in global src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                              45](LakeGuardiansArrival_UpdateScene,func) found in local src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                              45](SpearPillarCutscene_UpdateGuardianFlash,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                              45](sfxFrame$14644,object) found in local src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                             44](LakeGuardiansArrival_Init,func) found in global src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                              45](LakeGuardiansArrival_InitGraphics,func) found in local src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                              45](LakeGuardiansArrival_InitLights,func) found in local src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                               46](LightBall_UpdateOrbitOrApproach,func) found in global src_cutscenes_spear_pillar_light_ball.c.o
+                                                47](LightBall_OrbitAt,func) found in local src_cutscenes_spear_pillar_light_ball.c.o
                                                 47](ManagedSprite_GetAffineScale,func) found in global src_sprite_system.c.o
                                                  48](GetSpriteAffineScale,func) found in local src_sprite_system.c.o
-                                              45](ov100_021D1758,func) found in local src_overlay100_ov100_021D13E4.c.o
-                                             44](ov100_021D3FD4,func) found in global src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D3400,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D4F0C,func) found in global src_overlay100_ov100_021D4E04.c.o
-                                             44](ov100_021D39E4,func) found in global src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D4EBC,func) found in global src_overlay100_ov100_021D4E04.c.o
-                                               46](ov100_021D503C,func) found in local src_overlay100_ov100_021D4E04.c.o
-                                               46](ov100_021D4F9C,func) found in local src_overlay100_ov100_021D4E04.c.o
-                                               46](ov100_021D4FDC,func) found in local src_overlay100_ov100_021D4E04.c.o
-                                              45](ov100_021D37B0,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                               46](ov100_021D36CC,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D398C,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                               46](ov100_021D37F4,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                                47](@14772,object) found in local src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D34C0,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D2F64,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                               46](ov100_021D4B10,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                               46](ov100_021D4BA0,func) found in global src_overlay100_ov100_021D46C8.c.o
-                                              45](ov100_021D3558,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                             44](ov100_021D3620,func) found in global src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D3084,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D2F0C,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                              45](ov100_021D3504,func) found in local src_overlay100_ov100_021D2F0C.c.o
-                                           42](ov100_021D0D80,func) found in global src_overlay100_ov100_021D0D80.c.o
-                                            43](ov100_021D1034,func) found in local src_overlay100_ov100_021D0D80.c.o
-                                             44](ov100_021D1208,func) found in local src_overlay100_ov100_021D0D80.c.o
-                                             44](ov100_021D0FA0,func) found in local src_overlay100_ov100_021D0D80.c.o
-                                            43](ov100_021D13B4,func) found in local src_overlay100_ov100_021D0D80.c.o
+                                              45](LakeGuardiansArrival_InitCamera,func) found in local src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+                                             44](DialgaPalkiaArrival_Exit,func) found in global src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](DialgaPalkiaArrival_ReleaseModels,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](ScreenCapture_End,func) found in global src_cutscenes_spear_pillar_screen_capture.c.o
+                                             44](DialgaPalkiaArrival_Update,func) found in global src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](ScreenCapture_Start,func) found in global src_cutscenes_spear_pillar_screen_capture.c.o
+                                               46](ScreenCapture_Prime,func) found in local src_cutscenes_spear_pillar_screen_capture.c.o
+                                               46](ScreenCapture_Update,func) found in local src_cutscenes_spear_pillar_screen_capture.c.o
+                                               46](ScreenCapture_Activate,func) found in local src_cutscenes_spear_pillar_screen_capture.c.o
+                                              45](DialgaPalkiaArrival_InitCameraShake,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                               46](DialgaPalkiaArrival_UpdateCameraShake,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](DialgaPalkiaArrival_InitSummonBubble,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                               46](DialgaPalkiaArrival_UpdateSummonBubble,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                                47](@14778,object) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](DialgaPalkiaArrival_ReleaseFallingBalls,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](DialgaPalkiaArrival_InitWhirlpool,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                               46](CutsceneModel_CloneMesh,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                               46](CutsceneModel_CloneAnim,func) found in global src_cutscenes_spear_pillar_common.c.o
+                                              45](DialgaPalkiaArrival_UpdateScene,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                             44](DialgaPalkiaArrival_Init,func) found in global src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](DialgaPalkiaArrival_InitCastModels,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](DialgaPalkiaArrival_InitSubScreenBackground,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                              45](DialgaPalkiaArrival_InitCamera,func) found in local src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+                                           42](SpearPillarCutscene_Init,func) found in global src_cutscenes_spear_pillar_main.c.o
+                                            43](SpearPillarCutscene_InitGraphics,func) found in local src_cutscenes_spear_pillar_main.c.o
+                                             44](SpearPillarCutscene_InitBackgrounds,func) found in local src_cutscenes_spear_pillar_main.c.o
+                                             44](SpearPillarCutscene_InitSpriteSystem,func) found in local src_cutscenes_spear_pillar_main.c.o
+                                            43](SpearPillarCutscene_VBlankCallback,func) found in local src_cutscenes_spear_pillar_main.c.o
                                        38](ScrCmd_GetCurrentBGM,func) found in global src_scrcmd_sound.c.o
                                        38](ScrCmd_SetFieldScene,func) found in global src_scrcmd_sound.c.o
                                        38](ScrCmd_SetScenePlayBGMMusicBox,func) found in global src_scrcmd_sound.c.o
@@ -130483,294 +130483,294 @@
 #>021D54E0          SDK_OVERLAY.end_credits.BSS_END (linker command file)
 #>00000000          SDK_OVERLAY.end_credits.BSS_SIZE (linker command file)
 
-# .overlay100
-#>00000064          SDK_OVERLAY_overlay100_ID (linker command file)
-#>00000064          SDK_OVERLAY.overlay100.ID (linker command file)
-#>021D0D80          SDK_OVERLAY.overlay100.START (linker command file)
-#>021D0D80          SDK_OVERLAY.overlay100.TEXT_START (linker command file)
-  021D0D80 00000000 .text   $t	(src_overlay100_ov100_021D0D80.c.o)
-  021D0D80 00000128 .text   ov100_021D0D80	(src_overlay100_ov100_021D0D80.c.o)
-  021D0EA4 00000000 .text   $d	(src_overlay100_ov100_021D0D80.c.o)
-  021D0EA8 00000000 .text   $t	(src_overlay100_ov100_021D0D80.c.o)
-  021D0EA8 0000009C .text   ov100_021D0EA8	(src_overlay100_ov100_021D0D80.c.o)
-  021D0F38 00000000 .text   $d	(src_overlay100_ov100_021D0D80.c.o)
-  021D0F44 00000000 .text   $t	(src_overlay100_ov100_021D0D80.c.o)
-  021D0F44 0000005C .text   ov100_021D0F44	(src_overlay100_ov100_021D0D80.c.o)
-  021D0F9C 00000000 .text   $d	(src_overlay100_ov100_021D0D80.c.o)
-  021D0FA0 00000000 .text   $t	(src_overlay100_ov100_021D0D80.c.o)
-  021D0FA0 00000094 .text   ov100_021D0FA0	(src_overlay100_ov100_021D0D80.c.o)
-  021D1028 00000000 .text   $d	(src_overlay100_ov100_021D0D80.c.o)
-  021D1034 00000000 .text   $t	(src_overlay100_ov100_021D0D80.c.o)
-  021D1034 000000E8 .text   ov100_021D1034	(src_overlay100_ov100_021D0D80.c.o)
-  021D110C 00000000 .text   $d	(src_overlay100_ov100_021D0D80.c.o)
-  021D111C 00000000 .text   $t	(src_overlay100_ov100_021D0D80.c.o)
-  021D111C 000000EC .text   ov100_021D111C	(src_overlay100_ov100_021D0D80.c.o)
-  021D1200 00000000 .text   $d	(src_overlay100_ov100_021D0D80.c.o)
-  021D1208 00000000 .text   $t	(src_overlay100_ov100_021D0D80.c.o)
-  021D1208 000001AC .text   ov100_021D1208	(src_overlay100_ov100_021D0D80.c.o)
-  021D13A4 00000000 .text   $d	(src_overlay100_ov100_021D0D80.c.o)
-  021D13B4 00000000 .text   $t	(src_overlay100_ov100_021D0D80.c.o)
-  021D13B4 00000030 .text   ov100_021D13B4	(src_overlay100_ov100_021D0D80.c.o)
-  021D13DC 00000000 .text   $d	(src_overlay100_ov100_021D0D80.c.o)
-  021D13E4 00000000 .text   $t	(src_overlay100_ov100_021D13E4.c.o)
-  021D13E4 000000C4 .text   ov100_021D13E4	(src_overlay100_ov100_021D13E4.c.o)
-  021D1494 00000000 .text   $d	(src_overlay100_ov100_021D13E4.c.o)
-  021D14A8 00000000 .text   $t	(src_overlay100_ov100_021D13E4.c.o)
-  021D14A8 0000021C .text   ov100_021D14A8	(src_overlay100_ov100_021D13E4.c.o)
-  021D16A0 00000000 .text   $d	(src_overlay100_ov100_021D13E4.c.o)
-  021D16C4 00000000 .text   $t	(src_overlay100_ov100_021D13E4.c.o)
-  021D16C4 00000094 .text   ov100_021D16C4	(src_overlay100_ov100_021D13E4.c.o)
-  021D1754 00000000 .text   $d	(src_overlay100_ov100_021D13E4.c.o)
-  021D1758 00000000 .text   $t	(src_overlay100_ov100_021D13E4.c.o)
-  021D1758 0000005C .text   ov100_021D1758	(src_overlay100_ov100_021D13E4.c.o)
-  021D17A8 00000000 .text   $d	(src_overlay100_ov100_021D13E4.c.o)
-  021D17B4 00000000 .text   $t	(src_overlay100_ov100_021D13E4.c.o)
-  021D17B4 00000054 .text   ov100_021D17B4	(src_overlay100_ov100_021D13E4.c.o)
-  021D1804 00000000 .text   $d	(src_overlay100_ov100_021D13E4.c.o)
-  021D1808 00000000 .text   $t	(src_overlay100_ov100_021D13E4.c.o)
-  021D1808 0000021C .text   ov100_021D1808	(src_overlay100_ov100_021D13E4.c.o)
-  021D1A18 00000000 .text   $d	(src_overlay100_ov100_021D13E4.c.o)
-  021D1A24 00000030 .text   ov100_021D1A24	(src_overlay100_ov100_021D13E4.c.o)
-  021D1A24 00000000 .text   $t	(src_overlay100_ov100_021D13E4.c.o)
-  021D1A54 00000000 .text   $t	(src_overlay100_ov100_021D13E4.c.o)
-  021D1A54 000001F0 .text   ov100_021D1A54	(src_overlay100_ov100_021D13E4.c.o)
-  021D1C30 00000000 .text   $d	(src_overlay100_ov100_021D13E4.c.o)
-  021D1C44 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D1C44 00000054 .text   ov100_021D1C44	(src_overlay100_ov100_021D1C44.c.o)
-  021D1C8C 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D1C98 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D1C98 000005B8 .text   ov100_021D1C98	(src_overlay100_ov100_021D1C44.c.o)
-  021D2038 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D206C 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D2224 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D2250 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D2250 000000D4 .text   ov100_021D2250	(src_overlay100_ov100_021D1C44.c.o)
-  021D2318 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D2324 0000001C .text   ov100_021D2324	(src_overlay100_ov100_021D1C44.c.o)
-  021D2324 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D2340 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D2340 000000E8 .text   ov100_021D2340	(src_overlay100_ov100_021D1C44.c.o)
-  021D2404 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D2428 00000864 .text   ov100_021D2428	(src_overlay100_ov100_021D1C44.c.o)
-  021D2428 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D27AC 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D27E4 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D2B2C 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D2B90 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D2C68 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D2C8C 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D2C8C 00000180 .text   ov100_021D2C8C	(src_overlay100_ov100_021D1C44.c.o)
-  021D2DE4 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D2E0C 00000000 .text   $t	(src_overlay100_ov100_021D1C44.c.o)
-  021D2E0C 00000100 .text   ov100_021D2E0C	(src_overlay100_ov100_021D1C44.c.o)
-  021D2EDC 00000000 .text   $d	(src_overlay100_ov100_021D1C44.c.o)
-  021D2F0C 00000058 .text   ov100_021D2F0C	(src_overlay100_ov100_021D2F0C.c.o)
-  021D2F0C 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D2F64 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D2F64 00000120 .text   ov100_021D2F64	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3064 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3084 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3084 0000037C .text   ov100_021D3084	(src_overlay100_ov100_021D2F0C.c.o)
-  021D33B8 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3400 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3400 000000C0 .text   ov100_021D3400	(src_overlay100_ov100_021D2F0C.c.o)
-  021D34AC 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D34C0 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D34C0 00000044 .text   ov100_021D34C0	(src_overlay100_ov100_021D2F0C.c.o)
-  021D34F0 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3504 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3504 00000054 .text   ov100_021D3504	(src_overlay100_ov100_021D2F0C.c.o)
-  021D354C 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3558 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3558 000000C8 .text   ov100_021D3558	(src_overlay100_ov100_021D2F0C.c.o)
-  021D35F8 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3620 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3620 000000AC .text   ov100_021D3620	(src_overlay100_ov100_021D2F0C.c.o)
-  021D36B0 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D36CC 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D36CC 000000E4 .text   ov100_021D36CC	(src_overlay100_ov100_021D2F0C.c.o)
-  021D37A4 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D37B0 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D37B0 00000044 .text   ov100_021D37B0	(src_overlay100_ov100_021D2F0C.c.o)
-  021D37EC 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D37F4 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D37F4 00000198 .text   ov100_021D37F4	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3984 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D398C 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D398C 00000058 .text   ov100_021D398C	(src_overlay100_ov100_021D2F0C.c.o)
-  021D39D8 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D39E4 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D39E4 000005F0 .text   ov100_021D39E4	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3D40 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3D7C 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3F98 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3FD4 00000000 .text   $t	(src_overlay100_ov100_021D2F0C.c.o)
-  021D3FD4 00000038 .text   ov100_021D3FD4	(src_overlay100_ov100_021D2F0C.c.o)
-  021D4008 00000000 .text   $d	(src_overlay100_ov100_021D2F0C.c.o)
-  021D400C 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D400C 000000F8 .text   ov100_021D400C	(src_overlay100_ov100_021D400C.c.o)
-  021D4100 00000000 .text   $d	(src_overlay100_ov100_021D400C.c.o)
-  021D4104 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D4104 000000F8 .text   ov100_021D4104	(src_overlay100_ov100_021D400C.c.o)
-  021D41F8 00000000 .text   $d	(src_overlay100_ov100_021D400C.c.o)
-  021D41FC 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D41FC 00000018 .text   ov100_021D41FC	(src_overlay100_ov100_021D400C.c.o)
-  021D4210 00000000 .text   $d	(src_overlay100_ov100_021D400C.c.o)
-  021D4214 0000004E .text   ov100_021D4214	(src_overlay100_ov100_021D400C.c.o)
-  021D4214 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D4264 0000004C .text   ov100_021D4264	(src_overlay100_ov100_021D400C.c.o)
-  021D4264 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D42B0 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D42B0 00000068 .text   ov100_021D42B0	(src_overlay100_ov100_021D400C.c.o)
-  021D430C 00000000 .text   $d	(src_overlay100_ov100_021D400C.c.o)
-  021D4318 000000A2 .text   ov100_021D4318	(src_overlay100_ov100_021D400C.c.o)
-  021D4318 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D43BC 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D43BC 00000058 .text   ov100_021D43BC	(src_overlay100_ov100_021D400C.c.o)
-  021D4404 00000000 .text   $d	(src_overlay100_ov100_021D400C.c.o)
-  021D4414 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D4414 00000024 .text   ov100_021D4414	(src_overlay100_ov100_021D400C.c.o)
-  021D4434 00000000 .text   $d	(src_overlay100_ov100_021D400C.c.o)
-  021D4438 00000000 .text   $t	(src_overlay100_ov100_021D400C.c.o)
-  021D4438 00000088 .text   ov100_021D4438	(src_overlay100_ov100_021D400C.c.o)
-  021D44B4 00000000 .text   $d	(src_overlay100_ov100_021D400C.c.o)
-  021D44C0 00000050 .text   ov100_021D44C0	(src_overlay100_ov100_021D44C0.c.o)
-  021D44C0 00000000 .text   $t	(src_overlay100_ov100_021D44C0.c.o)
-  021D4510 00000000 .text   $t	(src_overlay100_ov100_021D44C0.c.o)
-  021D4510 00000094 .text   ov100_021D4510	(src_overlay100_ov100_021D44C0.c.o)
-  021D45A0 00000000 .text   $d	(src_overlay100_ov100_021D44C0.c.o)
-  021D45A4 00000122 .text   ov100_021D45A4	(src_overlay100_ov100_021D44C0.c.o)
-  021D45A4 00000000 .text   $t	(src_overlay100_ov100_021D44C0.c.o)
-  021D46C8 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D46C8 000000C0 .text   ov100_021D46C8	(src_overlay100_ov100_021D46C8.c.o)
-  021D4784 00000000 .text   $d	(src_overlay100_ov100_021D46C8.c.o)
-  021D4788 00000016 .text   ov100_021D4788	(src_overlay100_ov100_021D46C8.c.o)
-  021D4788 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D47A0 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D47A0 000000A4 .text   ov100_021D47A0	(src_overlay100_ov100_021D46C8.c.o)
-  021D4828 00000000 .text   $d	(src_overlay100_ov100_021D46C8.c.o)
-  021D4844 0000004A .text   ov100_021D4844	(src_overlay100_ov100_021D46C8.c.o)
-  021D4844 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4890 0000008E .text   ov100_021D4890	(src_overlay100_ov100_021D46C8.c.o)
-  021D4890 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4920 00000094 .text   ov100_021D4920	(src_overlay100_ov100_021D46C8.c.o)
-  021D4920 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D49B4 000000D0 .text   ov100_021D49B4	(src_overlay100_ov100_021D46C8.c.o)
-  021D49B4 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4A84 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4A84 0000000C .text   ov100_021D4A84	(src_overlay100_ov100_021D46C8.c.o)
-  021D4A8C 00000000 .text   $d	(src_overlay100_ov100_021D46C8.c.o)
-  021D4A90 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4A90 00000014 .text   ov100_021D4A90	(src_overlay100_ov100_021D46C8.c.o)
-  021D4AA0 00000000 .text   $d	(src_overlay100_ov100_021D46C8.c.o)
-  021D4AA4 00000024 .text   ov100_021D4AA4	(src_overlay100_ov100_021D46C8.c.o)
-  021D4AA4 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4AC8 00000048 .text   ov100_021D4AC8	(src_overlay100_ov100_021D46C8.c.o)
-  021D4AC8 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4B10 0000003C .text   ov100_021D4B10	(src_overlay100_ov100_021D46C8.c.o)
-  021D4B10 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4B4C 00000054 .text   ov100_021D4B4C	(src_overlay100_ov100_021D46C8.c.o)
-  021D4B4C 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4BA0 0000004E .text   ov100_021D4BA0	(src_overlay100_ov100_021D46C8.c.o)
-  021D4BA0 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4BF0 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4BF0 000000A4 .text   ov100_021D4BF0	(src_overlay100_ov100_021D46C8.c.o)
-  021D4C90 00000000 .text   $d	(src_overlay100_ov100_021D46C8.c.o)
-  021D4C94 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4C94 00000134 .text   ov100_021D4C94	(src_overlay100_ov100_021D46C8.c.o)
-  021D4DBC 00000000 .text   $d	(src_overlay100_ov100_021D46C8.c.o)
-  021D4DC8 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4DC8 00000010 .text   ov100_021D4DC8	(src_overlay100_ov100_021D46C8.c.o)
-  021D4DD0 00000000 .text   $d	(src_overlay100_ov100_021D46C8.c.o)
-  021D4DD8 00000000 .text   $t	(src_overlay100_ov100_021D46C8.c.o)
-  021D4DD8 0000002C .text   ov100_021D4DD8	(src_overlay100_ov100_021D46C8.c.o)
-  021D4DFC 00000000 .text   $d	(src_overlay100_ov100_021D46C8.c.o)
-  021D4E04 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E04 00000014 .text   ov100_021D4E04	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E10 00000000 .text   $d	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E18 00000022 .text   ov100_021D4E18	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E18 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E3C 0000001A .text   ov100_021D4E3C	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E3C 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E58 00000018 .text   ov100_021D4E58	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E58 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E70 0000004C .text   ov100_021D4E70	(src_overlay100_ov100_021D4E04.c.o)
-  021D4E70 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D4EBC 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D4EBC 00000050 .text   ov100_021D4EBC	(src_overlay100_ov100_021D4E04.c.o)
-  021D4F04 00000000 .text   $d	(src_overlay100_ov100_021D4E04.c.o)
-  021D4F0C 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D4F0C 00000090 .text   ov100_021D4F0C	(src_overlay100_ov100_021D4E04.c.o)
-  021D4F90 00000000 .text   $d	(src_overlay100_ov100_021D4E04.c.o)
-  021D4F9C 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D4F9C 00000040 .text   ov100_021D4F9C	(src_overlay100_ov100_021D4E04.c.o)
-  021D4FD8 00000000 .text   $d	(src_overlay100_ov100_021D4E04.c.o)
-  021D4FDC 00000060 .text   ov100_021D4FDC	(src_overlay100_ov100_021D4E04.c.o)
-  021D4FDC 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D503C 00000000 .text   $t	(src_overlay100_ov100_021D4E04.c.o)
-  021D503C 00000098 .text   ov100_021D503C	(src_overlay100_ov100_021D4E04.c.o)
-  021D50C4 00000000 .text   $d	(src_overlay100_ov100_021D4E04.c.o)
-  021D50D4 00000010 .rodata @14973	(src_overlay100_ov100_021D0D80.c.o)
-  021D50D4 00000000 .rodata .rodata	(src_overlay100_ov100_021D0D80.c.o)
-  021D50E4 00000014 .rodata @14955	(src_overlay100_ov100_021D0D80.c.o)
-  021D50F8 00000018 .rodata @14959	(src_overlay100_ov100_021D0D80.c.o)
-  021D5110 00000020 .rodata @14953	(src_overlay100_ov100_021D0D80.c.o)
-  021D5130 00000024 .rodata Unk_ov100_021D5130	(src_overlay100_ov100_021D0D80.c.o)
-  021D5154 00000028 .rodata @14975	(src_overlay100_ov100_021D0D80.c.o)
-  021D517C 00000038 .rodata @14979	(src_overlay100_ov100_021D0D80.c.o)
-  021D51B4 00000070 .rodata @14977	(src_overlay100_ov100_021D0D80.c.o)
-  021D5224 00000000 .rodata .rodata	(src_overlay100_ov100_021D13E4.c.o)
-  021D5224 00000002 .rodata @14687	(src_overlay100_ov100_021D13E4.c.o)
-  021D5226 00000006 .rodata v1$14623	(src_overlay100_ov100_021D13E4.c.o)
-  021D522C 00000006 .rodata v2$14624	(src_overlay100_ov100_021D13E4.c.o)
-  021D5232 00000006 .rodata @14721	(src_overlay100_ov100_021D13E4.c.o)
-  021D5238 00000006 .rodata @14719	(src_overlay100_ov100_021D13E4.c.o)
-  021D523E 00000006 .rodata v3$14625	(src_overlay100_ov100_021D13E4.c.o)
-  021D5244 00000008 .rodata @14671	(src_overlay100_ov100_021D13E4.c.o)
-  021D524C 0000000C .rodata v4$14626	(src_overlay100_ov100_021D13E4.c.o)
-  021D5258 0000000C .rodata @14723	(src_overlay100_ov100_021D13E4.c.o)
-  021D5264 0000002C .rodata @14617	(src_overlay100_ov100_021D13E4.c.o)
-  021D5290 00000000 .rodata .rodata	(src_overlay100_ov100_021D1C44.c.o)
-  021D5290 00000008 .rodata @14701	(src_overlay100_ov100_021D1C44.c.o)
-  021D5298 00000010 .rodata v1$14752	(src_overlay100_ov100_021D1C44.c.o)
-  021D52A8 00000000 .rodata .rodata	(src_overlay100_ov100_021D2F0C.c.o)
-  021D52A8 00000008 .rodata @14708	(src_overlay100_ov100_021D2F0C.c.o)
-  021D52B0 00000010 .rodata v1$14718	(src_overlay100_ov100_021D2F0C.c.o)
-  021D52C0 0000001C .rodata @14772	(src_overlay100_ov100_021D2F0C.c.o)
-  021D52DC 0000002C .rodata @14810	(src_overlay100_ov100_021D2F0C.c.o)
-  021D5308 0000002C .rodata @14876	(src_overlay100_ov100_021D2F0C.c.o)
-  021D5334 00000000 .rodata .rodata	(src_overlay100_ov100_021D400C.c.o)
-  021D5334 00000010 .rodata Unk_ov100_021D5334	(src_overlay100_ov100_021D400C.c.o)
-  021D5344 00000000 .rodata .rodata	(src_overlay100_ov100_021D44C0.c.o)
-  021D5344 00000104 .rodata Unk_ov100_021D5344	(src_overlay100_ov100_021D44C0.c.o)
-  021D5448 00000000 .rodata .rodata	(src_overlay100_ov100_021D46C8.c.o)
-  021D5448 00000003 .rodata @15421	(src_overlay100_ov100_021D46C8.c.o)
-  021D544B 00000006 .rodata @15425	(src_overlay100_ov100_021D46C8.c.o)
-  021D5454 0000000C .rodata @15427	(src_overlay100_ov100_021D46C8.c.o)
-  021D5460 0000000C .rodata @15290	(src_overlay100_ov100_021D46C8.c.o)
-  021D546C 0000000C .rodata @15288	(src_overlay100_ov100_021D46C8.c.o)
-  021D5478 00000018 .rodata @15423	(src_overlay100_ov100_021D46C8.c.o)
-#>021D5490          SDK_OVERLAY.overlay100.SINIT_START (linker command file)
-#>021D5494          SDK_OVERLAY.overlay100.SINIT_END (linker command file)
-#>021D54A0          SDK_OVERLAY.overlay100.TEXT_END (linker command file)
-#>021D54A0          SDK_OVERLAY.overlay100.DATA_START (linker command file)
-  021D54A0 00000000 .data   .data	(src_overlay100_ov100_021D1C44.c.o)
-  021D54A0 00000018 .data   Unk_ov100_021D54A0	(src_overlay100_ov100_021D1C44.c.o)
-  021D54B8 00000018 .data   Unk_ov100_021D54B8	(src_overlay100_ov100_021D1C44.c.o)
-  021D54D0 00000018 .data   Unk_ov100_021D54D0	(src_overlay100_ov100_021D1C44.c.o)
-  021D54E8 00000024 .data   Unk_ov100_021D54E8	(src_overlay100_ov100_021D1C44.c.o)
-  021D550C 00000000 .data   .data	(src_overlay100_ov100_021D400C.c.o)
-  021D550C 00000028 .data   v2$13485	(src_overlay100_ov100_021D400C.c.o)
-#>021D5540          SDK_OVERLAY.overlay100.DATA_END (linker command file)
-#>021D5540          SDK_OVERLAY.overlay100.END (linker command file)
-#>00004720          SDK_OVERLAY.overlay100.TEXT_SIZE (linker command file)
-#>000000A0          SDK_OVERLAY.overlay100.DATA_SIZE (linker command file)
-#>000047C0          SDK_OVERLAY.overlay100.SIZE (linker command file)
+# .spear_pillar_cutscene
+#>00000064          SDK_OVERLAY_spear_pillar_cutscene_ID (linker command file)
+#>00000064          SDK_OVERLAY.spear_pillar_cutscene.ID (linker command file)
+#>021D0D80          SDK_OVERLAY.spear_pillar_cutscene.START (linker command file)
+#>021D0D80          SDK_OVERLAY.spear_pillar_cutscene.TEXT_START (linker command file)
+  021D0D80 00000000 .text   $t	(src_cutscenes_spear_pillar_main.c.o)
+  021D0D80 00000128 .text   SpearPillarCutscene_Init	(src_cutscenes_spear_pillar_main.c.o)
+  021D0EA4 00000000 .text   $d	(src_cutscenes_spear_pillar_main.c.o)
+  021D0EA8 00000000 .text   $t	(src_cutscenes_spear_pillar_main.c.o)
+  021D0EA8 0000009C .text   SpearPillarCutscene_Main	(src_cutscenes_spear_pillar_main.c.o)
+  021D0F38 00000000 .text   $d	(src_cutscenes_spear_pillar_main.c.o)
+  021D0F44 00000000 .text   $t	(src_cutscenes_spear_pillar_main.c.o)
+  021D0F44 0000005C .text   SpearPillarCutscene_Exit	(src_cutscenes_spear_pillar_main.c.o)
+  021D0F9C 00000000 .text   $d	(src_cutscenes_spear_pillar_main.c.o)
+  021D0FA0 00000000 .text   $t	(src_cutscenes_spear_pillar_main.c.o)
+  021D0FA0 00000094 .text   SpearPillarCutscene_InitSpriteSystem	(src_cutscenes_spear_pillar_main.c.o)
+  021D1028 00000000 .text   $d	(src_cutscenes_spear_pillar_main.c.o)
+  021D1034 00000000 .text   $t	(src_cutscenes_spear_pillar_main.c.o)
+  021D1034 000000E8 .text   SpearPillarCutscene_InitGraphics	(src_cutscenes_spear_pillar_main.c.o)
+  021D110C 00000000 .text   $d	(src_cutscenes_spear_pillar_main.c.o)
+  021D111C 00000000 .text   $t	(src_cutscenes_spear_pillar_main.c.o)
+  021D111C 000000EC .text   SpearPillarCutscene_FreeGraphics	(src_cutscenes_spear_pillar_main.c.o)
+  021D1200 00000000 .text   $d	(src_cutscenes_spear_pillar_main.c.o)
+  021D1208 00000000 .text   $t	(src_cutscenes_spear_pillar_main.c.o)
+  021D1208 000001AC .text   SpearPillarCutscene_InitBackgrounds	(src_cutscenes_spear_pillar_main.c.o)
+  021D13A4 00000000 .text   $d	(src_cutscenes_spear_pillar_main.c.o)
+  021D13B4 00000000 .text   $t	(src_cutscenes_spear_pillar_main.c.o)
+  021D13B4 00000030 .text   SpearPillarCutscene_VBlankCallback	(src_cutscenes_spear_pillar_main.c.o)
+  021D13DC 00000000 .text   $d	(src_cutscenes_spear_pillar_main.c.o)
+  021D13E4 00000000 .text   $t	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D13E4 000000C4 .text   LakeGuardiansArrival_Init	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1494 00000000 .text   $d	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D14A8 00000000 .text   $t	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D14A8 0000021C .text   LakeGuardiansArrival_Update	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D16A0 00000000 .text   $d	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D16C4 00000000 .text   $t	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D16C4 00000094 .text   LakeGuardiansArrival_Exit	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1754 00000000 .text   $d	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1758 00000000 .text   $t	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1758 0000005C .text   LakeGuardiansArrival_InitCamera	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D17A8 00000000 .text   $d	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D17B4 00000000 .text   $t	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D17B4 00000054 .text   LakeGuardiansArrival_UpdateScene	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1804 00000000 .text   $d	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1808 00000000 .text   $t	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1808 0000021C .text   LakeGuardiansArrival_InitGraphics	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1A18 00000000 .text   $d	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1A24 00000030 .text   LakeGuardiansArrival_FreeLights	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1A24 00000000 .text   $t	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1A54 00000000 .text   $t	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1A54 000001F0 .text   LakeGuardiansArrival_InitLights	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1C30 00000000 .text   $d	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D1C44 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D1C44 00000054 .text   GiratinaIntervention_InitCamera	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D1C8C 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D1C98 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D1C98 000005B8 .text   GiratinaIntervention_InitSpriteSystem	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2038 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D206C 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2224 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2250 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2250 000000D4 .text   GiratinaIntervention_InitLakeGuardianLights	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2318 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2324 0000001C .text   GiratinaIntervention_FreeLakeGuardianLights	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2324 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2340 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2340 000000E8 .text   GiratinaIntervention_Init	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2404 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2428 00000864 .text   GiratinaIntervention_Update	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2428 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D27AC 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D27E4 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2B2C 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2B90 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2C68 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2C8C 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2C8C 00000180 .text   GiratinaIntervention_Exit	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2DE4 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2E0C 00000000 .text   $t	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2E0C 00000100 .text   GiratinaIntervention_UpdateScene	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2EDC 00000000 .text   $d	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D2F0C 00000058 .text   DialgaPalkiaArrival_InitSubScreenBackground	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D2F0C 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D2F64 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D2F64 00000120 .text   DialgaPalkiaArrival_InitWhirlpool	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3064 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3084 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3084 0000037C .text   DialgaPalkiaArrival_InitCastModels	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D33B8 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3400 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3400 000000C0 .text   DialgaPalkiaArrival_ReleaseModels	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D34AC 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D34C0 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D34C0 00000044 .text   DialgaPalkiaArrival_ReleaseFallingBalls	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D34F0 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3504 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3504 00000054 .text   DialgaPalkiaArrival_InitCamera	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D354C 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3558 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3558 000000C8 .text   DialgaPalkiaArrival_UpdateScene	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D35F8 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3620 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3620 000000AC .text   DialgaPalkiaArrival_Init	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D36B0 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D36CC 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D36CC 000000E4 .text   DialgaPalkiaArrival_UpdateCameraShake	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D37A4 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D37B0 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D37B0 00000044 .text   DialgaPalkiaArrival_InitCameraShake	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D37EC 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D37F4 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D37F4 00000198 .text   DialgaPalkiaArrival_UpdateSummonBubble	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3984 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D398C 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D398C 00000058 .text   DialgaPalkiaArrival_InitSummonBubble	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D39D8 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D39E4 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D39E4 000005F0 .text   DialgaPalkiaArrival_Update	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3D40 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3D7C 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3F98 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3FD4 00000000 .text   $t	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D3FD4 00000038 .text   DialgaPalkiaArrival_Exit	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D4008 00000000 .text   $d	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D400C 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D400C 000000F8 .text   LightBall_ComputeApproachStep	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4100 00000000 .text   $d	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4104 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4104 000000F8 .text   LightBall_ApproachTarget	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D41F8 00000000 .text   $d	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D41FC 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D41FC 00000018 .text   LightBall_ApproachStartPosition	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4210 00000000 .text   $d	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4214 0000004E .text   LightBall_Orbit	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4214 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4264 0000004C .text   LightBall_OrbitAt	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4264 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D42B0 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D42B0 00000068 .text   LightBall_Wander	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D430C 00000000 .text   $d	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4318 000000A2 .text   LightBall_Jitter	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4318 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D43BC 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D43BC 00000058 .text   LightBall_UpdateDepth	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4404 00000000 .text   $d	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4414 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4414 00000024 .text   LightBall_Update	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4434 00000000 .text   $d	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4438 00000000 .text   $t	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D4438 00000088 .text   LightBall_UpdateOrbitOrApproach	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D44B4 00000000 .text   $d	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D44C0 00000050 .text   PoseSequence_Start	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D44C0 00000000 .text   $t	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D4510 00000000 .text   $t	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D4510 00000094 .text   PoseSequence_UpdateAnimFrame	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D45A0 00000000 .text   $d	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D45A4 00000122 .text   PoseSequence_UpdateMovement	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D45A4 00000000 .text   $t	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D46C8 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D46C8 000000C0 .text   SpearPillarCutscene_ShowMessage	(src_cutscenes_spear_pillar_common.c.o)
+  021D4784 00000000 .text   $d	(src_cutscenes_spear_pillar_common.c.o)
+  021D4788 00000016 .text   SpearPillarCutscene_ClearMessage	(src_cutscenes_spear_pillar_common.c.o)
+  021D4788 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D47A0 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D47A0 000000A4 .text   SpearPillarCutscene_InitLighting	(src_cutscenes_spear_pillar_common.c.o)
+  021D4828 00000000 .text   $d	(src_cutscenes_spear_pillar_common.c.o)
+  021D4844 0000004A .text   SpearPillarCutscene_UpdateCamera	(src_cutscenes_spear_pillar_common.c.o)
+  021D4844 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4890 0000008E .text   CameraPan_Start	(src_cutscenes_spear_pillar_common.c.o)
+  021D4890 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4920 00000094 .text   CameraPan_Update	(src_cutscenes_spear_pillar_common.c.o)
+  021D4920 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D49B4 000000D0 .text   CutsceneModel_Update	(src_cutscenes_spear_pillar_common.c.o)
+  021D49B4 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4A84 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4A84 0000000C .text   CutsceneModel_ReleaseModel	(src_cutscenes_spear_pillar_common.c.o)
+  021D4A8C 00000000 .text   $d	(src_cutscenes_spear_pillar_common.c.o)
+  021D4A90 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4A90 00000014 .text   CutsceneModel_ReleaseAnim	(src_cutscenes_spear_pillar_common.c.o)
+  021D4AA0 00000000 .text   $d	(src_cutscenes_spear_pillar_common.c.o)
+  021D4AA4 00000024 .text   CutsceneModel_Release	(src_cutscenes_spear_pillar_common.c.o)
+  021D4AA4 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4AC8 00000048 .text   CutsceneModel_LoadMesh	(src_cutscenes_spear_pillar_common.c.o)
+  021D4AC8 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4B10 0000003C .text   CutsceneModel_CloneMesh	(src_cutscenes_spear_pillar_common.c.o)
+  021D4B10 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4B4C 00000054 .text   CutsceneModel_LoadAnim	(src_cutscenes_spear_pillar_common.c.o)
+  021D4B4C 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4BA0 0000004E .text   CutsceneModel_CloneAnim	(src_cutscenes_spear_pillar_common.c.o)
+  021D4BA0 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4BF0 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4BF0 000000A4 .text   SpearPillarCutscene_UpdateBackgroundPulse	(src_cutscenes_spear_pillar_common.c.o)
+  021D4C90 00000000 .text   $d	(src_cutscenes_spear_pillar_common.c.o)
+  021D4C94 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4C94 00000134 .text   SpearPillarCutscene_UpdateGuardianFlash	(src_cutscenes_spear_pillar_common.c.o)
+  021D4DBC 00000000 .text   $d	(src_cutscenes_spear_pillar_common.c.o)
+  021D4DC8 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4DC8 00000010 .text   SpearPillarCutscene_SwapDisplay	(src_cutscenes_spear_pillar_common.c.o)
+  021D4DD0 00000000 .text   $d	(src_cutscenes_spear_pillar_common.c.o)
+  021D4DD8 00000000 .text   $t	(src_cutscenes_spear_pillar_common.c.o)
+  021D4DD8 0000002C .text   SpearPillarCutscene_SetBrightness	(src_cutscenes_spear_pillar_common.c.o)
+  021D4DFC 00000000 .text   $d	(src_cutscenes_spear_pillar_common.c.o)
+  021D4E04 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E04 00000014 .text   ScreenScrollTask_Start	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E10 00000000 .text   $d	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E18 00000022 .text   ScreenScrollTask_Update	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E18 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E3C 0000001A .text   ScreenScrollTask_Init	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E3C 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E58 00000018 .text   ScreenScrollTask_Free	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E58 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E70 0000004C .text   ScreenScrollTask_Scroll	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4E70 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4EBC 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4EBC 00000050 .text   ScreenCapture_Start	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4F04 00000000 .text   $d	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4F0C 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4F0C 00000090 .text   ScreenCapture_End	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4F90 00000000 .text   $d	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4F9C 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4F9C 00000040 .text   ScreenCapture_Update	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4FD8 00000000 .text   $d	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4FDC 00000060 .text   ScreenCapture_Activate	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D4FDC 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D503C 00000000 .text   $t	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D503C 00000098 .text   ScreenCapture_Prime	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D50C4 00000000 .text   $d	(src_cutscenes_spear_pillar_screen_capture.c.o)
+  021D50D4 00000010 .rodata @15001	(src_cutscenes_spear_pillar_main.c.o)
+  021D50D4 00000000 .rodata .rodata	(src_cutscenes_spear_pillar_main.c.o)
+  021D50E4 00000014 .rodata @14983	(src_cutscenes_spear_pillar_main.c.o)
+  021D50F8 00000018 .rodata @14987	(src_cutscenes_spear_pillar_main.c.o)
+  021D5110 00000020 .rodata @14981	(src_cutscenes_spear_pillar_main.c.o)
+  021D5130 00000024 .rodata sCutsceneStages	(src_cutscenes_spear_pillar_main.c.o)
+  021D5154 00000028 .rodata @15003	(src_cutscenes_spear_pillar_main.c.o)
+  021D517C 00000038 .rodata @15007	(src_cutscenes_spear_pillar_main.c.o)
+  021D51B4 00000070 .rodata @15005	(src_cutscenes_spear_pillar_main.c.o)
+  021D5224 00000000 .rodata .rodata	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D5224 00000002 .rodata @14706	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D5226 00000006 .rodata revealDuration$14642	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D522C 00000006 .rodata cryFrame$14643	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D5232 00000006 .rodata @14738	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D5238 00000006 .rodata @14736	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D523E 00000006 .rodata sfxFrame$14644	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D5244 00000008 .rodata @14690	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D524C 0000000C .rodata guardianSpecies$14645	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D5258 0000000C .rodata @14740	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D5264 0000002C .rodata @14636	(src_cutscenes_spear_pillar_lake_guardians_arrival.c.o)
+  021D5290 00000000 .rodata .rodata	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D5290 00000008 .rodata @14720	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D5298 00000010 .rodata edgeColors$14768	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D52A8 00000000 .rodata .rodata	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D52A8 00000008 .rodata @14714	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D52B0 00000010 .rodata edgeColorTable$14724	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D52C0 0000001C .rodata @14778	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D52DC 0000002C .rodata @14816	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D5308 0000002C .rodata @14882	(src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o)
+  021D5334 00000000 .rodata .rodata	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D5334 00000010 .rodata sLightBallStateHandlers	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D5344 00000000 .rodata .rodata	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D5344 00000104 .rodata sPoseAnimFrames	(src_cutscenes_spear_pillar_pose_sequence.c.o)
+  021D5448 00000000 .rodata .rodata	(src_cutscenes_spear_pillar_common.c.o)
+  021D5448 00000003 .rodata @15485	(src_cutscenes_spear_pillar_common.c.o)
+  021D544B 00000006 .rodata @15489	(src_cutscenes_spear_pillar_common.c.o)
+  021D5454 0000000C .rodata @15491	(src_cutscenes_spear_pillar_common.c.o)
+  021D5460 0000000C .rodata @15354	(src_cutscenes_spear_pillar_common.c.o)
+  021D546C 0000000C .rodata @15352	(src_cutscenes_spear_pillar_common.c.o)
+  021D5478 00000018 .rodata @15487	(src_cutscenes_spear_pillar_common.c.o)
+#>021D5490          SDK_OVERLAY.spear_pillar_cutscene.SINIT_START (linker command file)
+#>021D5494          SDK_OVERLAY.spear_pillar_cutscene.SINIT_END (linker command file)
+#>021D54A0          SDK_OVERLAY.spear_pillar_cutscene.TEXT_END (linker command file)
+#>021D54A0          SDK_OVERLAY.spear_pillar_cutscene.DATA_START (linker command file)
+  021D54A0 00000000 .data   .data	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D54A0 00000018 .data   sCyrusPushBackPose	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D54B8 00000018 .data   sCyrusShadowRisesPose	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D54D0 00000018 .data   sCyrusDismissalPose	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D54E8 00000024 .data   sCyrusPanToGiratinaPose	(src_cutscenes_spear_pillar_giratina_intervention.c.o)
+  021D550C 00000000 .data   .data	(src_cutscenes_spear_pillar_light_ball.c.o)
+  021D550C 00000028 .data   wanderPoints$14176	(src_cutscenes_spear_pillar_light_ball.c.o)
+#>021D5540          SDK_OVERLAY.spear_pillar_cutscene.DATA_END (linker command file)
+#>021D5540          SDK_OVERLAY.spear_pillar_cutscene.END (linker command file)
+#>00004720          SDK_OVERLAY.spear_pillar_cutscene.TEXT_SIZE (linker command file)
+#>000000A0          SDK_OVERLAY.spear_pillar_cutscene.DATA_SIZE (linker command file)
+#>000047C0          SDK_OVERLAY.spear_pillar_cutscene.SIZE (linker command file)
 
-# .overlay100.bss
-#>021D5540          SDK_OVERLAY.overlay100.BSS_START (linker command file)
-#>021D5540          SDK_OVERLAY.overlay100.BSS_END (linker command file)
-#>00000000          SDK_OVERLAY.overlay100.BSS_SIZE (linker command file)
+# .spear_pillar_cutscene.bss
+#>021D5540          SDK_OVERLAY.spear_pillar_cutscene.BSS_START (linker command file)
+#>021D5540          SDK_OVERLAY.spear_pillar_cutscene.BSS_END (linker command file)
+#>00000000          SDK_OVERLAY.spear_pillar_cutscene.BSS_SIZE (linker command file)
 
 # .overlay101
 #>00000065          SDK_OVERLAY_overlay101_ID (linker command file)
@@ -139420,7 +139420,7 @@
   027E0060 027E0060 00000020 DTCM
   00000000 00000000 00000018 binary.AUTOLOAD_INFO
   00000000 00000000 0000000C binary.STATIC_FOOTER
-  021D0D80 021D0D80 0000090D main_defs
+  021D0D80 021D0D80 00000918 main_defs
   021D0D80 021D0D80 00000F40 main_table
   021D0D80 021D0D80 00000020 dummy1
   021D0DA0 021D0DA0 00000000 dummy1
@@ -139622,8 +139622,8 @@
   02249E20 02249E20 00000020 overlay98
   021D0D80 021D0D80 00004760 end_credits
   021D54E0 021D54E0 00000000 end_credits
-  021D0D80 021D0D80 000047C0 overlay100
-  021D5540 021D5540 00000000 overlay100
+  021D0D80 021D0D80 000047C0 spear_pillar_cutscene
+  021D5540 021D5540 00000000 spear_pillar_cutscene
   021D0D80 021D0D80 00009100 overlay101
   021D9E80 021D9E80 00000000 overlay101
   021D0D80 021D0D80 00000820 diploma
