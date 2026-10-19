@@ -159,7 +159,7 @@ int CapsuleManager_AnySealsOnCapsule(BallCapsule *capsule)
     return result;
 }
 
-int SealManger_CapsuleMenuField(CapsuleAppManager *appMan, int index)
+int CapsuleManager_CapsuleSelectionField(CapsuleAppManager *appMan, int index)
 {
     int pokemonIndex;
     int animIdx;
