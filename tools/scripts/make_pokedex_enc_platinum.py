@@ -42,9 +42,9 @@ argparser.add_argument('-g', '--trophy-file',
 argparser.add_argument('-m', '--marsh-file',
                        required=True,
                        help='encounter file for the Great Marsh Lookout')
-argparser.add_argument('-w', '--town-map-file',
+argparser.add_argument('-x', '--matrix-file',
                        required=True,
-                       help='town map data, for the shapes of fields')
+                       help='overworld map matrix, for the shapes of fields')
 argparser.add_argument('src_files',
                        nargs='+',
                        help='List of files to process in-order')
@@ -84,60 +84,59 @@ DUNGEONS = [
     (MapHeaderID.MAP_HEADER_FLOAROMA_MEADOW, 5, 19),
 ]
 
-# Pokedex fields: map header, and the town map area or landmark whose blocks give its shape,
-# or an (x, z, width, height) rectangle where the Pokedex doesn't follow the town map
+# Pokedex fields, shaped by their map header's cells in the overworld matrix
 FIELDS = [
-    (None, (0, 0, 1, 1)),
-    (MapHeaderID.MAP_HEADER_CANALAVE_CITY, 'canalave_city'),
-    (MapHeaderID.MAP_HEADER_ETERNA_CITY, (9, 16, 1, 2)),
-    (MapHeaderID.MAP_HEADER_PASTORIA_CITY, 'pastoria_city'),
-    (MapHeaderID.MAP_HEADER_SUNYSHORE_CITY, 'sunyshore_city'),
-    (MapHeaderID.MAP_HEADER_POKEMON_LEAGUE, (26, 17, 1, 2)),
-    (MapHeaderID.MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE, 'valley_windworks'),
-    (MapHeaderID.MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE, 'fuego_ironworks'),
-    (MapHeaderID.MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 'stark_mountain'),
-    (MapHeaderID.MAP_HEADER_IRON_ISLAND, 'iron_island'),
-    (MapHeaderID.MAP_HEADER_VALOR_LAKEFRONT, 'valor_lakefront'),
-    (MapHeaderID.MAP_HEADER_ACUITY_LAKEFRONT, 'acuity_lakefront'),
-    (MapHeaderID.MAP_HEADER_ROUTE_201, 'route_201'),
-    (MapHeaderID.MAP_HEADER_ROUTE_202, 'route_202'),
-    (MapHeaderID.MAP_HEADER_ROUTE_203, 'route_203'),
-    (MapHeaderID.MAP_HEADER_ROUTE_204_SOUTH, 'ravaged_path'),
-    (MapHeaderID.MAP_HEADER_ROUTE_204_NORTH, (5, 21, 1, 1)),
-    (MapHeaderID.MAP_HEADER_ROUTE_205_SOUTH, 'route_205_south'),
-    (MapHeaderID.MAP_HEADER_ROUTE_205_NORTH, 'route_205_north'),
-    (MapHeaderID.MAP_HEADER_ROUTE_206, 'route_206'),
-    (MapHeaderID.MAP_HEADER_ROUTE_207, 'route_207'),
-    (MapHeaderID.MAP_HEADER_ROUTE_208, 'route_208'),
-    (MapHeaderID.MAP_HEADER_ROUTE_209, (17, 21, 1, 2)),
-    (MapHeaderID.MAP_HEADER_ROUTE_210_SOUTH, 'route_210_south'),
-    (MapHeaderID.MAP_HEADER_ROUTE_210_NORTH, 'route_210_north'),
-    (MapHeaderID.MAP_HEADER_ROUTE_211_WEST, (11, 16, 1, 1)),
-    (MapHeaderID.MAP_HEADER_ROUTE_211_EAST, (13, 16, 1, 1)),
-    (MapHeaderID.MAP_HEADER_ROUTE_212_NORTH, 'route_212_north'),
-    (MapHeaderID.MAP_HEADER_ROUTE_212_SOUTH, 'route_212_south'),
-    (MapHeaderID.MAP_HEADER_ROUTE_213, 'route_213'),
-    (MapHeaderID.MAP_HEADER_ROUTE_214, 'route_214'),
-    (MapHeaderID.MAP_HEADER_ROUTE_215, 'route_215'),
-    (MapHeaderID.MAP_HEADER_ROUTE_216, 'route_216'),
-    (MapHeaderID.MAP_HEADER_ROUTE_217, 'route_217'),
-    (MapHeaderID.MAP_HEADER_ROUTE_218, 'route_218'),
-    (MapHeaderID.MAP_HEADER_ROUTE_219, 'route_219'),
-    (MapHeaderID.MAP_HEADER_ROUTE_221, 'route_221'),
-    (MapHeaderID.MAP_HEADER_ROUTE_222, 'route_222'),
-    (MapHeaderID.MAP_HEADER_ROUTE_224, 'route_224'),
-    (MapHeaderID.MAP_HEADER_ROUTE_225, 'route_225'),
-    (MapHeaderID.MAP_HEADER_ROUTE_227, 'route_227'),
-    (MapHeaderID.MAP_HEADER_ROUTE_228, 'route_228'),
-    (MapHeaderID.MAP_HEADER_ROUTE_229, 'route_229'),
-    (MapHeaderID.MAP_HEADER_TWINLEAF_TOWN, 'twinleaf_town'),
-    (MapHeaderID.MAP_HEADER_CELESTIC_TOWN, 'celestic_town'),
-    (MapHeaderID.MAP_HEADER_RESORT_AREA, 'resort_area'),
-    (MapHeaderID.MAP_HEADER_ROUTE_220, 'route_220'),
-    (MapHeaderID.MAP_HEADER_ROUTE_223, 'route_223'),
-    (MapHeaderID.MAP_HEADER_ROUTE_226, 'route_226'),
-    (MapHeaderID.MAP_HEADER_ROUTE_230, 'route_230'),
-    (MapHeaderID.MAP_HEADER_ETERNA_FOREST_OUTSIDE, 'eterna_forest'),
+    None,
+    MapHeaderID.MAP_HEADER_CANALAVE_CITY,
+    MapHeaderID.MAP_HEADER_ETERNA_CITY,
+    MapHeaderID.MAP_HEADER_PASTORIA_CITY,
+    MapHeaderID.MAP_HEADER_SUNYSHORE_CITY,
+    MapHeaderID.MAP_HEADER_POKEMON_LEAGUE,
+    MapHeaderID.MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE,
+    MapHeaderID.MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
+    MapHeaderID.MAP_HEADER_STARK_MOUNTAIN_OUTSIDE,
+    MapHeaderID.MAP_HEADER_IRON_ISLAND,
+    MapHeaderID.MAP_HEADER_VALOR_LAKEFRONT,
+    MapHeaderID.MAP_HEADER_ACUITY_LAKEFRONT,
+    MapHeaderID.MAP_HEADER_ROUTE_201,
+    MapHeaderID.MAP_HEADER_ROUTE_202,
+    MapHeaderID.MAP_HEADER_ROUTE_203,
+    MapHeaderID.MAP_HEADER_ROUTE_204_SOUTH,
+    MapHeaderID.MAP_HEADER_ROUTE_204_NORTH,
+    MapHeaderID.MAP_HEADER_ROUTE_205_SOUTH,
+    MapHeaderID.MAP_HEADER_ROUTE_205_NORTH,
+    MapHeaderID.MAP_HEADER_ROUTE_206,
+    MapHeaderID.MAP_HEADER_ROUTE_207,
+    MapHeaderID.MAP_HEADER_ROUTE_208,
+    MapHeaderID.MAP_HEADER_ROUTE_209,
+    MapHeaderID.MAP_HEADER_ROUTE_210_SOUTH,
+    MapHeaderID.MAP_HEADER_ROUTE_210_NORTH,
+    MapHeaderID.MAP_HEADER_ROUTE_211_WEST,
+    MapHeaderID.MAP_HEADER_ROUTE_211_EAST,
+    MapHeaderID.MAP_HEADER_ROUTE_212_NORTH,
+    MapHeaderID.MAP_HEADER_ROUTE_212_SOUTH,
+    MapHeaderID.MAP_HEADER_ROUTE_213,
+    MapHeaderID.MAP_HEADER_ROUTE_214,
+    MapHeaderID.MAP_HEADER_ROUTE_215,
+    MapHeaderID.MAP_HEADER_ROUTE_216,
+    MapHeaderID.MAP_HEADER_ROUTE_217,
+    MapHeaderID.MAP_HEADER_ROUTE_218,
+    MapHeaderID.MAP_HEADER_ROUTE_219,
+    MapHeaderID.MAP_HEADER_ROUTE_221,
+    MapHeaderID.MAP_HEADER_ROUTE_222,
+    MapHeaderID.MAP_HEADER_ROUTE_224,
+    MapHeaderID.MAP_HEADER_ROUTE_225,
+    MapHeaderID.MAP_HEADER_ROUTE_227,
+    MapHeaderID.MAP_HEADER_ROUTE_228,
+    MapHeaderID.MAP_HEADER_ROUTE_229,
+    MapHeaderID.MAP_HEADER_TWINLEAF_TOWN,
+    MapHeaderID.MAP_HEADER_CELESTIC_TOWN,
+    MapHeaderID.MAP_HEADER_RESORT_AREA,
+    MapHeaderID.MAP_HEADER_ROUTE_220,
+    MapHeaderID.MAP_HEADER_ROUTE_223,
+    MapHeaderID.MAP_HEADER_ROUTE_226,
+    MapHeaderID.MAP_HEADER_ROUTE_230,
+    MapHeaderID.MAP_HEADER_ETERNA_FOREST_OUTSIDE,
 ]
 
 honey_tree_dungeons = [
@@ -174,6 +173,12 @@ NUM_DIGITS = 8
 NO_MAP_HEADER = 0xFFFFFFFF
 MT_CORONET_DUNGEON = MapHeaderID.MAP_HEADER_MT_CORONET_1F_SOUTH
 
+# Matrix cells that the Pokedex leaves out
+FIELD_CELLS_NOT_SHOWN = {
+    MapHeaderID.MAP_HEADER_ETERNA_CITY: {(10, 16)},
+    MapHeaderID.MAP_HEADER_ROUTE_209: {(16, 22)},
+}
+
 
 def write_file(file_num, data):
     target_fname = str(private_dir / output_name) + f'_{file_num:0{NUM_DIGITS}}.bin'
@@ -181,16 +186,15 @@ def write_file(file_num, data):
         target_file.write(data)
 
 
-def map_header_ids(entries):
-    return b''.join((NO_MAP_HEADER if entry[0] is None else entry[0]).to_bytes(4, 'little') for entry in entries)
+def map_header_ids(headers):
+    return b''.join((NO_MAP_HEADER if header is None else header).to_bytes(4, 'little') for header in headers)
 
 
-def field_coordinates(shape, town_map_cells):
-    if isinstance(shape, str):
-        cells = town_map_cells[shape]
+def field_coordinates(header, matrix_cells):
+    if header is None:
+        cells = {(0, 0)}
     else:
-        x, z, width, height = shape
-        cells = {(x + i, z + j) for i in range(width) for j in range(height)}
+        cells = matrix_cells[header.name] - FIELD_CELLS_NOT_SHOWN.get(header, set())
 
     x0 = min(x for x, _ in cells)
     z0 = min(z for _, z in cells)
@@ -200,16 +204,15 @@ def field_coordinates(shape, town_map_cells):
     return bytes([x0, z0, width, height]) + cell_matrix.ljust(32, b'\0')
 
 
-with open(args.town_map_file, encoding='utf-8') as town_map_file:
-    town_map_cells = defaultdict(set)
-    for block in json.load(town_map_file)['blocks']:
-        for key in ('area', 'landmark'):
-            if block[key]:
-                town_map_cells[block[key]].add((block['x'], block['z']))
+with open(args.matrix_file, encoding='utf-8') as matrix_file:
+    matrix_cells = defaultdict(set)
+    for z, row in enumerate(json.load(matrix_file)['headers']):
+        for x, header in enumerate(row):
+            matrix_cells[header].add((x, z))
 
 write_file(0, b''.join(bytes([x, z, header == MT_CORONET_DUNGEON, 0]) for header, x, z in DUNGEONS))
-write_file(1, map_header_ids(DUNGEONS))
-write_file(2, b''.join(field_coordinates(shape, town_map_cells) for _, shape in FIELDS))
+write_file(1, map_header_ids(header for header, _, _ in DUNGEONS))
+write_file(2, b''.join(field_coordinates(header, matrix_cells) for header in FIELDS))
 write_file(3, map_header_ids(FIELDS))
 
 dungeon_morning = [set() for species in range(NUM_POKEMON)]
