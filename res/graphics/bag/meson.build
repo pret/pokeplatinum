@@ -114,6 +114,7 @@ bag_graphics_narc = custom_target('bag_graphics.narc',
     output: [
         'bag_graphics.narc',
         'bag_graphics.naix',
+        'bag_graphics.recs',
     ],
     input: [
         tilemaps_nscr,

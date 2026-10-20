@@ -1,571 +1,244 @@
-#include <errno.h>
-#include <stdarg.h>
 #include <stdbool.h>
 #include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "common.h"
-#include "dataproc.h"
+#include "game_types.h"
 
-#define MAX_LOADED_NAIX  16
+#define MAX_NARCS 16
+#define SENTINEL  0xFFFFFFFE
 
-static enum_template_t enums[MAX_LOADED_NAIX + 1] = {
-    { .from_file = "constants/narc.h", .for_type = "enum NarcID" },
+static const char *resdatFile = NULL;
+static const char *prefix     = "templates";
+static size_t      fileIndex  = 0;
+
+static const char *narcArgs[MAX_NARCS]; // NARC_ID:RECORDS, validated by AddNarc
+static size_t      numNarcs = 0;
+
+// Resource outputs share their IDs with the resource kinds the game reads from
+// each file's header, so B_CHARS..B_ANIMS must stay first and in this order.
+enum { B_CHARS, B_PLTTS, B_CELLS, B_ANIMS, B_TEMPLATES, B_HEADERS };
+enum { F_HEADER };
+
+#define L_NARC  "enum NarcID"
+#define L_CHARS "characters"
+#define L_PLTTS "palettes"
+#define L_CELLS "cells"
+#define L_ANIMS "animations"
+
+static const struct {
+    const char *key;  // array of resources in the input
+    const char *type; // lookup type of their IDs, for template references
+} kinds[] = {
+    [B_CHARS] = { ".characters", L_CHARS },
+    [B_PLTTS] = { ".palettes",   L_PLTTS },
+    [B_CELLS] = { ".cells",      L_CELLS },
+    [B_ANIMS] = { ".animations", L_ANIMS },
 };
 
-enum restype {
-    RESDAT_T_CHARS,
-    RESDAT_T_PLTTS,
-    RESDAT_T_CELLS,
-    RESDAT_T_ANIMS,
-    RESDAT_T_TEMPLATES,
+typedef struct ResourceData {
+    u32 narc;
+    u32 member;
+    u32 compressed;
+    u32 id;
+    u32 screenMask;
+    u32 paletteSlot;
+} ResourceData;
+
+typedef struct TemplateData {
+    s32 charID;
+    s32 plttID;
+    s32 cellID;
+    s32 animID;
+    s32 mcelID; // unused by gen 4 games
+    s32 maniID; // unused by gen 4 games
+    s32 transfer;
+    s32 priority;
+} TemplateData;
+
+static void AddNarc(const char *arg)
+{
+    if (numNarcs == MAX_NARCS) CLI_Fail("too many '-D' options; max is %d", MAX_NARCS);
+    if (!strchr(arg, ':'))     CLI_Fail("missing ':' separator in argument '%s'", arg);
+
+    narcArgs[numNarcs++] = arg;
+}
+
+static void SetFileIndex(const char *arg)
+{
+    char *end = NULL;
+    fileIndex = strtoull(arg, &end, 0);
+    if (*arg == '-' || *arg == '\0' || *end != '\0') {
+        CLI_Fail("argument for '-n' must be a nonnegative integer, got '%s'", arg);
+    }
+}
+
+static Driver driver = {
+    .depfile = "resdat.d",
+
+    .options = (Option[]) {
+        OPTION_HANDLER('D', "NARC_ID:RECORDS", AddNarc, "Name NARC_ID's members from its nitroarc RECORDS. Repeatable."),
+        OPTION_VALUE('p', "PREFIX", &prefix,
+                     "Name the outputs PREFIX_{chars,pltts,cells,anims}.resdat, PREFIX.cldat and PREFIX.h."),
+        OPTION_HANDLER('n', "INDEX", SetFileIndex,
+                       "Use element INDEX of any array-valued 'from_file' property. Defaults to 0."),
+        POSITIONAL("RESDAT_JSON", &resdatFile, "Resource and template definitions."),
+        { 0 },
+    },
+
+    .lookups = (Lookup[]) {
+        LOOKUP_ENUM("constants/narc.h", L_NARC),
+        { 0 },
+    },
+
+    // Named here only until main() applies the -p prefix.
+    .outputs = {
+        .binaryFiles = (BinaryFile[]) {
+            [B_CHARS]     = { .filename = "chars.resdat" },
+            [B_PLTTS]     = { .filename = "pltts.resdat" },
+            [B_CELLS]     = { .filename = "cells.resdat" },
+            [B_ANIMS]     = { .filename = "anims.resdat" },
+            [B_TEMPLATES] = { .filename = "templates.cldat" },
+            { 0 },
+        },
+
+        .textFiles = (TextFile[]) {
+            [F_HEADER] = { .filename = "templates.h", .wrap = TEXT_FILE_WRAP_GUARD },
+            { 0 },
+        },
+    },
 };
 
-typedef struct resource resource_t;
-struct resource {
-    const char *id;
-    const char *from_narc;
-    unsigned    from_file_id;
-    unsigned    from_narc_id;
-    unsigned    palette_slot;
-    bool        dummy;
-    bool        compressed;
-    bool        on_main;
-    bool        on_sub;
-};
+// Register each NARC's member names as a lookup type named after the NARC.
+// Member names are loaded in archive order.
+static void RegisterNarcs(void)
+{
+    for (size_t i = 0; i < numNarcs; i++) {
+        const char *sep  = strchr(narcArgs[i], ':');
+        char       *narc = String_Format("%.*s", (int)(sep - narcArgs[i]), narcArgs[i]);
+        Records     recs = Records_Load(sep + 1);
 
-typedef struct resources resources_t;
-struct resources {
-    resource_t  *arr;
-    lookup_t    *map;
-    size_t       len;
-    enum restype type;
-};
-
-typedef struct template template_t;
-struct template {
-    const char *id;
-
-    u32      char_id;
-    u32      pltt_id;
-    u32      cell_id;
-    u32      anim_id;
-    bool     transfer;
-    unsigned priority;
-};
-
-typedef struct templates templates_t;
-struct templates {
-    template_t *arr;
-    size_t      len;
-};
-
-static void parse_args(int *pargc, char ***pargv);
-
-static resources_t proc_resources(datafile_t *df, enum restype type);
-static templates_t proc_templates(
-    datafile_t *df,
-    resources_t *chars,
-    resources_t *pltts,
-    resources_t *cells,
-    resources_t *anims
-);
-
-static int  dump_resources(resources_t *resources, enum restype type);
-static int  dump_templates(templates_t *templates);
-static int  dump_header(templates_t *templates);
-static void free_resources(resources_t *resources);
-
-static char  *program_name  = NULL;
-static char  *filename      = NULL;
-static char  *depfile_path  = NULL;
-static char  *output_prefix = "";
-static char  *output_dir    = ".";
-static size_t arr_index     = 0;
-static size_t len_prefix    = 0;
-static bool   create_index  = false;
-static bool   free_depfile  = false;
-
-static enum restype filter = 0;
-
-#define SOURCE_NAME "tools/dataproc/src/resdatproc.c"
-
-int main(int argc, char **argv) {
-    parse_args(&argc, &argv);
-    common_init(DATAPROC_F_JSON, enums, NULL, NULL, NULL, SOURCE_NAME, depfile_path, output_dir, NULL, NULL);
-
-    datafile_t df   = { 0 };
-    unsigned   errc = EXIT_SUCCESS;
-    if (dp_load(&df, filename) == 0) {
-        resources_t chars = proc_resources(&df, RESDAT_T_CHARS);
-        resources_t pltts = proc_resources(&df, RESDAT_T_PLTTS);
-        resources_t cells = proc_resources(&df, RESDAT_T_CELLS);
-        resources_t anims = proc_resources(&df, RESDAT_T_ANIMS);
-        templates_t temps = proc_templates(&df, &chars, &pltts, &cells, &anims);
-
-        if (df.diag_head == NULL) {
-            errc = dump_resources(&chars, RESDAT_T_CHARS)
-                || dump_resources(&pltts, RESDAT_T_PLTTS)
-                || dump_resources(&cells, RESDAT_T_CELLS)
-                || dump_resources(&anims, RESDAT_T_ANIMS)
-                || dump_templates(&temps)
-                || (create_index ? dump_header(&temps) : EXIT_SUCCESS);
+        dp_symbol *members = Zalloc(recs.count, sizeof(*members));
+        for (size_t j = 0; j < recs.count; j++) {
+            members[j] = (dp_symbol){ .value = (long)j, .name = recs.items[j].id };
         }
 
-        free_resources(&chars);
-        free_resources(&pltts);
-        free_resources(&cells);
-        free_resources(&anims);
-        free(temps.arr);
+        Lookups_Register(narc, members, recs.count);
+        free(members);
+        free(narc);
     }
-
-    if (dp_report(&df) == DIAG_ERROR) errc = EXIT_FAILURE;
-    if (free_depfile) free(depfile_path);
-
-    dp_free(&df);
-    return common_done(errc, NULL);
 }
 
-int sort_strcmp(const void *lhs, const void *rhs) {
-    const lookup_t *l = lhs;
-    const lookup_t *r = rhs;
+static void ReadSource(dp_node res, ResourceData *data)
+{
+    const dp_node narc = dp_lookup_at(res, ".from_narc", L_NARC);
+    data->narc = dp_u32(narc);
+    if (dp_type_of(narc) != DP_SYMBOL) return; // error is already staged
 
-    if (l->def == NULL && r->def == NULL) return 0;
-    else if (l->def == NULL) return 1;
-    else if (r->def == NULL) return -1;
+    dp_node file = dp_at(res, ".from_file");
+    if (dp_type_of(file) == DP_ARRAY) file = dp_arr_at(file, fileIndex);
 
-    return strcmp(l->def, r->def);
+    const dp_node member = dp_lookup(file, dp_string(narc));
+    data->member = dp_u32(member);
+    if (dp_type_of(member) != DP_SYMBOL) dp_note(narc, "type '%s' defined here", dp_string(narc));
 }
 
-void free_resources(resources_t *res) {
-    free(res->arr);
-    free(res->map);
-}
+static void ProcResources(dp_node root, int kind)
+{
+    const dp_node array   = dp_at(root, kinds[kind].key);
+    dp_symbol    *ids     = Zalloc(dp_arr_len(array), sizeof(*ids));
+    size_t        numIDs  = 0;
+    const u32     header  = (u32)kind;
+    BinaryFile_Write(kind, &header, sizeof(header));
 
-static inline bool has_vram(enum restype type) {
-    return type == RESDAT_T_PLTTS || type == RESDAT_T_CHARS;
-}
+    for (dp_each(res, i, array)) {
+        if (dp_bool(dp_try(res, ".dummy"))) continue; // keeps its index, but isn't written
 
-static inline bool has_slot(enum restype type) {
-    return type == RESDAT_T_PLTTS;
-}
-
-static resources_t proc_resources(datafile_t *df, enum restype type) {
-    datanode_t array = { 0 };
-
-    switch (type) {
-    case RESDAT_T_PLTTS: array = dp_get(df, ".palettes");   break;
-    case RESDAT_T_CHARS: array = dp_get(df, ".characters"); break;
-    case RESDAT_T_CELLS: array = dp_get(df, ".cells");      break;
-    case RESDAT_T_ANIMS: array = dp_get(df, ".animations"); break;
-    default: abort(); // unreachable
-    }
-
-    const size_t array_len = dp_arrlen(array);
-    if (array_len > INT32_MAX) {
-        dp_error(&array, "number of elements exceeds INT32_MAX = %d", INT32_MAX);
-        return (resources_t){ 0 };
-    }
-
-    resources_t result = {
-        .arr  = calloc(array_len, sizeof(*result.arr)),
-        .map  = calloc(array_len, sizeof(*result.map)),
-        .len  = array_len,
-        .type = type,
-    };
-
-    for (size_t i = 0; i < array_len; i++) {
-        datanode_t node = dp_arrelem(array, i);
-        if (dp_hasmemb(node, "dummy") && dp_bool(dp_objmemb(node, "dummy"))) {
-            result.arr[i].dummy = true;
-            continue;
-        }
-
-        datanode_t node_narc   = dp_objmemb(node, "from_narc");
-        datanode_t node_file   = dp_objmemb(node, "from_file");
-        datanode_t node_narc_i = dp_lookup(node_narc, "enum NarcID");
-
-        result.arr[i].id         = dp_string(dp_objmemb(node, "id"));
-        result.arr[i].compressed = dp_bool(dp_objmemb(node, "compressed"));
-
-        result.arr[i].from_narc    = dp_string(node_narc);
-        result.arr[i].from_narc_id = (unsigned)node_narc_i.mapped;
-        if (result.arr[i].from_narc && node_narc_i.type == DATAPROC_T_MAPPED) {
-            if (node_file.type == DATAPROC_T_ARRAY) node_file = dp_arrelem(node_file, arr_index);
-
-            datanode_t node_file_i = dp_lookup(node_file, result.arr[i].from_narc);
-
-            if (node_file_i.type == DATAPROC_T_MAPPED) {
-                result.arr[i].from_file_id = (unsigned)node_file_i.mapped;
-            }
-            else {
-                dp_note(&node_narc, "type '%s' defined here",
-                        result.arr[i].from_narc);
-            }
-        }
-
-        if (has_vram(type)) {
-            result.arr[i].on_main = dp_bool(dp_objmemb(node, "on_main_screen"));
-            result.arr[i].on_sub  = dp_bool(dp_objmemb(node, "on_sub_screen"));
-        }
-
-        if (has_slot(type)) {
-            result.arr[i].palette_slot = dp_u8range(dp_objmemb(node, "load_in_slot"), 0, 15);
-        }
-
-        result.map[i].def = result.arr[i].id;
-        result.map[i].val = i;
-    }
-
-    qsort(result.map, result.len, sizeof(*result.map), sort_strcmp);
-    return result;
-}
-
-static inline void putleu32(void *p, u32 u) {
-    u8 *b = p;
-    b[0]  = (u8)((u >>  0) & 0xFF);
-    b[1]  = (u8)((u >>  8) & 0xFF);
-    b[2]  = (u8)((u >> 16) & 0xFF);
-    b[3]  = (u8)((u >> 24) & 0xFF);
-}
-
-static inline char* prefix(const char *base) {
-    size_t len_base   = strlen(base);
-    char  *prefixed   = calloc(len_prefix + 1 + len_base + 1, sizeof(*prefixed));
-    memcpy(prefixed, output_prefix, len_prefix);
-    memcpy(prefixed + len_prefix + 1, base, len_base);
-    prefixed[len_prefix] = '_';
-
-    return prefixed;
-}
-
-static inline bool is_disabled(enum restype type) {
-    return filter != 0 && (filter & (1 << type)) == 0;
-}
-
-#define SENTINEL     0xFFFFFFFE
-#define SENTINEL_RES (serial_t){ SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL }
-#define SENTINEL_TMP (serial_t){ SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL }
-
-static int dump_resources(resources_t *resources, enum restype type) {
-    if (is_disabled(type)) return EXIT_SUCCESS;
-
-    typedef struct serial serial_t;
-    struct serial {
-        u32 narc;
-        u32 member;
-        u32 is_compressed;
-        u32 id;
-        u32 screen_mask;
-        u32 palette_slot;
-    };
-
-    char *output_path = NULL;
-
-    switch (type) {
-    case RESDAT_T_CHARS: output_path = prefix("chars.resdat"); break;
-    case RESDAT_T_PLTTS: output_path = prefix("pltts.resdat"); break;
-    case RESDAT_T_CELLS: output_path = prefix("cells.resdat"); break;
-    case RESDAT_T_ANIMS: output_path = prefix("anims.resdat"); break;
-    default: abort(); // unreachable
-    }
-
-    size_t size = sizeof(u32) + (sizeof(serial_t) * (resources->len + 1));
-    void  *data = calloc(size, 1);
-    if (data == NULL) return EXIT_FAILURE;
-
-    putleu32(data, type);
-    serial_t *ser = (void *)(((u8 *)data) + sizeof(u32));
-
-    size_t ser_count = 0; // Only serialize non-dummy entries
-    for (size_t i = 0; i < resources->len; i++) {
-        resource_t *res = &resources->arr[i];
-        if (res->dummy) continue;
-
-        ser[ser_count++] = (serial_t){
-            .narc          = res->from_narc_id,
-            .member        = res->from_file_id,
-            .is_compressed = res->compressed ? 1 : 0,
-            .id            = (u32)i,
-            .screen_mask   = has_vram(type) ? (res->on_main ? 1 : 0) | (res->on_sub ? 2 : 0) : res->from_narc_id,
-            .palette_slot  = has_slot(type) ? res->palette_slot : res->from_narc_id,
+        ResourceData data = {
+            .compressed = dp_bool_at(res, ".compressed"),
+            .id         = (u32)i,
         };
-    }
 
-    ser[ser_count++] = SENTINEL_RES;
-    size = sizeof(u32) + (sizeof(serial_t) * ser_count);
+        ReadSource(res, &data);
 
-    int errc = fdump_blob(data, size, output_path);
-    free(data);
-    free(output_path);
-    return errc;
-}
+        // MATCH DETAIL: Kinds without VRAM placement or a palette slot repeat
+        // the NARC ID in those fields.
+        bool vram        = kind == B_CHARS || kind == B_PLTTS;
+        data.screenMask  = vram ? (u32)(dp_bool_at(res, ".on_main_screen") | dp_bool_at(res, ".on_sub_screen") << 1) : data.narc;
+        data.paletteSlot = kind == B_PLTTS ? (u32)dp_uint_in_at(res, ".load_in_slot", 0, 15) : data.narc;
 
-static int check_lookup(const void *key_v, const void *memb_v) {
-    const char     *key  = key_v;
-    const lookup_t *memb = memb_v;
-    return strcmp(key, memb->def);
-}
+        BinaryFile_Write(kind, &data, sizeof(data));
 
-static lookup_t* find_resource(datanode_t parent, const char *key, resources_t *resources) {
-    datanode_t  node = dp_objmemb(parent, key);
-    const char *str  = dp_string(node);
-    if (str == NULL) return NULL;
+        const dp_node idNode = dp_at(res, ".id");
+        const char   *id     = dp_string(idNode);
+        if (id == NULL) continue; // error is already staged
 
-    lookup_t *found = bsearch(str, resources->map, resources->len, sizeof(*resources->map), check_lookup);
-    if (!found) {
-        dp_error(&node, "undefined %s-resource identifier", key);
-        return NULL;
-    }
-
-    return found;
-}
-
-static templates_t proc_templates(
-    datafile_t *df,
-    resources_t *chars,
-    resources_t *pltts,
-    resources_t *cells,
-    resources_t *anims
-) {
-    datanode_t   array     = dp_get(df, ".templates");
-    const size_t array_len = dp_arrlen(array);
-    templates_t  result    = {
-        .arr  = calloc(array_len, sizeof(*result.arr)),
-        .len  = array_len,
-    };
-
-    for (size_t i = 0; i < array_len; i++) {
-        datanode_t node = dp_arrelem(array, i);
-
-        lookup_t *match_char = find_resource(node, "characters", chars);
-        lookup_t *match_pltt = find_resource(node, "palette",    pltts);
-        lookup_t *match_cell = find_resource(node, "cells",      cells);
-        lookup_t *match_anim = find_resource(node, "animations", anims);
-
-        // We want to assert that these keys are present even if a resource-identifier is undefined.
-        const char *id       = dp_string(dp_objmemb(node, "id"));
-        bool        transfer = dp_bool(dp_objmemb(node, "vram_transfer"));
-        unsigned    priority = (unsigned)dp_int(dp_objmemb(node, "priority"));
-
-        if (match_char && match_pltt && match_cell && match_anim) {
-            result.arr[i] = (template_t){
-                .id       = id,
-                .char_id  = (u32)match_char->val,
-                .pltt_id  = (u32)match_pltt->val,
-                .cell_id  = (u32)match_cell->val,
-                .anim_id  = (u32)match_anim->val,
-                .transfer = transfer,
-                .priority = priority,
-            };
+        bool duplicate = false;
+        for (size_t j = 0; j < numIDs && !duplicate; j++) {
+            if (strcmp(ids[j].name, id) == 0) {
+                dp_error(idNode, "%s ID '%s' is already defined", kinds[kind].type, id);
+                dp_note(dp_at(dp_arr_at(array, (size_t)ids[j].value), ".id"), "previously defined here");
+                duplicate = true;
+            }
         }
+
+        if (!duplicate) ids[numIDs++] = (dp_symbol){ .value = (long)i, .name = id };
     }
 
-    return result;
+    const ResourceData sentinel = { SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL };
+    BinaryFile_Write(kind, &sentinel, sizeof(sentinel));
+
+    Lookups_Register(kinds[kind].type, ids, numIDs);
+    free(ids);
 }
 
-static int dump_templates(templates_t *templates) {
-    if (is_disabled(RESDAT_T_TEMPLATES)) return EXIT_SUCCESS;
-
-    typedef struct serial serial_t;
-    struct serial {
-        s32 char_id;
-        s32 pltt_id;
-        s32 cell_id;
-        s32 anim_id;
-        s32 mcel_id; // unused by gen4 games
-        s32 mani_id; // unused by gen4 games
-        s32 transfer;
-        s32 priority;
-    };
-
-    serial_t *ser = calloc(templates->len + 1, sizeof(*ser));
-    if (ser == NULL) return EXIT_FAILURE;
-
-    for (size_t i = 0; i < templates->len; i++) {
-        template_t *tmp = &templates->arr[i];
-
-        ser[i] = (serial_t){
-            .char_id  = tmp->char_id,
-            .pltt_id  = tmp->pltt_id,
-            .cell_id  = tmp->cell_id,
-            .anim_id  = tmp->anim_id,
-            .mcel_id  = -1,
-            .mani_id  = -1,
-            .transfer = tmp->transfer ? 1 : 0,
-            .priority = tmp->priority,
+static void ProcTemplates(dp_node root)
+{
+    for (dp_each(tmpl, i, dp_at(root, ".templates"))) {
+        TemplateData data = {
+            .charID   = dp_s32(dp_lookup_at(tmpl, ".characters", L_CHARS)),
+            .plttID   = dp_s32(dp_lookup_at(tmpl, ".palette", L_PLTTS)),
+            .cellID   = dp_s32(dp_lookup_at(tmpl, ".cells", L_CELLS)),
+            .animID   = dp_s32(dp_lookup_at(tmpl, ".animations", L_ANIMS)),
+            .mcelID   = -1,
+            .maniID   = -1,
+            .transfer = dp_bool_at(tmpl, ".vram_transfer"),
+            .priority = dp_s32_at(tmpl, ".priority"),
         };
+
+        BinaryFile_Write(B_TEMPLATES, &data, sizeof(data));
+        const dp_node id = dp_at(tmpl, ".id");
+        TextFile_Printf(F_HEADER, "#define %s %zu\n", Symbol_Name(id), i);
     }
 
-    ser[templates->len] = SENTINEL_TMP;
-    char *output_path   = "templates.cldat";
-    if (*output_prefix != 0) {
-        size_t size = len_prefix + sizeof(".cldat") + 1;
-        output_path = calloc(size, sizeof(*output_path));
-        snprintf(output_path, size, "%s.cldat", output_prefix);
-    }
-
-    int   errc        = fdump_blob(ser, sizeof(serial_t) * (templates->len + 1), output_path);
-    free(ser);
-    if (*output_prefix != 0) free(output_path);
-    return errc;
+    const TemplateData sentinel = { SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL, SENTINEL };
+    BinaryFile_Write(B_TEMPLATES, &sentinel, sizeof(sentinel));
 }
 
-static int dump_header(templates_t *templates) {
-    if (is_disabled(RESDAT_T_TEMPLATES)) return EXIT_SUCCESS;
+int main(int argc, char **argv)
+{
+    Driver_Init(&driver, argc, argv);
+    RegisterNarcs();
 
-    char *output_path = "templates.h";
-    if (*output_prefix != 0) {
-        size_t size = len_prefix + sizeof(".h") + 1;
-        output_path = calloc(size, sizeof(*output_path));
-        snprintf(output_path, size, "%s.h", output_prefix);
-    }
+    char *names[] = {
+        [B_CHARS]     = String_Format("%s_chars.resdat", prefix),
+        [B_PLTTS]     = String_Format("%s_pltts.resdat", prefix),
+        [B_CELLS]     = String_Format("%s_cells.resdat", prefix),
+        [B_ANIMS]     = String_Format("%s_anims.resdat", prefix),
+        [B_TEMPLATES] = String_Format("%s.cldat", prefix),
+        [B_HEADERS]   = String_Format("%s.h", prefix),
+    };
 
-    int   errc   = EXIT_SUCCESS;
-    char *h_path = pathjoin(output_dir, NULL, output_path);
-    char *guard  = guardify(h_path);
-    FILE *header = fopen(h_path, "wb");
-    if (header == NULL) {
-        fprintf(stderr, "could not open output file '%s': %s\n", h_path, strerror(errno));
-        errc = EXIT_FAILURE;
-        goto cleanup;
-    }
+    for (int i = B_CHARS; i <= B_TEMPLATES; i++) driver.outputs.binaryFiles[i].filename = names[i];
+    driver.outputs.textFiles[F_HEADER].filename = names[B_TEMPLATES + 1];
 
-    fprintf(header, "#ifndef %s\n", guard);
-    fprintf(header, "#define %s\n", guard);
-    fputc('\n', header);
+    dp_file *resdat = Driver_Load("%s", resdatFile);
+    for (int kind = B_CHARS; kind <= B_ANIMS; kind++) ProcResources(dp_root(resdat), kind);
+    ProcTemplates(dp_root(resdat));
+    Driver_Close(resdat);
 
-    for (size_t i = 0; i < templates->len; i++) {
-        fprintf(header, "#define %s %zu\n", templates->arr[i].id, i);
-    }
-
-    fputc('\n', header);
-    fprintf(header, "#endif // %s\n", guard);
-
-    fclose(header);
-
-cleanup:
-    free(h_path);
-    free(guard);
-    if (*output_prefix != 0) free(output_path);
-    return errc;
-}
-
-static void usage(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
-
-static void parse_args(int *pargc, char ***pargv) {
-    program_name = (*pargv)[0];
-    opterr       = 0;
-
-    int num_naix = 0, c = 0;
-    while ((c = getopt(*pargc, *pargv, "D:f:n:o:p:M:Nh")) != -1) {
-        switch (c) {
-        case 'D':
-            if (num_naix == MAX_LOADED_NAIX) {
-                usage("too many '-D' options; max is %d", MAX_LOADED_NAIX);
-            }
-
-            char *pargsep = strchr(optarg, ':');
-            if (!pargsep) {
-                usage("missing ':' separator in argument '%s'", optarg);
-            }
-
-            // NOTE: ideally this would produce an error if the NARC constant is
-            // unknown, but that requires loading `constants/narc.h` independently
-            // of the common init routines, which is a big scope increase.
-
-            *pargsep = 0;
-            enums[++num_naix] = (enum_template_t){
-                .from_file   = pargsep + 1,
-                .with_prefix = NULL,
-                .for_type    = optarg,
-                .from_defs   = true,
-            };
-            break;
-
-        case 'f':
-            if (strcmp(optarg, "characters") == 0) { filter |= (1 << RESDAT_T_CHARS); break; }
-            if (strcmp(optarg, "palettes") == 0)   { filter |= (1 << RESDAT_T_PLTTS); break; }
-            if (strcmp(optarg, "cells") == 0)      { filter |= (1 << RESDAT_T_CELLS); break; }
-            if (strcmp(optarg, "animations") == 0) { filter |= (1 << RESDAT_T_ANIMS); break; }
-            if (strcmp(optarg, "templates") == 0)  { filter |= (1 << RESDAT_T_TEMPLATES); break; }
-
-            usage("invalid argument '%s' for option '-%c'", optarg, optopt);
-            break;
-
-        case 'n':
-            if (optarg[0] == '-') usage("argument for option '-%c' must be a nonnegative integer", optopt);
-            char *endp = NULL;
-            arr_index  = strtol(optarg, &endp, 0);
-            if (*endp) usage("argument for option '-%c' must be a nonnegative integer", optopt);
-            break;
-
-        case 'o': output_dir    = optarg; break;
-        case 'p': output_prefix = optarg; break;
-        case 'M': depfile_path  = optarg; break;
-        case 'N': create_index  = true;   break;
-
-        case 'h': usage(NULL);                                 break;
-        case ':': usage("missing argument for '-%c'", optopt); break;
-        default:  usage("unknown option '-%c'", optopt);     break;
-        }
-    }
-
-    *pargc -= optind;
-    *pargv += optind;
-    if (*pargc < 1) usage("missing required argument RESDAT_JSON");
-
-    filename = (*pargv)[0];
-    if (depfile_path == NULL) {
-        char *tmp    = prefix("resdat.d");
-        depfile_path = pathjoin(output_dir, NULL, tmp);
-        free_depfile = true;
-        free(tmp);
-    }
-
-    len_prefix = strlen(output_prefix);
-}
-
-static void usage(const char *fmt, ...) {
-    FILE *f = stdout;
-    if (fmt != NULL) {
-        f = stderr;
-
-        va_list args;
-        va_start(args, fmt);
-        fputs(program_name, f);
-        fputs(": ", f);
-        vfprintf(f, fmt, args);
-        fputc('\n', f);
-        va_end(args);
-    }
-
-#define fputf(fmt, ...) fprintf(f, fmt, __VA_ARGS__)
-    fputf("usage: %s [-D NARC_ID:PATH] [-o OUTDIR] [-N] RESDAT_JSON\n", program_name);
-    fputs("\n", f);
-    fputs("options:\n", f);
-    fputs("  -D NARC_ID:PATH   Load PATH as a set of enum-constants for the members of\n", f);
-    fputf("                    NARC_ID. Up to %d instances may be given.\n", MAX_LOADED_NAIX);
-    fputs("  -o OUTDIR         Write output files to OUTDIR.\n", f);
-    fputs("  -p PREFIX         Prefix all output '.resdat' files with PREFIX, followed by\n", f);
-    fputs("                    an underscore '_'. PREFIX will also be used as the filename\n", f);
-    fputs("                    stem of the output '.cldat' file and -- when the '-N' option\n", f);
-    fputs("                    is present -- the output '.h' file.\n", f);
-    fputs("  -f TYPE           Filter the output-types that will generated. By default,\n", f);
-    fputs("                    all possible outputs are generated.\n", f);
-    fputs("                    TYPE must be one of 'characters', 'palettes', 'cells',\n", f);
-    fputs("                    'animations', or 'templates'.\n", f);
-    fputs("  -n INDEX          Specify the index of any array-type 'from_file' properties\n", f);
-    fputs("                    in the input JSON which will be used for the output.\n", f);
-    fputs("                    Defaults to 0.\n", f);
-    fputs("  -N                Create a C-style index-header for defined templates.\n", f);
-    fputs("  -M DEPFILE        Specify the full path to an output dependency file.\n", f);
-    fputs("                    Defaults to 'resdat.d'.\n", f);
-#undef fputf
-
-    exit(f == stdout ? EXIT_SUCCESS : EXIT_FAILURE);
+    int status = Driver_Finish(&driver);
+    for (size_t i = 0; i < NELEMS(names); i++) free(names[i]);
+    return status;
 }

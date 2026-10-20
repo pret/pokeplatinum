@@ -17,7 +17,7 @@ move_data = custom_target('move_data',
         moveproc_exe,
         '-M', '@DEPFILE@',
         '-o', meson.current_build_dir(),
-        meson.global_build_root() / 'generated' / 'moves.h',
+        c_consts_headers['moves'],
         meson.current_source_dir(),
     ],
 

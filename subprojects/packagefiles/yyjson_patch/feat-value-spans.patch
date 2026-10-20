@@ -22,7 +22,7 @@ index c16d925..e67cbaf 100644
      if (likely(byte_match_4(cur, "true"))) {
          val->tag = YYJSON_TYPE_BOOL | YYJSON_SUBTYPE_TRUE;
 +        val->beg = cur - beg;
-+        val->end = val->beg + 3;
++        val->end = val->beg + 4;
          *ptr = cur + 4;
          return true;
      }
@@ -36,7 +36,7 @@ index c16d925..e67cbaf 100644
      if (likely(byte_match_4(cur + 1, "alse"))) {
          val->tag = YYJSON_TYPE_BOOL | YYJSON_SUBTYPE_FALSE;
 +        val->beg = cur - beg;
-+        val->end = val->beg + 4;
++        val->end = val->beg + 5;
          *ptr = cur + 5;
          return true;
      }
@@ -440,12 +440,12 @@ index c16d925..e67cbaf 100644
      if (*cur++ == '{') {
          ctn->tag = YYJSON_TYPE_OBJ;
          ctn->uni.ofs = 0;
-+        ctn->beg = cur - hdr;
++        ctn->beg = cur - hdr - 1;
          goto obj_key_begin;
      } else {
          ctn->tag = YYJSON_TYPE_ARR;
          ctn->uni.ofs = 0;
-+        ctn->beg = cur - hdr;
++        ctn->beg = cur - hdr - 1;
          goto arr_val_begin;
      }
  

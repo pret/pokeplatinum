@@ -1,19 +1,16 @@
-#include <assert.h>
 #include <math.h>
-#include <stdarg.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "common.h"
-#include "dataproc.h"
-#include "nitroarc.h"
+#include "game_types.h"
 
 #include "constants/items.h"
+#include "constants/string.h"
 #include "generated/evolution_methods.h"
 #include "generated/gender_ratios.h"
 #include "generated/pokemon_body_shapes.h"
@@ -24,147 +21,31 @@
 #include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
 
-typedef struct SpeciesLearnsetSized {
-    SpeciesLearnset data;
-    size_t          size;
-} SpeciesLearnsetSized;
-
-typedef struct SpeciesEvolutionList {
-    SpeciesEvolution data[MAX_EVOLUTIONS] ALIGN_4;
-} SpeciesEvolutionList;
-
-typedef struct SpeciesHeights {
-    u8   back_female;
-    u8   back_male;
-    u8   front_female;
-    u8   front_male;
-    bool has_female;
-    bool has_male;
-} SpeciesHeights;
-
-typedef struct SpeciesDexIndex {
-    enum Species species;
-    const char  *name;
-
-    u32 height;
-    u32 weight;
-} SpeciesDexIndex;
-
-typedef struct SpeciesDexData {
-    SpeciesDexIndex index;
-
-    u8 body_shape;
-    u8 type0;
-    u8 type1;
-
-    u16 tr_scale_f;
-    u16 pk_scale_f;
-    u16 tr_scale_m;
-    u16 pk_scale_m;
-    u16 tr_pos_f;
-    u16 pk_pos_f;
-    u16 tr_pos_m;
-    u16 pk_pos_m;
-} SpeciesDexData;
-
-typedef struct Container {
-    SpeciesData          personal;
-    SpeciesEvolutionList evolutions;
-    SpeciesLearnsetSized levelup_learnset;
-    SpeciesPalPark       palpark;
-    SpeciesHeights       heights;
-    SpeciesSpriteData    spritedata;
-    enum Species         offspring;
-    SpeciesDexData       dexdata;
-} Container;
-
-static SpeciesData proc_personal(datafile_t *df);
-static SpeciesEvolutionList proc_evolutions(datafile_t *df);
-static SpeciesLearnsetSized proc_lvlearnset(datafile_t *df);
-static SpeciesPalPark proc_palpark(datafile_t *df, size_t i);
-static enum Species proc_offspring(datafile_t *df, size_t i);
-static SpeciesHeights proc_heights(datafile_t *df, enum GenderRatio ratio);
-static SpeciesSpriteData proc_spritedata(datafile_t *df);
-static SpeciesDexData proc_dexdata(datafile_t *df, size_t i, const char *base_dir);
-
-static void emit_tutorables(datafile_t *df, size_t i);
-static void emit_eggmoves(datafile_t *df, const char *species_upper);
-static void emit_footprints(datafile_t *df, size_t i, const char *species_upper);
-static void emit_iconpalettes(datafile_t *df, size_t i, const char *species);
-static void emit_textbanks(datafile_t *df, size_t i, const char *species, SpeciesDexIndex *index);
-static void pack(Container *species, size_t i);
-
-static void pre_init(void);
-static void post_init(void);
-static int  addl_done(void);
-static void parse_args(int *pargc, char ***pargv);
-
-static char  *program_name     = NULL;
-static char  *base_dir         = NULL;
-static char  *depfile_fpath    = "species_data.d";
-static char  *tutorables_fpath = "move_tutors.json";
-static char  *sinnohdex_fpath  = "sinnoh_pokedex.json";
-static char  *output_dir       = ".";
-static char **registry         = NULL;
-static size_t len_registry     = 0;
-
-static enum_template_t enums[] = {
-    include_defs("constants/footstep_house.h",      "FOOTPRINT_TYPE"),
-    include_enum("generated/abilities.h",           "enum Ability"),
-    include_enum("generated/egg_groups.h",          "enum EggGroup"),
-    include_enum("generated/exp_rates.h",           "enum ExpRate"),
-    include_enum("generated/evolution_methods.h",   "enum EvolutionMethod"),
-    include_enum("generated/footprint_sizes.h",     "enum FootprintSize"),
-    include_enum("generated/gender_ratios.h",       "enum GenderRatio"),
-    include_enum("generated/items.h",               "enum Item"),
-    include_enum("generated/moves.h",               "enum Move"),
-    include_enum("generated/pal_park_land_area.h",  "enum PalParkLandArea"),
-    include_enum("generated/pal_park_water_area.h", "enum PalParkWaterArea"),
-    include_enum("generated/pokemon_body_shapes.h", "enum PokemonBodyShape"),
-    include_enum("generated/pokemon_colors.h",      "enum PokemonColor"),
-    include_enum("generated/pokemon_types.h",       "enum PokemonType"),
-    include_enum("generated/shadow_sizes.h",        "enum ShadowSize"),
-    include_enum("generated/species.h",             "enum Species"),
-    include_enum("generated/tutor_locations.h",     "enum TutorLocation"),
-    { .from_file = NULL },
-};
+static const char *enumFile   = NULL;
+static const char *baseDir    = NULL;
+static const char *tutorsFile = "move_tutors.json";
+static const char *sinnohFile = "sinnoh_pokedex.json";
 
 enum {
     A_PERSONAL,
     A_EVOLUTIONS,
     A_LEVEL_LEARNSETS,
     A_SPRITE_OFFSETS,
-    A_POKEDEX_INDICES_GIRA_ALTERED,
-    A_POKEDEX_INDICES_GIRA_ORIGIN,
+    A_POKEDEX_GIRA_ALTERED,
+    A_POKEDEX_GIRA_ORIGIN,
+    A_PAL_PARK,
+    A_SPRITE_DATA,
 };
 
-static archive_template_t archives[] = {
-    [A_PERSONAL]                     = { .out_filename = "pl_personal.narc"     },
-    [A_EVOLUTIONS]                   = { .out_filename = "evo.narc"             },
-    [A_LEVEL_LEARNSETS]              = { .out_filename = "wotbl.narc"           },
-    [A_SPRITE_OFFSETS]               = { .out_filename = "height.narc"          },
-    [A_POKEDEX_INDICES_GIRA_ALTERED] = { .out_filename = "zukan_data_gira.narc" },
-    [A_POKEDEX_INDICES_GIRA_ORIGIN]  = { .out_filename = "zukan_data.narc"      },
-    { .out_filename = NULL },
-};
+enum { B_OFFSPRING };
 
 enum {
-    H_TUTORABLE_MOVES,
-    H_LEARNSETS_BY_TUTOR,
-    H_EGG_MOVES,
-    H_FOOTPRINT_SIZES,
-    H_FOOTPRINT_TYPES,
-    H_ICON_PALETTES,
-};
-
-static header_template_t headers[] = {
-    [H_TUTORABLE_MOVES]    = { .out_filename = "tutorable_moves.h"            },
-    [H_LEARNSETS_BY_TUTOR] = { .out_filename = "species_learnsets_by_tutor.h" },
-    [H_EGG_MOVES]          = { .out_filename = "species_egg_moves.h"          },
-    [H_FOOTPRINT_SIZES]    = { .out_filename = "species_footprint_sizes.h"    },
-    [H_FOOTPRINT_TYPES]    = { .out_filename = "species_footprint_types.h"    },
-    [H_ICON_PALETTES]      = { .out_filename = "species_icon_palettes.h"      },
-    { .out_filename = NULL },
+    F_TUTORABLE_MOVES,
+    F_LEARNSETS_BY_TUTOR,
+    F_EGG_MOVES,
+    F_FOOTPRINT_SIZES,
+    F_FOOTPRINT_TYPES,
+    F_ICON_PALETTES,
 };
 
 enum {
@@ -195,379 +76,335 @@ enum {
     T_HEIGHTS_WITH_GIRA_ORIGIN,
 };
 
-static textbank_template_t textbanks[] = {
-    [T_NAMES]                     = { .key = 30764, .out_filename = "species_name.json"                       },
-    [T_NAMES_WITH_ARTICLES]       = { .key = 59681, .out_filename = "species_name_with_articles.json"         },
-    [T_POKEDEX_ENTRY_EN]          = { .key = 63572, .out_filename = "species_pokedex_entry_en.json"           },
-    [T_POKEDEX_ENTRY_FR]          = { .key = 30030, .out_filename = "species_pokedex_entry_fr.json"           },
-    [T_POKEDEX_ENTRY_DE]          = { .key = 30034, .out_filename = "species_pokedex_entry_de.json"           },
-    [T_POKEDEX_ENTRY_IT]          = { .key = 30038, .out_filename = "species_pokedex_entry_it.json"           },
-    [T_POKEDEX_ENTRY_ES]          = { .key = 30042, .out_filename = "species_pokedex_entry_es.json"           },
-    [T_POKEDEX_ENTRY_JP]          = { .key = 30046, .out_filename = "species_pokedex_entry_jp.json"           },
-    [T_NAME_WITH_DEX_NUMBER_EN]   = { .key = 32249, .out_filename = "species_name_with_natdex_number_en.json" },
-    [T_NAME_WITH_DEX_NUMBER_FR]   = { .key = 32242, .out_filename = "species_name_with_natdex_number_fr.json" },
-    [T_NAME_WITH_DEX_NUMBER_DE]   = { .key = 32254, .out_filename = "species_name_with_natdex_number_de.json" },
-    [T_NAME_WITH_DEX_NUMBER_IT]   = { .key = 32250, .out_filename = "species_name_with_natdex_number_it.json" },
-    [T_NAME_WITH_DEX_NUMBER_ES]   = { .key = 32230, .out_filename = "species_name_with_natdex_number_es.json" },
-    [T_NAME_WITH_DEX_NUMBER_JP]   = { .key = 32226, .out_filename = "species_name_with_natdex_number_jp.json" },
-    [T_CATEGORY_EN]               = { .key = 22840, .out_filename = "species_category_en.json"                },
-    [T_CATEGORY_FR]               = { .key = 46193, .out_filename = "species_category_fr.json"                },
-    [T_CATEGORY_DE]               = { .key = 46205, .out_filename = "species_category_de.json"                },
-    [T_CATEGORY_IT]               = { .key = 46201, .out_filename = "species_category_it.json"                },
-    [T_CATEGORY_ES]               = { .key = 46181, .out_filename = "species_category_es.json"                },
-    [T_CATEGORY_JP]               = { .key = 46177, .out_filename = "species_category_jp.json"                },
-    [T_CATEGORY]                  = { .key = 48809, .out_filename = "species_category.json"                   },
-    [T_WEIGHTS_WITH_GIRA_ALTERED] = { .key = 64639, .out_filename = "species_weight_gira.json"                },
-    [T_WEIGHTS_WITH_GIRA_ORIGIN]  = { .key = 25297, .out_filename = "species_weight.json"                     },
-    [T_HEIGHTS_WITH_GIRA_ALTERED] = { .key = 28660, .out_filename = "species_height_gira.json"                },
-    [T_HEIGHTS_WITH_GIRA_ORIGIN]  = { .key =  5013, .out_filename = "species_height.json"                     },
-    { .key = 0, .out_filename = NULL },
+#define L_FOOTPRINT_TYPE   "FOOTPRINT_TYPE"
+#define L_ABILITY          "enum Ability"
+#define L_EGG_GROUP        "enum EggGroup"
+#define L_EXP_RATE         "enum ExpRate"
+#define L_EVO_METHOD       "enum EvolutionMethod"
+#define L_FOOTPRINT_SIZE   "enum FootprintSize"
+#define L_GENDER_RATIO     "enum GenderRatio"
+#define L_ITEM             "enum Item"
+#define L_MOVE             "enum Move"
+#define L_PAL_PARK_LAND    "enum PalParkLandArea"
+#define L_PAL_PARK_WATER   "enum PalParkWaterArea"
+#define L_BODY_SHAPE       "enum PokemonBodyShape"
+#define L_COLOR            "enum PokemonColor"
+#define L_TYPE             "enum PokemonType"
+#define L_SHADOW_SIZE      "enum ShadowSize"
+#define L_SPECIES          "enum Species"
+#define L_TUTOR_LOCATION   "enum TutorLocation"
+
+static Driver driver = {
+    .depfile = "species_data.d",
+
+    .options = (Option[]) {
+        OPTION_VALUE('t', "TUTORABLES_JSON", &tutorsFile, "Moves available from tutors. Defaults to 'move_tutors.json'."),
+        OPTION_VALUE('s', "SINNOH_DEX_JSON", &sinnohFile, "The Sinnoh Pokédex. Defaults to 'sinnoh_pokedex.json'."),
+        POSITIONAL("ENUMFILE", &enumFile, "Header defining enum Species."),
+        POSITIONAL("BASEDIR",  &baseDir,  "Directory of per-species data."),
+        { 0 },
+    },
+
+    .lookups = (Lookup[]) {
+        LOOKUP_DEFINES("constants/footstep_house.h",   L_FOOTPRINT_TYPE),
+        LOOKUP_ENUM("generated/abilities.h",           L_ABILITY),
+        LOOKUP_ENUM("generated/egg_groups.h",          L_EGG_GROUP),
+        LOOKUP_ENUM("generated/exp_rates.h",           L_EXP_RATE),
+        LOOKUP_ENUM("generated/evolution_methods.h",   L_EVO_METHOD),
+        LOOKUP_ENUM("generated/footprint_sizes.h",     L_FOOTPRINT_SIZE),
+        LOOKUP_ENUM("generated/gender_ratios.h",       L_GENDER_RATIO),
+        LOOKUP_ENUM("generated/items.h",               L_ITEM),
+        LOOKUP_ENUM("generated/moves.h",               L_MOVE),
+        LOOKUP_ENUM("generated/pal_park_land_area.h",  L_PAL_PARK_LAND),
+        LOOKUP_ENUM("generated/pal_park_water_area.h", L_PAL_PARK_WATER),
+        LOOKUP_ENUM("generated/pokemon_body_shapes.h", L_BODY_SHAPE),
+        LOOKUP_ENUM("generated/pokemon_colors.h",      L_COLOR),
+        LOOKUP_ENUM("generated/pokemon_types.h",       L_TYPE),
+        LOOKUP_ENUM("generated/shadow_sizes.h",        L_SHADOW_SIZE),
+        LOOKUP_ENUM("generated/species.h",             L_SPECIES),
+        LOOKUP_ENUM("generated/tutor_locations.h",     L_TUTOR_LOCATION),
+        { 0 },
+    },
+
+    .outputs = {
+        .archives = (Archive[]) {
+            [A_PERSONAL]             = { .filename = "pl_personal.narc" },
+            [A_EVOLUTIONS]           = { .filename = "evo.narc" },
+            [A_LEVEL_LEARNSETS]      = { .filename = "wotbl.narc" },
+            [A_SPRITE_OFFSETS]       = { .filename = "height.narc" },
+            [A_POKEDEX_GIRA_ALTERED] = { .filename = "zukan_data_gira.narc" },
+            [A_POKEDEX_GIRA_ORIGIN]  = { .filename = "zukan_data.narc" },
+            [A_PAL_PARK]             = { .filename = "ppark.narc" },
+            [A_SPRITE_DATA]          = { .filename = "pl_poke_data.narc" },
+            { 0 },
+        },
+
+        .binaryFiles = (BinaryFile[]) {
+            [B_OFFSPRING] = { .filename = "pms.narc" }, // MATCH DETAIL: a raw table, despite the name
+            { 0 },
+        },
+
+        .textFiles = (TextFile[]) {
+            [F_TUTORABLE_MOVES]    = { .filename = "tutorable_moves.h",            .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_LEARNSETS_BY_TUTOR] = { .filename = "species_learnsets_by_tutor.h", .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_EGG_MOVES]          = { .filename = "species_egg_moves.h",          .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_FOOTPRINT_SIZES]    = { .filename = "species_footprint_sizes.h",    .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_FOOTPRINT_TYPES]    = { .filename = "species_footprint_types.h",    .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_ICON_PALETTES]      = { .filename = "species_icon_palettes.h",      .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            { 0 },
+        },
+
+        .textBanks = (TextBank[]) {
+            [T_NAMES]                     = { .filename = "species_name.json",                       .key = 30764 },
+            [T_NAMES_WITH_ARTICLES]       = { .filename = "species_name_with_articles.json",         .key = 59681 },
+            [T_POKEDEX_ENTRY_EN]          = { .filename = "species_pokedex_entry_en.json",           .key = 63572 },
+            [T_POKEDEX_ENTRY_FR]          = { .filename = "species_pokedex_entry_fr.json",           .key = 30030 },
+            [T_POKEDEX_ENTRY_DE]          = { .filename = "species_pokedex_entry_de.json",           .key = 30034 },
+            [T_POKEDEX_ENTRY_IT]          = { .filename = "species_pokedex_entry_it.json",           .key = 30038 },
+            [T_POKEDEX_ENTRY_ES]          = { .filename = "species_pokedex_entry_es.json",           .key = 30042 },
+            [T_POKEDEX_ENTRY_JP]          = { .filename = "species_pokedex_entry_jp.json",           .key = 30046 },
+            [T_NAME_WITH_DEX_NUMBER_EN]   = { .filename = "species_name_with_natdex_number_en.json", .key = 32249 },
+            [T_NAME_WITH_DEX_NUMBER_FR]   = { .filename = "species_name_with_natdex_number_fr.json", .key = 32242 },
+            [T_NAME_WITH_DEX_NUMBER_DE]   = { .filename = "species_name_with_natdex_number_de.json", .key = 32254 },
+            [T_NAME_WITH_DEX_NUMBER_IT]   = { .filename = "species_name_with_natdex_number_it.json", .key = 32250 },
+            [T_NAME_WITH_DEX_NUMBER_ES]   = { .filename = "species_name_with_natdex_number_es.json", .key = 32230 },
+            [T_NAME_WITH_DEX_NUMBER_JP]   = { .filename = "species_name_with_natdex_number_jp.json", .key = 32226 },
+            [T_CATEGORY_EN]               = { .filename = "species_category_en.json",                .key = 22840 },
+            [T_CATEGORY_FR]               = { .filename = "species_category_fr.json",                .key = 46193 },
+            [T_CATEGORY_DE]               = { .filename = "species_category_de.json",                .key = 46205 },
+            [T_CATEGORY_IT]               = { .filename = "species_category_it.json",                .key = 46201 },
+            [T_CATEGORY_ES]               = { .filename = "species_category_es.json",                .key = 46181 },
+            [T_CATEGORY_JP]               = { .filename = "species_category_jp.json",                .key = 46177 },
+            [T_CATEGORY]                  = { .filename = "species_category.json",                   .key = 48809 },
+            [T_WEIGHTS_WITH_GIRA_ALTERED] = { .filename = "species_weight_gira.json",                .key = 64639 },
+            [T_WEIGHTS_WITH_GIRA_ORIGIN]  = { .filename = "species_weight.json",                     .key = 25297 },
+            [T_HEIGHTS_WITH_GIRA_ALTERED] = { .filename = "species_height_gira.json",                .key = 28660 },
+            [T_HEIGHTS_WITH_GIRA_ORIGIN]  = { .filename = "species_height.json",                     .key = 5013  },
+            { 0 },
+        },
+    },
 };
 
-static const char *alt_forms_with_data[] = { // NOTE: also implicitly defines the ordering of these forms
-    "deoxys/forms/attack",
-    "deoxys/forms/defense",
-    "deoxys/forms/speed",
-    "wormadam/forms/sandy",
-    "wormadam/forms/trash",
-    "giratina/forms/origin",
-    "shaymin/forms/sky",
-    "rotom/forms/heat",
-    "rotom/forms/wash",
-    "rotom/forms/frost",
-    "rotom/forms/fan",
-    "rotom/forms/mow",
+static const struct {
+    const char *key;
+    int         entryBank;
+    int         categoryBank;
+    int         numberedBank;
+    bool        wideNumber;     // number the name with full-width digits
+    bool        isGameLanguage; // also feeds the T_CATEGORY bank
+} languages[] = {
+    { "en", T_POKEDEX_ENTRY_EN, T_CATEGORY_EN, T_NAME_WITH_DEX_NUMBER_EN, false, true  },
+    { "fr", T_POKEDEX_ENTRY_FR, T_CATEGORY_FR, T_NAME_WITH_DEX_NUMBER_FR, false, false },
+    { "de", T_POKEDEX_ENTRY_DE, T_CATEGORY_DE, T_NAME_WITH_DEX_NUMBER_DE, false, false },
+    { "it", T_POKEDEX_ENTRY_IT, T_CATEGORY_IT, T_NAME_WITH_DEX_NUMBER_IT, false, false },
+    { "es", T_POKEDEX_ENTRY_ES, T_CATEGORY_ES, T_NAME_WITH_DEX_NUMBER_ES, false, false },
+    { "jp", T_POKEDEX_ENTRY_JP, T_CATEGORY_JP, T_NAME_WITH_DEX_NUMBER_JP, true,  false },
+};
+
+// Forms with their own data entries, packed after every species in this order.
+static const struct {
+    const char *dir;
+    const char *icon;
+    bool        isGiratinaOrigin;
+} altFormsWithData[] = {
+    { "deoxys/forms/attack",   "ICON_DEOXYS_ATTACK",   .isGiratinaOrigin = false },
+    { "deoxys/forms/defense",  "ICON_DEOXYS_DEFENSE",  .isGiratinaOrigin = false },
+    { "deoxys/forms/speed",    "ICON_DEOXYS_SPEED",    .isGiratinaOrigin = false },
+    { "wormadam/forms/sandy",  "ICON_WORMADAM_SANDY",  .isGiratinaOrigin = false },
+    { "wormadam/forms/trash",  "ICON_WORMADAM_TRASH",  .isGiratinaOrigin = false },
+    { "giratina/forms/origin", "ICON_GIRATINA_ORIGIN", .isGiratinaOrigin = true  },
+    { "shaymin/forms/sky",     "ICON_SHAYMIN_SKY",     .isGiratinaOrigin = false },
+    { "rotom/forms/heat",      "ICON_ROTOM_HEAT",      .isGiratinaOrigin = false },
+    { "rotom/forms/wash",      "ICON_ROTOM_WASH",      .isGiratinaOrigin = false },
+    { "rotom/forms/frost",     "ICON_ROTOM_FROST",     .isGiratinaOrigin = false },
+    { "rotom/forms/fan",       "ICON_ROTOM_FAN",       .isGiratinaOrigin = false },
+    { "rotom/forms/mow",       "ICON_ROTOM_MOW",       .isGiratinaOrigin = false },
 };
 
 #define NATIONAL_DEX_MAX SPECIES_EGG // NOTE: This is distinct from NATIONAL_DEX_COUNT
 
-int main(int argc, char **argv) {
-    parse_args(&argc, &argv);
+// Per-species Pokédex data. The Pokédex archives are built from this after
+// every species is read: zukan_data.narc swaps Giratina's entry for its Origin
+// Forme's.
+typedef struct DexData {
+    u32   height; // decimeters
+    u32   weight; // hectograms
+    u8    bodyShape;
+    u8    types[2];
+    u16   trainerScaleF;
+    u16   pokemonScaleF;
+    u16   trainerScaleM;
+    u16   pokemonScaleM;
+    u16   trainerPosF;
+    u16   pokemonPosF;
+    u16   trainerPosM;
+    u16   pokemonPosM;
+    char *name; // English, for sorting by name
+} DexData;
 
-    splitenv("SPECIES", &registry, &len_registry, alt_forms_with_data, countof(alt_forms_with_data));
-    archives[A_PERSONAL].num_files        = (u16)len_registry;
-    archives[A_EVOLUTIONS].num_files      = (u16)len_registry;
-    archives[A_LEVEL_LEARNSETS].num_files = (u16)len_registry;
-    archives[A_SPRITE_OFFSETS].num_files  = (u16)(4 * NATIONAL_DEX_MAX);
+static DexData           dexData[NATIONAL_DEX_MAX];
+static DexData           giratinaOrigin;
+static SpeciesPalPark    palPark[NATIONAL_DEX_MAX - 1]; // SPECIES_NONE has no entry
+static SpeciesSpriteData spriteData[NATIONAL_DEX_MAX];
 
-    // NOTE: The Mystery type is not packed into these
-    archives[A_POKEDEX_INDICES_GIRA_ALTERED].num_files = (u16)(27 + (NUM_POKEMON_TYPES - 1) + NUM_BODY_SHAPES);
-    archives[A_POKEDEX_INDICES_GIRA_ORIGIN].num_files  = (u16)(27 + (NUM_POKEMON_TYPES - 1) + NUM_BODY_SHAPES);
+static u16   *tutorMoves    = NULL;
+static size_t numTutorMoves = 0;
+static u16   *sinnohDex     = NULL;
+static size_t sinnohDexLen  = 0;
 
-    common_init(DATAPROC_F_JSON, enums, archives, headers, textbanks, __FILE__, depfile_fpath, output_dir, pre_init, post_init);
+static bool IsNationalDex(size_t i) { return i < NATIONAL_DEX_MAX; }
+static bool IsBaseSpecies(size_t i) { return i <= SPECIES_BAD_EGG; }
+static bool IsForm(size_t i)        { return i >= SPECIES_EGG;     }
+static bool HasTutorSet(size_t i)   { return i != SPECIES_NONE && i != SPECIES_EGG && i != SPECIES_BAD_EGG; }
 
-    datafile_t df_d = { 0 };
-    datafile_t df_s = { 0 };
-    unsigned   errc = EXIT_SUCCESS;
+static void LoadTutorMoves(void)
+{
+    dp_file      *file  = Driver_Load("%s", tutorsFile);
+    const dp_node moves = dp_root(file);
 
-    for (size_t i = 0; i < len_registry; i++) {
-        char *path_d = pathjoin(base_dir, registry[i], "data.json");
-        char *path_s = pathjoin(base_dir, registry[i], "sprite_data.json");
+    numTutorMoves = dp_arr_len(moves);
+    tutorMoves    = Zalloc(numTutorMoves, sizeof(*tutorMoves));
 
-        if (dp_load(&df_d, path_d) == 0) {
-            char *capped = strupper(registry[i]);
+    for (dp_each(tutor, i, moves)) {
+        const dp_node move     = dp_lookup_at(tutor, ".move", L_MOVE);
+        const dp_node location = dp_lookup_at(tutor, ".location", L_TUTOR_LOCATION);
+        const u8      red      = dp_u8_at(tutor, ".redCost");
+        const u8      blue     = dp_u8_at(tutor, ".blueCost");
+        const u8      yellow   = dp_u8_at(tutor, ".yellowCost");
+        const u8      green    = dp_u8_at(tutor, ".greenCost");
 
-            Container species = {
-                .personal         = proc_personal(&df_d),
-                .evolutions       = proc_evolutions(&df_d),
-                .levelup_learnset = proc_lvlearnset(&df_d),
-                .palpark          = proc_palpark(&df_d, i),
-                .offspring        = proc_offspring(&df_d, i),
-                .dexdata          = proc_dexdata(&df_d, i, base_dir),
-            };
-
-            if (i < NATIONAL_DEX_MAX && dp_load(&df_s, path_s) == 0) {
-                enum GenderRatio ratio = species.personal.genderRatio;
-                if (i == SPECIES_NONE) ratio = GENDER_RATIO_FEMALE_50;
-
-                species.heights    = proc_heights(&df_s, ratio);
-                species.spritedata = proc_spritedata(&df_s);
-            }
-
-            emit_tutorables(&df_d, i);
-            emit_eggmoves(&df_d, capped);
-            emit_footprints(&df_d, i, capped);
-            emit_iconpalettes(&df_d, i, registry[i]);
-            emit_textbanks(&df_d, i, registry[i], &species.dexdata.index);
-            pack(&species, i);
-
-            free(capped);
-        }
-
-        if (dp_report(&df_d) == DIAG_ERROR) errc = EXIT_FAILURE;
-        if (dp_report(&df_s) == DIAG_ERROR) errc = EXIT_FAILURE;
-
-        free(path_d);
-        free(path_s);
-        dp_free(&df_d);
-        dp_free(&df_s);
+        tutorMoves[i] = dp_u16(move);
+        TextFile_Printf(F_TUTORABLE_MOVES, "    { %s, %u, %u, %u, %u, %s },\n",
+                        Symbol_Name(move), red, blue, yellow, green,
+                        Symbol_Name(location));
     }
 
-    return common_done(errc, addl_done);
+    Driver_Close(file);
 }
 
-static u8   *palpark          = NULL;
-static u16  *offspring        = NULL;
-static u8   *sprite_data      = NULL;
-static u32  *dex_heights      = NULL; // file 0
-static u32  *dex_weights      = NULL; // file 1
-static u8   *body_shapes      = NULL; // file 2
-static u16  *tr_scale_f       = NULL; // file 3
-static u16  *pk_scale_f       = NULL; // file 4
-static u16  *tr_scale_m       = NULL; // file 5
-static u16  *pk_scale_m       = NULL; // file 6
-static u16  *tr_pos_f         = NULL; // file 7
-static u16  *pk_pos_f         = NULL; // file 8
-static u16  *tr_pos_m         = NULL; // file 9
-static u16  *pk_pos_m         = NULL; // file 10
-static u16  *natdex_listing   = NULL; // file 11
-static u16 **indexed_by_type  = NULL; // files 27 through 44
-static u16  *count_by_type    = NULL;
-static u16 **indexed_by_shape = NULL; // files 45 through 58 (the end)
-static u16  *count_by_shape   = NULL;
+static void LoadSinnohDex(void)
+{
+    dp_file      *file    = Driver_Load("%s", sinnohFile);
+    const dp_node species = dp_root(file);
+    sinnohDex = Zalloc(dp_arr_len(species), sizeof(*sinnohDex));
 
-static char **name_store = NULL;
+    for (dp_each(entry, i, species)) {
+        u16 id = dp_u16(dp_lookup(entry, L_SPECIES));
+        switch (id) {
+        // MATCH DETAIL: These species are not included in the Sinnoh dex size.
+        case SPECIES_NONE:
+        case SPECIES_ARCEUS:
+        case SPECIES_EGG:
+        case SPECIES_BAD_EGG:
+            break;
 
-static u16 *giratina_altered_type0_index = NULL;
-static u16  giratina_altered_type0_count = 0;
-static u16 *giratina_altered_type1_index = NULL;
-static u16  giratina_altered_type1_count = 0;
-static u16 *giratina_altered_shape_index = NULL;
-static u16  giratina_altered_shape_count = 0;
-static u16 *giratina_origin_type0_index  = NULL;
-static u16  giratina_origin_type0_count  = 0;
-static u16 *giratina_origin_type1_index  = NULL;
-static u16  giratina_origin_type1_count  = 0;
-static u16 *giratina_origin_shape_index  = NULL;
-static u16  giratina_origin_shape_count  = 0;
-
-static SpeciesDexIndex *sortables = NULL; // for sorting by name, height, weight
-
-static void pre_init(void) {
-    palpark        = calloc(NATIONAL_DEX_MAX - 1, sizeof(SpeciesPalPark)); // NOTE: SPECIES_NONE does not have an entry
-    offspring      = calloc(len_registry, sizeof(*offspring));
-    sprite_data    = calloc(NATIONAL_DEX_MAX, sizeof(SpeciesSpriteData));
-    dex_heights    = calloc(NATIONAL_DEX_MAX, sizeof(*dex_heights));
-    dex_weights    = calloc(NATIONAL_DEX_MAX, sizeof(*dex_weights));
-    body_shapes    = calloc(NATIONAL_DEX_MAX, sizeof(*body_shapes));
-    tr_scale_f     = calloc(NATIONAL_DEX_MAX, sizeof(*tr_scale_f));
-    pk_scale_f     = calloc(NATIONAL_DEX_MAX, sizeof(*pk_scale_f));
-    tr_scale_m     = calloc(NATIONAL_DEX_MAX, sizeof(*tr_scale_m));
-    pk_scale_m     = calloc(NATIONAL_DEX_MAX, sizeof(*pk_scale_m));
-    tr_pos_f       = calloc(NATIONAL_DEX_MAX, sizeof(*tr_pos_f));
-    pk_pos_f       = calloc(NATIONAL_DEX_MAX, sizeof(*pk_pos_f));
-    tr_pos_m       = calloc(NATIONAL_DEX_MAX, sizeof(*tr_pos_m));
-    pk_pos_m       = calloc(NATIONAL_DEX_MAX, sizeof(*pk_pos_m));
-    natdex_listing = calloc(NATIONAL_DEX_MAX - 1, sizeof(*natdex_listing));
-    sortables      = calloc(NATIONAL_DEX_MAX - 1, sizeof(*sortables));
-
-    name_store = calloc(NATIONAL_DEX_MAX, sizeof(*name_store));
-    for (size_t i = 0; i < NATIONAL_DEX_MAX; i++) {
-        name_store[i] = calloc(16, sizeof(**name_store));
-    }
-
-    // For the type and shape indices, we allocate the maximum possible size for
-    // each type/shape: all species having the same type/shape. This removes the
-    // need to check for reallocations while iterating.
-    indexed_by_type = calloc(NUM_POKEMON_TYPES, sizeof(*indexed_by_type));
-    count_by_type   = calloc(NUM_POKEMON_TYPES, sizeof(*count_by_type));
-    for (u16 i = 0; i < NUM_POKEMON_TYPES; i++) {
-        indexed_by_type[i] = calloc(NATIONAL_DEX_MAX - 1, sizeof(**indexed_by_type));
-    }
-
-    indexed_by_shape = calloc(NUM_BODY_SHAPES, sizeof(*indexed_by_shape));
-    count_by_shape   = calloc(NUM_BODY_SHAPES, sizeof(*count_by_shape));
-    for (u16 i = 0; i < NUM_BODY_SHAPES; i++) {
-        indexed_by_shape[i] = calloc(NATIONAL_DEX_MAX - 1, sizeof(**indexed_by_shape));
-    }
-
-    giratina_altered_type0_index = calloc(NATIONAL_DEX_MAX - 1, sizeof(*giratina_altered_type0_index));
-    giratina_altered_type1_index = calloc(NATIONAL_DEX_MAX - 1, sizeof(*giratina_altered_type1_index));
-    giratina_altered_shape_index = calloc(NATIONAL_DEX_MAX - 1, sizeof(*giratina_altered_shape_index));
-    giratina_origin_type0_index  = calloc(NATIONAL_DEX_MAX - 1, sizeof(*giratina_origin_type0_index));
-    giratina_origin_type1_index  = calloc(NATIONAL_DEX_MAX - 1, sizeof(*giratina_origin_type1_index));
-    giratina_origin_shape_index  = calloc(NATIONAL_DEX_MAX - 1, sizeof(*giratina_origin_shape_index));
-}
-
-static datafile_t   df_tutorables       = { 0 };
-static const char **tutorable_moves     = NULL;
-static size_t       len_tutorable_moves = 0;
-static size_t       tutorset_size       = 0;
-static u8          *tutorset            = NULL; // NOTE: shared and cleared between species
-
-static datafile_t df_sinnohdex   = { 0 };
-static u16       *sinnohdex      = NULL;
-static size_t     sinnohdex_size = 0;
-static size_t     sinnohdex_len  = 0;
-
-static void free_tutorables(void) {
-    free(tutorable_moves);
-    free(tutorset);
-    dp_free(&df_tutorables);
-}
-
-static void post_init(void) {
-    static FILE **f_tutorables = &headers[H_TUTORABLE_MOVES].out_file;
-
-    if (dp_load(&df_tutorables, tutorables_fpath) == 0) {
-        datanode_t array    = dp_get(&df_tutorables, ".");
-        len_tutorable_moves = dp_arrlen(array);
-        tutorable_moves     = calloc(len_tutorable_moves, sizeof(*tutorable_moves));
-
-        for (size_t i = 0; i < len_tutorable_moves; i++) {
-            datanode_t elem = dp_arrelem(array, i);
-            datanode_t move = dp_objmemb(elem, "move");
-            if (dp_lookup(move, "enum Move").type == DATAPROC_T_ERR) continue;
-
-            tutorable_moves[i] = dp_string(move);
-            fprintf(*f_tutorables, "    { %s, %u, %u, %u, %u, %s },\n",
-                    tutorable_moves[i],
-                    dp_u8(dp_objmemb(elem, "redCost")),
-                    dp_u8(dp_objmemb(elem, "blueCost")),
-                    dp_u8(dp_objmemb(elem, "yellowCost")),
-                    dp_u8(dp_objmemb(elem, "greenCost")),
-                    dp_string(dp_lookup_s(dp_objmemb(elem, "location"), "enum TutorLocation")));
-        }
-
-        tutorset_size = (len_tutorable_moves + 7) / 8;
-        tutorset      = calloc(tutorset_size, sizeof(*tutorset));
-    }
-
-    if (dp_load(&df_sinnohdex, sinnohdex_fpath) == 0) {
-        datanode_t array = dp_get(&df_sinnohdex, ".");
-        sinnohdex_size   = dp_arrlen(array);
-        sinnohdex        = calloc(sinnohdex_size, sizeof(*sinnohdex));
-
-        for (size_t i = 0; i < sinnohdex_size; i++) {
-            u16 memb = dp_u16(dp_lookup(dp_arrelem(array, i), "enum Species"));
-            switch (memb) {
-            case SPECIES_NONE:
-            case SPECIES_ARCEUS:
-            case SPECIES_EGG:
-            case SPECIES_BAD_EGG:
-                break;
-
-            default:
-                sinnohdex[sinnohdex_len++] = memb;
-                break;
-            }
+        default:
+            sinnohDex[sinnohDexLen++] = id;
+            break;
         }
     }
 
-    if (dp_report(&df_tutorables) == DIAG_ERROR) exit(EXIT_FAILURE);
-    if (dp_report(&df_sinnohdex) == DIAG_ERROR) exit(EXIT_FAILURE);
-
-    atexit(free_tutorables);
+    Driver_Close(file);
 }
 
-static void proc_tmlearnset(datafile_t *df, SpeciesData *out);
+static void ProcTMLearnset(dp_node root, SpeciesData *personal)
+{
+    for (dp_each(tm, i, dp_at(root, ".learnset.by_tm"))) {
+        const char *marker = dp_string(tm);
+        if (marker == NULL) continue; // error is already staged
 
-static SpeciesData proc_personal(datafile_t *df) {
-    SpeciesData personal = {
-        .baseStats = {
-            .hp        = u8(".base_stats.hp"),
-            .attack    = u8(".base_stats.attack"),
-            .defense   = u8(".base_stats.defense"),
-            .speed     = u8(".base_stats.speed"),
-            .spAttack  = u8(".base_stats.special_attack"),
-            .spDefense = u8(".base_stats.special_defense"),
-        },
-
-        .types = {
-            enum_u8(".types[0]", enum PokemonType),
-            enum_u8(".types[1]", enum PokemonType),
-        },
-
-        .abilities = {
-            enum_u8(".abilities[0]", enum Ability),
-            enum_u8(".abilities[1]", enum Ability),
-        },
-
-        .evYields = {
-            .hp        = u8_maxbits(".ev_yields.hp", 2),
-            .attack    = u8_maxbits(".ev_yields.attack", 2),
-            .defense   = u8_maxbits(".ev_yields.defense", 2),
-            .speed     = u8_maxbits(".ev_yields.speed", 2),
-            .spAttack  = u8_maxbits(".ev_yields.special_attack", 2),
-            .spDefense = u8_maxbits(".ev_yields.special_defense", 2),
-        },
-
-        .wildHeldItems = {
-            .common = enum_u16(".held_items.common", enum Item),
-            .rare   = enum_u16(".held_items.rare", enum Item),
-        },
-
-        .eggGroups = {
-            enum_u8(".egg_groups[0]", enum EggGroup),
-            enum_u8(".egg_groups[1]", enum EggGroup),
-        },
-
-        .baseExpReward  = u8(".base_exp_reward"),
-        .baseFriendship = u8(".base_friendship"),
-        .bodyColor      = (u8)(enum_u8(".body_color", enum PokemonColor) & maxbit(7)),
-        .catchRate      = u8(".catch_rate"),
-        .expRate        = enum_u8(".exp_rate", enum ExpRate),
-        .flipSprite     = boolean(".flip_sprite"),
-        .genderRatio    = enum_u8(".gender_ratio", enum GenderRatio),
-        .hatchCycles    = u8(".hatch_cycles"),
-        .safariFleeRate = u8(".safari_flee_rate"),
-
-        .tmLearnsetMasks = { 0 },
-    };
-
-    proc_tmlearnset(df, &personal);
-    return personal;
-}
-
-static void proc_tmlearnset(datafile_t *df, SpeciesData *out) {
-    datanode_t tm_learnset = dp_get(df, ".learnset.by_tm");
-    for (size_t i = 0; i < dp_arrlen(tm_learnset); i++) {
-        datanode_t  dn    = dp_arrelem(tm_learnset, i);
-        const char *entry = dp_string(dn);
-
-        long  value  = 0;
-        char *endptr = NULL;
-        if (entry == NULL) continue; // not a string, error is already recorded
-        if ((entry[0] == 'T' || entry[0] == 'H') && entry[1] == 'M') {
-            value = strtol(&entry[2], &endptr, 10);
-            if (*endptr != 0 || value < 1) goto errmarker;
-            if (entry[0] == 'T' && (size_t)value > NUM_TMS) goto errmarker;
-            if (entry[0] == 'H' && (size_t)value > NUM_HMS) goto errmarker;
-
-            value -= 1;
-            value += NUM_TMS * (entry[0] == 'H');
-        }
-        else {
-        errmarker:
-            dp_error(&dn, "expected entry to be a valid TM or HM marker");
+        char *end   = NULL;
+        bool  isTM  = marker[0] == 'T' && marker[1] == 'M';
+        bool  isHM  = marker[0] == 'H' && marker[1] == 'M';
+        long  value = isTM || isHM ? strtol(marker + 2, &end, 10) : 0;
+        if (value < 1 || *end != '\0' || value > (isTM ? NUM_TMS : NUM_HMS)) {
+            dp_error(tm, "expected entry to be a valid TM or HM marker");
             continue;
         }
 
-        size_t idx = value / 32;
-        size_t bit = value % 32;
-        out->tmLearnsetMasks[idx] |= ((unsigned)1 << bit); // NOTE: cast is required here to avoid SIGILL
+        size_t bit = (size_t)(value - 1) + (isHM ? NUM_TMS : 0);
+        personal->tmLearnsetMasks[bit / 32] |= 1u << (bit % 32);
     }
 }
 
-static SpeciesEvolutionList proc_evolutions(datafile_t *df) {
-    SpeciesEvolutionList result = { 0 };
+static SpeciesData ProcPersonal(dp_node root)
+{
+    SpeciesData personal = {
+        .baseStats = {
+            .hp        = dp_u8_at(root, ".base_stats.hp"),
+            .attack    = dp_u8_at(root, ".base_stats.attack"),
+            .defense   = dp_u8_at(root, ".base_stats.defense"),
+            .speed     = dp_u8_at(root, ".base_stats.speed"),
+            .spAttack  = dp_u8_at(root, ".base_stats.special_attack"),
+            .spDefense = dp_u8_at(root, ".base_stats.special_defense"),
+        },
 
-    datanode_t evolutions = dp_get(df, ".evolutions");
-    size_t     len_evos   = dp_arrlen(evolutions);
-    if (len_evos > MAX_EVOLUTIONS) {
-        dp_error(&evolutions,
-                 "expected at most %u entries, but found %zu",
-                 MAX_LEARNSET_ENTRIES, len_evos);
-        return result;
+        .types = {
+            dp_u8(dp_lookup_at(root, ".types[0]", L_TYPE)),
+            dp_u8(dp_lookup_at(root, ".types[1]", L_TYPE)),
+        },
+
+        .abilities = {
+            dp_u8(dp_lookup_at(root, ".abilities[0]", L_ABILITY)),
+            dp_u8(dp_lookup_at(root, ".abilities[1]", L_ABILITY)),
+        },
+
+        .evYields = {
+            .hp        = dp_bits_at(root, ".ev_yields.hp", 2),
+            .attack    = dp_bits_at(root, ".ev_yields.attack", 2),
+            .defense   = dp_bits_at(root, ".ev_yields.defense", 2),
+            .speed     = dp_bits_at(root, ".ev_yields.speed", 2),
+            .spAttack  = dp_bits_at(root, ".ev_yields.special_attack", 2),
+            .spDefense = dp_bits_at(root, ".ev_yields.special_defense", 2),
+        },
+
+        .wildHeldItems = {
+            .common = dp_u16(dp_lookup_at(root, ".held_items.common", L_ITEM)),
+            .rare   = dp_u16(dp_lookup_at(root, ".held_items.rare", L_ITEM)),
+        },
+
+        .eggGroups = {
+            dp_u8(dp_lookup_at(root, ".egg_groups[0]", L_EGG_GROUP)),
+            dp_u8(dp_lookup_at(root, ".egg_groups[1]", L_EGG_GROUP)),
+        },
+
+        .baseExpReward  = dp_u8_at(root, ".base_exp_reward"),
+        .baseFriendship = dp_u8_at(root, ".base_friendship"),
+        .bodyColor      = dp_bits(dp_lookup_at(root, ".body_color", L_COLOR), 7),
+        .catchRate      = dp_u8_at(root, ".catch_rate"),
+        .expRate        = dp_u8(dp_lookup_at(root, ".exp_rate", L_EXP_RATE)),
+        .flipSprite     = dp_bool_at(root, ".flip_sprite"),
+        .genderRatio    = dp_u8(dp_lookup_at(root, ".gender_ratio", L_GENDER_RATIO)),
+        .hatchCycles    = dp_u8_at(root, ".hatch_cycles"),
+        .safariFleeRate = dp_u8_at(root, ".safari_flee_rate"),
+    };
+
+    ProcTMLearnset(root, &personal);
+    Archive_Pack(A_PERSONAL, &personal, sizeof(personal));
+    return personal;
+}
+
+typedef struct SpeciesEvolutionList {
+    SpeciesEvolution data[MAX_EVOLUTIONS] ALIGN_4;
+} SpeciesEvolutionList;
+
+static void ProcEvolutions(dp_node root)
+{
+    SpeciesEvolutionList list       = { 0 };
+    const dp_node        evolutions = dp_at(root, ".evolutions");
+
+    if (dp_arr_len(evolutions) > MAX_EVOLUTIONS) {
+        dp_warn(evolutions, "more than %d evolutions defined; the rest will be ignored!", MAX_EVOLUTIONS);
     }
 
-    for (size_t i = 0; i < len_evos; i++) {
-        datanode_t entry  = dp_arrelem(evolutions, i);
-        datanode_t method = dp_lookup(dp_arrelem(entry, 0), "enum EvolutionMethod");
-        if (method.type == DATAPROC_T_ERR) continue; // Don't bother if the evolution method is invalid
+    for (dp_each(entry, i, evolutions)) {
+        if (i == MAX_EVOLUTIONS) break;
 
-        datanode_t param   = { .type = DATAPROC_T_MAPPED, .mapped = 0 };
-        datanode_t species = { 0 };
+        const dp_node method = dp_lookup(dp_arr_at(entry, 0), L_EVO_METHOD);
+        if (dp_type_of(method) != DP_SYMBOL) continue; // error is already staged
+
+        u16     param   = 0;
+        dp_node species = { 0 }; // reads as SPECIES_NONE
         switch ((enum EvolutionMethod)dp_u16(method)) {
         case EVO_NONE:
         case EVO_LEVEL_HAPPINESS:
@@ -577,7 +414,7 @@ static SpeciesEvolutionList proc_evolutions(datafile_t *df) {
         case EVO_LEVEL_MAGNETIC_FIELD:
         case EVO_LEVEL_MOSS_ROCK:
         case EVO_LEVEL_ICE_ROCK:
-            species = dp_lookup(dp_arrelem(entry, 1), "enum Species");
+            species = dp_lookup(dp_arr_at(entry, 1), L_SPECIES);
             break;
 
         case EVO_LEVEL:
@@ -591,8 +428,8 @@ static SpeciesEvolutionList proc_evolutions(datafile_t *df) {
         case EVO_LEVEL_BEAUTY:
         case EVO_LEVEL_MALE:
         case EVO_LEVEL_FEMALE:
-            param   = dp_arrelem(entry, 1);
-            species = dp_lookup(dp_arrelem(entry, 2), "enum Species");
+            param   = dp_u16(dp_arr_at(entry, 1));
+            species = dp_lookup(dp_arr_at(entry, 2), L_SPECIES);
             break;
 
         case EVO_TRADE_WITH_HELD_ITEM:
@@ -601,93 +438,72 @@ static SpeciesEvolutionList proc_evolutions(datafile_t *df) {
         case EVO_USE_ITEM_FEMALE:
         case EVO_LEVEL_WITH_HELD_ITEM_DAY:
         case EVO_LEVEL_WITH_HELD_ITEM_NIGHT:
-            param   = dp_lookup(dp_arrelem(entry, 1), "enum Item");
-            species = dp_lookup(dp_arrelem(entry, 2), "enum Species");
+            param   = dp_u16(dp_lookup(dp_arr_at(entry, 1), L_ITEM));
+            species = dp_lookup(dp_arr_at(entry, 2), L_SPECIES);
             break;
 
         case EVO_LEVEL_KNOW_MOVE:
-            param   = dp_lookup(dp_arrelem(entry, 1), "enum Move");
-            species = dp_lookup(dp_arrelem(entry, 2), "enum Species");
+            param   = dp_u16(dp_lookup(dp_arr_at(entry, 1), L_MOVE));
+            species = dp_lookup(dp_arr_at(entry, 2), L_SPECIES);
             break;
 
         case EVO_LEVEL_SPECIES_IN_PARTY:
-            param   = dp_lookup(dp_arrelem(entry, 1), "enum Species");
-            species = dp_lookup(dp_arrelem(entry, 2), "enum Species");
+            param   = dp_u16(dp_lookup(dp_arr_at(entry, 1), L_SPECIES));
+            species = dp_lookup(dp_arr_at(entry, 2), L_SPECIES);
             break;
 
         default:
             // NOTE: This is a sanity-check for users that add a new EvolutionMethod
             // but fail to add a case to this switch.
-            dp_error(&method, "no handler implemented for EvolutionMethod member '%s'",
-                     dp_string(dp_arrelem(entry, 0)));
+            dp_error(method, "no handler implemented for EvolutionMethod member '%s'", dp_string(method));
             break;
         }
 
-        result.data[i] = (SpeciesEvolution){
+        list.data[i] = (SpeciesEvolution){
             .method        = dp_u16(method),
-            .param         = dp_u16(param),
+            .param         = param,
             .targetSpecies = dp_u16(species),
         };
     }
 
-    return result;
+    Archive_Pack(A_EVOLUTIONS, &list, sizeof(list));
 }
 
-static SpeciesLearnsetSized proc_lvlearnset(datafile_t *df) {
-    SpeciesLearnsetSized result = { 0 };
+static void ProcLevelLearnset(dp_node root)
+{
+    SpeciesLearnset data     = { 0 };
+    size_t          count    = 0;
+    const dp_node   learnset = dp_at(root, ".learnset.by_level");
 
-    datanode_t lv_learnset  = dp_get(df, ".learnset.by_level");
-    size_t     len_learnset = dp_arrlen(lv_learnset);
-    if (len_learnset > MAX_LEARNSET_ENTRIES) {
-        dp_error(&lv_learnset,
-                 "expected at most %u entries, but found %zu",
-                 MAX_LEARNSET_ENTRIES, len_learnset);
-        return result;
+    if (dp_arr_len(learnset) > MAX_LEARNSET_ENTRIES) {
+        dp_warn(learnset, "more than %d level-up moves defined; the rest will be ignored!", MAX_LEARNSET_ENTRIES);
     }
 
-    for (size_t i = 0; i < len_learnset; i++) {
-        datanode_t entry = dp_arrelem(lv_learnset, i);
-        datanode_t level = dp_arrelem(entry, 0);
-        datanode_t move  = dp_arrelem(entry, 1);
+    for (dp_each(entry, i, learnset)) {
+        if (i == MAX_LEARNSET_ENTRIES) break;
 
-        result.data.entries[result.size].move  = (u16)(dp_u16(dp_lookup(move, "enum Move")) & maxbit(9));
-        result.data.entries[result.size].level = (u16)(dp_u8(level) & maxbit(7));
-        result.size++;
+        data.entries[count++] = (SpeciesLearnsetEntry){
+            .move  = dp_bits(dp_lookup(dp_arr_at(entry, 1), L_MOVE), 9),
+            .level = dp_bits(dp_arr_at(entry, 0), 7),
+        };
     }
 
-    result.data.entries[result.size].move  = (u16)UINT16_MAX & maxbit(9);
-    result.data.entries[result.size].level = (u16)UINT16_MAX & maxbit(7);
-    result.size++;
+    data.entries[count++] = (SpeciesLearnsetEntry){ .move = 0x1FF, .level = 0x7F }; // terminator
 
-    result.size *= sizeof(SpeciesLearnsetEntry);
-    result.size += (-result.size & 3);
-    return result;
+    size_t size = count * sizeof(*data.entries);
+    Archive_Pack(A_LEVEL_LEARNSETS, &data, size + (-size & 3));
 }
 
-static SpeciesPalPark proc_palpark(datafile_t *df, size_t i) {
-    SpeciesPalPark result = { 0 };
-    if (i == SPECIES_NONE || i >= NATIONAL_DEX_MAX) return result;
-
-    datanode_t catching_show   = dp_get(df, ".catching_show");
-    datanode_t land_area       = dp_lookup(dp_objmemb(catching_show, "pal_park_land_area"), "enum PalParkLandArea");
-    datanode_t water_area      = dp_lookup(dp_objmemb(catching_show, "pal_park_water_area"), "enum PalParkWaterArea");
-    datanode_t catching_points = dp_objmemb(catching_show, "catching_points");
-    datanode_t rarity          = dp_objmemb(catching_show, "rarity");
-    datanode_t unused_u16      = dp_objmemb(catching_show, "unused");
-
-    result.landArea       = dp_u8(land_area);
-    result.waterArea      = dp_u8(water_area);
-    result.catchingPoints = dp_u8(catching_points);
-    result.rarity         = dp_u8(rarity);
-    result.unused.asU16   = dp_u16(unused_u16);
-
-    return result;
-}
-
-static enum Species proc_offspring(datafile_t *df, size_t i) {
-    return i <= SPECIES_BAD_EGG
-        ? (enum Species)enum_u16(".offspring", enum Species)
-        : (enum Species)i;
+static void ProcPalPark(dp_node root, size_t species)
+{
+    const dp_node show = dp_at(root, ".catching_show");
+    palPark[species - 1] = (SpeciesPalPark){
+        .landArea       = dp_u8(dp_lookup_at(show, ".pal_park_land_area", L_PAL_PARK_LAND)),
+        .waterArea      = dp_u8(dp_lookup_at(show, ".pal_park_water_area", L_PAL_PARK_WATER)),
+        .catchingPoints = dp_u8_at(show, ".catching_points"),
+        .rarity         = dp_u8_at(show, ".rarity"),
+        .unused.asU16   = dp_u16_at(show, ".unused"),
+    };
 }
 
 #define M_TO_IN(m)   (long)round((double)(m) * 39.37)
@@ -695,7 +511,8 @@ static enum Species proc_offspring(datafile_t *df, size_t i) {
 #define KG_TO_LB(kg) ((kg) / 0.45359237)
 #define LB_TO_KG(lb) ((lb) * 0.45359237)
 
-static inline double species_weight_rounding_override(enum Species species) {
+static double WeightRoundingOverride(size_t species)
+{
     // The Generation 3 games used an inaccurate factor to convert from the
     // metric values stored in ROM to the imperial values displayed in the US
     // release's Pokedex. The species listed below thus had incorrect imperial
@@ -715,839 +532,522 @@ static inline double species_weight_rounding_override(enum Species species) {
     }
 }
 
-static u32 get_height_decimeters(datanode_t dexdata) {
-    const bool metric = dp_hasmemb(dexdata, "height_meters");
-    if (metric && dp_hasmemb(dexdata, "height_inches")) {
-        datanode_t height_m = dp_objmemb(dexdata, "height_meters");
-        datanode_t height_i = dp_objmemb(dexdata, "height_inches");
+// Read possible units, preferring metric over imperial.
+static dp_node ReadUnits(dp_node dex, const char *metric, const char *imperial, const char *what, bool *isMetric)
+{
+    const dp_node m = dp_try(dex, metric);
+    const dp_node i = dp_try(dex, imperial);
+    *isMetric       = !dp_missing(m);
 
-        dp_warn(&dexdata, "conflicting unit-systems given for species height; metric units will be used");
-        dp_note(&height_m, "metric units defined here");
-        dp_note(&height_i, "imperial units defined here");
+    if (*isMetric && !dp_missing(i)) {
+        dp_warn(dex, "conflicting unit-systems given for species %s; metric units will be used", what);
+        dp_note(m, "metric units defined here");
+        dp_note(i, "imperial units defined here");
     }
 
-    double height = metric
-                  ? dp_float(dp_objmemb(dexdata, "height_meters"))
-                  : IN_TO_M(dp_u32(dp_objmemb(dexdata, "height_inches")));
-    double decime = round(height * 10);
-    return (u32)decime;
+    return *isMetric ? m : dp_at(dex, imperial);
 }
 
-static u32 get_weight_hectograms(datanode_t dexdata, enum Species species) {
-    const bool metric = dp_hasmemb(dexdata, "weight_kilograms");
-    if (metric && dp_hasmemb(dexdata, "weight_pounds")) {
-        datanode_t weight_m = dp_objmemb(dexdata, "weight_kilograms");
-        datanode_t weight_i = dp_objmemb(dexdata, "weight_pounds");
-
-        dp_warn(&dexdata, "conflicting unit-systems given for species weight; metric units will be used");
-        dp_note(&weight_m, "metric units defined here");
-        dp_note(&weight_i, "imperial units defined here");
-    }
-
-    double weight = metric
-                  ? dp_float(dp_objmemb(dexdata, "weight_kilograms"))
-                  : LB_TO_KG(dp_float(dp_objmemb(dexdata, "weight_pounds")) - species_weight_rounding_override(species));
-    double hectog = round(weight * 10);
-    return (u32)hectog;
+static double ReadHeight(dp_node dex)
+{
+    bool    isMetric = false;
+    dp_node height   = ReadUnits(dex, ".height_meters", ".height_inches", "height", &isMetric);
+    return isMetric ? dp_float(height) : IN_TO_M(dp_u32(height));
 }
 
-static SpeciesDexData dexdata_giratina_origin = { 0 };
-static u8             type0_cache_giratina_altered = 0;
-static u8             type1_cache_giratina_altered = 0;
-static u8             shape_cache_giratina_altered = 0;
+static double ReadWeight(dp_node dex, size_t species)
+{
+    bool    isMetric = false;
+    dp_node weight   = ReadUnits(dex, ".weight_kilograms", ".weight_pounds", "weight", &isMetric);;
+    return isMetric ? dp_float(weight) : LB_TO_KG(dp_float(weight) - WeightRoundingOverride(species));
+}
 
-static SpeciesDexData proc_dexdata(datafile_t *df, size_t i, const char *base_dir) {
-    if (i >= SPECIES_EGG) return (SpeciesDexData) { 0 };
+static DexData ReadDexData(dp_node dex, size_t species)
+{
+    const double meters = ReadHeight(dex);
+    const double kilos  = ReadWeight(dex, species);
 
-    datanode_t dexdata = dp_get(df, ".pokedex_data");
-
-    if (i == SPECIES_GIRATINA) {
-        datafile_t origin_df    = { 0 };
-        char      *origin_fpath = pathjoin(base_dir, "giratina/forms/origin", "data.json");
-
-        // Don't bother emitting errors here; they'll get reported later
-        u8 type0 = 0, type1 = 0;
-        if (dp_load(&origin_df, origin_fpath) == 0) {
-            type0 = dp_u8(dp_lookup(dp_get(&origin_df, ".types[0]"), "enum PokemonType"));
-            type1 = dp_u8(dp_lookup(dp_get(&origin_df, ".types[1]"), "enum PokemonType"));
-        }
-
-        datanode_t origin = dp_objmemb(dexdata, "origin_forme");
-        dexdata_giratina_origin = (SpeciesDexData) {
-            .index = {
-                .species = (enum Species)i,
-                .name    = NULL,
-                .height  = get_height_decimeters(origin),
-                .weight  = get_weight_hectograms(origin, (enum Species)i),
-            },
-
-            .body_shape = dp_u8(dp_lookup(dp_objmemb(origin, "body_shape"), "enum PokemonBodyShape")),
-            .type0      = type0,
-            .type1      = type1,
-            .tr_scale_f = dp_u16(dp_objmemb(origin, "trainer_scale_f")),
-            .pk_scale_f = dp_u16(dp_objmemb(origin, "pokemon_scale_f")),
-            .tr_scale_m = dp_u16(dp_objmemb(origin, "trainer_scale_m")),
-            .pk_scale_m = dp_u16(dp_objmemb(origin, "pokemon_scale_m")),
-            .tr_pos_f   = dp_u16(dp_objmemb(origin, "trainer_pos_f")),
-            .pk_pos_f   = dp_u16(dp_objmemb(origin, "pokemon_pos_f")),
-            .tr_pos_m   = dp_u16(dp_objmemb(origin, "trainer_pos_m")),
-            .pk_pos_m   = dp_u16(dp_objmemb(origin, "pokemon_pos_m")),
-        };
-
-        free(origin_fpath);
-        dp_free(&origin_df);
-    }
-
-    const char *name = dp_string(dp_objmemb(dp_objmemb(dexdata, "en"), "name"));
-    if (name) strcpy(name_store[i], name); // NOTE: This is an error later
-    return (SpeciesDexData) {
-        .index = {
-            .species = (enum Species)i,
-            .name    = name_store[i],
-            .height  = get_height_decimeters(dexdata),
-            .weight  = get_weight_hectograms(dexdata, (enum Species)i),
-        },
-
-        .body_shape = dp_u8(dp_lookup(dp_objmemb(dexdata, "body_shape"), "enum PokemonBodyShape")),
-        .type0      = dp_u8(dp_lookup(dp_get(df, ".types[0]"), "enum PokemonType")),
-        .type1      = dp_u8(dp_lookup(dp_get(df, ".types[1]"), "enum PokemonType")),
-        .tr_scale_f = dp_u16(dp_objmemb(dexdata, "trainer_scale_f")),
-        .pk_scale_f = dp_u16(dp_objmemb(dexdata, "pokemon_scale_f")),
-        .tr_scale_m = dp_u16(dp_objmemb(dexdata, "trainer_scale_m")),
-        .pk_scale_m = dp_u16(dp_objmemb(dexdata, "pokemon_scale_m")),
-        .tr_pos_f   = dp_u16(dp_objmemb(dexdata, "trainer_pos_f")),
-        .pk_pos_f   = dp_u16(dp_objmemb(dexdata, "pokemon_pos_f")),
-        .tr_pos_m   = dp_u16(dp_objmemb(dexdata, "trainer_pos_m")),
-        .pk_pos_m   = dp_u16(dp_objmemb(dexdata, "pokemon_pos_m")),
+    return (DexData){
+        .height        = (u32)round(meters * 10),
+        .weight        = (u32)round(kilos * 10),
+        .bodyShape     = dp_u8(dp_lookup_at(dex, ".body_shape", L_BODY_SHAPE)),
+        .trainerScaleF = dp_u16_at(dex, ".trainer_scale_f"),
+        .pokemonScaleF = dp_u16_at(dex, ".pokemon_scale_f"),
+        .trainerScaleM = dp_u16_at(dex, ".trainer_scale_m"),
+        .pokemonScaleM = dp_u16_at(dex, ".pokemon_scale_m"),
+        .trainerPosF   = dp_u16_at(dex, ".trainer_pos_f"),
+        .pokemonPosF   = dp_u16_at(dex, ".pokemon_pos_f"),
+        .trainerPosM   = dp_u16_at(dex, ".trainer_pos_m"),
+        .pokemonPosM   = dp_u16_at(dex, ".pokemon_pos_m"),
     };
 }
 
-static SpeciesHeights proc_heights(datafile_t *df, enum GenderRatio ratio) {
-    datanode_t back  = dp_get(df, ".back.y_offset");
-    datanode_t front = dp_get(df, ".front.y_offset");
+static void ProcDexData(dp_node root, size_t species, const SpeciesData *personal, const char *name)
+{
+    const dp_node dex = dp_at(root, ".pokedex_data");
 
-    SpeciesHeights result = { 0 };
+    dexData[species]          = ReadDexData(dex, species);
+    dexData[species].types[0] = personal->types[0];
+    dexData[species].types[1] = personal->types[1];
+    dexData[species].name     = Driver_Keep(String_Dupe(name != NULL ? name : "")); // NULL only after a staged error
 
-    if (ratio != GENDER_RATIO_FEMALE_ONLY) {
-        result.has_male   = true;
-        result.back_male  = dp_u8(dp_objmemb(back, "male"));
-        result.front_male = dp_u8(dp_objmemb(front, "male"));
+    // The Origin Forme's types come from its own data, read after every species.
+    if (species == SPECIES_GIRATINA) {
+        giratinaOrigin      = ReadDexData(dp_at(dex, ".origin_forme"), species);
+        giratinaOrigin.name = dexData[species].name;
     }
-
-    if (ratio != GENDER_RATIO_MALE_ONLY && ratio != GENDER_RATIO_NO_GENDER) {
-        result.has_female   = true;
-        result.back_female  = dp_u8(dp_objmemb(back, "female"));
-        result.front_female = dp_u8(dp_objmemb(front, "female"));
-    }
-
-    return result;
 }
 
-static SpeciesSpriteAnim proc_spriteanim(datanode_t dn) {
-    SpeciesSpriteAnim result = {
-        .animation  = dp_u8(dp_objmemb(dn, "animation")),
-        .cryDelay   = dp_u8(dp_objmemb(dn, "cry_delay")),
-        .startDelay = dp_u8(dp_objmemb(dn, "start_delay")),
+static void ProcSpriteOffsets(dp_node sprite, size_t species, enum GenderRatio ratio)
+{
+    if (species == SPECIES_NONE) ratio = GENDER_RATIO_FEMALE_50;
+
+    const bool hasMale   = ratio != GENDER_RATIO_FEMALE_ONLY;
+    const bool hasFemale = ratio != GENDER_RATIO_MALE_ONLY && ratio != GENDER_RATIO_NO_GENDER;
+    const u8   backF     = hasFemale ? dp_u8_at(sprite, ".back.y_offset.female") : 0;
+    const u8   backM     = hasMale ? dp_u8_at(sprite, ".back.y_offset.male") : 0;
+    const u8   frontF    = hasFemale ? dp_u8_at(sprite, ".front.y_offset.female") : 0;
+    const u8   frontM    = hasMale ? dp_u8_at(sprite, ".front.y_offset.male") : 0;
+
+    // Each species has 4 members; a gender the species can't have gets an empty one.
+    Archive_Pack(A_SPRITE_OFFSETS, &backF,  hasFemale ? sizeof(backF)  : 0);
+    Archive_Pack(A_SPRITE_OFFSETS, &backM,  hasMale   ? sizeof(backM)  : 0);
+    Archive_Pack(A_SPRITE_OFFSETS, &frontF, hasFemale ? sizeof(frontF) : 0);
+    Archive_Pack(A_SPRITE_OFFSETS, &frontM, hasMale   ? sizeof(frontM) : 0);
+}
+
+static SpeciesSpriteAnim ReadSpriteAnim(dp_node face)
+{
+    SpeciesSpriteAnim anim = {
+        .animation  = dp_u8_at(face, ".animation"),
+        .cryDelay   = dp_u8_at(face, ".cry_delay"),
+        .startDelay = dp_u8_at(face, ".start_delay"),
     };
 
-    datanode_t   frames     = dp_objmemb(dn, "frames");
-    const size_t num_frames = dp_arrlen(frames);
-    for (size_t i = 0; i < num_frames; i++) {
-        datanode_t frame = dp_arrelem(frames, i);
+    const dp_node frames = dp_at(face, ".frames");
+    if (dp_arr_len(frames) > MAX_ANIMATION_FRAMES) {
+        dp_warn(frames, "more than %d animation frames defined; the rest will be ignored!", MAX_ANIMATION_FRAMES);
+    }
 
-        result.frames[i] = (SpriteAnimFrame){
-            .spriteFrame = dp_s8(dp_objmemb(frame, "sprite_frame")),
-            .frameDelay  = dp_u8(dp_objmemb(frame, "frame_delay")),
-            .xOffset     = dp_s8(dp_objmemb(frame, "x_shift")),
-            .yOffset     = dp_s8(dp_objmemb(frame, "y_shift")),
+    for (dp_each(frame, i, frames)) {
+        if (i == MAX_ANIMATION_FRAMES) break;
+
+        anim.frames[i] = (SpriteAnimFrame){
+            .spriteFrame = dp_s8_at(frame, ".sprite_frame"),
+            .frameDelay  = dp_u8_at(frame, ".frame_delay"),
+            .xOffset     = dp_s8_at(frame, ".x_shift"),
+            .yOffset     = dp_s8_at(frame, ".y_shift"),
         };
     }
 
-    return result;
+    return anim;
 }
 
-static SpeciesSpriteData proc_spritedata(datafile_t *df) {
-    return (SpeciesSpriteData){
-        .yOffset       = s8(".front.addl_y_offset"),
-        .xOffsetShadow = s8(".shadow.x_offset"),
-        .shadowSize    = enum_u8(".shadow.size", enum ShadowSize),
+static void ProcSpriteData(dp_node sprite, size_t species)
+{
+    spriteData[species] = (SpeciesSpriteData){
         .faceAnims     = {
-            [0] = proc_spriteanim(dp_get(df, ".front")),
-            [1] = proc_spriteanim(dp_get(df, ".back")),
+            [0] = ReadSpriteAnim(dp_at(sprite, ".front")),
+            [1] = ReadSpriteAnim(dp_at(sprite, ".back")),
         },
+        .yOffset       = dp_s8_at(sprite, ".front.addl_y_offset"),
+        .xOffsetShadow = dp_s8_at(sprite, ".shadow.x_offset"),
+        .shadowSize    = dp_u8(dp_lookup_at(sprite, ".shadow.size", L_SHADOW_SIZE)),
     };
 }
 
-static FILE **f_tutor_sets      = &headers[H_LEARNSETS_BY_TUTOR].out_file;
-static FILE **f_egg_moves       = &headers[H_EGG_MOVES].out_file;
-static FILE **f_footprint_sizes = &headers[H_FOOTPRINT_SIZES].out_file;
-static FILE **f_footprint_types = &headers[H_FOOTPRINT_TYPES].out_file;
-static FILE **f_icon_palettes   = &headers[H_ICON_PALETTES].out_file;
+static void EmitTutorLearnset(dp_node root)
+{
+    size_t count = (numTutorMoves + 7) / 8;
+    u8    *set   = Zalloc(count, sizeof(*set));
 
-static void emit_tutorables(datafile_t *df, size_t i) {
-    // NOTE: none of these have any tutorable learnsets, but mechanically-distinct forms
-    // (e.g., Giratina-Origin) do
-    if (i == SPECIES_NONE || i == SPECIES_EGG || i == SPECIES_BAD_EGG) return;
+    for (dp_each(move, i, dp_at(root, ".learnset.by_tutor"))) {
+        const dp_node id = dp_lookup(move, L_MOVE);
+        if (dp_type_of(id) != DP_SYMBOL) continue; // error is already staged
 
-    datanode_t dn = dp_get(df, ".learnset.by_tutor");
-    memset(tutorset, 0, tutorset_size);
-    fputs("    { ", *f_tutor_sets);
+        size_t j = 0;
+        while (j < numTutorMoves && tutorMoves[j] != dp_u16(id)) j++;
 
-    for (size_t i = 0; i < dp_arrlen(dn); i++) {
-        datanode_t  move   = dp_arrelem(dn, i);
-        const char *move_s = dp_string(move);
-        if (dp_lookup(move, "enum Move").type == DATAPROC_T_ERR) continue;
-
-        const char *found = NULL;
-        size_t      idx   = 0;
-        for (size_t j = 0; j < len_tutorable_moves && !found; j++) {
-            if (strcmp(tutorable_moves[j], move_s) == 0) { found = tutorable_moves[j]; idx = j; }
-        }
-
-        if (found) tutorset[idx / 8] |= (u8)(1 << (idx % 8));
-        else dp_warn(&move, "'%s' is not available from any move tutors and will be skipped", move_s);
+        if (j < numTutorMoves) set[j / 8] |= (u8)(1 << (j % 8));
+        else dp_warn(move, "'%s' is not available from any move tutors and will be skipped", dp_string(move));
     }
 
-    for (size_t i = 0; i < tutorset_size; i++) fprintf(*f_tutor_sets, "0x%02X, ", tutorset[i]);
-    fputs("},\n", *f_tutor_sets);
+    TextFile_Printf(F_LEARNSETS_BY_TUTOR, "    { ");
+    for (size_t i = 0; i < count; i++) TextFile_Printf(F_LEARNSETS_BY_TUTOR, "0x%02X, ", set[i]);
+    TextFile_Printf(F_LEARNSETS_BY_TUTOR, "},\n");
+    free(set);
 }
 
-static void emit_eggmoves(datafile_t *df, const char *species_upper) {
-    datanode_t dn = dp_try(df, ".learnset.egg_moves");
-    if (dn.type == DATAPROC_T_ERR) return;
+static void EmitEggMoves(dp_node root, const char *name)
+{
+    const dp_node moves = dp_try(root, ".learnset.egg_moves");
+    if (dp_missing(moves)) return;
 
-    fprintf(*f_egg_moves, "    SPECIES_%s + EGG_MOVES_SPECIES_OFFSET,\n", species_upper);
-    for (size_t i = 0; i < dp_arrlen(dn); i++) {
-        datanode_t  move   = dp_arrelem(dn, i);
-        const char *move_s = dp_string(move);
-        dp_lookup(move, "enum Move"); // only to verify that this is a move name
-
-        fprintf(*f_egg_moves, "    %s,\n", move_s);
+    TextFile_Printf(F_EGG_MOVES, "    %s + EGG_MOVES_SPECIES_OFFSET,\n", name);
+    for (dp_each(move, i, moves)) {
+        TextFile_Printf(F_EGG_MOVES, "    %s,\n", Symbol_Name(dp_lookup(move, L_MOVE)));
     }
 
-    fputc('\n', *f_egg_moves);
+    TextFile_Printf(F_EGG_MOVES, "\n");
 }
 
-static void emit_footprints(datafile_t *df, size_t i, const char *species_upper) {
-    // NOTE: eggs and alternate-forms do not have any footprint data
-    if (i >= NATIONAL_DEX_MAX) return;
+static void EmitFootprint(dp_node root, size_t species, const char *name)
+{
+    const dp_node size = dp_lookup_at(root, ".footprint.size", L_FOOTPRINT_SIZE);
+    const dp_node type = dp_lookup_at(root, ".footprint.type", L_FOOTPRINT_TYPE);
+    const bool    has  = dp_bool_at(root, ".footprint.has");
 
-    datanode_t  root = dp_get(df, ".footprint");
-    const bool  has  = dp_bool(dp_objmemb(root, "has"));
-    const char *size = dp_string(dp_lookup_s(dp_objmemb(root, "size"), "enum FootprintSize"));
-    const char *type = dp_string(dp_lookup_s(dp_objmemb(root, "type"), "FOOTPRINT_TYPE"));
-
-    fprintf(*f_footprint_sizes, "    { %s, %s },\n",
-            has ? "TRUE" : "FALSE",
-            size);
-    fprintf(*f_footprint_types, "    [SPECIES_%s] = { %s, %s },\n",
-            species_upper,
-            type,
-            has || i == SPECIES_SPIRITOMB ? "TRUE" : "FALSE");
+    TextFile_Printf(F_FOOTPRINT_SIZES, "    { %s, %s },\n",
+                    has ? "TRUE" : "FALSE", Symbol_Name(size));
+    TextFile_Printf(F_FOOTPRINT_TYPES, "    [%s] = { %s, %s },\n",
+                    name, Symbol_Name(type),
+                    has || species == SPECIES_SPIRITOMB ? "TRUE" : "FALSE");
 }
 
-static void emit_iconpalettes(datafile_t *df, size_t i, const char *species) {
-    // We make a separate-copy to make this fool-proof, since the surrounding functions modify the string
-    char *capped = strreplace(strremove(strupper(species), "/FORMS"), '/', '_');
-
-    datanode_t palette = dp_get(df, ".icon_palette");
-    if (palette.type == DATAPROC_T_INT) {
-        long  idx  = dp_int(palette);
-
-        switch (i) {
-        default:
-            fprintf(*f_icon_palettes, "    [%s_%s] = %ld,\n",
-                    i > SPECIES_BAD_EGG ? "ICON" : "SPECIES", capped, idx);
-            break;
-
-        case SPECIES_EGG:     fprintf(*f_icon_palettes, "    [ICON_EGG] = %ld,\n", idx); break;
-        case SPECIES_BAD_EGG: fprintf(*f_icon_palettes, "    [ICON_MANAPHY_EGG] = %ld,\n", idx); break;
-        }
-
-        goto cleanup;
+static void EmitIconPalettes(dp_node root, const char *icon, const char *stem)
+{
+    const dp_node palette = dp_at(root, ".icon_palette");
+    if (dp_type_of(palette) == DP_INT) {
+        TextFile_Printf(F_ICON_PALETTES, "    [%s] = %ld,\n", icon, (long)dp_int(palette));
+        return;
     }
 
     // Must be an array of tuples like: [form_name, palette_index]
-    for (size_t j = 0; j < dp_arrlen(palette); j++) {
-        datanode_t elem = dp_arrelem(palette, j);
-        datanode_t form = dp_arrelem(elem, 0);
-        datanode_t pltt = dp_arrelem(elem, 1);
+    for (dp_each(entry, i, palette)) {
+        const char *form  = dp_string(dp_arr_at(entry, 0));
+        const long  index = (long)dp_int(dp_arr_at(entry, 1));
+        if (form == NULL) continue; // error is already staged
 
-        if (form.type != DATAPROC_T_ERR && pltt.type != DATAPROC_T_ERR) {
-            const char *form_s = dp_string(form);
-            const long  pltt_i = dp_int(pltt);
-            if (strcmp(form_s, "base") == 0) {
-                fprintf(*f_icon_palettes, "    [SPECIES_%s] = %ld,\n", capped, pltt_i);
-            }
-            else {
-                char *form_capped = strupper(form_s);
-                fprintf(*f_icon_palettes, "    [ICON_%s_%s] = %ld,\n", capped, form_capped, pltt_i);
-                free(form_capped);
-            }
+        if (strcmp(form, "base") == 0) {
+            TextFile_Printf(F_ICON_PALETTES, "    [%s] = %ld,\n", icon, index);
+        } else {
+            char *stemUpper = String_ToUpper(stem);
+            char *formUpper = String_ToUpper(form);
+            TextFile_Printf(F_ICON_PALETTES, "    [ICON_%s_%s] = %ld,\n", stemUpper, formUpper, index);
+
+            free(formUpper);
+            free(stemUpper);
         }
     }
-
-cleanup:
-    free(capped);
 }
 
-static inline void emit_weight(size_t bank_id, const char *species, const char *weight, char *buf) {
-    assert(bank_id == T_WEIGHTS_WITH_GIRA_ALTERED || bank_id == T_WEIGHTS_WITH_GIRA_ORIGIN);
+#define THIN_SPACE         "\xE2\x80\x89"
+#define WIDE_NUM_PREFIX    "\xEF\xBC"
+#define WIDE_NUM_DIGIT0(i) (char)(0x90 + i / 100)
+#define WIDE_NUM_DIGIT1(i) (char)(0x90 + i / 10 % 10)
+#define WIDE_NUM_DIGIT2(i) (char)(0x90 + i % 10)
 
-    const char *id_fmt = bank_id == T_WEIGHTS_WITH_GIRA_ALTERED
-        ? "species_weight_gira_%s"
-        : "species_weight_%s";
+static void ProcLanguageText(dp_node locale, size_t species, const char *stem, size_t lang)
+{
+    const char *code     = languages[lang].key;
+    const char *category = dp_string_at(locale, ".category");
 
-    datanode_t entry = dp_arr_appobject(&textbanks[bank_id].root);
-    dp_obj_putstring(&entry, "id", strfmt(id_fmt, species));
-    dp_obj_putstring(&entry, "en_US", strfmt("%s lbs.", weight));
-}
-
-static inline void stringify_weight(char *buf, double weight) {
-    char tmp[16] = { 0 };
-    snprintf(tmp, 16, "%.1f", weight);
-
-    const size_t   len = strlen(tmp);
-    const size_t   pad = 6 - len;
-    unsigned char *p   = (unsigned char *)buf;
-    for (size_t j = 0; j < pad; j++) {
-        p[0] = 0xE2;
-        p[1] = 0x80;
-        p[2] = 0x89;
-        p   += 3;
+    if (species == SPECIES_NONE) {
+        TextBank_PushGarbage(languages[lang].entryBank, 0, "species_pokedex_entry_%s_%s", code, stem);
+    } else {
+        TextBank_PushNode(languages[lang].entryBank, dp_at(locale, ".entry_text"),
+                          "species_pokedex_entry_%s_%s", code, stem);
     }
 
-    memcpy(p, tmp, len);
+    TextBank_PushString(languages[lang].categoryBank, category, "species_category_%s_%s", code, stem);
+    if (languages[lang].isGameLanguage) {
+        TextBank_PushString(T_CATEGORY, category, "species_category_%s", stem);
+    }
+
+    const dp_node nameNode = dp_at(locale, ".name");
+    const char   *name     = dp_string(nameNode);
+    if (name == NULL) return; // error is already staged
+
+    if (String_CountChars(name) > MON_NAME_LEN) {
+        dp_warn(nameNode, "name is longer than %d characters; the game will truncate it", MON_NAME_LEN);
+    }
+
+    char *numbered = NULL;
+    if (species == SPECIES_NONE) {
+        numbered = String_Format("%s", name);
+    } else if (languages[lang].wideNumber) {
+        // Full-width digits: U+FF10 + d, encoded as EF BC (90 + d).
+        numbered = String_Format(WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c  %s",
+                                 WIDE_NUM_DIGIT0(species),
+                                 WIDE_NUM_DIGIT1(species),
+                                 WIDE_NUM_DIGIT2(species),
+                                 name);
+    } else {
+        numbered = String_Format("%03zu  %s", species, name);
+    }
+
+    TextBank_PushString(languages[lang].numberedBank, numbered,
+                        "species_name_with_natdex_number_%s_%s", code, stem);
+    free(numbered);
 }
 
-static void emit_weights(SpeciesDexIndex *index, enum Species species, const char *species_name, char *buf) {
-    char weight_str[32] = { 0 };
+// Left-pads `text` with thin spaces (U+2009) to `width` bytes.
+static char* PadThin(const char *text, size_t width)
+{
+    size_t length = strlen(text);
+    size_t pad    = length < width ? width - length : 0;
+    char  *padded = Zalloc(3 * pad + length + 1, 1);
+
+    for (size_t i = 0; i < pad; i++) memcpy(padded + 3 * i, THIN_SPACE, 3);
+    memcpy(padded + 3 * pad, text, length);
+    return padded;
+}
+
+static char* FormatWeight(u32 hectograms, size_t species)
+{
+    char number[16];
+    snprintf(number, sizeof(number), "%.1f", KG_TO_LB(hectograms / 10.0) + WeightRoundingOverride(species));
+
+    char *padded = PadThin(number, 6);
+    char *weight = String_Format("%s lbs.", padded);
+    free(padded);
+    return weight;
+}
+
+static char* FormatHeight(u32 decimeters)
+{
+    long inches = M_TO_IN(decimeters / 10.0);
+    char height[32];
+    snprintf(height, sizeof(height), "%01ld’%02ld”", inches / 12, inches % 12);
+
+    // Up to 3 digits of feet, 2 of inches, and 3 bytes for each unit marker.
+    return PadThin(height, 3 + 2 + 3 + 3);
+}
+
+static void ProcMeasurementText(size_t species, const char *stem)
+{
     if (species == SPECIES_NONE) {
-        emit_weight(T_WEIGHTS_WITH_GIRA_ALTERED, species_name, "????.?", buf);
-        emit_weight(T_WEIGHTS_WITH_GIRA_ORIGIN,  species_name, "????.?", buf);
+        TextBank_PushString(T_WEIGHTS_WITH_GIRA_ALTERED, "????.? lbs.", "species_weight_gira_%s", stem);
+        TextBank_PushString(T_WEIGHTS_WITH_GIRA_ORIGIN,  "????.? lbs.", "species_weight_%s", stem);
+        TextBank_PushString(T_HEIGHTS_WITH_GIRA_ALTERED, "???’??”", "species_height_gira_%s", stem);
+        TextBank_PushString(T_HEIGHTS_WITH_GIRA_ORIGIN,  "???’??”", "species_height_%s", stem);
         return;
     }
 
-    double weight = KG_TO_LB(((double)index->weight / 10.0)) + species_weight_rounding_override(species);
-    stringify_weight(weight_str, weight);
-    emit_weight(T_WEIGHTS_WITH_GIRA_ALTERED, species_name, weight_str, buf);
+    const DexData *origin = species == SPECIES_GIRATINA ? &giratinaOrigin : &dexData[species];
+    char          *text[] = {
+        FormatWeight(dexData[species].weight, species),
+        FormatWeight(origin->weight, species),
+        FormatHeight(dexData[species].height),
+        FormatHeight(origin->height),
+    };
 
-    if (species == SPECIES_GIRATINA) {
-        double weight = KG_TO_LB(((double)dexdata_giratina_origin.index.weight / 10.0)) + species_weight_rounding_override(species);
-        stringify_weight(weight_str, weight);
-    }
-
-    emit_weight(T_WEIGHTS_WITH_GIRA_ORIGIN, species_name, weight_str, buf);
+    TextBank_PushString(T_WEIGHTS_WITH_GIRA_ALTERED, text[0], "species_weight_gira_%s", stem);
+    TextBank_PushString(T_WEIGHTS_WITH_GIRA_ORIGIN,  text[1], "species_weight_%s", stem);
+    TextBank_PushString(T_HEIGHTS_WITH_GIRA_ALTERED, text[2], "species_height_gira_%s", stem);
+    TextBank_PushString(T_HEIGHTS_WITH_GIRA_ORIGIN,  text[3], "species_height_%s", stem);
+    for (size_t i = 0; i < NELEMS(text); i++) free(text[i]);
 }
 
-static inline void emit_height(size_t bank_id, const char *species, const char *height, char *buf) {
-    assert(bank_id == T_HEIGHTS_WITH_GIRA_ALTERED || bank_id == T_HEIGHTS_WITH_GIRA_ORIGIN);
+static void ProcText(dp_node root, size_t species, const char *stem, const char *name)
+{
+    if (name == NULL) return; // error is already staged
 
-    const char *id_fmt = bank_id == T_HEIGHTS_WITH_GIRA_ALTERED
-        ? "species_height_gira_%s"
-        : "species_height_%s";
-
-    datanode_t entry = dp_arr_appobject(&textbanks[bank_id].root);
-    dp_obj_putstring(&entry, "id", strfmt(id_fmt, species));
-    dp_obj_putstring(&entry, "en_US", height);
-}
-
-static inline void stringify_height(char *buf, long height) {
-    char tmp[32] = { 0 };
-    snprintf(tmp, 32, "%01ld’%02ld”", height / 12, height % 12);
-
-    // ’ and ” are both 3-bytes wide in UTF-8, so the required length of the
-    // stringified height is:
-    //   - 3 ASCII digits for the feet-value
-    //   - 2 ASCII digits for the inches-value
-    //   - 3 bytes for each of the unit-markers
-    const size_t   len = strlen(tmp);
-    const size_t   pad = (3 + 2 + 3 + 3) - len;
-    unsigned char *p   = (unsigned char *)buf;
-    for (size_t j = 0; j < pad; j++) {
-        p[0] = 0xE2;
-        p[1] = 0x80;
-        p[2] = 0x89;
-        p   += 3;
-    }
-
-    memcpy(p, tmp, len);
-}
-
-static void emit_heights(SpeciesDexIndex *index, enum Species species, const char *species_name, char *buf) {
+    TextBank_PushString(T_NAMES, species != SPECIES_NONE ? name : "-----", "species_name_%s", stem);
     if (species == SPECIES_NONE) {
-        emit_height(T_HEIGHTS_WITH_GIRA_ALTERED, species_name, "???’??”", buf);
-        emit_height(T_HEIGHTS_WITH_GIRA_ORIGIN,  species_name, "???’??”", buf);
-        return;
+        TextBank_PushGarbage(T_NAMES_WITH_ARTICLES, 0, "species_name_with_articles_%s", stem);
+    } else {
+        const char *article = name[0] != '\0' && strchr("AEIOU", name[0]) ? "an" : "a";
+        char       *text    = String_Format("%s {COLOR 255}%s{COLOR 0}", article, name);
+        TextBank_PushString(T_NAMES_WITH_ARTICLES, text, "species_name_with_articles_%s", stem);
+        free(text);
     }
 
-    char height_str[32] = { 0 };
+    if (IsForm(species)) return;
 
-    long height = M_TO_IN((double)index->height / 10.0);
-    stringify_height(height_str, height);
-    emit_height(T_HEIGHTS_WITH_GIRA_ALTERED, species_name, height_str, buf);
-
-    if (species == SPECIES_GIRATINA) {
-        long height = M_TO_IN((double)dexdata_giratina_origin.index.height / 10.0);
-        stringify_height(height_str, height);
+    const dp_node dex = dp_at(root, ".pokedex_data");
+    for (size_t i = 0; i < NELEMS(languages); i++) {
+        char *path = String_Format(".%s", languages[i].key);
+        ProcLanguageText(dp_at(dex, path), species, stem, i);
+        free(path);
     }
 
-    emit_height(T_HEIGHTS_WITH_GIRA_ORIGIN,  species_name, height_str, buf);
+    ProcMeasurementText(species, stem);
 }
 
-static void emit_textbanks(datafile_t *df, size_t i, const char *species, SpeciesDexIndex *index) {
-    if (i > SPECIES_BAD_EGG) return;
+// `name` is the raw constant: `SPECIES_...` for species, `ICON_...` for alternate forms
+static SpeciesData ProcSpecies(dp_node root, size_t i, const char *stem, const char *name)
+{
+    const SpeciesData personal = ProcPersonal(root);
+    const char       *dexName  = IsBaseSpecies(i) ? dp_string_at(root, ".pokedex_data.en.name") : NULL;
+    ProcEvolutions(root);
+    ProcLevelLearnset(root);
 
-    char buf[BUFSIZE] = { 0 };
+    u16 offspring = IsBaseSpecies(i) ? dp_u16(dp_lookup_at(root, ".offspring", L_SPECIES)) : (u16)i;
+    BinaryFile_Write(B_OFFSPRING, &offspring, sizeof(offspring));
 
-    datanode_t  dexdata = dp_get(df, ".pokedex_data");
-    const char *name    = dp_string(dp_objmemb(dp_objmemb(dexdata, "en"), "name"));
+    if (IsNationalDex(i)) {
+        if (i != SPECIES_NONE) ProcPalPark(root, i);
+        ProcDexData(root, i, &personal, dexName);
 
-    datanode_t entry = dp_arr_appobject(&textbanks[T_NAMES].root);
-    dp_obj_putstring(&entry, "id", strfmt("species_name_%s", species));
-    dp_obj_putstring(&entry, "en_US", i != SPECIES_NONE ? name : "-----");
-
-    entry = dp_arr_appobject(&textbanks[T_NAMES_WITH_ARTICLES].root);
-    dp_obj_putstring(&entry, "id", strfmt("species_name_with_articles_%s", species));
-
-    if (i == SPECIES_NONE) dp_obj_putint(&entry, "garbage", 0);
-    else {
-        const char *article = "a";
-        switch (name[0]) {
-        case 'A':
-        case 'E':
-        case 'I':
-        case 'O':
-        case 'U':
-            article = "an";
-            break;
-        }
-        dp_obj_putstring(&entry, "en_US", strfmt("%s {COLOR 255}%s{COLOR 0}", article, name));
+        dp_file *sprite = Driver_Load("%s/%s/sprite_data.json", baseDir, stem);
+        ProcSpriteOffsets(dp_root(sprite), i, personal.genderRatio);
+        ProcSpriteData(dp_root(sprite), i);
+        Driver_Close(sprite);
     }
 
-    if (i >= SPECIES_EGG) return;
+    if (HasTutorSet(i)) EmitTutorLearnset(root);
 
-#define emit_dexentry(bank_id, lang)                                                        \
-    do {                                                                                    \
-        entry = dp_arr_appobject(&textbanks[bank_id].root);                                 \
-        dp_obj_putstring(&entry, "id", strfmt("species_pokedex_entry_" lang "_%s", species)); \
-        if (i == SPECIES_NONE) dp_obj_putint(&entry, "garbage", 0);                         \
-        else {                                                                              \
-            datanode_t lines  = dp_objmemb(dp_objmemb(dexdata, lang), "entry_text");        \
-            size_t     nlines = dp_arrlen(lines);                                           \
-            char      *full   = NULL;                                                       \
-            for (size_t j = 0; j < nlines; j++) {                                           \
-                const char *line = dp_string(dp_arrelem(lines, j));                         \
-                char       *escd = strreplstr(line, "\n", "\\n");                           \
-                char       *join = strjoin(full, escd, NULL);                               \
-                free(full);                                                                 \
-                full = join;                                                                \
-                free(escd);                                                                 \
-            }                                                                               \
-            dp_obj_putstring(&entry, "en_US", full);                                        \
-            free(full);                                                                     \
-        }                                                                                   \
-    } while (0)
+    EmitEggMoves(root, name);
+    if (IsNationalDex(i)) EmitFootprint(root, i, name);
 
-#define emit_dexnumber(bank_id, lang, wide)                                                           \
-    do {                                                                                              \
-        entry = dp_arr_appobject(&textbanks[bank_id].root);                                           \
-        unsigned char numbuf[16] = { 0xEF, 0xBC, 0x90, 0xEF, 0xBC, 0x90, 0xEF, 0xBC, 0x90, 0 };       \
-        if (wide) {                                                                                   \
-            numbuf[2] += (unsigned char)(i / 100);                                                    \
-            numbuf[5] += (unsigned char)(i % 100) / 10;                                               \
-            numbuf[8] += (unsigned char)(i % 10);                                                     \
-        }                                                                                             \
-        const char *locname = dp_string(dp_objmemb(dp_objmemb(dexdata, lang), "name"));               \
-        dp_obj_putstring(&entry, "id", strfmt("species_name_with_natdex_number_" lang "_%s", species)); \
-        dp_obj_putstring(&entry, "en_US",                                                             \
-                         i == SPECIES_NONE ? locname                                                  \
-                         : wide == true ? strfmt("%s  %s", numbuf, locname)                             \
-                         : strfmt("%03zu  %s", i, locname));                                            \
-    } while (0)
-
-#define emit_dexcategory(bank_id, lang) \
-    do {                                                                                   \
-        entry = dp_arr_appobject(&textbanks[bank_id].root);                                \
-                                                                                           \
-        const char *loccat = dp_string(dp_objmemb(dp_objmemb(dexdata, lang), "category")); \
-        dp_obj_putstring(&entry, "id", strfmt("species_category_" lang "_%s", species));     \
-        dp_obj_putstring(&entry, "en_US", loccat);                                         \
-    } while (0)
-
-#define NUM_LANGS 6
-
-#define emit_dexbanks(base_bank_id, lang, wide)                 \
-    do {                                                        \
-        emit_dexentry(base_bank_id, lang);                      \
-        emit_dexnumber(base_bank_id + NUM_LANGS, lang, wide);   \
-        emit_dexcategory(base_bank_id + (2 * NUM_LANGS), lang); \
-    } while (0)
-
-    emit_dexbanks(T_POKEDEX_ENTRY_EN, "en", false);
-    emit_dexbanks(T_POKEDEX_ENTRY_FR, "fr", false);
-    emit_dexbanks(T_POKEDEX_ENTRY_DE, "de", false);
-    emit_dexbanks(T_POKEDEX_ENTRY_IT, "it", false);
-    emit_dexbanks(T_POKEDEX_ENTRY_ES, "es", false);
-    emit_dexbanks(T_POKEDEX_ENTRY_JP, "jp", true);
-
-    entry = dp_arr_appobject(&textbanks[T_CATEGORY].root);
-    const char *category = dp_string(dp_objmemb(dp_objmemb(dexdata, "en"), "category"));
-    dp_obj_putstring(&entry, "id", strfmt("species_category_%s", species));
-    dp_obj_putstring(&entry, "en_US", category);
-
-    emit_weights(index, (enum Species)i, species, buf);
-    emit_heights(index, (enum Species)i, species, buf);
-}
-
-static void pack(Container *species, size_t i) {
-    nitroarc_ppack(&archives[A_PERSONAL].packer, &species->personal, sizeof(SpeciesData), NULL);
-    nitroarc_ppack(&archives[A_EVOLUTIONS].packer, &species->evolutions, sizeof(SpeciesEvolutionList), NULL);
-    nitroarc_ppack(&archives[A_LEVEL_LEARNSETS].packer, &species->levelup_learnset.data, (u32)species->levelup_learnset.size, NULL);
-
-    if (i < NATIONAL_DEX_MAX) {
-        nitroarc_ppack(&archives[A_SPRITE_OFFSETS].packer, &species->heights.back_female,  species->heights.has_female ? 1 : 0, NULL);
-        nitroarc_ppack(&archives[A_SPRITE_OFFSETS].packer, &species->heights.back_male,    species->heights.has_male   ? 1 : 0, NULL);
-        nitroarc_ppack(&archives[A_SPRITE_OFFSETS].packer, &species->heights.front_female, species->heights.has_female ? 1 : 0, NULL);
-        nitroarc_ppack(&archives[A_SPRITE_OFFSETS].packer, &species->heights.front_male,   species->heights.has_male   ? 1 : 0, NULL);
-
-        size_t offset = sizeof(SpeciesSpriteData) * i;
-        memcpy(sprite_data + offset, &species->spritedata, sizeof(SpeciesSpriteData));
-
-        // All of these arrays can safely hotswap Giratina-Origin's data when it
-        // comes time to build the archive.
-        dex_heights[i] = species->dexdata.index.height;
-        dex_weights[i] = species->dexdata.index.weight;
-        body_shapes[i] = (u8)species->dexdata.body_shape;
-        tr_scale_f[i]  = species->dexdata.tr_scale_f;
-        pk_scale_f[i]  = species->dexdata.pk_scale_f;
-        tr_scale_m[i]  = species->dexdata.tr_scale_m;
-        pk_scale_m[i]  = species->dexdata.pk_scale_m;
-        tr_pos_f[i]    = species->dexdata.tr_pos_f;
-        pk_pos_f[i]    = species->dexdata.pk_pos_f;
-        tr_pos_m[i]    = species->dexdata.tr_pos_m;
-        pk_pos_m[i]    = species->dexdata.pk_pos_m;
-
-        if (i > SPECIES_NONE) {
-            offset = sizeof(SpeciesPalPark) * (i - 1);
-            memcpy(palpark + offset, &species->palpark, sizeof(SpeciesPalPark));
-
-            natdex_listing[i - 1] = (u16)i;
-            memcpy(&sortables[i - 1], &species->dexdata.index, sizeof(SpeciesDexIndex));
-
-            if (i == SPECIES_GIRATINA) {
-                type0_cache_giratina_altered = species->dexdata.type0;
-                type1_cache_giratina_altered = species->dexdata.type1;
-                shape_cache_giratina_altered = species->dexdata.body_shape;
-
-                // Stage the type and shape indices as they exist at this point without either
-                // of Giratina's forms.
-                memcpy(giratina_altered_type0_index,
-                       indexed_by_type[type0_cache_giratina_altered],
-                       sizeof(*giratina_altered_type0_index) * (NATIONAL_DEX_MAX - 1));
-                memcpy(giratina_altered_type1_index,
-                       indexed_by_type[type1_cache_giratina_altered],
-                       sizeof(*giratina_altered_type1_index) * (NATIONAL_DEX_MAX - 1));
-                memcpy(giratina_altered_shape_index,
-                       indexed_by_shape[shape_cache_giratina_altered],
-                       sizeof(*giratina_altered_shape_index) * (NATIONAL_DEX_MAX - 1));
-                memcpy(giratina_origin_type0_index,
-                       indexed_by_type[dexdata_giratina_origin.type0],
-                       sizeof(*giratina_origin_type0_index) * (NATIONAL_DEX_MAX - 1));
-                memcpy(giratina_origin_type1_index,
-                       indexed_by_type[dexdata_giratina_origin.type1],
-                       sizeof(*giratina_origin_type1_index) * (NATIONAL_DEX_MAX - 1));
-                memcpy(giratina_origin_shape_index,
-                       indexed_by_shape[dexdata_giratina_origin.body_shape],
-                       sizeof(*giratina_origin_shape_index) * (NATIONAL_DEX_MAX - 1));
-                giratina_altered_type0_count = count_by_type[type0_cache_giratina_altered];
-                giratina_altered_type1_count = count_by_type[type1_cache_giratina_altered];
-                giratina_altered_shape_count = count_by_shape[shape_cache_giratina_altered];
-                giratina_origin_type0_count  = count_by_type[dexdata_giratina_origin.type0];
-                giratina_origin_type1_count  = count_by_type[dexdata_giratina_origin.type1];
-                giratina_origin_shape_count  = count_by_shape[dexdata_giratina_origin.body_shape];
-
-                // Update the Giratina-Origin indices with Giratina.
-                giratina_origin_type0_index[giratina_origin_type0_count++] = (u16)i;
-                giratina_origin_type1_index[giratina_origin_type1_count++] = (u16)i;
-                giratina_origin_shape_index[giratina_origin_shape_count++] = (u16)i;
-            }
-
-#define index_push(T, v) do { indexed_by_##T[v][count_by_##T[v]] = (u16)i; count_by_##T[v]++; } while (0)
-            u8 type0 = species->personal.types[0];
-            u8 type1 = species->personal.types[1];
-            u8 shape = (u8)species->dexdata.body_shape;
-
-            index_push(type, type0);
-            index_push(shape, shape);
-            if (type0 != type1) index_push(type, type1);
-#undef index_push
-
-            if (i > SPECIES_GIRATINA) {
-                // Push into the staging-copies for Giratina, too.
-                if (type0 == type0_cache_giratina_altered) {
-                    giratina_altered_type0_index[giratina_altered_type0_count++] = (u16)i;
-                }
-                if (type1 == type1_cache_giratina_altered) {
-                    giratina_altered_type1_index[giratina_altered_type1_count++] = (u16)i;
-                }
-                if (shape == shape_cache_giratina_altered) {
-                    giratina_altered_shape_index[giratina_altered_shape_count++] = (u16)i;
-                }
-                if (type0 == dexdata_giratina_origin.type0) {
-                    giratina_origin_type0_index[giratina_origin_type0_count++] = (u16)i;
-                }
-                if (type1 == dexdata_giratina_origin.type1) {
-                    giratina_origin_type1_index[giratina_origin_type1_count++] = (u16)i;
-                }
-                if (shape == dexdata_giratina_origin.body_shape) {
-                    giratina_origin_shape_index[giratina_origin_shape_count++] = (u16)i;
-                }
-            }
-        }
+    switch (i) {
+    case SPECIES_EGG:     EmitIconPalettes(root, "ICON_EGG", stem);         break;
+    case SPECIES_BAD_EGG: EmitIconPalettes(root, "ICON_MANAPHY_EGG", stem); break;
+    default:              EmitIconPalettes(root, name, stem);               break;
     }
 
-    offspring[i] = (u16)species->offspring;
+    if (IsBaseSpecies(i)) ProcText(root, i, stem, dexName);
+    return personal;
 }
 
-static int sort_by_name(const void *l, const void *r) {
-    const SpeciesDexIndex *lhs = l;
-    const SpeciesDexIndex *rhs = r;
-    return strcmp(lhs->name, rhs->name);
+static void PackField(int archive, const DexData *data, size_t offset, size_t size)
+{
+    u8 *buf = Zalloc(NATIONAL_DEX_MAX, size);
+    for (size_t i = 0; IsNationalDex(i); i++) memcpy(buf + i * size, (const u8 *)&data[i] + offset, size);
+
+    Archive_Pack(archive, buf, NATIONAL_DEX_MAX * size);
+    free(buf);
 }
 
-static inline int sort_by_species_asc(const void *l, const void *r) {
-    const SpeciesDexIndex *lhs = l;
-    const SpeciesDexIndex *rhs = r;
-    if (lhs->species < rhs->species) return -1;
-    if (lhs->species > rhs->species) return  1;
-    return 0;
+#define PACK_FIELD(archive, data, field) PackField(archive, data, offsetof(DexData, field), sizeof(((DexData *)0)->field))
+
+// Data compared by sorts below. Kept as a global to avoid a full copy before each qsort.
+static const DexData *sorting = NULL;
+
+static int ByName(const void *l, const void *r)
+{
+    return strcmp(sorting[*(const u16 *)l].name, sorting[*(const u16 *)r].name);
 }
 
-static int sort_by_weight_desc(const void *l, const void *r) {
-    const SpeciesDexIndex *lhs = l;
-    const SpeciesDexIndex *rhs = r;
-    if (lhs->weight > rhs->weight) return -1;
-    if (lhs->weight < rhs->weight) return  1;
-    return sort_by_species_asc(lhs, rhs);
+// Ties are broken by species, ascending.
+static int Compare(u16 a, u16 b, u32 x, u32 y, int direction)
+{
+    int c = (x > y) - (x < y);
+    return c != 0 ? direction * c : (a > b) - (a < b);
 }
 
-static int sort_by_weight_asc(const void *l, const void *r) {
-    const SpeciesDexIndex *lhs = l;
-    const SpeciesDexIndex *rhs = r;
-    if (lhs->weight < rhs->weight) return -1;
-    if (lhs->weight > rhs->weight) return  1;
-    return sort_by_species_asc(lhs, rhs);
+static int ByWeightDesc(const void *l, const void *r)
+{
+    u16 a = *(const u16 *)l, b = *(const u16 *)r;
+    return Compare(a, b, sorting[a].weight, sorting[b].weight, -1);
 }
 
-static int sort_by_height_desc(const void *l, const void *r) {
-    const SpeciesDexIndex *lhs = l;
-    const SpeciesDexIndex *rhs = r;
-    if (lhs->height > rhs->height) return -1;
-    if (lhs->height < rhs->height) return  1;
-    return sort_by_species_asc(lhs, rhs);
+static int ByWeightAsc(const void *l, const void *r)
+{
+    u16 a = *(const u16 *)l, b = *(const u16 *)r;
+    return Compare(a, b, sorting[a].weight, sorting[b].weight, 1);
 }
 
-static int sort_by_height_asc(const void *l, const void *r) {
-    const SpeciesDexIndex *lhs = l;
-    const SpeciesDexIndex *rhs = r;
-    if (lhs->height < rhs->height) return -1;
-    if (lhs->height > rhs->height) return  1;
-    return sort_by_species_asc(lhs, rhs);
+static int ByHeightDesc(const void *l, const void *r)
+{
+    u16 a = *(const u16 *)l, b = *(const u16 *)r;
+    return Compare(a, b, sorting[a].height, sorting[b].height, -1);
 }
 
-#define sort_dex_index(func)                                                                 \
-    do {                                                                                     \
-        memcpy(sortables_copy, sortables, (NATIONAL_DEX_MAX - 1) * sizeof(*sortables_copy)); \
-        qsort(sortables_copy, NATIONAL_DEX_MAX - 1, sizeof(*sortables_copy), func);          \
-    } while (0)
+static int ByHeightAsc(const void *l, const void *r)
+{
+    u16 a = *(const u16 *)l, b = *(const u16 *)r;
+    return Compare(a, b, sorting[a].height, sorting[b].height, 1);
+}
 
-#define pack_dex_index(func)                                                                       \
-    do {                                                                                           \
-        sort_dex_index(func);                                                                      \
-        for (size_t i = 0; i < NATIONAL_DEX_MAX - 1; i++) {                                        \
-            sorted_species[i] = (u16)sortables_copy[i].species;                                    \
-        }                                                                                          \
-        nitroarc_ppack(p, sorted_species, sizeof(*sorted_species) * (NATIONAL_DEX_MAX - 1), NULL); \
-    } while (0)
+// Sorts every National Pokédex species (without SPECIES_NONE) into `list`.
+static void SortSpecies(const DexData *data, int (*compare)(const void *, const void *), u16 *list)
+{
+    for (size_t i = 0; i < NATIONAL_DEX_MAX - 1; i++) list[i] = (u16)(i + 1);
 
-#define pack_name_triplets(c)                                                     \
-    do {                                                                          \
-        memset(sorted_species, 0, NATIONAL_DEX_MAX - 1);                          \
-        u16 count = 0;                                                            \
-        while (i < NATIONAL_DEX_MAX - 1 && sortables_copy[i].name[0] <= c) {      \
-            sorted_species[count++] = (u16)sortables_copy[i].species;             \
-            i++;                                                                  \
-        }                                                                         \
-        nitroarc_ppack(p, sorted_species, count * sizeof(*sorted_species), NULL); \
-    } while (0)
+    sorting = data;
+    qsort(list, NATIONAL_DEX_MAX - 1, sizeof(*list), compare);
+}
 
-static int pack_dexdata(nitroarc_packer_t *p) {
-    // Per-species Pokedex data
-    nitroarc_ppack(p, dex_heights, sizeof(*dex_heights) * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, dex_weights, sizeof(*dex_weights) * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, body_shapes, sizeof(*body_shapes) * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, tr_scale_f,  sizeof(*tr_scale_f)  * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, pk_scale_f,  sizeof(*pk_scale_f)  * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, tr_scale_m,  sizeof(*tr_scale_m)  * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, pk_scale_m,  sizeof(*pk_scale_m)  * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, tr_pos_f,    sizeof(*tr_pos_f)    * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, pk_pos_f,    sizeof(*pk_pos_f)    * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, tr_pos_m,    sizeof(*tr_pos_m)    * NATIONAL_DEX_MAX, NULL);
-    nitroarc_ppack(p, pk_pos_m,    sizeof(*pk_pos_m)    * NATIONAL_DEX_MAX, NULL);
+static void PackDexData(int archive, const DexData *data)
+{
+    // Files 0 through 10: per-species data
+    PACK_FIELD(archive, data, height);
+    PACK_FIELD(archive, data, weight);
+    PACK_FIELD(archive, data, bodyShape);
+    PACK_FIELD(archive, data, trainerScaleF);
+    PACK_FIELD(archive, data, pokemonScaleF);
+    PACK_FIELD(archive, data, trainerScaleM);
+    PACK_FIELD(archive, data, pokemonScaleM);
+    PACK_FIELD(archive, data, trainerPosF);
+    PACK_FIELD(archive, data, pokemonPosF);
+    PACK_FIELD(archive, data, trainerPosM);
+    PACK_FIELD(archive, data, pokemonPosM);
 
-    // Listings of the National and Sinnoh Pokedexes
-    nitroarc_ppack(p, natdex_listing, sizeof(*natdex_listing) * (NATIONAL_DEX_MAX - 1), NULL);
-    nitroarc_ppack(p, sinnohdex,      (u32)(sizeof(*sinnohdex) * sinnohdex_len), NULL);
+    // Files 11 and 12: listings of the National and Sinnoh Pokédexes
+    u16 list[NATIONAL_DEX_MAX - 1];
+    for (size_t i = 0; i < NELEMS(list); i++) list[i] = (u16)(i + 1);
+    Archive_Pack(archive, list, sizeof(list));
+    Archive_Pack(archive, sinnohDex, sinnohDexLen * sizeof(*sinnohDex));
 
-    // Sorted indices by name, weight, and height
-    SpeciesDexIndex *sortables_copy = calloc(NATIONAL_DEX_MAX - 1, sizeof(*sortables_copy));
-    u16             *sorted_species = calloc(NATIONAL_DEX_MAX - 1, sizeof(*sorted_species));
-    pack_dex_index(sort_by_name);
-    pack_dex_index(sort_by_weight_desc);
-    pack_dex_index(sort_by_weight_asc);
-    pack_dex_index(sort_by_height_desc);
-    pack_dex_index(sort_by_height_asc);
+    // Files 13 through 17: species sorted by name, weight, and height
+    int (*sorts[])(const void *, const void *) = { ByName, ByWeightDesc, ByWeightAsc, ByHeightDesc, ByHeightAsc };
+    for (size_t i = 0; i < NELEMS(sorts); i++) {
+        SortSpecies(data, sorts[i], list);
+        Archive_Pack(archive, list, sizeof(list));
+    }
 
-    // Indices of Species with names beginning with one of 3 letters (ABC, DEF, ...)
-    sort_dex_index(sort_by_name);
+    // Files 18 through 26: species whose names begin with one of 3 letters (ABC, DEF, ...)
+    SortSpecies(data, ByName, list);
     size_t i = 0;
-
-    pack_name_triplets('C'); // ABC
-    pack_name_triplets('F'); // DEF
-    pack_name_triplets('I'); // GHI
-    pack_name_triplets('L'); // JKL
-    pack_name_triplets('O'); // MNO
-    pack_name_triplets('R'); // PQR
-    pack_name_triplets('U'); // STU
-    pack_name_triplets('X'); // VWX
-    pack_name_triplets('Z'); // YZ
-
-    // Indices of species by their types
-    for (size_t i = 0; i < NUM_POKEMON_TYPES; i++) {
-        if (i == TYPE_MYSTERY) continue; // NOTE: The Mystery type is not packed
-        nitroarc_ppack(p, indexed_by_type[i], count_by_type[i] * sizeof(**indexed_by_type), NULL);
+    for (const char *last = "CFILORUXZ"; *last != '\0'; last++) {
+        size_t start = i;
+        while (i < NELEMS(list) && data[list[i]].name[0] <= *last) i++;
+        Archive_Pack(archive, list + start, (i - start) * sizeof(*list));
     }
 
-    // Indices of species by their body shapes
-    for (size_t i = 0; i < NUM_BODY_SHAPES; i++) {
-        nitroarc_ppack(p, indexed_by_shape[i], count_by_shape[i] * sizeof(**indexed_by_shape), NULL);
+    // Files 27 through 44: species by type, without the Mystery type
+    for (u8 type = 0; type < NUM_POKEMON_TYPES; type++) {
+        if (type == TYPE_MYSTERY) continue;
+
+        size_t count = 0;
+        for (u16 s = 1; IsNationalDex(s); s++) {
+            if (data[s].types[0] == type || data[s].types[1] == type) list[count++] = s;
+        }
+        Archive_Pack(archive, list, count * sizeof(*list));
     }
 
-    free(sortables_copy);
-    free(sorted_species);
-    return EXIT_SUCCESS;
+    // Files 45 through 58: species by body shape
+    for (u8 shape = 0; shape < NUM_BODY_SHAPES; shape++) {
+        size_t count = 0;
+        for (u16 s = 1; IsNationalDex(s); s++) {
+            if (data[s].bodyShape == shape) list[count++] = s;
+        }
+        Archive_Pack(archive, list, count * sizeof(*list));
+    }
 }
 
-static int pack_dexdata_giratina_altered(void) {
-    return pack_dexdata(&archives[A_POKEDEX_INDICES_GIRA_ALTERED].packer);
-}
+int main(int argc, char **argv)
+{
+    Driver_Init(&driver, argc, argv);
+    LoadTutorMoves();
+    LoadSinnohDex();
 
-#define swap(x, y) do { x ^= y; y ^= x; x ^= y; } while (0)
-#define pswap(x, y) do { void *p = x; x = y; y = p; } while (0);
+    for (EachEntry(entry, Entries_FromEnum(enumFile, "Species", "SPECIES_", "%s/%s/data.json", baseDir))) {
+        ProcSpecies(entry.root, entry.index, entry.stem, entry.name);
+    }
 
-static void swap_giratina(void) {
-    swap(dex_heights[SPECIES_GIRATINA], dexdata_giratina_origin.index.height);
-    swap(dex_weights[SPECIES_GIRATINA], dexdata_giratina_origin.index.weight);
-    swap(body_shapes[SPECIES_GIRATINA], dexdata_giratina_origin.body_shape);
-    swap(tr_scale_f[SPECIES_GIRATINA],  dexdata_giratina_origin.tr_scale_f);
-    swap(pk_scale_f[SPECIES_GIRATINA],  dexdata_giratina_origin.pk_scale_f);
-    swap(tr_scale_m[SPECIES_GIRATINA],  dexdata_giratina_origin.tr_scale_m);
-    swap(pk_scale_m[SPECIES_GIRATINA],  dexdata_giratina_origin.pk_scale_m);
-    swap(tr_pos_f[SPECIES_GIRATINA],    dexdata_giratina_origin.tr_pos_f);
-    swap(pk_pos_f[SPECIES_GIRATINA],    dexdata_giratina_origin.pk_pos_f);
-    swap(tr_pos_m[SPECIES_GIRATINA],    dexdata_giratina_origin.tr_pos_m);
-    swap(pk_pos_m[SPECIES_GIRATINA],    dexdata_giratina_origin.pk_pos_m);
+    for (size_t i = 0; i < NELEMS(altFormsWithData); i++) {
+        dp_file          *file     = Driver_Load("%s/%s/data.json", baseDir, altFormsWithData[i].dir);
+        const SpeciesData personal = ProcSpecies(dp_root(file), SPECIES_BAD_EGG + 1 + i,
+                                                 altFormsWithData[i].dir, altFormsWithData[i].icon);
+        Driver_Close(file);
 
-    // We inject these directly, because the cache for Giratina currently has
-    // the values which were previously in the indices above.
-    sortables[SPECIES_GIRATINA - 1].height = dex_heights[SPECIES_GIRATINA];
-    sortables[SPECIES_GIRATINA - 1].weight = dex_weights[SPECIES_GIRATINA];
-
-    pswap(indexed_by_type[type0_cache_giratina_altered],        giratina_altered_type0_index);
-    swap(count_by_type[type0_cache_giratina_altered],           giratina_altered_type0_count);
-    pswap(indexed_by_type[type1_cache_giratina_altered],        giratina_altered_type1_index);
-    swap(count_by_type[type1_cache_giratina_altered],           giratina_altered_type1_count);
-    pswap(indexed_by_shape[dexdata_giratina_origin.body_shape], giratina_altered_shape_index);
-    swap(count_by_shape[dexdata_giratina_origin.body_shape],    giratina_altered_shape_count);
-    pswap(indexed_by_type[dexdata_giratina_origin.type0],       giratina_origin_type0_index);
-    swap(count_by_type[dexdata_giratina_origin.type0],          giratina_origin_type0_count);
-    pswap(indexed_by_type[dexdata_giratina_origin.type1],       giratina_origin_type1_index);
-    swap(count_by_type[dexdata_giratina_origin.type1],          giratina_origin_type1_count);
-    pswap(indexed_by_shape[body_shapes[SPECIES_GIRATINA]],      giratina_origin_shape_index);
-    swap(count_by_shape[body_shapes[SPECIES_GIRATINA]],         giratina_origin_shape_count);
-}
-
-static int pack_dexdata_giratina_origin(void) {
-    swap_giratina(); // swap-in
-    int result = pack_dexdata(&archives[A_POKEDEX_INDICES_GIRA_ORIGIN].packer);
-    swap_giratina(); // swap-out
-    return result;
-}
-
-static int addl_done(void) {
-    return pack_dexdata_giratina_altered()
-        || pack_dexdata_giratina_origin()
-        || fdump_blobnarc(palpark,     sizeof(SpeciesPalPark) * (NATIONAL_DEX_MAX - 1), "ppark.narc")
-        || fdump_blobnarc(sprite_data, sizeof(SpeciesSpriteData) * NATIONAL_DEX_MAX,    "pl_poke_data.narc")
-        || fdump_blob(offspring, sizeof(u16) * len_registry, "pms.narc")
-        || EXIT_SUCCESS;
-}
-
-static void usage(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
-
-static void parse_args(int *pargc, char ***pargv) {
-    program_name = (*pargv)[0];
-    opterr       = 0;
-
-    int c = 0;
-    while ((c = getopt(*pargc, *pargv, ":o:t:s:M:h")) != -1) {
-        switch (c) {
-        case 'o': output_dir       = optarg; break;
-        case 't': tutorables_fpath = optarg; break;
-        case 's': sinnohdex_fpath  = optarg; break;
-        case 'M': depfile_fpath    = optarg; break;
-
-        case 'h': usage(NULL);                                 break;
-        case ':': usage("missing argument for '-%c'", optopt); break;
-        default:  usage("unknown option '-%c'", optopt);     break;
+        if (altFormsWithData[i].isGiratinaOrigin) {
+            giratinaOrigin.types[0] = personal.types[0];
+            giratinaOrigin.types[1] = personal.types[1];
         }
     }
 
-    *pargc -= optind;
-    *pargv += optind;
-    if (*pargc < 1) usage("missing required argument BASEDIR");
+    PackDexData(A_POKEDEX_GIRA_ALTERED, dexData);
 
-    base_dir = (*pargv)[0];
-}
+    DexData origin[NATIONAL_DEX_MAX];
+    memcpy(origin, dexData, sizeof(origin));
+    origin[SPECIES_GIRATINA] = giratinaOrigin;
+    PackDexData(A_POKEDEX_GIRA_ORIGIN, origin);
 
-static void usage(const char *fmt, ...) {
-    FILE *f = stdout;
-    if (fmt != NULL) {
-        f = stderr;
-
-        va_list args;
-        va_start(args, fmt);
-        fputs(program_name, f);
-        fputs(": ", f);
-        vfprintf(f, fmt, args);
-        fputc('\n', f);
-        va_end(args);
-    }
-
-#define fputf(fmt, ...) fprintf(f, fmt, __VA_ARGS__)
-    fputf("usage: %s [-M DEPFILE] [-t TUTORABLES_JSON] [-o OUTDIR] BASEDIR\n", program_name);
-    fputs("\n", f);
-    fputs("options:\n", f);
-    fputs("  -o OUTDIR            Write output files to OUTDIR. Does not affect DEPFILE.\n", f);
-    fputs("                       Defaults to the current working directory.\n", f);
-    fputs("  -t TUTORABLES_JSON   Specify the full path to the tutorable-moves JSON file.\n", f);
-    fputs("                       Defaults to 'move_tutors.json'.\n", f);
-    fputs("  -s SINNOH_DEX_JSON   Specify the full path to the regional Sinnoh Pokedex\n", f);
-    fputs("                       JSON file. Defaults to 'sinnoh_pokedex.json'.\n", f);
-    fputs("  -M DEPFILE           Specify the full path to an output dependency file.\n", f);
-    fputs("                       Defaults to 'species_data.d'.\n", f);
-#undef fputf
-
-    exit(f == stdout ? EXIT_SUCCESS : EXIT_FAILURE);
+    Archive_Pack(A_PAL_PARK, palPark, sizeof(palPark));
+    Archive_Pack(A_SPRITE_DATA, spriteData, sizeof(spriteData));
+    return Driver_Finish(&driver);
 }

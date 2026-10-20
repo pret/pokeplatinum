@@ -46,6 +46,7 @@ shop_gra_narc = custom_target('shop_gra.narc',
     output: [
         'shop_gra.narc',
         'shop_gra.naix',
+        'shop_gra.recs',
     ],
     input: [
         tiles_ncgr,

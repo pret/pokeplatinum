@@ -1,133 +1,77 @@
-#include <getopt.h>
-#include <stdarg.h>
 #include <stddef.h>
-#include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "common.h"
-#include "dataproc.h"
-#include "nitroarc.h"
+#include "game_types.h"
 
 #include "constants/moves.h"
 #include "generated/frontier_trainers.h"
 
 #include "struct_defs/frontier_pokemon_base.h"
+#include "struct_defs/frontier_trainer_base.h"
 
-static enum_template_t enums[] = {
-    include_enum("generated/items.h",                 "enum Item"),
-    include_enum("generated/moves.h",                 "enum Move"),
-    include_enum("generated/natures.h",               "enum Nature"),
-    include_enum("generated/species.h",               "enum Species"),
-    include_enum("generated/trainer_classes.h",       "enum TrainerClass"),
-    include_enum("generated/trainer_message_types.h", "enum TrainerMessageType"),
-    { .from_file = NULL },
+static const char *enumFile = NULL;
+static const char *setsFile = NULL;
+static const char *baseDir  = NULL;
+
+// Pokémon set IDs are u16 archive indices, so this is also the archive's limit.
+static dp_symbol sets[UINT16_MAX];
+static size_t    numSets = 0;
+
+enum { A_FRONTIER_TRAINERS, A_FRONTIER_POKEMON };
+enum { F_TRAINER_CLASSES };
+enum { T_TRAINER_MESSAGES, T_TRAINER_NAMES };
+
+#define L_ITEM          "enum Item"
+#define L_MOVE          "enum Move"
+#define L_NATURE        "enum Nature"
+#define L_SPECIES       "enum Species"
+#define L_TRAINER_CLASS "enum TrainerClass"
+#define L_MESSAGE_TYPE  "enum TrainerMessageType"
+#define L_POKEMON_SET   "FrontierPokemonSet"
+
+static Driver driver = {
+    .depfile = "frontier_data.d",
+
+    .options = (Option[]) {
+        POSITIONAL("ENUMFILE", &enumFile, "Header defining enum FrontierTrainerID."),
+        POSITIONAL("SETSFILE", &setsFile, "Pokémon set names, one per line, in archive order."),
+        POSITIONAL("BASEDIR",  &baseDir,  "Directory containing data/ and pokemon/."),
+        { 0 },
+    },
+
+    .lookups = (Lookup[]) {
+        LOOKUP_ENUM("generated/items.h",                 L_ITEM),
+        LOOKUP_ENUM("generated/moves.h",                 L_MOVE),
+        LOOKUP_ENUM("generated/natures.h",               L_NATURE),
+        LOOKUP_ENUM("generated/species.h",               L_SPECIES),
+        LOOKUP_ENUM("generated/trainer_classes.h",       L_TRAINER_CLASS),
+        LOOKUP_ENUM("generated/trainer_message_types.h", L_MESSAGE_TYPE),
+        { 0 },
+    },
+
+    .outputs = {
+        .archives = (Archive[]) {
+            [A_FRONTIER_TRAINERS] = { .filename = "pl_btdtr.narc" },
+            [A_FRONTIER_POKEMON]  = { .filename = "pl_btdpm.narc" },
+            { 0 },
+        },
+
+        .textFiles = (TextFile[]) {
+            [F_TRAINER_CLASSES] = { .filename = "frontier_trainer_classes.h", .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            { 0 },
+        },
+
+        .textBanks = (TextBank[]) {
+            [T_TRAINER_MESSAGES] = { .filename = "frontier_trainer_messages.json", .key = 35392 },
+            [T_TRAINER_NAMES]    = { .filename = "frontier_trainer_names.json",    .key = 26501 },
+            { 0 },
+        },
+    },
 };
 
-enum {
-    A_FRONTIER_TRAINERS,
-    A_FRONTIER_POKEMON,
-};
-
-static archive_template_t archives[] = {
-    [A_FRONTIER_TRAINERS] = { .out_filename = "pl_btdtr.narc" },
-    [A_FRONTIER_POKEMON]  = { .out_filename = "pl_btdpm.narc" },
-    { .out_filename = NULL },
-};
-
-static header_template_t headers[] = {
-    { .out_filename = "frontier_trainer_classes.h" },
-    { .out_filename = NULL },
-};
-
-enum {
-    T_TRAINER_MESSAGES,
-    T_TRAINER_NAMES,
-};
-
-static textbank_template_t textbanks[] = {
-    [T_TRAINER_MESSAGES] = { .key = 35392, .out_filename = "frontier_trainer_messages.json" },
-    [T_TRAINER_NAMES]    = { .key = 26501, .out_filename = "frontier_trainer_names.json"    },
-    { .out_filename = NULL },
-};
-
-static char  *program_name    = NULL;
-static char  *base_dir        = NULL;
-static char  *depfile_fpath   = "frontier_data.d";
-static char  *output_dir      = ".";
-static char **tr_registry     = NULL;
-static size_t len_tr_registry = 0;
-static char **pk_registry     = NULL;
-static size_t len_pk_registry = 0;
-
-static void parse_args(int *pargc, char ***pargv);
-static int  sort_strcmp(const void *lhs, const void *rhs);
-
-static void pack_pokemon_set(datafile_t *df);
-static void pack_trainer(datafile_t *df);
-static void emit_trainer_name(datafile_t *df, const char *stem);
-static void emit_trainer_messages(datafile_t *df, const char *stem);
-static void emit_trainer_classes(datafile_t *df, size_t trainer_idx);
-
-typedef struct dynlookup dynlookup_t;
-struct dynlookup {
-    lookup_t *data;
-    size_t    len;
-    size_t    cap;
-};
-
-int main(int argc, char *argv[]) {
-    parse_args(&argc, &argv);
-
-    splitenv("TRAINERS", &tr_registry, &len_tr_registry, NULL, 0);
-    splitenv("POKEMON",  &pk_registry, &len_pk_registry, NULL, 0);
-    archives[A_FRONTIER_TRAINERS].num_files = (u16)len_tr_registry;
-    archives[A_FRONTIER_POKEMON].num_files  = (u16)len_pk_registry;
-
-    common_init(DATAPROC_F_JSON, enums, archives, headers, textbanks, __FILE__, depfile_fpath, output_dir, NULL, NULL);
-
-    char       buf[BUFSIZE];
-    datafile_t df   = { 0 };
-    unsigned   errc = EXIT_SUCCESS;
-    lookup_t  *sets = calloc(len_pk_registry, sizeof(*sets));
-
-    // Parse available Pokemon sets and ingest their names into a lookup table.
-    for (size_t i = 0; i < len_pk_registry; i++) {
-        char *path = pathjoin(base_dir, "pokemon", strfmt("%s.json", pk_registry[i]));
-        if (dp_load(&df, path) == 0) {
-            pack_pokemon_set(&df);
-            sets[i] = (lookup_t){ .val = i, .def = pk_registry[i] };
-        }
-
-        if (dp_report(&df) == DIAG_ERROR) errc = EXIT_FAILURE;
-
-        free(path);
-        dp_free(&df);
-    }
-
-    qsort(sets, len_pk_registry, sizeof(*sets), sort_strcmp);
-    dp_register(sets, len_pk_registry, "FrontierPokemonSet");
-
-    // Now we can process the trainers.
-    for (size_t i = 0; i < len_tr_registry; i++) {
-        char *path = pathjoin(base_dir, "data", strfmt("%s.json", tr_registry[i]));
-        if (dp_load(&df, path) == 0) {
-            pack_trainer(&df);
-            emit_trainer_name(&df, tr_registry[i]);
-            emit_trainer_messages(&df, tr_registry[i]);
-            emit_trainer_classes(&df, i);
-        }
-
-        if (dp_report(&df) == DIAG_ERROR) errc = EXIT_FAILURE;
-
-        free(path);
-        dp_free(&df);
-    }
-
-    return common_done(errc, NULL);
-}
-
-static const char *ev_flags[] = {
+static const char *evFlags[] = {
     ".evFlags.hp",
     ".evFlags.attack",
     ".evFlags.defense",
@@ -136,152 +80,106 @@ static const char *ev_flags[] = {
     ".evFlags.special_defense",
 };
 
-static void pack_pokemon_set(datafile_t *df) {
-    FrontierPokemonBase result = {
-        .species = enum_u16(".species", enum Species),
-        .nature  = enum_u8(".nature", enum Nature),
-        .item    = enum_u16(".item", enum Item),
-        .form    = u16(".form"),
+static void ProcPokemonSet(dp_node root)
+{
+    FrontierPokemonBase set = {
+        .species = dp_u16(dp_lookup_at(root, ".species", L_SPECIES)),
+        .nature  = dp_u8(dp_lookup_at(root, ".nature", L_NATURE)),
+        .item    = dp_u16(dp_lookup_at(root, ".item", L_ITEM)),
+        .form    = dp_u16_at(root, ".form"),
     };
 
-    datanode_t moves     = dp_get(df, ".moves");
-    size_t     num_moves = dp_arrlen(moves);
-    if (num_moves > LEARNED_MOVES_MAX) {
-        dp_warn(&moves, "more than %d moves defined for frontier set; the rest will be ignored!", LEARNED_MOVES_MAX);
-        num_moves = LEARNED_MOVES_MAX;
+    const dp_node moves = dp_at(root, ".moves");
+    if (dp_arr_len(moves) > LEARNED_MOVES_MAX) {
+        dp_warn(moves, "more than %d moves defined for frontier set; the rest will be ignored!", LEARNED_MOVES_MAX);
     }
 
-    size_t i = 0;
-    for (; i < num_moves; i++) result.moves[i] = dp_u16(dp_lookup(dp_arrelem(moves, i), "enum Move"));
-    for (; i < LEARNED_MOVES_MAX; i++) result.moves[i] = MOVE_NONE;
-
-    for (i = 0; i < countof(ev_flags); i++) {
-        if (dp_bool(dp_get(df, ev_flags[i]))) result.evFlags |= (u8)(1 << i);
+    for (dp_each(move, i, moves)) {
+        if (i == LEARNED_MOVES_MAX) break;
+        set.moves[i] = dp_u16(dp_lookup(move, L_MOVE)); // the rest stay MOVE_NONE
     }
 
-    nitroarc_ppack(
-        &archives[A_FRONTIER_POKEMON].packer,
-        &result,
-        sizeof(result),
-        NULL);
+    for (size_t i = 0; i < NELEMS(evFlags); i++) {
+        if (dp_bool_at(root, evFlags[i])) set.evFlags |= (u8)(1 << i);
+    }
+
+    Archive_Pack(A_FRONTIER_POKEMON, &set, sizeof(set));
 }
 
-static void pack_trainer(datafile_t *df) {
-    datanode_t   sets   = dp_get(df, ".availableSets");
-    const size_t n_sets = dp_arrlen(sets);
-    const size_t size   = 2 + n_sets;
+static void ProcTrainer(dp_node root, size_t index)
+{
+    FrontierTrainerBase *trainer;
 
-    u16 *trainer = calloc(size, sizeof(*trainer));
-    trainer[0]   = dp_u16(dp_lookup(dp_get(df, ".class"), "enum TrainerClass"));
-    trainer[1]   = 0;
+    const dp_node class     = dp_lookup_at(root, ".class", L_TRAINER_CLASS);
+    const dp_node available = dp_at(root, ".availableSets");
+    const size_t  count     = dp_arr_len(available);
 
-    for (size_t i = 0; i < n_sets; i++) {
-        u16 set = dp_u16(dp_lookup(dp_arrelem(sets, i), "FrontierPokemonSet"));
+    // Trainers from Cheryl on have no entry in the class table.
+    if (index < FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL) {
+        TextFile_Printf(F_TRAINER_CLASSES, "    %s,\n", Symbol_Name(class));
+    }
+
+    const size_t size    = sizeof(*trainer) + (count * sizeof(*trainer->setIDs));
+    trainer              = Zalloc(1, size);
+    trainer->trainerType = dp_u16(class);
+
+    // MATCH DETAIL: Set 0 is the placeholder at the top of the sets list: its slot stays 0
+    // and doesn't count towards the trainer's sets.
+    for (dp_each(name, i, available)) {
+        u16 set = dp_u16(dp_lookup(name, L_POKEMON_SET));
         if (set != 0) {
-            trainer[2 + i] = set;
-            trainer[1]++;
+            trainer->setIDs[i] = set;
+            trainer->numSets++;
         }
     }
 
-    nitroarc_ppack(&archives[A_FRONTIER_TRAINERS].packer, trainer, (u32)(size * sizeof(*trainer)), NULL);
+    Archive_Pack(A_FRONTIER_TRAINERS, trainer, size);
+    free(trainer);
 }
 
-static void emit_trainer_name(datafile_t *df, const char *stem) {
-    char buf[BUFSIZE] = { 0 };
+static void ProcText(dp_node root, const char *stem)
+{
+    TextBank_PushString(T_TRAINER_NAMES, dp_string_at(root, ".name"),
+                        "FrontierTrainerNames_Text_%s", stem);
 
-    bank_push(T_TRAINER_NAMES, strfmt("FrontierTrainerNames_Text_%s", stem), string(".name"));
-}
+    for (dp_each(message, i, dp_at(root, ".messages"))) {
+        const dp_node type = dp_lookup_at(message, ".type", L_MESSAGE_TYPE);
+        if (dp_type_of(type) != DP_SYMBOL) continue; // error is already staged
 
-static void emit_trainer_messages(datafile_t *df, const char *stem) {
-    char buf[BUFSIZE] = { 0 };
+        const dp_node text    = dp_try(message, ".en_US");
+        const dp_node garbage = dp_try(message, ".garbage");
+        const char   *kind    = dp_string(type);
 
-    datanode_t   messages   = dp_get(df, ".messages");
-    const size_t n_messages = dp_arrlen(messages);
-    for (size_t i = 0; i < n_messages; i++) {
-        datanode_t message   = dp_arrelem(messages, i);
-        datanode_t type_node = dp_objmemb(message, "type");
-        datanode_t lookup    = dp_lookup(type_node, "enum TrainerMessageType");
-        if (lookup.type != DATAPROC_T_MAPPED) continue;
-
-        const char *type  = dp_string(type_node);
-        const char *id    = strfmt("FrontierTrainerMessages_Text_%s_%s", stem, type);
-        if      (dp_hasmemb(message, "en_US"))   bank_push(T_TRAINER_MESSAGES, id, dp_objmemb(message, "en_US"));
-        else if (dp_hasmemb(message, "garbage")) bank_push(T_TRAINER_MESSAGES, id, dp_u64(dp_objmemb(message, "garbage")));
-        else {
-            dp_warn(&message, "expected exactly one of either 'en_US' or 'garbage'; preferring 'en_US'");
+        if (!dp_missing(text)) {
+            TextBank_PushNode(T_TRAINER_MESSAGES, text,
+                              "FrontierTrainerMessages_Text_%s_%s", stem, kind);
+        } else if (!dp_missing(garbage)) {
+            TextBank_PushGarbage(T_TRAINER_MESSAGES, dp_u64(garbage),
+                                 "FrontierTrainerMessages_Text_%s_%s", stem, kind);
+        } else {
+            dp_error(message, "expected exactly one of 'en_US' or 'garbage'");
         }
     }
 }
 
-static FILE **f_trainer_classes = &headers[0].out_file;
+int main(int argc, char **argv)
+{
+    Driver_Init(&driver, argc, argv);
 
-static void emit_trainer_classes(datafile_t *df, size_t trainer_idx) {
-    const char *trainer_class = string(".class");
+    // Process sets first; trainers refer to Pokémon sets by name.
+    for (EachEntry(entry, Entries_FromList(setsFile, "%s/pokemon/%s.json", baseDir))) {
+        if (numSets == NELEMS(sets)) Driver_Fail("%s: more than %zu Pokémon sets", setsFile, NELEMS(sets));
 
-    if (trainer_idx < FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL) {
-        fprintf(*f_trainer_classes, "    %s,\n", trainer_class);
-    }
-}
-
-static int sort_strcmp(const void *lhs, const void *rhs) {
-    const lookup_t *l = lhs;
-    const lookup_t *r = rhs;
-
-    if (l->def == NULL && r->def == NULL) return 0;
-    else if (l->def == NULL) return 1;
-    else if (r->def == NULL) return -1;
-
-    return strcmp(l->def, r->def);
-}
-
-static void usage(const char *fmt, ...);
-
-static void parse_args(int *pargc, char ***pargv) {
-    program_name = (*pargv)[0];
-    opterr       = 0;
-
-    int c = 0;
-    while ((c = getopt(*pargc, *pargv, ":o:t:s:M:h")) != -1) {
-        switch (c) {
-        case 'o': output_dir       = optarg; break;
-        case 'M': depfile_fpath    = optarg; break;
-
-        case 'h': usage(NULL);                                 break;
-        case ':': usage("missing argument for '-%c'", optopt); break;
-        default:  usage("unknown option '-%c'", optopt);     break;
-        }
+        ProcPokemonSet(entry.root);
+        sets[numSets++] = (dp_symbol){ .value = (long)entry.index, .name = entry.name };
     }
 
-    *pargc -= optind;
-    *pargv += optind;
-    if (*pargc < 1) usage("missing required argument BASEDIR");
+    Lookups_Register(L_POKEMON_SET, sets, numSets);
 
-    base_dir = (*pargv)[0];
-}
-
-static void usage(const char *fmt, ...) {
-    FILE *f = stdout;
-    if (fmt != NULL) {
-        f = stderr;
-
-        va_list args;
-        va_start(args, fmt);
-        fputs(program_name, f);
-        fputs(": ", f);
-        vfprintf(f, fmt, args);
-        fputc('\n', f);
-        va_end(args);
+    for (EachEntry(entry, Entries_FromEnum(enumFile, "FrontierTrainerID", "FRONTIER_TRAINER_", "%s/data/%s.json", baseDir))) {
+        ProcTrainer(entry.root, entry.index);
+        ProcText(entry.root, entry.stem);
     }
 
-#define fputf(fmt, ...) fprintf(f, fmt, __VA_ARGS__)
-    fputf("usage: %s [-M DEPFILE] [-o OUTDIR] BASEDIR\n", program_name);
-    fputs("\n", f);
-    fputs("options:\n", f);
-    fputs("  -o OUTDIR    Write output files to OUTDIR. Does not affect DEPFILE.\n", f);
-    fputs("               Defaults to the current working directory.\n", f);
-    fputs("  -M DEPFILE   Specify the full path to an output dependency file.\n", f);
-    fputs("               Defaults to 'frontier_data.d'.\n", f);
-#undef fputf
-
-    exit(f == stdout ? EXIT_SUCCESS : EXIT_FAILURE);
+    return Driver_Finish(&driver);
 }

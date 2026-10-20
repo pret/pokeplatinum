@@ -44,6 +44,7 @@ underground_map_transition_narc = custom_target('underground_map_transition.narc
     output: [
         'underground_map_transition.narc',
         'underground_map_transition.naix',
+        'underground_map_transition.recs',
     ],
     input: [
         ncgrs_4bpp,

@@ -2,207 +2,204 @@
 #define DATAPROC_COMMON_H
 
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
-#include <stdio.h>
+#include <stdnoreturn.h>
+
+#define FORMATTER(fmt_i, args_i) __attribute__((format(printf, fmt_i, args_i)))
+#define CLEANUP(fn)              __attribute__((cleanup(fn)))
 
 #include "dataproc.h"
-#include "libenum.h"
-#include "nitroarc.h"
 
-#define countof(_a)  (sizeof(_a)/sizeof(*(_a)))
-#define lengthof(_s) (countof(_s) - 1)
+// Zeroed allocation: `count` of elements, `size` of each element in bytes. If
+// at least one of `count` or `size` == 0, returns NULL. Aborts on an allocation
+// failure.
+void* Zalloc(size_t count, size_t size);
 
-#define POKEPLATINUM_GENERATED_ENUM
-#define POKEPLATINUM_GENERATED_LOOKUP
-#define POKEPLATINUM_GENERATED_LOOKUP_IMPL
+// ==================================== CLI ====================================
 
-// Make sure that we don't walk into "narc.h", which contains references to the Nitro
-// stuff that we don't care about in these tools.
-#define POKEPLATINUM_NARC_H
-typedef struct NARC NARC;
+enum OptionKind {
+    OPTION_KIND_END = 0,
+    OPTION_KIND_VALUE,
+    OPTION_KIND_SWITCH,
+    OPTION_KIND_HANDLER,
+};
 
-#define ALIGN_4 __attribute__((aligned(4)))
+typedef struct Option {
+    char         flag;    // positional args set 0
+    const char  *metavar;
+    const char  *help;
 
-#define include_defs(filename, prefix) { .from_file = filename, .with_prefix = prefix, .for_type = prefix, .from_defs = true }
-#define include_enum(filename, type)   { .from_file = filename, .for_type = type }
+    enum OptionKind kind;
+    union {
+        const char **value;
+        bool        *set;
+        void       (*handler)(const char *arg);
+    };
+} Option;
 
-#define dp_regmetang(type) dp_register((lookup_t *)lookup__##type, lengthof__##type, #type)
+// Use these macros to define your CLI. Not using them is treated as undefined
+// behavior for the parser.
+#define OPTION_VALUE(f, meta, target, h) { .flag = (f), .metavar = (meta), .help = (h), .kind = OPTION_KIND_VALUE,   .value   = (target) }
+#define OPTION_SWITCH(f, target, h)      { .flag = (f),                    .help = (h), .kind = OPTION_KIND_SWITCH,  .set     = (target) }
+#define OPTION_HANDLER(f, meta, fn, h)   { .flag = (f), .metavar = (meta), .help = (h), .kind = OPTION_KIND_HANDLER, .handler = (fn)     }
+#define POSITIONAL(meta, target, h)      {              .metavar = (meta), .help = (h), .kind = OPTION_KIND_VALUE,   .value   = (target) }
 
-typedef int8_t   s8;
-typedef int16_t  s16;
-typedef int32_t  s32;
-typedef int64_t  s64;
-typedef uint8_t  u8;
-typedef uint16_t u16;
-typedef uint32_t u32;
-typedef uint64_t u64;
+// Issue a CLI failure with a formatted message and usage, then abort.
+noreturn void CLI_Fail(const char *fmt, ...) FORMATTER(1, 2);
 
-#define BOOL  bool
-#define TRUE  true
-#define FALSE false
+// ================================== LOOKUPS ==================================
 
-#define maxbit(bits)           ((1 << bits) - 1)
-#define boolean(path)          (dp_bool(dp_get(df, path)))
-#define u8(path)               (dp_u8(dp_get(df, path)))
-#define u16(path)              (dp_u16(dp_get(df, path)))
-#define u32(path)              (dp_u32(dp_get(df, path)))
-#define s8(path)               (dp_s8(dp_get(df, path)))
-#define u8_maxbits(path, bits) (u8)(dp_u8range(dp_get(df, path), 0, maxbit(bits)) & maxbit(bits))
-#define enum_u8(path, type)    (dp_u8(dp_lookup(dp_get(df, path), #type)))
-#define enum_u16(path, type)   (dp_u16(dp_lookup(dp_get(df, path), #type)))
-#define string(path)           (dp_string(dp_get(df, path)))
+typedef struct Lookup {
+    const char *file;
+    const char *type;
+    bool        defines;
+} Lookup;
 
-// Template-struct for an enum-based lookup-table to be used for type-checking
-// string identifiers. Provide the base filename and the type-name that should
-// be used for reporting errors. Optionally, provide a prefix to filter the
-// values that are loaded from the input file.
+#define LOOKUP_ENUM(f, t)         { .file = (f), .type = (t) }
+#define LOOKUP_DEFINES(f, prefix) { .file = (f), .type = (prefix), .defines = true }
+
+// Register a lookup-table built at run-time, e.g., from loaded data. The type,
+// array, and symbol names are copied, so inputs may be temporary. If `type` is
+// already registered or a name appears twice, then the run terminates.
+void Lookups_Register(const char *type, const dp_symbol *symbols, size_t count);
+
+// ================================== OUTPUTS ==================================
+
+enum TextFileWrap {
+    TEXT_FILE_WRAP_NONE = 0,
+    TEXT_FILE_WRAP_GUARD,
+    TEXT_FILE_WRAP_TEMPLATE,
+};
+
+typedef struct Archive    { const char *filename;                         } Archive;
+typedef struct TextFile   { const char *filename; enum TextFileWrap wrap; } TextFile;
+typedef struct BinaryFile { const char *filename;                         } BinaryFile;
+typedef struct TextBank   { const char *filename; int key;                } TextBank;
+
+// Output filenames are read when outputs are written (in `Driver_Finish`), so a
+// driver may rename an output after `Driver_Init`, e.g. to apply a CLI prefix.
+// This is not true for a `TEXT_FILE_WRAP_TEMPLATE` file's template, whch is
+// loaded by name during `Driver_Init`.
+typedef struct Outputs {
+    Archive    *archives;
+    TextFile   *textFiles;
+    BinaryFile *binaryFiles;
+    TextBank   *textBanks;
+} Outputs;
+
+void Archive_Pack(int id, const void *data, size_t size);
+void TextFile_Printf(int id, const char *fmt, ...) FORMATTER(2, 3);
+void BinaryFile_Write(int id, const void *data, size_t size);
+void TextBank_PushNode(int id, dp_node content, const char *idFmt, ...) FORMATTER(3, 4);
+void TextBank_PushString(int id, const char *content, const char *idFmt, ...) FORMATTER(3, 4);
+void TextBank_PushLines(int id, const char *const *lines, size_t count, const char *idFmt, ...) FORMATTER(4, 5);
+void TextBank_PushGarbage(int id, uint64_t size, const char *idFmt, ...) FORMATTER(3, 4);
+
+// =================================== DRIVER ==================================
+
+typedef struct Driver {
+    const char *depfile;
+    Option     *options;
+    Lookup     *lookups;
+    Outputs     outputs;
+} Driver;
+
+void          Driver_Init(Driver *driver, int argc, char **argv);
+dp_file*      Driver_Load(const char *pathFmt, ...) FORMATTER(1, 2);
+void          Driver_Close(dp_file *file);
+noreturn void Driver_Fail(const char *fmt, ...) FORMATTER(1, 2);
+
+// Report any errors encountered during processing, then write output-files if
+// none were encountered. Driver implementations should skip additional errors
+// for the same root-cause wherever possible. For instance, if an accessor
+// function for a string returns `NULL` (because, for instance, an object is
+// missing a particular member key), do not report another error in the calling
+// function; just return.
+int Driver_Finish(Driver *driver);
+
+// Free `p` when the driver-run completes, after the context has been freed. This
+// is for anything that must live until the end of the run, e.g.:
 //
-// When `from_defs` is set to `true`, the lookup-table will be generated from
-// `#define`d constants rather than `enum` members.
-typedef struct enum_template enum_template_t;
-struct enum_template {
-    const char *from_file;
-    const char *with_prefix;
-    const char *for_type;
+// - Symbol names
+// - String pools
+// - Entry names and stems
+// - Record buffers
+// - etc.
+void* Driver_Keep(void *p);
 
-    bool from_defs;
-};
+// ================================== ENTRIES ==================================
 
-// Template-struct for an archive to be written. Specify the output filename
-// and the expected number of files, as well as if you want a named or stripped
-// archive.
-typedef struct archive_template archive_template_t;
-struct archive_template {
-    nitroarc_packer_t packer;
+typedef struct Entry {
+    size_t      index;   // Position in the source file.
+    const char *name;    // The full name of the entry.
+    const char *stem;    // `name`, but lowercased. In Entries_FromEnum, also strips `prefix`.
+    dp_node     root;    // The processed root node.
+    bool        hasData; // When `false`, there is no accompanying data file,
+                         // but there is no error.
+} Entry;
+typedef struct Entries Entries;
 
-    const char *out_filename;
-    uint16_t    num_files;
-    unsigned    named;
-    unsigned    stripped;
-};
+// Read entries from an enum definition. pathFmt always receives exactly (baseDir, stem).
+Entries* Entries_FromEnum(const char *file, const char *enumName, const char *prefix,
+                          const char *pathFmt, const char *baseDir);
 
-// Template-struct for a header file to be written. Specify the output filename
-// and an optional header and footer for the content.
-typedef struct header_template header_template_t;
-struct header_template {
-    const char *out_filename;
-    FILE       *out_file;
-    char       *header;
-    char       *footer;
-};
+// Read entries from plain-text lines. pathFmt always receives exactly (baseDir, stem).
+Entries* Entries_FromList(const char *file, const char *pathFmt, const char *baseDir);
 
-// Template-struct for an output text bank to be written. Specify the output
-// filename.
-typedef struct textbank_template textbank_template_t;
-struct textbank_template {
-    int         key;
-    const char *out_filename;
-    FILE       *out_file;
-    datafile_t  df;
-    datanode_t  root;
-};
+// `fn` is a function which returns `true` if the named entry *should* have data
+// fields, or `false` if it is to be ignored by any data-processing routines.
+Entries* Entries_Filter(Entries *entries, bool (*fn)(const char *name));
 
-// Common initialization routine. Instantiate requested lookup-tables and
-// prepare requested outputs. Output header-files will also search the data
-// directory for a file with ".template" suffixed to the output's basename.
-//
-// `pre_init_hook`, when provided, will be called after the base library is
-// initialized, but before any requests are fulfilled.
-//
-// `post_init_hook`, when provided, will be called as the function exits, after
-// all requests have been fulfilled.
-void common_init(
-    enum format          format,
-    enum_template_t     *lookups,
-    archive_template_t  *archives,
-    header_template_t   *headers,
-    textbank_template_t *textbanks,
-    const char          *source_name,
-    const char          *depfile_name,
-    const char          *output_dir,
-    void               (*pre_init_hook)(void),
-    void               (*post_init_hook)(void)
-);
+// Pick out the next entry from entries, closing any currently-open entry.
+// Returns false when called while there are no entries remaining.
+bool Entries_Next(Entries *entries, Entry *entry);
 
-typedef bool (*enum_member_filter_t)(const char*);
+// Close the entries iterator.
+void Entries_Close(Entries *entries);
 
-typedef struct initenum_params initenum_params_t;
-struct initenum_params {
-    const char *sourcefile; // Full path of the calling source-file.
-    const char *basefile;   // Full path of the input file.
-    const char *enumname;   // Name of the enum to be loaded (minus the `enum` prefix).
-    const char *depfile;    // Basename of the output dep-file.
-    const char *outdir;     // Path of the output directory.
-    enum format format;     // The dataproc format to use for parsing.
+static inline void Entries_Release(Entries **entries) { Entries_Close(*entries); }
 
-    u16 extra_files; // A count of extra files to expect that do not correspond to the base enum.
+// for (EachEntry(entry, entries)) { ... }
+// `break`, `continue`, and `return` are safe to use and act as one would expect: the
+// Entries structure is closed however the loop exits.
+#define EachEntry(entry, entries)                                  \
+    Entries *entries_##entry CLEANUP(Entries_Release) = (entries), \
+    *once_##entry = entries_##entry;                               \
+    once_##entry;                                                  \
+    once_##entry = NULL)                                           \
+        for (Entry entry; Entries_Next(entries_##entry, &entry);
 
-    void (*hook_before)(void); // Hook to execute after initializing `dataproc` and before any requests are fulfilled.
-    void (*hook_after)(void);  // Hook to execute after all requests have been fulfilled.
+// ================================== RECORDS ==================================
 
-    enum_template_t     *enums;     // Requested constants to be loaded for processing data files.
-    archive_template_t  *archives;  // Requested archives to be created as output.
-    header_template_t   *headers;   // Requested headers to be created as output.
-    textbank_template_t *textbanks; // Requested text-banks to be created as output.
+typedef struct Record  { const char *filename; const char *id; } Record;
+typedef struct Records { size_t count; const Record *items;    } Records;
 
-    // A filter-expression against an enum-member. If this function evaluates to `true` for a given
-    // enum-member's name, then that member should be counted as part of the primary output archives.
-    enum_member_filter_t filter;
-};
+Records Records_Load(const char *filename);
 
-#define common_initenum(filename, enum_name, ...) \
-    (_common_initenum((initenum_params_t){ .basefile = filename, .enumname = enum_name, __VA_ARGS__ }))
-enum_seq_t _common_initenum(initenum_params_t params);
+// ================================== STRINGS ==================================
 
-// Common completion routine. Write the footer-content for each output header,
-// seal the initialized archives, and dump everything to disk.
-//
-// `addl_done_hook`, when provided, will be called right before the routine
-// completes, and any failure-code returned by it will propagate into the return
-// for this function.
-int common_done(int errc, int (*addl_done_hook)(void));
+// Format a string as printf does. Must be freed by the caller.
+char* String_Format(const char *fmt, ...) FORMATTER(1, 2);
 
-// Declare an additional dependency for the output files.
-void declare_dep(const char *filename);
+// Uppercase the input string. Must be freed by the caller.
+char* String_ToUpper(const char *s);
 
-#define BUFSIZE 256
-#define strfmt(fmt, ...) (snprintf(buf, BUFSIZE, fmt, __VA_ARGS__), buf)
+// Lowercase the input string. Must be freed by the caller.
+char* String_ToLower(const char *s);
 
-char* strremove(char *s, const char *sub);
-char* strreplace(char *s, char r, char c);
-char* strreplstr(const char *s, const char *repl, const char *with);
-char* strupper(const char *s);
-char* strlower(const char *s);
-char* strjoin(const char *s, const char *with, const char *sep);
+// Count the number of displayed UTF-8 characters (not the number of bytes).
+size_t String_CountChars(const char *s);
 
-void  splitenv(const char *name, char ***target, size_t *target_len, const char **extra, size_t extra_len);
-char* fload(const char *filename, size_t *out_size);
-char* pathjoin(const char *basedir, const char *subdir, const char *file);
-char* guardify(const char *path);
+// Test if a given string ends with `suffix`.
+bool String_EndsWith(const char *s, const char *suffix);
 
-int fdump_blob(const void *data, size_t size, const char *dest);
-int fdump_narc(nitroarc_packer_t *p, const char *dest, bool ok);
-int fdump_blobnarc(const void *data, u32 size, const char *dest);
+// Safe duplicator. Aborts on allocation failure.
+char* String_Dupe(const char *s);
 
-nitroarc_packer_t init_narc(u16 num_files, bool named, bool stripped);
+// =============================== COMMON HELPERS ==============================
 
-void bank_pushnode(datanode_t *root, const char *id, datanode_t content);
-void bank_pushraw(datanode_t *root, const char *id, const char *content);
-void bank_pushgarbage(datanode_t *root, const char *id, uint64_t size);
-void bank_pushlines(datanode_t *root, const char *id, ...);
-
-#define bank_push(bank, id, content)      \
-    _Generic((content),                   \
-        char *:       bank_pushraw,       \
-        const char *: bank_pushraw,       \
-        datanode_t:   bank_pushnode,      \
-        int:          bank_pushgarbage,   \
-        int64_t:      bank_pushgarbage,   \
-        uint64_t:     bank_pushgarbage    \
-    )(&textbanks[bank].root, id, content)
-
-#define bank_pushm(bank, id, ...) bank_pushlines(&textbanks[bank].root, id, __VA_ARGS__, NULL)
-
-bool order_subfile(const char *basename, const char *subfile, FILE *f_order);
+// Extract the string-value of a node, or return "BAD_SYMBOL" if it's invalid.
+const char* Symbol_Name(dp_node node);
 
 #endif // DATAPROC_COMMON_H

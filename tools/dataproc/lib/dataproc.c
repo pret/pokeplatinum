@@ -1,7 +1,10 @@
+#define _GNU_SOURCE // vasprintf, asprintf, strndup
+
 #include "dataproc.h"
 
 #include <assert.h>
 #include <errno.h>
+#include <inttypes.h>
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stddef.h>
@@ -10,61 +13,59 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "json.h"
-#include "private.h"
+#include "dataproc_backend.h"
 
-static int           (*read_func)(datafile_t *df) = NULL;
-static void          (*free_func)(datafile_t *df) = NULL;
-static void*         (*get_root_func)(void *ctx) = NULL;
-static enum nodetype (*get_type_func)(void *node) = NULL;
-static span_t        (*get_span_func)(void *node) = NULL;
-static bool          (*get_bool_func)(void *node) = NULL;
-static int           (*get_int_func)(void *node) = NULL;
-static int64_t       (*get_i64_func)(void *node) = NULL;
-static uint64_t      (*get_u64_func)(void *node) = NULL;
-static double        (*get_float_func)(void *node) = NULL;
-static const char*   (*get_string_func)(void *node) = NULL;
-static size_t        (*get_length_func)(void *node) = NULL;
-static void*         (*get_elem_func)(void *arr, size_t i) = NULL;
-static void*         (*get_memb_func)(void *obj, const char *k) = NULL;
+#define HL_BOLD_CYAN    "\033[1;36m" // bold + cyan
+#define HL_BOLD_YELLOW  "\033[1;33m" // bold + yellow
+#define HL_BOLD_RED     "\033[1;31m" // bold + red
+#define HL_BOLD_DEFAULT "\033[1;39m" // bold + default color
+#define HL_RESET        "\033[0m"    // clear all formatting
 
-static int   (*new_func)(datafile_t *df) = NULL;
-static char* (*dump_func)(datafile_t *df) = NULL;
-static void* (*set_root_arr_func)(void *ctx) = NULL;
-static bool  (*arr_app_bool_func)(void *ctx, void *node, bool v) = NULL;
-static bool  (*arr_app_int_func)(void *ctx, void *node, int64_t v) = NULL;
-static bool  (*arr_app_uint_func)(void *ctx, void *node, uint64_t v) = NULL;
-static bool  (*arr_app_float_func)(void *ctx, void *node, double v) = NULL;
-static bool  (*arr_app_string_func)(void *ctx, void *node, const char *v) = NULL;
-static void* (*arr_app_array_func)(void *ctx, void *node) = NULL;
-static void* (*arr_app_object_func)(void *ctx, void *node) = NULL;
-static void* (*set_root_obj_func)(void *ctx) = NULL;
-static bool  (*obj_put_bool_func)(void *ctx, void *node, const char *k, bool v) = NULL;
-static bool  (*obj_put_int_func)(void *ctx, void *node, const char *k, int64_t v) = NULL;
-static bool  (*obj_put_uint_func)(void *ctx, void *node, const char *k, uint64_t v) = NULL;
-static bool  (*obj_put_float_func)(void *ctx, void *node, const char *k, double v) = NULL;
-static bool  (*obj_put_string_func)(void *ctx, void *node, const char *k, const char *v) = NULL;
-static void* (*obj_put_array_func)(void *ctx, void *node, const char *k) = NULL;
-static void* (*obj_put_object_func)(void *ctx, void *node, const char *k) = NULL;
-
-static const char *hl_note     = "\033[1;36m"; // bold + cyan
-static const char *hl_warning  = "\033[1;33m"; // bold + yellow
-static const char *hl_error    = "\033[1;31m"; // bold + red
-static const char *hl_emphasis = "\033[1;39m"; // bold + default color
-static const char *hl_reset    = "\033[0m";    // clear all formatting
-
-#define REGISTRY_SIZE 64
-
-typedef struct regentry regentry_t;
+typedef struct regentry regentry;
 struct regentry {
     const char *type;
-    lookup_t *table;
+    dp_symbol *table;
     size_t size;
 };
 
-static regentry_t registry[REGISTRY_SIZE] = { 0 };
+struct dp_ctx {
+    const char *hl_note;
+    const char *hl_warning;
+    const char *hl_error;
+    const char *hl_emphasis;
+    const char *hl_reset;
 
-static int slurp(datafile_t *df, const char *filename);
+    const dp_reader *reader;
+
+    FILE     *stream;
+    regentry *registry;
+    size_t    registry_len;
+    size_t    registry_cap;
+};
+
+struct dp_diagnostic {
+    dp_span     span;
+    const char *message;
+
+    enum dp_level  level;
+    dp_diagnostic *next;
+};
+
+struct dp_file {
+    const char *filename;
+    const char *source;
+    size_t      size;
+
+    dp_diagnostic *diag_head;
+    dp_diagnostic *diag_tail;
+
+    const dp_reader *reader;
+    const dp_writer *writer;
+
+    dp_ctx *ctx;
+    void   *doc;
+    void   *pool;
+};
 
 // ======================================= POOL ALLOCATOR ======================================= //
 
@@ -136,26 +137,26 @@ static void pool_free(mempool_t *pool) {
 
 // ========================================= DIAGNOSTICS ======================================== //
 
-#define DIAGSIZE 255
+static char* make_node_diagnostic(dp_node *dn, const char *fmt, va_list args) {
+    char *body = NULL, *message = NULL;
+    if (vasprintf(&body, fmt, args) < 0) abort();
 
-static char* make_node_diagnostic(datanode_t *dn, const char *fmt, va_list args) {
-    size_t pathlen = strlen(dn->path); // prepend the node's path and a colon
-    char  *message = malloc(DIAGSIZE + pathlen + 3);
-    memcpy(message, dn->path, pathlen);
-    message[pathlen + 0] = ':';
-    message[pathlen + 1] = ' ';
-    vsnprintf(message + pathlen + 2, DIAGSIZE + 1, fmt, args);
+    if (dn->path) {
+        if (asprintf(&message, "%s: %s", dn->path, body) < 0) abort();
+        free(body);
+    } else {
+        message = body;
+    }
 
     return message;
 }
 
-static void push_diagnostic(datafile_t *df, span_t span, enum diaglevel level, const char *message) {
-    diagnostic_t *next = malloc(sizeof(*next));
+static void push_diagnostic(dp_file *df, dp_span span, enum dp_level level, const char *message) {
+    dp_diagnostic *next = malloc(sizeof(*next));
     next->span         = span;
     next->message      = message;
     next->level        = level;
     next->next         = NULL;
-    next->prev         = df->diag_tail;
 
     if (df->diag_tail == NULL) {
         df->diag_head = next;
@@ -166,139 +167,186 @@ static void push_diagnostic(datafile_t *df, span_t span, enum diaglevel level, c
     }
 }
 
-void dp_error(datanode_t *dn, const char *fmt, ...) {
+#define dp_diag(level)                                                               \
+    do {                                                                             \
+        if (dn.type == DP_ERROR) return;                                             \
+                                                                                     \
+        va_list args;                                                                \
+        va_start(args, fmt);                                                         \
+        dp_span span = dn.file->reader                                               \
+                     ? dn.file->reader->span(dn.node)                                \
+                     : (dp_span){ 0 };                                               \
+        push_diagnostic(dn.file, span, level, make_node_diagnostic(&dn, fmt, args)); \
+        va_end(args);                                                                \
+    } while (0)
+
+void dp_error(dp_node dn, const char *fmt, ...) { dp_diag(DP_LEVEL_ERROR);   }
+void dp_warn(dp_node dn, const char *fmt, ...)  { dp_diag(DP_LEVEL_WARNING); }
+void dp_note(dp_node dn, const char *fmt, ...)  { dp_diag(DP_LEVEL_NOTE);    }
+
+static void file_error_span(dp_file *f, dp_span span, const char *fmt, va_list args) {
+    char *message = NULL;
+    if (vasprintf(&message, fmt, args) < 0) abort();
+    push_diagnostic(f, span, DP_LEVEL_ERROR, message);
+}
+
+void dp_file_error(dp_file *f, const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    push_diagnostic(dn->file, get_span_func(dn->node), DIAG_ERROR, make_node_diagnostic(dn, fmt, args));
+    file_error_span(f, (dp_span){ 0 }, fmt, args);
     va_end(args);
 }
 
-void dp_warn(datanode_t *dn, const char *fmt, ...) {
+void dp_file_error_span(dp_file *f, dp_span span, const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    push_diagnostic(dn->file, get_span_func(dn->node), DIAG_WARNING, make_node_diagnostic(dn, fmt, args));
-    va_end(args);
-}
-
-void dp_note(datanode_t *dn, const char *fmt, ...) {
-    va_list args;
-    va_start(args, fmt);
-    push_diagnostic(dn->file, get_span_func(dn->node), DIAG_NOTE, make_node_diagnostic(dn, fmt, args));
-    va_end(args);
-}
-
-void dp_gerror(datafile_t *df, size_t beg, size_t end, const char *errfmt, ...) {
-    va_list args;
-    va_start(args, errfmt);
-
-    char *message = malloc(DIAGSIZE + 1);
-    vsnprintf(message, DIAGSIZE + 1, errfmt, args);
-    push_diagnostic(df, (span_t){ beg, end }, DIAG_ERROR, message);
-
+    file_error_span(f, span, fmt, args);
     va_end(args);
 }
 
 // ======================================= IMPLEMENTATION ======================================= //
 
-int dp_init(enum format format) {
+#define assert_reader(reader)                                             \
+    do {                                                                  \
+        assert(reader && "reader pointer must not be NULL");              \
+        assert(reader->parse && "reader must be fully implemented");      \
+        assert(reader->free && "reader must be fully implemented");       \
+        assert(reader->root && "reader must be fully implemented");       \
+        assert(reader->type && "reader must be fully implemented");       \
+        assert(reader->span && "reader must be fully implemented");       \
+        assert(reader->get_bool && "reader must be fully implemented");   \
+        assert(reader->get_int && "reader must be fully implemented");    \
+        assert(reader->get_uint && "reader must be fully implemented");   \
+        assert(reader->get_float && "reader must be fully implemented");  \
+        assert(reader->get_string && "reader must be fully implemented"); \
+        assert(reader->arr_len && "reader must be fully implemented");    \
+        assert(reader->arr_at && "reader must be fully implemented");     \
+        assert(reader->obj_at && "reader must be fully implemented");     \
+    } while (0)
+
+#define assert_writer(writer)                                              \
+    do {                                                                   \
+        assert(writer && "writer pointer must not be NULL");               \
+        assert(writer->create && "writer must be fully implemented");      \
+        assert(writer->free && "writer must be fully implemented");        \
+        assert(writer->dump && "writer must be fully implemented");        \
+        assert(writer->new_array && "writer must be fully implemented");   \
+        assert(writer->new_object && "writer must be fully implemented");  \
+        assert(writer->push_bool && "writer must be fully implemented");   \
+        assert(writer->push_int && "writer must be fully implemented");    \
+        assert(writer->push_uint && "writer must be fully implemented");   \
+        assert(writer->push_float && "writer must be fully implemented");  \
+        assert(writer->push_string && "writer must be fully implemented"); \
+        assert(writer->push_array && "writer must be fully implemented");  \
+        assert(writer->push_object && "writer must be fully implemented"); \
+        assert(writer->put_bool && "writer must be fully implemented");    \
+        assert(writer->put_int && "writer must be fully implemented");     \
+        assert(writer->put_uint && "writer must be fully implemented");    \
+        assert(writer->put_float && "writer must be fully implemented");   \
+        assert(writer->put_string && "writer must be fully implemented");  \
+        assert(writer->put_array && "writer must be fully implemented");   \
+        assert(writer->put_object && "writer must be fully implemented");  \
+    } while (0)
+
+dp_ctx* dp_ctx_new(const dp_reader *reader) {
+    assert_reader(reader);
+
+    dp_ctx *ctx = calloc(1, sizeof(dp_ctx));
+    if (!ctx) return NULL;
+
     const char *nocolor = getenv("NO_COLOR");
-    if (nocolor != NULL && nocolor[0] != 0) {
-        hl_error    = "";
-        hl_emphasis = "";
-        hl_reset    = "";
+    dp_ctx_set_color(ctx, nocolor == NULL || nocolor[0] == 0);
+    dp_ctx_set_stream(ctx, stderr);
+
+    ctx->reader       = reader;
+    ctx->registry_len = 0;
+    ctx->registry_cap = 64;
+    ctx->registry     = calloc(ctx->registry_cap, sizeof(*ctx->registry));
+    if (!ctx->registry) {
+        free(ctx);
+        ctx = NULL;
     }
 
-    switch (format) {
-    case DATAPROC_F_JSON:
-        read_func       = json_read;
-        free_func       = json_free;
-        get_root_func   = json_get_root;
-        get_type_func   = json_get_type;
-        get_span_func   = json_get_span;
-        get_bool_func   = json_get_bool;
-        get_int_func    = json_get_int;
-        get_i64_func    = json_get_i64;
-        get_u64_func    = json_get_u64;
-        get_float_func  = json_get_float;
-        get_string_func = json_get_string;
-        get_length_func = json_get_length;
-        get_elem_func   = json_get_element;
-        get_memb_func   = json_get_member;
-
-        new_func            = json_new;
-        dump_func           = json_dump;
-        set_root_arr_func   = json_arr_new;
-        arr_app_bool_func   = json_arr_appbool;
-        arr_app_int_func    = json_arr_appint;
-        arr_app_uint_func   = json_arr_appuint;
-        arr_app_float_func  = json_arr_appfloat;
-        arr_app_string_func = json_arr_appstring;
-        arr_app_array_func  = json_arr_apparray;
-        arr_app_object_func = json_arr_appobject;
-        set_root_obj_func   = json_obj_new;
-        obj_put_bool_func   = json_obj_putbool;
-        obj_put_int_func    = json_obj_putint;
-        obj_put_uint_func   = json_obj_putuint;
-        obj_put_float_func  = json_obj_putfloat;
-        obj_put_string_func = json_obj_putstring;
-        obj_put_array_func  = json_obj_putarray;
-        obj_put_object_func = json_obj_putobject;
-
-        break;
-
-    default: return DATAPROC_E_UNKFORMAT;
-    }
-
-    assert(read_func && "read_func must be loaded");
-    assert(free_func && "free_func must be loaded");
-    assert(get_root_func && "get_root_func must be loaded");
-    assert(get_type_func && "get_type_func must be loaded");
-    assert(get_span_func && "get_span_func must be loaded");
-    assert(get_bool_func && "get_bool_func must be loaded");
-    assert(get_int_func && "get_int_func must be loaded");
-    assert(get_i64_func && "get_i64_func must be loaded");
-    assert(get_u64_func && "get_u64_func must be loaded");
-    assert(get_float_func && "get_float_func must be loaded");
-    assert(get_string_func && "get_string_func must be loaded");
-    assert(get_length_func && "get_length_func must be loaded");
-    assert(get_elem_func && "get_elem_func must be loaded");
-    assert(get_memb_func && "get_memb_func must be loaded");
-    assert(new_func && "new_func must be loaded");
-    assert(dump_func && "dump_func must be loaded");
-    assert(set_root_arr_func && "set_root_arr_func must be loaded");
-    assert(arr_app_bool_func && "arr_app_bool_func must be loaded");
-    assert(arr_app_int_func && "arr_app_int_func must be loaded");
-    assert(arr_app_uint_func && "arr_app_uint_func must be loaded");
-    assert(arr_app_float_func && "arr_app_float_func must be loaded");
-    assert(arr_app_string_func && "arr_app_string_func must be loaded");
-    assert(arr_app_array_func && "arr_app_array_func must be loaded");
-    assert(arr_app_object_func && "arr_app_object_func must be loaded");
-    assert(set_root_obj_func && "set_root_obj_func must be loaded");
-    assert(obj_put_bool_func && "obj_put_bool_func must be loaded");
-    assert(obj_put_int_func && "obj_put_int_func must be loaded");
-    assert(obj_put_uint_func && "obj_put_uint_func must be loaded");
-    assert(obj_put_float_func && "obj_put_float_func must be loaded");
-    assert(obj_put_string_func && "obj_put_string_func must be loaded");
-    assert(obj_put_array_func && "obj_put_array_func must be loaded");
-    assert(obj_put_object_func && "obj_put_object_func must be loaded");
-    return DATAPROC_E_NONE;
+    return ctx;
 }
 
-int dp_register(lookup_t *table, size_t size, const char *type) {
-    for (int i = 0; i < REGISTRY_SIZE; i++) {
-        regentry_t *entry = &registry[i];
-        if (entry->type == NULL) {
-            entry->type  = type;
-            entry->table = table;
-            entry->size  = size;
-            return DATAPROC_E_NONE;
+void dp_ctx_free(dp_ctx *ctx) {
+    for (size_t i = 0; i < ctx->registry_len; i++) {
+        free(ctx->registry[i].table);
+    }
+
+    free(ctx->registry);
+    free(ctx);
+}
+
+void dp_ctx_set_stream(dp_ctx *ctx, FILE *stream) {
+    ctx->stream = stream;
+}
+
+void dp_ctx_set_color(dp_ctx *ctx, bool enabled) {
+    if (enabled) {
+        ctx->hl_note     = HL_BOLD_CYAN;
+        ctx->hl_warning  = HL_BOLD_YELLOW;
+        ctx->hl_error    = HL_BOLD_RED;
+        ctx->hl_emphasis = HL_BOLD_DEFAULT;
+        ctx->hl_reset    = HL_RESET;
+    } else {
+        ctx->hl_note     = "";
+        ctx->hl_warning  = "";
+        ctx->hl_error    = "";
+        ctx->hl_emphasis = "";
+        ctx->hl_reset    = "";
+    }
+}
+
+static int compare_symbols_by_name(const void *a, const void *b) {
+    const dp_symbol *lhs = a;
+    const dp_symbol *rhs = b;
+    return strcmp(lhs->name, rhs->name);
+}
+
+bool dp_register(dp_ctx *ctx, const char *type, const dp_symbol *symbols, size_t count) {
+    for (size_t i = 0; i < ctx->registry_len; i++) {
+        regentry *entry = &ctx->registry[i];
+        if (strcmp(entry->type, type) == 0) return false;
+    }
+
+    if (ctx->registry_len == ctx->registry_cap) {
+        size_t    cap = ctx->registry_cap * 2;
+        regentry *tmp = realloc(ctx->registry, cap * sizeof(*tmp));
+        if (!tmp) return false;
+
+        ctx->registry_cap = cap;
+        ctx->registry     = tmp;
+    }
+
+    dp_symbol *copy = NULL;
+
+    if (count != 0) {
+        copy = calloc(count, sizeof(*copy));
+        if (!copy) return false;
+
+        memcpy(copy, symbols, sizeof(*copy) * count);
+        qsort(copy, count, sizeof(*copy), compare_symbols_by_name);
+        for (size_t i = 1; i < count; i++) {
+            if (strcmp(copy[i - 1].name, copy[i].name) == 0) {
+                free(copy);
+                return false;
+            }
         }
     }
 
-    return DATAPROC_E_REGFULL;
+    ctx->registry[ctx->registry_len] = (regentry){
+        .table = copy,
+        .size  = count,
+        .type  = type,
+    };
+
+    ctx->registry_len++;
+    return true;
 }
 
-static int slurp(datafile_t *df, const char *filename) {
+static bool slurp(dp_file *df, const char *filename) {
     assert(df && "df pointer must not be NULL");
     assert(filename && "filename must not be NULL");
 
@@ -307,26 +355,25 @@ static int slurp(datafile_t *df, const char *filename) {
 
     FILE *f = fopen(filename, "rb");
     if (f == NULL) {
-        dp_gerror(df, 0, 0, "could not open file '%s': %s", filename, strerror(errno));
-        return DATAPROC_E_FOPEN;
+        dp_file_error(df, "could not open file '%s': %s", filename, strerror(errno));
+        return false;
     }
 
     fseek(f, 0, SEEK_END);
     long fsize = ftell(f);
     fseek(f, 0, SEEK_SET);
 
-    if (fsize == 0) { fclose(f); return DATAPROC_E_NONE;  }
     if (fsize < 0)  {
-        dp_gerror(df, 0, 0, "invalid size for file '%s': %s", filename, strerror(errno));
+        dp_file_error(df, "invalid size for file '%s': %s", filename, strerror(errno));
         fclose(f);
-        return DATAPROC_E_FSIZE;
+        return false;
     }
 
     char *buf = malloc(fsize + 1);
     if (buf == NULL) {
-        dp_gerror(df, 0, 0, "allocation failure for file '%s': %s", filename, strerror(errno));
+        dp_file_error(df, "allocation failure for file '%s': %s", filename, strerror(errno));
         fclose(f);
-        return DATAPROC_E_ALLOC;
+        return false;
     }
 
     fread(buf, 1, fsize, f);
@@ -338,21 +385,76 @@ static int slurp(datafile_t *df, const char *filename) {
 
     assert(df->filename && "df should know its filename");
     assert(df->source && "df should point to file contents");
-    return DATAPROC_E_NONE;
+    return true;
 }
 
-int dp_load(datafile_t *df, const char *filename) {
-    df->pool = pool_new();
-    return slurp(df, filename) || read_func(df);
+static bool duplicate(dp_file *df, const char *name, const char *src, size_t len) {
+    char *buf = calloc(len + 1, sizeof(*df->source));
+    if (!buf) {
+        dp_file_error(df, "allocation failure duplicating source content");
+        return false;
+    }
+
+    memcpy(buf, src, len);
+    buf[len]     = '\0';
+    df->filename = name;
+    df->source   = buf;
+    df->size     = len;
+    return true;
 }
 
-void dp_free(datafile_t *df) {
-    assert(df && "df pointer must not be NULL");
+dp_file* dp_load(dp_ctx *ctx, const char *path) {
+    return dp_load_with(ctx, path, ctx->reader);
+}
 
-    free_func(df);
+dp_file* dp_load_with(dp_ctx *ctx, const char *path, const dp_reader *reader) {
+    assert(ctx && "ctx pointer must not be NULL");
+    assert(path && "path must not be NULL");
+    assert_reader(reader);
+
+    dp_file *df = calloc(1, sizeof(*df));
+    if (!df) return NULL;
+
+    df->pool   = pool_new();
+    df->ctx    = ctx;
+    df->reader = reader;
+
+    if (!slurp(df, path)) return df;
+
+    df->doc = reader->parse(df, df->source, df->size);
+    return df;
+}
+
+dp_file* dp_parse(dp_ctx *ctx, const char *name, const char *src, size_t len, const dp_reader *reader) {
+    assert(ctx && "ctx pointer must not be NULL");
+    assert(name && "name must not be NULL");
+    assert(src && "src content must not be NULL");
+    assert_reader(reader);
+
+    dp_file *df = calloc(1, sizeof(*df));
+    if (!df) return NULL;
+
+    df->pool   = pool_new();
+    df->ctx    = ctx;
+    df->reader = reader;
+
+    if (!duplicate(df, name, src, len)) return df;
+
+    df->doc = reader->parse(df, df->source, df->size);
+    return df;
+}
+
+void dp_close(dp_file *df) {
+    if (df == NULL) return;
+
+    if (df->doc) {
+        if (df->reader)      df->reader->free(df->doc);
+        else if (df->writer) df->writer->free(df->doc);
+    }
+
     free((char *)df->source);
 
-    diagnostic_t *curr = df->diag_head, *next = NULL;
+    dp_diagnostic *curr = df->diag_head, *next = NULL;
     while (curr != NULL) {
         next = curr->next;
         free((char *)curr->message);
@@ -361,11 +463,7 @@ void dp_free(datafile_t *df) {
     }
 
     pool_free(df->pool);
-
-    df->source    = NULL;
-    df->diag_head = NULL;
-    df->diag_tail = NULL;
-    df->pool      = NULL;
+    free(df);
 }
 
 typedef struct errpos errpos_t;
@@ -375,7 +473,7 @@ struct errpos {
     size_t line_head;
 };
 
-static errpos_t locate(datafile_t *df, diagnostic_t *perr) {
+static errpos_t locate(dp_file *df, dp_diagnostic *perr) {
     errpos_t    pos  = { .line = 1, .col = 1, .line_head = 0, };
     const char *p    = df->source;
 
@@ -393,37 +491,35 @@ static errpos_t locate(datafile_t *df, diagnostic_t *perr) {
     return pos;
 }
 
-#define HL_DIAG(...)     hl_diag, __VA_ARGS__, hl_reset
-#define HL_EMPHASIS(...) hl_emphasis, __VA_ARGS__, hl_reset
-#define max(cur, try)    cur < try ? try : cur
+#define HL_DIAG(...)     hl_diag, __VA_ARGS__, df->ctx->hl_reset
+#define HL_EMPHASIS(...) df->ctx->hl_emphasis, __VA_ARGS__, df->ctx->hl_reset
 
-enum diaglevel dp_report(datafile_t *df) {
+enum dp_level dp_report(dp_file *df) {
     assert(df && "df pointer must not be NULL");
 
-    if (!df->diag_head) return DIAG_EMPTY;
+    if (!df->diag_head) return DP_LEVEL_NONE;
 
-    enum diaglevel max_sev = DIAG_NOTE;
-    for (diagnostic_t *perr = df->diag_head; perr; perr = perr->next) {
-        max_sev = max(max_sev, perr->level);
+    enum dp_level max_sev = DP_LEVEL_NOTE;
+    for (dp_diagnostic *perr = df->diag_head; perr; perr = perr->next) {
+        if (perr->level > max_sev) max_sev = perr->level;
 
         const char *prefix = NULL, *hl_diag = NULL;
         switch (perr->level) {
-        case DIAG_NOTE:    prefix = "note:";    hl_diag = hl_note;    break;
-        case DIAG_WARNING: prefix = "warning:"; hl_diag = hl_warning; break;
-        case DIAG_ERROR:   prefix = "error:";   hl_diag = hl_error;   break;
-
-        case DIAG_EMPTY:   assert(false && "DIAG_EMPTY is an invalid level"); abort(); break;
+        case DP_LEVEL_NOTE:    prefix = "note:";    hl_diag = df->ctx->hl_note;    break;
+        case DP_LEVEL_WARNING: prefix = "warning:"; hl_diag = df->ctx->hl_warning; break;
+        case DP_LEVEL_ERROR:   prefix = "error:";   hl_diag = df->ctx->hl_error;   break;
+        case DP_LEVEL_NONE:    assert(false && "DP_LEVEL_NONE is an invalid level"); abort(); break;
         }
 
         if (perr->span.beg == 0 && perr->span.end == 0) {
-            fprintf(stderr, "%s%s:%s %s%s%s %s\n",
+            fprintf(df->ctx->stream, "%s%s:%s %s%s%s %s\n",
                     HL_EMPHASIS(df->filename),
                     HL_DIAG(prefix),
                     perr->message);
         }
         else {
             errpos_t pos = locate(df, perr);
-            fprintf(stderr, "%s%s:%zu:%zu:%s %s%s%s %s\n",
+            fprintf(df->ctx->stream, "%s%s:%zu:%zu:%s %s%s%s %s\n",
                     HL_EMPHASIS(df->filename, pos.line, pos.col),
                     HL_DIAG(prefix),
                     perr->message);
@@ -439,18 +535,18 @@ enum diaglevel dp_report(datafile_t *df) {
                 ? (int)(perr->span.end - perr->span.beg)
                 : (int)(line_tail - perr->span.beg);
             int len_suffix   = (int)(line_tail - pos.line_head - len_prefix - len_error);
-            fprintf(stderr, " %4zu | %.*s%s%.*s%s%.*s\n",
+            fprintf(df->ctx->stream, " %4zu | %.*s%s%.*s%s%.*s\n",
                     pos.line,
                     len_prefix, p,
                     HL_DIAG(len_error, p + len_prefix),
                     len_suffix, p + len_prefix + len_error);
-            fprintf(stderr, "      | ");
-            for (int i = 0; i < len_prefix; i++) fputc(' ', stderr);
-            fputs(hl_diag, stderr);
-            for (int i = 0; i < len_error; i++)  fputc('^', stderr);
-            fputs(hl_reset, stderr);
-            for (int i = 0; i < len_suffix; i++) fputc(' ', stderr);
-            fputc('\n', stderr);
+            fprintf(df->ctx->stream, "      | ");
+            for (int i = 0; i < len_prefix; i++) fputc(' ', df->ctx->stream);
+            fputs(hl_diag, df->ctx->stream);
+            for (int i = 0; i < len_error; i++)  fputc('^', df->ctx->stream);
+            fputs(df->ctx->hl_reset, df->ctx->stream);
+            for (int i = 0; i < len_suffix; i++) fputc(' ', df->ctx->stream);
+            fputc('\n', df->ctx->stream);
         }
     }
 
@@ -464,193 +560,247 @@ static inline bool is_word(char c) {
         || (c >= '0' && c <= '9');
 }
 
-static char* keytok2(const char *s) {
-    assert(s && "input string must not be NULL");
-    while (s && *s && is_word(*s)) s++;
-    return (char *)s;
+static bool queriable(enum dp_type type) {
+    return type == DP_ARRAY || type == DP_OBJECT;
 }
 
-#define MAX_TOKLEN (1 << 8)
-
-static bool queriable(enum nodetype type) {
-    return type == DATAPROC_T_ARRAY || type == DATAPROC_T_OBJECT;
-}
-
-static datanode_t dp_arrelem_internal(datanode_t dn, size_t i, bool error);
-static datanode_t dp_objmemb_internal(datanode_t dn, const char *k, bool error);
-
-static const char* typename(enum nodetype type) {
+static const char* typename(enum dp_type type) {
     switch (type) {
-    case DATAPROC_T_NONE:    return "(none)";
-    case DATAPROC_T_NULL:    return "a null-literal";
-    case DATAPROC_T_BOOLEAN: return "a boolean";
-    case DATAPROC_T_INT:     return "an integer";
-    case DATAPROC_T_FLOAT:   return "a float";
-    case DATAPROC_T_STRING:  return "a string";
-    case DATAPROC_T_ARRAY:   return "an array";
-    case DATAPROC_T_OBJECT:  return "an object";
-    case DATAPROC_T_MAPPED:  return "a mapped constant";
-    case DATAPROC_T_ERR:     return "(error)";
-    default:                 abort();
+    case DP_NULL:    return "a null-literal";
+    case DP_BOOL:    return "a boolean";
+    case DP_INT:     return "an integer";
+    case DP_FLOAT:   return "a float";
+    case DP_STRING:  return "a string";
+    case DP_ARRAY:   return "an array";
+    case DP_OBJECT:  return "an object";
+    case DP_SYMBOL:  return "a mapped constant";
+    case DP_ERROR:   return "(error)";
+    case DP_MISSING: return "(missing)";
+    default:         abort();
     }
 }
 
 enum queryerr {
-    DATAPROC_Q_OK = 0,
-    DATAPROC_Q_BADTOKEN,  // hit an unexpected token
-    DATAPROC_Q_RBRACE,    // missing a closing r-brace for array-accessor
-    DATAPROC_Q_ARRINDEX,  // array index is not a non-negative integer
+    DP_Q_OK = 0,
+    DP_Q_END,
+    DP_Q_MISSINGDOT, // missing a leading dot
+    DP_Q_BADTOKEN,   // hit an unexpected token
+    DP_Q_RBRACE,     // missing a closing r-brace for array-accessor
+    DP_Q_ARRINDEX,   // array index is not a non-negative integer
+    DP_Q_EMPTY,      // nothing to query
 };
 
 static const char* query_errmsg(enum queryerr code) {
     switch (code) {
-    case DATAPROC_Q_OK:       return "(query ok)";
-    case DATAPROC_Q_BADTOKEN: return "unexpected access-delimiting token";
-    case DATAPROC_Q_RBRACE:   return "missing closing-brace ']'";
-    case DATAPROC_Q_ARRINDEX: return "array index must be a non-negative integer";
-    default: abort();
+    case DP_Q_OK:         return "(query ok)";
+    case DP_Q_END:        return "(query end)";
+    case DP_Q_MISSINGDOT: return "missing a leading '.'";
+    case DP_Q_BADTOKEN:   return "unexpected access-delimiting token";
+    case DP_Q_RBRACE:     return "missing closing-brace ']'";
+    case DP_Q_ARRINDEX:   return "array index must be a non-negative integer";
+    case DP_Q_EMPTY:      return "empty query";
+    default:              abort();
     }
 }
 
-typedef struct querynode querynode_t;
-struct querynode {
-    bool is_object;
-    union {
-        const char *key;
-        size_t      idx;
-    };
-
-    querynode_t *next;
+typedef struct querystep querystep;
+struct querystep {
+    bool is_key;
+    const char *key;
+    size_t key_len;
+    size_t index;
 };
 
-static void free_query(querynode_t *q) {
-    querynode_t *curr = q, *next = NULL;
-    while (curr != NULL) {
-        next = curr->next;
-        free(curr);
-        curr = next;
+// Read one step of the query and return OK, END, or a syntax error
+static enum queryerr next_step(const char **q, querystep *out) {
+    assert(q && "q must not be NULL");
+    assert(*q && "*q must not be NULL");
+    assert(out && "out must not be NULL");
+
+    const char *p = *q;
+    *out = (querystep){ 0 };
+
+    if (*p == '\0') return DP_Q_END;
+
+    if (*p == '.') {
+        p++;
+
+        if (is_word(*p)) {
+            out->is_key  = true;
+            out->key     = p;
+
+            do { p++; out->key_len++; } while (is_word(*p));
+            *q = p;
+            return DP_Q_OK;
+        }
     }
+
+    if (*p == '[') {
+        p++;
+
+        out->is_key = false;
+
+        const char *s = p;
+        while (*p >= '0' && *p <= '9') {
+            int d = *p - '0';
+            out->index = out->index > (SIZE_MAX - d) / 10
+                       ? SIZE_MAX
+                       : out->index * 10 + d;
+
+            p++;
+        }
+
+        if (s == p)     return DP_Q_ARRINDEX; // no digits
+        if (*p == '\0') return DP_Q_RBRACE;   // missing brace
+        if (*p != ']')  return DP_Q_ARRINDEX; // non-numeric index
+
+        p++;
+
+        *q = p;
+        return DP_Q_OK;
+    }
+
+    return DP_Q_BADTOKEN;
 }
 
-static enum queryerr parse_query(char *path, querynode_t **out) {
-#define errout(ec) do { errc = ec; goto errcleanup; } while (0)
-
-    assert(path && "path query must not be NULL");
-    assert(out && "out pointer must not be NULL");
-
-    if (*path == '$') path++;
-
-    int errc = DATAPROC_Q_OK;
-    if (*path == '.' && *(path + 1) == 0) { // special case: "." returns the root
-        *out = NULL;
-        return errc;
-    }
-
-    querynode_t *head = calloc(1, sizeof(*head));
-    querynode_t *tail = head;
-
-    while (*path) {
-        char *start = path; // '.' or '['
-        char *token = path + 1;
-        char *delim = keytok2(token);
-
-        switch (*start) {
-        case '.':
-            tail->is_object = true;
-            tail->key       = token;
-            break;
-
-        case '[':
-            if (*delim != ']') errout(DATAPROC_Q_RBRACE);
-            tail->is_object = false;
-
-            char *end = NULL;
-            long  idx = strtol(token, &end, 10);
-            tail->idx = idx;
-
-            if (end != delim || idx < 0) errout(DATAPROC_Q_ARRINDEX);
-            break;
-
-        default: errout(DATAPROC_Q_BADTOKEN);
-        }
-
-        switch (*delim) {
-        case '\0': // fall-through
-        case '.':  // fall-through
-        case '[':  path = delim;     break;
-        case ']':  path = delim + 1; break;
-        default:   errout(DATAPROC_Q_BADTOKEN);
-        }
-
-        *start = 0;  // terminate the previous token (in case it's a key-string)
-        if (*path) { // setup for the next token, if needed
-            tail->next = calloc(1, sizeof(*tail->next));
-            tail       = tail->next;
-        }
-    }
-
-    *out = head;
-    return DATAPROC_Q_OK;
-
-#undef errout
-
-errcleanup:
-    free_query(head);
-    return errc;
-}
-
-static datanode_t dp_query(datafile_t *df, const char *path, bool error) {
-    assert(df && "df pointer must not be NULL");
-    assert(path && "path query must not be NULL");
-
-    datanode_t   dn      = { .file = df, .path = (char *)path, .node = NULL };
-    querynode_t *query   = NULL;
-    char        *pathcpy = calloc(strlen(path) + 1, 1);
-    memcpy(pathcpy, path, strlen(path));
-
-    int errc = parse_query(pathcpy, &query);
-    if (errc) {
-        // NOTE: query syntax errors cannot be ignored
-        dp_gerror(df, 0, 0, "%s: query syntax error: %s", path, query_errmsg(errc));
-        goto cleanup;
-    }
-
-    dn.node = get_root_func(df->ctx);
-    dn.type = get_type_func(dn.node);
-    for (querynode_t *curr = query; curr; curr = curr->next) {
-        if (!queriable(dn.type)) {
-            if (error) dp_error(&dn, "expected an array or object, but got %s", typename(dn.type));
-            dn.type = DATAPROC_T_ERR;
-            goto cleanup;
-        }
-
-        dn = curr->is_object
-           ? dp_objmemb_internal(dn, curr->key, error)
-           : dp_arrelem_internal(dn, curr->idx, error);
-        if (dn.type == DATAPROC_T_ERR) goto cleanup;
-    }
-
-cleanup:
-    free(pathcpy);
-    free_query(query);
+static dp_node poison(dp_node dn) {
+    dn.type = DP_ERROR;
+    dn.node = NULL;
     return dn;
 }
 
-datanode_t dp_try(datafile_t *df, const char *path) {
-    return dp_query(df, path, false);
+// Verify the whole query
+static enum queryerr validate_query(const char *path) {
+    if (*path == '\0') return DP_Q_EMPTY;
+    if (*path != '.')  return DP_Q_MISSINGDOT;
+
+    const char   *query = path;
+    querystep     step;
+    enum queryerr e;
+    while ((e = next_step(&query, &step)) == DP_Q_OK) {}
+    return e;
 }
 
-datanode_t dp_get(datafile_t *df, const char *path) {
-    return dp_query(df, path, true);
+// Join a node's path with a relative path to make a canonical path.
+// Only call this on a validated query; syntax errors are silent.
+static char* render_query(mempool_t *pool, const char *prev, const char *path) {
+    size_t prev_len = (prev[0] == '.' && prev[1] == '\0') ? 0 : strlen(prev);
+    char  *out      = palloc(pool, char, prev_len + 1 + strlen(path) + 1);
+    char  *end      = out;
+
+    memcpy(end, prev, prev_len);
+    end += prev_len;
+
+    const char *query = path;
+    querystep   step;
+    while (next_step(&query, &step) == DP_Q_OK) {
+        if (step.is_key) {
+            end += sprintf(end, ".%.*s", (int)step.key_len, step.key);
+        } else {
+            if (end == out) *end++ = '.'; // indexing on the root is ".[0]", not "[0]"
+
+            end += sprintf(end, "[%zu]", step.index);
+        }
+    }
+
+    if (end == out) *end++ = '.'; // the root itself
+    *end = '\0';
+    return out;
 }
 
-#define err_return(e, r) do { dn.file->errc = e; return r; } while (0)
+// Execute a query:
+//
+// 1. "." is valid and accepted as the passed-value of `dn`
+// 2. Validate the query for any syntax errors; return a poisoned node if any are found
+// 3. Return poison for a poisoned node
+// 4. Render the canonical path onto the returned node
+// 5. Return early for a missing node
+// 6. Walk the path to the desired child node
+//
+// When `error_if_missing` is true, a missing child is treated as an error.
+static dp_node dp_query(dp_node dn, const char *path, bool error_if_missing) {
+    assert(path && "path query must not be NULL");
+    assert((!dn.file || dn.file->reader) && "not a file opened for reading");
+
+    enum queryerr e;
+
+    if (path[0] == '.' && path[1] == '\0') return dn;
+    if ((e = validate_query(path)) != DP_Q_END) {
+        if (dn.file) dp_file_error(dn.file, "%s: query syntax error: %s", path, query_errmsg(e));
+        return poison(dn);
+    }
+
+    if (dn.type == DP_ERROR) return poison(dn);
+
+    dn.path = render_query(dn.file->pool, dn.path, path);
+    if (dn.type == DP_MISSING) return dn;
+
+    const char *query = path;
+    querystep   step;
+    while (next_step(&query, &step) == DP_Q_OK) {
+        enum dp_type wanted = step.is_key ? DP_OBJECT : DP_ARRAY;
+        if (dn.type != wanted) {
+            if (queriable(dn.type)) dp_error(dn, "expected %s, but got %s", typename(wanted), typename(dn.type));
+            else                    dp_error(dn, "expected an array or object, but got %s", typename(dn.type));
+            return poison(dn);
+        }
+
+        void *child = NULL;
+        if (step.is_key) {
+            char *key = strndup(step.key, step.key_len);
+            child     = dn.file->reader->obj_at(dn.node, key);
+            free(key);
+        } else {
+            child = dn.file->reader->arr_at(dn.node, step.index);
+        }
+
+        if (child == NULL) {
+            if (!error_if_missing) {
+                dn.type = DP_MISSING; // stay on the most recent existing ancestor
+                return dn;
+            }
+
+            if (step.is_key) dp_error(dn, "object has no member named \"%.*s\"", (int)step.key_len, step.key);
+            else             dp_error(dn, "array index %zu is out-of-bounds", step.index);
+            return poison(dn);
+        }
+
+        dn.node = child;
+        dn.type = dn.file->reader->type(child);
+    }
+
+    return dn;
+}
+
+dp_node dp_try(dp_node dn, const char *path) {
+    return dp_query(dn, path, false);
+}
+
+dp_node dp_at(dp_node dn, const char *path) {
+    return dp_query(dn, path, true);
+}
+
+bool dp_missing(dp_node dn) {
+    return dn.type == DP_MISSING;
+}
+
+enum dp_type dp_type_of(dp_node dn) {
+    return dn.type;
+}
+
+// The canonical path from the root, owned by the file. Nodes without a path,
+// zero-initialised ones and those created by a writer, give NULL.
+const char* dp_path_of(dp_node dn) {
+    return dn.path;
+}
+
 #define asserttype(expected, retval)                  \
     do {                                              \
-        if (dn.type == DATAPROC_T_ERR) return retval; \
+        if (dn.type == DP_ERROR)   return retval;     \
+        if (dn.type == DP_MISSING) return retval;     \
         if (dn.type != expected) {                    \
             dp_error(                                 \
-                &dn,                                  \
+                dn,                                   \
                 "expected %s, but got %s",            \
                 typename(expected), typename(dn.type) \
             );                                        \
@@ -658,187 +808,98 @@ datanode_t dp_get(datafile_t *df, const char *path) {
         }                                             \
     } while (0)
 
-bool dp_bool(datanode_t dn) {
-    if (dn.type == DATAPROC_T_MAPPED) return dn.mapped != 0;
-
-    asserttype(DATAPROC_T_BOOLEAN, false);
-    return get_bool_func(dn.node);
+bool dp_bool(dp_node dn) {
+    asserttype(DP_BOOL, false);
+    return dn.file->reader->get_bool(dn.node);
 }
 
-long dp_int(datanode_t dn) {
-    if (dn.type == DATAPROC_T_MAPPED) return dn.mapped;
-
-    asserttype(DATAPROC_T_INT, 0);
-    return get_int_func(dn.node);
-}
-
-#pragma GCC diagnostic push // Disable warnings that `i < 0` is impossible for unsigned types
-#pragma GCC diagnostic ignored "-Wtype-limits"
-
-#define assert_intrange(min, max)                        \
-    do {                                                 \
-        if (i < min || i > max) {                        \
-            dp_error(                                    \
-                &dn,                                     \
-                "expected a value in the range [%d,%u]", \
-                min, max                                 \
-            );                                           \
-            return 0;                                    \
-        }                                                \
-    } while (0)
-
-int8_t dp_s8(datanode_t dn) {
-    long i = dp_int(dn);
-    assert_intrange(INT8_MIN, INT8_MAX);
-    return (int8_t)(i & 0xFF);
-}
-
-int16_t dp_s16(datanode_t dn) {
-    long i = dp_int(dn);
-    assert_intrange(INT16_MIN, INT16_MAX);
-    return (int16_t)(i & 0xFFFF);
-}
-
-int32_t dp_s32(datanode_t dn) {
-    long i = dp_int(dn);
-    assert_intrange(INT32_MIN, INT32_MAX);
-    return (int32_t)(i & 0xFFFFFFFF);
-}
-
-int64_t dp_s64(datanode_t dn) {
-    if (dn.type == DATAPROC_T_MAPPED) return dn.mapped;
-
-    asserttype(DATAPROC_T_INT, 0);
-    return get_i64_func(dn.node);
-}
-
-uint8_t dp_u8(datanode_t dn) {
-    uint64_t i = dp_u64(dn);
-    assert_intrange(0, UINT8_MAX);
-    return (uint8_t)(i & 0xFF);
-}
-
-uint8_t dp_u8range(datanode_t dn, uint8_t min, uint8_t max) {
-    uint64_t i = dp_u64(dn);
-    assert_intrange(min, max);
-    return (uint8_t)(i & 0xFF);
-}
-
-uint16_t dp_u16(datanode_t dn) {
-    uint64_t i = dp_u64(dn);
-    assert_intrange(0, UINT16_MAX);
-    return (uint16_t)(i & 0xFFFF);
-}
-
-uint16_t dp_u16range(datanode_t dn, uint16_t min, uint16_t max) {
-    uint64_t i = dp_u64(dn);
-    assert_intrange(min, max);
-    return (uint16_t)(i & 0xFFFF);
-}
-
-uint32_t dp_u32(datanode_t dn) {
-    uint64_t i = dp_u64(dn);
-    assert_intrange(0, UINT32_MAX);
-    return (uint32_t)(i & 0xFFFFFFFF);
-}
-
-uint32_t dp_u32range(datanode_t dn, uint32_t min, uint32_t max) {
-    uint64_t i = dp_u64(dn);
-    assert_intrange(min, max);
-    return (uint32_t)(i & 0xFFFFFFFF);
-}
-
-uint64_t dp_u64(datanode_t dn) {
-    if (dn.type == DATAPROC_T_MAPPED) return dn.mapped;
-
-    asserttype(DATAPROC_T_INT, 0);
-    return get_u64_func(dn.node);
-}
-
-#pragma GCC diagnostic pop
-
-double dp_float(datanode_t dn) {
-    asserttype(DATAPROC_T_FLOAT, 0.0);
-    return get_float_func(dn.node);
-}
-
-const char* dp_string(datanode_t dn) {
-    asserttype(DATAPROC_T_STRING, NULL);
-    return get_string_func(dn.node);
-}
-
-size_t dp_arrlen(datanode_t dn) {
-    asserttype(DATAPROC_T_ARRAY, 0);
-    return get_length_func(dn.node);
-}
-
-// Internal call here is only for use by dp_get, which has a direct path to the node
-// and thus should not allocate an updated path-string
-static datanode_t dp_arrelem_internal(datanode_t dn, size_t i, bool error) {
-    asserttype(DATAPROC_T_ARRAY, (dn.node = NULL, dn.type = DATAPROC_T_ERR, dn));
-
-    void *child = get_elem_func(dn.node, i);
-    if (child == NULL && error) {
-        dp_error(&dn, "array index %zu is out-of-bounds", i);
+int64_t dp_int_in(dp_node dn, int64_t min, int64_t max) {
+    int64_t v    = 0;
+    bool    fits = true;
+    if (dn.type == DP_SYMBOL) v = dn.mapped;
+    else {
+        asserttype(DP_INT, 0);
+        fits = dn.file->reader->get_int(dn.node, &v);
     }
 
-    return (datanode_t){
-        .file = dn.file,
-        .path = dn.path,
-        .node = child,
-        .type = child != NULL ? get_type_func(child) : DATAPROC_T_ERR,
-    };
-}
-
-datanode_t dp_arrelem(datanode_t dn, size_t i) {
-    datanode_t elem = dp_arrelem_internal(dn, i, true);
-    if (elem.type != DATAPROC_T_ERR) {
-        size_t size = snprintf(NULL, 0, "%s[%zu]", dn.path, i);
-        elem.path   = palloc(dn.file->pool, char, size + 1);
-        snprintf(elem.path, size + 1, "%s[%zu]", dn.path, i);
+    if (!fits || v < min || v > max) {
+        dp_error(dn, "expected a value in the range [%" PRId64 ",%" PRId64 "]", min, max);
+        return 0;
     }
 
-    return elem;
+    return v;
 }
 
-// Internal call here is only for use by dp_get, which has a direct path to the node
-// and thus should not allocate an updated path-string
-static datanode_t dp_objmemb_internal(datanode_t dn, const char *k, bool error) {
-    asserttype(DATAPROC_T_OBJECT, (dn.node = NULL, dn.type = DATAPROC_T_ERR, dn));
-
-    void *child = get_memb_func(dn.node, k);
-    if (child == NULL && error) {
-        dp_error(&dn, "object has no member named \"%s\"", k);
+uint64_t dp_uint_in(dp_node dn, uint64_t min, uint64_t max) {
+    uint64_t v    = 0;
+    bool     fits = true;
+    if (dn.type == DP_SYMBOL) {
+        fits = (dn.mapped >= 0);
+        v    = (uint64_t)dn.mapped;
+    }
+    else {
+        asserttype(DP_INT, 0);
+        fits = dn.file->reader->get_uint(dn.node, &v);
     }
 
-    return (datanode_t){
-        .file = dn.file,
-        .path = dn.path,
-        .node = child,
-        .type = child != NULL ? get_type_func(child) : DATAPROC_T_ERR,
-    };
-}
-
-bool dp_hasmemb(datanode_t dn, const char *k) {
-    datanode_t elem = dp_objmemb_internal(dn, k, false);
-    return elem.type != DATAPROC_T_ERR;
-}
-
-datanode_t dp_objmemb(datanode_t dn, const char *k) {
-    datanode_t elem = dp_objmemb_internal(dn, k, true);
-    if (elem.type != DATAPROC_T_ERR) {
-        size_t size = snprintf(NULL, 0, "%s.%s", dn.path, k);
-        elem.path   = palloc(dn.file->pool, char, size + 1);
-        snprintf(elem.path, size + 1, "%s.%s", dn.path, k);
+    if (!fits || v < min || v > max) {
+        dp_error(dn, "expected a value in the range [%" PRIu64 ",%" PRIu64 "]", min, max);
+        return 0;
     }
 
-    return elem;
+    return v;
 }
 
-static regentry_t* regfind(const char *type) {
-    for (int i = 0; i < REGISTRY_SIZE; i++) {
-        regentry_t *entry = &registry[i];
-        if (entry->type == NULL)            return NULL;
+uint64_t dp_bits(dp_node dn, unsigned bits) {
+    if (bits > 64) {
+        if (dn.file) {
+            dp_file_error(dn.file, "%s: requested bit width %u > 64",
+                          dn.path ? dn.path : ".", bits);
+        }
+        return 0;
+    }
+
+    uint64_t max = bits == 64 ? UINT64_MAX : (UINT64_C(1) << bits) - 1;
+    return dp_uint_in(dn, 0, max);
+}
+
+double dp_float(dp_node dn) {
+    if (dn.type == DP_INT) {
+        int64_t  i;
+        uint64_t u;
+
+        if      (dn.file->reader->get_int(dn.node, &i))  return (double)i;
+        else if (dn.file->reader->get_uint(dn.node, &u)) return (double)u;
+        else {
+            dp_error(dn, "integer cannot convert to floating-point");
+            return 0.0;
+        }
+    }
+
+    asserttype(DP_FLOAT, 0.0);
+    return dn.file->reader->get_float(dn.node);
+}
+
+const char* dp_string(dp_node dn) {
+    if (dn.type == DP_SYMBOL) dn.type = DP_STRING;
+    asserttype(DP_STRING, NULL);
+    return dn.file->reader->get_string(dn.node);
+}
+
+size_t dp_arr_len(dp_node dn) {
+    asserttype(DP_ARRAY, 0);
+    return dn.file->reader->arr_len(dn.node);
+}
+
+dp_node dp_arr_at(dp_node dn, size_t i) {
+    char step[32];
+    snprintf(step, sizeof(step), ".[%zu]", i);
+    return dp_at(dn, step);
+}
+
+static regentry* regfind(dp_ctx *ctx, const char *type) {
+    for (size_t i = 0; i < ctx->registry_len; i++) {
+        regentry *entry = &ctx->registry[i];
         if (strcmp(entry->type, type) == 0) return entry;
     }
 
@@ -847,188 +908,195 @@ static regentry_t* regfind(const char *type) {
 
 static int lookup_cmp(const void *key, const void *member) {
     const char     *value = key;
-    const lookup_t *entry = member;
+    const dp_symbol *entry = member;
 
-    return strcmp(value, entry->def);
+    return strcmp(value, entry->name);
 }
 
-lookup_t* lookup_find(datanode_t *dnp, const char *type) {
-    datanode_t dn = *dnp;
+static dp_symbol* lookup_find(dp_node *dnp, const char *type) {
+    dp_node dn = *dnp;
 
-    asserttype(DATAPROC_T_STRING, (dnp->node = NULL, dnp->type = DATAPROC_T_ERR, NULL));
+    asserttype(DP_STRING, (dnp->node = NULL, dnp->type = DP_ERROR, NULL));
 
-    regentry_t *entry = regfind(type);
+    regentry *entry = regfind(dnp->file->ctx, type);
     if (entry == NULL) {
-        dp_error(dnp, "no lookup table registered for \"%s\"", type);
+        dp_error(dn, "no lookup table registered for \"%s\"", type);
         dnp->node = NULL;
-        dnp->type = DATAPROC_T_ERR;
+        dnp->type = DP_ERROR;
         return NULL;
     }
 
-    const char *value = get_string_func(dn.node);
-    lookup_t   *found = bsearch(value, entry->table, entry->size, sizeof(lookup_t), lookup_cmp);
+    const char *value = dn.file->reader->get_string(dn.node);
+    dp_symbol  *found = entry->size
+                      ? bsearch(value, entry->table, entry->size, sizeof(dp_symbol), lookup_cmp)
+                      : NULL;
+
     if (!found) {
-        dp_error(&dn, "expected an identifier for \"%s\"", type);
+        dp_error(dn, "expected an identifier for \"%s\"", type);
         dnp->node = NULL;
-        dnp->type = DATAPROC_T_ERR;
+        dnp->type = DP_ERROR;
         return NULL;
     }
 
     return found;
 }
 
-datanode_t dp_lookup(datanode_t dn, const char *type) {
-    lookup_t *found = lookup_find(&dn, type);
+dp_node dp_lookup(dp_node dn, const char *type) {
+    if (dp_missing(dn)) return dn;
+
+    dp_symbol *found = lookup_find(&dn, type);
     if (found) {
-        dn.mapped = found->val;
-        dn.type   = DATAPROC_T_MAPPED;
+        dn.mapped = found->value;
+        dn.type   = DP_SYMBOL;
     }
 
     return dn;
 }
 
-datanode_t dp_lookup_s(datanode_t dn, const char *type) {
-    lookup_find(&dn, type);
-    return dn;
-}
+dp_file* dp_new(dp_ctx *ctx, const dp_writer *writer, const char *name) {
+    assert(ctx && "ctx pointer must not be NULL");
+    assert_writer(writer);
 
-datafile_t dp_new(void) {
-    datafile_t df = { 0 };
-    new_func(&df);
+    if (name == NULL) name = "<new file>";
+
+    dp_file *df = calloc(1, sizeof(*df));
+    if (!df) return NULL;
+
+    df->pool     = pool_new();
+    df->ctx      = ctx;
+    df->filename = name;
+    df->writer   = writer;
+
+    void *doc = writer->create();
+    if (!doc) {
+        dp_file_error(df, "could not create a document");
+        return df;
+    }
+
+    df->doc      = doc;
     return df;
 }
 
-char* dp_dump(datafile_t *df) {
-    return dump_func(df);
-}
-
-datanode_t dp_set_arr(datafile_t *df) {
-    return (datanode_t){
-        .file = df,
-        .type = DATAPROC_T_ARRAY,
-        .node = set_root_arr_func(df->ctx),
-    };
-}
-
-void dp_arr_appbool(datanode_t *dn, bool v) {
-    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
-    arr_app_bool_func(dn->file->ctx, dn->node, v);
-}
-
-void dp_arr_appint(datanode_t *dn, int64_t v) {
-    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
-    arr_app_int_func(dn->file->ctx, dn->node, v);
-}
-
-void dp_arr_appuint(datanode_t *dn, uint64_t v) {
-    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
-    arr_app_uint_func(dn->file->ctx, dn->node, v);
-}
-
-void dp_arr_appfloat(datanode_t *dn, double v) {
-    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
-    arr_app_float_func(dn->file->ctx, dn->node, v);
-}
-
-void dp_arr_appstring(datanode_t *dn, const char *v) {
-    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
-    arr_app_string_func(dn->file->ctx, dn->node, v);
-}
-
-datanode_t dp_arr_apparray(datanode_t *dn) {
-    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
-
-    datanode_t result = {
-        .file = dn->file,
-        .type = DATAPROC_T_ARRAY,
-        .node = arr_app_array_func(dn->file->ctx, dn->node),
-    };
-
-    if (result.node == NULL) {
-        result.type = DATAPROC_T_ERR;
+dp_node dp_root(dp_file *df) {
+    if (!df || df->doc == NULL) {
+        return (dp_node){
+            .file = df,
+            .path = ".",
+            .type = DP_ERROR,
+            .node = NULL,
+        };
     }
 
-    return result;
-}
-
-datanode_t dp_arr_appobject(datanode_t *dn) {
-    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
-
-    datanode_t result = {
-        .file = dn->file,
-        .type = DATAPROC_T_OBJECT,
-        .node = arr_app_object_func(dn->file->ctx, dn->node),
-    };
-
-    if (result.node == NULL) {
-        result.type = DATAPROC_T_ERR;
-    }
-
-    return result;
-}
-
-datanode_t dp_set_obj(datafile_t *df) {
-    return (datanode_t){
+    assert(df->reader && "not a file opened for reading");
+    void *raw = df->reader->root(df->doc);
+    return (dp_node){
         .file = df,
         .path = ".",
-        .type = DATAPROC_T_OBJECT,
-        .node = set_root_obj_func(df->ctx),
+        .type = df->reader->type(raw),
+        .node = raw,
     };
 }
 
-void dp_obj_putbool(datanode_t *dn, const char *k, bool v) {
-    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
-    obj_put_bool_func(dn->file->ctx, dn->node, k, v);
+char* dp_dump(dp_file *df) {
+    assert(df->writer && "not a file opened for writing");
+    return df->writer->dump(df, df->doc);
 }
 
-void dp_obj_putint(datanode_t *dn, const char *k, int64_t v) {
-    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
-    obj_put_int_func(dn->file->ctx, dn->node, k, v);
-}
+// The root of a written file. A failure is reported on the file, and the root
+// is poison; a document that was never created was reported by dp_new.
+static dp_node new_root(dp_file *df, enum dp_type type) {
+    assert(df->writer && "not a file opened for writing");
 
-void dp_obj_putuint(datanode_t *dn, const char *k, uint64_t v) {
-    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
-    obj_put_uint_func(dn->file->ctx, dn->node, k, v);
-}
+    dp_node root = { .file = df };
+    if (!df->doc) return root;
 
-void dp_obj_putfloat(datanode_t *dn, const char *k, double v) {
-    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
-    obj_put_float_func(dn->file->ctx, dn->node, k, v);
-}
-
-void dp_obj_putstring(datanode_t *dn, const char *k, const char *v) {
-    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
-    obj_put_string_func(dn->file->ctx, dn->node, k, v);
-}
-
-datanode_t dp_obj_putarray(datanode_t *dn, const char *k) {
-    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
-
-    datanode_t result = {
-        .file = dn->file,
-        .type = DATAPROC_T_ARRAY,
-        .node = obj_put_array_func(dn->file->ctx, dn->node, k),
-    };
-
-    if (result.node == NULL) {
-        result.type = DATAPROC_T_ERR;
+    root.node = type == DP_OBJECT ? df->writer->new_object(df->doc) : df->writer->new_array(df->doc);
+    if (!root.node) {
+        dp_file_error(df, "could not create the root %s", type == DP_OBJECT ? "object" : "array");
+        return root;
     }
 
-    return result;
+    root.type = type;
+    return root;
 }
 
-datanode_t dp_obj_putobject(datanode_t *dn, const char *k) {
-    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
+dp_node dp_new_object(dp_file *df) { return new_root(df, DP_OBJECT); }
+dp_node dp_new_array(dp_file *df)  { return new_root(df, DP_ARRAY); }
 
-    datanode_t result = {
-        .file = dn->file,
-        .type = DATAPROC_T_OBJECT,
-        .node = obj_put_object_func(dn->file->ctx, dn->node, k),
-    };
+// Writes into poison do nothing (the failure was already reported). Writes into
+// the wrong kind of container are a bug in the calling code.
+#define writable(dn, kind, retval)                                                   \
+    do {                                                                             \
+        if ((dn).type == DP_ERROR) return retval;                                    \
+        assert((dn).file->writer && "not a file opened for writing");                \
+        assert((dn).type == (kind) && "cannot write into this kind of container");   \
+    } while (0)
 
-    if (result.node == NULL) {
-        result.type = DATAPROC_T_ERR;
-    }
+// A value the backend could not add is reported on its container. For writer
+// nodes, that's just the file.
+#define put_scalar(dn, key, member, v)                                               \
+    do {                                                                             \
+        writable(dn, DP_OBJECT, );                                                   \
+        if (!(dn).file->writer->member((dn).file->doc, (dn).node, key, v)) {         \
+            dp_error(dn, "could not add member \"%s\"", key);                        \
+        }                                                                            \
+    } while (0)
 
-    return result;
+#define push_scalar(dn, member, v)                                                   \
+    do {                                                                             \
+        writable(dn, DP_ARRAY, );                                                    \
+        if (!(dn).file->writer->member((dn).file->doc, (dn).node, v)) {              \
+            dp_error(dn, "could not append a value to an array");                    \
+        }                                                                            \
+    } while (0)
+
+void dp_put_bool(dp_node dn, const char *key, bool v)          { put_scalar(dn, key, put_bool, v); }
+void dp_put_int(dp_node dn, const char *key, int64_t v)        { put_scalar(dn, key, put_int, v); }
+void dp_put_uint(dp_node dn, const char *key, uint64_t v)      { put_scalar(dn, key, put_uint, v); }
+void dp_put_float(dp_node dn, const char *key, double v)       { put_scalar(dn, key, put_float, v); }
+void dp_put_string(dp_node dn, const char *key, const char *v) { put_scalar(dn, key, put_string, v); }
+
+void dp_push_bool(dp_node dn, bool v)          { push_scalar(dn, push_bool, v); }
+void dp_push_int(dp_node dn, int64_t v)        { push_scalar(dn, push_int, v); }
+void dp_push_uint(dp_node dn, uint64_t v)      { push_scalar(dn, push_uint, v); }
+void dp_push_float(dp_node dn, double v)       { push_scalar(dn, push_float, v); }
+void dp_push_string(dp_node dn, const char *v) { push_scalar(dn, push_string, v); }
+
+// A container the backend could not add is reported on its parent and is
+// poison, so writes into it are silent.
+static dp_node new_child(dp_node parent, void *node, enum dp_type type) {
+    dp_node child = { .file = parent.file };
+    if (!node) return child;
+
+    child.node = node;
+    child.type = type;
+    return child;
+}
+
+dp_node dp_put_array(dp_node dn, const char *key) {
+    writable(dn, DP_OBJECT, dn);
+    dp_node child = new_child(dn, dn.file->writer->put_array(dn.file->doc, dn.node, key), DP_ARRAY);
+    if (child.type == DP_ERROR) dp_error(dn, "could not add member \"%s\"", key);
+    return child;
+}
+
+dp_node dp_put_object(dp_node dn, const char *key) {
+    writable(dn, DP_OBJECT, dn);
+    dp_node child = new_child(dn, dn.file->writer->put_object(dn.file->doc, dn.node, key), DP_OBJECT);
+    if (child.type == DP_ERROR) dp_error(dn, "could not add member \"%s\"", key);
+    return child;
+}
+
+dp_node dp_push_array(dp_node dn) {
+    writable(dn, DP_ARRAY, dn);
+    dp_node child = new_child(dn, dn.file->writer->push_array(dn.file->doc, dn.node), DP_ARRAY);
+    if (child.type == DP_ERROR) dp_error(dn, "could not append new array to an array");
+    return child;
+}
+
+dp_node dp_push_object(dp_node dn) {
+    writable(dn, DP_ARRAY, dn);
+    dp_node child = new_child(dn, dn.file->writer->push_object(dn.file->doc, dn.node), DP_OBJECT);
+    if (child.type == DP_ERROR) dp_error(dn, "could not append new object to an array");
+    return child;
 }

@@ -1,16 +1,10 @@
-#include <stdarg.h>
 #include <stdbool.h>
 #include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "common.h"
-#include "dataproc.h"
-#include "libenum.h"
-#include "nitroarc.h"
+#include "game_types.h"
 
 #undef  ALIGN_4 // MATCH DETAIL: We must re-define this to include a properly-sized ItemData struct.
 #define ALIGN_4
@@ -21,43 +15,11 @@
 #include "berry_data.h"
 #include "item.h"
 
-static enum_template_t enums[] = {
-    include_defs("constants/items.h",             "POCKET"),
-    include_defs("constants/items.h",             "BATTLE_POCKET_MASK"),
-    include_defs("constants/items.h",             "PLUCK_EFFECT"),
-    include_defs("constants/items.h",             "FLING_EFFECT"),
-    include_defs("constants/items.h",             "ITEM_USE_FUNC"),
-    include_defs("constants/items.h",             "BATTLE_USE_CATEGORY"),
-    include_defs("berry_data.h",                  "FIRMNESS"),
-    include_defs("res/items/item_icon.naix",      NULL),
-    include_enum("generated/item_hold_effects.h", "enum ItemHoldEffect"),
-    include_enum("generated/moves.h",             "enum Move"),
-    include_enum("generated/pokemon_types.h",     "enum PokemonType"),
-    { .from_file = NULL },
-};
+static const char *enumFile = NULL;
+static const char *baseDir  = NULL;
 
-static archive_template_t archives[] = {
-    { .out_filename = "pl_item_data.narc" },
-    { .out_filename = NULL },
-};
-
-enum {
-    H_ITEM_ID_MAP,
-    H_TM_MOVE_MAP,
-    H_BERRY_LIST,
-    H_MAIL_LIST,
-    H_HIDDEN_ITEM_SCRIPTS,
-};
-
-static header_template_t headers[] = {
-    [H_ITEM_ID_MAP]         = { .out_filename = "item_id_map.h"         },
-    [H_TM_MOVE_MAP]         = { .out_filename = "item_tm_move_map.h"    },
-    [H_BERRY_LIST]          = { .out_filename = "item_berry_list.h"     },
-    [H_MAIL_LIST]           = { .out_filename = "item_mail_list.h"      },
-    [H_HIDDEN_ITEM_SCRIPTS] = { .out_filename = "hidden_item_scripts.h" },
-    { 0 },
-};
-
+enum { A_ITEM_DATA, A_BERRY_DATA };
+enum { F_ITEM_ID_MAP, F_TM_MOVE_MAP, F_BERRY_LIST, F_MAIL_LIST, F_HIDDEN_ITEM_SCRIPTS };
 enum {
     T_ITEM_NAMES,
     T_ITEM_NAMES_PLURAL,
@@ -65,380 +27,331 @@ enum {
     T_ITEM_DESCRIPTIONS,
 };
 
-static textbank_template_t textbanks[] = {
-    [T_ITEM_NAMES]              = { .key = 51885, .out_filename = "item_names.json"               },
-    [T_ITEM_NAMES_PLURAL]       = { .key = 11181, .out_filename = "item_names_plural.json"        },
-    [T_ITEM_NAMES_WITH_ARTICLE] = { .key = 41760, .out_filename = "item_names_with_articles.json" },
-    [T_ITEM_DESCRIPTIONS]       = { .key = 24316, .out_filename = "item_descriptions.json"        },
-    { 0 },
+#define L_POCKET              "POCKET"
+#define L_BATTLE_POCKET_MASK  "BATTLE_POCKET_MASK"
+#define L_PLUCK_EFFECT        "PLUCK_EFFECT"
+#define L_FLING_EFFECT        "FLING_EFFECT"
+#define L_ITEM_USE_FUNC       "ITEM_USE_FUNC"
+#define L_BATTLE_USE_CATEGORY "BATTLE_USE_CATEGORY"
+#define L_FIRMNESS            "FIRMNESS"
+#define L_HOLD_EFFECT         "enum ItemHoldEffect"
+#define L_MOVE                "enum Move"
+#define L_TYPE                "enum PokemonType"
+#define L_ICON_SPRITE         "ItemIconSprite"
+#define L_ICON_PALETTE        "ItemIconPalette"
+
+static Driver driver = {
+    .depfile = "item_data.d",
+
+    .options = (Option[]) {
+        POSITIONAL("ENUMFILE", &enumFile, "Header defining enum Item."),
+        POSITIONAL("BASEDIR",  &baseDir,  "Directory of per-item data."),
+        { 0 },
+    },
+
+    .lookups = (Lookup[]) {
+        LOOKUP_DEFINES("constants/items.h", L_POCKET),
+        LOOKUP_DEFINES("constants/items.h", L_BATTLE_POCKET_MASK),
+        LOOKUP_DEFINES("constants/items.h", L_PLUCK_EFFECT),
+        LOOKUP_DEFINES("constants/items.h", L_FLING_EFFECT),
+        LOOKUP_DEFINES("constants/items.h", L_ITEM_USE_FUNC),
+        LOOKUP_DEFINES("constants/items.h", L_BATTLE_USE_CATEGORY),
+        LOOKUP_DEFINES("berry_data.h",      L_FIRMNESS),
+        LOOKUP_ENUM("generated/item_hold_effects.h", L_HOLD_EFFECT),
+        LOOKUP_ENUM("generated/moves.h",             L_MOVE),
+        LOOKUP_ENUM("generated/pokemon_types.h",     L_TYPE),
+        { 0 },
+    },
+
+    .outputs = {
+        .archives = (Archive[]) {
+            [A_ITEM_DATA]  = { .filename = "pl_item_data.narc" },
+            [A_BERRY_DATA] = { .filename = "nuts_data.narc" },
+            { 0 },
+        },
+
+        .textFiles = (TextFile[]) {
+            [F_ITEM_ID_MAP]         = { .filename = "item_id_map.h",         .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_TM_MOVE_MAP]         = { .filename = "item_tm_move_map.h",    .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_BERRY_LIST]          = { .filename = "item_berry_list.h",     .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_MAIL_LIST]           = { .filename = "item_mail_list.h",      .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_HIDDEN_ITEM_SCRIPTS] = { .filename = "hidden_item_scripts.h", .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            { 0 },
+        },
+
+        .textBanks = (TextBank[]) {
+            [T_ITEM_NAMES]              = { .filename = "item_names.json",               .key = 51885 },
+            [T_ITEM_NAMES_PLURAL]       = { .filename = "item_names_plural.json",        .key = 11181 },
+            [T_ITEM_NAMES_WITH_ARTICLE] = { .filename = "item_names_with_articles.json", .key = 41760 },
+            [T_ITEM_DESCRIPTIONS]       = { .filename = "item_descriptions.json",        .key = 24316 },
+            { 0 },
+        },
+    },
 };
 
-static void parse_args(int *pargc, char ***pargv);
+// Register the NAIX IDs of item_icon.narc's members that end with `suffix`.
+static void RegisterIcons(Records icons, const char *type, const char *suffix)
+{
+    dp_symbol *symbols = Zalloc(icons.count, sizeof(*symbols));
+    size_t     count   = 0;
 
-static bool has_data(const char *name);
-static void proc_item(datafile_t *df, const char *member);
-static void proc_text(const char *stem, const char *name, const char *plural, datanode_t *article, datanode_t *desc);
-static void add_idmap(datafile_t *df, size_t i, size_t data_id);
-static int  pack_berries(void);
-static void emit_hidden_scripts(size_t max_script_id);
-
-static char *filename     = NULL;
-static char *base_dir     = NULL;
-static char *depfile_path = "item_data.d";
-static char *output_dir   = ".";
-
-static size_t iter_data = 0;
-
-int main(int argc, char **argv) {
-    int        errc         = EXIT_SUCCESS;
-    char       buf[BUFSIZE] = { 0 };
-    datafile_t df           = { 0 };
-
-    parse_args(&argc, &argv);
-    enum_seq_t items = common_initenum(
-        filename, "Item",
-        .sourcefile  = __FILE__,
-        .depfile     = depfile_path,
-        .outdir      = output_dir,
-        .format      = DATAPROC_F_JSON,
-        .enums       = enums,
-        .archives    = archives,
-        .headers     = headers,
-        .textbanks   = textbanks,
-        .filter      = has_data,
-    );
-
-    size_t item_flags_count = HIDDEN_ITEM_FLAGS_END - HIDDEN_ITEM_FLAGS_START + 1;
-    size_t max_script_id = 0; 
-
-    for (size_t i = 0; i < countof(gHiddenItems); i++) {
-        if (gHiddenItems[i].script > max_script_id) {
-            max_script_id = gHiddenItems[i].script;
+    for (size_t i = 0; i < icons.count; i++) {
+        const char *id  = icons.items[i].id;
+        if (String_EndsWith(id, suffix)) {
+            symbols[count++] = (dp_symbol){ .value = (long)i, .name = id };
         }
     }
 
-    max_script_id++;
-    if (max_script_id > item_flags_count) {
-        fprintf(stderr, "fatal: more hidden items defined (%zu) than there are hidden item flags (%zu)\n", max_script_id, item_flags_count);
-        return EXIT_FAILURE;
-    }
-
-    emit_hidden_scripts(max_script_id);
-
-    for (size_t i = 0; i < items.size; i++) {
-        const char *stem = items.members[i].name + lengthof("ITEM_");
-        if (has_data(items.members[i].name)) {
-            char *basename = strlower(strfmt("%s.json", stem));
-            char *filepath = pathjoin(base_dir, NULL, basename);
-            declare_dep(filepath);
-
-            if (dp_load(&df, filepath) == 0) {
-                datanode_t name    = dp_get(&df, ".name");
-                datanode_t plural  = dp_get(&df, ".plural");
-                datanode_t article = dp_get(&df, ".article");
-                datanode_t desc    = dp_get(&df, ".description");
-
-                proc_item(&df, items.members[i].name);
-                proc_text(stem, dp_string(name), dp_string(plural), &article, &desc);
-                add_idmap(&df, i, iter_data++);
-            }
-
-            if (dp_report(&df) == DIAG_ERROR) errc = EXIT_FAILURE;
-
-            free(basename);
-            free(filepath);
-            dp_free(&df);
-        }
-        else {
-            proc_text(stem, "???", "???", NULL, NULL);
-            add_idmap(NULL, i, 0);
-        }
-    }
-
-    return common_done(errc, pack_berries);
+    Lookups_Register(type, symbols, count);
+    free(symbols);
 }
 
-static bool has_data(const char *name) {
-    return strncmp(name, "ITEM_", lengthof("ITEM_")) == 0
-        && strncmp(name + lengthof("ITEM_"), "UNUSED_", lengthof("UNUSED_")) != 0;
-}
-
-static u8  iter_balls   = 0;
-static u8  iter_mail    = 0;
-static u8  iter_rods    = 0;
-static u16 iter_tms     = 0;
-static u16 iter_berries = 0;
-
-static void proc_berry(datanode_t berry_data);
-static void proc_params(datafile_t *df, ItemData *item);
-
-#define towidth(a, bits) ((typeof(a))((a) & maxbit(bits)))
-
-static void proc_item(datafile_t *df, const char *member) {
-    ItemData item = {
-        .price             = u16(".price"),
-        .effectParam       = u8(".effectParam"),
-        .holdEffect        = enum_u8(".holdEffect", enum ItemHoldEffect),
-        .pluckEffect       = enum_u8(".pluckEffect", PLUCK_EFFECT),
-        .flingEffect       = enum_u8(".flingEffect", FLING_EFFECT),
-        .flingPower        = u8(".flingPower"),
-        .naturalGiftPower  = u8(".naturalGiftPower"),
-        .preventToss       = boolean(".preventToss"),
-        .canRegister       = boolean(".canRegister"),
-        .fieldPocket       = towidth(enum_u8(".fieldPocket", POCKET), 4),
-        .battlePocket      = towidth(enum_u8(".battlePocket", BATTLE_POCKET_MASK), 5),
-        .fieldUseFunc      = enum_u8(".fieldUseFunc", ITEM_USE_FUNC),
-        .battleUseCategory = enum_u8(".battleUseCategory", BATTLE_USE_CATEGORY),
-    };
-
-    datanode_t nat_gift_type = dp_get(df, ".naturalGiftType");
-    item.naturalGiftType = towidth(
-        (u8)(nat_gift_type.type != DATAPROC_T_NULL
-            ? dp_u8range(dp_lookup(nat_gift_type, "enum PokemonType"), 0, maxbit(5))
-            : ~0),
-        5
-    );
-
-    switch (item.fieldUseFunc) {
-    case ITEM_USE_FUNC_NONE:
-        if (item.fieldPocket == POCKET_BALLS) item.dummy = iter_balls++;
-        else proc_params(df, &item);
-        break;
-
-    case ITEM_USE_FUNC_OLD_ROD:   // fall-through
-    case ITEM_USE_FUNC_GOOD_ROD:  // fall-through
-    case ITEM_USE_FUNC_SUPER_ROD: item.dummy = iter_rods++; break;
-
-    case ITEM_USE_FUNC_MAIL:
-        item.dummy = iter_mail++;
-        fprintf(headers[H_MAIL_LIST].out_file, "    [%u] = %s,\n", item.dummy, member);
-        break;
-
-    case ITEM_USE_FUNC_TM_HM: {
-        datanode_t move = dp_get(df, ".teachesMove");
-        if (move.type == DATAPROC_T_ERR) break;
-
-        datanode_t move_id = dp_lookup(move, "enum Move");
-        if (move_id.type != DATAPROC_T_MAPPED) break;
-
-        fprintf(headers[H_TM_MOVE_MAP].out_file, "    [%u] = %s,\n", iter_tms++, dp_string(move));
-        break;
+static void EmitHiddenItemScripts(void)
+{
+    size_t maxScriptID = 0;
+    for (size_t i = 0; i < NELEMS(gHiddenItems); i++) {
+        if (gHiddenItems[i].script > maxScriptID) maxScriptID = gHiddenItems[i].script;
     }
 
-    case ITEM_USE_FUNC_EVO_STONE: // Special case to remove a foot-gun for evolution items
-        proc_params(df, &item);
-        item.partyUseParam.evolve = true;
-        break;
-
-    case ITEM_USE_FUNC_BERRY:
-        fprintf(headers[H_BERRY_LIST].out_file, "    [%u] = %s,\n", iter_berries++, member);
-        proc_berry(dp_get(df, ".berryData"));
-        // fall-through
-
-    default: proc_params(df, &item); break;
+    size_t numScripts = maxScriptID + 1;
+    size_t numFlags   = HIDDEN_ITEM_FLAGS_END - HIDDEN_ITEM_FLAGS_START + 1;
+    if (numScripts > numFlags) {
+        Driver_Fail("more hidden items defined (%zu) than there are hidden item flags (%zu)", numScripts, numFlags);
     }
 
-    nitroarc_ppack(&archives[0].packer, &item, sizeof(item), NULL);
+    for (size_t i = 0; i < numScripts; i++) TextFile_Printf(F_HIDDEN_ITEM_SCRIPTS, "    ScriptEntry HiddenItems_Item\n");
+    TextFile_Printf(F_HIDDEN_ITEM_SCRIPTS, "    ScriptEntryEnd\n");
 }
 
-#define tryparam(params, key) (dp_hasmemb(params, key) ? dp_objmemb(params, key) : (datanode_t){ .type = DATAPROC_T_MAPPED, .mapped = 0 })
+static bool HasData(const char *name)
+{
+    return strncmp(name, "ITEM_UNUSED_", strlen("ITEM_UNUSED_")) != 0;
+}
 
-static void proc_params(datafile_t *df, ItemData *item) {
-    datanode_t params = dp_get(df, ".itemUseParams");
-    if (params.type == DATAPROC_T_NULL) return;
-    if (params.type != DATAPROC_T_OBJECT) {
-        dp_error(&params, "expected either an object or null");
+static void ProcParams(dp_node root, ItemData *item)
+{
+    const dp_node params = dp_at(root, ".itemUseParams");
+    switch (dp_type_of(params)) {
+    case DP_OBJECT: break;
+    case DP_NULL:   return;
+    case DP_ERROR:  return; // error is already staged
+    default:
+        dp_error(params, "expected either an object or null");
         return;
     }
 
     item->partyUse      = true;
     item->partyUseParam = (ItemPartyParam){
-        .healSleep     = dp_bool(tryparam(params, "healSleep")),
-        .healPoison    = dp_bool(tryparam(params, "healPoison")),
-        .healBurn      = dp_bool(tryparam(params, "healBurn")),
-        .healFreeze    = dp_bool(tryparam(params, "healFreeze")),
-        .healParalysis = dp_bool(tryparam(params, "healParalysis")),
-        .healConfusion = dp_bool(tryparam(params, "healConfusion")),
-        .healAttract   = dp_bool(tryparam(params, "healAttract")),
-        .guardSpec     = dp_bool(tryparam(params, "guardSpec")),
-        .revive        = dp_bool(tryparam(params, "revive")),
-        .reviveAll     = dp_bool(tryparam(params, "reviveAll")),
-        .levelUp       = dp_bool(tryparam(params, "levelUp")),
-        .ppUp          = dp_bool(tryparam(params, "ppUp")),
-        .ppMax         = dp_bool(tryparam(params, "ppMax")),
-        .ppRestoreAll  = dp_bool(tryparam(params, "restorePPAllMoves")),
+        .healSleep     = dp_bool(dp_try(params, ".healSleep")),
+        .healPoison    = dp_bool(dp_try(params, ".healPoison")),
+        .healBurn      = dp_bool(dp_try(params, ".healBurn")),
+        .healFreeze    = dp_bool(dp_try(params, ".healFreeze")),
+        .healParalysis = dp_bool(dp_try(params, ".healParalysis")),
+        .healConfusion = dp_bool(dp_try(params, ".healConfusion")),
+        .healAttract   = dp_bool(dp_try(params, ".healAttract")),
+        .guardSpec     = dp_bool(dp_try(params, ".guardSpec")),
+        .revive        = dp_bool(dp_try(params, ".revive")),
+        .reviveAll     = dp_bool(dp_try(params, ".reviveAll")),
+        .levelUp       = dp_bool(dp_try(params, ".levelUp")),
+        .ppUp          = dp_bool(dp_try(params, ".ppUp")),
+        .ppMax         = dp_bool(dp_try(params, ".ppMax")),
+        .ppRestoreAll  = dp_bool(dp_try(params, ".restorePPAllMoves")),
 
-        .atkStages   = (u8)(dp_u8range(tryparam(params, "atkStages"),   0, maxbit(4)) & maxbit(4)),
-        .defStages   = (u8)(dp_u8range(tryparam(params, "defStages"),   0, maxbit(4)) & maxbit(4)),
-        .spatkStages = (u8)(dp_u8range(tryparam(params, "spatkStages"), 0, maxbit(4)) & maxbit(4)),
-        .spdefStages = (u8)(dp_u8range(tryparam(params, "spdefStages"), 0, maxbit(4)) & maxbit(4)),
-        .speedStages = (u8)(dp_u8range(tryparam(params, "speedStages"), 0, maxbit(4)) & maxbit(4)),
-        .accStages   = (u8)(dp_u8range(tryparam(params, "accStages"),   0, maxbit(4)) & maxbit(4)),
-        .critStages  = (u8)(dp_u8range(tryparam(params, "critStages"),  0, maxbit(2)) & maxbit(2)),
+        .atkStages   = dp_bits(dp_try(params, ".atkStages"), 4),
+        .defStages   = dp_bits(dp_try(params, ".defStages"), 4),
+        .spatkStages = dp_bits(dp_try(params, ".spatkStages"), 4),
+        .spdefStages = dp_bits(dp_try(params, ".spdefStages"), 4),
+        .speedStages = dp_bits(dp_try(params, ".speedStages"), 4),
+        .accStages   = dp_bits(dp_try(params, ".accStages"), 4),
+        .critStages  = dp_bits(dp_try(params, ".critStages"), 2),
 
-        .hpRestored = dp_s8(tryparam(params, "hpRestored")),
-        .ppRestored = dp_s8(tryparam(params, "ppRestored")) & maxbit(7),
+        .hpRestored = dp_s8(dp_try(params, ".hpRestored")),
+        .ppRestored = dp_s8(dp_try(params, ".ppRestored")) & 0x7F,
 
-        .hpEVs          = dp_s8(tryparam(params, "hpEVs")),
-        .atkEVs         = dp_s8(tryparam(params, "atkEVs")),
-        .defEVs         = dp_s8(tryparam(params, "defEVs")),
-        .speedEVs       = dp_s8(tryparam(params, "speedEVs")),
-        .spatkEVs       = dp_s8(tryparam(params, "spatkEVs")),
-        .spdefEVs       = dp_s8(tryparam(params, "spdefEVs")),
-        .friendshipLow  = dp_s8(tryparam(params, "friendshipLow")),
-        .friendshipMed  = dp_s8(tryparam(params, "friendshipMed")),
-        .friendshipHigh = dp_s8(tryparam(params, "friendshipHigh")),
+        .hpEVs          = dp_s8(dp_try(params, ".hpEVs")),
+        .atkEVs         = dp_s8(dp_try(params, ".atkEVs")),
+        .defEVs         = dp_s8(dp_try(params, ".defEVs")),
+        .speedEVs       = dp_s8(dp_try(params, ".speedEVs")),
+        .spatkEVs       = dp_s8(dp_try(params, ".spatkEVs")),
+        .spdefEVs       = dp_s8(dp_try(params, ".spdefEVs")),
+        .friendshipLow  = dp_s8(dp_try(params, ".friendshipLow")),
+        .friendshipMed  = dp_s8(dp_try(params, ".friendshipMed")),
+        .friendshipHigh = dp_s8(dp_try(params, ".friendshipHigh")),
     };
 
-    item->partyUseParam.ppRestore = item->partyUseParam.ppRestored > 0 && item->partyUseParam.ppRestoreAll == 0;
-    item->partyUseParam.hpRestore = item->partyUseParam.hpRestored > 0;
+    ItemPartyParam *param = &item->partyUseParam;
+    param->ppRestore = param->ppRestored > 0 && param->ppRestoreAll == 0;
+    param->hpRestore = param->hpRestored > 0;
 
-    item->partyUseParam.giveHPEVs    = item->partyUseParam.hpEVs != 0;
-    item->partyUseParam.giveAtkEVs   = item->partyUseParam.atkEVs != 0;
-    item->partyUseParam.giveDefEVs   = item->partyUseParam.defEVs != 0;
-    item->partyUseParam.giveSpeedEVs = item->partyUseParam.speedEVs != 0;
-    item->partyUseParam.giveSpAtkEVs = item->partyUseParam.spatkEVs != 0;
-    item->partyUseParam.giveSpDefEVs = item->partyUseParam.spdefEVs != 0;
+    param->giveHPEVs    = param->hpEVs != 0;
+    param->giveAtkEVs   = param->atkEVs != 0;
+    param->giveDefEVs   = param->defEVs != 0;
+    param->giveSpeedEVs = param->speedEVs != 0;
+    param->giveSpAtkEVs = param->spatkEVs != 0;
+    param->giveSpDefEVs = param->spdefEVs != 0;
 
-    item->partyUseParam.giveFriendshipLow  = item->partyUseParam.friendshipLow != 0;
-    item->partyUseParam.giveFriendshipMed  = item->partyUseParam.friendshipMed != 0;
-    item->partyUseParam.giveFriendshipHigh = item->partyUseParam.friendshipHigh != 0;
+    param->giveFriendshipLow  = param->friendshipLow != 0;
+    param->giveFriendshipMed  = param->friendshipMed != 0;
+    param->giveFriendshipHigh = param->friendshipHigh != 0;
 }
 
-static BerryData berries[UINT8_MAX] = { 0 };
-static size_t    len_berries        = 0;
-
-static void proc_berry(datanode_t berry_data) {
-    berries[len_berries++] = (BerryData){
-        .size              = dp_u16(dp_objmemb(berry_data, "size")),
-        .firmness          = dp_u8(dp_lookup(dp_objmemb(berry_data, "firmness"), "FIRMNESS")),
-        .baseYield         = dp_u8(dp_objmemb(berry_data, "baseYield")),
-        .stageDuration     = dp_u8(dp_objmemb(berry_data, "stageDuration")),
-        .moistureDrainRate = dp_u8(dp_objmemb(berry_data, "moistureDrainRate")),
-        .spiciness         = dp_u8(dp_objmemb(berry_data, "spiciness")),
-        .dryness           = dp_u8(dp_objmemb(berry_data, "dryness")),
-        .sweetness         = dp_u8(dp_objmemb(berry_data, "sweetness")),
-        .bitterness        = dp_u8(dp_objmemb(berry_data, "bitterness")),
-        .sourness          = dp_u8(dp_objmemb(berry_data, "sourness")),
-        .smoothness        = dp_u8(dp_objmemb(berry_data, "smoothness")),
+static void ProcBerry(dp_node berry)
+{
+    BerryData data = {
+        .size              = dp_u16_at(berry, ".size"),
+        .firmness          = dp_u8(dp_lookup_at(berry, ".firmness", L_FIRMNESS)),
+        .baseYield         = dp_u8_at(berry, ".baseYield"),
+        .stageDuration     = dp_u8_at(berry, ".stageDuration"),
+        .moistureDrainRate = dp_u8_at(berry, ".moistureDrainRate"),
+        .spiciness         = dp_u8_at(berry, ".spiciness"),
+        .dryness           = dp_u8_at(berry, ".dryness"),
+        .sweetness         = dp_u8_at(berry, ".sweetness"),
+        .bitterness        = dp_u8_at(berry, ".bitterness"),
+        .sourness          = dp_u8_at(berry, ".sourness"),
+        .smoothness        = dp_u8_at(berry, ".smoothness"),
     };
+
+    Archive_Pack(A_BERRY_DATA, &data, sizeof(data));
 }
 
-static int pack_berries(void) {
-    nitroarc_packer_t p = init_narc((u16)len_berries, false, false);
-    for (size_t i = 0; i < len_berries; i++) {
-        nitroarc_ppack(&p, &berries[i], sizeof(*berries), NULL);
+static u8  numBalls   = 0;
+static u8  numMail    = 0;
+static u8  numRods    = 0;
+static u16 numTMs     = 0;
+static u16 numBerries = 0;
+
+static void ProcItem(dp_node root, const char *name)
+{
+    ItemData item = {
+        .price             = dp_u16_at(root, ".price"),
+        .effectParam       = dp_u8_at(root, ".effectParam"),
+        .holdEffect        = dp_u8(dp_lookup_at(root, ".holdEffect", L_HOLD_EFFECT)),
+        .pluckEffect       = dp_u8(dp_lookup_at(root, ".pluckEffect", L_PLUCK_EFFECT)),
+        .flingEffect       = dp_u8(dp_lookup_at(root, ".flingEffect", L_FLING_EFFECT)),
+        .flingPower        = dp_u8_at(root, ".flingPower"),
+        .naturalGiftPower  = dp_u8_at(root, ".naturalGiftPower"),
+        .preventToss       = dp_bool_at(root, ".preventToss"),
+        .canRegister       = dp_bool_at(root, ".canRegister"),
+        .fieldPocket       = dp_bits(dp_lookup_at(root, ".fieldPocket", L_POCKET), 4),
+        .battlePocket      = dp_bits(dp_lookup_at(root, ".battlePocket", L_BATTLE_POCKET_MASK), 5),
+        .fieldUseFunc      = dp_u8(dp_lookup_at(root, ".fieldUseFunc", L_ITEM_USE_FUNC)),
+        .battleUseCategory = dp_u8(dp_lookup_at(root, ".battleUseCategory", L_BATTLE_USE_CATEGORY)),
+    };
+
+    const dp_node giftType = dp_at(root, ".naturalGiftType");
+    item.naturalGiftType   = dp_type_of(giftType) == DP_NULL ? 0x1F : dp_bits(dp_lookup(giftType, L_TYPE), 5);
+
+    // MATCH DETAIL: `item.dummy` holds an incrementing index depending on `fieldUseFunc`
+    switch (item.fieldUseFunc) {
+    case ITEM_USE_FUNC_NONE:
+        if (item.fieldPocket == POCKET_BALLS) item.dummy = numBalls++;
+        else ProcParams(root, &item);
+        break;
+
+    case ITEM_USE_FUNC_OLD_ROD:   // fall-through
+    case ITEM_USE_FUNC_GOOD_ROD:  // fall-through
+    case ITEM_USE_FUNC_SUPER_ROD: item.dummy = numRods++; break;
+
+    case ITEM_USE_FUNC_MAIL:
+        item.dummy = numMail++;
+        TextFile_Printf(F_MAIL_LIST, "    [%u] = %s,\n", item.dummy, name);
+        break;
+
+    case ITEM_USE_FUNC_TM_HM: {
+        const dp_node move = dp_lookup_at(root, ".teachesMove", L_MOVE);
+        TextFile_Printf(F_TM_MOVE_MAP, "    [%u] = %s,\n", numTMs++, Symbol_Name(move));
+        break;
     }
 
-    return fdump_narc(&p, "nuts_data.narc", true);
+    case ITEM_USE_FUNC_EVO_STONE: // Special case to remove a foot-gun for evolution items
+        ProcParams(root, &item);
+        item.partyUseParam.evolve = true;
+        break;
+
+    case ITEM_USE_FUNC_BERRY:
+        TextFile_Printf(F_BERRY_LIST, "    [%u] = %s,\n", numBerries++, name);
+        ProcBerry(dp_at(root, ".berryData"));
+        // fall-through
+
+    default: ProcParams(root, &item); break;
+    }
+
+    Archive_Pack(A_ITEM_DATA, &item, sizeof(item));
 }
 
-static void proc_text(const char *stem, const char *name, const char *plural, datanode_t *article, datanode_t *desc) {
-#define strfmt2(fmt, ...) (snprintf(buf2, BUFSIZE, fmt, __VA_ARGS__), buf2)
-    char buf[BUFSIZE] = { 0 };
-    char buf2[BUFSIZE] = { 0 };
+static void ProcText(dp_node root, const char *stem, size_t index)
+{
+    const char *name   = dp_string_at(root, ".name");
+    const char *plural = dp_string_at(root, ".plural");
 
-    bank_push(T_ITEM_NAMES, strfmt("ItemNames_Text_%s", stem), name);
-    bank_push(T_ITEM_NAMES_PLURAL, strfmt("ItemNamesPlural_Text_%s", stem), plural);
+    TextBank_PushString(T_ITEM_NAMES,        name,   "ItemNames_Text_%s", stem);
+    TextBank_PushString(T_ITEM_NAMES_PLURAL, plural, "ItemNamesPlural_Text_%s", stem);
+    TextBank_PushNode(T_ITEM_DESCRIPTIONS, dp_at(root, ".description"), "ItemDescriptions_Text_%s", stem);
+    if (name == NULL || plural == NULL) return; // error is already staged
 
-    char *article_id = strfmt2("ItemNamesWithArticles_Text_%s", stem);
-    if (strcmp(plural, "???") == 0) {
-        bank_push(T_ITEM_NAMES_WITH_ARTICLE, article_id, plural);
-    }
-    else if (article->type == DATAPROC_T_NULL) {
-        bank_push(T_ITEM_NAMES_WITH_ARTICLE, article_id, strfmt("{COLOR 255}%s{COLOR 0}", name));
-    }
-    else {
-        bank_push(T_ITEM_NAMES_WITH_ARTICLE, article_id, strfmt("%s {COLOR 255}%s{COLOR 0}", dp_string(*article), name));
+    if (index == ITEM_NONE) {
+        TextBank_PushString(T_ITEM_NAMES_WITH_ARTICLE, plural, "ItemNamesWithArticles_Text_%s", stem);
+        return;
     }
 
-    if (desc) bank_push(T_ITEM_DESCRIPTIONS, strfmt("ItemDescriptions_Text_%s", stem), *desc);
-    else      bank_push(T_ITEM_DESCRIPTIONS, strfmt("ItemDescriptions_Text_%s", stem), 0);
-#undef strfmt2
+    const dp_node article     = dp_at(root, ".article");
+    const char   *prefix      = dp_type_of(article) == DP_NULL ? NULL : dp_string(article);
+    char         *withArticle = prefix != NULL
+                              ? String_Format("%s {COLOR 255}%s{COLOR 0}", prefix, name)
+                              : String_Format("{COLOR 255}%s{COLOR 0}", name);
+
+    TextBank_PushString(T_ITEM_NAMES_WITH_ARTICLE, withArticle, "ItemNamesWithArticles_Text_%s", stem);
+    free(withArticle);
 }
 
-static void add_idmap(datafile_t *df, size_t i, size_t data_id) {
-    const char *icon, *palette, *gba_id;
-    if (!df) {
-        icon    = "none_NCGR";
-        palette = "none_NCLR";
-        gba_id  = "GBA_ITEM_NONE";
-    }
-    else {
-        icon    = string(".icon.sprite");
-        palette = string(".icon.palette");
-        gba_id  = string(".gbaID");
-    }
-
-    fprintf(headers[H_ITEM_ID_MAP].out_file,
-            "    [%zu] = {\n"
-            "        .dataID = %zu,\n"
-            "        .iconID = %s,\n"
-            "        .paletteID = %s,\n"
-            "        .gen3ID = %s,\n"
-            "    },\n",
-            i, data_id, icon, palette, gba_id);
+static void EmitIDMapEntry(size_t index, size_t dataID, const char *icon, const char *palette, const char *gen3ID)
+{
+    TextFile_Printf(F_ITEM_ID_MAP,
+                    "    [%zu] = {\n"
+                    "        .dataID = %zu,\n"
+                    "        .iconID = %s,\n"
+                    "        .paletteID = %s,\n"
+                    "        .gen3ID = %s,\n"
+                    "    },\n",
+                    index, dataID, icon, palette, gen3ID);
 }
 
-static void emit_hidden_scripts(size_t max_script_id) {
-    for (size_t i = 0; i < max_script_id; i++) {
-        fputs("    ScriptEntry HiddenItems_Item\n", headers[H_HIDDEN_ITEM_SCRIPTS].out_file);
-    }
-    fputs("    ScriptEntryEnd\n", headers[H_HIDDEN_ITEM_SCRIPTS].out_file);
+static void ProcPlaceholder(size_t index, const char *stem)
+{
+    TextBank_PushString(T_ITEM_NAMES,              "???", "ItemNames_Text_%s", stem);
+    TextBank_PushString(T_ITEM_NAMES_PLURAL,       "???", "ItemNamesPlural_Text_%s", stem);
+    TextBank_PushString(T_ITEM_NAMES_WITH_ARTICLE, "???", "ItemNamesWithArticles_Text_%s", stem);
+    TextBank_PushGarbage(T_ITEM_DESCRIPTIONS, 0, "ItemDescriptions_Text_%s", stem);
+    EmitIDMapEntry(index, 0, "none_NCGR", "none_NCLR", "GBA_ITEM_NONE");
 }
 
-static void usage(const char *fmt, ...);
+int main(int argc, char **argv)
+{
+    Driver_Init(&driver, argc, argv);
 
-static char *program_name  = NULL;
+    Records icons = Records_Load("res/items/item_icon.recs");
+    RegisterIcons(icons, L_ICON_SPRITE,  "_NCGR");
+    RegisterIcons(icons, L_ICON_PALETTE, "_NCLR");
+    EmitHiddenItemScripts();
 
-static void parse_args(int *pargc, char ***pargv) {
-    program_name = (*pargv)[0];
-    opterr       = 0;
-
-    int c = 0;
-    while ((c = getopt(*pargc, *pargv, ":o:M:h")) != -1) {
-        switch (c) {
-        case 'o': output_dir    = optarg; break;
-        case 'M': depfile_path  = optarg; break;
-
-        case 'h': usage(NULL);                                 break;
-        case ':': usage("missing argument for '-%c'", optopt); break;
-        default:  usage("unknown option '-%c'", optopt);     break;
+    size_t dataID = 0; // only items with data have a member in the item data archive
+    for (EachEntry(entry, Entries_Filter(Entries_FromEnum(enumFile, "Item", "ITEM_", "%s/%s.json", baseDir), HasData))) {
+        if (!entry.hasData) {
+            ProcPlaceholder(entry.index, entry.stem);
+            continue;
         }
+
+        ProcItem(entry.root, entry.name);
+        ProcText(entry.root, entry.stem, entry.index);
+
+        const dp_node icon    = dp_lookup_at(entry.root, ".icon.sprite", L_ICON_SPRITE);
+        const dp_node palette = dp_lookup_at(entry.root, ".icon.palette", L_ICON_PALETTE);
+        const dp_node gen3ID  = dp_at(entry.root, ".gbaID");
+        EmitIDMapEntry(entry.index, dataID++,
+                       Symbol_Name(icon),
+                       Symbol_Name(palette),
+                       Symbol_Name(gen3ID));
     }
 
-    *pargc -= optind;
-    *pargv += optind;
-    if (*pargc < 1) usage("missing required argument ENUMFILE");
-    if (*pargc < 2) usage("missing required argument BASEDIR");
-
-    filename = (*pargv)[0];
-    base_dir = (*pargv)[1];
-}
-
-static void usage(const char *fmt, ...) {
-    FILE *f = stdout;
-    if (fmt != NULL) {
-        f = stderr;
-
-        va_list args;
-        va_start(args, fmt);
-        fputs(program_name, f);
-        fputs(": ", f);
-        vfprintf(f, fmt, args);
-        fputc('\n', f);
-        va_end(args);
-    }
-
-#define fputf(fmt, ...) fprintf(f, fmt, __VA_ARGS__)
-    fputf("usage: %s [-M DEPFILE] [-o OUTDIR] ENUMFILE BASEDIR\n", program_name);
-    fputs("\n", f);
-    fputs("options:\n", f);
-    fputs("  -o OUTDIR            Write output files to OUTDIR. Does not affect DEPFILE.\n", f);
-    fputs("                       Defaults to the current working directory.\n", f);
-    fputs("  -M DEPFILE           Specify the full path to an output dependency file.\n", f);
-    fputs("                       Defaults to 'item_data.d'.\n", f);
-#undef fputf
-
-    exit(f == stdout ? EXIT_SUCCESS : EXIT_FAILURE);
+    return Driver_Finish(&driver);
 }

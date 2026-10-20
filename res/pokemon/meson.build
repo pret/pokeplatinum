@@ -238,11 +238,10 @@ species_data = custom_target('species_data',
         '-t', files('move_tutors.json'),
         '-s', sinnoh_pokedex,
         '-o', meson.current_build_dir(),
+        c_consts_headers['species'],
         pokemon_data_root,
     ],
 
-    env: species_env,
-    depend_files: species_data_files,
     depfile: 'species_data.d',
 )
 
@@ -274,6 +273,7 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
     output: [
         'pl_poke_icon.narc',
         'pl_poke_icon.naix',
+        'pl_poke_icon.recs',
     ],
     input: [
         icons_shared,

@@ -4,6 +4,7 @@ item_icon_narc = custom_target('item_icon.narc',
     output: [
         'item_icon.narc',
         'item_icon.naix',
+        'item_icon.recs',
     ],
     input: [
         item_icon_ncgrs,
@@ -45,11 +46,11 @@ item_data = custom_target('item_data',
         itemproc_exe,
         '-M', '@DEPFILE@',
         '-o', meson.current_build_dir(),
-        meson.global_build_root() / 'generated' / 'items.h', # TODO: replace with proper file() reference
+        c_consts_headers['items'],
         meson.current_source_dir() / 'data',
     ],
 
-    depends: item_icon_narc[1],
+    depends: item_icon_narc,
     depfile: 'item_data.d',
 )
 

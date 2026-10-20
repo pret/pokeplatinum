@@ -159,6 +159,7 @@ town_map_graphics_narc = custom_target('town_map_graphics.narc',
     output: [
         'town_map_graphics.narc',
         'town_map_graphics.naix',
+        'town_map_graphics.recs',
     ],
     input: [
         tilemaps_nscr,
