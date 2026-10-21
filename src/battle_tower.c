@@ -185,15 +185,15 @@ u16 BattleTower_ReceiveTrainers(FieldSystem *fieldSystem, const u16 *recvBuf)
     return 1;
 }
 
-u16 BattleTower_ReceiveRetireChoice(FieldSystem *fieldSystem, const u16 *recvBuf)
+BOOL BattleTower_ReceiveShouldRetire(FieldSystem *fieldSystem, const u16 *recvBuf)
 {
     BattleTower *battleTower = fieldSystem->battleTower;
 
     if (battleTower->unk_10_3 || recvBuf[0]) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void BattleTower_SendPlayerData(BattleTower *battleTower, SaveData *saveData)
@@ -217,10 +217,10 @@ void BattleTower_SendTrainers(BattleTower *battleTower)
     MI_CpuCopy8(battleTower->trainerIDs, battleTower->unk_83E, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
 }
 
-void BattleTower_SendRetireChoice(BattleTower *battleTower, u16 retire)
+void BattleTower_SendShouldRetire(BattleTower *battleTower, BOOL shouldRetire)
 {
-    battleTower->unk_10_3 = retire;
-    battleTower->unk_83E[0] = retire;
+    battleTower->unk_10_3 = shouldRetire;
+    battleTower->unk_83E[0] = shouldRetire;
 }
 
 static const u16 sBattleTowerTrainerRangesPerRoom[][2] = {

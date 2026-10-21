@@ -14,10 +14,10 @@ StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16
 u16 BattleTower_GetObjectIDFromTrainerClass(u8 trainerClass);
 u16 BattleTower_ReceivePlayerData(FieldSystem *fieldSystem, const u16 *recvBuf);
 u16 BattleTower_ReceiveTrainers(FieldSystem *fieldSystem, const u16 *recvBuf);
-u16 BattleTower_ReceiveRetireChoice(FieldSystem *fieldSystem, const u16 *recvBuf);
+BOOL BattleTower_ReceiveShouldRetire(FieldSystem *fieldSystem, const u16 *recvBuf);
 void BattleTower_SendPlayerData(BattleTower *battleTower, SaveData *saveData);
 void BattleTower_SendTrainers(BattleTower *battleTower);
-void BattleTower_SendRetireChoice(BattleTower *battleTower, u16 retire);
+void BattleTower_SendShouldRetire(BattleTower *battleTower, BOOL shouldRetire);
 u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 roomNum, u8 opponentNum, int challengeMode);
 BOOL BattleTower_CreatePartnerTrainerParty(BattleTower *battleTower, FrontierOpponent *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, BattleTowerPartnerData *partnerData, enum HeapID heapID);
 void BattleTower_RestorePartnerParty(BattleTower *battleTower, FrontierOpponent *opponentDataDTO, u16 battleTowerTrainerID, BOOL giveReservedItem, const BattleTowerPartnerData *partnerData, enum HeapID heapID);

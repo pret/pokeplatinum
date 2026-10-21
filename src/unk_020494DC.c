@@ -262,7 +262,7 @@ BOOL ScrCmd_1E1(ScriptContext *ctx)
         break;
     case 2:
         cmd = 64;
-        BattleTower_SendRetireChoice(ctx->fieldSystem->battleTower, v4);
+        BattleTower_SendShouldRetire(ctx->fieldSystem->battleTower, v4);
         break;
     }
 

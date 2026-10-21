@@ -298,7 +298,7 @@ static BOOL sub_0206BD1C(FieldTask *param0)
         *v0 = BattleTower_ReceiveTrainers(fieldSystem, v1);
         break;
     case 2:
-        *v0 = BattleTower_ReceiveRetireChoice(fieldSystem, v1);
+        *v0 = BattleTower_ReceiveShouldRetire(fieldSystem, v1);
     }
 
     Heap_Free(v3);
