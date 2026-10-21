@@ -14,6 +14,8 @@
 #include "simple3d.h"
 #include "unk_02069BE0.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct {
     FieldEffectManager *unk_00;
     Simple3DModel unk_04[4];
@@ -169,8 +171,8 @@ static const OverworldAnimManagerFuncs Unk_ov5_02200688 = {
 };
 
 static const u32 Unk_ov5_02200678[4] = {
-    0x67,
-    0x68,
-    0x69,
-    0x6A
+    ninja_hide_snow_nsbmd,
+    ninja_hide_sand_nsbmd,
+    ninja_hide_swamp_nsbmd,
+    ninja_hide_grass_nsbmd
 };

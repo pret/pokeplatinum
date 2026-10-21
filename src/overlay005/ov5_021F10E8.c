@@ -11,6 +11,8 @@
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct {
     u32 unk_00;
     Simple3DModel unk_04;
@@ -51,15 +53,15 @@ static UnkStruct_021F1118 *ov5_021F1174(UnkStruct_021F114C *param0, u32 param1);
 static const OverworldAnimManagerFuncs Unk_ov5_0220021C;
 
 static const UnkStruct_ov5_02200230 Unk_ov5_02200230[] = {
-    { 0x5B, 0x45 },
-    { 0x5C, 0x46 },
-    { 0x5D, 0x47 },
-    { 0x5E, 0x48 },
-    { 0x5f, 0x49 },
-    { 0x60, 0x4A },
-    { 0xB7, 0x4F },
-    { 0xD1, 0x6E },
-    { 0x106, 0x95 }
+    { 0x5B, map_signpost_nsbmd },
+    { 0x5C, mailbox_nsbmd },
+    { 0x5D, signboard_nsbmd },
+    { 0x5E, arrow_signpost_nsbmd },
+    { 0x5f, gym_signpost_nsbmd },
+    { 0x60, trainer_tips_nsbmd },
+    { 0xB7, book_nsbmd },
+    { 0xD1, elite_four_room_door_nsbmd },
+    { 0x106, rotom_room_wall_nsbmd }
 };
 
 void *ov5_021F10E8(FieldEffectManager *param0)

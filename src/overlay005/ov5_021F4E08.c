@@ -9,6 +9,8 @@
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct {
     FieldEffectManager *unk_00;
     Simple3DModel unk_04[33];
@@ -62,11 +64,11 @@ static void ov5_LoadFloorTextures(UnkStruct_ov5_021F4E38 *param0)
     int i;
 
     for (i = 0; i < FLOOR_TEXTURE_COUNT - 1; i++) {
-        FieldEffectManager_LoadModel(param0->unk_00, &param0->unk_04[i], 0, 26 + i, FALSE);
+        FieldEffectManager_LoadModel(param0->unk_00, &param0->unk_04[i], 0, ug_trap_move_up_nsbmd + i, FALSE);
         Simple3D_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
     }
 
-    FieldEffectManager_LoadModel(param0->unk_00, &param0->unk_04[i], 0, 25, FALSE);
+    FieldEffectManager_LoadModel(param0->unk_00, &param0->unk_04[i], 0, ug_black_circle_nsbmd, FALSE);
     Simple3D_CreateRenderObject(&param0->unk_298[i], &param0->unk_04[i]);
 }
 

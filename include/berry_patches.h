@@ -18,6 +18,7 @@ enum SoilMoisture {
     SOIL_VERY_DRY = 0,
     SOIL_DRY,
     SOIL_MOIST,
+    SOIL_COUNT,
 };
 
 typedef struct BerryPatch {

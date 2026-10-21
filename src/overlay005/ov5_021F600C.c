@@ -12,6 +12,8 @@
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct UnkStruct_ov5_021F600C_t {
     FieldEffectManager *unk_00;
 } UnkStruct_ov5_021F600C;
@@ -57,8 +59,8 @@ void ov5_021F6028(void *param0)
 
 static void ov5_021F6038(UnkStruct_ov5_021F600C *param0)
 {
-    ov5_021DF9E0(param0->unk_00, 4, 87);
-    ov5_021DFA3C(param0->unk_00, 3, 6, 1);
+    ov5_021DF9E0(param0->unk_00, 4, red_frame_nsbmd);
+    ov5_021DFA3C(param0->unk_00, 3, red_frame_nsbtx, 1);
     ov5_021DF864(param0->unk_00, 4, 4, 0, 3, 0, Unk_ov5_02200BEC);
 }
 

@@ -12,6 +12,8 @@
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 #define NUM_MODELS     3
 #define NUM_ANIMATIONS 12
 
@@ -405,26 +407,25 @@ static const OverworldAnimManagerFuncs sPunchingBagAnimFuncs = {
     PunchingBagAnim_Render
 };
 
-// TODO Replace values with naix constants when fldeff.narc is unpacked
 static const u32 sVeilstoneGymObjectModelIDs[NUM_MODELS] = {
-    112,
-    114,
-    113
+    veilstone_gym_tire_stack_toppled_nsbmd,
+    veilstone_gym_tire_stack_nsbmd,
+    veilstone_gym_sandbag_nsbmd
 };
 
 static const u32 sVeilstoneGymObjectAnimationsIDs[NUM_ANIMATIONS] = {
-    182,
-    183,
-    184,
-    185,
-    186,
-    187,
-    188,
-    189,
-    190,
-    195,
-    196,
-    168
+    veilstone_gym_sandbag_push_from_above_nsbca,
+    veilstone_gym_sandbag_push_from_below_nsbca,
+    veilstone_gym_sandbag_push_from_left_nsbca,
+    veilstone_gym_sandbag_push_from_right_nsbca,
+    veilstone_gym_sandbag_push_far_from_above_nsbca,
+    veilstone_gym_sandbag_push_far_from_below_nsbca,
+    veilstone_gym_sandbag_push_far_from_left_nsbca,
+    veilstone_gym_sandbag_push_far_from_right_nsbca,
+    veilstone_gym_tire_stack_toppled_nsbca,
+    veilstone_gym_tire_stack_toppled_nsbma,
+    veilstone_gym_tire_stack_toppled_nsbta,
+    veilstone_gym_tire_stack_toppled_nsbtp
 };
 
 static const u32 sTireStackAnimIndices[NUM_TIRE_STACK_ANIMATIONS] = { 8, 9, 10, 11 };
