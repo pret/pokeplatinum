@@ -6,7 +6,7 @@
 #include "constants/items.h"
 #include "generated/object_events_gfx.h"
 
-#include "overlay005/berry_graphics_data.h"
+#include "overlay005/berry_graphics_table.h"
 
 #include "billboard.h"
 #include "map_object.h"
