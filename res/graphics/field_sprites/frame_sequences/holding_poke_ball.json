@@ -1,0 +1,9 @@
+{
+    "sheet_frames": 4,
+    "keys": [
+        { "start": 0, "frame": 1 },
+        { "start": 5, "frame": 2 },
+        { "start": 10, "frame": 3 },
+        { "start": 15, "frame": 4 }
+    ]
+}

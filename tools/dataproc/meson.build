@@ -96,3 +96,12 @@ moveproc_exe = executable(
     dependencies: common_dep,
     native: true,
 )
+
+frameseqproc_exe = executable(
+    'frameseqproc',
+    sources: files('src/frameseqproc.c'),
+    c_args: dataproc_cflags,
+    include_directories: [ public_includes, toplevel_includes ],
+    dependencies: common_dep,
+    native: true,
+)

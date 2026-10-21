@@ -1,0 +1,17 @@
+{
+    "sheet_frames": 12,
+    "keys": [
+        { "start": 0, "frame": 1 },
+        { "start": 4, "frame": 2 },
+        { "start": 8, "frame": 3 },
+        { "start": 12, "frame": 4 },
+        { "start": 16, "frame": 5 },
+        { "start": 20, "frame": 6 },
+        { "start": 21, "frame": 7 },
+        { "start": 25, "frame": 8 },
+        { "start": 29, "frame": 9 },
+        { "start": 33, "frame": 10 },
+        { "start": 37, "frame": 11 },
+        { "start": 41, "frame": 12 }
+    ]
+}
