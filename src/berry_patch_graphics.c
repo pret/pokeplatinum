@@ -5,7 +5,6 @@
 
 #include "struct_decls/map_object.h"
 
-#include "overlay005/berry_graphics_data.h"
 #include "overlay005/berry_graphics_table.h"
 #include "overlay005/berry_patch_effects.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -13,10 +12,9 @@
 #include "overlay005/struct_ov5_021ED01C.h"
 
 #include "berry_patch_manager.h"
-#include "berry_patches.h"
 #include "billboard.h"
-#include "map_header_data.h"
 #include "map_object.h"
+#include "object_events_gfx.h"
 
 typedef struct BerryPatchData {
     u16 growthStage;

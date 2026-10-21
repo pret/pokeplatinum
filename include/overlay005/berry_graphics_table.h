@@ -1,7 +1,11 @@
 #ifndef POKEPLATINUM_BERRY_GRAPHICS_TABLE_H
 #define POKEPLATINUM_BERRY_GRAPHICS_TABLE_H
 
-#include "overlay005/berry_graphics_data.h"
+typedef struct BerryGraphicsData {
+    u32 growingResourceID;
+    u32 bloomingResourceID;
+    u32 fruitResourceID;
+} BerryGraphicsData;
 
 extern const BerryGraphicsData gBerryGraphicsTable[];
 
