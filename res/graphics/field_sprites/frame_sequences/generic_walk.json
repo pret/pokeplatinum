@@ -1,0 +1,21 @@
+{
+    "sheet_frames": 16,
+    "keys": [
+        { "start": 0, "frame": 1 },
+        { "start": 4, "frame": 2 },
+        { "start": 8, "frame": 3 },
+        { "start": 12, "frame": 4 },
+        { "start": 16, "frame": 5 },
+        { "start": 20, "frame": 6 },
+        { "start": 24, "frame": 7 },
+        { "start": 28, "frame": 8 },
+        { "start": 32, "frame": 9 },
+        { "start": 36, "frame": 10 },
+        { "start": 40, "frame": 11 },
+        { "start": 44, "frame": 12 },
+        { "start": 48, "frame": 13 },
+        { "start": 52, "frame": 14 },
+        { "start": 56, "frame": 15 },
+        { "start": 60, "frame": 16 }
+    ]
+}
