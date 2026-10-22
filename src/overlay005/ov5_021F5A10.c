@@ -14,6 +14,8 @@
 #include "overworld_anim_manager.h"
 #include "sound_playback.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 void include_unk_ov5_02200B98(void);
 
 typedef struct {
@@ -136,9 +138,9 @@ static void ov5_021F5AB4(UnkStruct_ov5_021F5A34 *param0)
 {
     if (param0->unk_04 == 0) {
         param0->unk_04 = 1;
-        ov5_021DF9E0(param0->unk_08, 1, 85);
-        ov5_021DFA14(param0->unk_08, 1, 170);
-        ov5_021DFA3C(param0->unk_08, 1, 4, 1);
+        ov5_021DF9E0(param0->unk_08, 1, trainer_see_nsbmd);
+        ov5_021DFA14(param0->unk_08, 1, tall_grass_trainer_see_rematch_icon_bin);
+        ov5_021DFA3C(param0->unk_08, 1, trainer_see_nsbtx, 1);
         ov5_021DF864(param0->unk_08, 1, 1, 1, 1, 0, Unk_ov5_02200BC0);
     }
 }
@@ -147,9 +149,9 @@ static void ov5_021F5B00(UnkStruct_ov5_021F5A34 *param0)
 {
     if (param0->unk_05 == 0) {
         param0->unk_05 = 1;
-        ov5_021DF9E0(param0->unk_08, 10, 108);
-        ov5_021DFA14(param0->unk_08, 10, 170);
-        ov5_021DFA3C(param0->unk_08, 11, 13, 1);
+        ov5_021DF9E0(param0->unk_08, 10, rematch_icon_nsbmd);
+        ov5_021DFA14(param0->unk_08, 10, tall_grass_trainer_see_rematch_icon_bin);
+        ov5_021DFA3C(param0->unk_08, 11, rematch_icon_nsbtx, 1);
         ov5_021DF864(param0->unk_08, 12, 10, 10, 11, 0, Unk_ov5_02200BC0);
     }
 }

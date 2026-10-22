@@ -7,6 +7,8 @@
 
 #include "simple3d.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct {
     FieldEffectManager *unk_00;
     Simple3DModel unk_04;
@@ -36,7 +38,7 @@ void ov5_021F4DC8(void *param0)
 
 static void ov5_021F4DD8(UnkStruct_ov5_021F4DD8 *param0)
 {
-    FieldEffectManager_LoadModel(param0->unk_00, &param0->unk_04, 0, 17, 0);
+    FieldEffectManager_LoadModel(param0->unk_00, &param0->unk_04, 0, shadow_nsbmd, 0);
     Simple3D_CreateRenderObject(&param0->unk_18, &param0->unk_04);
 }
 

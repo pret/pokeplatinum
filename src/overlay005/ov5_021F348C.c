@@ -13,6 +13,8 @@
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct {
     u32 unk_00;
     FieldEffectManager *unk_04;
@@ -70,17 +72,17 @@ void ov5_021F34B8(FieldEffectManager *param0)
 
 static void ov5_021F34D0(UnkStruct_ov5_021F34D0 *param0)
 {
-    ov5_021DF9E0(param0->unk_04, 6, 88);
-    ov5_021DFA14(param0->unk_04, 6, 175);
-    ov5_021DFA3C(param0->unk_04, 7, 7, 1);
+    ov5_021DF9E0(param0->unk_04, 6, dust_puff_down_nsbmd);
+    ov5_021DFA14(param0->unk_04, 6, dust_puff_bin);
+    ov5_021DFA3C(param0->unk_04, 7, dust_puff_nsbtx, 1);
     ov5_021DF864(param0->unk_04, 8, 6, 6, 7, 0, Unk_ov5_022005D8);
 }
 
 static void ov5_021F3518(UnkStruct_ov5_021F34D0 *param0)
 {
-    ov5_021DF9E0(param0->unk_04, 12, 159);
-    ov5_021DF9E0(param0->unk_04, 13, 157);
-    ov5_021DF9E0(param0->unk_04, 14, 158);
+    ov5_021DF9E0(param0->unk_04, 12, dust_puff_left_nsbmd);
+    ov5_021DF9E0(param0->unk_04, 13, dust_puff_right_nsbmd);
+    ov5_021DF9E0(param0->unk_04, 14, dust_puff_up_nsbmd);
 
     ov5_021DF864(param0->unk_04, 14, 12, 6, 7, 0, Unk_ov5_022005D8);
     ov5_021DF864(param0->unk_04, 15, 13, 6, 7, 0, Unk_ov5_022005D8);

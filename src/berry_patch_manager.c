@@ -29,6 +29,8 @@
 #include "tv_segment.h"
 #include "unk_020655F4.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct BerryWateringTask {
     enum BerryWateringState state;
     enum FaceDirection direction;
@@ -111,11 +113,11 @@ void BerryPatches_ElapseTime(FieldSystem *fieldSystem, int minutes)
 static void BerryPatchManager_Init3DRendering(FieldSystem *fieldSystem, BerryPatchManager *manager)
 {
     FieldEffectManager *fieldEffMan = fieldSystem->fieldEffMan;
-    u32 resourceSize = FieldEffectManager_GetNARCMemberSize(fieldEffMan, 17);
+    u32 resourceSize = FieldEffectManager_GetNARCMemberSize(fieldEffMan, shadow_nsbmd);
 
     manager->resource = Heap_Alloc(manager->heapID, resourceSize);
 
-    FieldEffectManager_ReadNARCWholeMember(fieldEffMan, 17, manager->resource);
+    FieldEffectManager_ReadNARCWholeMember(fieldEffMan, shadow_nsbmd, manager->resource);
     Easy3D_InitRenderObjFromResource(&manager->renderObj, &manager->model, &manager->resource);
 }
 

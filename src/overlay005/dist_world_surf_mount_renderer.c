@@ -18,6 +18,8 @@
 #include "player_avatar.h"
 #include "simple3d.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 #define RENDERER_MIN_Y_OFFSET     FX32_ONE
 #define RENDERER_MAX_Y_OFFSET     (FX32_ONE * 4)
 #define RENDERER_INITIAL_Y_OFFSET FX32_ONE
@@ -89,7 +91,7 @@ void DistWorldSurfMountRenderer_Free(void *context)
 
 static void DistWorldSurfMountResources_Init(DistWorldSurfMountResources *resources)
 {
-    FieldEffectManager_LoadModel(resources->fieldEffMan, &resources->surfMountModel, 0, 81, FALSE);
+    FieldEffectManager_LoadModel(resources->fieldEffMan, &resources->surfMountModel, 0, surf_mount_nsbmd, FALSE);
     Simple3D_CreateRenderObject(&resources->surfMountRenderObj, &resources->surfMountModel);
 }
 

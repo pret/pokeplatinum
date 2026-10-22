@@ -9,6 +9,8 @@
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct {
     int unk_00;
     FieldEffectManager *unk_04;
@@ -51,8 +53,8 @@ void ov5_021F5778(void *param0)
 
 static void ov5_021F5788(UnkStruct_021F5788 *param0)
 {
-    FieldEffectManager_LoadModel(param0->unk_04, &param0->unk_08, 0, 92, 0);
-    FieldEffectManager_LoadAnimation(param0->unk_04, &param0->unk_1C, 0, 164, 0);
+    FieldEffectManager_LoadModel(param0->unk_04, &param0->unk_08, 0, gflash_nsbmd, 0);
+    FieldEffectManager_LoadAnimation(param0->unk_04, &param0->unk_1C, 0, gflash_nsbtp, 0);
 }
 
 static void ov5_021F57B4(UnkStruct_021F5788 *param0)

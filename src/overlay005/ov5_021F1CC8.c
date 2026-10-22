@@ -12,6 +12,8 @@
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct {
     FieldEffectManager *unk_00;
     Simple3DModel unk_04[10];
@@ -289,29 +291,29 @@ static void ov5_021F2014(OverworldAnimManager *param0, void *param1)
 }
 
 static const u32 Unk_ov5_0220039C[10] = {
-    0x3B,
-    0x3C,
-    0x3D,
-    0x3E,
-    0x3F,
-    0x40,
-    0x41,
-    0x42,
-    0x43,
-    0x44
+    foot_tracks_sand_up_nsbmd,
+    foot_tracks_sand_down_nsbmd,
+    foot_tracks_sand_left_nsbmd,
+    foot_tracks_sand_right_nsbmd,
+    bike_tracks_sand_vertical_nsbmd,
+    bike_tracks_sand_horizontal_nsbmd,
+    bike_tracks_sand_upper_left_nsbmd,
+    bike_tracks_sand_upper_right_nsbmd,
+    bike_tracks_sand_lower_left_nsbmd,
+    bike_tracks_sand_lower_right_nsbmd
 };
 
 static const u32 Unk_ov5_02200374[10] = {
-    0x5D,
-    0x5E,
-    0x5F,
-    0x60,
-    0x61,
-    0x62,
-    0x63,
-    0x64,
-    0x65,
-    0x66
+    foot_tracks_snow_up_nsbmd,
+    foot_tracks_snow_down_nsbmd,
+    foot_tracks_snow_left_nsbmd,
+    foot_tracks_snow_right_nsbmd,
+    bike_tracks_snow_vertical_nsbmd,
+    bike_tracks_snow_horizontal_nsbmd,
+    bike_tracks_snow_upper_left_nsbmd,
+    bike_tracks_snow_upper_right_nsbmd,
+    bike_tracks_snow_lower_left_nsbmd,
+    bike_tracks_snow_lower_right_nsbmd
 };
 
 static const int Unk_ov5_022003C4[4][4] = {

@@ -15,6 +15,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct {
     int unk_00;
     int unk_04;
@@ -386,7 +388,7 @@ static const fx32 Unk_ov5_02200284[] = {
 };
 
 static const int Unk_ov5_02200278[3] = {
-    0x11,
-    0x12,
-    0x13
+    shadow_nsbmd,
+    red_mark_nsbmd,
+    blue_mark_nsbmd
 };
