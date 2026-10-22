@@ -7,9 +7,9 @@ water_splash.nsbtx
 red_frame.nsbtx
 dust_puff.nsbtx
 very_tall_grass.nsbtx
-ngrass.nsbtx
-gym04_eff.nsbtx
-n_shibuki.nsbtx
+swamp_grass.nsbtx
+unused_eterna_gym_leaves.nsbtx
+unused_splash.nsbtx
 ninja_appear_smoke.nsbtx
 rematch_icon.nsbtx
 berry_patch_sparkle.nsbtx
@@ -88,7 +88,7 @@ water_splash.nsbmd
 red_frame.nsbmd
 dust_puff_down.nsbmd
 very_tall_grass.nsbmd
-ngrass.nsbmd
+swamp_grass.nsbmd
 drill.nsbmd
 gflash.nsbmd
 foot_tracks_snow_up.nsbmd
@@ -154,7 +154,7 @@ bike_tracks_unused_upper_left.nsbmd
 bike_tracks_unused_upper_right.nsbmd
 bike_tracks_unused_lower_left.nsbmd
 bike_tracks_unused_lower_right.nsbmd
-d33_wave_obj.nsbmd
+unused_distortion_world_splash.nsbmd
 dust_puff_right.nsbmd
 dust_puff_up.nsbmd
 dust_puff_left.nsbmd
@@ -167,7 +167,7 @@ snowpoint_gym_snowball.nsbtp
 eterna_gym_fountain.nsbtp
 eterna_gym_fountain_stopping.nsbtp
 veilstone_gym_tire_stack_toppled.nsbtp
-d33_wave_obj.nsbtp
+unused_distortion_world_splash.nsbtp
 tall_grass_trainer_see_rematch_icon.bin
 tall_grass_2.bin
 tall_grass_3.bin
@@ -175,9 +175,9 @@ tall_grass_4.bin
 water_splash.bin
 dust_puff.bin
 very_tall_grass.bin
-ngrass.bin
-gym04_eff.bin
-n_shibuki.bin
+swamp_grass.bin
+unused_eterna_gym_leaves.bin
+unused_splash.bin
 ninja_appear_smoke.bin
 berry_patch_sparkle.bin
 veilstone_gym_sandbag_push_from_above.nsbca
@@ -192,7 +192,7 @@ veilstone_gym_tire_stack_toppled.nsbca
 distortion_world_land_vine_flower.nsbca
 distortion_world_land_rock.nsbca
 distortion_world_portal.nsbca
-d33_wave_obj.nsbca
+unused_distortion_world_splash.nsbca
 veilstone_gym_tire_stack_toppled.nsbma
 veilstone_gym_tire_stack_toppled.nsbta
 player_rotation.nsbta
