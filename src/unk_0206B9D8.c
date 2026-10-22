@@ -16,6 +16,7 @@
 
 #include "bag.h"
 #include "battle_frontier_save.h"
+#include "battle_tower.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_system.h"
@@ -31,7 +32,6 @@
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_0204AEE8.h"
 #include "wifi_battle_tower_save.h"
 
 #include "constdata/const_020F410C.h"
@@ -292,13 +292,13 @@ static BOOL sub_0206BD1C(FieldTask *param0)
 
     switch (v3->unk_00) {
     case 0:
-        *v0 = sub_0204AFC4(fieldSystem, v1);
+        *v0 = BattleTower_ReceivePlayerData(fieldSystem, v1);
         break;
     case 1:
-        *v0 = sub_0204B020(fieldSystem, v1);
+        *v0 = BattleTower_ReceiveTrainers(fieldSystem, v1);
         break;
     case 2:
-        *v0 = sub_0204B044(fieldSystem, v1);
+        *v0 = BattleTower_ReceiveShouldRetire(fieldSystem, v1);
     }
 
     Heap_Free(v3);

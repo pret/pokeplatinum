@@ -19,6 +19,7 @@
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
+#include "battle_tower.h"
 #include "field_overworld_state.h"
 #include "field_task.h"
 #include "game_records.h"
@@ -38,7 +39,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_0204AEE8.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 #include "wifi_battle_tower_save.h"
@@ -363,7 +363,7 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
             battleTower->partnerID = (u8)WifiBattleTowerSave_GetField(battleTower->wifiBattleTowerSave, 9, NULL);
 
             WifiBattleTowerSave_GetField(battleTower->wifiBattleTowerSave, 6, &(battleTower->unk_7E8[battleTower->partnerID]));
-            sub_0204B404(battleTower, &battleTower->partnersDataDTO[battleTower->partnerID], FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL + battleTower->partnerID, WifiBattleTowerSave_GetField(battleTower->wifiBattleTowerSave, 7, NULL), &(battleTower->unk_7E8[battleTower->partnerID]), battleTower->heapID);
+            BattleTower_RestorePartnerParty(battleTower, &battleTower->partnersDataDTO[battleTower->partnerID], FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL + battleTower->partnerID, WifiBattleTowerSave_GetField(battleTower->wifiBattleTowerSave, 7, NULL), &(battleTower->unk_7E8[battleTower->partnerID]), battleTower->heapID);
         }
     }
 
@@ -728,7 +728,7 @@ void sub_0204A8C8(BattleTower *battleTower)
 void sub_0204A97C(BattleTower *battleTower)
 {
     for (int partnerID = 0; partnerID < BT_PARTNERS_COUNT; partnerID++) {
-        battleTower->unk_838[partnerID] = (u8)sub_0204B3B8(battleTower, &(battleTower->partnersDataDTO[partnerID]), FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL + partnerID, battleTower->partySize, battleTower->unk_2E, battleTower->unk_36, &(battleTower->unk_7E8[partnerID]), battleTower->heapID);
+        battleTower->unk_838[partnerID] = (u8)BattleTower_CreatePartnerTrainerParty(battleTower, &(battleTower->partnersDataDTO[partnerID]), FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL + partnerID, battleTower->partySize, battleTower->unk_2E, battleTower->unk_36, &(battleTower->unk_7E8[partnerID]), battleTower->heapID);
     }
 }
 

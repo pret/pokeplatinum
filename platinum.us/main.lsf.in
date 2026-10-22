@@ -194,7 +194,7 @@ Static main
 	Object src/scrcmd_tv_broadcast.c
 	Object src/unk_020494DC.c
 	Object src/unk_02049D08.c
-	Object src/unk_0204AEE8.c
+	Object src/battle_tower.c
 	Object src/scrcmd_berry.c
 	Object src/scrcmd_mystery_gift.c
 	Object src/scrcmd_catching_show.c
