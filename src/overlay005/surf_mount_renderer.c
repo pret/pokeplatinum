@@ -78,7 +78,7 @@ void SurfMountRenderer_Free(void *context)
 
 static void SurfMountResources_Init(SurfMountResources *resources)
 {
-    FieldEffectManager_LoadModel(resources->fieldEffMan, &resources->surfMountModel, 0, surf_blob_nsbmd, FALSE);
+    FieldEffectManager_LoadModel(resources->fieldEffMan, &resources->surfMountModel, 0, surf_mount_nsbmd, FALSE);
     Simple3D_CreateRenderObject(&resources->surfMountRenderObj, &resources->surfMountModel);
 }
 

@@ -83,7 +83,7 @@ static void ov5_021F287C(UnkStruct_ov5_021F2874 *param0)
 static void ov5_021F288C(UnkStruct_ov5_021F2874 *param0)
 {
     if (param0->unk_04 == 0) {
-        FieldEffectManager_LoadModel(param0->unk_10, &param0->unk_14, 0, rock_climb_blob_nsbmd, 1);
+        FieldEffectManager_LoadModel(param0->unk_10, &param0->unk_14, 0, rock_climb_mount_nsbmd, 1);
         Simple3D_CreateRenderObject(&param0->unk_28, &param0->unk_14);
         param0->unk_04 = 1;
     }
