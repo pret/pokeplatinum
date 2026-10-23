@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_WIFI_PLAZA_NEWS_MAIN_H
-#define POKEPLATINUM_WIFI_PLAZA_NEWS_MAIN_H
+#ifndef POKEPLATINUM_WIFI_PLAZA_NEWS_H
+#define POKEPLATINUM_WIFI_PLAZA_NEWS_H
 
 #include "overlay_manager.h"
 
@@ -42,4 +42,4 @@ BOOL WiFiPlazaNews_Init(ApplicationManager *appMan, int *unused);
 BOOL WiFiPlazaNews_Main(ApplicationManager *appMan, int *state);
 BOOL WiFiPlazaNews_Exit(ApplicationManager *appMan, int *unused);
 
-#endif // POKEPLATINUM_WIFI_PLAZA_NEWS_MAIN_H
+#endif // POKEPLATINUM_WIFI_PLAZA_NEWS_H

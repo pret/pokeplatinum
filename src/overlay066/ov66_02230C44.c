@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/wifi_plaza/news.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -25,7 +26,6 @@
 #include "overlay116/ov116_022604C4.h"
 #include "overlay117/ov117_02260440.h"
 #include "overlay117/struct_ov117_02260440.h"
-#include "wifi_plaza/news/main.h"
 
 #include "game_overlay.h"
 #include "heap.h"

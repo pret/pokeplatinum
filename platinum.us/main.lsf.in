@@ -1634,7 +1634,7 @@ Overlay scratch_off_cards
 Overlay wifi_plaza_news
 {
 	After overlay66
-	Object src/wifi_plaza/news/main.c
+	Object src/applications/wifi_plaza/news.c
 }
 
 Overlay overlay113

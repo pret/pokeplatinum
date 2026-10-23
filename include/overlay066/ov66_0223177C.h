@@ -17,6 +17,12 @@
 #include "enums.h"
 #include "string_gf.h"
 
+enum WiFiPlazaPlayerEvent {
+    WIFI_PLAZA_PLAYER_EVENT_NONE = 0,
+    WIFI_PLAZA_PLAYER_EVENT_JOINED,
+    WIFI_PLAZA_PLAYER_EVENT_LEFT,
+};
+
 UnkStruct_ov66_0223177C *ov66_0223177C(u32 heapID);
 void ov66_022317AC(UnkStruct_ov66_0223177C *param0);
 void ov66_022317C0(UnkStruct_ov66_0223177C *param0);

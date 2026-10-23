@@ -1,4 +1,4 @@
-#include "wifi_plaza/news/main.h"
+#include "applications/wifi_plaza/news.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -305,10 +305,54 @@ static const WiFiPlazaNewsBlinkStage sBlinkStages[WIFI_PLAZA_NEWS_BLINK_STAGE_CO
 };
 
 static const WiFiPlazaNewsCaptionTemplate sCaptionTemplates[WIFI_PLAZA_NEWS_CAPTION_COUNT] = {
-    { .tilemapLeft = 6, .tilemapTop = 0, .width = 20, .height = 8, .baseTile = 1, .palette = 10, .textX = 80, .textY = 6, .alignment = TEXT_ALIGN_CENTER, .textColor = TEXT_COLOR(3, 4, 0) },
-    { .tilemapLeft = 0, .tilemapTop = 6, .width = 6, .height = 3, .baseTile = 161, .palette = 7, .textX = 16, .textY = 4, .alignment = TEXT_ALIGN_CENTER, .textColor = TEXT_COLOR(13, 14, 0) },
-    { .tilemapLeft = 15, .tilemapTop = 6, .width = 6, .height = 5, .baseTile = 179, .palette = 7, .textX = 24, .textY = 4, .alignment = TEXT_ALIGN_CENTER, .textColor = TEXT_COLOR(13, 14, 0) },
-    { .tilemapLeft = 4, .tilemapTop = 12, .width = 18, .height = 3, .baseTile = 209, .palette = 7, .textX = 4, .textY = 4, .alignment = TEXT_ALIGN_LEFT, .textColor = TEXT_COLOR(13, 14, 0) }
+    {
+        .tilemapLeft = 6,
+        .tilemapTop = 0,
+        .width = 20,
+        .height = 8,
+        .baseTile = 1,
+        .palette = 10,
+        .textX = 80,
+        .textY = 6,
+        .alignment = TEXT_ALIGN_CENTER,
+        .textColor = TEXT_COLOR(3, 4, 0),
+    },
+    {
+        .tilemapLeft = 0,
+        .tilemapTop = 6,
+        .width = 6,
+        .height = 3,
+        .baseTile = 161,
+        .palette = 7,
+        .textX = 16,
+        .textY = 4,
+        .alignment = TEXT_ALIGN_CENTER,
+        .textColor = TEXT_COLOR(13, 14, 0),
+    },
+    {
+        .tilemapLeft = 15,
+        .tilemapTop = 6,
+        .width = 6,
+        .height = 5,
+        .baseTile = 179,
+        .palette = 7,
+        .textX = 24,
+        .textY = 4,
+        .alignment = TEXT_ALIGN_CENTER,
+        .textColor = TEXT_COLOR(13, 14, 0),
+    },
+    {
+        .tilemapLeft = 4,
+        .tilemapTop = 12,
+        .width = 18,
+        .height = 3,
+        .baseTile = 209,
+        .palette = 7,
+        .textX = 4,
+        .textY = 4,
+        .alignment = TEXT_ALIGN_LEFT,
+        .textColor = TEXT_COLOR(13, 14, 0),
+    },
 };
 
 static u16 sFlashPaletteIndices[WIFI_PLAZA_NEWS_CAPTION_COUNT] = {
@@ -961,7 +1005,7 @@ static BOOL WiFiPlazaNewsNameList_Update(WiFiPlazaNewsNameList *nameList, UnkStr
             done = WiFiPlazaNewsNameEntry_Update(&nameList->entries[i]);
 
             if (done == TRUE) {
-                if ((i + 1) < WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT) {
+                if (i + 1 < WIFI_PLAZA_NEWS_NAME_LIST_ROW_COUNT) {
                     WiFiPlazaNewsNameEntry_Show(&nameList->entries[i + 1], nameList->entries[i].name, sNameEntryHoldDurations[i + 1], &nameList->entries[i].namePalette, nameList->paletteData);
                 }
 
