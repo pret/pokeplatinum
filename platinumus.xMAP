@@ -78905,7 +78905,7 @@
   0220020C 00000010 .rodata Unk_ov5_0220020C	(src_overlay005_ov5_021F0EB0.c.o)
   0220021C 00000000 .rodata .rodata	(src_overlay005_ov5_021F10E8.c.o)
   0220021C 00000014 .rodata Unk_ov5_0220021C	(src_overlay005_ov5_021F10E8.c.o)
-  02200230 00000048 .rodata Unk_ov5_02200230	(src_overlay005_ov5_021F10E8.c.o)
+  02200230 00000048 .rodata sObjectEventGfxModelEntries	(src_overlay005_ov5_021F10E8.c.o)
   02200278 00000000 .rodata .rodata	(src_overlay005_ov5_021F134C.c.o)
   02200278 0000000C .rodata Unk_ov5_02200278	(src_overlay005_ov5_021F134C.c.o)
   02200284 00000014 .rodata Unk_ov5_02200284	(src_overlay005_ov5_021F134C.c.o)
