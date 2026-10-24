@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/accessories.h"
 #include "constants/contests.h"
 #include "constants/heap.h"
-#include "generated/accessories.h"
 #include "generated/game_records.h"
 #include "generated/object_events_gfx.h"
 #include "generated/pokemon_contest_ranks.h"
