@@ -210,7 +210,13 @@ pl_enc_tbl_narc = custom_target('pl_enc_data.narc',
 
 enc_ex_er_bin_gen = generator(
     encdata_ex_elusive_rod_py,
-    arguments: [ '@INPUT@', '@OUTPUT0@', '@OUTPUT1@', ],
+    arguments: [
+        '@INPUT@', '@OUTPUT0@', '@OUTPUT1@',
+        meson.project_source_root() / 'res' / 'field' / 'matrices',
+        meson.project_source_root() / 'res' / 'field' / 'maps' / 'data',
+        '@DEPFILE@',
+    ],
+    depfile: '@BASENAME@_tiles.d',
     output: [
         '@BASENAME@_species.bin',
         '@BASENAME@_tiles.bin',
