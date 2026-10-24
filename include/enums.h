@@ -170,12 +170,6 @@ typedef enum {
     UnkEnum_ov66_02231E54_02 = 1 << 1,
 } UnkEnum_ov66_02231E54;
 
-typedef enum {
-    UnkEnum_ov66_02231E6C_00,
-    UnkEnum_ov66_02231E6C_01,
-    UnkEnum_ov66_02231E6C_02,
-} UnkEnum_ov66_02231E6C;
-
 enum PlazaMinigame {
     UnkEnum_ov66_022324D0_00,
     UnkEnum_ov66_022324D0_01,

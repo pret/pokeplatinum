@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/wifi_plaza/news.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -19,7 +20,6 @@
 #include "overlay068/ov68_0225C700.h"
 #include "overlay069/ov69_0225C700.h"
 #include "overlay070/ov70_0225D9A4.h"
-#include "overlay112/ov112_0225C700.h"
 #include "overlay113/ov113_0225C700.h"
 #include "overlay115/ov115_02260440.h"
 #include "overlay115/struct_ov115_02260440.h"
@@ -37,7 +37,7 @@ FS_EXTERN_OVERLAY(overlay67);
 FS_EXTERN_OVERLAY(overlay68);
 FS_EXTERN_OVERLAY(overlay69);
 FS_EXTERN_OVERLAY(overlay70);
-FS_EXTERN_OVERLAY(overlay112);
+FS_EXTERN_OVERLAY(wifi_plaza_news);
 FS_EXTERN_OVERLAY(overlay113);
 FS_EXTERN_OVERLAY(overlay114);
 FS_EXTERN_OVERLAY(overlay115);
@@ -54,7 +54,7 @@ typedef struct UnkStruct_ov66_02230C90_t {
     u8 unk_38;
     u8 unk_39;
     u16 heapID;
-    UnkStruct_ov66_0222DFF8 *unk_3C;
+    WiFiPlazaSystem *unk_3C;
     SaveData *saveData;
     UnkStruct_ov66_0222DCE0_sub1 *unk_44;
 } UnkStruct_ov66_02230C90;
@@ -66,7 +66,7 @@ static void ov66_02230D54(UnkStruct_ov66_02230C90 *param0, u32 param1);
 static int ov66_02230D7C(UnkStruct_ov66_02230C90 *param0, u32 param1);
 static void ov66_02230DA0(UnkStruct_ov66_02230DBC *param0, u32 param1);
 static void ov66_02230DBC(UnkStruct_ov66_02230DBC *param0);
-static void ov66_02230DD8(UnkStruct_ov66_02230DBC *param0, UnkStruct_ov66_0222DFF8 *param1, u32 param2);
+static void ov66_02230DD8(UnkStruct_ov66_02230DBC *param0, WiFiPlazaSystem *param1, u32 param2);
 static void ov66_02230E28(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID);
 static void ov66_02230E4C(UnkStruct_ov66_02230E4C *param0);
 static void ov66_02230E68(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
@@ -112,7 +112,7 @@ static void ov66_022313E8(UnkStruct_ov66_02230E4C *param0);
 static void ov66_022313F4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static int ov66_02231404(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 
-UnkStruct_ov66_02230C90 *ov66_02230C44(BOOL param0, SaveData *saveData, UnkStruct_ov66_0222DCE0_sub1 *param2, UnkStruct_ov66_0222DFF8 *param3, u32 heapID)
+UnkStruct_ov66_02230C90 *ov66_02230C44(BOOL param0, SaveData *saveData, UnkStruct_ov66_0222DCE0_sub1 *param2, WiFiPlazaSystem *param3, u32 heapID)
 {
     UnkStruct_ov66_02230C90 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02230C90));
     memset(v0, 0, sizeof(UnkStruct_ov66_02230C90));
@@ -290,7 +290,7 @@ static void ov66_02230DBC(UnkStruct_ov66_02230DBC *param0)
     }
 }
 
-static void ov66_02230DD8(UnkStruct_ov66_02230DBC *param0, UnkStruct_ov66_0222DFF8 *param1, u32 param2)
+static void ov66_02230DD8(UnkStruct_ov66_02230DBC *param0, WiFiPlazaSystem *param1, u32 param2)
 {
     const WiFiPlazaProfile *v0;
     const WiFiPlazaProfile *v1;
@@ -445,10 +445,10 @@ static int ov66_02230F7C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4
 
 static void ov66_02230FA0(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID)
 {
-    UnkStruct_ov66_02230FA0 *v0;
+    WiFiPlazaApplicationArgs *v0;
 
-    param1->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02230FA0));
-    memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02230FA0));
+    param1->unk_00 = Heap_Alloc(heapID, sizeof(WiFiPlazaApplicationArgs));
+    memset(param1->unk_00, 0, sizeof(WiFiPlazaApplicationArgs));
 
     v0 = param1->unk_00;
 
@@ -464,10 +464,10 @@ static void ov66_02230FE4(UnkStruct_ov66_02230E4C *param0)
 
 static void ov66_02230FF0(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1)
 {
-    FS_EXTERN_OVERLAY(overlay112);
+    FS_EXTERN_OVERLAY(wifi_plaza_news);
 
     static const ApplicationManagerTemplate v0 = {
-        ov112_0225C700, ov112_0225C7C4, ov112_0225C8FC, FS_OVERLAY_ID(overlay112)
+        WiFiPlazaNews_Init, WiFiPlazaNews_Main, WiFiPlazaNews_Exit, FS_OVERLAY_ID(wifi_plaza_news)
     };
 
     ov66_02230CEC(param0, param1, &v0);

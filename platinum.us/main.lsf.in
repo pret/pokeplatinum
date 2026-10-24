@@ -1631,10 +1631,10 @@ Overlay scratch_off_cards
 	Object src/applications/scratch_off_cards/windows.c
 }
 
-Overlay overlay112
+Overlay wifi_plaza_news
 {
 	After overlay66
-	Object src/overlay112/ov112_0225C700.c
+	Object src/applications/wifi_plaza/news.c
 }
 
 Overlay overlay113

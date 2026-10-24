@@ -96,7 +96,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
 {
     UnkStruct_ov70_02266AF0 *v0;
     UnkStruct_ov70_02265F38 *v1;
-    UnkStruct_ov66_0222DFF8 *v2;
+    WiFiPlazaSystem *v2;
 
     v1 = ov70_02262E38(param0);
     v0 = ov70_02262E80(param0);
@@ -879,7 +879,7 @@ static BOOL ov70_02266BAC(UnkStruct_ov70_02266AF0 *param0, UnkStruct_ov70_0225DE
 {
     u32 v0;
     u32 v1;
-    UnkStruct_ov66_0222DFF8 *v2 = ov70_0225DEE8(param1);
+    WiFiPlazaSystem *v2 = ov70_0225DEE8(param1);
     v0 = CommManager_GetWifiP2PConnectState();
     v1 = ov66_02233224(param2->unk_01);
 
