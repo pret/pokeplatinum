@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_MAP_HEADER_UTIL_H
 #define POKEPLATINUM_MAP_HEADER_UTIL_H
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "message.h"
 #include "string_gf.h"

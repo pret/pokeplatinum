@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "struct_defs/player_data.h"
 #include "struct_defs/special_encounter.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_LOCATION_H
 #define POKEPLATINUM_LOCATION_H
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "savedata.h"
 

@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/fieldmap.h"
 #include "generated/first_arrival_to_zones.h"
-#include "generated/map_headers.h"
 
 #include "field/field_system.h"
 

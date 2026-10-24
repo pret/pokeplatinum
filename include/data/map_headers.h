@@ -1,7 +1,6 @@
-#include "constants/camera_types.h"
+#include "constants/battle/backgrounds.h"
+#include "constants/fieldmap.h"
 #include "constants/overworld_weather.h"
-#include "generated/battle_backgrounds.h"
-#include "generated/map_headers.h"
 #include "generated/text_banks.h"
 
 #include "map_header.h"
@@ -13,32 +12,6 @@
 #include "res/field/scripts/scr_seq.naix"
 #include "res/sound/pl_sound_data.naix"
 #include "res/text/bank/location_names.h"
-
-// These IDs map to NARC indices for the Map Popups
-// NCGR index =  (windowID - 1) * 2
-// NCLR index = ((windowID - 1) * 2) + 1
-enum MapLabelWindowID {
-    MAP_LABEL_WINDOW_NONE = 0,
-    MAP_LABEL_WINDOW_CITY,
-    MAP_LABEL_WINDOW_TOWN,
-    MAP_LABEL_WINDOW_ROUTE,
-    MAP_LABEL_WINDOW_CAVE,
-    MAP_LABEL_WINDOW_FOREST,
-    MAP_LABEL_WINDOW_WATER,
-    MAP_LABEL_WINDOW_PARK,
-    MAP_LABEL_WINDOW_LAKE,
-    MAP_LABEL_WINDOW_INDOORS,
-};
-
-enum MapType {
-    MAP_TYPE_NONE = 0,
-    MAP_TYPE_TOWN_CITY,
-    MAP_TYPE_OUTDOORS,
-    MAP_TYPE_CAVE,
-    MAP_TYPE_INDOORS,
-    MAP_TYPE_POKECENTER,
-    MAP_TYPE_UNDERGROUND,
-};
 
 static const MapHeader sMapHeaders[] = {
     [MAP_HEADER_EVERYWHERE] = {

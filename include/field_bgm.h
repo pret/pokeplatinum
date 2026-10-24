@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FIELD_BGM_H
 #define POKEPLATINUM_FIELD_BGM_H
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 #include "generated/trainers.h"
 
 #include "field/field_system_decl.h"
