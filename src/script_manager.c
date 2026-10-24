@@ -5,8 +5,8 @@
 
 #include "constants/approach_type.h"
 #include "constants/battle.h"
+#include "constants/fieldmap.h"
 #include "generated/bg_event_types.h"
-#include "generated/map_headers.h"
 
 #include "data/field/hidden_items.h"
 #include "field/field_system.h"

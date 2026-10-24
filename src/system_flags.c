@@ -1,8 +1,8 @@
 #include "system_flags.h"
 
+#include "constants/fieldmap.h"
 #include "constants/savedata/vars_flags.h"
 #include "generated/first_arrival_to_zones.h"
-#include "generated/map_headers.h"
 #include "generated/pokemon_contest_types.h"
 
 #include "rtc.h"

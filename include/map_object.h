@@ -4,8 +4,8 @@
 #include <nitro/fx/fx.h>
 
 #include "constants/field/map.h"
+#include "constants/fieldmap.h"
 #include "constants/map_object.h"
-#include "generated/map_headers.h"
 #include "generated/movement_actions.h"
 
 #include "struct_decls/map_object.h"

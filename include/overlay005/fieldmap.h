@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021D0D80_H
 #define POKEPLATINUM_OV5_021D0D80_H
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "field/field_system_decl.h"
 

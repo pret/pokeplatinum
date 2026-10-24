@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/fieldmap.h"
 #include "constants/narc.h"
 #include "constants/scrcmd.h"
-#include "generated/map_headers.h"
 
 #include "field/field_system.h"
 

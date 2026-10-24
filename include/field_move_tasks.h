@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FIELD_MOVE_TASKS_H
 #define POKEPLATINUM_FIELD_MOVE_TASKS_H
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "struct_decls/map_object.h"
 

@@ -1,7 +1,7 @@
 #include "map_header.h"
 
+#include "constants/fieldmap.h"
 #include "constants/versions.h"
-#include "generated/map_headers.h"
 
 #include "data/map_headers.h"
 
