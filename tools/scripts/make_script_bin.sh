@@ -10,6 +10,8 @@ help() {
     echo "  -a | --assembler    path to the assembler executable"
     echo "  -E | --enumproc     path to the enumproc executable for translating enums to preproc #defines"
     echo "  -o | --objcopy      path to the objcopy executable for data extraction"
+    echo "  -O | --output       path to the output file (default: OUTDIR/<script name>); requires a single FILE"
+    echo "  -c | --compile-only output the assembled object; supresses objcopy and linking"
     echo "  -d | --out-dir      directory for output files (default: current directory)"
     echo "  -M | --depfile      output a compiler-generated depfile for the source"
     echo "  -P | --parent-dir   use the parent directory name of each input script to avoid name collisions"
@@ -21,7 +23,9 @@ AS="arm-none-eabi-gcc"
 OBJCOPY="arm-none-eabi-objcopy"
 LD="arm-none-eabi-ld"
 OUTDIR="."
-MD=""
+DEPFILE=""
+OUTPUT=""
+COMPILE_ONLY=0
 USE_PARENT_DIR=0
 
 while [[ $# -gt 0 ]] ; do
@@ -50,13 +54,22 @@ while [[ $# -gt 0 ]] ; do
             shift
             shift
             ;;
+        -O|--output)
+            OUTPUT="$2"
+            shift
+            shift
+            ;;
+        -c|--compile-only)
+            COMPILE_ONLY=1
+            shift
+            ;;
         -d|--out-dir)
             OUTDIR="$2"
             shift
             shift
             ;;
         -M|--depfile)
-            MD="-MD -MF $2"
+            DEPFILE="$2"
             shift
             shift
             ;;
@@ -72,6 +85,7 @@ while [[ $# -gt 0 ]] ; do
 done
 
 if [[ -z ${ENUMPROC:-} ]]; then echo "error: enumproc not specified!"; exit 1; fi
+if [[ -n $OUTPUT && ${#SCRIPT_FILES[@]} -ne 1 ]]; then echo "error: --output requires exactly one input file!"; exit 1; fi
 
 for script_file in "${SCRIPT_FILES[@]}" ; do
     script_fname=${script_file##*/}
@@ -82,15 +96,28 @@ for script_file in "${SCRIPT_FILES[@]}" ; do
         script_noext="${parent_dir_name}/${script_noext}"
     fi
 
-    # Target output files
-    script_obj="$OUTDIR/$script_noext.o"
-    script_bin="$OUTDIR/$script_noext"
+    # Target output file; temporaries are named after it so that parallel
+    # invocations with the same script name do not collide
+    script_out="${OUTPUT:-$OUTDIR/$script_noext}"
+    script_obj="$script_out.o"
+    script_bin="$script_out"
+    if [[ $COMPILE_ONLY -eq 1 ]]; then
+        script_obj="$script_out"
+    fi
 
-    # Convert + clean-up
-    $AS $MD -E -x assembler-with-cpp "${INCLUDE_ARGS[@]}" "$script_file" \
+    # -MT: Ninja expects the depfile to name the output as given
+    md_args=()
+    if [[ -n $DEPFILE ]]; then
+        md_args=(-MD -MF "$DEPFILE" -MT "$script_out")
+    fi
+
+    "$AS" "${md_args[@]}" -E -x assembler-with-cpp "${INCLUDE_ARGS[@]}" "$script_file" \
         | "$ENUMPROC" \
-        | $AS -x assembler-with-cpp -o "$script_obj" -c -
-    $OBJCOPY -O binary --file-alignment 4 "$script_obj" "$script_bin"
-    $LD "$script_obj" -o "$script_obj.dummy"
-    rm "$script_obj" "$script_obj.dummy"
+        | "$AS" -x assembler-with-cpp -o "$script_obj" -c -
+
+    if [[ $COMPILE_ONLY -eq 0 ]]; then
+        "$OBJCOPY" -O binary --file-alignment 4 "$script_obj" "$script_bin"
+        "$LD" "$script_obj" -o "$script_obj.dummy"
+        rm "$script_obj" "$script_obj.dummy"
+    fi
 done
