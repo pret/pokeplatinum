@@ -7,6 +7,7 @@
 #include "constants/field/field_effect_renderer.h"
 #include "constants/field/map.h"
 #include "constants/field/map_load.h"
+#include "constants/fieldmap.h"
 #include "constants/heap.h"
 
 #include "field/field_system.h"

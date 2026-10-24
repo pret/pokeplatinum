@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 #include "generated/trainer_classes.h"
 
 #include "field/field_system.h"

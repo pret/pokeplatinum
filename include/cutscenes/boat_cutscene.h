@@ -2,7 +2,7 @@
 #define POKEPLATINUM_BOAT_CUTSCENE_H
 
 #include "constants/boat_cutscene.h"
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/model_attributes.h"

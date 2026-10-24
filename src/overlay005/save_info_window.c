@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/field/window.h"
+#include "constants/fieldmap.h"
 #include "constants/narc.h"
-#include "generated/map_headers.h"
 
 #include "applications/poketch/poketch_system.h"
 #include "overlay005/ov5_021EA714.h"

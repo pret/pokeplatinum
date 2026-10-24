@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_MAP_HEADER_DATA_H
 #define POKEPLATINUM_MAP_HEADER_DATA_H
 
+#include "constants/fieldmap.h"
 #include "constants/heap.h"
-#include "generated/map_headers.h"
 
 #include "field/field_system_decl.h"
 #include "overlay006/wild_encounters.h"
