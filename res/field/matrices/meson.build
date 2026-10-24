@@ -1,3 +1,5 @@
+overworld_matrix_json = files('map_matrix_000.json')
+
 matrix_bin_gen = generator(
     map_matrix_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
