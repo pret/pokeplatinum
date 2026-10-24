@@ -54,7 +54,6 @@ metang_generators = {
     'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
-    'giratina_shadow_animations': {'type': 'enum', 'tag': 'GiratinaShadowAnimation'},
     'goods': { 'type': 'enum', 'tag': 'Good' },
     'hidden_locations': { 'type': 'enum', 'tag': 'HiddenLocation' },
     'item_ai_categories': { 'type': 'enum', 'tag': 'ItemAICategory' },
