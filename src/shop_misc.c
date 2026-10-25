@@ -1,6 +1,6 @@
 #include "shop_misc.h"
 
-#include "generated/fade_types.h"
+#include "constants/fade_types.h"
 
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
