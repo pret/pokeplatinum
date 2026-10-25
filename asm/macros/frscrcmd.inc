@@ -1,5 +1,4 @@
 #include "generated/battle_tower_modes.h"
-#include "generated/fade_types.h"
 #include "generated/game_records.h"
 #include "res/sound/pl_sound_data.naix"
 #include "generated/trainer_score_events.h"
@@ -8,6 +7,7 @@
 #include "constants/battle_tower_functions.h"
 #include "constants/battle_tower.h"
 #include "constants/colors.h"
+#include "constants/fade_types.h"
 #include "constants/fade_screen.h"
 #include "constants/scrcmd.h"
 

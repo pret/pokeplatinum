@@ -47,7 +47,6 @@ metang_generators = {
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },
-    'fade_types': { 'type': 'enum', 'tag': 'FadeType' },
     'first_arrival_to_zones': { 'type': 'enum', 'tag': 'FirstArrivalToZone' },
     'footprint_sizes': { 'type': 'enum', 'tag': 'FootprintSize' },
     'frontier_trainers': { 'type': 'enum', 'tag': 'FrontierTrainerID' },
