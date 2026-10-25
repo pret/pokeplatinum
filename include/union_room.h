@@ -1,9 +1,9 @@
-#ifndef POKEPLATINUM_UNK_0205B33C_H
-#define POKEPLATINUM_UNK_0205B33C_H
+#ifndef POKEPLATINUM_UNION_ROOM_H
+#define POKEPLATINUM_UNION_ROOM_H
 
 #include <nitro/wm.h>
 
-#include "struct_decls/struct_0205B43C_decl.h"
+#include "struct_decls/union_room_manager_decl.h"
 
 #include "field/field_system_decl.h"
 
@@ -51,4 +51,4 @@ void *UnionRoom_GetTrainerCase(UnkStruct_0205B43C *param0);
 void sub_0205C1F0(UnkStruct_0205B43C *param0);
 void UnionRoom_SendTrainerCase(UnkStruct_0205B43C *param0);
 
-#endif // POKEPLATINUM_UNK_0205B33C_H
+#endif // POKEPLATINUM_UNION_ROOM_H

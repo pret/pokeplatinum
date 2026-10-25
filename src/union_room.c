@@ -1,11 +1,11 @@
-#include "unk_0205B33C.h"
+#include "union_room.h"
 
 #include <nitro.h>
 
 #include "constants/union_room_message_types.h"
 #include "constants/versions.h"
 
-#include "struct_decls/struct_0205B43C_decl.h"
+#include "struct_decls/union_room_manager_decl.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205B4F8.h"
 

@@ -22,9 +22,9 @@
 #include "scrcmd_battle_hall.h"
 #include "trainer_case.h"
 #include "trainer_info.h"
+#include "union_room.h"
 #include "unk_02032798.h"
 #include "unk_0205A0D8.h"
-#include "unk_0205B33C.h"
 
 static int CommPacketSizeOf_TrainerCase(void);
 static int sub_02099548(void);

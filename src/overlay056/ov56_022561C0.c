@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0205B43C_decl.h"
+#include "struct_decls/union_room_manager_decl.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
@@ -37,8 +37,8 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
+#include "union_room.h"
 #include "unk_02033200.h"
-#include "unk_0205B33C.h"
 
 FS_EXTERN_OVERLAY(overlay56);
 

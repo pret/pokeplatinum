@@ -66,9 +66,9 @@
 #include "trainer_info.h"
 #include "underground.h"
 #include "underground_map_transition.h"
+#include "union_room.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
-#include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "vars_flags.h"
 

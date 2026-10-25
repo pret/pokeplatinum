@@ -8,7 +8,7 @@
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
-#include "struct_decls/struct_0205B43C_decl.h"
+#include "struct_decls/union_room_manager_decl.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205B4F8.h"
 #include "struct_defs/struct_0205C22C.h"
@@ -34,7 +34,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_0205B33C.h"
+#include "union_room.h"
 #include "unk_020655F4.h"
 
 #include "constdata/const_020ED570.h"

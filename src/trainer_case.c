@@ -24,9 +24,9 @@
 #include "trainer_case_save_data.h"
 #include "trainer_info.h"
 #include "underground.h"
+#include "union_room.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
-#include "unk_0205B33C.h"
 #include "vars_flags.h"
 
 #define TRAINER_CASE_MAX_TIMES_LINKED        999999
