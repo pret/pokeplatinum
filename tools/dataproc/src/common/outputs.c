@@ -117,9 +117,24 @@ void Output_Init(Outputs *o)
 static bool Write(const char *filename, const void *data, size_t size)
 {
     char *path = String_Format("%s/%s", CLI_OutputDir(), filename);
-    bool  ok   = File_Write(path, data, size);
-    if (!ok) fprintf(stderr, "error writing '%s': %s\n", path, strerror(errno));
+    char *curr = NULL;
+    bool  ok;
 
+    if (outputs->writeIfChanged) {
+        size_t c_size;
+        curr = File_Read(path, &c_size);
+        if (curr && c_size == size && (size == 0 || memcmp(data, curr, size) == 0)) {
+            ok = true;
+            goto cleanup;
+        }
+    }
+
+    if (!(ok = File_Write(path, data, size))) {
+        fprintf(stderr, "error writing '%s': %s\n", path, strerror(errno));
+    }
+
+cleanup:
+    free(curr);
     free(path);
     return ok;
 }
