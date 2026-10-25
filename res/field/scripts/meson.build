@@ -389,7 +389,7 @@ scr_seq_files = files(
     'scripts_distortion_world_b2f.s',
     'scripts_distortion_world_b3f.s',
     'scripts_distortion_world_b4f.s',
-    'scripts_map_header_unknown_578.s',
+    'scripts_unknown_578.s',
     'scripts_distortion_world_b5f.s',
     'scripts_distortion_world_b6f.s',
     'scripts_distortion_world_b7f.s',
