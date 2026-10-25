@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_UNION_ROOM_MANAGER_DECL_H
 #define POKEPLATINUM_UNION_ROOM_MANAGER_DECL_H
 
-typedef struct UnkStruct_0205B43C_t UnkStruct_0205B43C;
+typedef struct UnionRoomManager UnionRoomManager;
 
 #endif // POKEPLATINUM_UNION_ROOM_MANAGER_DECL_H

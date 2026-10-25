@@ -2,12 +2,13 @@
 
 #include <nitro.h>
 
+#include "constants/union_room.h"
 #include "constants/union_room_message_types.h"
 #include "constants/versions.h"
 
 #include "struct_decls/union_room_manager_decl.h"
 #include "struct_defs/struct_0203330C.h"
-#include "struct_defs/struct_0205B4F8.h"
+#include "struct_defs/union_room_game_info.h"
 
 #include "field/field_system.h"
 
@@ -35,84 +36,74 @@
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
 
-#include "constdata/const_020ED570.h"
 #include "res/text/bank/country_names.h"
 #include "res/text/bank/greetings.h"
 #include "res/text/bank/union_room.h"
 
-typedef void (*UnkFuncPtr_0205B43C)(UnkStruct_0205B43C *);
+typedef void (*UnionRoomTask)(UnionRoomManager *);
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-} UnkStruct_0205B43C_sub1;
-
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-} UnkStruct_0205B43C_sub2;
-
-struct UnkStruct_0205B43C_t {
+struct UnionRoomManager {
     FieldSystem *fieldSystem;
     SaveData *saveData;
-    TrainerInfo *unk_08;
-    SysTask *unk_0C;
-    UnkFuncPtr_0205B43C unk_10;
-    int unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    int unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-    u32 unk_30;
-    u32 unk_34;
-    u32 unk_38;
-    u32 unk_3C;
-    u32 unk_40;
-    u32 unk_44;
-    UnkStruct_0205B43C_sub1 unk_48[10];
-    UnkStruct_0205B43C_sub2 unk_70[40];
-    WMbssDesc *unk_110[16];
-    MATHRandContext32 unk_150;
-    int unk_168;
-    int unk_16C;
-    int unk_170;
-    u16 unk_174;
-    u8 unk_176[2];
-    EasyChatSentence unk_178;
-    BOOL unk_180;
-    TrainerCase *unk_184;
-    TrainerCase *unk_188[2];
+    TrainerInfo *trainerInfo;
+    SysTask *sysTask;
+    UnionRoomTask task;
+    int timer;
+    u32 connectionID;
+    u32 connectState;
+    int pendingConnection;
+    int unused_24;
+    int unused_28;
+    int unused_2C;
+    u32 peerActivity;
+    u32 proposedActivity;
+    u32 unused_38;
+    BOOL answerDeclined;
+    u32 activityAnswer;
+    BOOL chatEnded;
+    u16 unused_48[10][2];
+    u16 unused_70[40][2];
+    WMbssDesc *bssDesc[16];
+    MATHRandContext32 rand;
+    int unused_168;
+    int unused_16C;
+    int unused_170;
+    u16 unused_174;
+    u8 partySelectionResults[2];
+    EasyChatSentence pendingSentence;
+    BOOL sentencePending;
+    TrainerCase *trainerCase;
+    TrainerCase *receivedTrainerCases[2];
 };
 
-static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem);
-static void sub_0205B43C(UnkStruct_0205B43C *param0);
-static void sub_0205B4B0(UnkStruct_0205B43C *param0);
-static void sub_0205B5B4(UnkStruct_0205B43C *param0, UnkFuncPtr_0205B43C param1, int param2);
-static void sub_0205B5FC(UnkStruct_0205B43C *param0);
-static void sub_0205B620(UnkStruct_0205B43C *param0);
-static void sub_0205B754(UnkStruct_0205B43C *param0);
-static void sub_0205B634(UnkStruct_0205B43C *param0);
-static void sub_0205B4F8(UnkStruct_0205B43C *param0);
-static void sub_0205B578(UnkStruct_0205B43C *param0);
-static void sub_0205B72C(UnkStruct_0205B43C *param0);
-static void sub_0205B6C4(UnkStruct_0205B43C *param0);
-static void sub_0205B694(UnkStruct_0205B43C *param0);
-static void sub_0205C160(UnkStruct_0205B43C *param0);
-static int sub_0205B4D4(void);
-static int UnionRoom_GetTrainerBusyMessage(UnkStruct_0205B43C *param0, int param1);
-static int UnionRoom_GetStartMessage(int param0, int gender, StringTemplate *strTemplate);
-static void sub_0205B408(UnkStruct_0205B43C *param0);
-static void sub_0205BFF0(UnkStruct_0205B4F8 *param0);
+static UnionRoomManager *UnionRoom_New(FieldSystem *fieldSystem);
+static void UnionRoom_RunTask(SysTask *task, void *manager);
+static void UnionRoomTask_HandleConnection(UnionRoomManager *manager);
+static void UnionRoomTask_WaitForRestart(UnionRoomManager *manager);
+static void UnionRoom_SetTask(UnionRoomManager *manager, UnionRoomTask task, int timer);
+static void UnionRoomTask_Exit(UnionRoomManager *manager);
+static void UnionRoomTask_WaitForExit(UnionRoomManager *manager);
+static void UnionRoom_Free(UnionRoomManager *manager);
+static void UnionRoomTask_WaitForConnectSuccess(UnionRoomManager *manager);
+static void UnionRoomTask_WaitForClient(UnionRoomManager *manager);
+static void UnionRoomTask_WaitForClientDisconnect(UnionRoomManager *manager);
+static void UnionRoomTask_WaitForDisconnect(UnionRoomManager *manager);
+static void UnionRoomTask_WaitForPlayerInfo(UnionRoomManager *manager);
+static void UnionRoomTask_WaitForFieldTaskEnd(UnionRoomManager *manager);
+static void UnionRoom_ResetState(UnionRoomManager *manager);
+static BOOL UnionRoom_HasConnectedClients(void);
+static int UnionRoom_GetTrainerBusyMessage(UnionRoomManager *manager, int playerIndex);
+static int UnionRoom_GetStartMessage(int activityIndex, int gender, StringTemplate *strTemplate);
+static void UnionRoomTask_AnnounceEntry(UnionRoomManager *manager);
+static void UnionRoom_ClearStatus(UnionRoomGameInfo *gameInfo);
 
-UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
+UnionRoomManager *FieldSystem_InitUnionRoom(FieldSystem *fieldSystem)
 {
-    UnkStruct_0205B43C *v0 = NULL;
+    UnionRoomManager *manager = NULL;
 
     GF_ASSERT(fieldSystem != NULL);
 
-    if (fieldSystem->unk_7C != NULL) {
+    if (fieldSystem->unionRoomMan != NULL) {
         return NULL;
     }
 
@@ -120,154 +111,153 @@ UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
         (void)0;
     }
 
-    v0 = sub_0205B3A0(fieldSystem);
+    manager = UnionRoom_New(fieldSystem);
 
-    if (v0 == NULL) {
-        v0 = fieldSystem->unk_7C;
+    if (manager == NULL) {
+        manager = fieldSystem->unionRoomMan;
     }
 
     CommFieldCmd_Init((void *)fieldSystem);
     CommManager_SetMaxNumConnections(2);
-    sub_0205B5B4(v0, sub_0205B408, 40);
+    UnionRoom_SetTask(manager, UnionRoomTask_AnnounceEntry, 40);
 
-    return v0;
+    return manager;
 }
 
-void sub_0205B388(FieldSystem *fieldSystem)
+void FieldSystem_ExitUnionRoom(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->unk_7C == NULL) {
+    if (fieldSystem->unionRoomMan == NULL) {
         return;
     }
 
-    sub_0205B5B4(fieldSystem->unk_7C, sub_0205B5FC, 5);
+    UnionRoom_SetTask(fieldSystem->unionRoomMan, UnionRoomTask_Exit, 5);
 }
 
-static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
+static UnionRoomManager *UnionRoom_New(FieldSystem *fieldSystem)
 {
-    void *v0;
     SaveData *saveData;
-    UnkStruct_0205B43C *v2 = NULL;
+    UnionRoomManager *manager = NULL;
 
-    if (fieldSystem->unk_7C != NULL) {
+    if (fieldSystem->unionRoomMan != NULL) {
         return NULL;
     }
 
     saveData = FieldSystem_GetSaveData(fieldSystem);
     CommManager_StartUnion(saveData);
 
-    v2 = (UnkStruct_0205B43C *)Heap_Alloc(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
-    MI_CpuClear8(v2, sizeof(UnkStruct_0205B43C));
+    manager = (UnionRoomManager *)Heap_Alloc(HEAP_ID_31, sizeof(UnionRoomManager));
+    MI_CpuClear8(manager, sizeof(UnionRoomManager));
 
-    v2->unk_10 = NULL;
-    v2->unk_14 = 40;
-    v2->unk_0C = SysTask_Start(sub_0205B5BC, v2, 10);
-    v2->fieldSystem = fieldSystem;
-    v2->saveData = saveData;
-    v2->unk_08 = SaveData_GetTrainerInfo(saveData);
+    manager->task = NULL;
+    manager->timer = 40;
+    manager->sysTask = SysTask_Start(UnionRoom_RunTask, manager, 10);
+    manager->fieldSystem = fieldSystem;
+    manager->saveData = saveData;
+    manager->trainerInfo = SaveData_GetTrainerInfo(saveData);
 
-    sub_0205C160(v2);
-    CommSys_Seed(&v2->unk_150);
+    UnionRoom_ResetState(manager);
+    CommSys_Seed(&manager->rand);
 
-    return v2;
+    return manager;
 }
 
-static void sub_0205B408(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_AnnounceEntry(UnionRoomManager *manager)
 {
-    EasyChatSentence v0;
+    EasyChatSentence sentence;
 
     if (CommServerClient_IsInitialized()) {
-        EasyChatSentence_InitWithEnteredUnionRoom(&v0);
-        sub_0205C12C(&v0);
-        sub_0205C010(param0, &v0);
-        sub_0205B5B4(param0, sub_0205B43C, 40);
+        EasyChatSentence_InitWithEnteredUnionRoom(&sentence);
+        UnionRoom_SetSentence(&sentence);
+        UnionRoom_SetPendingSentence(manager, &sentence);
+        UnionRoom_SetTask(manager, UnionRoomTask_HandleConnection, 40);
     }
 }
 
 static int Unk_021C0850;
 
-static void sub_0205B43C(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_HandleConnection(UnionRoomManager *manager)
 {
     if (CommManager_IsConnectUnionServer()) {
         Unk_021C0850 = 0;
-        sub_0205B5B4(param0, sub_0205B4F8, 0);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForClient, 0);
         return;
     }
 
-    if (param0->unk_20 != 0) {
-        param0->unk_28 = 2;
+    if (manager->pendingConnection != UR_PENDING_CONNECTION_NONE) {
+        manager->unused_28 = 2;
 
-        if (param0->unk_20 == 1) {
-            if (param0->unk_30 == 5) {
-                CommManager_StartMixRecordsClient(param0->unk_18);
-            } else if (param0->unk_30 == 6) {
-                CommManager_StartSpinTradeClient(param0->unk_18);
+        if (manager->pendingConnection == UR_PENDING_CONNECTION_UNION) {
+            if (manager->peerActivity == UR_ACTIVITY_MIX_RECORDS) {
+                CommManager_StartMixRecordsClient(manager->connectionID);
+            } else if (manager->peerActivity == UR_ACTIVITY_SPIN_TRADE) {
+                CommManager_StartSpinTradeClient(manager->connectionID);
             } else {
-                CommManager_ConnectUnion(param0->unk_18);
+                CommManager_ConnectUnion(manager->connectionID);
             }
-        } else if (param0->unk_20 == 2) {
+        } else if (manager->pendingConnection == UR_PENDING_CONNECTION_DRAW) {
             sub_02095E98(NULL);
-            CommManager_StartDrawClient(param0->unk_18);
+            CommManager_StartDrawClient(manager->connectionID);
         }
 
-        sub_0205B5B4(param0, sub_0205B634, 12);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForConnectSuccess, 12);
         return;
     }
 }
 
-static void sub_0205B4B0(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_WaitForRestart(UnionRoomManager *manager)
 {
     if (CommManager_UnionRestartSuccess() == 1) {
-        CommFieldCmd_Init((void *)param0->fieldSystem);
-        sub_0205B5B4(param0, sub_0205B43C, 2);
+        CommFieldCmd_Init((void *)manager->fieldSystem);
+        UnionRoom_SetTask(manager, UnionRoomTask_HandleConnection, 2);
     }
 }
 
-static int sub_0205B4D4(void)
+static BOOL UnionRoom_HasConnectedClients(void)
 {
-    int v0, v1;
-    TrainerInfo *v2;
+    int i, count;
+    TrainerInfo *trainerInfo;
 
-    v1 = 0;
+    count = 0;
 
-    for (v0 = 1; v0 < 5; v0++) {
-        v2 = CommInfo_TrainerInfo(v0);
+    for (i = 1; i < 5; i++) {
+        trainerInfo = CommInfo_TrainerInfo(i);
 
-        if (v2 != NULL) {
-            v1++;
+        if (trainerInfo != NULL) {
+            count++;
         }
     }
 
-    return v1 >= 1;
+    return count >= 1;
 }
 
-static void sub_0205B4F8(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_WaitForClient(UnionRoomManager *manager)
 {
-    UnkStruct_0205B4F8 *v0;
+    UnionRoomGameInfo *gameInfo;
 
-    if (param0->unk_14 > 0) {
-        param0->unk_14--;
+    if (manager->timer > 0) {
+        manager->timer--;
         return;
     }
 
     Unk_021C0850++;
-    v0 = sub_020340E8();
+    gameInfo = sub_020340E8();
 
-    if (CommSys_IsClientConnecting() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
+    if (CommSys_IsClientConnecting() && (UnionRoom_HasConnectedClients() == 1) && (gameInfo->activity != UR_STATUS_BUSY)) {
         CommInfo_SendPlayerInfo();
         CommManager_SetErrorHandling(1, 1);
-        sub_0205BEA8(11);
-        sub_0205B5B4(param0, sub_0205B578, 0);
+        UnionRoom_SetStatus(UR_STATUS_UNK_11);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForClientDisconnect, 0);
     }
 
     if (CommManager_IsConnectUnionServer() == 0) {
         CommManager_UnionRestartSearch();
-        sub_0205C160(param0);
-        sub_0205BEA8(0);
-        sub_0205B5B4(param0, sub_0205B4B0, 2);
+        UnionRoom_ResetState(manager);
+        UnionRoom_SetStatus(UR_STATUS_NONE);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForRestart, 2);
     }
 }
 
-static void sub_0205B578(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_WaitForClientDisconnect(UnionRoomManager *manager)
 {
     if (CommManager_CheckError() && (0 == CommSys_IsClientConnecting())) {
         return;
@@ -275,280 +265,276 @@ static void sub_0205B578(UnkStruct_0205B43C *param0)
 
     if (0 == CommSys_IsClientConnecting()) {
         CommManager_UnionRestartSearch();
-        sub_0205C160(param0);
-        sub_0205BEA8(0);
-        sub_0205B5B4(param0, sub_0205B4B0, 2);
+        UnionRoom_ResetState(manager);
+        UnionRoom_SetStatus(UR_STATUS_NONE);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForRestart, 2);
     }
 }
 
-static void sub_0205B5B4(UnkStruct_0205B43C *param0, UnkFuncPtr_0205B43C param1, int param2)
+static void UnionRoom_SetTask(UnionRoomManager *manager, UnionRoomTask task, int timer)
 {
-    param0->unk_10 = param1;
-    param0->unk_14 = param2;
+    manager->task = task;
+    manager->timer = timer;
 }
 
 static WMBssDesc *Unk_021C085C[16];
 
-void sub_0205B5BC(SysTask *param0, void *param1)
+static void UnionRoom_RunTask(SysTask *unused, void *managerPtr)
 {
-    UnkStruct_0205B43C *v0 = (UnkStruct_0205B43C *)param1;
+    UnionRoomManager *manager = (UnionRoomManager *)managerPtr;
 
-    if (v0 == NULL) {
-        SysTask_Done(param0);
+    if (manager == NULL) {
+        SysTask_Done(unused);
     } else {
-        int v1;
-        WMBssDesc *v2;
+        int i;
 
-        for (v1 = 0; v1 < 16; v1++) {
-            v0->unk_110[v1] = sub_02033F3C(v1);
-            Unk_021C085C[v1] = v0->unk_110[v1];
+        for (i = 0; i < 16; i++) {
+            manager->bssDesc[i] = sub_02033F3C(i);
+            Unk_021C085C[i] = manager->bssDesc[i];
         }
 
-        if (v0->unk_10 != NULL) {
-            v0->unk_10(v0);
+        if (manager->task != NULL) {
+            manager->task(manager);
         }
     }
 }
 
-static void sub_0205B5FC(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_Exit(UnionRoomManager *manager)
 {
-    if (param0->unk_14 != 0) {
-        param0->unk_14--;
+    if (manager->timer != 0) {
+        manager->timer--;
         return;
     }
 
     CommManager_ExitUnion();
-    sub_0205B5B4(param0, sub_0205B620, 0);
+    UnionRoom_SetTask(manager, UnionRoomTask_WaitForExit, 0);
 }
 
-static void sub_0205B620(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_WaitForExit(UnionRoomManager *manager)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
-    sub_0205B754(param0);
+    UnionRoom_Free(manager);
 }
 
-static void sub_0205B634(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_WaitForConnectSuccess(UnionRoomManager *manager)
 {
     if (1 == CommManager_IsConnectedUnionClientSuccess()) {
         CommInfo_SendPlayerInfo();
-        sub_0205B5B4(param0, sub_0205B6C4, 3);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForPlayerInfo, 3);
         return;
     } else if (CommSys_IsClientConnecting()) {
-        param0->unk_20 = 0;
-        param0->unk_1C = 3;
+        manager->pendingConnection = UR_PENDING_CONNECTION_NONE;
+        manager->connectState = UR_CONNECT_STATE_PEER_CONTACTED;
 
-        sub_0205B5B4(param0, sub_0205B4F8, 0);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForClient, 0);
     }
 
     if (0 == CommManager_IsConnectedUnionClientSuccess()) {
         return;
     }
 
-    sub_0205B5B4(param0, sub_0205B694, 2);
+    UnionRoom_SetTask(manager, UnionRoomTask_WaitForFieldTaskEnd, 2);
 
-    param0->unk_24 = 0;
-    param0->unk_1C = 2;
-    param0->unk_20 = 0;
-    param0->unk_44 = 0;
+    manager->unused_24 = 0;
+    manager->connectState = UR_CONNECT_STATE_FAILED;
+    manager->pendingConnection = UR_PENDING_CONNECTION_NONE;
+    manager->chatEnded = FALSE;
 }
 
-static void sub_0205B694(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_WaitForFieldTaskEnd(UnionRoomManager *manager)
 {
-    if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
+    if (!FieldSystem_IsRunningTask(manager->fieldSystem)) {
         CommManager_UnionRestartSearch();
-        sub_0205C160(param0);
-        sub_0205BEA8(0);
-        sub_0205B5B4(param0, sub_0205B4B0, 2);
+        UnionRoom_ResetState(manager);
+        UnionRoom_SetStatus(UR_STATUS_NONE);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForRestart, 2);
     }
 }
 
-static void sub_0205B6C4(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_WaitForPlayerInfo(UnionRoomManager *manager)
 {
     if (1 == CommManager_IsConnectedUnionClientSuccess()) {
         if (CommInfo_TrainerInfo(CommSys_CurNetId()) != NULL) {
-            param0->unk_20 = 0;
-            param0->unk_1C = 1;
-            param0->unk_44 = 0;
+            manager->pendingConnection = UR_PENDING_CONNECTION_NONE;
+            manager->connectState = UR_CONNECT_STATE_CONNECTED;
+            manager->chatEnded = FALSE;
 
             CommManager_SetErrorHandling(1, 1);
-            sub_0205B5B4(param0, sub_0205B72C, 3);
+            UnionRoom_SetTask(manager, UnionRoomTask_WaitForDisconnect, 3);
         }
     } else if (0 == CommManager_IsConnectedUnionClientSuccess()) {
         CommManager_UnionRestartSearch();
-        sub_0205C160(param0);
-        sub_0205B5B4(param0, sub_0205B4B0, 2);
+        UnionRoom_ResetState(manager);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForRestart, 2);
 
-        param0->unk_24 = 0;
-        param0->unk_1C = 2;
-        param0->unk_20 = 0;
-        param0->unk_44 = 0;
+        manager->unused_24 = 0;
+        manager->connectState = UR_CONNECT_STATE_FAILED;
+        manager->pendingConnection = UR_PENDING_CONNECTION_NONE;
+        manager->chatEnded = FALSE;
     }
 }
 
-static void sub_0205B72C(UnkStruct_0205B43C *param0)
+static void UnionRoomTask_WaitForDisconnect(UnionRoomManager *manager)
 {
     if (0 == CommManager_IsConnectedUnionClientSuccess()) {
         CommManager_UnionRestartSearch();
-        sub_0205C160(param0);
-        sub_0205B5B4(param0, sub_0205B4B0, 2);
+        UnionRoom_ResetState(manager);
+        UnionRoom_SetTask(manager, UnionRoomTask_WaitForRestart, 2);
 
         return;
     }
 }
 
-static void sub_0205B754(UnkStruct_0205B43C *param0)
+static void UnionRoom_Free(UnionRoomManager *manager)
 {
-    void *v0;
-
-    if (param0 == NULL) {
+    if (manager == NULL) {
         return;
     }
 
-    SysTask_Done(param0->unk_0C);
-    Heap_Free(param0);
+    SysTask_Done(manager->sysTask);
+    Heap_Free(manager);
     Heap_Destroy(HEAP_ID_31);
 }
 
-FieldSystem *sub_0205B770(UnkStruct_0205B43C *param0)
+FieldSystem *UnionRoom_GetFieldSystem(UnionRoomManager *manager)
 {
-    return param0->fieldSystem;
+    return manager->fieldSystem;
 }
 
-WMBssDesc *sub_0205B774(UnkStruct_0205B43C *param0, int param1)
+WMBssDesc *UnionRoom_GetBssDesc(UnionRoomManager *manager, int index)
 {
-    return param0->unk_110[param1];
+    return manager->bssDesc[index];
 }
 
-static UnkStruct_0205B4F8 *Unk_021C0854;
+static UnionRoomGameInfo *Unk_021C0854;
 
-int sub_0205B780(UnkStruct_0205B43C *param0, int param1)
+enum UnionRoomInteraction UnionRoom_GetInteractionType(UnionRoomManager *manager, int localID)
 {
-    TrainerInfo *v0;
-    UnkStruct_0203330C *v1;
-    UnkStruct_0205B4F8 *v2;
+    TrainerInfo *trainerInfo;
+    UnkStruct_0203330C *userInfo;
+    UnionRoomGameInfo *gameInfo;
 
-    param1--;
-    v0 = sub_02033FB0(param1);
+    localID--;
+    trainerInfo = sub_02033FB0(localID);
 
-    sub_0205C154(param0);
+    UnionRoom_ResetActivity(manager);
 
-    if (v0 == NULL) {
-        return 5;
+    if (trainerInfo == NULL) {
+        return UR_INTERACTION_BUSY;
     }
 
-    if (param0->unk_110[param1] == NULL) {
-        return 5;
+    if (manager->bssDesc[localID] == NULL) {
+        return UR_INTERACTION_BUSY;
     }
 
-    v1 = (UnkStruct_0203330C *)param0->unk_110[param1]->gameInfo.userGameInfo;
-    v2 = (UnkStruct_0205B4F8 *)v1->unk_30;
+    userInfo = (UnkStruct_0203330C *)manager->bssDesc[localID]->gameInfo.userGameInfo;
+    gameInfo = (UnionRoomGameInfo *)userInfo->unk_30;
 
-    Unk_021C0854 = v2;
+    Unk_021C0854 = gameInfo;
 
-    switch (v2->unk_1C) {
-    case 0:
-        return 1;
+    switch (gameInfo->activity) {
+    case UR_STATUS_NONE:
+        return UR_INTERACTION_TALK;
         break;
-    case 1:
-        return 2;
+    case UR_STATUS_DRAWING:
+        return UR_INTERACTION_JOIN_DRAW;
         break;
-    case 2:
-        return 3;
+    case UR_STATUS_MIXING_RECORDS:
+        return UR_INTERACTION_JOIN_MIX_RECORDS;
         break;
-    case 13:
-    case 3:
-        return 4;
+    case UR_STATUS_SPIN_TRADING:
+    case UR_STATUS_UNK_03:
+        return UR_INTERACTION_JOIN_SPIN_TRADE;
         break;
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 11:
-        return 5;
+    case UR_STATUS_BUSY:
+    case UR_STATUS_SHOWING_TRAINER_CASE:
+    case UR_STATUS_BATTLING:
+    case UR_STATUS_TRADING:
+    case UR_STATUS_UNK_08:
+    case UR_STATUS_UNK_11:
+        return UR_INTERACTION_BUSY;
         break;
     }
 
-    return 5;
+    return UR_INTERACTION_BUSY;
 }
 
-int sub_0205B804(UnkStruct_0205B43C *param0, int param1, u16 param2)
+enum UnionRoomInteraction UnionRoom_StartInteraction(UnionRoomManager *manager, int localID, enum UnionRoomInteraction interaction)
 {
-    TrainerInfo *v0;
-    UnkStruct_0203330C *v1;
-    UnkStruct_0205B4F8 *v2;
+    UnkStruct_0203330C *userInfo;
+    UnionRoomGameInfo *gameInfo;
 
-    param1--;
+    localID--;
 
-    if (param0->unk_110[param1] == NULL) {
-        return 5;
+    if (manager->bssDesc[localID] == NULL) {
+        return UR_INTERACTION_BUSY;
     }
 
-    v1 = (UnkStruct_0203330C *)param0->unk_110[param1]->gameInfo.userGameInfo;
-    v2 = (UnkStruct_0205B4F8 *)v1->unk_30;
+    userInfo = (UnkStruct_0203330C *)manager->bssDesc[localID]->gameInfo.userGameInfo;
+    gameInfo = (UnionRoomGameInfo *)userInfo->unk_30;
 
-    Unk_021C0854 = v2;
+    Unk_021C0854 = gameInfo;
 
-    switch (v2->unk_1C) {
-    case 2:
-        if (param2 != 3) {
-            return 5;
+    switch (gameInfo->activity) {
+    case UR_STATUS_MIXING_RECORDS:
+        if (interaction != UR_INTERACTION_JOIN_MIX_RECORDS) {
+            return UR_INTERACTION_BUSY;
         }
 
-        param0->unk_30 = 5;
-        param0->unk_18 = param1;
-        param0->unk_20 = 1;
-        param0->unk_24 = 0;
-        param0->unk_1C = 0;
-        return 1;
+        manager->peerActivity = UR_ACTIVITY_MIX_RECORDS;
+        manager->connectionID = localID;
+        manager->pendingConnection = UR_PENDING_CONNECTION_UNION;
+        manager->unused_24 = 0;
+        manager->connectState = UR_CONNECT_STATE_NONE;
+        return UR_INTERACTION_TALK;
         break;
-    case 0:
-        if (param2 != 1) {
-            return 5;
+    case UR_STATUS_NONE:
+        if (interaction != UR_INTERACTION_TALK) {
+            return UR_INTERACTION_BUSY;
         }
 
-        param0->unk_18 = param1;
-        param0->unk_20 = 1;
-        param0->unk_24 = 0;
-        param0->unk_1C = 0;
-        return 1;
+        manager->connectionID = localID;
+        manager->pendingConnection = UR_PENDING_CONNECTION_UNION;
+        manager->unused_24 = 0;
+        manager->connectState = UR_CONNECT_STATE_NONE;
+        return UR_INTERACTION_TALK;
         break;
-    case 1:
-        if (param2 != 2) {
-            return 5;
+    case UR_STATUS_DRAWING:
+        if (interaction != UR_INTERACTION_JOIN_DRAW) {
+            return UR_INTERACTION_BUSY;
         }
 
-        param0->unk_18 = param1;
-        param0->unk_20 = 2;
-        param0->unk_24 = 0;
-        param0->unk_1C = 0;
-        return 1;
+        manager->connectionID = localID;
+        manager->pendingConnection = UR_PENDING_CONNECTION_DRAW;
+        manager->unused_24 = 0;
+        manager->connectState = UR_CONNECT_STATE_NONE;
+        return UR_INTERACTION_TALK;
         break;
-    case 13:
-    case 3:
-        if (param2 != 4) {
-            return 5;
+    case UR_STATUS_SPIN_TRADING:
+    case UR_STATUS_UNK_03:
+        if (interaction != UR_INTERACTION_JOIN_SPIN_TRADE) {
+            return UR_INTERACTION_BUSY;
         }
 
-        param0->unk_30 = 6;
-        param0->unk_18 = param1;
-        param0->unk_20 = 1;
-        param0->unk_1C = 0;
-        return 1;
+        manager->peerActivity = UR_ACTIVITY_SPIN_TRADE;
+        manager->connectionID = localID;
+        manager->pendingConnection = UR_PENDING_CONNECTION_UNION;
+        manager->connectState = UR_CONNECT_STATE_NONE;
+        return UR_INTERACTION_TALK;
         break;
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 11:
-        return 5;
+    case UR_STATUS_BUSY:
+    case UR_STATUS_SHOWING_TRAINER_CASE:
+    case UR_STATUS_BATTLING:
+    case UR_STATUS_TRADING:
+    case UR_STATUS_UNK_08:
+    case UR_STATUS_UNK_11:
+        return UR_INTERACTION_BUSY;
         break;
     default:
-        return 5;
+        return UR_INTERACTION_BUSY;
         break;
     }
 
@@ -557,65 +543,65 @@ int sub_0205B804(UnkStruct_0205B43C *param0, int param1, u16 param2)
     return 0;
 }
 
-u32 sub_0205B8D8(UnkStruct_0205B43C *param0)
+enum UnionRoomConnectState UnionRoom_GetConnectState(UnionRoomManager *manager)
 {
-    return param0->unk_1C;
+    return manager->connectState;
 }
 
-u32 sub_0205B8DC(UnkStruct_0205B43C *param0)
+enum UnionRoomActivity UnionRoom_GetActivityAnswer(UnionRoomManager *manager)
 {
-    if (param0->unk_44) {
-        return 7;
+    if (manager->chatEnded) {
+        return UR_ACTIVITY_DECLINED;
     }
 
     if (CommSys_ConnectedCount() < 2) {
-        return 7;
+        return UR_ACTIVITY_DECLINED;
     }
 
     if (CommSys_CurNetId() == 0) {
         if (CommManager_IsConnectUnionServer() == 1) {
-            return param0->unk_40;
+            return manager->activityAnswer;
         }
     } else {
         if (CommManager_IsConnectedUnionClientSuccess() == 1) {
-            return param0->unk_40;
+            return manager->activityAnswer;
         }
     }
 
-    return 7;
+    return UR_ACTIVITY_DECLINED;
 }
 
-u32 sub_0205B91C(UnkStruct_0205B43C *param0)
+enum UnionRoomActivity UnionRoom_GetActivityProposal(UnionRoomManager *manager)
 {
     if (CommManager_IsConnectUnionServer() == 1) {
-        return param0->unk_30;
+        return manager->peerActivity;
     }
 
-    return 7;
+    return UR_ACTIVITY_DECLINED;
 }
 
-void sub_0205B930(UnkStruct_0205B43C *param0, int param1, u32 param2)
+void UnionRoom_SendActivity(UnionRoomManager *manager, enum UnionRoomActivitySendMode mode, u32 value)
 {
-    u8 v0 = (u8)param2;
+    u8 proposed = (u8)value;
 
-    switch (param1) {
-    case 0:
-        if (param0->unk_44 == 0) {
-            param0->unk_34 = v0;
-            CommSys_SendData(99, &v0, 1);
+    switch (mode) {
+    case UR_ACTIVITY_SEND_PROPOSAL:
+        if (manager->chatEnded == FALSE) {
+            manager->proposedActivity = proposed;
+            CommSys_SendData(99, &proposed, 1);
         }
         break;
-    case 1:
-        if (param2 == 0) {
-            u8 v1 = param0->unk_30;
+    case UR_ACTIVITY_SEND_ANSWER:
+        if (value == 0) {
+            u8 answer = manager->peerActivity;
 
-            CommSys_SendDataServer(103, &v1, 1);
-            param0->unk_3C = param2;
+            CommSys_SendDataServer(103, &answer, 1);
+            manager->answerDeclined = value;
         } else {
-            u8 v2 = 7;
+            u8 answer = UR_ACTIVITY_DECLINED;
 
-            CommSys_SendDataServer(103, &v2, 1);
-            param0->unk_3C = param2;
+            CommSys_SendDataServer(103, &answer, 1);
+            manager->answerDeclined = value;
         }
         break;
     }
@@ -631,120 +617,121 @@ void sub_0205B98C(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-void sub_0205B990(int param0, int param1, void *param2, void *param3)
+void UnionRoom_RecvRestart(int unused0, int unused1, void *unused2, void *fieldSystemPtr)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param3;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
 
-    sub_0205B5B4(fieldSystem->unk_7C, sub_0205B43C, 2);
-    sub_0205C160(fieldSystem->unk_7C);
+    UnionRoom_SetTask(fieldSystem->unionRoomMan, UnionRoomTask_HandleConnection, 2);
+    UnionRoom_ResetState(fieldSystem->unionRoomMan);
 }
 
 static int Unk_021C0858;
 
-void sub_0205B9AC(int param0, int param1, void *param2, void *param3)
+void UnionRoom_RecvActivityProposal(int unused0, int unused1, void *data, void *fieldSystemPtr)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param3;
-    u8 *v1 = (u8 *)param2;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
+    u8 *buffer = (u8 *)data;
 
-    if (fieldSystem->unk_7C->unk_44 == 0) {
-        fieldSystem->unk_7C->unk_30 = *v1;
-        Unk_021C0858 = *v1;
+    if (fieldSystem->unionRoomMan->chatEnded == FALSE) {
+        fieldSystem->unionRoomMan->peerActivity = *buffer;
+        Unk_021C0858 = *buffer;
     }
 }
 
-void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
+void UnionRoom_RecvActivityAnswer(int unused0, int unused1, void *data, void *fieldSystemPtr)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param3;
-    u8 *v1 = (u8 *)param2;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
+    u8 *buffer = (u8 *)data;
 
-    fieldSystem->unk_7C->unk_2C = 1;
-    fieldSystem->unk_7C->unk_40 = *v1;
+    fieldSystem->unionRoomMan->unused_2C = 1;
+    fieldSystem->unionRoomMan->activityAnswer = *buffer;
 
-    if (*v1 == 4) {
+    if (*buffer == UR_ACTIVITY_DRAW) {
         CommManager_StartDrawServer();
     }
 }
 
-void sub_0205B9E0(int param0, int param1, void *param2, void *param3)
+void UnionRoom_RecvChatEnded(int unused0, int unused1, void *unused2, void *fieldSystemPtr)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param3;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
 
-    fieldSystem->unk_7C->unk_44 = 1;
+    fieldSystem->unionRoomMan->chatEnded = TRUE;
 }
 
-int sub_0205B9E8(UnkStruct_0205B43C *param0)
+BOOL UnionRoom_HasChatEnded(UnionRoomManager *manager)
 {
-    return param0->unk_44;
+    return manager->chatEnded;
 }
 
-int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
+int UnionRoom_SendChatEnded(UnionRoomManager *manager, int result)
 {
-    if (param0->unk_30 == 0) {
+    if (manager->peerActivity == UR_ACTIVITY_NONE) {
         CommSys_SendData(104, NULL, 0);
-        return param1;
+        return result;
     }
 
     return 0;
 }
 
-void sub_0205BA08(int param0, int param1, void *param2, void *param3)
+void UnionRoom_RecvTrainerCase(int netId, int unused1, void *data, void *fieldSystemPtr)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param3;
-    TrainerCase *trainerCase = (TrainerCase *)param2;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
+    TrainerCase *trainerCase = (TrainerCase *)data;
     TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     void *journalEntryOnlineEvent;
 
-    int i, v5 = 0;
-    u8 *v6 = (u8 *)param2;
+    int i, checksum = 0;
+    u8 *bytes = (u8 *)data;
 
     for (i = 0; i < sizeof(TrainerCase); i++) {
-        v5 ^= v6[i];
+        checksum ^= bytes[i];
     }
 
     trainerCase->unk_66A = 1;
 
-    if (param0 != CommSys_CurNetId()) {
+    if (netId != CommSys_CurNetId()) {
         journalEntryOnlineEvent = JournalEntry_CreateEventGreetedInUnionRoom((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), 31);
         JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }
 }
 
-u8 *sub_0205BA5C(int param0, void *param1, int param2)
+u8 *UnionRoom_GetTrainerCaseRecvBuffer(int netId, void *fieldSystemPtr, int unused2)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param1;
-    UnkStruct_0205B43C *v1 = fieldSystem->unk_7C;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
+    UnionRoomManager *manager = fieldSystem->unionRoomMan;
 
-    return (u8 *)v1->unk_188[param0];
+    return (u8 *)manager->receivedTrainerCases[netId];
 }
 
-void sub_0205BA6C(int param0, int param1, void *param2, void *param3)
+void UnionRoom_RecvPartySelectionResult(int netId, int unused1, void *data, void *fieldSystemPtr)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param3;
-    UnkStruct_0205B43C *v1 = fieldSystem->unk_7C;
-    u8 *v2 = (u8 *)param2;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
+    UnionRoomManager *manager = fieldSystem->unionRoomMan;
+    u8 *buffer = (u8 *)data;
 
-    v1->unk_176[param0] = *v2;
+    manager->partySelectionResults[netId] = *buffer;
 }
 
-u16 sub_0205BA7C(UnkStruct_0205B43C *param0)
+u16 UnionRoom_GetPartySelectionCancelState(UnionRoomManager *manager)
 {
-    int v0 = CommSys_CurNetId();
+    int netId = CommSys_CurNetId();
 
-    if (param0->unk_176[v0] == 2) {
-        return 1;
+    if (manager->partySelectionResults[netId] == UR_PARTY_SELECTION_CANCELLED) {
+        return UR_PARTY_SELECTION_CANCELLED_BY_LOCAL;
     }
 
-    if (param0->unk_176[v0 ^ 1] == 2) {
-        return 2;
+    if (manager->partySelectionResults[netId ^ 1] == UR_PARTY_SELECTION_CANCELLED) {
+        return UR_PARTY_SELECTION_CANCELLED_BY_REMOTE;
     }
 
-    return 0;
+    return UR_PARTY_SELECTION_NOT_CANCELLED;
 }
 
-void sub_0205BAAC(int param0)
+void UnionRoom_SendPartySelectionResult(enum UnionRoomPartySelectionResult result)
 {
-    u8 v0 = param0;
-    CommSys_SendData(101, &v0, 1);
+    u8 value = result;
+
+    CommSys_SendData(101, &value, 1);
 }
 
 static const int sMessagesShowingTrainerCase[][2] = {
@@ -868,7 +855,7 @@ static const int sMessagesBadEgg[2] = {
     UnionRoom_Text_BadEggInPartyFemale
 };
 
-const u16 Unk_020ED570[] = {
+const u16 gUnionRoomGroupPlayerIndices[] = {
     10,
     14,
     18,
@@ -881,75 +868,76 @@ const u16 Unk_020ED570[] = {
     46
 };
 
-static int sub_0205BAC0(int param0)
+static int UnionRoom_GetGroupFromPlayerIndex(int playerIndex)
 {
-    int v0, v1, v2;
+    int i;
 
-    for (v0 = 0; v0 < 10; v0++) {
-        if ((Unk_020ED570[v0] <= param0) && ((Unk_020ED570[v0] + 4) > param0)) {
-            return v0;
+    for (i = 0; i < 10; i++) {
+        if ((gUnionRoomGroupPlayerIndices[i] <= playerIndex) && ((gUnionRoomGroupPlayerIndices[i] + UNION_ROOM_GROUP_SIZE) > playerIndex)) {
+            return i;
         }
     }
 
     return -1;
 }
 
-static int UnionRoom_GetTrainerBusyMessage(UnkStruct_0205B43C *param0, int param1)
+static int UnionRoom_GetTrainerBusyMessage(UnionRoomManager *manager, int playerIndex)
 {
-    int gender, v1;
+    int gender, index;
 
-    if (param1 > 9) {
-        v1 = sub_0205BAC0(param1);
-        GF_ASSERT(param1 != -1);
+    if (playerIndex > 9) {
+        index = UnionRoom_GetGroupFromPlayerIndex(playerIndex);
+        // always true: playerIndex > 9 here. Asserting the result instead breaks the checksum.
+        GF_ASSERT(playerIndex != -1);
     } else {
-        v1 = param1;
+        index = playerIndex;
     }
 
-    if (param0->unk_110[v1] == NULL) {
+    if (manager->bssDesc[index] == NULL) {
         return UnionRoom_Text_TrainersAppearsBusy;
     }
 
-    TrainerInfo *trainerInfo = sub_02033FB0(v1);
-    UnkStruct_0203330C *v3 = (UnkStruct_0203330C *)param0->unk_110[v1]->gameInfo.userGameInfo;
-    UnkStruct_0205B4F8 *v4 = (UnkStruct_0205B4F8 *)v3->unk_30;
+    TrainerInfo *trainerInfo = sub_02033FB0(index);
+    UnkStruct_0203330C *userInfo = (UnkStruct_0203330C *)manager->bssDesc[index]->gameInfo.userGameInfo;
+    UnionRoomGameInfo *gameInfo = (UnionRoomGameInfo *)userInfo->unk_30;
 
     if (trainerInfo == NULL) {
         return UnionRoom_Text_TrainersAppearsBusy;
     }
 
-    if (param1 > 9) {
-        gender = v4->unk_18[(param1 - 10) % 4];
+    if (playerIndex > 9) {
+        gender = gameInfo->appearanceAndGender[(playerIndex - 10) % UNION_ROOM_GROUP_SIZE];
         gender = gender >> 7;
     } else {
         gender = TrainerInfo_Gender(trainerInfo);
     }
 
-    switch (v4->unk_1C) {
-    case 4:
-    case 11:
+    switch (gameInfo->activity) {
+    case UR_STATUS_BUSY:
+    case UR_STATUS_UNK_11:
         return sMessagesTrainerAppearsBusy[gender];
         break;
-    case 5:
+    case UR_STATUS_SHOWING_TRAINER_CASE:
         return sMessagesShowingTrainerCase[LCRNG_Next() % SNELEMS(sMessagesShowingTrainerCase)][gender];
         break;
-    case 6:
+    case UR_STATUS_BATTLING:
         return sMessagesBattling[LCRNG_Next() % SNELEMS(sMessagesBattling)][gender];
         break;
-    case 7:
+    case UR_STATUS_TRADING:
         return sMessagesTrading[LCRNG_Next() % SNELEMS(sMessagesTrading)][gender];
         break;
-    case 8:
-    case 1:
+    case UR_STATUS_UNK_08:
+    case UR_STATUS_DRAWING:
         return sMessagesDrawing[LCRNG_Next() % SNELEMS(sMessagesDrawing)][gender];
         break;
-    case 9:
-    case 2:
+    case UR_STATUS_UNK_09:
+    case UR_STATUS_MIXING_RECORDS:
         return sMessagesMixingRecords[LCRNG_Next() % SNELEMS(sMessagesMixingRecords)][gender];
         break;
-    case 10:
-    case 3:
-    case 12:
-    case 13:
+    case UR_STATUS_UNK_10:
+    case UR_STATUS_UNK_03:
+    case UR_STATUS_UNK_12:
+    case UR_STATUS_SPIN_TRADING:
         return sMessagesSpinTrading[LCRNG_Next() % SNELEMS(sMessagesSpinTrading)][gender];
         break;
     }
@@ -995,24 +983,24 @@ int UnionRoom_GetTrainerCasePlayerMessage(StringTemplate *strTemplate)
     return UnionRoom_Text_PlayersTrainerCase;
 }
 
-static int UnionRoom_GetStartMessage(int param0, int gender, StringTemplate *strTemplate)
+static int UnionRoom_GetStartMessage(int activityIndex, int gender, StringTemplate *strTemplate)
 {
-    if (param0 != 0) {
-        return sMessagesStartActivity[param0][gender];
+    if (activityIndex != 0) {
+        return sMessagesStartActivity[activityIndex][gender];
     }
 
     return UnionRoom_GetTrainerCasePlayerMessage(strTemplate);
 }
 
-int UnionRoom_GetMessage(UnkStruct_0205B43C *param0, int param1, int msgType, StringTemplate *strTemplate)
+int UnionRoom_GetMessage(UnionRoomManager *manager, int localID, int msgType, StringTemplate *strTemplate)
 {
-    param1--;
+    localID--;
 
-    if (msgType == 0) {
-        return UnionRoom_GetTrainerBusyMessage(param0, param1);
+    if (msgType == UR_MSG_TRAINER_BUSY) {
+        return UnionRoom_GetTrainerBusyMessage(manager, localID);
     }
 
-    TrainerInfo *trainerInfo = sub_02033FB0(param1);
+    TrainerInfo *trainerInfo = sub_02033FB0(localID);
 
     if (trainerInfo == NULL) {
         CommManager_SetErrorHandling(1, 1);
@@ -1024,16 +1012,16 @@ int UnionRoom_GetMessage(UnkStruct_0205B43C *param0, int param1, int msgType, St
 
     switch (msgType) {
     case UR_MSG_LETS_START:
-        return UnionRoom_GetStartMessage(param0->unk_34 - 1, gender, strTemplate);
+        return UnionRoom_GetStartMessage(manager->proposedActivity - 1, gender, strTemplate);
         break;
     case UR_MSG_THIS_IS_PLAYER_ASK_DO_SOMETHING:
         return sMessagesThisIsPlayerAskDoSomething[gender];
         break;
     case UR_MSG_WAIT_FOR_ANSWER:
-        if (param0->unk_34 == 0) {
+        if (manager->proposedActivity == UR_ACTIVITY_NONE) {
             return 0;
         }
-        return sMessagesWaitForAnswer[param0->unk_34 - 1][gender];
+        return sMessagesWaitForAnswer[manager->proposedActivity - 1][gender];
         break;
     case UR_MSG_NEED_TWO_LV_30_POKEMON_TO_BATTLE:
     case UR_MSG_CANT_TRADE_IF_ONE_POKEMON:
@@ -1091,72 +1079,72 @@ u8 UnionRoom_GetCommInfoGameCode(void)
     return TrainerInfo_GameCode(trainerInfo);
 }
 
-static void sub_0205BE58(UnkStruct_0205B4F8 *param0, int param1)
+static void UnionRoom_UpdateMemberInfo(UnionRoomGameInfo *gameInfo, int unused)
 {
-    TrainerInfo *v0;
-    int v1, v2 = 0;
+    TrainerInfo *trainerInfo;
+    int i;
 
-    for (v1 = 1; v1 < 4 + 1; v1++) {
-        int v3 = v1 - 1;
+    for (i = 1; i < UNION_ROOM_GROUP_SIZE + 1; i++) {
+        int index = i - 1;
 
-        v0 = CommInfo_TrainerInfo(v1);
+        trainerInfo = CommInfo_TrainerInfo(i);
 
-        if (v0 != NULL) {
+        if (trainerInfo != NULL) {
             if (CommSys_CurNetId() == 0) {
-                param0->unk_00[v3] = TrainerInfo_ID(v0);
-                param0->unk_18[v3] = TrainerInfo_Appearance(v0) | (TrainerInfo_Gender(v0) << 7);
+                gameInfo->trainerIDs[index] = TrainerInfo_ID(trainerInfo);
+                gameInfo->appearanceAndGender[index] = TrainerInfo_Appearance(trainerInfo) | (TrainerInfo_Gender(trainerInfo) << 7);
             }
         } else {
-            param0->unk_00[v3] = 0;
-            param0->unk_18[v3] = 0;
+            gameInfo->trainerIDs[index] = 0;
+            gameInfo->appearanceAndGender[index] = 0;
         }
     }
 }
 
-void sub_0205BEA8(int param0)
+void UnionRoom_SetStatus(enum UnionRoomStatus status)
 {
-    UnkStruct_0205B4F8 v0;
+    UnionRoomGameInfo gameInfo;
 
-    MI_CpuClear8(&v0, sizeof(UnkStruct_0205B4F8));
+    MI_CpuClear8(&gameInfo, sizeof(UnionRoomGameInfo));
 
-    switch (param0) {
-    case 0:
+    switch (status) {
+    case UR_STATUS_NONE:
         break;
-    case 4:
+    case UR_STATUS_BUSY:
         break;
-    case 11:
-        sub_0205BE58(&v0, 2);
+    case UR_STATUS_UNK_11:
+        UnionRoom_UpdateMemberInfo(&gameInfo, 2);
         break;
-    case 7:
-    case 5:
-    case 6:
-        sub_0205BE58(&v0, 2);
+    case UR_STATUS_TRADING:
+    case UR_STATUS_SHOWING_TRAINER_CASE:
+    case UR_STATUS_BATTLING:
+        UnionRoom_UpdateMemberInfo(&gameInfo, 2);
         break;
-    case 8:
-        sub_0205BE58(&v0, 5);
+    case UR_STATUS_UNK_08:
+        UnionRoom_UpdateMemberInfo(&gameInfo, 5);
         break;
-    case 1:
-        sub_0205BE58(&v0, 4);
+    case UR_STATUS_DRAWING:
+        UnionRoom_UpdateMemberInfo(&gameInfo, 4);
         break;
-    case 9:
-        sub_0205BE58(&v0, 5);
+    case UR_STATUS_UNK_09:
+        UnionRoom_UpdateMemberInfo(&gameInfo, 5);
         break;
-    case 2:
-        sub_0205BE58(&v0, 4);
+    case UR_STATUS_MIXING_RECORDS:
+        UnionRoom_UpdateMemberInfo(&gameInfo, 4);
         break;
-    case 10:
-    case 12:
-        sub_0205BE58(&v0, 5);
+    case UR_STATUS_UNK_10:
+    case UR_STATUS_UNK_12:
+        UnionRoom_UpdateMemberInfo(&gameInfo, 5);
         break;
-    case 3:
-    case 13:
-        sub_0205BE58(&v0, 4);
+    case UR_STATUS_UNK_03:
+    case UR_STATUS_SPIN_TRADING:
+        UnionRoom_UpdateMemberInfo(&gameInfo, 4);
         break;
     }
 
-    v0.unk_1C = param0;
+    gameInfo.activity = status;
 
-    sub_020340C4(&v0);
+    sub_020340C4(&gameInfo);
     sub_020340FC();
 }
 
@@ -1183,87 +1171,87 @@ static const int sTealaMessages[] = {
     UnionRoom_Text_Teala20
 };
 
-int UnionRoom_GetTealaMessage(UnkStruct_0205B43C *param0, StringTemplate *strTemplate)
+int UnionRoom_GetTealaMessage(UnionRoomManager *manager, StringTemplate *strTemplate)
 {
-    int v0, v1 = 0;
-    u16 v3;
+    int i, count = 0;
+    u16 word;
 
-    for (v0 = 0; v0 < 10; v0++) {
-        if (param0->unk_110[v0] != NULL) {
-            v1++;
+    for (i = 0; i < 10; i++) {
+        if (manager->bssDesc[i] != NULL) {
+            count++;
         }
     }
 
-    if (v1 != 0) {
+    if (count != 0) {
         return UnionRoom_Text_HereComesSomeoneNow;
     }
 
-    if (!EasyChatSentence_IsValid(&param0->unk_178)) {
+    if (!EasyChatSentence_IsValid(&manager->pendingSentence)) {
         return UnionRoom_Text_BoringIfNoOneComes;
     }
 
-    if (EasyChatSentence_GetType(&param0->unk_178) != 4) {
-        int appearance = TrainerInfo_Appearance(param0->unk_08);
-        int gender = TrainerInfo_Gender(param0->unk_08);
+    if (EasyChatSentence_GetType(&manager->pendingSentence) != EASY_CHAT_SENTENCE_TYPE_UNION_ROOM) {
+        int appearance = TrainerInfo_Appearance(manager->trainerInfo);
+        int gender = TrainerInfo_Gender(manager->trainerInfo);
 
         StringTemplate_SetTrainerClassName(strTemplate, 0, Appearance_GetData(gender, appearance, APPEARANCE_DATA_TRAINER_CLASS_1));
 
         return UnionRoom_Text_MistakenForTrainerClass;
     }
 
-    int id = EasyChatSentence_GetID(&param0->unk_178);
+    int id = EasyChatSentence_GetID(&manager->pendingSentence);
 
     if (id >= 20) {
         id = 0;
     }
 
-    if ((v3 = EasyChatSentence_GetWord(&param0->unk_178, 0)) != WORD_NONE) {
-        StringTemplate_SetEasyChatWord(strTemplate, 0, v3);
+    if ((word = EasyChatSentence_GetWord(&manager->pendingSentence, 0)) != WORD_NONE) {
+        StringTemplate_SetEasyChatWord(strTemplate, 0, word);
     }
 
     return sTealaMessages[id];
 }
 
-static void sub_0205BFF0(UnkStruct_0205B4F8 *param0)
+static void UnionRoom_ClearStatus(UnionRoomGameInfo *gameInfo)
 {
-    int v0;
+    int i;
 
-    param0->unk_1C = 0;
+    gameInfo->activity = UR_STATUS_NONE;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_00[v0] = 0;
-        param0->unk_18[v0] = 0;
-        param0->unk_10[v0] = 0;
-        param0->unk_14[v0] = 0;
+    for (i = 0; i < 4; i++) {
+        gameInfo->trainerIDs[i] = 0;
+        gameInfo->appearanceAndGender[i] = 0;
+        gameInfo->unused_10[i] = 0;
+        gameInfo->unused_14[i] = 0;
     }
 }
 
-void sub_0205C010(UnkStruct_0205B43C *param0, EasyChatSentence *param1)
+void UnionRoom_SetPendingSentence(UnionRoomManager *manager, EasyChatSentence *sentence)
 {
-    EasyChatSentence_Copy(&param0->unk_178, param1);
-    param0->unk_180 = 1;
+    EasyChatSentence_Copy(&manager->pendingSentence, sentence);
+    manager->sentencePending = TRUE;
 }
 
-EasyChatSentence *sub_0205C028(UnkStruct_0205B43C *param0)
+EasyChatSentence *UnionRoom_TakePendingSentence(UnionRoomManager *manager)
 {
-    if (param0->unk_180 == 0) {
+    if (manager->sentencePending == FALSE) {
         return NULL;
     }
 
-    param0->unk_180 = 0;
-    return &param0->unk_178;
+    manager->sentencePending = FALSE;
+    return &manager->pendingSentence;
 }
 
-void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnlockedEasyChatWords *unlockedWords)
+void UnionRoom_DoGreeting(StringTemplate *strTemplate, BOOL useConnectedPlayer, int localID, TrainerInfo *playerTrainerInfo, UnlockedEasyChatWords *unlockedWords)
 {
     TrainerInfo *commTrainerInfo;
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD1);
     int entryID;
 
-    param2--;
+    localID--;
 
-    if (param1 == 0) {
-        commTrainerInfo = sub_02033FB0(param2);
+    if (useConnectedPlayer == FALSE) {
+        commTrainerInfo = sub_02033FB0(localID);
     } else {
         commTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     }
@@ -1325,56 +1313,56 @@ void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, T
     MessageLoader_Free(msgLoader);
 }
 
-void sub_0205C12C(EasyChatSentence *param0)
+void UnionRoom_SetSentence(EasyChatSentence *sentence)
 {
-    UnkStruct_0205B4F8 v0;
+    UnionRoomGameInfo gameInfo;
 
-    sub_0205BFF0(&v0);
-    v0.unk_1C = 0;
+    UnionRoom_ClearStatus(&gameInfo);
+    gameInfo.activity = UR_STATUS_NONE;
 
-    sub_020340A8(param0);
-    sub_020340C4(&v0);
+    sub_020340A8(sentence);
+    sub_020340C4(&gameInfo);
     sub_020340FC();
 }
 
-void sub_0205C154(UnkStruct_0205B43C *param0)
+void UnionRoom_ResetActivity(UnionRoomManager *manager)
 {
-    param0->unk_30 = 0;
-    param0->unk_40 = 0;
-    param0->unk_44 = 0;
+    manager->peerActivity = UR_ACTIVITY_NONE;
+    manager->activityAnswer = UR_ACTIVITY_NONE;
+    manager->chatEnded = FALSE;
 }
 
-static void sub_0205C160(UnkStruct_0205B43C *param0)
+static void UnionRoom_ResetState(UnionRoomManager *manager)
 {
-    param0->unk_20 = 0;
-    param0->unk_24 = 0;
-    param0->unk_2C = 0;
-    param0->unk_30 = 0;
-    param0->unk_40 = 0;
-    param0->unk_174 = 0;
-    param0->unk_180 = 0;
-    param0->unk_44 = 0;
+    manager->pendingConnection = UR_PENDING_CONNECTION_NONE;
+    manager->unused_24 = 0;
+    manager->unused_2C = 0;
+    manager->peerActivity = UR_ACTIVITY_NONE;
+    manager->activityAnswer = UR_ACTIVITY_NONE;
+    manager->unused_174 = 0;
+    manager->sentencePending = FALSE;
+    manager->chatEnded = FALSE;
 }
 
-void *UnionRoom_GetTrainerCase(UnkStruct_0205B43C *param0)
+void *UnionRoom_GetTrainerCase(UnionRoomManager *manager)
 {
-    param0->unk_184 = TrainerCase_New(HEAP_ID_SYSTEM);
-    param0->unk_188[0] = TrainerCase_New(HEAP_ID_SYSTEM);
-    param0->unk_188[1] = TrainerCase_New(HEAP_ID_SYSTEM);
+    manager->trainerCase = TrainerCase_New(HEAP_ID_SYSTEM);
+    manager->receivedTrainerCases[0] = TrainerCase_New(HEAP_ID_SYSTEM);
+    manager->receivedTrainerCases[1] = TrainerCase_New(HEAP_ID_SYSTEM);
 
-    TrainerCase_Init(FALSE, FALSE, 0, Appearance_GetData(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
+    TrainerCase_Init(FALSE, FALSE, 0, Appearance_GetData(TrainerInfo_Gender(manager->trainerInfo), TrainerInfo_Appearance(manager->trainerInfo), 0), manager->fieldSystem, manager->trainerCase);
 
-    return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
+    return (void *)manager->receivedTrainerCases[CommSys_CurNetId() ^ 1];
 }
 
-void sub_0205C1F0(UnkStruct_0205B43C *param0)
+void UnionRoom_FreeTrainerCases(UnionRoomManager *manager)
 {
-    Heap_Free(param0->unk_188[0]);
-    Heap_Free(param0->unk_188[1]);
-    Heap_Free(param0->unk_184);
+    Heap_Free(manager->receivedTrainerCases[0]);
+    Heap_Free(manager->receivedTrainerCases[1]);
+    Heap_Free(manager->trainerCase);
 }
 
-void UnionRoom_SendTrainerCase(UnkStruct_0205B43C *param0)
+void UnionRoom_SendTrainerCase(UnionRoomManager *manager)
 {
-    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCase));
+    CommSys_SendDataHuge(105, manager->trainerCase, sizeof(TrainerCase));
 }

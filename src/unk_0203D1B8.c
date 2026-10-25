@@ -439,11 +439,11 @@ static BOOL sub_0203D444(FieldTask *taskMan)
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             switch (taskEnv->partyMenu->selectedMonSlot) {
             case 7:
-                sub_0205BAAC(2);
+                UnionRoom_SendPartySelectionResult(UR_PARTY_SELECTION_CANCELLED);
                 *taskState = 4;
                 break;
             case 6:
-                sub_0205BAAC(1);
+                UnionRoom_SendPartySelectionResult(UR_PARTY_SELECTION_CONFIRMED);
                 *taskState = 4;
                 break;
             default:

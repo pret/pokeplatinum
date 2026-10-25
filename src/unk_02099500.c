@@ -122,14 +122,14 @@ static const CommCmdTable Unk_020F68A4[] = {
     { FieldCommManager_UpdateBattleRoomMovement, CommPacketSizeOf_NetId, NULL }, // 95
     { SecretBases_ProcessFlagRankUp, CommPacketSizeOf_NetId, NULL },
     { SecretBases_ProcessFlagRankUpEvent, CommPacketSizeOf_FlagRankUpEvent, NULL },
-    { sub_0205B988, TrainerInfo_Size, NULL },
-    { sub_0205B9AC, CommPacketSizeOf_NetId, NULL },
-    { sub_0205B98C, CommPacketSizeOf_NetId, NULL },
-    { sub_0205BA6C, CommPacketSizeOf_NetId, NULL },
-    { sub_0205B990, CommPacketSizeOf_Nothing, NULL },
-    { sub_0205B9C4, CommPacketSizeOf_NetId, NULL },
-    { sub_0205B9E0, CommPacketSizeOf_Nothing, NULL },
-    { sub_0205BA08, CommPacketSizeOf_TrainerCase, sub_0205BA5C },
+    { sub_0205B988, TrainerInfo_Size, NULL }, // no sender
+    { UnionRoom_RecvActivityProposal, CommPacketSizeOf_NetId, NULL },
+    { sub_0205B98C, CommPacketSizeOf_NetId, NULL }, // no sender
+    { UnionRoom_RecvPartySelectionResult, CommPacketSizeOf_NetId, NULL },
+    { UnionRoom_RecvRestart, CommPacketSizeOf_Nothing, NULL },
+    { UnionRoom_RecvActivityAnswer, CommPacketSizeOf_NetId, NULL },
+    { UnionRoom_RecvChatEnded, CommPacketSizeOf_Nothing, NULL },
+    { UnionRoom_RecvTrainerCase, CommPacketSizeOf_TrainerCase, UnionRoom_GetTrainerCaseRecvBuffer },
     { sub_0205B0C0, sub_0205B0E4, sub_0205B0F4 },
     { sub_0205B110, CommPacketSizeOf_NetId, NULL },
     { sub_02099510, CommPacketSizeOf_NetId, NULL },

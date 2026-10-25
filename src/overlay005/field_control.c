@@ -477,7 +477,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
     if (input->menu && CommSys_ConnectedCount() <= 1) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_OpenUnionRoom(fieldSystem);
-        sub_0205BEA8(4);
+        UnionRoom_SetStatus(UR_STATUS_BUSY);
         CommManager_PauseUnionServer();
         return TRUE;
     }

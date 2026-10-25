@@ -723,7 +723,7 @@ static void sub_0203B2EC(StartMenu *menu, FieldSystem *fieldSystem)
             sub_0205C2B0(fieldSystem->unk_80);
 
             CommManager_UnionRestartSearch();
-            sub_0205BEA8(0);
+            UnionRoom_SetStatus(UR_STATUS_NONE);
         }
     }
 }
@@ -1424,8 +1424,8 @@ static BOOL StartMenu_ExitChat(FieldTask *fieldTask)
         EasyChatArgs_CopySentenceTo(menu->taskData, &sentence);
 
         if (CommServerClient_IsInitialized()) {
-            sub_0205C12C(&sentence);
-            sub_0205C010(fieldSystem->unk_7C, &sentence);
+            UnionRoom_SetSentence(&sentence);
+            UnionRoom_SetPendingSentence(fieldSystem->unionRoomMan, &sentence);
         }
 
         menu->state = START_MENU_STATE_8;

@@ -209,7 +209,7 @@ int ov109_021D3D50(ApplicationManager *appMan, int *param1)
         CommManager_SetMaxNumConnections(3);
 
         if (CommSys_CurNetId() == 0) {
-            sub_0205BEA8(13);
+            UnionRoom_SetStatus(UR_STATUS_SPIN_TRADING);
         }
 
         NetworkIcon_Init();
@@ -990,7 +990,7 @@ static int ov109_021D4B94(UnkStruct_ov109_021D5140 *param0, int param1)
             if (CommSys_CurNetId() == 0) {
                 param0->unk_3B8 = 24;
                 param0->unk_4AB6 = ov109_021D548C();
-                sub_0205BEA8(12);
+                UnionRoom_SetStatus(UR_STATUS_UNK_12);
             } else {
                 GF_ASSERT(FALSE);
             }
@@ -1285,7 +1285,7 @@ static int ov109_021D5098(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D510C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    sub_0205BEA8(12);
+    UnionRoom_SetStatus(UR_STATUS_UNK_12);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_95);
 
     param0->unk_08 = 1;
@@ -1738,7 +1738,7 @@ static int ov109_021D58AC(UnkStruct_ov109_021D5140 *param0, int param1)
     case 2:
     case 3:
     case 4:
-        sub_0205BEA8(13);
+        UnionRoom_SetStatus(UR_STATUS_SPIN_TRADING);
 
         if (v0 < param0->unk_4AA8) {
             switch (param0->unk_4AB5) {
@@ -1754,7 +1754,7 @@ static int ov109_021D58AC(UnkStruct_ov109_021D5140 *param0, int param1)
         }
         break;
     case 5:
-        sub_0205BEA8(12);
+        UnionRoom_SetStatus(UR_STATUS_UNK_12);
         ov109_021D5858(param0, param1);
         break;
     }
