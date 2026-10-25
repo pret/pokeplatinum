@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_MAIN_MENU_MAIN_MENU_UTIL_H
 #define POKEPLATINUM_MAIN_MENU_MAIN_MENU_UTIL_H
 
+#include "constants/fade_types.h"
 #include "constants/versions.h"
-#include "generated/fade_types.h"
 
 #include "main_menu/mystery_gift_app.h"
 
