@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_frontier.h"
+#include "constants/battle_tower_modes.h"
 
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/frontier_records_app_args.h"
@@ -17,7 +18,6 @@
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "battle_hall_win_records.h"
-#include "battle_tower_modes.h"
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"

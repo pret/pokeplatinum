@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/battle_tower_modes.h"
+#include "constants/battle_tower_modes.h"
 
 #include "struct_defs/battle_tower.h"
 
