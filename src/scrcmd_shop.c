@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/badges.h"
+#include "constants/badges.h"
 #include "generated/mart_decor_id.h"
 #include "generated/mart_frontier_id.h"
 #include "generated/mart_seal_id.h"

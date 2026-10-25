@@ -1,4 +1,3 @@
-#include "generated/badges.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/berry_growth_stages.h"
 #include "generated/comm_club_ret_codes.h"
@@ -30,6 +29,7 @@
 #include "generated/villa_furniture_type.h"
 #include "constants/accessories.h"
 #include "constants/animation_tags.h"
+#include "constants/badges.h"
 #include "constants/battle.h"
 #include "constants/battle_tower.h"
 #include "constants/battle_tower_functions.h"

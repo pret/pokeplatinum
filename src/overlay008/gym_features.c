@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/badges.h"
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/field_effect_renderer.h"
 #include "constants/field/map.h"
@@ -30,7 +31,6 @@
 #include "overlay005/ov5_021F5A10.h"
 #include "overlay005/veilstone_gym_object_renderer.h"
 
-#include "badges.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "coordinates.h"

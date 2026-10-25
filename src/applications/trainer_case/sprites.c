@@ -2,9 +2,10 @@
 
 #include <nitro.h>
 
+#include "constants/badges.h"
+
 #include "applications/trainer_case/defs.h"
 
-#include "badges.h"
 #include "char_transfer.h"
 #include "coordinates.h"
 #include "gx_layers.h"
