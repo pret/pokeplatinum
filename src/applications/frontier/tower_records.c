@@ -9,7 +9,6 @@
 #include "struct_defs/battle_frontier.h"
 
 #include "battle_frontier_save.h"
-#include "battle_tower_modes.h"
 #include "battle_tower_save.h"
 #include "bg_window.h"
 #include "easy_chat_sentence.h"

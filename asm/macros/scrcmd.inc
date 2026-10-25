@@ -1,4 +1,3 @@
-#include "generated/battle_tower_modes.h"
 #include "generated/comm_club_ret_codes.h"
 #include "generated/days_of_week.h"
 #include "generated/game_records.h"

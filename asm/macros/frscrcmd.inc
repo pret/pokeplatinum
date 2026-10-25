@@ -1,4 +1,3 @@
-#include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
 #include "res/sound/pl_sound_data.naix"
 #include "generated/trainer_score_events.h"
