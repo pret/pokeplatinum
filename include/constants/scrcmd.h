@@ -3,7 +3,6 @@
 
 #include "constants/accessories.h"
 #include "constants/menu.h"
-#include "generated/backdrops.h"
 
 #define BATTLEGROUND_TRAINER_NONE 0xFFF
 

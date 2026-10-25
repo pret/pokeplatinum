@@ -16,7 +16,6 @@ metang_generators = {
     'ai_flags': { 'type': 'mask', 'tag': 'AIFlag', 'extra': ['--no-auto'] },
     'ai_load_type_targets': { 'type': 'enum', 'tag': 'AILoadTypeTarget' },
     'ai_weather_types': { 'type': 'enum', 'tag': 'AIWeatherType' },
-    'backdrops': {'type': 'enum', 'tag': 'Backdrop'},
     'battle_actions': { 'type': 'enum', 'tag': 'BattleAction' },
     'battle_backgrounds': { 'type': 'enum', 'tag': 'BattleBackground' },
     'battle_boot_states': { 'type': 'enum', 'tag': 'BattleBootState' },
