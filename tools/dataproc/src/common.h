@@ -81,11 +81,15 @@ typedef struct TextBank   { const char *filename; int key;                } Text
 // driver may rename an output after `Driver_Init`, e.g. to apply a CLI prefix.
 // This is not true for a `TEXT_FILE_WRAP_TEMPLATE` file's template, whch is
 // loaded by name during `Driver_Init`.
+//
+// Set `writeIfChanged` to `true` if outputs should only be written when they
+// differ from a current on-disk state.
 typedef struct Outputs {
     Archive    *archives;
     TextFile   *textFiles;
     BinaryFile *binaryFiles;
     TextBank   *textBanks;
+    bool        writeIfChanged;
 } Outputs;
 
 void Archive_Pack(int id, const void *data, size_t size);
