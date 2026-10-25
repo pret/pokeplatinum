@@ -2,7 +2,7 @@
 
 #include <nitro.h>
 
-#include "generated/catching_show_points_category.h"
+#include "constants/catching_show_points_category.h"
 
 #include "savedata/save_table.h"
 
