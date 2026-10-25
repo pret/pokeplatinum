@@ -1,5 +1,4 @@
 #include "generated/battle_tower_modes.h"
-#include "generated/berry_growth_stages.h"
 #include "generated/comm_club_ret_codes.h"
 #include "generated/days_of_week.h"
 #include "generated/game_records.h"
@@ -34,6 +33,7 @@
 #include "constants/battle_tower.h"
 #include "constants/battle_tower_functions.h"
 #include "constants/battle/battle_script.h"
+#include "constants/berry_growth_stages.h"
 #include "constants/boat_cutscene.h"
 #include "constants/catching_show_points_category.h"
 #include "constants/colors.h"
