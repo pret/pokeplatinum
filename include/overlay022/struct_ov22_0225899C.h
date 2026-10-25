@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV22_0225899C_H
 
 #include "constants/accessories.h"
-#include "generated/backdrops.h"
 typedef struct {
     u32 accessoryCounts[ACCESSORY_COUNT];
     u32 backdropCounts[BACKDROP_COUNT];
