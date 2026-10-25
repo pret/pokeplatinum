@@ -3,12 +3,17 @@
 
 #include "constants/savedata/vars_flags.h"
 #include "generated/first_arrival_to_zones.h"
-#include "generated/giratina_shadow_animations.h"
 #include "generated/map_headers.h"
 #include "generated/pokemon_contest_types.h"
 #include "generated/villa_furniture_type.h"
 
 #include "vars_flags.h"
+
+enum GiratinaShadowAnimation {
+    GIRATINA_SHADOW_ANIM_B4F_1 = 0,
+    GIRATINA_SHADOW_ANIM_B4F_2,
+    GIRATINA_SHADOW_ANIM_MAX,
+};
 
 enum HandleFlagOp {
     HANDLE_FLAG_CLEAR = 0,
