@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "badges.h"
+#include "constants/badges.h"
+
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_case.h"

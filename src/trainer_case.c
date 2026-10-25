@@ -3,13 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/badges.h"
 #include "generated/game_records.h"
 
 #include "struct_defs/battle_frontier.h"
 
 #include "field/field_system.h"
 
-#include "badges.h"
 #include "battle_frontier_save.h"
 #include "charcode_util.h"
 #include "field_system.h"

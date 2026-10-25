@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_TRAINER_CASE_H
 #define POKEPLATINUM_TRAINER_CASE_H
 
+#include "constants/badges.h"
 #include "constants/graphics.h"
 #include "constants/string.h"
 
 #include "field/field_system_decl.h"
 
-#include "badges.h"
 #include "play_time.h"
 
 #define SIGNATURE_WIDTH  24
