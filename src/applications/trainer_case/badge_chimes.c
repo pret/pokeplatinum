@@ -2,10 +2,11 @@
 
 #include <nitro.h>
 
+#include "constants/badges.h"
+
 #include "applications/trainer_case/defs.h"
 #include "applications/trainer_case/main.h"
 
-#include "badges.h"
 #include "sound.h"
 
 #define SFX_PLAYER_INDEX   0

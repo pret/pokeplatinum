@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/badges.h"
 #include "constants/fieldmap.h"
-#include "generated/badges.h"
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
 #include "generated/trainers.h"

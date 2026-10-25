@@ -1,7 +1,7 @@
 #include "scrcmd_system_flags.h"
 
+#include "constants/badges.h"
 #include "constants/scrcmd.h"
-#include "generated/badges.h"
 
 #include "struct_defs/player_data.h"
 
