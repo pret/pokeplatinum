@@ -28,7 +28,7 @@ OUTPUT=""
 COMPILE_ONLY=0
 USE_PARENT_DIR=0
 
-while [[ $# -gt 0 ]] ; do
+while [ $# -gt 0 ] ; do
     case $1 in 
         -h|--help)
             help
@@ -84,14 +84,14 @@ while [[ $# -gt 0 ]] ; do
     esac
 done
 
-if [[ -z ${ENUMPROC:-} ]]; then echo "error: enumproc not specified!"; exit 1; fi
-if [[ -n $OUTPUT && ${#SCRIPT_FILES[@]} -ne 1 ]]; then echo "error: --output requires exactly one input file!"; exit 1; fi
+if [ -z "${ENUMPROC:-}" ]; then echo "error: enumproc not specified!"; exit 1; fi
+if [ -n "$OUTPUT" ] && [ ${#SCRIPT_FILES[@]} -ne 1 ]; then echo "error: --output requires exactly one input file!"; exit 1; fi
 
 for script_file in "${SCRIPT_FILES[@]}" ; do
     script_fname=${script_file##*/}
     script_noext=${script_fname%.*}
 
-    if [[ $USE_PARENT_DIR -eq 1 ]]; then
+    if [ "$USE_PARENT_DIR" -eq 1 ]; then
         parent_dir_name=$(basename "$(dirname "$script_file")")
         script_noext="${parent_dir_name}/${script_noext}"
     fi
@@ -101,21 +101,21 @@ for script_file in "${SCRIPT_FILES[@]}" ; do
     script_out="${OUTPUT:-$OUTDIR/$script_noext}"
     script_obj="$script_out.o"
     script_bin="$script_out"
-    if [[ $COMPILE_ONLY -eq 1 ]]; then
+    if [ "$COMPILE_ONLY" -eq 1 ]; then
         script_obj="$script_out"
     fi
 
     # -MT: Ninja expects the depfile to name the output as given
     md_args=()
-    if [[ -n $DEPFILE ]]; then
+    if [ -n "$DEPFILE" ]; then
         md_args=(-MD -MF "$DEPFILE" -MT "$script_out")
     fi
 
-    "$AS" "${md_args[@]}" -E -x assembler-with-cpp "${INCLUDE_ARGS[@]}" "$script_file" \
+    "$AS" ${md_args[@]+"${md_args[@]}"} -E -x assembler-with-cpp ${INCLUDE_ARGS[@]+"${INCLUDE_ARGS[@]}"} "$script_file" \
         | "$ENUMPROC" \
         | "$AS" -x assembler-with-cpp -o "$script_obj" -c -
 
-    if [[ $COMPILE_ONLY -eq 0 ]]; then
+    if [ "$COMPILE_ONLY" -eq 0 ]; then
         "$OBJCOPY" -O binary --file-alignment 4 "$script_obj" "$script_bin"
         "$LD" "$script_obj" -o "$script_obj.dummy"
         rm "$script_obj" "$script_obj.dummy"
