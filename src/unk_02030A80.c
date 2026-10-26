@@ -13,6 +13,7 @@
 #include "charcode_util.h"
 #include "easy_chat_sentence.h"
 #include "easy_chat_words.h"
+#include "geonet_locations.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -22,7 +23,6 @@
 #include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
-#include "unk_020996D0.h"
 #include "wifi_history_save_data.h"
 
 #include "res/text/bank/country_names.h"
@@ -139,7 +139,7 @@ int sub_02030C08(const UnkStruct_02030A80 *param0)
         return 0;
     }
 
-    if (sub_020996F4(param0->country) < param0->region) {
+    if (GeonetLocations_GetLocationCountFromCountry(param0->country) < param0->region) {
         return 0;
     }
 

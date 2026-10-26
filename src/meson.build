@@ -332,7 +332,7 @@ pokeplatinum_c = files(
     'unk_02099500.c',
     'wifi_overlays.c',
     'poffin_berry_selection_context.c',
-    'unk_020996D0.c',
+    'geonet_locations.c',
     'move_reminder_data.c',
     'easy_chat_word_list.c',
     'poketch_memory.c',

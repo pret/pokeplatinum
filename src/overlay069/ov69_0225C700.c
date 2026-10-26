@@ -24,6 +24,7 @@
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
+#include "geonet_locations.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "math_util.h"
@@ -49,7 +50,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_020996D0.h"
 #include "vram_transfer.h"
 #include "wifi_history_save_data.h"
 #include "yes_no_touch_menu.h"
@@ -814,10 +814,10 @@ static void ov69_0225C980(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_
         int v10, v11, v12, v13;
 
         v12 = 1;
-        v11 = sub_020996D0();
+        v11 = GeonetLocations_GetLocationListCount();
 
         while (v12 < v11) {
-            v9 = sub_02099764(v12);
+            v9 = GeonetLocations_GetNarcMemberIndex(v12);
             v6 = LoadMemberFromOpenNARC_OutFileSize(v0, v9, 0, heapID, 0, &v8);
             v7 = (UnkStruct_ov69_0225C980 *)v6;
             v13 = v8 / 4;
@@ -825,7 +825,7 @@ static void ov69_0225C980(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_
             v7++;
 
             for (v10 = 1; v10 < v13; v10++) {
-                ov69_0225CA7C(param0, param0->unk_00.unk_00, v7->unk_00, v7->unk_02, sub_02099748(v12), v10, param1);
+                ov69_0225CA7C(param0, param0->unk_00.unk_00, v7->unk_00, v7->unk_02, GeonetLocations_GetCountry(v12), v10, param1);
                 param0->unk_00.unk_00++;
                 v7++;
             }
