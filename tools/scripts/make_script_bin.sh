@@ -11,7 +11,7 @@ help() {
     echo "  -E | --enumproc     path to the enumproc executable for translating enums to preproc #defines"
     echo "  -o | --objcopy      path to the objcopy executable for data extraction"
     echo "  -O | --output       path to the output file (default: OUTDIR/<script name>); requires a single FILE"
-    echo "  -c | --compile-only output the assembled object; supresses objcopy and linking"
+    echo "  -c | --compile-only output the assembled object; suppresses objcopy and linking"
     echo "  -d | --out-dir      directory for output files (default: current directory)"
     echo "  -M | --depfile      output a compiler-generated depfile for the source"
     echo "  -P | --parent-dir   use the parent directory name of each input script to avoid name collisions"
