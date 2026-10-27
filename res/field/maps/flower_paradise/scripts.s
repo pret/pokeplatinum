@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
+#include "constants/distribution_events.h"
 #include "res/text/bank/flower_paradise.h"
 #include "res/field/maps/locals/flower_paradise.h"
 
