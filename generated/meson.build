@@ -38,7 +38,6 @@ metang_generators = {
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'comm_club_ret_codes': { 'type': 'enum', 'tag': 'CommClubRetCode' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
-    'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
+#include "constants/distribution_events.h"
 #include "res/text/bank/hall_of_origin.h"
 #include "res/field/events/events_hall_of_origin.h"
 

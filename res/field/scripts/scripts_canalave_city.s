@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
+#include "constants/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
 #include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_canalave_city.h"
