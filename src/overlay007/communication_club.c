@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/comm_club_ret_codes.h"
 #include "constants/communication/comm_type.h"
-#include "generated/comm_club_ret_codes.h"
 
 #include "field/field_system.h"
 

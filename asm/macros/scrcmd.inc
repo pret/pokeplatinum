@@ -1,4 +1,3 @@
-#include "generated/comm_club_ret_codes.h"
 #include "generated/days_of_week.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
@@ -37,6 +36,7 @@
 #include "constants/boat_cutscene.h"
 #include "constants/catching_show_points_category.h"
 #include "constants/colors.h"
+#include "constants/comm_club_ret_codes.h"
 #include "constants/distortion_world.h"
 #include "constants/elevator_dirs.h"
 #include "constants/fade_screen.h"
