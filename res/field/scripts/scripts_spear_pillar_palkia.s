@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
+#include "constants/distribution_events.h"
 #include "res/text/bank/spear_pillar_palkia.h"
 
 
