@@ -12,6 +12,19 @@
 
 #include "party.h"
 #include "pc_boxes.h"
+#include "text.h"
+
+#define BOX_TEXT_COLOR_WALLPAPER_BOX_NAME TEXT_COLOR(2, 1, 0)
+#define BOX_TEXT_COLOR_DIAL_BOX_NAME      TEXT_COLOR(1, 2, 0)
+#define BOX_TEXT_COLOR_POPUP_BOX_NAME     TEXT_COLOR(2, 8, 7)
+#define BOX_TEXT_COLOR_ITEM_DESCRIPTION   TEXT_COLOR(2, 1, 4)
+#define BOX_TEXT_COLOR_MENU               TEXT_COLOR(11, 12, MENU_GRAPHICS_WINDOW_BG_COLOR)
+#define BOX_TEXT_COLOR_PREVIEW_SPECIES    TEXT_COLOR(9, 6, 15)
+#define BOX_TEXT_COLOR_PREVIEW_INFO       TEXT_COLOR(9, 6, 0)
+#define BOX_TEXT_COLOR_PREVIEW_NICKNAME   TEXT_COLOR(1, 2, 15)
+#define BOX_TEXT_COLOR_PREVIEW_MALE       TEXT_COLOR(7, 8, 15)
+#define BOX_TEXT_COLOR_PREVIEW_FEMALE     TEXT_COLOR(3, 4, 15)
+#define BOX_TEXT_COLOR_COMPARE            TEXT_COLOR(15, 14, 0)
 
 typedef struct BoxApplication {
     const PCBoxes *pcBoxes;

@@ -1492,7 +1492,7 @@ static void BoxDialGraphics_DrawBoxNames(BoxDialGraphics *dialGraphics)
     for (i = 0; i < NELEMS(boxNamePositions); i++) {
         PCBoxes_BufferBoxName(dialGraphics->boxApp->pcBoxes, boxID, dialGraphics->string);
         Window_FillRectWithColor(&dialGraphics->window, 0, boxNamePositions[i].x, boxNamePositions[i].y, 104, 17);
-        Text_AddPrinterWithParamsAndColor(&dialGraphics->window, FONT_SYSTEM, dialGraphics->string, boxNamePositions[i].x + 4, boxNamePositions[i].y + 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&dialGraphics->window, FONT_SYSTEM, dialGraphics->string, boxNamePositions[i].x + 4, boxNamePositions[i].y + 2, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_DIAL_BOX_NAME, NULL);
 
         if (--boxID < 0) {
             boxID = MAX_PC_BOXES - 1;

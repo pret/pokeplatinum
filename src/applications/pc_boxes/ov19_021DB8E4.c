@@ -440,7 +440,7 @@ static void BoxPopupGraphics_DrawBoxName(BoxPopupGraphics *popupGraphics)
     xOffset = 48 - textWidth / 2;
 
     Window_FillTilemap(window, 7);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, popupGraphics->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 8, 7), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, popupGraphics->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_POPUP_BOX_NAME, NULL);
     Window_LoadTiles(window);
 }
 
@@ -606,7 +606,7 @@ void BoxPopupGraphics_OpenItemInfo(BoxPopupGraphics *popupGraphics)
         Bg_LoadToTilemapRect(popupGraphics->bgConfig, BG_LAYER_MAIN_1, popupGraphics->itemInfoScreenData->rawData, 0, ITEM_INFO_TOP_ROW, 32, ITEM_INFO_HEIGHT);
         Window_FillTilemap(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_ITEM_DESCRIPTION], 4);
         MessageLoader_GetString(popupGraphics->itemDescriptionsLoader, item, popupGraphics->string);
-        Text_AddPrinterWithParamsAndColor(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, popupGraphics->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 4), NULL);
+        Text_AddPrinterWithParamsAndColor(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, popupGraphics->string, 0, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_ITEM_DESCRIPTION, NULL);
         Window_CopyToVRAM(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_ITEM_DESCRIPTION]);
 
         BoxPopupGraphics_CreateItemIconSprite(popupGraphics, item);

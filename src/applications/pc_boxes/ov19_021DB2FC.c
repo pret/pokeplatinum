@@ -191,7 +191,7 @@ void BoxMenuGraphics_ShowMenu(BoxMenuGraphics *menuGraphics, const BoxMenu *menu
             BoxMenuGraphics_DrawMarking(menuGraphics, window, menu->markings, menu->menuItems[i] - BOX_MENU_FIRST_MARKING);
         } else {
             MessageLoader_GetString(menuGraphics->menuItemsLoader, PokemonStorageSystem_Text_Jump + menu->menuItems[i], menuGraphics->tempString);
-            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, menuGraphics->tempString, 10, y, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(11, 12, MENU_GRAPHICS_WINDOW_BG_COLOR), NULL);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, menuGraphics->tempString, 10, y, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_MENU, NULL);
         }
 
         y += MENU_ITEM_HEIGHT;

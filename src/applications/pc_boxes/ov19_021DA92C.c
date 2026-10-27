@@ -424,7 +424,7 @@ static void PCMonPreviewDisplay_DrawRotationPage(Window *window, PCMonPreviewDis
         return;
     }
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, str, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, str, 0, yOffset, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_PREVIEW_INFO, NULL);
 }
 
 void PCMonPreviewDisplay_ShowInitial(PCMonPreviewDisplay *previewDisplay)
@@ -509,21 +509,21 @@ static void PCMonPreviewDisplay_DrawMonInfo(PCMonPreviewDisplay *previewDisplay)
     PokemonSpriteTemplate spriteTemplate;
     const PCMonPreview *preview = BoxApp_GetPCMonPreview(previewDisplay->boxApp);
 
-    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES], FONT_SYSTEM, preview->speciesName, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);
-    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES], FONT_SYSTEM, preview->speciesName, 2, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_PREVIEW_SPECIES, NULL);
+    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_PREVIEW_NICKNAME, NULL);
+    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_PREVIEW_NICKNAME, NULL);
 
     switch (preview->gender) {
     case GENDER_MALE:
-        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, previewDisplay->maleGenderText, 70, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(7, 8, 15), NULL);
+        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, previewDisplay->maleGenderText, 70, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_PREVIEW_MALE, NULL);
         break;
     case GENDER_FEMALE:
-        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, previewDisplay->femaleGenderText, 70, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 15), NULL);
+        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, previewDisplay->femaleGenderText, 70, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_PREVIEW_FEMALE, NULL);
         break;
     }
 
     if (preview->isEgg == FALSE) {
-        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_INFO], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_INFO], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_PREVIEW_INFO, NULL);
 
         if (preview->dexNum) {
             FontSpecialChars_DrawPartyScreenText(previewDisplay->dexNumChars, 2, preview->dexNum, 3, 2, &(previewDisplay->windows[PREVIEW_WINDOW_DEX_NUM]), 0, 0);
@@ -592,7 +592,7 @@ void PCMonPreviewDisplay_UpdateHeldItem(PCMonPreviewDisplay *previewDisplay)
     Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_INFO], 0);
 
     if (preview->isEgg == FALSE) {
-        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_INFO], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_INFO], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_PREVIEW_INFO, NULL);
     }
 
     PCMonPreviewDisplay_ResetRotation(previewDisplay);

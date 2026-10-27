@@ -214,7 +214,7 @@ static void BoxView_LoadWallpaperTiles(BoxView *boxView, const BoxCustomization 
                 u32 nameWidth = Font_CalcStringWidth(FONT_SYSTEM, customization->name, 0);
                 u32 textX = 84 - (nameWidth / 2);
 
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, customization->name, textX, 13, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, customization->name, textX, 13, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_WALLPAPER_BOX_NAME, NULL);
                 Heap_Free(window);
             }
 
