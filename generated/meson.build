@@ -36,7 +36,6 @@ metang_generators = {
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
-    'comm_club_ret_codes': { 'type': 'enum', 'tag': 'CommClubRetCode' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
