@@ -10,25 +10,50 @@
 #include "bg_window.h"
 #include "sprite.h"
 
-BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4);
-void ov19_021D7A74(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D7A9C(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *BoxCustomization, int param2, BOOL param3);
-void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *BoxCustomization, int param2);
-BOOL ov19_021D7E1C(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D8350(UnkStruct_ov19_021D8318 *param0);
-BOOL ov19_021D8370(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D8408(UnkStruct_ov19_021D8318 *param0, u32 param1, s32 param2, UnkStruct_ov19_021DCD18 *param3);
-void ov19_021D845C(UnkStruct_ov19_021D8318 *param0, u32 param1, const UnkStruct_ov19_021DCD18 *param2);
-UnkStruct_ov19_021DCD18 *ov19_021D84C8(UnkStruct_ov19_021D8318 *param0, u32 param1);
-void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D8860(UnkStruct_ov19_021D8318 *param0, u32 param1);
-BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D8938(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D8988(UnkStruct_ov19_021D8318 *param0, u32 param1, u32 param2);
-void ov19_021D89F4(UnkStruct_ov19_021D8318 *param0, u32 param1);
-void ov19_021D8A24(UnkStruct_ov19_021D8318 *param0);
-void BoxGraphics_ApplyMultiSelectMonShading(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D8B14(UnkStruct_ov19_021D8318 *param0);
+#define BOX_GRID_LEFT      112
+#define BOX_GRID_TOP       40
+#define BOX_GRID_CELL_SIZE 24
+
+#define BOX_ICON_TILE_BASE       88
+#define BOX_ICON_PAGE_TILE_COUNT (MAX_MONS_PER_BOX * MON_ICON_TILE_COUNT)
+
+enum BoxViewReloadWallpaperState {
+    RELOAD_WALLPAPER_STATE_PLTT = 0,
+    RELOAD_WALLPAPER_STATE_TILES,
+    RELOAD_WALLPAPER_STATE_DONE,
+};
+
+enum BoxViewWallpaperChangeState {
+    WALLPAPER_CHANGE_STATE_WAIT_FLASH_IN = 0,
+    WALLPAPER_CHANGE_STATE_START_RELOAD,
+    WALLPAPER_CHANGE_STATE_WAIT_RELOAD,
+    WALLPAPER_CHANGE_STATE_START_FLASH_OUT,
+    WALLPAPER_CHANGE_STATE_WAIT_FLASH_OUT,
+};
+
+enum BoxViewReleaseAnimStep {
+    RELEASE_ANIM_STEP_RELEASING = 0,
+    RELEASE_ANIM_STEP_REJECTED,
+};
+
+BOOL BoxView_Init(BoxView *boxView, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *unused);
+void BoxView_Free(BoxView *boxView);
+void BoxView_InitBgScroll(BoxView *boxView);
+void BoxView_Show(BoxView *boxView, const BoxCustomization *customization, int boxChangeDirection, BOOL refreshNow);
+void BoxView_StartScroll(BoxView *boxView, const BoxCustomization *customization, int boxChangeDirection);
+BOOL BoxView_IsScrollDone(BoxView *boxView);
+void BoxView_StartWallpaperChange(BoxView *boxView);
+BOOL BoxView_IsWallpaperChangeDone(BoxView *boxView);
+void BoxView_PickUpIcon(BoxView *boxView, u32 boxPos, s32 tileOffset, MonIcon *monIcon);
+void BoxView_PlaceDownIcon(BoxView *boxView, u32 boxPos, const MonIcon *monIcon);
+MonIcon *BoxView_GetIcon(BoxView *boxView, u32 posInBox);
+void BoxView_CreateMissingIcons(BoxView *boxView);
+void BoxView_StartReleaseMonAnimation(BoxView *boxView, u32 boxCursorPosition);
+BOOL BoxView_IsReleaseMonAnimationDone(BoxView *boxView);
+void BoxView_UpdateMarkingsTransparency(BoxView *boxView);
+void BoxView_UpdateHeldItemIcon(BoxView *boxView, u32 posInBox, u32 item);
+void BoxView_UpdateMarkingsIcon(BoxView *boxView);
+void BoxView_ApplyMultiSelectMonShading(BoxView *boxView);
+void BoxView_ClearMultiSelectShading(BoxView *boxView);
 
 #endif // POKEPLATINUM_OV19_021D79F8_H

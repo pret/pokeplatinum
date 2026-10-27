@@ -1,18 +1,18 @@
 #ifndef POKEPLATINUM_STRUCT_BOX_TOUCH_DIAL_HELPER_H
 #define POKEPLATINUM_STRUCT_BOX_TOUCH_DIAL_HELPER_H
 
-enum TouchDials {
-    TOUCH_DIALS_NONE,
-    TOUCH_DIALS_BOX_JUMP,
-    TOUCH_DIALS_MARKINGS
+enum DialID {
+    DIALS_NONE = 0,
+    DIALS_BOX_JUMP,
+    DIALS_MARKINGS,
 };
 
-typedef struct BoxTouchDialHelper {
-    u8 selectedTouchDial;
+typedef struct BoxDialHelper {
+    u8 selectedDial;
     u8 markingsButtonsScrollOffset;
-    u8 touchDialOffset;
+    u8 dialOffset;
     u8 padding_03;
     s16 scrollDelta;
-} BoxTouchDialHelper;
+} BoxDialHelper;
 
 #endif // POKEPLATINUM_STRUCT_BOX_TOUCH_DIAL_HELPER_H

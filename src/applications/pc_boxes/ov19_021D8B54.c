@@ -20,1141 +20,1174 @@
 #include "heap.h"
 #include "math_util.h"
 #include "narc.h"
+#include "pc_boxes.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#define CURSOR_WRAP_RIGHT_X  272
+#define CURSOR_WRAP_LEFT_X   70
+#define CURSOR_WRAP_BOTTOM_Y 208
+#define CURSOR_WRAP_TOP_Y    -24
+
+#define CURSOR_MOVE_WRAP_STEPS   12
+#define CURSOR_MOVE_NORMAL_STEPS 6
+
 typedef struct {
-    Sprite *unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    u32 unk_08;
-    fx32 unk_0C;
-    fx32 unk_10;
-    fx32 unk_14;
-    fx32 unk_18;
-    fx32 unk_1C;
-    fx32 unk_20;
-    fx32 unk_24;
-    UnkStruct_ov19_021D8E00 *unk_28;
-} UnkStruct_ov19_021D9554;
+    Sprite *sprite;
+    u16 ticksRemaining;
+    u16 midpointTick;
+    u32 priority;
+    fx32 currentY;
+    fx32 destY;
+    fx32 startX;
+    fx32 angle;
+    fx32 stepY;
+    fx32 angleStep;
+    fx32 arcAmplitude;
+    BoxCursorGraphics *bcGraphics;
+} SpriteArcMove;
 
-static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0);
-static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 *param0, BOOL *param1, BOOL *param2);
-static void ov19_021D9088(SysTask *param0, void *param1);
-static void ov19_021D928C(SysTask *param0, void *param1);
-static void ov19_021D93D0(SysTask *param0, void *param1);
-static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 param2, s32 param3, u32 param4);
-static BOOL ov19_021D95E0(UnkStruct_ov19_021D8E00 *param0);
-static void ov19_021D95F4(void *param0);
-static void ov19_021D9600(SysTask *param0, void *param1);
-static void ov19_021D9718(SysTask *param0, void *param1);
-static void ov19_021D9894(SysTask *param0, void *param1);
-static void ov19_021D9B78(SysTask *param0, void *param1);
-static void ov19_021D9C18(SysTask *param0, void *param1);
-static void ov19_021D9CB4(SysTask *param0, void *param1);
-static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *param2, UnkStruct_ov19_021D8E00 *param3);
-static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1);
-static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0);
-static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0);
-static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0);
-static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0);
-static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 *param0);
-static void ov19_021DA204(UnkStruct_ov19_021D8E00 *param0);
-static Sprite *ov19_021DA224(UnkStruct_ov19_021D8E00 *param0);
+static void BoxCursorGraphics_ShowHeldMonIcon(BoxCursorGraphics *bcGraphics);
+static void BoxCursorGraphics_CheckWraparound(const BoxCursorGraphics *bcGraphics, BOOL *wrapX, BOOL *wrapY);
+static void BoxCursorGraphics_MoveTask(SysTask *param0, void *param1);
+static void BoxCursorGraphics_PickUpAnimationTask(SysTask *param0, void *param1);
+static void BoxCursorGraphics_PlaceDownAnimationTask(SysTask *param0, void *param1);
+static void SpriteArcMove_Start(BoxCursorGraphics *bcGraphics, Sprite *sprite, fx32 destY, s32 direction, u32 priority);
+static BOOL BoxCursorGraphics_IsAnimationDone(BoxCursorGraphics *param0);
+static void BoxCursorGraphics_ClearAnimatingFlag(void *param0);
+static void SpriteArcMove_Task(SysTask *param0, void *param1);
+static void BoxCursorGraphics_ButtonPressAnimationTask(SysTask *param0, void *param1);
+static void BoxCursorGraphics_ReturnToRestAnimationTask(SysTask *param0, void *param1);
+static void BoxCursorGraphics_TakeItemAnimationTask(SysTask *param0, void *param1);
+static void BoxCursorGraphics_GiveItemAnimationTask(SysTask *param0, void *param1);
+static void BoxCursorGraphics_SwitchItemAnimationTask(SysTask *param0, void *param1);
+static void BoxCursorGraphics_GetTargetPosition(s32 *targetX, s32 *targetY, u8 *cursorLocation, BoxCursorGraphics *bcGraphics);
+static void BoxCursorGraphics_SetPosition(BoxCursorGraphics *param0, VecFx32 *param1);
+static void BoxCursorGraphics_LoadHeldMonIcons(BoxCursorGraphics *bcGraphics);
+static void BoxCursorGraphics_FinishPickUpMonIcons(BoxCursorGraphics *bcGraphics);
+static void BoxCursorGraphics_RestorePlacedMonIcons(BoxCursorGraphics *bcGraphics);
+static void BoxCursorGraphics_FinishShiftMonIcons(BoxCursorGraphics *bcGraphics);
+static void BoxCursorGraphics_ClearHeldMonIconFlag(BoxCursorGraphics *bcGraphics);
+static void BoxCursorGraphics_ClearHeldMonIcons(BoxCursorGraphics *bcGraphics);
+static Sprite *BoxCursorGraphics_GetSpriteUnderCursor(BoxCursorGraphics *bcGraphics);
 
-BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4)
+BOOL BoxCursorGraphics_Init(BoxCursorGraphics *bcGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, SpriteList *spriteList, NARC *narc)
 {
-    param0->unk_794 = param1;
-    param0->unk_790 = param2;
-    param0->unk_00 = param3;
-    param0->unk_758 = ov19_021D77E0(param1);
-    param0->unk_75C = ov19_021D77E8(param1);
-    param0->unk_48 = ov19_021D77D8(param1);
-    param0->unk_785 = BoxApp_GetCursorLocation(param2);
-    param0->unk_789 = BoxApp_GetCursorBoxCol(param2);
-    param0->unk_78A = BoxApp_GetCursorBoxRow(param2);
-    param0->unk_78B = BoxApp_GetCursorPartyPosition(param2);
-    param0->unk_04 = NULL;
-    param0->unk_08 = NULL;
-    param0->unk_0C = NULL;
-    param0->unk_10 = NULL;
-    param0->unk_754 = 0;
-    param0->unk_78E = 1;
-    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 13, 1, &(param0->unk_1C), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 14, 1, &(param0->unk_20), HEAP_ID_BOX_GRAPHICS);
+    bcGraphics->boxGraphics = boxGraphics;
+    bcGraphics->boxApp = boxApp;
+    bcGraphics->spriteList = spriteList;
+    bcGraphics->box = BoxGraphics_GetBoxView(boxGraphics);
+    bcGraphics->party = BoxGraphics_GetPartyGraphics(boxGraphics);
+    bcGraphics->monIconHelper = BoxGraphics_GetMonIconHelper(boxGraphics);
+    bcGraphics->cursorLocation = BoxApp_GetCursorLocation(boxApp);
+    bcGraphics->boxCol = BoxApp_GetCursorBoxCol(boxApp);
+    bcGraphics->boxRow = BoxApp_GetCursorBoxRow(boxApp);
+    bcGraphics->partyPosition = BoxApp_GetCursorPartyPosition(boxApp);
+    bcGraphics->cursorSprite = NULL;
+    bcGraphics->shadowSprite = NULL;
+    bcGraphics->leftArrowSprite = NULL;
+    bcGraphics->rightArrowSprite = NULL;
+    bcGraphics->heldIconCount = 0;
+    bcGraphics->shadowFollowsCursor = 1;
+    bcGraphics->cellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 13, TRUE, &bcGraphics->cellBank, HEAP_ID_BOX_GRAPHICS);
+    bcGraphics->animBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 14, TRUE, &bcGraphics->animBank, HEAP_ID_BOX_GRAPHICS);
 
-    if ((param0->unk_14 == NULL) || (param0->unk_18 == NULL)) {
-        return 0;
+    if ((bcGraphics->cellBankBuffer == NULL) || (bcGraphics->animBankBuffer == NULL)) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
+void BoxCursorGraphics_Load(BoxCursorGraphics *bcGraphics, NARC *narc)
 {
-    SpriteResourcesHeader v0;
+    SpriteResourcesHeader srHeader;
     u32 cursorLocation, pcMode;
+    int leftX, rightX;
 
-    NNS_G2dInitImageProxy(&(param0->unk_24));
+    NNS_G2dInitImageProxy(&(bcGraphics->imageProxy));
 
-    Graphics_LoadImageMappingFromOpenNARC(param1, 12, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0 * 0x20, 10, &(param0->unk_24));
-    ov19_021D783C(&v0, &(param0->unk_24), ov19_021D77D0(param0->unk_794), param0->unk_1C, param0->unk_20, ((param0->unk_785 == 1) ? 1 : 2));
-    ov19_021D9D48(&param0->unk_764, &param0->unk_768, &param0->unk_785, param0);
+    Graphics_LoadImageMappingFromOpenNARC(narc, 12, TRUE, IMAGE_MAPPING_LAYOUT_1D, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, HEAP_ID_BOX_GRAPHICS, &bcGraphics->imageProxy);
+    SpriteResourcesHeader_InitFromProxies(&srHeader, &(bcGraphics->imageProxy), BoxGraphics_GetImagePaletteProxy(bcGraphics->boxGraphics), bcGraphics->cellBank, bcGraphics->animBank, ((bcGraphics->cursorLocation == CURSOR_IN_PARTY) ? 1 : 2));
+    BoxCursorGraphics_GetTargetPosition(&bcGraphics->posX, &bcGraphics->posY, &bcGraphics->cursorLocation, bcGraphics);
 
-    param0->unk_04 = ov19_021D785C(param0->unk_00, &v0, param0->unk_764, param0->unk_768, 1, NNS_G2D_VRAM_TYPE_2DMAIN);
-    param0->unk_08 = ov19_021D785C(param0->unk_00, &v0, param0->unk_764, param0->unk_768 + 24, 42, NNS_G2D_VRAM_TYPE_2DMAIN);
+    bcGraphics->cursorSprite = BoxGraphics_CreateSprite(bcGraphics->spriteList, &srHeader, bcGraphics->posX, bcGraphics->posY, 1, NNS_G2D_VRAM_TYPE_2DMAIN);
+    bcGraphics->shadowSprite = BoxGraphics_CreateSprite(bcGraphics->spriteList, &srHeader, bcGraphics->posX, bcGraphics->posY + CURSOR_SHADOW_OFFSET_Y, 42, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    cursorLocation = BoxApp_GetCursorLocation(param0->unk_790);
-    pcMode = BoxApp_GetBoxMode(param0->unk_790);
+    cursorLocation = BoxApp_GetCursorLocation(bcGraphics->boxApp);
+    pcMode = BoxApp_GetBoxMode(bcGraphics->boxApp);
 
-    {
-        int v3, v4;
-
-        if (pcMode != PC_MODE_COMPARE) {
-            v3 = 108;
-            v4 = 236;
-        } else {
-            v3 = 108 + -44;
-            v4 = 236 + -44;
-        }
-
-        v0.priority = 2;
-        param0->unk_0C = ov19_021D785C(param0->unk_00, &v0, v3, 20, 43, NNS_G2D_VRAM_TYPE_2DMAIN);
-        param0->unk_10 = ov19_021D785C(param0->unk_00, &v0, v4, 20, 43, NNS_G2D_VRAM_TYPE_2DMAIN);
+    if (pcMode != PC_MODE_COMPARE) {
+        leftX = CURSOR_LEFT_ARROW_X;
+        rightX = CURSOR_RIGHT_ARROW_X;
+    } else {
+        leftX = CURSOR_LEFT_ARROW_X + BOX_GRAPHICS_COMPARE_MODE_X_OFFSET;
+        rightX = CURSOR_RIGHT_ARROW_X + BOX_GRAPHICS_COMPARE_MODE_X_OFFSET;
     }
 
-    Sprite_SetAnim(param0->unk_08, 5);
-    Sprite_SetExplicitPriority(param0->unk_08, 2);
+    srHeader.priority = 2;
+    bcGraphics->leftArrowSprite = BoxGraphics_CreateSprite(bcGraphics->spriteList, &srHeader, leftX, CURSOR_ARROW_Y, 43, NNS_G2D_VRAM_TYPE_2DMAIN);
+    bcGraphics->rightArrowSprite = BoxGraphics_CreateSprite(bcGraphics->spriteList, &srHeader, rightX, CURSOR_ARROW_Y, 43, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    cursorLocation = BoxApp_GetCursorLocation(param0->unk_790);
+    Sprite_SetAnim(bcGraphics->shadowSprite, 5);
+    Sprite_SetExplicitPriority(bcGraphics->shadowSprite, 2);
+
+    cursorLocation = BoxApp_GetCursorLocation(bcGraphics->boxApp);
 
     if (cursorLocation != CURSOR_ON_BOX_HEADER) {
-        Sprite_SetAnim(param0->unk_0C, 6);
-        Sprite_SetAnim(param0->unk_10, 7);
+        Sprite_SetAnim(bcGraphics->leftArrowSprite, 6);
+        Sprite_SetAnim(bcGraphics->rightArrowSprite, 7);
     } else {
-        Sprite_SetAnim(param0->unk_0C, 8);
-        Sprite_SetAnim(param0->unk_10, 9);
+        Sprite_SetAnim(bcGraphics->leftArrowSprite, 8);
+        Sprite_SetAnim(bcGraphics->rightArrowSprite, 9);
     }
 
     if (cursorLocation != CURSOR_IN_BOX) {
-        Sprite_SetDrawFlag(param0->unk_08, FALSE);
+        Sprite_SetDrawFlag(bcGraphics->shadowSprite, FALSE);
     }
 
     if (pcMode != PC_MODE_MOVE_ITEMS) {
-        if (BoxApp_GetPreviewMonSource(param0->unk_790) == PREVIEW_MON_UNDER_CURSOR) {
-            Sprite_SetAnim(param0->unk_04, 0);
-            ov19_021DA3CC(param0->unk_48, param0->unk_4C, (5 * 6));
-            param0->unk_78C = 0;
+        if (BoxApp_GetPreviewMonSource(bcGraphics->boxApp) == PREVIEW_MON_UNDER_CURSOR) {
+            Sprite_SetAnim(bcGraphics->cursorSprite, 0);
+            MonIconHelper_InitIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, (5 * 6));
+            bcGraphics->hasHeldMonIcon = FALSE;
         } else {
-            Sprite_SetAnim(param0->unk_04, 2);
-            ov19_021D8E00(param0);
-            param0->unk_78C = 1;
+            Sprite_SetAnim(bcGraphics->cursorSprite, 2);
+            BoxCursorGraphics_ShowHeldMonIcon(bcGraphics);
+            bcGraphics->hasHeldMonIcon = TRUE;
         }
 
-        param0->unk_78D = 0;
+        bcGraphics->isHoldingItem = 0;
     } else {
-        if (BoxApp_GetCursorItem(param0->unk_790) == ITEM_NONE) {
-            Sprite_SetAnim(param0->unk_04, 0);
-            param0->unk_78D = 0;
+        if (BoxApp_GetCursorItem(bcGraphics->boxApp) == ITEM_NONE) {
+            Sprite_SetAnim(bcGraphics->cursorSprite, 0);
+            bcGraphics->isHoldingItem = 0;
         } else {
-            Sprite_SetAnim(param0->unk_04, 2);
-            param0->unk_78D = 1;
+            Sprite_SetAnim(bcGraphics->cursorSprite, 2);
+            bcGraphics->isHoldingItem = 1;
         }
 
-        ov19_021DA3CC(param0->unk_48, param0->unk_4C, (5 * 6));
-        param0->unk_78C = 0;
+        MonIconHelper_InitIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, (5 * 6));
+        bcGraphics->hasHeldMonIcon = FALSE;
     }
 
-    param0->unk_760 = ov19_021D7800(param0->unk_794);
+    bcGraphics->itemIconGraphics = BoxGraphics_GetItemIconGraphics(bcGraphics->boxGraphics);
 
-    ov19_021D9AEC(param0);
+    BoxCursorGraphics_UpdateFastModePalette(bcGraphics);
 }
 
-static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0)
+static void BoxCursorGraphics_ShowHeldMonIcon(BoxCursorGraphics *bcGraphics)
 {
-    VecFx32 v0;
-    s32 v1, v2;
+    VecFx32 cursorPos;
+    s32 iconX, iconY;
 
-    v0 = *Sprite_GetPosition(param0->unk_04);
-    v1 = (v0.x >> FX32_SHIFT) - 0;
-    v2 = (v0.y >> FX32_SHIFT) - -4;
+    cursorPos = *Sprite_GetPosition(bcGraphics->cursorSprite);
+    iconX = (cursorPos.x >> FX32_SHIFT) - CURSOR_HELD_ICON_OFFSET_X;
+    iconY = (cursorPos.y >> FX32_SHIFT) - CURSOR_HELD_ICON_OFFSET_Y;
 
-    ov19_021DA3CC(param0->unk_48, param0->unk_4C, 1);
-    ov19_021DA428(param0->unk_48, BoxApp_GetPreviewedBoxMon(param0->unk_790), v1, v2, Sprite_GetExplicitPriority(param0->unk_04), 2, 1240, param0->unk_4C);
+    MonIconHelper_InitIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, 1);
+    MonIconHelper_CreateIcon(bcGraphics->monIconHelper, BoxApp_GetPreviewedBoxMon(bcGraphics->boxApp), iconX, iconY, Sprite_GetExplicitPriority(bcGraphics->cursorSprite), 2, CURSOR_ICON_TILE_BASE, bcGraphics->monIcon);
 
-    param0->unk_664[0].unk_00 = (0 * FX32_ONE);
-    param0->unk_664[0].unk_04 = (-4 * FX32_ONE);
-    param0->unk_754 = 1;
-    param0->unk_78C = 1;
+    bcGraphics->heldIconOffsets[0].x = CURSOR_HELD_ICON_OFFSET_X * FX32_ONE;
+    bcGraphics->heldIconOffsets[0].y = CURSOR_HELD_ICON_OFFSET_Y * FX32_ONE;
+    bcGraphics->heldIconCount = 1;
+    bcGraphics->hasHeldMonIcon = TRUE;
 }
 
-void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_Free(BoxCursorGraphics *bcGraphics)
 {
-    if (param0->unk_14) {
-        Heap_Free(param0->unk_14);
-        param0->unk_14 = NULL;
+    if (bcGraphics->cellBankBuffer) {
+        Heap_Free(bcGraphics->cellBankBuffer);
+        bcGraphics->cellBankBuffer = NULL;
     }
 
-    if (param0->unk_18) {
-        Heap_Free(param0->unk_18);
-        param0->unk_18 = NULL;
+    if (bcGraphics->animBankBuffer) {
+        Heap_Free(bcGraphics->animBankBuffer);
+        bcGraphics->animBankBuffer = NULL;
     }
 
-    if (param0->unk_04 != NULL) {
-        Sprite_Delete(param0->unk_04);
-        param0->unk_04 = NULL;
+    if (bcGraphics->cursorSprite != NULL) {
+        Sprite_Delete(bcGraphics->cursorSprite);
+        bcGraphics->cursorSprite = NULL;
     }
 
-    if (param0->unk_08 != NULL) {
-        Sprite_Delete(param0->unk_08);
-        param0->unk_08 = NULL;
+    if (bcGraphics->shadowSprite != NULL) {
+        Sprite_Delete(bcGraphics->shadowSprite);
+        bcGraphics->shadowSprite = NULL;
     }
 
-    if (param0->unk_0C != NULL) {
-        Sprite_Delete(param0->unk_0C);
-        param0->unk_0C = NULL;
+    if (bcGraphics->leftArrowSprite != NULL) {
+        Sprite_Delete(bcGraphics->leftArrowSprite);
+        bcGraphics->leftArrowSprite = NULL;
     }
 
-    if (param0->unk_10 != NULL) {
-        Sprite_Delete(param0->unk_10);
-        param0->unk_10 = NULL;
+    if (bcGraphics->rightArrowSprite != NULL) {
+        Sprite_Delete(bcGraphics->rightArrowSprite);
+        bcGraphics->rightArrowSprite = NULL;
     }
 }
 
-static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 *param0, BOOL *param1, BOOL *param2)
+static void BoxCursorGraphics_CheckWraparound(const BoxCursorGraphics *bcGraphics, BOOL *wrapX, BOOL *wrapY)
 {
-    *param1 = *param2 = 0;
+    *wrapX = *wrapY = FALSE;
 
-    switch (param0->unk_785) {
-    case 0:
-        if (param0->unk_786 == 0) {
-            u32 col = BoxApp_GetCursorBoxCol(param0->unk_790);
+    switch (bcGraphics->cursorLocation) {
+    case CURSOR_IN_BOX:
+        if (bcGraphics->newCursorLocation == CURSOR_IN_BOX) {
+            u32 col = BoxApp_GetCursorBoxCol(bcGraphics->boxApp);
 
-            if ((param0->unk_789 == 0) && (col == 5) || (param0->unk_789 == 5) && (col == 0)) {
-                *param1 = 1;
+            if ((bcGraphics->boxCol == 0) && (col == MAX_PC_COLS - 1) || (bcGraphics->boxCol == MAX_PC_COLS - 1) && (col == 0)) {
+                *wrapX = TRUE;
             }
         }
         break;
-    case 2:
-        if ((param0->unk_786 == 4) || (param0->unk_786 == 3)) {
-            *param2 = 1;
+    case CURSOR_ON_BOX_HEADER:
+        if ((bcGraphics->newCursorLocation == CURSOR_ON_CLOSE_BUTTON) || (bcGraphics->newCursorLocation == CURSOR_ON_PARTY_BUTTON)) {
+            *wrapY = TRUE;
         }
         break;
-    case 4:
-    case 3:
-        if (param0->unk_786 == 2) {
-            *param2 = 1;
+    case CURSOR_ON_CLOSE_BUTTON:
+    case CURSOR_ON_PARTY_BUTTON:
+        if (bcGraphics->newCursorLocation == CURSOR_ON_BOX_HEADER) {
+            *wrapY = TRUE;
         }
         break;
     }
 }
 
-void ov19_021D8F60(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_StartMove(BoxCursorGraphics *bcGraphics)
 {
-    BOOL v0, v1;
-    s32 v2, v3;
-    s32 v4, v5;
-    s32 v6;
+    BOOL wrapX, wrapY;
+    s32 newX, newY;
+    s32 deltaX, deltaY;
+    s32 numSteps;
 
-    ov19_021D9D48(&(param0->unk_76C), &(param0->unk_770), &(param0->unk_786), param0);
-    ov19_021D8EE0(param0, &v0, &v1);
+    BoxCursorGraphics_GetTargetPosition(&(bcGraphics->targetX), &(bcGraphics->targetY), &(bcGraphics->newCursorLocation), bcGraphics);
+    BoxCursorGraphics_CheckWraparound(bcGraphics, &wrapX, &wrapY);
 
-    if (param0->unk_786 != 0) {
-        Sprite_SetDrawFlag(param0->unk_08, FALSE);
+    if (bcGraphics->newCursorLocation != CURSOR_IN_BOX) {
+        Sprite_SetDrawFlag(bcGraphics->shadowSprite, FALSE);
     }
 
-    param0->unk_774 = param0->unk_764 << FX32_SHIFT;
-    param0->unk_778 = param0->unk_768 << FX32_SHIFT;
+    bcGraphics->animX = bcGraphics->posX << FX32_SHIFT;
+    bcGraphics->animY = bcGraphics->posY << FX32_SHIFT;
 
-    v2 = param0->unk_76C << FX32_SHIFT;
-    v3 = param0->unk_770 << FX32_SHIFT;
+    newX = bcGraphics->targetX << FX32_SHIFT;
+    newY = bcGraphics->targetY << FX32_SHIFT;
 
-    if (v0 == 0) {
-        v4 = v2 - param0->unk_774;
+    if (wrapX == 0) {
+        deltaX = newX - bcGraphics->animX;
     } else {
-        if (v2 > param0->unk_774) {
-            v4 = -((272 - param0->unk_76C) + (param0->unk_764 - 70));
+        if (newX > bcGraphics->animX) {
+            deltaX = -((CURSOR_WRAP_RIGHT_X - bcGraphics->targetX) + (bcGraphics->posX - CURSOR_WRAP_LEFT_X));
         } else {
-            v4 = (272 - param0->unk_764) + (param0->unk_76C - 70);
+            deltaX = (CURSOR_WRAP_RIGHT_X - bcGraphics->posX) + (bcGraphics->targetX - CURSOR_WRAP_LEFT_X);
         }
 
-        v4 <<= FX32_SHIFT;
+        deltaX <<= FX32_SHIFT;
     }
 
-    if (v1 == 0) {
-        v5 = v3 - param0->unk_778;
+    if (wrapY == 0) {
+        deltaY = newY - bcGraphics->animY;
     } else {
-        if (v3 > param0->unk_778) {
-            v5 = -((208 - param0->unk_770) + (param0->unk_768 - -24));
+        if (newY > bcGraphics->animY) {
+            deltaY = -((CURSOR_WRAP_BOTTOM_Y - bcGraphics->targetY) + (bcGraphics->posY - CURSOR_WRAP_TOP_Y));
         } else {
-            v5 = (208 - param0->unk_768) + (param0->unk_770 - -24);
+            deltaY = (CURSOR_WRAP_BOTTOM_Y - bcGraphics->posY) + (bcGraphics->targetY - CURSOR_WRAP_TOP_Y);
         }
 
-        v5 <<= FX32_SHIFT;
+        deltaY <<= FX32_SHIFT;
     }
 
-    if (v0 || v1) {
-        v6 = 12;
+    if (wrapX || wrapY) {
+        numSteps = CURSOR_MOVE_WRAP_STEPS;
     } else {
-        v6 = 6;
+        numSteps = CURSOR_MOVE_NORMAL_STEPS;
     }
 
-    param0->unk_77C = v4 / v6;
-    param0->unk_780 = v5 / v6;
-    param0->unk_787 = v6;
+    bcGraphics->stepX = deltaX / numSteps;
+    bcGraphics->stepY = deltaY / numSteps;
+    bcGraphics->moveStepsRemaining = numSteps;
 
-    ov19_021D77C8(ov19_021D9088, param0, 0);
+    BoxGraphics_StartVBlankTask(BoxCursorGraphics_MoveTask, bcGraphics, 0);
 }
 
-BOOL ov19_021D9074(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsMoveDone(BoxCursorGraphics *bcGraphics)
 {
-    return param0->unk_787 == 0;
+    return bcGraphics->moveStepsRemaining == 0;
 }
 
-static void ov19_021D9088(SysTask *param0, void *param1)
+static void BoxCursorGraphics_MoveTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
-    VecFx32 v1;
+    BoxCursorGraphics *bcGraphics = (BoxCursorGraphics *)param;
+    VecFx32 pos;
 
-    v1.z = 0;
+    pos.z = 0;
 
-    if (v0->unk_787) {
-        v0->unk_774 += v0->unk_77C;
+    if (bcGraphics->moveStepsRemaining) {
+        bcGraphics->animX += bcGraphics->stepX;
 
-        if ((v0->unk_77C > 0) && (v0->unk_774 > 1114112)) {
-            v0->unk_774 = 286720 + (1114112 - v0->unk_774);
+        if ((bcGraphics->stepX > 0) && (bcGraphics->animX > (CURSOR_WRAP_RIGHT_X << FX32_SHIFT))) {
+            bcGraphics->animX = (CURSOR_WRAP_LEFT_X << FX32_SHIFT) + ((CURSOR_WRAP_RIGHT_X << FX32_SHIFT) - bcGraphics->animX);
         }
 
-        if ((v0->unk_77C < 0) && (v0->unk_774 < 286720)) {
-            v0->unk_774 = 1114112 - (286720 - v0->unk_774);
+        if ((bcGraphics->stepX < 0) && (bcGraphics->animX < (CURSOR_WRAP_LEFT_X << FX32_SHIFT))) {
+            bcGraphics->animX = (CURSOR_WRAP_RIGHT_X << FX32_SHIFT) - ((CURSOR_WRAP_LEFT_X << FX32_SHIFT) - bcGraphics->animX);
         }
 
-        v0->unk_778 += v0->unk_780;
+        bcGraphics->animY += bcGraphics->stepY;
 
-        if ((v0->unk_780 > 0) && (v0->unk_778 > 851968)) {
-            v0->unk_778 = -98304 + (851968 - v0->unk_778);
+        if ((bcGraphics->stepY > 0) && (bcGraphics->animY > (CURSOR_WRAP_BOTTOM_Y << FX32_SHIFT))) {
+            bcGraphics->animY = (CURSOR_WRAP_TOP_Y << FX32_SHIFT) + ((CURSOR_WRAP_BOTTOM_Y << FX32_SHIFT) - bcGraphics->animY);
         }
 
-        if ((v0->unk_780 < 0) && (v0->unk_778 < -98304)) {
-            v0->unk_778 = 851968 - (-98304 - v0->unk_778);
+        if ((bcGraphics->stepY < 0) && (bcGraphics->animY < (CURSOR_WRAP_TOP_Y << FX32_SHIFT))) {
+            bcGraphics->animY = (CURSOR_WRAP_BOTTOM_Y << FX32_SHIFT) - ((CURSOR_WRAP_TOP_Y << FX32_SHIFT) - bcGraphics->animY);
         }
 
-        v1.x = v0->unk_774;
-        v1.y = v0->unk_778;
-        v1.z = 0;
+        pos.x = bcGraphics->animX;
+        pos.y = bcGraphics->animY;
+        pos.z = 0;
 
-        ov19_021D9E04(v0, &v1);
+        BoxCursorGraphics_SetPosition(bcGraphics, &pos);
 
-        v0->unk_787--;
+        bcGraphics->moveStepsRemaining--;
         return;
     }
 
-    v1.x = v0->unk_76C << FX32_SHIFT;
-    v1.y = v0->unk_770 << FX32_SHIFT;
-    v1.z = 0;
+    pos.x = bcGraphics->targetX << FX32_SHIFT;
+    pos.y = bcGraphics->targetY << FX32_SHIFT;
+    pos.z = 0;
 
-    ov19_021D9E04(v0, &v1);
+    BoxCursorGraphics_SetPosition(bcGraphics, &pos);
 
-    v0->unk_764 = v0->unk_76C;
-    v0->unk_768 = v0->unk_770;
-    v0->unk_785 = v0->unk_786;
-    v0->unk_789 = BoxApp_GetCursorBoxCol(v0->unk_790);
-    v0->unk_78A = BoxApp_GetCursorBoxRow(v0->unk_790);
-    v0->unk_78B = BoxApp_GetCursorPartyPosition(v0->unk_790);
+    bcGraphics->posX = bcGraphics->targetX;
+    bcGraphics->posY = bcGraphics->targetY;
+    bcGraphics->cursorLocation = bcGraphics->newCursorLocation;
+    bcGraphics->boxCol = BoxApp_GetCursorBoxCol(bcGraphics->boxApp);
+    bcGraphics->boxRow = BoxApp_GetCursorBoxRow(bcGraphics->boxApp);
+    bcGraphics->partyPosition = BoxApp_GetCursorPartyPosition(bcGraphics->boxApp);
 
-    if (v0->unk_786 == 0) {
-        Sprite_SetDrawFlag(v0->unk_08, TRUE);
+    if (bcGraphics->newCursorLocation == CURSOR_IN_BOX) {
+        Sprite_SetDrawFlag(bcGraphics->shadowSprite, TRUE);
     }
 
-    if (v0->unk_786 != 2) {
-        Sprite_SetAnim(v0->unk_0C, 6);
-        Sprite_SetAnim(v0->unk_10, 7);
+    if (bcGraphics->newCursorLocation != CURSOR_ON_BOX_HEADER) {
+        Sprite_SetAnim(bcGraphics->leftArrowSprite, 6);
+        Sprite_SetAnim(bcGraphics->rightArrowSprite, 7);
     } else {
-        Sprite_SetAnim(v0->unk_0C, 8);
-        Sprite_SetAnim(v0->unk_10, 9);
+        Sprite_SetAnim(bcGraphics->leftArrowSprite, 8);
+        Sprite_SetAnim(bcGraphics->rightArrowSprite, 9);
     }
 
-    SysTask_Done(param0);
+    SysTask_Done(task);
 }
 
-void ov19_021D9230(UnkStruct_ov19_021D8E00 *param0)
+enum PickUpAnimationPhase {
+    PICK_UP_ANIM_DIP_DOWN = 0,
+    PICK_UP_ANIM_LIFT_UP
+};
+
+void BoxCursorGraphics_StartPickUpAnimation(BoxCursorGraphics *bcGraphics)
 {
-    Sprite_SetAnim(param0->unk_04, 1);
+    Sprite_SetAnim(bcGraphics->cursorSprite, 1);
 
-    param0->unk_780 = (12 << FX32_SHIFT) / 6;
-    param0->unk_770 = (param0->unk_768 + 12);
-    param0->unk_787 = 6;
-    param0->unk_784 = 0;
+    bcGraphics->stepY = (12 << FX32_SHIFT) / 6;
+    bcGraphics->targetY = (bcGraphics->posY + 12);
+    bcGraphics->moveStepsRemaining = 6;
+    bcGraphics->animPhase = PICK_UP_ANIM_DIP_DOWN;
 
-    ov19_021D9EB0(param0);
-    ov19_021D77C8(ov19_021D928C, param0, 0);
+    BoxCursorGraphics_LoadHeldMonIcons(bcGraphics);
+    BoxGraphics_StartVBlankTask(BoxCursorGraphics_PickUpAnimationTask, bcGraphics, 0);
 }
 
-BOOL ov19_021D9278(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsPickUpAnimationDone(BoxCursorGraphics *bcGraphics)
 {
-    return param0->unk_784 == 255;
+    return bcGraphics->animPhase == 255;
 }
 
-static void ov19_021D928C(SysTask *param0, void *param1)
+static void BoxCursorGraphics_PickUpAnimationTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
-    VecFx32 v1 = *(Sprite_GetPosition(v0->unk_04));
+    BoxCursorGraphics *bcGraphics = (BoxCursorGraphics *)param;
+    VecFx32 pos = *(Sprite_GetPosition(bcGraphics->cursorSprite));
 
-    switch (v0->unk_784) {
-    case 0:
-        v0->unk_78E = 0;
+    switch (bcGraphics->animPhase) {
+    case PICK_UP_ANIM_DIP_DOWN:
+        bcGraphics->shadowFollowsCursor = 0;
 
-        if (v0->unk_787) {
-            v1.y += v0->unk_780;
-            ov19_021D9E04(v0, &v1);
-            v0->unk_787--;
+        if (bcGraphics->moveStepsRemaining) {
+            pos.y += bcGraphics->stepY;
+            BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+            bcGraphics->moveStepsRemaining--;
             break;
         }
 
-        v1.y = v0->unk_770 << FX32_SHIFT;
+        pos.y = bcGraphics->targetY << FX32_SHIFT;
 
-        ov19_021D9E04(v0, &v1);
-        Sprite_SetAnim(v0->unk_04, 2);
-        ov19_021DA038(v0);
+        BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+        Sprite_SetAnim(bcGraphics->cursorSprite, 2);
+        BoxCursorGraphics_FinishPickUpMonIcons(bcGraphics);
 
-        v0->unk_787 = 6;
-        v0->unk_784++;
-    case 1:
-        if (v0->unk_787) {
-            v1.y -= v0->unk_780;
-            ov19_021D9E04(v0, &v1);
-            v0->unk_787--;
+        bcGraphics->moveStepsRemaining = 6;
+        bcGraphics->animPhase++;
+    case PICK_UP_ANIM_LIFT_UP:
+        if (bcGraphics->moveStepsRemaining) {
+            pos.y -= bcGraphics->stepY;
+            BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+            bcGraphics->moveStepsRemaining--;
             break;
         }
 
-        v1.y = v0->unk_768 << FX32_SHIFT;
-        ov19_021D9E04(v0, &v1);
-        v0->unk_784 = 255;
-        v0->unk_78E = 1;
-        SysTask_Done(param0);
+        pos.y = bcGraphics->posY << FX32_SHIFT;
+        BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+        bcGraphics->animPhase = 255;
+        bcGraphics->shadowFollowsCursor = 1;
+        SysTask_Done(task);
     }
 }
 
-void ov19_021D9368(UnkStruct_ov19_021D8E00 *param0)
-{
-    param0->unk_780 = (12 << FX32_SHIFT) / 6;
-    param0->unk_770 = (param0->unk_768 + 12);
-    param0->unk_787 = 6;
-    param0->unk_784 = 0;
+enum PlaceDownAnimationPhase {
+    PLACE_DOWN_ANIM_DIP_DOWN = 0,
+    PLACE_DOWN_ANIM_LIFT_UP
+};
 
-    ov19_021D77C8(ov19_021D93D0, param0, 0);
+void BoxCursorGraphics_StartPlaceDownAnimation(BoxCursorGraphics *bcGraphics)
+{
+    bcGraphics->stepY = (12 << FX32_SHIFT) / 6;
+    bcGraphics->targetY = (bcGraphics->posY + 12);
+    bcGraphics->moveStepsRemaining = 6;
+    bcGraphics->animPhase = PLACE_DOWN_ANIM_DIP_DOWN;
+
+    BoxGraphics_StartVBlankTask(BoxCursorGraphics_PlaceDownAnimationTask, bcGraphics, 0);
 }
 
-BOOL ov19_021D939C(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsPlaceDownAnimationDone(BoxCursorGraphics *bcGraphics)
 {
-    if (param0->unk_784 == 255) {
-        ov19_021DA06C(param0);
-        ov19_021DA3CC(param0->unk_48, param0->unk_4C, param0->unk_754);
-        param0->unk_754 = 0;
-        return 1;
+    if (bcGraphics->animPhase == 255) {
+        BoxCursorGraphics_RestorePlacedMonIcons(bcGraphics);
+        MonIconHelper_InitIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, bcGraphics->heldIconCount);
+        bcGraphics->heldIconCount = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov19_021D93D0(SysTask *param0, void *param1)
+static void BoxCursorGraphics_PlaceDownAnimationTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
-    VecFx32 v1 = *(Sprite_GetPosition(v0->unk_04));
+    BoxCursorGraphics *bcGraphics = (BoxCursorGraphics *)param;
+    VecFx32 pos = *(Sprite_GetPosition(bcGraphics->cursorSprite));
 
-    switch (v0->unk_784) {
-    case 0:
-        v0->unk_78E = 0;
+    switch (bcGraphics->animPhase) {
+    case PLACE_DOWN_ANIM_DIP_DOWN:
+        bcGraphics->shadowFollowsCursor = 0;
 
-        if (v0->unk_787) {
-            v1.y += v0->unk_780;
-            ov19_021D9E04(v0, &v1);
-            v0->unk_787--;
+        if (bcGraphics->moveStepsRemaining) {
+            pos.y += bcGraphics->stepY;
+            BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+            bcGraphics->moveStepsRemaining--;
             break;
         }
 
-        v1.y = v0->unk_770 << FX32_SHIFT;
+        pos.y = bcGraphics->targetY << FX32_SHIFT;
 
-        ov19_021D9E04(v0, &v1);
-        Sprite_SetAnim(v0->unk_04, 1);
-        ov19_021DA1F8(v0);
+        BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+        Sprite_SetAnim(bcGraphics->cursorSprite, 1);
+        BoxCursorGraphics_ClearHeldMonIconFlag(bcGraphics);
 
-        v0->unk_787 = 6;
-        v0->unk_784++;
-    case 1:
-        if (v0->unk_787) {
-            v1.y -= v0->unk_780;
-            ov19_021D9E04(v0, &v1);
-            v0->unk_787--;
+        bcGraphics->moveStepsRemaining = 6;
+        bcGraphics->animPhase++;
+    case PLACE_DOWN_ANIM_LIFT_UP:
+        if (bcGraphics->moveStepsRemaining) {
+            pos.y -= bcGraphics->stepY;
+            BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+            bcGraphics->moveStepsRemaining--;
             break;
         }
 
-        v1.y = v0->unk_768 << FX32_SHIFT;
+        pos.y = bcGraphics->posY << FX32_SHIFT;
 
-        ov19_021D9E04(v0, &v1);
-        Sprite_SetAnim(v0->unk_04, 0);
+        BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+        Sprite_SetAnim(bcGraphics->cursorSprite, 0);
 
-        v0->unk_784 = 255;
-        v0->unk_78E = 1;
+        bcGraphics->animPhase = 255;
+        bcGraphics->shadowFollowsCursor = 1;
 
-        SysTask_Done(param0);
+        SysTask_Done(task);
     }
 }
 
-void ov19_021D94B4(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_StartShiftAnimation(BoxCursorGraphics *bcGraphics)
 {
-    VecFx32 v0;
-    Sprite *v1;
+    VecFx32 pos;
+    Sprite *sprite;
 
-    Sprite_SetAnim(param0->unk_04, 1);
+    Sprite_SetAnim(bcGraphics->cursorSprite, 1);
 
-    param0->unk_788 = 0;
+    bcGraphics->isAnimating = FALSE;
 
-    v1 = ov19_021DA224(param0);
-    v0 = *(Sprite_GetPosition(v1));
-    ov19_021D9554(param0, param0->unk_4C->unk_00, v0.y, 1, Sprite_GetPriority(v1));
+    sprite = BoxCursorGraphics_GetSpriteUnderCursor(bcGraphics);
+    pos = *(Sprite_GetPosition(sprite));
+    SpriteArcMove_Start(bcGraphics, bcGraphics->monIcon->sprite, pos.y, 1, Sprite_GetPriority(sprite));
 
-    v0 = *(Sprite_GetPosition(param0->unk_4C->unk_00));
-    ov19_021D9554(param0, v1, v0.y, -1, Sprite_GetPriority(param0->unk_4C->unk_00));
+    pos = *(Sprite_GetPosition(bcGraphics->monIcon->sprite));
+    SpriteArcMove_Start(bcGraphics, sprite, pos.y, -1, Sprite_GetPriority(bcGraphics->monIcon->sprite));
 
-    param0->unk_784 = 0;
+    bcGraphics->animPhase = 0;
 }
 
-BOOL ov19_021D9530(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsShiftAnimationDone(BoxCursorGraphics *bcGraphics)
 {
-    if (ov19_021D95E0(param0)) {
-        Sprite_SetAnim(param0->unk_04, 2);
-        ov19_021DA110(param0);
-        return 1;
+    if (BoxCursorGraphics_IsAnimationDone(bcGraphics)) {
+        Sprite_SetAnim(bcGraphics->cursorSprite, 2);
+        BoxCursorGraphics_FinishShiftMonIcons(bcGraphics);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 param2, s32 param3, u32 param4)
+static void SpriteArcMove_Start(BoxCursorGraphics *bcGraphics, Sprite *sprite, fx32 destY, s32 direction, u32 priority)
 {
-    UnkStruct_ov19_021D9554 *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D9554));
+    SpriteArcMove *saMove = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(SpriteArcMove));
 
-    if (v0) {
-        VecFx32 v1;
+    if (saMove) {
+        VecFx32 pos;
 
-        v1 = *Sprite_GetPosition(param1);
+        pos = *Sprite_GetPosition(sprite);
 
-        v0->unk_00 = param1;
-        v0->unk_04 = 12;
-        v0->unk_06 = 12 / 2;
-        v0->unk_08 = param4;
-        v0->unk_0C = v1.y;
-        v0->unk_14 = v1.x;
-        v0->unk_10 = param2;
-        v0->unk_18 = 0;
-        v0->unk_24 = param3 * 12;
-        v0->unk_1C = (v0->unk_10 - v0->unk_0C) / 12;
-        v0->unk_20 = (180 << FX32_SHIFT) / 12;
-        v0->unk_28 = param0;
+        saMove->sprite = sprite;
+        saMove->ticksRemaining = 12;
+        saMove->midpointTick = 12 / 2;
+        saMove->priority = priority;
+        saMove->currentY = pos.y;
+        saMove->startX = pos.x;
+        saMove->destY = destY;
+        saMove->angle = 0;
+        saMove->arcAmplitude = direction * 12;
+        saMove->stepY = (saMove->destY - saMove->currentY) / 12;
+        saMove->angleStep = (180 << FX32_SHIFT) / 12;
+        saMove->bcGraphics = bcGraphics;
 
-        if (ov19_021D77C8(ov19_021D9600, v0, 0)) {
-            param0->unk_788 = 1;
+        if (BoxGraphics_StartVBlankTask(SpriteArcMove_Task, saMove, 0)) {
+            bcGraphics->isAnimating = TRUE;
             return;
         } else {
-            Heap_Free(v0);
+            Heap_Free(saMove);
         }
     }
 }
 
-static BOOL ov19_021D95E0(UnkStruct_ov19_021D8E00 *param0)
+static BOOL BoxCursorGraphics_IsAnimationDone(BoxCursorGraphics *bcGraphics)
 {
-    return param0->unk_788 == 0;
+    return bcGraphics->isAnimating == FALSE;
 }
 
-static void ov19_021D95F4(void *param0)
+static void BoxCursorGraphics_ClearAnimatingFlag(void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0 = param0;
-    v0->unk_788 = 0;
+    BoxCursorGraphics *bcGraphics = param;
+    bcGraphics->isAnimating = FALSE;
 }
 
-static void ov19_021D9600(SysTask *param0, void *param1)
+static void SpriteArcMove_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D9554 *v0 = (UnkStruct_ov19_021D9554 *)param1;
-    VecFx32 v1;
+    SpriteArcMove *saMove = (SpriteArcMove *)param;
+    VecFx32 pos;
 
-    v1 = *Sprite_GetPosition(v0->unk_00);
+    pos = *Sprite_GetPosition(saMove->sprite);
 
-    if (v0->unk_04) {
-        fx32 v2;
+    if (saMove->ticksRemaining) {
+        fx32 delta;
 
-        v0->unk_04--;
+        saMove->ticksRemaining--;
 
-        if (v0->unk_04 == v0->unk_06) {
-            BoxGraphics_SetSpritePriority(v0->unk_00, v0->unk_08);
+        if (saMove->ticksRemaining == saMove->midpointTick) {
+            BoxGraphics_SetSpritePriority(saMove->sprite, saMove->priority);
         }
 
-        v0->unk_0C += v0->unk_1C;
-        v1.y = v0->unk_0C;
-        v0->unk_18 += v0->unk_20;
-        v2 = v0->unk_24 * CalcSineDegrees(v0->unk_18 >> FX32_SHIFT);
-        v1.x = v0->unk_14 + v2;
+        saMove->currentY += saMove->stepY;
+        pos.y = saMove->currentY;
+        saMove->angle += saMove->angleStep;
+        delta = saMove->arcAmplitude * CalcSineDegrees(saMove->angle >> FX32_SHIFT);
+        pos.x = saMove->startX + delta;
 
-        Sprite_SetPosition(v0->unk_00, &v1);
+        Sprite_SetPosition(saMove->sprite, &pos);
     } else {
-        v1.x = v0->unk_14;
-        v1.y = v0->unk_10;
+        pos.x = saMove->startX;
+        pos.y = saMove->destY;
 
-        Sprite_SetPosition(v0->unk_00, &v1);
-        ov19_021D79B8(param1, ov19_021D95F4, v0->unk_28);
-        SysTask_Done(param0);
+        Sprite_SetPosition(saMove->sprite, &pos);
+        BoxGraphics_DeferFree(param, BoxCursorGraphics_ClearAnimatingFlag, saMove->bcGraphics);
+        SysTask_Done(task);
     }
 }
 
-void ov19_021D9690(UnkStruct_ov19_021D8E00 *param0)
-{
-    VecFx32 v0;
+enum ButtonPressAnimationPhase {
+    BUTTON_PRESS_ANIM_WAIT = 0,
+    BUTTON_PRESS_ANIM_SETTLE
+};
 
-    if ((param0->unk_78C == 0) && (param0->unk_78D == 0)) {
-        Sprite_SetAnim(param0->unk_04, 3);
+void BoxCursorGraphics_StartButtonPressAnimation(BoxCursorGraphics *bcGraphics)
+{
+    VecFx32 pos;
+
+    if ((bcGraphics->hasHeldMonIcon == FALSE) && (bcGraphics->isHoldingItem == FALSE)) {
+        Sprite_SetAnim(bcGraphics->cursorSprite, 3);
     }
 
-    v0 = *Sprite_GetPosition(param0->unk_04);
-    v0.y += (-2 * FX32_ONE);
+    pos = *Sprite_GetPosition(bcGraphics->cursorSprite);
+    pos.y += (-2 * FX32_ONE);
 
-    ov19_021D9E04(param0, &v0);
+    BoxCursorGraphics_SetPosition(bcGraphics, &pos);
 
-    param0->unk_784 = 0;
-    param0->unk_787 = 0;
+    bcGraphics->animPhase = BUTTON_PRESS_ANIM_WAIT;
+    bcGraphics->moveStepsRemaining = 0;
 
-    if (ov19_021D77C8(ov19_021D9718, param0, 0)) {
-        param0->unk_788 = 1;
+    if (BoxGraphics_StartVBlankTask(BoxCursorGraphics_ButtonPressAnimationTask, bcGraphics, 0)) {
+        bcGraphics->isAnimating = TRUE;
     }
 }
 
-BOOL ov19_021D9704(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsAnimationDone2(BoxCursorGraphics *bcGraphics)
 {
-    return param0->unk_788 == 0;
+    return bcGraphics->isAnimating == FALSE;
 }
 
-static void ov19_021D9718(SysTask *param0, void *param1)
+static void BoxCursorGraphics_ButtonPressAnimationTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
+    BoxCursorGraphics *bcGraphics = (BoxCursorGraphics *)param;
 
-    switch (v0->unk_784) {
-    case 0:
-        if (++(v0->unk_787) >= 4) {
-            VecFx32 v1 = *Sprite_GetPosition(v0->unk_04);
+    switch (bcGraphics->animPhase) {
+    case BUTTON_PRESS_ANIM_WAIT:
+        if (++(bcGraphics->moveStepsRemaining) >= 4) {
+            VecFx32 pos = *Sprite_GetPosition(bcGraphics->cursorSprite);
 
-            v0->unk_770 = (v1.y >> FX32_SHIFT) + 6;
-            v0->unk_780 = (6 * FX32_ONE) / 2;
-            v0->unk_787 = 2;
+            bcGraphics->targetY = (pos.y >> FX32_SHIFT) + 6;
+            bcGraphics->stepY = (6 * FX32_ONE) / 2;
+            bcGraphics->moveStepsRemaining = 2;
 
-            if ((v0->unk_78C == 0) && (v0->unk_78D == 0)) {
-                Sprite_SetAnim(v0->unk_04, 4);
+            if ((bcGraphics->hasHeldMonIcon == FALSE) && (bcGraphics->isHoldingItem == FALSE)) {
+                Sprite_SetAnim(bcGraphics->cursorSprite, 4);
             }
 
-            v0->unk_784++;
+            bcGraphics->animPhase++;
         }
         break;
-    case 1: {
-        VecFx32 v2 = *Sprite_GetPosition(v0->unk_04);
+    case BUTTON_PRESS_ANIM_SETTLE: {
+        VecFx32 pos = *Sprite_GetPosition(bcGraphics->cursorSprite);
 
-        if (v0->unk_787) {
-            v2.y += v0->unk_780;
-            ov19_021D9E04(v0, &v2);
-            v0->unk_787--;
+        if (bcGraphics->moveStepsRemaining) {
+            pos.y += bcGraphics->stepY;
+            BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+            bcGraphics->moveStepsRemaining--;
         } else {
-            v2.y = v0->unk_770 << FX32_SHIFT;
-            ov19_021D9E04(v0, &v2);
-            v0->unk_788 = 0;
-            SysTask_Done(param0);
+            pos.y = bcGraphics->targetY << FX32_SHIFT;
+            BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+            bcGraphics->isAnimating = FALSE;
+            SysTask_Done(task);
         }
     } break;
     }
 }
 
-void ov19_021D97FC(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_StartReturnToRestAnimation(BoxCursorGraphics *bcGraphics)
 {
-    VecFx32 v0 = *Sprite_GetPosition(param0->unk_04);
+    VecFx32 pos = *Sprite_GetPosition(bcGraphics->cursorSprite);
 
-    param0->unk_770 = (v0.y >> FX32_SHIFT) + -4;
-    param0->unk_780 = (-4 * FX32_ONE) / 4;
-    param0->unk_787 = 4;
-    param0->unk_784 = 0;
+    bcGraphics->targetY = (pos.y >> FX32_SHIFT) + -4;
+    bcGraphics->stepY = (-4 * FX32_ONE) / 4;
+    bcGraphics->moveStepsRemaining = 4;
+    bcGraphics->animPhase = 0;
 
-    if (ov19_021D77C8(ov19_021D9894, param0, 0)) {
-        param0->unk_788 = 1;
+    if (BoxGraphics_StartVBlankTask(BoxCursorGraphics_ReturnToRestAnimationTask, bcGraphics, 0)) {
+        bcGraphics->isAnimating = TRUE;
     }
 }
 
-BOOL ov19_021D9858(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsReturnToRestAnimationDone(BoxCursorGraphics *bcGraphics)
 {
-    if (param0->unk_788 == 0) {
-        if ((param0->unk_78C == 0) && (param0->unk_78D == 0)) {
-            if (Sprite_GetActiveAnim(param0->unk_04) != 0) {
-                Sprite_SetAnim(param0->unk_04, 0);
+    if (bcGraphics->isAnimating == FALSE) {
+        if ((bcGraphics->hasHeldMonIcon == FALSE) && (bcGraphics->isHoldingItem == FALSE)) {
+            if (Sprite_GetActiveAnim(bcGraphics->cursorSprite) != 0) {
+                Sprite_SetAnim(bcGraphics->cursorSprite, 0);
             }
         }
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov19_021D9894(SysTask *param0, void *param1)
+static void BoxCursorGraphics_ReturnToRestAnimationTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0;
-    VecFx32 v1;
+    BoxCursorGraphics *bcGraphics;
+    VecFx32 pos;
 
-    v0 = (UnkStruct_ov19_021D8E00 *)param1;
-    v1 = *Sprite_GetPosition(v0->unk_04);
+    bcGraphics = (BoxCursorGraphics *)param;
+    pos = *Sprite_GetPosition(bcGraphics->cursorSprite);
 
-    if (v0->unk_787) {
-        v1.y += v0->unk_780;
-        ov19_021D9E04(v0, &v1);
-        v0->unk_787--;
+    if (bcGraphics->moveStepsRemaining) {
+        pos.y += bcGraphics->stepY;
+        BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+        bcGraphics->moveStepsRemaining--;
     } else {
-        v1.y = v0->unk_770 << FX32_SHIFT;
-        ov19_021D9E04(v0, &v1);
-        v0->unk_788 = 0;
-        SysTask_Done(param0);
+        pos.y = bcGraphics->targetY << FX32_SHIFT;
+        BoxCursorGraphics_SetPosition(bcGraphics, &pos);
+        bcGraphics->isAnimating = FALSE;
+        SysTask_Done(task);
     }
 }
 
-void ov19_021D9900(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_OnMonStoredFromCursor(BoxCursorGraphics *bcGraphics)
 {
-    if (param0->unk_790->selectedBoxID == BoxApp_GetCurrentBox(param0->unk_790)) {
-        ov19_021D84E0(param0->unk_758);
+    if (bcGraphics->boxApp->depositBoxID == BoxApp_GetCurrentBox(bcGraphics->boxApp)) {
+        BoxView_CreateMissingIcons(bcGraphics->box);
     }
 
-    ov19_021DA204(param0);
-    Sprite_SetAnim(param0->unk_04, 0);
+    BoxCursorGraphics_ClearHeldMonIcons(bcGraphics);
+    Sprite_SetAnim(bcGraphics->cursorSprite, 0);
 }
 
-void ov19_021D9938(UnkStruct_ov19_021D8E00 *param0)
-{
-    Sprite_SetAnim(param0->unk_04, 1);
-    ov19_021DA7B8(param0->unk_48, param0->unk_4C, 1);
+enum ReleaseAnimationPhase {
+    RELEASE_ANIM_WAIT_FOR_SHRINK = 0,
+    RELEASE_ANIM_CHECK_CAN_RELEASE,
+    RELEASE_ANIM_WAIT_FOR_RETURN
+};
 
-    param0->unk_784 = 0;
+void BoxCursorGraphics_StartReleaseAnimation(BoxCursorGraphics *bcGraphics)
+{
+    Sprite_SetAnim(bcGraphics->cursorSprite, 1);
+    MonIconHelper_SetIconAnim(bcGraphics->monIconHelper, bcGraphics->monIcon, MON_ICON_ANIM_RELEASE);
+
+    bcGraphics->animPhase = RELEASE_ANIM_WAIT_FOR_SHRINK;
 }
 
-BOOL ov19_021D995C(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsReleaseAnimationDone(BoxCursorGraphics *bcGraphics)
 {
-    const BoxApplicationManager *v0 = ov19_021D7964(param0->unk_794);
+    const BoxApplicationManager *baManagers = BoxGraphics_GetBoxAppMan(bcGraphics->boxGraphics);
 
-    switch (param0->unk_784) {
-    case 0:
-        if (ov19_021DA7E0(param0->unk_48, param0->unk_4C)) {
-            param0->unk_784++;
+    switch (bcGraphics->animPhase) {
+    case RELEASE_ANIM_WAIT_FOR_SHRINK:
+        if (MonIconHelper_IsIconAnimDone(bcGraphics->monIconHelper, bcGraphics->monIcon)) {
+            bcGraphics->animPhase++;
         }
         break;
-    case 1:
-        if (BoxAppMan_HasCheckedCanReleaseMon(v0)) {
-            if (BoxAppMan_CanReleaseMon(v0)) {
-                Sprite_SetAnim(param0->unk_04, 0);
-                ov19_021DA204(param0);
-                return 1;
+    case RELEASE_ANIM_CHECK_CAN_RELEASE:
+        if (BoxAppMan_HasCheckedCanReleaseMon(baManagers)) {
+            if (BoxAppMan_CanReleaseMon(baManagers)) {
+                Sprite_SetAnim(bcGraphics->cursorSprite, 0);
+                BoxCursorGraphics_ClearHeldMonIcons(bcGraphics);
+                return TRUE;
             } else {
-                ov19_021DA7B8(param0->unk_48, param0->unk_4C, 2);
-                param0->unk_784++;
+                MonIconHelper_SetIconAnim(bcGraphics->monIconHelper, bcGraphics->monIcon, MON_ICON_ANIM_RELEASE_REJECTED);
+                bcGraphics->animPhase++;
             }
         }
         break;
-    case 2:
-        if (ov19_021DA7E0(param0->unk_48, param0->unk_4C)) {
-            Sprite_SetAnim(param0->unk_04, 2);
-            return 1;
+    case RELEASE_ANIM_WAIT_FOR_RETURN:
+        if (MonIconHelper_IsIconAnimDone(bcGraphics->monIconHelper, bcGraphics->monIcon)) {
+            Sprite_SetAnim(bcGraphics->cursorSprite, 2);
+            return TRUE;
         }
 
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov19_021D99F4(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_RaisePriority(BoxCursorGraphics *bcGraphics)
 {
-    Sprite_SetExplicitPriority(param0->unk_04, 1);
+    Sprite_SetExplicitPriority(bcGraphics->cursorSprite, 1);
 
-    if (param0->unk_78C) {
-        Sprite_SetExplicitPriority(param0->unk_4C->unk_00, 1);
+    if (bcGraphics->hasHeldMonIcon) {
+        Sprite_SetExplicitPriority(bcGraphics->monIcon->sprite, 1);
     }
 
-    if (param0->unk_78D) {
-        ov19_021DEBDC(param0->unk_760, 1);
-    }
-}
-
-void ov19_021D9A2C(UnkStruct_ov19_021D8E00 *param0)
-{
-    Sprite_SetExplicitPriority(param0->unk_04, 2);
-
-    if (param0->unk_78C) {
-        Sprite_SetExplicitPriority(param0->unk_4C->unk_00, 2);
-    }
-
-    if (param0->unk_78D) {
-        ov19_021DEBDC(param0->unk_760, 2);
+    if (bcGraphics->isHoldingItem) {
+        BoxItemIconGraphics_SetHeldIconBgPriority(bcGraphics->itemIconGraphics, ITEM_ICON_PARTY_BG_PRIORITY);
     }
 }
 
-void ov19_021D9A64(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_RestorePriority(BoxCursorGraphics *bcGraphics)
 {
-    if (param0->unk_78C) {
-        u32 v0 = BoxApp_GetPreviewedMonMarkings(param0->unk_790);
-        ov19_021DA68C(param0->unk_48, param0->unk_4C, v0);
+    Sprite_SetExplicitPriority(bcGraphics->cursorSprite, 2);
+
+    if (bcGraphics->hasHeldMonIcon) {
+        Sprite_SetExplicitPriority(bcGraphics->monIcon->sprite, 2);
+    }
+
+    if (bcGraphics->isHoldingItem) {
+        BoxItemIconGraphics_SetHeldIconBgPriority(bcGraphics->itemIconGraphics, ITEM_ICON_BOX_BG_PRIORITY);
     }
 }
 
-void ov19_021D9A8C(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_UpdateMarkingsIcon(BoxCursorGraphics *bcGraphics)
 {
-    u32 v0 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_790);
-
-    if (param0->unk_4C->unk_00 != NULL) {
-        ov19_021DA63C(param0->unk_48, param0->unk_4C, v0);
+    if (bcGraphics->hasHeldMonIcon) {
+        u32 markings = BoxApp_GetPreviewedMonMarkings(bcGraphics->boxApp);
+        MonIconHelper_SetMarkings(bcGraphics->monIconHelper, bcGraphics->monIcon, markings);
     }
 }
 
-void ov19_021D9AB0(UnkStruct_ov19_021D8E00 *param0, u32 param1)
+void BoxCursorGraphics_UpdateHeldMonTransparency(BoxCursorGraphics *bcGraphics)
 {
-    if (param0->unk_4C->unk_00 != NULL) {
-        ov19_021DA690(param0->unk_48, param0->unk_4C, param1);
-        ov19_021DA63C(param0->unk_48, param0->unk_4C, BoxApp_GetMonSpriteTransparencyMask(param0->unk_790));
-        ov19_021DA694(param0->unk_48, param0->unk_4C, 0);
+    u32 mask = BoxApp_GetMonSpriteTransparencyMask(bcGraphics->boxApp);
+
+    if (bcGraphics->monIcon->sprite != NULL) {
+        MonIconHelper_UpdateTransparency(bcGraphics->monIconHelper, bcGraphics->monIcon, mask);
     }
 }
 
-void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_UpdateHeldItemIcon(BoxCursorGraphics *bcGraphics, u32 item)
 {
-    if (BoxApp_IsCursorFastMode(param0->unk_790)) {
-        Sprite_SetExplicitPalette(param0->unk_04, 1);
+    if (bcGraphics->monIcon->sprite != NULL) {
+        MonIconHelper_SetHeldItem(bcGraphics->monIconHelper, bcGraphics->monIcon, item);
+        MonIconHelper_UpdateTransparency(bcGraphics->monIconHelper, bcGraphics->monIcon, BoxApp_GetMonSpriteTransparencyMask(bcGraphics->boxApp));
+        MonIconHelper_UpdateIconForm(bcGraphics->monIconHelper, bcGraphics->monIcon, 0);
+    }
+}
+
+void BoxCursorGraphics_UpdateFastModePalette(BoxCursorGraphics *bcGraphics)
+{
+    if (BoxApp_IsCursorFastMode(bcGraphics->boxApp)) {
+        Sprite_SetExplicitPalette(bcGraphics->cursorSprite, 1);
     } else {
-        Sprite_SetExplicitPalette(param0->unk_04, 0);
+        Sprite_SetExplicitPalette(bcGraphics->cursorSprite, 0);
     }
 }
 
-void BoxGraphics_OpenMultiSelectCursor(UnkStruct_ov19_021D8E00 *param0)
+void BoxGraphics_OpenMultiSelectCursor(BoxCursorGraphics *bcGraphics)
 {
-    Sprite_SetAnim(param0->unk_04, 1);
+    Sprite_SetAnim(bcGraphics->cursorSprite, 1);
 }
 
-void ov19_021D9B1C(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
+void BoxCursorGraphics_GetPosition(BoxCursorGraphics *bcGraphics, VecFx32 *pos)
 {
-    *param1 = *(Sprite_GetPosition(param0->unk_04));
+    *pos = *(Sprite_GetPosition(bcGraphics->cursorSprite));
 }
 
-void ov19_021D9B34(UnkStruct_ov19_021D8E00 *param0)
-{
-    param0->unk_784 = 0;
+enum TakeItemAnimationPhase {
+    TAKE_ITEM_ANIM_START = 0,
+    TAKE_ITEM_ANIM_WAIT_FOR_ICON
+};
 
-    if (SysTask_Start(ov19_021D9B78, param0, 0)) {
-        param0->unk_78D = 1;
-        param0->unk_788 = 1;
+void BoxCursorGraphics_StartTakeItemAnimation(BoxCursorGraphics *bcGraphics)
+{
+    bcGraphics->animPhase = TAKE_ITEM_ANIM_START;
+
+    if (SysTask_Start(BoxCursorGraphics_TakeItemAnimationTask, bcGraphics, 0)) {
+        bcGraphics->isHoldingItem = 1;
+        bcGraphics->isAnimating = TRUE;
     }
 }
 
-BOOL ov19_021D9B64(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsAnimationDone3(BoxCursorGraphics *bcGraphics)
 {
-    return param0->unk_788 == 0;
+    return bcGraphics->isAnimating == FALSE;
 }
 
-static void ov19_021D9B78(SysTask *param0, void *param1)
+static void BoxCursorGraphics_TakeItemAnimationTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0 = param1;
+    BoxCursorGraphics *bcGraphics = param;
 
-    switch (v0->unk_784) {
-    case 0:
-        Sprite_SetAnim(v0->unk_04, 1);
-        ov19_021DE954(v0->unk_760);
-        v0->unk_784++;
+    switch (bcGraphics->animPhase) {
+    case TAKE_ITEM_ANIM_START:
+        Sprite_SetAnim(bcGraphics->cursorSprite, 1);
+        BoxItemIconGraphics_StartTakeItem(bcGraphics->itemIconGraphics);
+        bcGraphics->animPhase++;
         break;
-    case 1:
-        if (ov19_021DE9A8(v0->unk_760)) {
-            Sprite_SetAnim(v0->unk_04, 2);
-            v0->unk_788 = 0;
-            SysTask_Done(param0);
+    case TAKE_ITEM_ANIM_WAIT_FOR_ICON:
+        if (BoxItemIconGraphics_IsTakeItemDone(bcGraphics->itemIconGraphics)) {
+            Sprite_SetAnim(bcGraphics->cursorSprite, 2);
+            bcGraphics->isAnimating = FALSE;
+            SysTask_Done(task);
         }
     }
 }
 
-void ov19_021D9BD4(UnkStruct_ov19_021D8E00 *param0)
-{
-    param0->unk_784 = 0;
+enum GiveItemAnimationPhase {
+    GIVE_ITEM_ANIM_START = 0,
+    GIVE_ITEM_ANIM_WAIT_FOR_ICON
+};
 
-    if (SysTask_Start(ov19_021D9C18, param0, 0)) {
-        param0->unk_78D = 0;
-        param0->unk_788 = 1;
+void BoxCursorGraphics_StartGiveItemAnimation(BoxCursorGraphics *bcGraphics)
+{
+    bcGraphics->animPhase = GIVE_ITEM_ANIM_START;
+
+    if (SysTask_Start(BoxCursorGraphics_GiveItemAnimationTask, bcGraphics, 0)) {
+        bcGraphics->isHoldingItem = 0;
+        bcGraphics->isAnimating = TRUE;
     }
 }
 
-BOOL ov19_021D9C04(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsAnimationDone4(BoxCursorGraphics *bcGraphics)
 {
-    return param0->unk_788 == 0;
+    return bcGraphics->isAnimating == FALSE;
 }
 
-static void ov19_021D9C18(SysTask *param0, void *param1)
+static void BoxCursorGraphics_GiveItemAnimationTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0 = param1;
+    BoxCursorGraphics *bcGraphics = param;
 
-    switch (v0->unk_784) {
-    case 0:
-        Sprite_SetAnim(v0->unk_04, 1);
-        ov19_021DEA18(v0->unk_760);
-        v0->unk_784++;
+    switch (bcGraphics->animPhase) {
+    case GIVE_ITEM_ANIM_START:
+        Sprite_SetAnim(bcGraphics->cursorSprite, 1);
+        BoxItemIconGraphics_StartGiveItem(bcGraphics->itemIconGraphics);
+        bcGraphics->animPhase++;
         break;
-    case 1:
-        if (ov19_021DEA64(v0->unk_760)) {
-            Sprite_SetAnim(v0->unk_04, 0);
-            v0->unk_788 = 0;
-            SysTask_Done(param0);
+    case GIVE_ITEM_ANIM_WAIT_FOR_ICON:
+        if (BoxItemIconGraphics_IsTakeItemDone2(bcGraphics->itemIconGraphics)) {
+            Sprite_SetAnim(bcGraphics->cursorSprite, 0);
+            bcGraphics->isAnimating = FALSE;
+            SysTask_Done(task);
         }
     }
 }
 
-void ov19_021D9C74(UnkStruct_ov19_021D8E00 *param0)
-{
-    param0->unk_784 = 0;
+enum SwitchItemAnimationPhase {
+    SWITCH_ITEM_ANIM_START = 0,
+    SWITCH_ITEM_ANIM_WAIT_FOR_ICON
+};
 
-    if (SysTask_Start(ov19_021D9CB4, param0, 0)) {
-        param0->unk_788 = 1;
+void BoxCursorGraphics_StartSwitchItemAnimation(BoxCursorGraphics *bcGraphics)
+{
+    bcGraphics->animPhase = SWITCH_ITEM_ANIM_START;
+
+    if (SysTask_Start(BoxCursorGraphics_SwitchItemAnimationTask, bcGraphics, 0)) {
+        bcGraphics->isAnimating = TRUE;
     }
 }
 
-BOOL ov19_021D9CA0(UnkStruct_ov19_021D8E00 *param0)
+BOOL BoxCursorGraphics_IsAnimationDone5(BoxCursorGraphics *bcGraphics)
 {
-    return param0->unk_788 == 0;
+    return bcGraphics->isAnimating == FALSE;
 }
 
-static void ov19_021D9CB4(SysTask *param0, void *param1)
+static void BoxCursorGraphics_SwitchItemAnimationTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8E00 *v0 = param1;
+    BoxCursorGraphics *bcGraphics = param;
 
-    switch (v0->unk_784) {
-    case 0:
-        Sprite_SetAnim(v0->unk_04, 1);
-        ov19_021DEA74(v0->unk_760);
-        v0->unk_784++;
+    switch (bcGraphics->animPhase) {
+    case SWITCH_ITEM_ANIM_START:
+        Sprite_SetAnim(bcGraphics->cursorSprite, 1);
+        BoxItemIconGraphics_StartSwapItems(bcGraphics->itemIconGraphics);
+        bcGraphics->animPhase++;
         break;
-    case 1:
-        if (ov19_021DEB08(v0->unk_760)) {
-            Sprite_SetAnim(v0->unk_04, 2);
-            v0->unk_788 = 0;
-            SysTask_Done(param0);
+    case SWITCH_ITEM_ANIM_WAIT_FOR_ICON:
+        if (BoxItemIconGraphics_IsTakeItemDone3(bcGraphics->itemIconGraphics)) {
+            Sprite_SetAnim(bcGraphics->cursorSprite, 2);
+            bcGraphics->isAnimating = FALSE;
+            SysTask_Done(task);
         }
     }
 }
 
-void ov19_021D9D10(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_ShowReachingPose(BoxCursorGraphics *bcGraphics)
 {
-    if (param0->unk_78D) {
-        Sprite_SetAnim(param0->unk_04, 1);
+    if (bcGraphics->isHoldingItem) {
+        Sprite_SetAnim(bcGraphics->cursorSprite, 1);
     }
 }
 
-void ov19_021D9D28(UnkStruct_ov19_021D8E00 *param0)
+void BoxCursorGraphics_ClearHeldItem(BoxCursorGraphics *bcGraphics)
 {
-    if (param0->unk_78D) {
-        Sprite_SetAnim(param0->unk_04, 0);
-        param0->unk_78D = 0;
+    if (bcGraphics->isHoldingItem) {
+        Sprite_SetAnim(bcGraphics->cursorSprite, 0);
+        bcGraphics->isHoldingItem = 0;
     }
 }
 
-static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *cursorLocation, UnkStruct_ov19_021D8E00 *param3)
+static void BoxCursorGraphics_GetTargetPosition(s32 *targetX, s32 *targetY, u8 *cursorLocation, BoxCursorGraphics *bcGraphics)
 {
-    const BoxApplication *v0 = param3->unk_790;
+    const BoxApplication *boxApp = bcGraphics->boxApp;
 
-    *cursorLocation = BoxApp_GetCursorLocation(v0);
+    *cursorLocation = BoxApp_GetCursorLocation(boxApp);
 
     switch (*cursorLocation) {
     case CURSOR_IN_BOX:
-        *param0 = 112 + ov19_021D7820(param3->unk_794) + BoxApp_GetCursorBoxCol(v0) * 24 + 0;
-        *param1 = 40 + BoxApp_GetCursorBoxRow(v0) * 24 + -16;
+        *targetX = BOX_GRID_LEFT + BoxGraphics_GetCompareModeXOffset(bcGraphics->boxGraphics) + BoxApp_GetCursorBoxCol(boxApp) * BOX_GRID_CELL_SIZE + 0;
+        *targetY = BOX_GRID_TOP + BoxApp_GetCursorBoxRow(boxApp) * BOX_GRID_CELL_SIZE + -16;
         break;
     case CURSOR_IN_PARTY: {
-        u32 partyIndex = BoxApp_GetCursorPartyPosition(v0);
+        u32 partyIndex = BoxApp_GetCursorPartyPosition(boxApp);
 
-        ov19_021DCD30(ov19_021D77E8(param3->unk_794), partyIndex, param0, param1);
-        (*param0) += 0;
-        (*param1) += -16;
+        BoxPartyGraphics_GetCursorSlotPosition(BoxGraphics_GetPartyGraphics(bcGraphics->boxGraphics), partyIndex, targetX, targetY);
+        (*targetX) += 0;
+        (*targetY) += -16;
     } break;
     case CURSOR_ON_BOX_HEADER:
-        *param0 = 168 + ov19_021D7820(param3->unk_794);
-        *param1 = 8;
+        *targetX = 168 + BoxGraphics_GetCompareModeXOffset(bcGraphics->boxGraphics);
+        *targetY = 8;
         break;
     case CURSOR_ON_PARTY_BUTTON:
-        *param0 = 159 + ov19_021D7820(param3->unk_794);
-        *param1 = 160;
+        *targetX = 159 + BoxGraphics_GetCompareModeXOffset(bcGraphics->boxGraphics);
+        *targetY = 160;
         break;
     case CURSOR_ON_CLOSE_BUTTON:
-        *param0 = 235 + ov19_021D7820(param3->unk_794);
-        *param1 = 160;
+        *targetX = 235 + BoxGraphics_GetCompareModeXOffset(bcGraphics->boxGraphics);
+        *targetY = 160;
         break;
     }
 }
 
-static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
+static void BoxCursorGraphics_SetPosition(BoxCursorGraphics *bcGraphics, VecFx32 *newPos)
 {
-    Sprite_SetPosition(param0->unk_04, param1);
+    Sprite_SetPosition(bcGraphics->cursorSprite, newPos);
 
-    if (param0->unk_78C) {
-        VecFx32 v0;
-        int v1;
+    if (bcGraphics->hasHeldMonIcon) {
+        VecFx32 iconPos;
 
-        v0.z = 0;
+        iconPos.z = 0;
 
-        for (v1 = 0; v1 < param0->unk_754; v1++) {
-            v0.x = param1->x + param0->unk_664[v1].unk_00;
-            v0.y = param1->y - param0->unk_664[v1].unk_04;
-            Sprite_SetPosition(param0->unk_4C[v1].unk_00, &v0);
+        for (int i = 0; i < bcGraphics->heldIconCount; i++) {
+            iconPos.x = newPos->x + bcGraphics->heldIconOffsets[i].x;
+            iconPos.y = newPos->y - bcGraphics->heldIconOffsets[i].y;
+            Sprite_SetPosition(bcGraphics->monIcon[i].sprite, &iconPos);
         }
     }
 
-    if (param0->unk_78D) {
-        ov19_021DEB9C(param0->unk_760, param1);
+    if (bcGraphics->isHoldingItem) {
+        BoxItemIconGraphics_SetHeldIconPosition(bcGraphics->itemIconGraphics, newPos);
     }
 
-    if (param0->unk_78E) {
-        VecFx32 v2 = *param1;
+    if (bcGraphics->shadowFollowsCursor) {
+        VecFx32 offsetPos = *newPos;
 
-        v2.y += (24 << FX32_SHIFT);
-        Sprite_SetPosition(param0->unk_08, &v2);
+        offsetPos.y += CURSOR_SHADOW_OFFSET_Y << FX32_SHIFT;
+        Sprite_SetPosition(bcGraphics->shadowSprite, &offsetPos);
     }
 }
 
-static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
+static void BoxCursorGraphics_LoadHeldMonIcons(BoxCursorGraphics *bcGraphics)
 {
-    if (BoxApp_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
-        if (BoxApp_IsMultiSelectSingleSelect(param0->unk_790)) {
-            u32 posInBox = BoxApp_GetCursorBoxPosition(param0->unk_790);
-            ov19_021D8408(param0->unk_758, posInBox, 1240, param0->unk_4C);
-            param0->unk_754 = 1;
-            param0->unk_664[0].unk_00 = (0 * FX32_ONE);
-            param0->unk_664[0].unk_04 = (-4 * FX32_ONE);
+    if (BoxApp_GetCursorLocation(bcGraphics->boxApp) == CURSOR_IN_BOX) {
+        if (BoxApp_IsMultiSelectSingleSelect(bcGraphics->boxApp)) {
+            u32 posInBox = BoxApp_GetCursorBoxPosition(bcGraphics->boxApp);
+            BoxView_PickUpIcon(bcGraphics->box, posInBox, CURSOR_ICON_TILE_BASE, bcGraphics->monIcon);
+            bcGraphics->heldIconCount = 1;
+            bcGraphics->heldIconOffsets[0].x = CURSOR_HELD_ICON_OFFSET_X * FX32_ONE;
+            bcGraphics->heldIconOffsets[0].y = CURSOR_HELD_ICON_OFFSET_Y * FX32_ONE;
         } else {
-            u32 v1, v2, v3, v4, v5, v6, v7, col, row;
+            u32 iconCount, selCol, selRow, leftCol, rightCol, topRow, bottomRow, col, row;
 
-            BoxApp_GetMultiSelectBoundingBox(param0->unk_790, &v4, &v5, &v6, &v7);
+            BoxApp_GetMultiSelectBoundingBox(bcGraphics->boxApp, &leftCol, &rightCol, &topRow, &bottomRow);
 
-            col = BoxApp_GetCursorBoxCol(param0->unk_790);
-            row = BoxApp_GetCursorBoxRow(param0->unk_790);
-            v1 = 0;
+            col = BoxApp_GetCursorBoxCol(bcGraphics->boxApp);
+            row = BoxApp_GetCursorBoxRow(bcGraphics->boxApp);
+            iconCount = 0;
 
-            for (v3 = v6; v3 <= v7; v3++) {
-                for (v2 = v4; v2 <= v5; v2++) {
-                    ov19_021D8408(param0->unk_758, v3 * 6 + v2, 1520 + v1 * 16, &param0->unk_4C[v1]);
+            for (selRow = topRow; selRow <= bottomRow; selRow++) {
+                for (selCol = leftCol; selCol <= rightCol; selCol++) {
+                    BoxView_PickUpIcon(bcGraphics->box, selRow * MAX_PC_COLS + selCol, CURSOR_MULTI_ICON_TILE_BASE + iconCount * MON_ICON_TILE_COUNT, &bcGraphics->monIcon[iconCount]);
 
-                    if (param0->unk_4C[v1].unk_00 != NULL) {
-                        param0->unk_664[v1].unk_00 = (0 + (v2 - col) * 24) * FX32_ONE;
-                        param0->unk_664[v1].unk_04 = (-4 - (v3 - row) * 24) * FX32_ONE;
-                        v1++;
+                    if (bcGraphics->monIcon[iconCount].sprite != NULL) {
+                        bcGraphics->heldIconOffsets[iconCount].x = (CURSOR_HELD_ICON_OFFSET_X + (selCol - col) * BOX_GRID_CELL_SIZE) * FX32_ONE;
+                        bcGraphics->heldIconOffsets[iconCount].y = (CURSOR_HELD_ICON_OFFSET_Y - (selRow - row) * BOX_GRID_CELL_SIZE) * FX32_ONE;
+                        iconCount++;
                     }
                 }
             }
 
-            param0->unk_754 = v1;
+            bcGraphics->heldIconCount = iconCount;
         }
     } else {
-        u32 partyIndex = BoxApp_GetCursorPartyPosition(param0->unk_790);
+        u32 partyIndex = BoxApp_GetCursorPartyPosition(bcGraphics->boxApp);
 
-        ov19_021DCC44(param0->unk_75C, partyIndex, 1240, param0->unk_4C);
+        BoxPartyGraphics_PickUpIcon(bcGraphics->party, partyIndex, CURSOR_ICON_TILE_BASE, bcGraphics->monIcon);
 
-        param0->unk_754 = 1;
-        param0->unk_664[0].unk_00 = (0 * FX32_ONE);
-        param0->unk_664[0].unk_04 = (-4 * FX32_ONE);
+        bcGraphics->heldIconCount = 1;
+        bcGraphics->heldIconOffsets[0].x = CURSOR_HELD_ICON_OFFSET_X * FX32_ONE;
+        bcGraphics->heldIconOffsets[0].y = CURSOR_HELD_ICON_OFFSET_Y * FX32_ONE;
     }
 }
 
-static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0)
+static void BoxCursorGraphics_FinishPickUpMonIcons(BoxCursorGraphics *bcGraphics)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_754; v0++) {
-        BoxGraphics_SetSpritePriority(param0->unk_4C[v0].unk_00, 2);
+    for (int i = 0; i < bcGraphics->heldIconCount; i++) {
+        BoxGraphics_SetSpritePriority(bcGraphics->monIcon[i].sprite, 2);
     }
 
-    param0->unk_78C = 1;
+    bcGraphics->hasHeldMonIcon = TRUE;
 }
 
-static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0)
+static void BoxCursorGraphics_RestorePlacedMonIcons(BoxCursorGraphics *bcGraphics)
 {
-    if (BoxApp_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
-        if (BoxApp_IsMultiSelectSingleSelect(param0->unk_790)) {
-            u32 posInBox = BoxApp_GetCursorBoxPosition(param0->unk_790);
-            ov19_021D845C(param0->unk_758, posInBox, param0->unk_4C);
+    if (BoxApp_GetCursorLocation(bcGraphics->boxApp) == CURSOR_IN_BOX) {
+        if (BoxApp_IsMultiSelectSingleSelect(bcGraphics->boxApp)) {
+            u32 posInBox = BoxApp_GetCursorBoxPosition(bcGraphics->boxApp);
+            BoxView_PlaceDownIcon(bcGraphics->box, posInBox, bcGraphics->monIcon);
         } else {
-            int v1, v2, v3;
+            int i, topLeftPos, destPos;
 
-            v2 = BoxApp_GetMultiSelectTopLeftPos(param0->unk_790);
+            topLeftPos = BoxApp_GetMultiSelectTopLeftPos(bcGraphics->boxApp);
 
-            for (v1 = 0; v1 < param0->unk_754; v1++) {
-                v3 = v2 + BoxApp_GetRelativeMonPosInMultiSelection(param0->unk_790, v1);
-                ov19_021D845C(param0->unk_758, v3, &param0->unk_4C[v1]);
+            for (i = 0; i < bcGraphics->heldIconCount; i++) {
+                destPos = topLeftPos + BoxApp_GetRelativeMonPosInMultiSelection(bcGraphics->boxApp, i);
+                BoxView_PlaceDownIcon(bcGraphics->box, destPos, &bcGraphics->monIcon[i]);
             }
         }
     } else {
-        u32 partyIndex = BoxApp_GetCursorPartyPosition(param0->unk_790);
-        ov19_021DCC80(param0->unk_75C, partyIndex, param0->unk_4C);
+        u32 partyIndex = BoxApp_GetCursorPartyPosition(bcGraphics->boxApp);
+        BoxPartyGraphics_PlaceDownIcon(bcGraphics->party, partyIndex, bcGraphics->monIcon);
     }
 }
 
-static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0)
+static void BoxCursorGraphics_FinishShiftMonIcons(BoxCursorGraphics *bcGraphics)
 {
-    if (BoxApp_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
-        u32 posInBox = BoxApp_GetCursorBoxPosition(param0->unk_790);
+    if (BoxApp_GetCursorLocation(bcGraphics->boxApp) == CURSOR_IN_BOX) {
+        u32 posInBox = BoxApp_GetCursorBoxPosition(bcGraphics->boxApp);
+        MonIcon *slotIcon = BoxView_GetIcon(bcGraphics->box, posInBox);
 
-        {
-            UnkStruct_ov19_021DCD18 *v1 = ov19_021D84C8(param0->unk_758, posInBox);
+        MonIconHelper_MoveIconTiles(bcGraphics->monIconHelper, bcGraphics->monIcon, CURSOR_MULTI_ICON_TILE_BASE);
+        MonIconHelper_MoveIconTiles(bcGraphics->monIconHelper, slotIcon, CURSOR_MULTI_ICON_TILE_BASE + MON_ICON_TILE_COUNT);
 
-            ov19_021DA754(param0->unk_48, param0->unk_4C, 1520);
-            ov19_021DA754(param0->unk_48, v1, 1520 + 16);
+        OS_WaitVBlankIntr();
 
-            OS_WaitVBlankIntr();
-        }
-
-        ov19_021D8408(param0->unk_758, posInBox, 1240, &param0->unk_4C[1]);
-        ov19_021D845C(param0->unk_758, posInBox, param0->unk_4C);
-        ov19_021DA418(&(param0->unk_4C[1]), &(param0->unk_4C[0]), 1);
+        BoxView_PickUpIcon(bcGraphics->box, posInBox, CURSOR_ICON_TILE_BASE, &bcGraphics->monIcon[1]);
+        BoxView_PlaceDownIcon(bcGraphics->box, posInBox, bcGraphics->monIcon);
+        MonIcon_Copy(&(bcGraphics->monIcon[1]), &(bcGraphics->monIcon[0]), 1);
     } else {
-        u32 v2 = BoxApp_GetCursorPartyPosition(param0->unk_790);
+        u32 partyPosition = BoxApp_GetCursorPartyPosition(bcGraphics->boxApp);
+        MonIcon *slotIcon = BoxPartyGraphics_GetIcon(bcGraphics->party, partyPosition);
 
-        {
-            UnkStruct_ov19_021DCD18 *v3 = ov19_021DCD18(param0->unk_75C, v2);
+        MonIconHelper_MoveIconTiles(bcGraphics->monIconHelper, bcGraphics->monIcon, CURSOR_MULTI_ICON_TILE_BASE);
+        MonIconHelper_MoveIconTiles(bcGraphics->monIconHelper, slotIcon, CURSOR_MULTI_ICON_TILE_BASE + MON_ICON_TILE_COUNT);
 
-            ov19_021DA754(param0->unk_48, param0->unk_4C, 1520);
-            ov19_021DA754(param0->unk_48, v3, 1520 + 16);
+        OS_WaitVBlankIntr();
 
-            OS_WaitVBlankIntr();
-        }
-
-        ov19_021DCC44(param0->unk_75C, v2, 1240, &param0->unk_4C[1]);
-        ov19_021DCCD4(param0->unk_75C, v2, param0->unk_4C);
-        ov19_021DA418(&(param0->unk_4C[1]), &(param0->unk_4C[0]), 1);
+        BoxPartyGraphics_PickUpIcon(bcGraphics->party, partyPosition, CURSOR_ICON_TILE_BASE, &bcGraphics->monIcon[1]);
+        BoxPartyGraphics_PlaceDownIconAtSlot(bcGraphics->party, partyPosition, bcGraphics->monIcon);
+        MonIcon_Copy(&(bcGraphics->monIcon[1]), &(bcGraphics->monIcon[0]), 1);
     }
 }
 
-static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 *param0)
+static void BoxCursorGraphics_ClearHeldMonIconFlag(BoxCursorGraphics *bcGraphics)
 {
-    param0->unk_78C = 0;
+    bcGraphics->hasHeldMonIcon = FALSE;
 }
 
-static void ov19_021DA204(UnkStruct_ov19_021D8E00 *param0)
+static void BoxCursorGraphics_ClearHeldMonIcons(BoxCursorGraphics *bcGraphics)
 {
-    ov19_021DA3F0(param0->unk_48, param0->unk_4C, 1);
-    param0->unk_78C = 0;
-    param0->unk_754 = 0;
+    MonIconHelper_DeleteIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, 1);
+    bcGraphics->hasHeldMonIcon = FALSE;
+    bcGraphics->heldIconCount = 0;
 }
 
-static Sprite *ov19_021DA224(UnkStruct_ov19_021D8E00 *param0)
+static Sprite *BoxCursorGraphics_GetSpriteUnderCursor(BoxCursorGraphics *bcGraphics)
 {
-    UnkStruct_ov19_021DCD18 *v0;
+    MonIcon *monIcon;
     u32 cursorPosition;
 
-    if (BoxApp_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
-        cursorPosition = BoxApp_GetCursorBoxPosition(param0->unk_790);
-        v0 = ov19_021D84C8(param0->unk_758, cursorPosition);
-        return v0->unk_00;
+    if (BoxApp_GetCursorLocation(bcGraphics->boxApp) == CURSOR_IN_BOX) {
+        cursorPosition = BoxApp_GetCursorBoxPosition(bcGraphics->boxApp);
+        monIcon = BoxView_GetIcon(bcGraphics->box, cursorPosition);
+        return monIcon->sprite;
     } else {
-        cursorPosition = BoxApp_GetCursorPartyPosition(param0->unk_790);
-        v0 = ov19_021DCD18(param0->unk_75C, cursorPosition);
-        return v0->unk_00;
+        cursorPosition = BoxApp_GetCursorPartyPosition(bcGraphics->boxApp);
+        monIcon = BoxPartyGraphics_GetIcon(bcGraphics->party, cursorPosition);
+        return monIcon->sprite;
     }
 }

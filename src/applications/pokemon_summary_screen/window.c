@@ -827,15 +827,15 @@ void PokemonSummaryScreen_PrintNicknameAndGender(PokemonSummaryScreen *summarySc
     Window *window = &summaryScreen->staticWindows[SUMMARY_WINDOW_MON_NICKNAME_GENDER];
 
     Window_FillTilemap(window, 0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->monData.nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_WHITE, NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->monData.nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 
     if (summaryScreen->monData.hideGender == FALSE) {
         if (summaryScreen->monData.gender == GENDER_MALE) {
             MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_MaleSymbol, summaryScreen->string);
-            PrintStringToWindow(summaryScreen, window, SUMMARY_TEXT_BLUE, ALIGN_RIGHT);
+            PrintStringToWindow(summaryScreen, window, TEXT_COLOR_BLUE, ALIGN_RIGHT);
         } else if (summaryScreen->monData.gender == GENDER_FEMALE) {
             MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_FemaleSymbol, summaryScreen->string);
-            PrintStringToWindow(summaryScreen, window, SUMMARY_TEXT_RED, ALIGN_RIGHT);
+            PrintStringToWindow(summaryScreen, window, TEXT_COLOR_RED, ALIGN_RIGHT);
         }
     }
 
@@ -856,7 +856,7 @@ void PokemonSummaryScreen_PrintLevel(PokemonSummaryScreen *summaryScreen)
         StringTemplate_SetNumber(summaryScreen->strFormatter, 0, summaryScreen->monData.level, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->string, buf);
         String_Free(buf);
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, 16, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, 16, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     Window_ScheduleCopyToVRAM(window);
@@ -877,7 +877,7 @@ void PokemonSummaryScreen_PrintItemName(PokemonSummaryScreen *summaryScreen)
         MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_None, summaryScreen->string);
     }
 
-    PrintStringToWindow(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_ITEM_NAME], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_ITEM_NAME], TEXT_COLOR_BLACK, ALIGN_LEFT);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_ITEM]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_ITEM_NAME]);
 }
@@ -885,7 +885,7 @@ void PokemonSummaryScreen_PrintItemName(PokemonSummaryScreen *summaryScreen)
 void PokemonSummaryScreen_ClearAndPrintButtonPrompt(PokemonSummaryScreen *summaryScreen, u32 entryID)
 {
     Window_FillTilemap(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT], 0);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_BUTTON_PROMPT, entryID, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_BUTTON_PROMPT, entryID, TEXT_COLOR_WHITE, ALIGN_LEFT);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
 }
 
@@ -946,51 +946,51 @@ static void PrintCurrentAndMaxInfo(PokemonSummaryScreen *summaryScreen, u32 move
     u16 curXOffset = xOffset - strWidth / 2;
     u16 maxXOffset = curXOffset + strWidth;
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, curXOffset, yOffset, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, curXOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     SetAndFormatNumberBuf(summaryScreen, curEntryID, curValue, digits, PADDING_MODE_NONE);
 
     strWidth = Font_CalcStringWidth(FONT_SYSTEM, summaryScreen->string, 0);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, curXOffset - strWidth, yOffset, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, curXOffset - strWidth, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     SetAndFormatNumberBuf(summaryScreen, maxEntryID, maxValue, digits, PADDING_MODE_NONE);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, maxXOffset, yOffset, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, maxXOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 }
 
 static void PrintStaticWindows(PokemonSummaryScreen *summaryScreen)
 {
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_INFO, PokemonSummary_Text_PageTitleInfo, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MEMO, PokemonSummary_Text_PageTitleMemo, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SKILLS, PokemonSummary_Text_PageTitleSkills, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_CONDITION, PokemonSummary_Text_PageTitleCondition, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_BATTLE_MOVES, PokemonSummary_Text_PageTitleBattleMoves, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_CONTEST_MOVES, PokemonSummary_Text_PageTitleContestMoves, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_ITEM, PokemonSummary_Text_LabelItem, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_DEX_NUM, PokemonSummary_Text_LabelDexNum, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SPECIES_NAME, PokemonSummary_Text_LabelSpeciesName, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_TYPE, PokemonSummary_Text_LabelType, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_OT_NAME, PokemonSummary_Text_LabelOTName, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_OT_ID, PokemonSummary_Text_LabelOtId, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_EXP, PokemonSummary_Text_LabelExp, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_EXP_NEXT_LV, PokemonSummary_Text_LabelExpNextLv, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_HP, PokemonSummary_Text_LabelHp, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_ATTACK, PokemonSummary_Text_LabelAttack, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_DEFENSE, PokemonSummary_Text_LabelDefense, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SP_ATTACK, PokemonSummary_Text_LabelSpAttack, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SP_DEFENSE, PokemonSummary_Text_LabelSpDefense, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SPEED, PokemonSummary_Text_LabelSpeed, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_ABILITY, PokemonSummary_Text_LabelAbility, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SHEEN, PokemonSummary_Text_LabelSheen, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_INFO, PokemonSummary_Text_PageTitleInfo, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MEMO, PokemonSummary_Text_PageTitleMemo, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SKILLS, PokemonSummary_Text_PageTitleSkills, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_CONDITION, PokemonSummary_Text_PageTitleCondition, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_BATTLE_MOVES, PokemonSummary_Text_PageTitleBattleMoves, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_CONTEST_MOVES, PokemonSummary_Text_PageTitleContestMoves, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_ITEM, PokemonSummary_Text_LabelItem, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_DEX_NUM, PokemonSummary_Text_LabelDexNum, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SPECIES_NAME, PokemonSummary_Text_LabelSpeciesName, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_TYPE, PokemonSummary_Text_LabelType, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_OT_NAME, PokemonSummary_Text_LabelOTName, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_OT_ID, PokemonSummary_Text_LabelOtId, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_EXP, PokemonSummary_Text_LabelExp, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_EXP_NEXT_LV, PokemonSummary_Text_LabelExpNextLv, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_HP, PokemonSummary_Text_LabelHp, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_ATTACK, PokemonSummary_Text_LabelAttack, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_DEFENSE, PokemonSummary_Text_LabelDefense, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SP_ATTACK, PokemonSummary_Text_LabelSpAttack, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SP_DEFENSE, PokemonSummary_Text_LabelSpDefense, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SPEED, PokemonSummary_Text_LabelSpeed, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_ABILITY, PokemonSummary_Text_LabelAbility, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SHEEN, PokemonSummary_Text_LabelSheen, TEXT_COLOR_WHITE, ALIGN_LEFT);
 
     MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_MoveCancel, summaryScreen->string);
-    Text_AddPrinterWithParamsAndColor(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_CANCEL], FONT_SYSTEM, summaryScreen->string, 0, 2, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_WHITE, NULL);
+    Text_AddPrinterWithParamsAndColor(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_CANCEL], FONT_SYSTEM, summaryScreen->string, 0, 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MOVE_CATEGORY, PokemonSummary_Text_LabelMoveCategory, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MOVE_POWER, PokemonSummary_Text_LabelMovePower, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MOVE_ACCURACY, PokemonSummary_Text_LabelMoveAccuracy, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_CLOSE_WINDOW, PokemonSummary_Text_CloseWindow, SUMMARY_TEXT_WHITE, ALIGN_CENTER);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_APPEAL_POINTS, PokemonSummary_Text_LabelAppealPoints, SUMMARY_TEXT_BLACK, ALIGN_CENTER);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_RIBBON_COUNT, PokemonSummary_Text_LabelRibbonCount, SUMMARY_TEXT_BLACK, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_RIBBONS, PokemonSummary_Text_PageTitleRibbons, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MOVE_CATEGORY, PokemonSummary_Text_LabelMoveCategory, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MOVE_POWER, PokemonSummary_Text_LabelMovePower, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MOVE_ACCURACY, PokemonSummary_Text_LabelMoveAccuracy, TEXT_COLOR_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_CLOSE_WINDOW, PokemonSummary_Text_CloseWindow, TEXT_COLOR_WHITE, ALIGN_CENTER);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_APPEAL_POINTS, PokemonSummary_Text_LabelAppealPoints, TEXT_COLOR_BLACK, ALIGN_CENTER);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_RIBBON_COUNT, PokemonSummary_Text_LabelRibbonCount, TEXT_COLOR_BLACK, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_RIBBONS, PokemonSummary_Text_PageTitleRibbons, TEXT_COLOR_WHITE, ALIGN_LEFT);
 }
 
 void PokemonSummaryScreen_DrawExtraWindows(PokemonSummaryScreen *summaryScreen)
@@ -1054,30 +1054,30 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
     }
 
     if (summaryScreen->monData.isShiny == FALSE) {
-        PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_DEX_NUM], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
+        PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_DEX_NUM], TEXT_COLOR_BLACK, ALIGN_CENTER);
     } else {
-        PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_DEX_NUM], SUMMARY_TEXT_RED, ALIGN_CENTER);
+        PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_DEX_NUM], TEXT_COLOR_RED, ALIGN_CENTER);
     }
 
     u32 speciesWidth = Font_CalcStringWidth(FONT_SYSTEM, summaryScreen->monData.speciesName, 0);
     u32 speciesX = (summaryScreen->extraWindows[SUMMARY_WINDOW_SPECIES_NAME].width * 8 - speciesWidth) / 2;
 
-    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_SPECIES_NAME], FONT_SYSTEM, summaryScreen->monData.speciesName, speciesX, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_SPECIES_NAME], FONT_SYSTEM, summaryScreen->monData.speciesName, speciesX, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     u32 OTNameWidth = Font_CalcStringWidth(FONT_SYSTEM, summaryScreen->monData.OTName, 0);
     u32 OTNameX = (summaryScreen->extraWindows[SUMMARY_WINDOW_OT_NAME].width * 8 - OTNameWidth) / 2;
 
     if (summaryScreen->monData.OTGender == GENDER_MALE) {
-        Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_OT_NAME], FONT_SYSTEM, summaryScreen->monData.OTName, OTNameX, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLUE, NULL);
+        Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_OT_NAME], FONT_SYSTEM, summaryScreen->monData.OTName, OTNameX, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLUE, NULL);
     } else {
-        Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_OT_NAME], FONT_SYSTEM, summaryScreen->monData.OTName, OTNameX, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_RED, NULL);
+        Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_OT_NAME], FONT_SYSTEM, summaryScreen->monData.OTName, OTNameX, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_RED, NULL);
     }
 
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateOtId, summaryScreen->monData.OTID & 0xFFFF, 5, PADDING_MODE_ZEROES);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_OT_ID], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_OT_ID], TEXT_COLOR_BLACK, ALIGN_CENTER);
 
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExp, summaryScreen->monData.curExp, 7, PADDING_MODE_SPACES);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_EXP], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_EXP], TEXT_COLOR_BLACK, ALIGN_CENTER);
 
     if (summaryScreen->monData.level < MAX_POKEMON_LEVEL) {
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExpNextLv, summaryScreen->monData.nextLevelExp - summaryScreen->monData.curExp, 7, PADDING_MODE_SPACES);
@@ -1085,7 +1085,7 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExpNextLv, 0, 7, PADDING_MODE_SPACES);
     }
 
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_EXP_NEXT_LV], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_EXP_NEXT_LV], TEXT_COLOR_BLACK, ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_DEX_NUM]);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_SPECIES_NAME]);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_OT_NAME]);
@@ -1099,23 +1099,23 @@ static void PrintTrainerMemo(Window *window, Pokemon *mon, BOOL monOTMatches)
     PokemonInfoDisplayStruct *infoDisplay = sub_02092494(mon, monOTMatches, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     if (infoDisplay->unk_14.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_14.unk_04, 0, (infoDisplay->unk_14.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_14.unk_04, 0, (infoDisplay->unk_14.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     if (infoDisplay->unk_1C.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_1C.unk_04, 0, (infoDisplay->unk_1C.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_1C.unk_04, 0, (infoDisplay->unk_1C.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     if (infoDisplay->unk_24.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_24.unk_04, 0, (infoDisplay->unk_24.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_24.unk_04, 0, (infoDisplay->unk_24.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     if (infoDisplay->unk_2C.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_2C.unk_04, 0, (infoDisplay->unk_2C.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_2C.unk_04, 0, (infoDisplay->unk_2C.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     if (infoDisplay->unk_34.unk_04 != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_34.unk_04, 0, (infoDisplay->unk_34.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_34.unk_04, 0, (infoDisplay->unk_34.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     sub_0209282C(infoDisplay);
@@ -1166,26 +1166,26 @@ static void DrawSkillsPageWindows(PokemonSummaryScreen *summaryScreen)
 
     PrintCurrentAndMaxInfo(summaryScreen, 0, PokemonSummary_Text_Slash, PokemonSummary_Text_TemplateCurrentHp, PokemonSummary_Text_TemplateMaxHp, summaryScreen->monData.curHP, summaryScreen->monData.maxHP, 3, hpWindowWidth / 2, 0);
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateAttack, summaryScreen->monData.attack, 3, PADDING_MODE_NONE);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ATTACK], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ATTACK], TEXT_COLOR_BLACK, ALIGN_RIGHT);
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateDefense, summaryScreen->monData.defense, 3, PADDING_MODE_NONE);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_DEFENSE], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_DEFENSE], TEXT_COLOR_BLACK, ALIGN_RIGHT);
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpAttack, summaryScreen->monData.spAttack, 3, PADDING_MODE_NONE);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SP_ATTACK], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SP_ATTACK], TEXT_COLOR_BLACK, ALIGN_RIGHT);
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpDefense, summaryScreen->monData.spDefense, 3, PADDING_MODE_NONE);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SP_DEFENSE], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SP_DEFENSE], TEXT_COLOR_BLACK, ALIGN_RIGHT);
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpeed, summaryScreen->monData.speed, 3, PADDING_MODE_NONE);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SPEED], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SPEED], TEXT_COLOR_BLACK, ALIGN_RIGHT);
 
     StringTemplate_SetAbilityName(summaryScreen->strFormatter, 0, summaryScreen->monData.ability);
     String *buf = MessageLoader_GetNewString(summaryScreen->msgLoader, PokemonSummary_Text_TemplateAbility);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->string, buf);
     String_Free(buf);
 
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ABILITY], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ABILITY], TEXT_COLOR_BLACK, ALIGN_LEFT);
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_DESCRIPTIONS, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     MessageLoader_GetString(msgLoader, summaryScreen->monData.ability, summaryScreen->string);
     MessageLoader_Free(msgLoader);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ABILITY_DESCRIPTION], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ABILITY_DESCRIPTION], TEXT_COLOR_BLACK, ALIGN_LEFT);
 
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_HP]);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_ATTACK]);
@@ -1208,15 +1208,15 @@ static void DrawConditionPageWindows(PokemonSummaryScreen *summaryScreen)
 
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], 0);
     MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_FavoriteFood, summaryScreen->string);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], TEXT_COLOR_WHITE, ALIGN_LEFT);
     MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_LikesItSpicy + summaryScreen->monData.preferredFlavor, summaryScreen->string);
-    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->string, 0, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->string, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD]);
 
     if (summaryScreen->data->mode == SUMMARY_MODE_FEED_POFFIN) {
         Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT], 0);
         MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_PoffinFeedOk, summaryScreen->string);
-        PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
+        PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT], TEXT_COLOR_WHITE, ALIGN_LEFT);
         Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT]);
     }
@@ -1285,7 +1285,7 @@ static void DrawRibbonsPageWindows(PokemonSummaryScreen *summaryScreen)
 
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_COUNT], 0);
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateRibbonCount, summaryScreen->ribbonMax, 3, PADDING_MODE_NONE);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_COUNT], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_COUNT], TEXT_COLOR_BLACK, ALIGN_LEFT);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_COUNT]);
 
     if (summaryScreen->ribbonMax != 0) {
@@ -1308,10 +1308,10 @@ static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], 0);
 
     MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_FavoriteFood, summaryScreen->string);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], TEXT_COLOR_WHITE, ALIGN_LEFT);
 
     MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_LikesItSpicy + summaryScreen->monData.preferredFlavor, summaryScreen->string);
-    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->string, 0, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->string, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD]);
 }
@@ -1329,13 +1329,13 @@ void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summarySc
     u8 strWidth = Font_CalcStringWidth(FONT_SYSTEM, summaryScreen->string, 0);
     u8 xOffset = RIBBON_INDEX_TEXT_X - strWidth;
 
-    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX], FONT_SYSTEM, summaryScreen->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX], FONT_SYSTEM, summaryScreen->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     buf = MessageLoader_GetNewString(summaryScreen->msgLoader, PokemonSummary_Text_RibbonNumberSlash);
     strWidth = Font_CalcStringWidth(FONT_SYSTEM, buf, 0);
     xOffset -= strWidth;
 
-    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX], FONT_SYSTEM, buf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX], FONT_SYSTEM, buf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(buf);
 
     buf = MessageLoader_GetNewString(summaryScreen->msgLoader, PokemonSummary_Text_RibbonIndexNumber);
@@ -1347,7 +1347,7 @@ void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summarySc
     strWidth = Font_CalcStringWidth(FONT_SYSTEM, summaryScreen->string, 0);
     xOffset -= strWidth;
 
-    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX], FONT_SYSTEM, summaryScreen->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX], FONT_SYSTEM, summaryScreen->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX]);
 }
 
@@ -1357,10 +1357,10 @@ void PokemonSummaryScreen_PrintRibbonNameAndDesc(PokemonSummaryScreen *summarySc
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_DESCRIPTION], 0);
 
     MessageLoader_GetString(summaryScreen->ribbonLoader, Ribbon_GetData(summaryScreen->ribbonID, RIBBON_DATA_NAME_ID), summaryScreen->string);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_NAME], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_NAME], TEXT_COLOR_WHITE, ALIGN_LEFT);
 
     MessageLoader_GetString(summaryScreen->ribbonLoader, PokemonSummaryScreen_GetRibbonDescriptionID(summaryScreen->data->specialRibbons, summaryScreen->ribbonID), summaryScreen->string);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_DESCRIPTION], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_DESCRIPTION], TEXT_COLOR_BLACK, ALIGN_LEFT);
 
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_NAME]);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_DESCRIPTION]);
@@ -1384,16 +1384,16 @@ static void PrintMoveNameAndPP(PokemonSummaryScreen *summaryScreen, u32 moveInde
     }
 
     MessageLoader_GetString(summaryScreen->moveNameLoader, moveName, summaryScreen->string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, 1, 2, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_WHITE, NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, 1, 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 
     if (moveName != MOVE_NONE) {
         MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_LabelPp, summaryScreen->string);
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, 16, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, 16, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         PrintCurrentAndMaxInfo(summaryScreen, moveIndex, PokemonSummary_Text_Slash, PokemonSummary_Text_TemplateCurrentPp_0 + moveIndex, PokemonSummary_Text_TemplateMaxPp_0 + moveIndex, curPP, maxPP, 2, PP_TEXT_X, PP_TEXT_Y);
     } else {
         MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_TwoDashes, summaryScreen->string);
         u32 strWidth = Font_CalcStringWidth(FONT_SYSTEM, summaryScreen->string, 0);
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, PP_TEXT_X - strWidth / 2, PP_TEXT_Y, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->string, PP_TEXT_X - strWidth / 2, PP_TEXT_Y, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 }
 
@@ -1415,7 +1415,7 @@ void PokemonSummaryScreen_PrintBattleMoveAttributes(PokemonSummaryScreen *summar
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_MovePowerTemplate, moveAttribute, 3, PADDING_MODE_SPACES);
     }
 
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_POWER], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_POWER], TEXT_COLOR_BLACK, ALIGN_CENTER);
 
     moveAttribute = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
 
@@ -1425,12 +1425,12 @@ void PokemonSummaryScreen_PrintBattleMoveAttributes(PokemonSummaryScreen *summar
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_MoveAccuracyTemplate, moveAttribute, 3, PADDING_MODE_SPACES);
     }
 
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_ACCURACY], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_ACCURACY], TEXT_COLOR_BLACK, ALIGN_CENTER);
 
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     MessageLoader_GetString(msgLoader, move, summaryScreen->string);
-    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_DESCRIPTION], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_DESCRIPTION], TEXT_COLOR_BLACK, ALIGN_LEFT);
     MessageLoader_Free(msgLoader);
 
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_POWER]);
@@ -1492,7 +1492,7 @@ void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summ
 
     Window_FillTilemap(window, 0);
     MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_HmMovesCantBeForgotten, summaryScreen->string);
-    PrintStringToWindow(summaryScreen, window, SUMMARY_TEXT_BLACK, ALIGN_LEFT);
+    PrintStringToWindow(summaryScreen, window, TEXT_COLOR_BLACK, ALIGN_LEFT);
     Window_ScheduleCopyToVRAM(window);
 }
 
@@ -1505,7 +1505,7 @@ void PokemonSummaryScreen_PrintContestMoveAttributes(PokemonSummaryScreen *summa
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     MessageLoader_GetString(msgLoader, descEntryID, summaryScreen->string);
-    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_CONTEST_MOVE_DESCRIPTION], FONT_SYSTEM, summaryScreen->string, 0, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_CONTEST_MOVE_DESCRIPTION], FONT_SYSTEM, summaryScreen->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     MessageLoader_Free(msgLoader);
 
@@ -1551,6 +1551,6 @@ void PokemonSummaryScreen_PrintPoffinFeedMsg(PokemonSummaryScreen *summaryScreen
     Window_DrawMessageBoxWithScrollCursor(window, TRUE, (1024 - (18 + 12)), 13);
     Window_FillTilemap(window, 15);
     MessageLoader_GetString(summaryScreen->msgLoader, entryID, summaryScreen->string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, summaryScreen->string, 0, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK_DARK_SHADOW, NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, summaryScreen->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_ScheduleCopyToVRAM(window);
 }

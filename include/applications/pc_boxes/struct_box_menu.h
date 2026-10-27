@@ -74,7 +74,7 @@ enum BoxMenuItem {
     BOX_MENU_HEART,
     BOX_MENU_STAR,
     BOX_MENU_DIAMOND,
-    BOX_MENU_LAST_MARKING = BOX_MENU_DIAMOND
+    BOX_MENU_LAST_MARKING = BOX_MENU_DIAMOND,
 };
 
 #define MAX_MENU_ITEMS          8
@@ -85,7 +85,7 @@ typedef struct BoxMenu {
     u8 selectedMenuItemIndex;
     u8 totalMenuItems;
     u8 markings;
-    u8 unused; // only assigned to, never read from
+    u8 unread_23;
 } BoxMenu;
 
 #endif // POKEPLATINUM_STRUCT_BOX_MENU_H

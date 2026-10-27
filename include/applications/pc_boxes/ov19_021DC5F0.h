@@ -10,27 +10,43 @@
 #include "narc.h"
 #include "sprite.h"
 
-BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, NARC *param5);
-void ov19_021DC680(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DC6A0(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DC6C8(UnkStruct_ov19_021DC680 *param0);
-BOOL ov19_021DC6F8(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DC768(UnkStruct_ov19_021DC680 *param0);
-BOOL ov19_021DC788(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DC834(UnkStruct_ov19_021DC680 *param0);
-BOOL ov19_021DC95C(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DC96C(UnkStruct_ov19_021DC680 *param0);
-BOOL ov19_021DCA08(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DCAC0(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DCAFC(UnkStruct_ov19_021DC680 *param0, u32 param1);
-BOOL ov19_021DCB20(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DCBA0(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DCBDC(UnkStruct_ov19_021DC680 *param0, u32 param1, u32 param2);
-void ov19_021DCC14(UnkStruct_ov19_021DC680 *param0);
-void ov19_021DCC44(UnkStruct_ov19_021DC680 *param0, u32 param1, u32 param2, UnkStruct_ov19_021DCD18 *param3);
-void ov19_021DCC80(UnkStruct_ov19_021DC680 *param0, u32 param1, const UnkStruct_ov19_021DCD18 *param2);
-void ov19_021DCCD4(UnkStruct_ov19_021DC680 *param0, u32 param1, const UnkStruct_ov19_021DCD18 *param2);
-UnkStruct_ov19_021DCD18 *ov19_021DCD18(UnkStruct_ov19_021DC680 *param0, u32 param1);
-void ov19_021DCD30(UnkStruct_ov19_021DC680 *param0, u32 param1, s32 *param2, s32 *param3);
+#define PARTY_PANEL_HEIGHT               26
+#define PARTY_PANEL_WIDTH                15
+#define PARTY_PANEL_OVERFLOW_ROWS        (PARTY_PANEL_HEIGHT - SCREEN_HEIGHT_TILES)
+#define PARTY_PANEL_TILEMAP_LEFT         14
+#define PARTY_PANEL_COMPARE_TILEMAP_LEFT 9
+#define PARTY_PANEL_SLIDE_ROWS           2
+
+#define PARTY_ICON_TILE_BASE            1048
+#define PARTY_ICON_TILE_COUNT           32
+#define PARTY_ICON_SPRITE_PRIORITY_BASE 4
+#define PARTY_ICON_HIDE_Y               208
+#define PARTY_ICON_ANIM_FRAMES          8
+
+#define PARTY_CLOSE_BUTTON_X 192
+#define PARTY_CLOSE_BUTTON_Y 184
+
+BOOL BoxPartyGraphics_Init(BoxPartyGraphics *partyGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *spriteList, NARC *narc);
+void BoxPartyGraphics_Free(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_ShowInstantly(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_Open(BoxPartyGraphics *partyGraphics);
+BOOL BoxPartyGraphics_HasFinishedAnimating(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_Close(BoxPartyGraphics *partyGraphics);
+BOOL BoxPartyGraphics_IsClosed(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_ShiftIconsUp(BoxPartyGraphics *partyGraphics);
+BOOL BoxPartyGraphics_HasFinishedAnimating2(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_GlideIconToLastSlot(BoxPartyGraphics *partyGraphics);
+BOOL BoxPartyGraphics_HasFinishedAnimating3(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_StoreMon(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_StartReleaseMonAnimation(BoxPartyGraphics *partyGraphics, u32 partySlot);
+BOOL BoxPartyGraphics_IsReleaseMonAnimationDone(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_UpdateMarkingsTransparency(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_UpdateHeldItemIcon(BoxPartyGraphics *partyGraphics, u32 partySlot, u32 item);
+void BoxPartyGraphics_UpdateMarkingsIcon(BoxPartyGraphics *partyGraphics);
+void BoxPartyGraphics_PickUpIcon(BoxPartyGraphics *partyGraphics, u32 partySlot, u32 tileOffset, MonIcon *monIcon);
+void BoxPartyGraphics_PlaceDownIcon(BoxPartyGraphics *partyGraphics, u32 partySlot, const MonIcon *monIcon);
+void BoxPartyGraphics_PlaceDownIconAtSlot(BoxPartyGraphics *partyGraphics, u32 partySlot, const MonIcon *monIcon);
+MonIcon *BoxPartyGraphics_GetIcon(BoxPartyGraphics *partyGraphics, u32 partySlot);
+void BoxPartyGraphics_GetCursorSlotPosition(BoxPartyGraphics *partyGraphics, u32 partyPosition, s32 *x, s32 *y);
 
 #endif // POKEPLATINUM_OV19_021DC5F0_H

@@ -25,405 +25,398 @@
 #include "text.h"
 #include "type_icon.h"
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    UnkStruct_ov19_021DA9E0 *unk_08;
-} UnkStruct_ov19_021DAE2C;
+typedef struct RotationTaskState {
+    u16 step;
+    u16 page;
+    u16 displayTicks;
+    u16 scrollOffset;
+    PCMonPreviewDisplay *previewDisplay;
+} RotationTaskState;
 
-void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2);
-static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0);
-static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0);
-static void ov19_021DAC90(UnkStruct_ov19_021DA9E0 *param0);
-static void ov19_021DACB0(UnkStruct_ov19_021DA9E0 *param0);
-static void ov19_021DACDC(UnkStruct_ov19_021DA9E0 *param0);
-static void ov19_021DACF8(SysTask *param0, void *param1);
-static void ov19_021DADCC(UnkStruct_ov19_021DA9E0 *param0, fx32 param1);
-static void ov19_021DAE10(UnkStruct_ov19_021DA9E0 *param0);
-static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0);
-static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 param2, u32 param3);
-static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0);
-static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1);
+static void PCMonPreviewDisplay_CreateInfoSprites(PCMonPreviewDisplay *previewDisplay);
+static void PCMonPreviewDisplay_StartRotation(PCMonPreviewDisplay *previewDisplay);
+static void PCMonPreviewDisplay_StopRotation(PCMonPreviewDisplay *previewDisplay);
+static void PCMonPreviewDisplay_ResetRotation(PCMonPreviewDisplay *previewDisplay);
+static void PCMonPreviewDisplay_FreezeRotation(PCMonPreviewDisplay *previewDisplay);
+static void PCMonPreviewDisplay_RotationTask(SysTask *unused, void *param);
+static void PCMonPreviewDisplay_ScrollTypeIcons(PCMonPreviewDisplay *previewDisplay, fx32 scrollY);
+static void PCMonPreviewDisplay_HideTypeIcons(PCMonPreviewDisplay *previewDisplay);
+static void RotationTaskState_DrawScrollPages(RotationTaskState *rtState);
+static void PCMonPreviewDisplay_DrawRotationPage(Window *window, PCMonPreviewDisplay *previewDisplay, u32 page, u32 row);
+static void PCMonPreviewDisplay_DrawMonInfo(PCMonPreviewDisplay *previewDisplay);
+static void PCMonPreviewDisplay_DrawMarkings(PCMonPreviewDisplay *previewDisplay, u8 markings);
 
-BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, const MessageLoader *param5, NARC *param6)
+BOOL PCMonPreviewDisplay_Init(PCMonPreviewDisplay *previewDisplay, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *spriteList, const MessageLoader *msgLoader, NARC *narc)
 {
-    int v0;
-
-    if (BoxApp_GetBoxMode(param2) == PC_MODE_COMPARE) {
-        param0->unk_00 = 0;
-        return 1;
+    if (BoxApp_GetBoxMode(boxApp) == PC_MODE_COMPARE) {
+        previewDisplay->isActive = FALSE;
+        return TRUE;
     }
 
-    param0->unk_14 = param1;
-    param0->unk_08 = param3;
-    param0->unk_10 = param2;
-    param0->unk_0C = param4;
-    param0->unk_04 = NULL;
-    param0->unk_4C = NULL;
-    param0->unk_24 = NULL;
-    param0->unk_20 = ov19_021D7818(param1);
-    param0->unk_18 = FontSpecialChars_Init(9, 6, 15, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_1C = FontSpecialChars_Init(1, 2, 15, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_30 = NULL;
-    param0->unk_44 = MessageLoader_GetNewString(param5, 21);
-    param0->unk_48 = MessageLoader_GetNewString(param5, 22);
-    param0->unk_34 = Graphics_GetCellBank(TypeIcon_GetNARC(), TypeIcon_GetCell(), 1, &(param0->unk_38), HEAP_ID_BOX_GRAPHICS);
+    previewDisplay->boxGraphics = boxGraphics;
+    previewDisplay->bgConfig = bgConfig;
+    previewDisplay->boxApp = boxApp;
+    previewDisplay->spriteList = spriteList;
+    previewDisplay->windows = NULL;
+    previewDisplay->rotationTask = NULL;
+    previewDisplay->monSprite = NULL;
+    previewDisplay->monSpriteManager = BoxGraphics_GetMonSpriteManager(boxGraphics);
+    previewDisplay->dexNumChars = FontSpecialChars_Init(9, 6, 15, HEAP_ID_BOX_GRAPHICS);
+    previewDisplay->levelChars = FontSpecialChars_Init(1, 2, 15, HEAP_ID_BOX_GRAPHICS);
+    previewDisplay->infoFrameCellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 16, 1, &(previewDisplay->infoFrameCellBank), HEAP_ID_BOX_GRAPHICS);
+    previewDisplay->infoFrameSprite = NULL;
+    previewDisplay->maleGenderText = MessageLoader_GetNewString(msgLoader, 21);
+    previewDisplay->femaleGenderText = MessageLoader_GetNewString(msgLoader, 22);
+    previewDisplay->typeIconCellBankBuffer = Graphics_GetCellBank(TypeIcon_GetNARC(), TypeIcon_GetCell(), 1, &(previewDisplay->typeIconCellBank), HEAP_ID_BOX_GRAPHICS);
 
-    for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_3C[v0] = NULL;
+    for (int i = 0; i < MAX_TYPES; i++) {
+        previewDisplay->typeIconSprites[i] = NULL;
     }
 
-    param0->unk_00 = 1;
+    previewDisplay->isActive = TRUE;
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_Free(PCMonPreviewDisplay *previewDisplay)
 {
-    int v0;
+    int i;
 
-    if (param0->unk_00 == 0) {
+    // if not active, skip the wipe
+    if (previewDisplay->isActive == FALSE) {
         return;
     }
 
-    if (param0->unk_04) {
-        for (v0 = 0; v0 < 4; v0++) {
-            Window_Remove(&param0->unk_04[v0]);
+    if (previewDisplay->windows) {
+        for (i = 0; i < PREVIEW_WINDOW_COUNT; i++) {
+            Window_Remove(&previewDisplay->windows[i]);
         }
 
-        Heap_Free(param0->unk_04);
-        param0->unk_04 = NULL;
+        Heap_Free(previewDisplay->windows);
+        previewDisplay->windows = NULL;
     }
 
-    if (param0->unk_18) {
-        FontSpecialChars_Free(param0->unk_18);
+    if (previewDisplay->dexNumChars) {
+        FontSpecialChars_Free(previewDisplay->dexNumChars);
     }
 
-    if (param0->unk_1C) {
-        FontSpecialChars_Free(param0->unk_1C);
+    if (previewDisplay->levelChars) {
+        FontSpecialChars_Free(previewDisplay->levelChars);
     }
 
-    if (param0->unk_44) {
-        String_Free(param0->unk_44);
+    if (previewDisplay->maleGenderText) {
+        String_Free(previewDisplay->maleGenderText);
     }
 
-    if (param0->unk_48) {
-        String_Free(param0->unk_48);
+    if (previewDisplay->femaleGenderText) {
+        String_Free(previewDisplay->femaleGenderText);
     }
 
-    if (param0->unk_24) {
-        PokemonSprite_Delete(param0->unk_24);
-        param0->unk_24 = NULL;
+    if (previewDisplay->monSprite) {
+        PokemonSprite_Delete(previewDisplay->monSprite);
+        previewDisplay->monSprite = NULL;
     }
 
-    if (param0->unk_28) {
-        Heap_Free(param0->unk_28);
+    if (previewDisplay->infoFrameCellBankBuffer) {
+        Heap_Free(previewDisplay->infoFrameCellBankBuffer);
     }
 
-    if (param0->unk_30) {
-        Sprite_Delete(param0->unk_30);
+    if (previewDisplay->infoFrameSprite) {
+        Sprite_Delete(previewDisplay->infoFrameSprite);
     }
 
-    if (param0->unk_34) {
-        Heap_Free(param0->unk_34);
+    if (previewDisplay->typeIconCellBankBuffer) {
+        Heap_Free(previewDisplay->typeIconCellBankBuffer);
     }
 
-    for (v0 = 0; v0 < 2; v0++) {
-        if (param0->unk_3C[v0] != NULL) {
-            Sprite_Delete(param0->unk_3C[v0]);
+    for (i = 0; i < MAX_TYPES; i++) {
+        if (previewDisplay->typeIconSprites[i] != NULL) {
+            Sprite_Delete(previewDisplay->typeIconSprites[i]);
         }
     }
 
-    ov19_021DAC90(param0);
+    PCMonPreviewDisplay_StopRotation(previewDisplay);
 }
 
-void ov19_021DAA80(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_UpdateAnimation(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_00) {
-        PokemonSpriteManager_UpdateCharAndPltt(param0->unk_20);
+    if (previewDisplay->isActive) {
+        PokemonSpriteManager_UpdateCharAndPltt(previewDisplay->monSpriteManager);
     }
 }
 
-void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_CreatePlaceholderSprite(PCMonPreviewDisplay *previewDisplay)
 {
-    PokemonSpriteTemplate v0;
+    PokemonSpriteTemplate spriteTemplate;
 
-    BuildPokemonSpriteTemplate(&v0, 1, 0, 0, 0, 0, 0);
-    param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
+    BuildPokemonSpriteTemplate(&spriteTemplate, 1, 0, 0, 0, 0, 0);
+    previewDisplay->monSprite = PokemonSpriteManager_CreateSprite(previewDisplay->monSpriteManager, &spriteTemplate, 44, 84, 0, 0, NULL, NULL);
 }
 
-BOOL ov19_021DAAC4(UnkStruct_ov19_021DA9E0 *param0)
+BOOL PCMonPreviewDisplay_IsPlaceholderSpriteDeleted(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_24) {
-        PokemonSprite_Delete(param0->unk_24);
-        param0->unk_24 = NULL;
-        return 0;
+    if (previewDisplay->monSprite) {
+        PokemonSprite_Delete(previewDisplay->monSprite);
+        previewDisplay->monSprite = NULL;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_LoadGraphics(PCMonPreviewDisplay *previewDisplay)
 {
-    static const WindowTemplate v0[] = {
+    static const WindowTemplate windowTemplate[] = {
         { 2, 0, 1, 10, 2, 1, 288 },
         { 2, 5, 3, 5, 1, 1, 308 },
         { 2, 0, 16, 10, 3, 3, 313 },
         { 2, 1, 21, 12, 4, 1, 343 }
     };
 
-    if (param0->unk_00 == 0) {
+    if (previewDisplay->isActive == FALSE) {
         return;
     }
 
-    param0->unk_04 = Window_New(HEAP_ID_BOX_GRAPHICS, 4);
+    previewDisplay->windows = Window_New(HEAP_ID_BOX_GRAPHICS, PREVIEW_WINDOW_COUNT);
 
-    if (param0->unk_04) {
-        int v1;
+    if (previewDisplay->windows) {
+        for (int i = 0; i < PREVIEW_WINDOW_COUNT; i++) {
+            Window_AddFromTemplate(previewDisplay->bgConfig, &previewDisplay->windows[i], &windowTemplate[i]);
 
-        for (v1 = 0; v1 < 4; v1++) {
-            Window_AddFromTemplate(param0->unk_08, &param0->unk_04[v1], &v0[v1]);
-
-            if (v1 != 3) {
-                Window_PutToTilemap(&param0->unk_04[v1]);
+            if (i != PREVIEW_WINDOW_INFO) {
+                Window_PutToTilemap(&previewDisplay->windows[i]);
             } else {
-                Window_PutRectToTilemap(&param0->unk_04[v1], 12, 2);
+                Window_PutRectToTilemap(&previewDisplay->windows[i], 12, 2);
             }
         }
 
-        Bg_CopyTilemapBufferToVRAM(param0->unk_08, 2);
+        Bg_CopyTilemapBufferToVRAM(previewDisplay->bgConfig, 2);
     }
 
-    ov19_021DAB44(param0);
-    ov19_021DAC4C(param0);
+    PCMonPreviewDisplay_CreateInfoSprites(previewDisplay);
+    PCMonPreviewDisplay_StartRotation(previewDisplay);
 }
 
-static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
+static void PCMonPreviewDisplay_CreateInfoSprites(PCMonPreviewDisplay *previewDisplay)
 {
-    NNSG2dImageProxy v0;
-    SpriteResourcesHeader v1;
+    NNSG2dImageProxy imageProxy;
+    SpriteResourcesHeader srHeader;
     enum NarcID narcID;
-    u32 v3, i;
+    u32 iconChar, i;
 
     narcID = TypeIcon_GetNARC();
-    v3 = TypeIcon_GetChar(2);
+    iconChar = TypeIcon_GetChar(2);
 
     Graphics_LoadPalette(narcID, TypeIcon_GetPlttSrc(), 1, 10 * 0x20, 0x20 * 3, HEAP_ID_BOX_GRAPHICS);
 
-    for (i = 0; i < 2; i++) {
-        NNS_G2dInitImageProxy(&v0);
-        Graphics_LoadImageMappingAndSetVramMode(narcID, v3, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, (1504 + (8 * i)) * 0x20, 10, &v0);
-        ov19_021D783C(&v1, &v0, ov19_021D77D0(param0->unk_14), param0->unk_38, NULL, 3);
+    for (i = 0; i < MAX_TYPES; i++) {
+        NNS_G2dInitImageProxy(&imageProxy);
+        Graphics_LoadImageMappingAndSetVramMode(narcID, iconChar, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, (1504 + (8 * i)) * 0x20, 10, &imageProxy);
+        SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, BoxGraphics_GetImagePaletteProxy(previewDisplay->boxGraphics), previewDisplay->typeIconCellBank, NULL, 3);
 
-        param0->unk_3C[i] = ov19_021D785C(param0->unk_0C, &v1, 24 + 36 * i, 176, 46, NNS_G2D_VRAM_TYPE_2DMAIN);
-        GF_ASSERT(param0->unk_3C[i] != NULL);
+        previewDisplay->typeIconSprites[i] = BoxGraphics_CreateSprite(previewDisplay->spriteList, &srHeader, 24 + 36 * i, 176, 46, NNS_G2D_VRAM_TYPE_2DMAIN);
+        GF_ASSERT(previewDisplay->typeIconSprites[i] != NULL);
 
-        Sprite_SetDrawFlag(param0->unk_3C[i], FALSE);
+        Sprite_SetDrawFlag(previewDisplay->typeIconSprites[i], FALSE);
     }
 
-    NNS_G2dInitImageProxy(&v0);
+    NNS_G2dInitImageProxy(&imageProxy);
 
-    Graphics_LoadImageMapping(18, 15, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1480 * 0x20, 10, &v0);
-    ov19_021D783C(&v1, &v0, ov19_021D77D0(param0->unk_14), param0->unk_2C, NULL, 3);
+    Graphics_LoadImageMapping(NARC_INDEX_GRAPHIC__BOX, 15, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1480 * 0x20, 10, &imageProxy);
+    SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, BoxGraphics_GetImagePaletteProxy(previewDisplay->boxGraphics), previewDisplay->infoFrameCellBank, NULL, 3);
 
-    param0->unk_30 = ov19_021D785C(param0->unk_0C, &v1, 56, 176, 47, NNS_G2D_VRAM_TYPE_2DMAIN);
+    previewDisplay->infoFrameSprite = BoxGraphics_CreateSprite(previewDisplay->spriteList, &srHeader, 56, 176, 47, NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0)
+static void PCMonPreviewDisplay_StartRotation(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_4C == NULL) {
-        UnkStruct_ov19_021DAE2C *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DAE2C));
+    if (previewDisplay->rotationTask == NULL) {
+        RotationTaskState *rtState = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(RotationTaskState));
 
-        if (v0) {
-            const PCMonPreview *preview = BoxApp_GetPCMonPreview(param0->unk_10);
+        if (rtState) {
+            const PCMonPreview *preview = BoxApp_GetPCMonPreview(previewDisplay->boxApp);
 
-            v0->unk_00 = (preview->isEgg) ? 4 : 0;
-            v0->unk_08 = param0;
-            param0->unk_4C = SysTask_Start(ov19_021DACF8, v0, 1);
+            rtState->step = (preview->isEgg) ? ROTATION_STEP_FROZEN : ROTATION_STEP_CHECK_AVAILABLE;
+            rtState->previewDisplay = previewDisplay;
+            previewDisplay->rotationTask = SysTask_Start(PCMonPreviewDisplay_RotationTask, rtState, 1);
         } else {
             GF_ASSERT(FALSE);
         }
     }
 }
 
-static void ov19_021DAC90(UnkStruct_ov19_021DA9E0 *param0)
+static void PCMonPreviewDisplay_StopRotation(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_4C) {
-        Heap_Free(SysTask_GetParam(param0->unk_4C));
-        SysTask_Done(param0->unk_4C);
-        param0->unk_4C = NULL;
+    if (previewDisplay->rotationTask) {
+        Heap_Free(SysTask_GetParam(previewDisplay->rotationTask));
+        SysTask_Done(previewDisplay->rotationTask);
+        previewDisplay->rotationTask = NULL;
     }
 }
 
-static void ov19_021DACB0(UnkStruct_ov19_021DA9E0 *param0)
+static void PCMonPreviewDisplay_ResetRotation(PCMonPreviewDisplay *previewDisplay)
 {
-    UnkStruct_ov19_021DAE2C *v0 = SysTask_GetParam(param0->unk_4C);
+    RotationTaskState *rtState = SysTask_GetParam(previewDisplay->rotationTask);
 
-    if (v0) {
-        const PCMonPreview *preview = BoxApp_GetPCMonPreview(param0->unk_10);
+    if (rtState) {
+        const PCMonPreview *preview = BoxApp_GetPCMonPreview(previewDisplay->boxApp);
 
-        v0->unk_00 = (preview->isEgg) ? 4 : 0;
-        ov19_021DAE10(param0);
+        rtState->step = (preview->isEgg) ? ROTATION_STEP_FROZEN : ROTATION_STEP_CHECK_AVAILABLE;
+        PCMonPreviewDisplay_HideTypeIcons(previewDisplay);
     }
 }
 
-static void ov19_021DACDC(UnkStruct_ov19_021DA9E0 *param0)
+static void PCMonPreviewDisplay_FreezeRotation(PCMonPreviewDisplay *previewDisplay)
 {
-    UnkStruct_ov19_021DAE2C *v0 = SysTask_GetParam(param0->unk_4C);
+    RotationTaskState *rtState = SysTask_GetParam(previewDisplay->rotationTask);
 
-    if (v0) {
-        v0->unk_00 = 4;
-        ov19_021DAE10(param0);
+    if (rtState) {
+        rtState->step = ROTATION_STEP_FROZEN;
+        PCMonPreviewDisplay_HideTypeIcons(previewDisplay);
     }
 }
 
-static void ov19_021DACF8(SysTask *param0, void *param1)
+static void PCMonPreviewDisplay_RotationTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021DAE2C *v0 = (UnkStruct_ov19_021DAE2C *)param1;
-    UnkStruct_ov19_021DA9E0 *v1 = v0->unk_08;
+    RotationTaskState *rtState = (RotationTaskState *)param;
+    PCMonPreviewDisplay *previewDisplay = rtState->previewDisplay;
     const PCMonPreview *preview;
 
-    switch (v0->unk_00) {
-    case 0:
-        if (BoxApp_IsMonAvailableToCursor(v1->unk_10) == FALSE) {
+    switch (rtState->step) {
+    case ROTATION_STEP_CHECK_AVAILABLE:
+        if (BoxApp_IsMonAvailableToCursor(previewDisplay->boxApp) == FALSE) {
             break;
         }
 
-        v0->unk_02 = 0;
-        v0->unk_00 = 1;
-    case 1:
-        ov19_021DAE60(&v1->unk_04[3], v1, v0->unk_02, 0);
-        Window_LoadTiles(&v1->unk_04[3]);
-        v0->unk_04 = 0;
-        v0->unk_00 = 2;
+        rtState->page = ROTATION_PAGE_HELD_ITEM;
+        rtState->step = ROTATION_STEP_DRAW_PAGE;
+    case ROTATION_STEP_DRAW_PAGE:
+        PCMonPreviewDisplay_DrawRotationPage(&previewDisplay->windows[PREVIEW_WINDOW_INFO], previewDisplay, rtState->page, 0);
+        Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_INFO]);
+        rtState->displayTicks = 0;
+        rtState->step = ROTATION_STEP_HOLD;
         break;
-    case 2:
-        preview = BoxApp_GetPCMonPreview(v1->unk_10);
+    case ROTATION_STEP_HOLD:
+        preview = BoxApp_GetPCMonPreview(previewDisplay->boxApp);
 
-        if (!preview->isEgg && (++(v0->unk_04) > 80)) {
-            ov19_021DAE2C(v0);
-            v0->unk_04 = 0;
-            v0->unk_06 = 0;
-            v0->unk_00 = 3;
+        if (!preview->isEgg && (++(rtState->displayTicks) > 80)) {
+            RotationTaskState_DrawScrollPages(rtState);
+            rtState->displayTicks = 0;
+            rtState->scrollOffset = 0;
+            rtState->step = ROTATION_STEP_SCROLL;
         }
         break;
-    case 3:
-        v0->unk_06 += 4;
+    case ROTATION_STEP_SCROLL:
+        rtState->scrollOffset += 4;
 
-        ov19_021DADCC(v1, 4 << FX32_SHIFT);
-        Window_Scroll(&v1->unk_04[3], 0, 4, 0x0);
-        Window_LoadTiles(&v1->unk_04[3]);
+        PCMonPreviewDisplay_ScrollTypeIcons(previewDisplay, 4 << FX32_SHIFT);
+        Window_Scroll(&previewDisplay->windows[PREVIEW_WINDOW_INFO], 0, 4, 0x0);
+        Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_INFO]);
 
-        if (v0->unk_06 >= 16) {
-            if (v0->unk_02 == 1) {
-                ov19_021DAE10(v1);
+        if (rtState->scrollOffset >= 16) {
+            if (rtState->page == ROTATION_PAGE_TYPES) {
+                PCMonPreviewDisplay_HideTypeIcons(previewDisplay);
             }
 
-            if (++(v0->unk_02) >= 4) {
-                v0->unk_02 = 0;
+            if (++(rtState->page) >= ROTATION_PAGE_COUNT) {
+                rtState->page = ROTATION_PAGE_HELD_ITEM;
             }
 
-            v0->unk_06 = 0;
-            v0->unk_04 = 0;
-            v0->unk_00 = 2;
+            rtState->scrollOffset = 0;
+            rtState->displayTicks = 0;
+            rtState->step = ROTATION_STEP_HOLD;
         }
         break;
-    case 4:
+    case ROTATION_STEP_FROZEN:
         break;
     }
 }
 
-static void ov19_021DADCC(UnkStruct_ov19_021DA9E0 *param0, fx32 param1)
+static void PCMonPreviewDisplay_ScrollTypeIcons(PCMonPreviewDisplay *previewDisplay, fx32 scrollY)
 {
-    int v0;
-    VecFx32 v1;
+    VecFx32 pos;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        v1 = *Sprite_GetPosition(param0->unk_3C[v0]);
-        v1.y -= param1;
+    for (int i = 0; i < MAX_TYPES; i++) {
+        pos = *Sprite_GetPosition(previewDisplay->typeIconSprites[i]);
+        pos.y -= scrollY;
 
-        Sprite_SetPosition(param0->unk_3C[v0], &v1);
+        Sprite_SetPosition(previewDisplay->typeIconSprites[i], &pos);
 
-        if ((v0 == 0) && Sprite_GetDrawFlag(param0->unk_3C[v0])) {
-            u32 v2, v3;
+        if ((i == 0) && Sprite_GetDrawFlag(previewDisplay->typeIconSprites[i])) {
+            u32 unused1, unused2;
 
-            v2 = v1.x >> FX32_SHIFT;
-            v3 = v1.y >> FX32_SHIFT;
+            unused1 = pos.x >> FX32_SHIFT;
+            unused2 = pos.y >> FX32_SHIFT;
         }
     }
 }
 
-static void ov19_021DAE10(UnkStruct_ov19_021DA9E0 *param0)
+static void PCMonPreviewDisplay_HideTypeIcons(PCMonPreviewDisplay *previewDisplay)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 2; v0++) {
-        Sprite_SetDrawFlag(param0->unk_3C[v0], FALSE);
+    for (int i = 0; i < 2; i++) {
+        Sprite_SetDrawFlag(previewDisplay->typeIconSprites[i], FALSE);
     }
 }
 
-static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0)
+static void RotationTaskState_DrawScrollPages(RotationTaskState *rtState)
 {
-    u32 v0;
-    Window *v1 = &(param0->unk_08->unk_04[3]);
+    u32 nextPage;
+    Window *window = &(rtState->previewDisplay->windows[PREVIEW_WINDOW_INFO]);
 
-    Window_FillTilemap(v1, 0);
-    ov19_021DAE60(v1, param0->unk_08, param0->unk_02, 0);
+    Window_FillTilemap(window, 0);
+    PCMonPreviewDisplay_DrawRotationPage(window, rtState->previewDisplay, rtState->page, 0);
 
-    v0 = param0->unk_02 + 1;
+    nextPage = rtState->page + 1;
 
-    if (v0 >= 4) {
-        v0 = 0;
+    if (nextPage >= ROTATION_PAGE_COUNT) {
+        nextPage = 0;
     }
 
-    ov19_021DAE60(v1, param0->unk_08, v0, 1);
+    PCMonPreviewDisplay_DrawRotationPage(window, rtState->previewDisplay, nextPage, 1);
 }
 
-static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 param2, u32 param3)
+static void PCMonPreviewDisplay_DrawRotationPage(Window *window, PCMonPreviewDisplay *previewDisplay, u32 page, u32 row)
 {
-    const String *v0;
-    u32 v1 = (param3 * 16) + 0;
+    const String *str;
+    u32 yOffset = (row * 16) + 0;
 
-    switch (param2) {
-    case 0:
-        v0 = param1->unk_10->pcMonPreview.heldItemName;
+    switch (page) {
+    case ROTATION_PAGE_HELD_ITEM:
+        str = previewDisplay->boxApp->pcMonPreview.heldItemName;
         break;
-    case 2:
-        v0 = param1->unk_10->pcMonPreview.nature;
+    case ROTATION_PAGE_NATURE:
+        str = previewDisplay->boxApp->pcMonPreview.nature;
         break;
-    case 3:
-        v0 = param1->unk_10->pcMonPreview.ability;
+    case ROTATION_PAGE_ABILITY:
+        str = previewDisplay->boxApp->pcMonPreview.ability;
         break;
 
-    case 1: {
-        VecFx32 v2;
-        u32 v3, v4;
+    case ROTATION_PAGE_TYPES: {
+        VecFx32 pos;
+        u32 unused2, unused3;
 
-        v3 = TypeIcon_GetNARC();
-        v4 = TypeIcon_GetChar(param1->unk_10->pcMonPreview.type1);
+        unused2 = TypeIcon_GetNARC();
+        unused3 = TypeIcon_GetChar(previewDisplay->boxApp->pcMonPreview.type1);
 
-        Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(param1->unk_10->pcMonPreview.type1), 0, 1504 * 0x20, 0, 1, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(previewDisplay->boxApp->pcMonPreview.type1), 0, 1504 * 0x20, 0, 1, HEAP_ID_BOX_GRAPHICS);
 
-        v2 = *Sprite_GetPosition(param1->unk_3C[0]);
-        v2.y = (176 + (16 * param3)) << FX32_SHIFT;
+        pos = *Sprite_GetPosition(previewDisplay->typeIconSprites[0]);
+        pos.y = (176 + (16 * row)) << FX32_SHIFT;
 
-        Sprite_SetPosition(param1->unk_3C[0], &v2);
-        Sprite_SetExplicitPalette(param1->unk_3C[0], 10 + TypeIcon_GetPltt(param1->unk_10->pcMonPreview.type1));
-        Sprite_SetDrawFlag(param1->unk_3C[0], TRUE);
+        Sprite_SetPosition(previewDisplay->typeIconSprites[0], &pos);
+        Sprite_SetExplicitPalette(previewDisplay->typeIconSprites[0], 10 + TypeIcon_GetPltt(previewDisplay->boxApp->pcMonPreview.type1));
+        Sprite_SetDrawFlag(previewDisplay->typeIconSprites[0], TRUE);
 
-        if (param1->unk_10->pcMonPreview.type1 != param1->unk_10->pcMonPreview.type2) {
-            Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(param1->unk_10->pcMonPreview.type2), 0, (1504 + 8) * 0x20, 0, 1, HEAP_ID_BOX_GRAPHICS);
+        if (previewDisplay->boxApp->pcMonPreview.type1 != previewDisplay->boxApp->pcMonPreview.type2) {
+            Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(previewDisplay->boxApp->pcMonPreview.type2), 0, (1504 + 8) * 0x20, 0, 1, HEAP_ID_BOX_GRAPHICS);
 
-            v2.x += (36 << FX32_SHIFT);
+            pos.x += (36 << FX32_SHIFT);
 
-            Sprite_SetPosition(param1->unk_3C[1], &v2);
-            Sprite_SetExplicitPalette(param1->unk_3C[1], 10 + TypeIcon_GetPltt(param1->unk_10->pcMonPreview.type2));
-            Sprite_SetDrawFlag(param1->unk_3C[1], TRUE);
+            Sprite_SetPosition(previewDisplay->typeIconSprites[1], &pos);
+            Sprite_SetExplicitPalette(previewDisplay->typeIconSprites[1], 10 + TypeIcon_GetPltt(previewDisplay->boxApp->pcMonPreview.type2));
+            Sprite_SetDrawFlag(previewDisplay->typeIconSprites[1], TRUE);
         } else {
-            Sprite_SetDrawFlag(param1->unk_3C[1], FALSE);
+            Sprite_SetDrawFlag(previewDisplay->typeIconSprites[1], FALSE);
         }
     }
         return;
@@ -431,177 +424,176 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         return;
     }
 
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 0, v1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, str, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
 }
 
-void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_ShowInitial(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_00 == 0) {
+    if (previewDisplay->isActive == FALSE) {
         return;
     }
 
-    Window_FillTilemap(&param0->unk_04[0], 15);
-    Window_FillTilemap(&param0->unk_04[1], 15);
-    Window_FillTilemap(&param0->unk_04[2], 15);
-    Window_FillTilemap(&param0->unk_04[3], 0);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_DEX_NUM], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_INFO], 0);
 
-    if (BoxApp_IsMonAvailableToCursor(param0->unk_10)) {
-        ov19_021DB0E4(param0);
+    if (BoxApp_IsMonAvailableToCursor(previewDisplay->boxApp)) {
+        PCMonPreviewDisplay_DrawMonInfo(previewDisplay);
     }
 
-    Window_LoadTiles(&param0->unk_04[0]);
-    Window_LoadTiles(&param0->unk_04[1]);
-    Window_LoadTiles(&param0->unk_04[2]);
-    Window_LoadTiles(&param0->unk_04[3]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_DEX_NUM]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_INFO]);
 }
 
-void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_Refresh(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_00 == 0) {
+    if (previewDisplay->isActive == FALSE) {
         return;
     }
 
-    Window_FillTilemap(&param0->unk_04[0], 15);
-    Window_FillTilemap(&param0->unk_04[1], 15);
-    Window_FillTilemap(&param0->unk_04[2], 15);
-    Window_FillTilemap(&param0->unk_04[3], 0);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_DEX_NUM], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_INFO], 0);
 
-    if (param0->unk_24) {
-        PokemonSprite_Delete(param0->unk_24);
-        param0->unk_24 = NULL;
+    if (previewDisplay->monSprite) {
+        PokemonSprite_Delete(previewDisplay->monSprite);
+        previewDisplay->monSprite = NULL;
     }
 
-    if (BoxApp_IsMonAvailableToCursor(param0->unk_10)) {
-        ov19_021DB0E4(param0);
+    if (BoxApp_IsMonAvailableToCursor(previewDisplay->boxApp)) {
+        PCMonPreviewDisplay_DrawMonInfo(previewDisplay);
     } else {
-        ov19_021DB24C(param0, 0);
+        PCMonPreviewDisplay_DrawMarkings(previewDisplay, 0);
     }
 
-    Window_LoadTiles(&param0->unk_04[0]);
-    Window_LoadTiles(&param0->unk_04[1]);
-    Window_LoadTiles(&param0->unk_04[2]);
-    Window_LoadTiles(&param0->unk_04[3]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_DEX_NUM]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_INFO]);
 
-    ov19_021DACB0(param0);
+    PCMonPreviewDisplay_ResetRotation(previewDisplay);
 }
 
-void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_Clear(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_00 == 0) {
+    if (previewDisplay->isActive == FALSE) {
         return;
     }
 
-    Window_FillTilemap(&param0->unk_04[0], 15);
-    Window_FillTilemap(&param0->unk_04[1], 15);
-    Window_FillTilemap(&param0->unk_04[2], 15);
-    Window_FillTilemap(&param0->unk_04[3], 0);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_DEX_NUM], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], 15);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_INFO], 0);
 
-    if (param0->unk_24) {
-        PokemonSprite_Delete(param0->unk_24);
-        param0->unk_24 = NULL;
+    if (previewDisplay->monSprite) {
+        PokemonSprite_Delete(previewDisplay->monSprite);
+        previewDisplay->monSprite = NULL;
     }
 
-    ov19_021DB24C(param0, 0);
+    PCMonPreviewDisplay_DrawMarkings(previewDisplay, 0);
 
-    Window_LoadTiles(&param0->unk_04[0]);
-    Window_LoadTiles(&param0->unk_04[1]);
-    Window_LoadTiles(&param0->unk_04[2]);
-    Window_LoadTiles(&param0->unk_04[3]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_DEX_NUM]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME]);
+    Window_LoadTiles(&previewDisplay->windows[PREVIEW_WINDOW_INFO]);
 
-    ov19_021DACDC(param0);
+    PCMonPreviewDisplay_FreezeRotation(previewDisplay);
 }
 
-static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
+static void PCMonPreviewDisplay_DrawMonInfo(PCMonPreviewDisplay *previewDisplay)
 {
-    PokemonSpriteTemplate v0;
-    const PCMonPreview *preview = BoxApp_GetPCMonPreview(param0->unk_10);
+    PokemonSpriteTemplate spriteTemplate;
+    const PCMonPreview *preview = BoxApp_GetPCMonPreview(previewDisplay->boxApp);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, preview->speciesName, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_SPECIES], FONT_SYSTEM, preview->speciesName, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
 
     switch (preview->gender) {
-    case 0:
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, param0->unk_44, 70, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(7, 8, 15), NULL);
+    case GENDER_MALE:
+        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, previewDisplay->maleGenderText, 70, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(7, 8, 15), NULL);
         break;
-    case 1:
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, param0->unk_48, 70, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 15), NULL);
+    case GENDER_FEMALE:
+        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_NICKNAME], FONT_SYSTEM, previewDisplay->femaleGenderText, 70, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 15), NULL);
         break;
     }
 
     if (preview->isEgg == FALSE) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_INFO], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
 
         if (preview->dexNum) {
-            FontSpecialChars_DrawPartyScreenText(param0->unk_18, 2, preview->dexNum, 3, 2, &(param0->unk_04[1]), 0, 0);
+            FontSpecialChars_DrawPartyScreenText(previewDisplay->dexNumChars, 2, preview->dexNum, 3, 2, &(previewDisplay->windows[PREVIEW_WINDOW_DEX_NUM]), 0, 0);
         }
 
-        FontSpecialChars_DrawPartyScreenText(param0->unk_1C, 1, preview->level, 3, 1, &(param0->unk_04[2]), 0, 16);
+        FontSpecialChars_DrawPartyScreenText(previewDisplay->levelChars, 1, preview->level, 3, 1, &(previewDisplay->windows[PREVIEW_WINDOW_NICKNAME]), 0, 16);
     }
 
-    BoxPokemon_BuildSpriteTemplate(&v0, preview->mon, 2, 0);
-    param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
-    ov19_021DB24C(param0, preview->markings);
+    BoxPokemon_BuildSpriteTemplate(&spriteTemplate, preview->mon, 2, 0);
+    previewDisplay->monSprite = PokemonSpriteManager_CreateSprite(previewDisplay->monSpriteManager, &spriteTemplate, 44, 84, 0, 0, NULL, NULL);
+    PCMonPreviewDisplay_DrawMarkings(previewDisplay, preview->markings);
 }
 
-BOOL ov19_021DB220(UnkStruct_ov19_021DA9E0 *param0)
+BOOL PCMonPreviewDisplay_IsRefreshDone(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_00 == 0) {
-        return 1;
+    if (previewDisplay->isActive == FALSE) {
+        return TRUE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DB224(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_UpdateMarkings(PCMonPreviewDisplay *previewDisplay)
 {
-    if (param0->unk_00 == 0) {
+    if (previewDisplay->isActive == FALSE) {
         return;
     }
 
-    if (BoxApp_IsMonAvailableToCursor(param0->unk_10)) {
+    if (BoxApp_IsMonAvailableToCursor(previewDisplay->boxApp)) {
         const PCMonPreview *preview;
 
-        preview = BoxApp_GetPCMonPreview(param0->unk_10);
-        ov19_021DB24C(param0, preview->markings);
+        preview = BoxApp_GetPCMonPreview(previewDisplay->boxApp);
+        PCMonPreviewDisplay_DrawMarkings(previewDisplay, preview->markings);
     }
 }
 
-static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1)
+static void PCMonPreviewDisplay_DrawMarkings(PCMonPreviewDisplay *previewDisplay, u8 markings)
 {
-    u16 *v0;
-    u32 v1;
-    int v2;
+    u16 *markingsTiles;
+    u32 tilemapOffset;
 
-    v1 = (19 * 32) + 4;
-    v0 = Bg_GetTilemapBuffer(param0->unk_08, 2);
-    v0 += v1;
+    tilemapOffset = (19 * 32) + 4;
+    markingsTiles = Bg_GetTilemapBuffer(previewDisplay->bgConfig, 2);
+    markingsTiles += tilemapOffset;
 
-    for (v2 = 0; v2 < 6; v2++) {
-        if (param1 & (1 << v2)) {
-            v0[v2] = (2 << 12) | (152 + v2);
+    for (int i = 0; i < 6; i++) {
+        if (markings & (1 << i)) {
+            markingsTiles[i] = (2 << 12) | (152 + i);
         } else {
-            v0[v2] = (2 << 12) | (132 + v2);
+            markingsTiles[i] = (2 << 12) | (132 + i);
         }
     }
 
-    Bg_CopyTilemapBufferRangeToVRAM(param0->unk_08, 2, v0, 6 * sizeof(u16), v1);
+    Bg_CopyTilemapBufferRangeToVRAM(previewDisplay->bgConfig, 2, markingsTiles, 6 * sizeof(u16), tilemapOffset);
 }
 
-void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0)
+void PCMonPreviewDisplay_UpdateHeldItem(PCMonPreviewDisplay *previewDisplay)
 {
     const PCMonPreview *preview;
 
-    if (param0->unk_00 == 0) {
+    if (previewDisplay->isActive == FALSE) {
         return;
     }
 
-    preview = BoxApp_GetPCMonPreview(param0->unk_10);
-    Window_FillTilemap(&param0->unk_04[3], 0);
+    preview = BoxApp_GetPCMonPreview(previewDisplay->boxApp);
+    Window_FillTilemap(&previewDisplay->windows[PREVIEW_WINDOW_INFO], 0);
 
     if (preview->isEgg == FALSE) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&previewDisplay->windows[PREVIEW_WINDOW_INFO], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
     }
 
-    ov19_021DACB0(param0);
+    PCMonPreviewDisplay_ResetRotation(previewDisplay);
 }

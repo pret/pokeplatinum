@@ -12,23 +12,29 @@
 #include "pokemon.h"
 #include "sprite.h"
 
-BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4);
-void ov19_021DA384(UnkStruct_ov19_021DA384 *param0);
-void ov19_021DA3CC(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-void ov19_021DA3F0(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-void ov19_021DA418(const UnkStruct_ov19_021DCD18 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 *param7);
-void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 param2, u32 param3, u8 *param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 *param10);
-void ov19_021DA63C(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-void ov19_021DA68C(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-void ov19_021DA690(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-void ov19_021DA694(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL param2);
-void ov19_021DA744(UnkStruct_ov19_021DA384 *param0, void *param1, u32 param2, u32 param3);
-void ov19_021DA754(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-void ov19_021DA7B8(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-BOOL ov19_021DA7E0(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1);
-void BoxGraphics_ApplyMonInMultiSelectShading(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL isSelected);
-NNSG2dCellDataBank *ov19_021DA80C(UnkStruct_ov19_021DA384 *param0);
-NNSG2dAnimBankData *ov19_021DA810(UnkStruct_ov19_021DA384 *param0);
+enum MonIconAnim {
+    MON_ICON_ANIM_IDLE = 0,
+    MON_ICON_ANIM_RELEASE,
+    MON_ICON_ANIM_RELEASE_REJECTED,
+};
+
+BOOL MonIconHelper_Init(MonIconHelper *iconHelper, BoxGraphics *boxGraphics, const BoxApplication *boxApp, SpriteList *spriteList, NARC *narc);
+void MonIconHelper_Free(MonIconHelper *iconHelper);
+void MonIconHelper_InitIcons(MonIconHelper *unused, MonIcon *monIcon, u32 count);
+void MonIconHelper_DeleteIcons(MonIconHelper *unused, MonIcon *monIcon, u32 count);
+void MonIcon_Copy(const MonIcon *src, MonIcon *dest, u32 count);
+void MonIconHelper_CreateIcon(MonIconHelper *iconHelper, BoxPokemon *boxMon, s32 x, s32 y, u32 headerPriority, u32 priority, u32 tileOffset, MonIcon *monIcon);
+void MonIconHelper_CreateIconFromTiles(MonIconHelper *iconHelper, BoxPokemon *boxMon, u32 species, u32 spriteIndex, u8 *tileData, s32 x, s32 y, u32 headerPriority, u32 priority, u32 tileOffset, MonIcon *monIcon);
+void MonIconHelper_UpdateTransparency(MonIconHelper *unused, MonIcon *monIcon, u32 mask);
+void MonIconHelper_SetMarkings(MonIconHelper *unused, MonIcon *monIcon, u32 markings);
+void MonIconHelper_SetHeldItem(MonIconHelper *unused, MonIcon *monIcon, u32 heldItem);
+void MonIconHelper_UpdateIconForm(MonIconHelper *iconHelper, MonIcon *monIcon, BOOL isStored);
+void MonIconHelper_ReadIconData(MonIconHelper *iconHelper, void *dest, u32 spriteIndex, u32 size);
+void MonIconHelper_MoveIconTiles(MonIconHelper *iconHelper, MonIcon *monIcon, u32 tileOffset);
+void MonIconHelper_SetIconAnim(MonIconHelper *unused, MonIcon *monIcon, enum MonIconAnim anim);
+BOOL MonIconHelper_IsIconAnimDone(MonIconHelper *unused, MonIcon *monIcon);
+void MonIconHelper_SetMultiSelectShading(MonIconHelper *unused, MonIcon *monIcon, BOOL isSelected);
+NNSG2dCellDataBank *MonIconHelper_GetIconCellBank(MonIconHelper *iconHelper);
+NNSG2dAnimBankData *MonIconHelper_GetIconAnimBank(MonIconHelper *iconHelper);
 
 #endif // POKEPLATINUM_OV19_021DA270_H

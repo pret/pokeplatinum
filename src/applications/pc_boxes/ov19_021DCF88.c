@@ -24,1473 +24,1456 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
-typedef struct {
-    UnkStruct_ov19_021DCF88 *unk_00;
-    u32 unk_04;
-    Sprite *unk_08;
-    u16 unk_0C;
-    s16 unk_0E;
-    fx32 unk_10;
-    fx32 unk_14;
-    int unk_18;
-} UnkStruct_ov19_021DD378;
+typedef struct DialSwitchAnim {
+    BoxDialGraphics *dialGraphics;
+    u32 state;
+    Sprite *tabSprite;
+    u16 slideFramesLeft;
+    s16 fadeStep;
+    fx32 bgXOffset;
+    fx32 bgXStep;
+    int targetBgXOffset;
+} DialSwitchAnim;
 
-typedef struct {
-    void *unk_00;
-    Sprite *unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
-    fx32 unk_10;
-    u16 unk_14;
-    u16 unk_16;
-    BOOL unk_18;
-    fx32 unk_1C;
-    fx32 unk_20;
-    fx32 unk_24;
-    u16 unk_28;
-    u16 unk_2A;
-} UnkStruct_ov19_021DDBD0;
+typedef struct DialRotateAnim DialRotateAnim;
 
-typedef struct {
-    UnkStruct_ov19_021DCF88 *unk_00;
-    Sprite **unk_04;
-    UnkStruct_ov19_021DDBD0 unk_08[10];
-    u8 unk_1C0[10];
-    u8 unk_1CA;
-    u8 unk_1CB;
-    u8 unk_1CC;
-    u8 unk_1CD;
-} UnkStruct_ov19_021DDBF8;
+typedef struct DialSpriteMove {
+    DialRotateAnim *rotateAnim;
+    Sprite *sprite;
+    fx32 pathPos;
+    fx32 targetPathPos;
+    fx32 pathStep;
+    u16 framesLeft;
+    u16 delayFrames;
+    BOOL hasSecondMove;
+    fx32 nextPathPos;
+    fx32 nextTargetPathPos;
+    fx32 nextPathStep;
+    u16 nextFramesLeft;
+    u16 nextDelayFrames;
+} DialSpriteMove;
 
-struct UnkStruct_ov19_021DCF88_t {
-    UnkStruct_ov19_021D61B0 *unk_00;
-    const BoxApplication *unk_04;
-    BgConfig *unk_08;
-    SpriteList *unk_0C;
-    u32 unk_10;
-    SysTask *unk_14;
-    NNSG2dImagePaletteProxy unk_18;
-    Sprite *unk_2C;
-    Sprite *unk_30;
-    Sprite *unk_34[8];
-    Sprite *unk_54[10];
-    int unk_7C;
-    int unk_80;
-    String *unk_84;
-    Window unk_88;
-    void *unk_98;
-    NNSG2dCellDataBank *unk_9C;
-    void *unk_A0;
-    NNSG2dAnimBankData *unk_A4;
-    void *unk_A8;
-    NNSG2dCellDataBank *unk_AC;
-    void *unk_B0;
-    NNSG2dAnimBankData *unk_B4;
-    UnkStruct_ov19_021DD378 unk_B8;
-    u8 unk_D4[16];
-    u8 unk_E4[16];
+struct DialRotateAnim {
+    BoxDialGraphics *dialGraphics;
+    Sprite **sprites;
+    DialSpriteMove spriteMoves[10];
+    u8 unused_1C0[10];
+    u8 appearedCount;
+    u8 activeMoveCount;
+    u8 state;
+    u8 appearDelay;
 };
 
-static void ov19_021DD024(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1);
-static void ov19_021DD2BC(UnkStruct_ov19_021DCF88 *param0, NARC *param1);
-static SysTask *ov19_021DD344(UnkStruct_ov19_021DCF88 *param0, SysTaskFunc param1, void *param2);
-static void ov19_021DD358(UnkStruct_ov19_021DCF88 *param0);
-static BOOL ov19_021DD368(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DD46C(SysTask *param0, void *param1);
-static void ov19_021DD544(SysTask *param0, void *param1);
-static void ov19_021DD670(SysTask *param0, void *param1);
-static void ov19_021DD794(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DD7E8(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DD854(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DD8F8(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DD998(UnkStruct_ov19_021DCF88 *param0);
-static u32 ov19_021DD9B8(u32 param0, u32 param1);
-static void ov19_021DD9DC(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DDA7C(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DDA9C(SysTask *param0, void *param1);
-static void ov19_021DDB20(SysTask *param0, void *param1);
-static void ov19_021DDBD0(SysTask *param0, UnkStruct_ov19_021DDBD0 *param1);
-static void ov19_021DDBF8(UnkStruct_ov19_021DDBF8 *param0, Sprite *param1, UnkStruct_ov19_021DDBD0 *param2, u32 param3, u32 param4, u32 param5, u32 param6, BOOL param7);
-static void ov19_021DDC74(UnkStruct_ov19_021DDBF8 *param0, UnkStruct_ov19_021DDBD0 *param1, u32 param2, u32 param3, u32 param4);
-static void ov19_021DDCC0(SysTask *param0, void *param1);
-static void ov19_021DDD78(void *param0);
-static void ov19_021DDD80(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DDDD0(SysTask *param0, void *param1);
-static void ov19_021DDFA8(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DDFFC(SysTask *param0, void *param1);
-static void ov19_021DE0A0(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DE0F0(SysTask *param0, void *param1);
-static void ov19_021DE2A4(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DE324(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DE330(UnkStruct_ov19_021DCF88 *param0);
-static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0);
-
-static const fx32 Unk_ov19_021E0258[] = {
-    0x0,
-    0xFFFFFFFFFFFA0000,
-    0x58000
+struct BoxDialGraphics {
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BgConfig *bgConfig;
+    SpriteList *spriteList;
+    u32 shownDial;
+    SysTask *animTask;
+    NNSG2dImagePaletteProxy plttProxy;
+    Sprite *boxJumpTabSprite;
+    Sprite *markingsTabSprite;
+    Sprite *markingButtonSprites[PC_MARKINGS_BUTTON_COUNT];
+    Sprite *thumbnailSprites[DIAL_THUMBNAIL_COUNT];
+    int thumbnailsToUpdate;
+    int dialRotation;
+    String *string;
+    Window window;
+    void *tabCellBankBuffer;
+    NNSG2dCellDataBank *tabCellBank;
+    void *tabAnimBankBuffer;
+    NNSG2dAnimBankData *tabAnimBank;
+    void *markingButtonCellBankBuffer;
+    NNSG2dCellDataBank *markingButtonCellBank;
+    void *markingButtonAnimBankBuffer;
+    NNSG2dAnimBankData *markingButtonAnimBank;
+    DialSwitchAnim switchAnim;
+    u8 fadeBlendA[DIAL_FADE_STEPS];
+    u8 fadeBlendB[DIAL_FADE_STEPS];
 };
 
-static const int Unk_ov19_021E024C[] = {
-    0x0,
-    0xFFFFFFFFFFFFFF80,
-    0x80
+static void BoxDialGraphics_InitFadeBlendTables(BoxDialGraphics *dialGraphics);
+static void BoxDialGraphics_CreateTabSprites(BoxDialGraphics *dialGraphics, NARC *narc);
+static void BoxDialGraphics_LoadSpriteResources(BoxDialGraphics *dialGraphics, NARC *narc);
+static SysTask *BoxDialGraphics_StartAnimTask(BoxDialGraphics *dialGraphics, SysTaskFunc taskFunc, void *taskData);
+static void BoxDialGraphics_FinishAnimTask(BoxDialGraphics *dialGraphics);
+static BOOL BoxDialGraphics_IsAnimTaskDone(BoxDialGraphics *dialGraphics);
+static void DialSwitchAnim_OpenTask(SysTask *task, void *param);
+static void DialSwitchAnim_SwitchTask(SysTask *task, void *param);
+static void DialSwitchAnim_CloseTask(SysTask *unused, void *param);
+static void BoxDialGraphics_UpdateThumbnailRotation(BoxDialGraphics *dialGraphics);
+static void BoxDialGraphics_UpdateMarkingButtonRotation(BoxDialGraphics *dialGraphics);
+static void BoxDialGraphics_CreateThumbnailSprites(BoxDialGraphics *dialGraphics);
+static void BoxDialGraphics_LoadIncomingThumbnails(BoxDialGraphics *dialGraphics);
+static void BoxDialGraphics_DeleteThumbnailSprites(BoxDialGraphics *dialGraphics);
+static u32 GetMarkingButtonAnimID(u32 button, u32 mask);
+static void BoxDialGraphics_CreateMarkingButtonSprites(BoxDialGraphics *dialGraphics);
+static void BoxDialGraphics_DeleteMarkingButtonSprites(BoxDialGraphics *dialGraphics);
+static void DialSpriteMove_Task(SysTask *task, void *param);
+static void DialSpriteMove_MirroredTask(SysTask *task, void *param);
+static void DialSpriteMove_Finish(SysTask *task, DialSpriteMove *dialSpriteMove);
+static void DialRotateAnim_StartSpriteMove(DialRotateAnim *dialRotateAnim, Sprite *sprite, DialSpriteMove *dialSpriteMove, u32 startRingPos, u32 endRingPos, u32 frames, u32 delay, BOOL isMirrored);
+static void DialRotateAnim_QueueSecondMove(DialRotateAnim *unused, DialSpriteMove *dialSpriteMove, u32 delay, u32 startRingPos, u32 endRingPos);
+static void DialRotateAnim_ThumbnailsAppearTask(SysTask *unused, void *param);
+static void DialRotateAnim_Free(void *param);
+static void BoxDialGraphics_StartThumbnailsAppear(BoxDialGraphics *dialGraphics);
+static void DialRotateAnim_ThumbnailsRotateTask(SysTask *unused, void *param);
+static void BoxDialGraphics_StartThumbnailsRotate(BoxDialGraphics *dialGraphics);
+static void DialRotateAnim_MarkingButtonsAppearTask(SysTask *unused, void *param);
+static void BoxDialGraphics_StartMarkingButtonsAppear(BoxDialGraphics *dialGraphics);
+static void DialRotateAnim_MarkingButtonsRotateTask(SysTask *unused, void *param);
+static void BoxDialGraphics_StartMarkingButtonsRotate(BoxDialGraphics *dialGraphics);
+static void BoxDialGraphics_HideBoxNames(BoxDialGraphics *unused);
+static void BoxDialGraphics_ShowBoxNames(BoxDialGraphics *unused);
+static void BoxDialGraphics_DrawBoxNames(BoxDialGraphics *dialGraphics);
+
+static const fx32 sDialPanelXOffsets[] = {
+    FX32_CONST(0),
+    FX32_CONST(-96),
+    FX32_CONST(88)
+};
+
+static const int sDialContentXOffsets[] = {
+    0,
+    -128,
+    128
 };
 
 static const struct {
     s16 x;
     s16 y;
-} Unk_ov19_021E028C[] = {
-    { 0x6A, 0x248 },
-    { 0x6A, 0x242 },
-    { 0x6A, 0x23E },
-    { 0x69, 0x23A },
-    { 0x69, 0x238 },
-    { 0x69, 0x236 },
-    { 0x69, 0x234 },
-    { 0x69, 0x232 },
-    { 0x69, 0x230 },
-    { 0x68, 0x22E },
-    { 0x68, 0x22C },
-    { 0x68, 0x22A },
-    { 0x68, 0x228 },
-    { 0x67, 0x226 },
-    { 0x67, 0x224 },
-    { 0x67, 0x223 },
-    { 0x66, 0x221 },
-    { 0x66, 0x21F },
-    { 0x65, 0x21D },
-    { 0x65, 0x21B },
-    { 0x64, 0x219 },
-    { 0x64, 0x217 },
-    { 0x63, 0x216 },
-    { 0x62, 0x214 },
-    { 0x62, 0x212 },
-    { 0x61, 0x210 },
-    { 0x60, 0x20E },
-    { 0x60, 0x20D },
-    { 0x5F, 0x20B },
-    { 0x5E, 0x209 },
-    { 0x5E, 0x208 },
-    { 0x5D, 0x206 },
-    { 0x5C, 0x204 },
-    { 0x5B, 0x203 },
-    { 0x5A, 0x201 },
-    { 0x59, 0x1FF },
-    { 0x58, 0x1FE },
-    { 0x57, 0x1FC },
-    { 0x56, 0x1FB },
-    { 0x56, 0x1F9 },
-    { 0x55, 0x1F8 },
-    { 0x53, 0x1F6 },
-    { 0x52, 0x1F5 },
-    { 0x51, 0x1F3 },
-    { 0x50, 0x1F2 },
-    { 0x4F, 0x1F0 },
-    { 0x4E, 0x1EF },
-    { 0x4D, 0x1EE },
-    { 0x4C, 0x1EC },
-    { 0x4B, 0x1EB },
-    { 0x49, 0x1EA },
-    { 0x48, 0x1E8 },
-    { 0x47, 0x1E7 },
-    { 0x46, 0x1E6 },
-    { 0x44, 0x1E5 },
-    { 0x43, 0x1E4 },
-    { 0x42, 0x1E3 },
-    { 0x41, 0x1E2 },
-    { 0x3F, 0x1E1 },
-    { 0x3E, 0x1DF },
-    { 0x3D, 0x1DF },
-    { 0x3B, 0x1DE },
-    { 0x3A, 0x1DD },
-    { 0x38, 0x1DC },
-    { 0x37, 0x1DB },
-    { 0x36, 0x1DA },
-    { 0x34, 0x1D9 },
-    { 0x33, 0x1D8 },
-    { 0x31, 0x1D8 },
-    { 0x30, 0x1D7 },
-    { 0x2E, 0x1D6 },
-    { 0x2D, 0x1D6 },
-    { 0x2B, 0x1D5 },
-    { 0x2A, 0x1D4 },
-    { 0x28, 0x1D4 },
-    { 0x27, 0x1D3 },
-    { 0x25, 0x1D3 },
-    { 0x24, 0x1D2 },
-    { 0x22, 0x1D2 },
-    { 0x21, 0x1D2 },
-    { 0x1F, 0x1D1 },
-    { 0x1E, 0x1D1 },
-    { 0x1C, 0x1D1 },
-    { 0x1A, 0x1D0 },
-    { 0x19, 0x1D0 },
-    { 0x17, 0x1D0 },
-    { 0x16, 0x1D0 },
-    { 0x14, 0x1D0 },
-    { 0x13, 0x1D0 },
-    { 0x11, 0x1D0 },
-    { 0x10, 0x1D0 },
-    { 0x10, 0x1CE },
-    { 0x10, 0x1CC },
-    { 0x10, 0x1CA },
-    { 0x10, 0x1C8 },
-    { 0x10, 0x1C6 },
-    { 0x10, 0x1C4 },
-    { 0x10, 0x1C2 },
-    { 0x10, 0x1C0 },
-    { 0x10, 0x1BF },
-    { 0x10, 0x1BD },
-    { 0x10, 0x1BC },
-    { 0x10, 0x1BA },
-    { 0x10, 0x1B9 },
-    { 0x10, 0x1B7 },
-    { 0x10, 0x1B6 },
-    { 0x10, 0x1B4 },
-    { 0x10, 0x1B3 },
-    { 0x10, 0x1B1 },
-    { 0x10, 0x1B0 },
-    { 0x10, 0x1AE },
-    { 0x10, 0x1AD },
-    { 0x10, 0x1AB },
-    { 0x10, 0x1AA },
-    { 0x10, 0x1A8 },
-    { 0x10, 0x1A7 },
-    { 0x10, 0x1A6 },
-    { 0x10, 0x1A4 },
-    { 0x10, 0x1A2 },
-    { 0x10, 0x1A0 },
-    { 0x10, 0x19E },
-    { 0x10, 0x19C },
-    { 0x10, 0x19A },
-    { 0x10, 0x198 },
-    { 0x10, 0x196 },
-    { 0x10, 0x194 },
-    { 0x10, 0x192 },
-    { 0x10, 0x190 },
-    { 0x10, 0x18E },
-    { 0x10, 0x18C },
-    { 0x10, 0x18A },
-    { 0x10, 0x188 },
-    { 0x10, 0x186 },
-    { 0x10, 0x184 },
-    { 0x10, 0x182 },
-    { 0x10, 0x180 },
-    { 0x10, 0x17E },
-    { 0x10, 0x17C },
-    { 0x10, 0x17A },
-    { 0x10, 0x178 },
-    { 0x10, 0x176 },
-    { 0x10, 0x174 },
-    { 0x10, 0x172 },
-    { 0x10, 0x170 }
+} sDialArcPath[] = {
+    { 106, 584 },
+    { 106, 578 },
+    { 106, 574 },
+    { 105, 570 },
+    { 105, 568 },
+    { 105, 566 },
+    { 105, 564 },
+    { 105, 562 },
+    { 105, 560 },
+    { 104, 558 },
+    { 104, 556 },
+    { 104, 554 },
+    { 104, 552 },
+    { 103, 550 },
+    { 103, 548 },
+    { 103, 547 },
+    { 102, 545 },
+    { 102, 543 },
+    { 101, 541 },
+    { 101, 539 },
+    { 100, 537 },
+    { 100, 535 },
+    { 99, 534 },
+    { 98, 532 },
+    { 98, 530 },
+    { 97, 528 },
+    { 96, 526 },
+    { 96, 525 },
+    { 95, 523 },
+    { 94, 521 },
+    { 94, 520 },
+    { 93, 518 },
+    { 92, 516 },
+    { 91, 515 },
+    { 90, 513 },
+    { 89, 511 },
+    { 88, 510 },
+    { 87, 508 },
+    { 86, 507 },
+    { 86, 505 },
+    { 85, 504 },
+    { 83, 502 },
+    { 82, 501 },
+    { 81, 499 },
+    { 80, 498 },
+    { 79, 496 },
+    { 78, 495 },
+    { 77, 494 },
+    { 76, 492 },
+    { 75, 491 },
+    { 73, 490 },
+    { 72, 488 },
+    { 71, 487 },
+    { 70, 486 },
+    { 68, 485 },
+    { 67, 484 },
+    { 66, 483 },
+    { 65, 482 },
+    { 63, 481 },
+    { 62, 479 },
+    { 61, 479 },
+    { 59, 478 },
+    { 58, 477 },
+    { 56, 476 },
+    { 55, 475 },
+    { 54, 474 },
+    { 52, 473 },
+    { 51, 472 },
+    { 49, 472 },
+    { 48, 471 },
+    { 46, 470 },
+    { 45, 470 },
+    { 43, 469 },
+    { 42, 468 },
+    { 40, 468 },
+    { 39, 467 },
+    { 37, 467 },
+    { 36, 466 },
+    { 34, 466 },
+    { 33, 466 },
+    { 31, 465 },
+    { 30, 465 },
+    { 28, 465 },
+    { 26, 464 },
+    { 25, 464 },
+    { 23, 464 },
+    { 22, 464 },
+    { 20, 464 },
+    { 19, 464 },
+    { 17, 464 },
+    { 16, 464 },
+    { 16, 462 },
+    { 16, 460 },
+    { 16, 458 },
+    { 16, 456 },
+    { 16, 454 },
+    { 16, 452 },
+    { 16, 450 },
+    { 16, 448 },
+    { 16, 447 },
+    { 16, 445 },
+    { 16, 444 },
+    { 16, 442 },
+    { 16, 441 },
+    { 16, 439 },
+    { 16, 438 },
+    { 16, 436 },
+    { 16, 435 },
+    { 16, 433 },
+    { 16, 432 },
+    { 16, 430 },
+    { 16, 429 },
+    { 16, 427 },
+    { 16, 426 },
+    { 16, 424 },
+    { 16, 423 },
+    { 16, 422 },
+    { 16, 420 },
+    { 16, 418 },
+    { 16, 416 },
+    { 16, 414 },
+    { 16, 412 },
+    { 16, 410 },
+    { 16, 408 },
+    { 16, 406 },
+    { 16, 404 },
+    { 16, 402 },
+    { 16, 400 },
+    { 16, 398 },
+    { 16, 396 },
+    { 16, 394 },
+    { 16, 392 },
+    { 16, 390 },
+    { 16, 388 },
+    { 16, 386 },
+    { 16, 384 },
+    { 16, 382 },
+    { 16, 380 },
+    { 16, 378 },
+    { 16, 376 },
+    { 16, 374 },
+    { 16, 372 },
+    { 16, 370 },
+    { 16, 368 }
 };
 
-static const u16 Unk_ov19_021E0264[] = {
-    0x8F,
-    0x7F,
-    0x6A,
-    0x4A,
-    0x33,
-    0x1F,
-    0xC,
-    0x0
+static const u16 sDialRingPathPositions[] = {
+    143,
+    127,
+    106,
+    74,
+    51,
+    31,
+    12,
+    0
 };
 
-BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4)
+BOOL BoxDialGraphics_Init(BoxDialGraphics **outDialGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *spriteList)
 {
-    if (BoxApp_GetBoxMode(param2) == PC_MODE_COMPARE) {
-        *param0 = NULL;
-        return 1;
+    if (BoxApp_GetBoxMode(boxApp) == PC_MODE_COMPARE) {
+        *outDialGraphics = NULL;
+        return TRUE;
     } else {
-        UnkStruct_ov19_021DCF88 *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DCF88));
+        BoxDialGraphics *dialGraphics = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(BoxDialGraphics));
 
-        if (v0) {
-            int v1;
+        if (dialGraphics != NULL) {
+            int i;
 
-            v0->unk_08 = param3;
-            v0->unk_00 = param1;
-            v0->unk_04 = param2;
-            v0->unk_0C = param4;
-            v0->unk_14 = NULL;
-            v0->unk_84 = String_Init(32, HEAP_ID_BOX_GRAPHICS);
-            v0->unk_10 = param2->touchDialHelper.selectedTouchDial;
-            v0->unk_98 = NULL;
-            v0->unk_A0 = NULL;
-            v0->unk_A8 = NULL;
-            v0->unk_B0 = NULL;
-            v0->unk_2C = NULL;
-            v0->unk_30 = NULL;
+            dialGraphics->bgConfig = bgConfig;
+            dialGraphics->boxGraphics = boxGraphics;
+            dialGraphics->boxApp = boxApp;
+            dialGraphics->spriteList = spriteList;
+            dialGraphics->animTask = NULL;
+            dialGraphics->string = String_Init(32, HEAP_ID_BOX_GRAPHICS);
+            dialGraphics->shownDial = boxApp->dialHelper.selectedDial;
+            dialGraphics->tabCellBankBuffer = NULL;
+            dialGraphics->tabAnimBankBuffer = NULL;
+            dialGraphics->markingButtonCellBankBuffer = NULL;
+            dialGraphics->markingButtonAnimBankBuffer = NULL;
+            dialGraphics->boxJumpTabSprite = NULL;
+            dialGraphics->markingsTabSprite = NULL;
 
-            for (v1 = 0; v1 < 8; v1++) {
-                v0->unk_34[v1] = NULL;
+            for (i = 0; i < PC_MARKINGS_BUTTON_COUNT; i++) {
+                dialGraphics->markingButtonSprites[i] = NULL;
             }
 
-            for (v1 = 0; v1 < 10; v1++) {
-                v0->unk_54[v1] = NULL;
+            for (i = 0; i < DIAL_THUMBNAIL_COUNT; i++) {
+                dialGraphics->thumbnailSprites[i] = NULL;
             }
 
-            v0->unk_80 = 0;
-            ov19_021DD024(v0);
-            *param0 = v0;
+            dialGraphics->dialRotation = 0;
+            BoxDialGraphics_InitFadeBlendTables(dialGraphics);
+            *outDialGraphics = dialGraphics;
 
-            return 1;
+            return TRUE;
         }
 
-        return 0;
+        return FALSE;
     }
 }
 
-static void ov19_021DD024(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_InitFadeBlendTables(BoxDialGraphics *dialGraphics)
 {
-    fx32 v0, v1, v2;
-    int v3;
+    fx32 angle, angleStep;
+    int i;
 
-    v0 = 0;
-    v2 = (90 << FX32_SHIFT) / 16;
+    angle = 0;
+    angleStep = (90 << FX32_SHIFT) / DIAL_FADE_STEPS;
 
-    param0->unk_D4[0] = 0;
-    param0->unk_E4[0] = 16;
+    dialGraphics->fadeBlendA[0] = 0;
+    dialGraphics->fadeBlendB[0] = 16;
 
-    for (v3 = 1; v3 < (16 - 1); v3++) {
-        v0 += v2;
-        param0->unk_D4[v3] = (CalcSineDegrees(v0 >> FX32_SHIFT) * 16) >> FX32_SHIFT;
-        param0->unk_E4[v3] = 16 - param0->unk_D4[v3];
+    for (i = 1; i < DIAL_FADE_STEPS - 1; i++) {
+        angle += angleStep;
+        dialGraphics->fadeBlendA[i] = (CalcSineDegrees(angle >> FX32_SHIFT) * 16) >> FX32_SHIFT;
+        dialGraphics->fadeBlendB[i] = 16 - dialGraphics->fadeBlendA[i];
     }
 
-    param0->unk_D4[v3] = 16;
-    param0->unk_E4[v3] = 0;
+    dialGraphics->fadeBlendA[i] = 16;
+    dialGraphics->fadeBlendB[i] = 0;
 }
 
-void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
+void BoxDialGraphics_Free(BoxDialGraphics *dialGraphics)
 {
-    if (param0) {
-        int v0;
+    if (dialGraphics != NULL) {
+        int i;
 
-        Window_Remove(&(param0->unk_88));
+        Window_Remove(&dialGraphics->window);
 
-        if (param0->unk_98) {
-            Heap_Free(param0->unk_98);
+        if (dialGraphics->tabCellBankBuffer != NULL) {
+            Heap_Free(dialGraphics->tabCellBankBuffer);
         }
 
-        if (param0->unk_A0) {
-            Heap_Free(param0->unk_A0);
+        if (dialGraphics->tabAnimBankBuffer != NULL) {
+            Heap_Free(dialGraphics->tabAnimBankBuffer);
         }
 
-        if (param0->unk_A8) {
-            Heap_Free(param0->unk_A8);
+        if (dialGraphics->markingButtonCellBankBuffer != NULL) {
+            Heap_Free(dialGraphics->markingButtonCellBankBuffer);
         }
 
-        if (param0->unk_B0) {
-            Heap_Free(param0->unk_B0);
+        if (dialGraphics->markingButtonAnimBankBuffer != NULL) {
+            Heap_Free(dialGraphics->markingButtonAnimBankBuffer);
         }
 
-        if (param0->unk_2C) {
-            Sprite_Delete(param0->unk_2C);
+        if (dialGraphics->boxJumpTabSprite != NULL) {
+            Sprite_Delete(dialGraphics->boxJumpTabSprite);
         }
 
-        if (param0->unk_30) {
-            Sprite_Delete(param0->unk_30);
+        if (dialGraphics->markingsTabSprite != NULL) {
+            Sprite_Delete(dialGraphics->markingsTabSprite);
         }
 
-        if (param0->unk_84 != NULL) {
-            String_Free(param0->unk_84);
+        if (dialGraphics->string != NULL) {
+            String_Free(dialGraphics->string);
         }
 
-        for (v0 = 0; v0 < 8; v0++) {
-            if (param0->unk_34[v0]) {
-                Sprite_Delete(param0->unk_34[v0]);
-            }
-        }
-
-        for (v0 = 0; v0 < 10; v0++) {
-            if (param0->unk_54[v0]) {
-                Sprite_Delete(param0->unk_54[v0]);
+        for (i = 0; i < PC_MARKINGS_BUTTON_COUNT; i++) {
+            if (dialGraphics->markingButtonSprites[i] != NULL) {
+                Sprite_Delete(dialGraphics->markingButtonSprites[i]);
             }
         }
 
-        Heap_Free(param0);
+        for (i = 0; i < DIAL_THUMBNAIL_COUNT; i++) {
+            if (dialGraphics->thumbnailSprites[i] != NULL) {
+                Sprite_Delete(dialGraphics->thumbnailSprites[i]);
+            }
+        }
+
+        Heap_Free(dialGraphics);
     }
 }
 
-void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
+void BoxDialGraphics_LoadGraphics(BoxDialGraphics *dialGraphics, NARC *narc)
 {
-    if (param0) {
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 127, param0->unk_08, 7, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 124, param0->unk_08, 7, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 125, param0->unk_08, 6, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 126, param0->unk_08, 5, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-        Bg_FillTilesRange(param0->unk_08, 4, 0x0, 1, 0);
-        Bg_FillTilemapRect(param0->unk_08, 4, 0x0, 0, 0, 32, 32, 17);
-        Bg_CopyTilemapBufferToVRAM(param0->unk_08, 4);
-        Bg_SetOffset(param0->unk_08, BG_LAYER_SUB_1, 0, Unk_ov19_021E0258[param0->unk_10]);
-        Window_Add(param0->unk_08, &(param0->unk_88), 4, 0, 0, 32, 24, 2, 0);
-        Window_FillTilemap(&(param0->unk_88), 0x0);
-        Window_CopyToVRAM(&param0->unk_88);
-        ov19_021DE324(param0);
-        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, HEAP_ID_BOX_GRAPHICS);
-        ov19_021DD224(param0, param1);
+    if (dialGraphics != NULL) {
+        Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 127, dialGraphics->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 124, dialGraphics->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 125, dialGraphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 126, dialGraphics->bgConfig, BG_LAYER_SUB_1, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
+        Bg_FillTilesRange(dialGraphics->bgConfig, BG_LAYER_SUB_0, 0, 1, 0);
+        Bg_FillTilemapRect(dialGraphics->bgConfig, BG_LAYER_SUB_0, 0, 0, 0, 32, 32, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
+        Bg_CopyTilemapBufferToVRAM(dialGraphics->bgConfig, BG_LAYER_SUB_0);
+        Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_SET_X, sDialPanelXOffsets[dialGraphics->shownDial]);
+        Window_Add(dialGraphics->bgConfig, &dialGraphics->window, BG_LAYER_SUB_0, 0, 0, SCREEN_WIDTH_TILES, SCREEN_HEIGHT_TILES, 2, 0);
+        Window_FillTilemap(&dialGraphics->window, 0);
+        Window_CopyToVRAM(&dialGraphics->window);
+        BoxDialGraphics_HideBoxNames(dialGraphics);
+        Graphics_LoadPaletteFromOpenNARC(narc, 128, PAL_LOAD_SUB_BG, 0, 3 * PALETTE_SIZE_BYTES, HEAP_ID_BOX_GRAPHICS);
+        BoxDialGraphics_CreateTabSprites(dialGraphics, narc);
     }
 }
 
-static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
+static void BoxDialGraphics_CreateTabSprites(BoxDialGraphics *dialGraphics, NARC *narc)
 {
-    SpriteResourcesHeader v0;
-    NNSG2dImageProxy v1;
+    SpriteResourcesHeader srHeader;
+    NNSG2dImageProxy imageProxy;
 
-    ov19_021DD2BC(param0, param1);
+    BoxDialGraphics_LoadSpriteResources(dialGraphics, narc);
 
-    NNS_G2dInitImageProxy(&v1);
-    Graphics_LoadImageMappingFromOpenNARC(param1, 138, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0 * 0x20, 10, &(v1));
+    NNS_G2dInitImageProxy(&imageProxy);
+    Graphics_LoadImageMappingFromOpenNARC(narc, 138, TRUE, IMAGE_MAPPING_LAYOUT_1D, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, HEAP_ID_BOX_GRAPHICS, &imageProxy);
 
-    ov19_021D783C(&v0, &v1, &(param0->unk_18), param0->unk_9C, param0->unk_A4, 3);
+    SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, &dialGraphics->plttProxy, dialGraphics->tabCellBank, dialGraphics->tabAnimBank, 3);
 
-    param0->unk_2C = ov19_021D785C(param0->unk_0C, &v0, 0, 568, 49, NNS_G2D_VRAM_TYPE_2DSUB);
-    param0->unk_30 = ov19_021D785C(param0->unk_0C, &v0, 256, 568, 49, NNS_G2D_VRAM_TYPE_2DSUB);
+    dialGraphics->boxJumpTabSprite = BoxGraphics_CreateSprite(dialGraphics->spriteList, &srHeader, 0, 568, 49, NNS_G2D_VRAM_TYPE_2DSUB);
+    dialGraphics->markingsTabSprite = BoxGraphics_CreateSprite(dialGraphics->spriteList, &srHeader, 256, 568, 49, NNS_G2D_VRAM_TYPE_2DSUB);
 
-    Sprite_SetFlipMode(param0->unk_30, 1);
+    Sprite_SetFlipMode(dialGraphics->markingsTabSprite, 1);
 
-    if (BoxApp_GetBoxMode(param0->unk_04) == PC_MODE_MOVE_ITEMS) {
-        Sprite_SetAnim(param0->unk_30, 1);
+    if (BoxApp_GetBoxMode(dialGraphics->boxApp) == PC_MODE_MOVE_ITEMS) {
+        Sprite_SetAnim(dialGraphics->markingsTabSprite, 1);
     }
 }
 
-static void ov19_021DD2BC(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
+static void BoxDialGraphics_LoadSpriteResources(BoxDialGraphics *dialGraphics, NARC *narc)
 {
-    param0->unk_98 = Graphics_GetCellBankFromOpenNARC(param1, 139, 1, &(param0->unk_9C), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_A0 = Graphics_GetAnimBankFromOpenNARC(param1, 140, 1, &(param0->unk_A4), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_A8 = Graphics_GetCellBankFromOpenNARC(param1, 142, 1, &(param0->unk_AC), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_B0 = Graphics_GetAnimBankFromOpenNARC(param1, 143, 1, &(param0->unk_B4), HEAP_ID_BOX_GRAPHICS);
+    dialGraphics->tabCellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 139, TRUE, &dialGraphics->tabCellBank, HEAP_ID_BOX_GRAPHICS);
+    dialGraphics->tabAnimBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 140, TRUE, &dialGraphics->tabAnimBank, HEAP_ID_BOX_GRAPHICS);
+    dialGraphics->markingButtonCellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 142, TRUE, &dialGraphics->markingButtonCellBank, HEAP_ID_BOX_GRAPHICS);
+    dialGraphics->markingButtonAnimBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 143, TRUE, &dialGraphics->markingButtonAnimBank, HEAP_ID_BOX_GRAPHICS);
 
-    NNS_G2dInitImagePaletteProxy(&(param0->unk_18));
-    Graphics_LoadPartialPaletteFromOpenNARC(param1, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &(param0->unk_18));
+    NNS_G2dInitImagePaletteProxy(&dialGraphics->plttProxy);
+    Graphics_LoadPartialPaletteFromOpenNARC(narc, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &dialGraphics->plttProxy);
 }
 
-static SysTask *ov19_021DD344(UnkStruct_ov19_021DCF88 *param0, SysTaskFunc param1, void *param2)
+static SysTask *BoxDialGraphics_StartAnimTask(BoxDialGraphics *dialGraphics, SysTaskFunc taskFunc, void *taskData)
 {
-    param0->unk_14 = ov19_021D77C8(param1, param2, 0);
-    return param0->unk_14;
+    dialGraphics->animTask = BoxGraphics_StartVBlankTask(taskFunc, taskData, 0);
+    return dialGraphics->animTask;
 }
 
-static void ov19_021DD358(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_FinishAnimTask(BoxDialGraphics *dialGraphics)
 {
-    SysTask_Done(param0->unk_14);
-    param0->unk_14 = NULL;
+    SysTask_Done(dialGraphics->animTask);
+    dialGraphics->animTask = NULL;
 }
 
-static BOOL ov19_021DD368(UnkStruct_ov19_021DCF88 *param0)
+static BOOL BoxDialGraphics_IsAnimTaskDone(BoxDialGraphics *dialGraphics)
 {
-    return param0->unk_14 == NULL;
+    return dialGraphics->animTask == NULL;
 }
 
-void ov19_021DD378(UnkStruct_ov19_021DCF88 *param0)
+void BoxDialGraphics_SwitchDial(BoxDialGraphics *dialGraphics)
 {
-    if (param0) {
-        u32 selectedTouchDialID = param0->unk_04->touchDialHelper.selectedTouchDial;
+    if (dialGraphics != NULL) {
+        u32 selectedDialID = dialGraphics->boxApp->dialHelper.selectedDial;
 
-        if (param0->unk_10 != selectedTouchDialID) {
-            SysTaskFunc v1;
-            UnkStruct_ov19_021DD378 *v2 = &(param0->unk_B8);
+        if (dialGraphics->shownDial != selectedDialID) {
+            SysTaskFunc taskFunc;
+            DialSwitchAnim *switchAnim = &dialGraphics->switchAnim;
 
-            v2->unk_00 = param0;
-            v2->unk_08 = NULL;
-            v2->unk_04 = 0;
+            switchAnim->dialGraphics = dialGraphics;
+            switchAnim->tabSprite = NULL;
+            switchAnim->state = 0;
 
-            switch (selectedTouchDialID) {
-            case TOUCH_DIALS_NONE:
-                v2->unk_0C = 8;
-                v1 = ov19_021DD670;
-                ov19_021DD998(param0);
-                ov19_021DDA7C(param0);
-                ov19_021DE324(param0);
+            switch (selectedDialID) {
+            case DIALS_NONE:
+                switchAnim->slideFramesLeft = DIAL_SLIDE_FRAMES;
+                taskFunc = DialSwitchAnim_CloseTask;
+                BoxDialGraphics_DeleteThumbnailSprites(dialGraphics);
+                BoxDialGraphics_DeleteMarkingButtonSprites(dialGraphics);
+                BoxDialGraphics_HideBoxNames(dialGraphics);
                 break;
-            case TOUCH_DIALS_BOX_JUMP:
-                v2->unk_0C = 8;
+            case DIALS_BOX_JUMP:
+                switchAnim->slideFramesLeft = DIAL_SLIDE_FRAMES;
 
-                if (param0->unk_10 == 0) {
-                    v1 = ov19_021DD46C;
+                if (dialGraphics->shownDial == 0) {
+                    taskFunc = DialSwitchAnim_OpenTask;
                 } else {
-                    v1 = ov19_021DD544;
-                    v2->unk_0C += 8;
+                    taskFunc = DialSwitchAnim_SwitchTask;
+                    switchAnim->slideFramesLeft += DIAL_SLIDE_FRAMES;
                 }
 
-                ov19_021DDA7C(param0);
-                v2->unk_08 = param0->unk_2C;
+                BoxDialGraphics_DeleteMarkingButtonSprites(dialGraphics);
+                switchAnim->tabSprite = dialGraphics->boxJumpTabSprite;
                 break;
-            case TOUCH_DIALS_MARKINGS:
-                v2->unk_0C = 8;
+            case DIALS_MARKINGS:
+                switchAnim->slideFramesLeft = DIAL_SLIDE_FRAMES;
 
-                if (param0->unk_10 == 0) {
-                    v1 = ov19_021DD46C;
+                if (dialGraphics->shownDial == 0) {
+                    taskFunc = DialSwitchAnim_OpenTask;
                 } else {
-                    v1 = ov19_021DD544;
-                    v2->unk_0C += 8;
+                    taskFunc = DialSwitchAnim_SwitchTask;
+                    switchAnim->slideFramesLeft += DIAL_SLIDE_FRAMES;
                 }
 
-                v2->unk_08 = param0->unk_30;
-                ov19_021DD998(param0);
-                ov19_021DE324(param0);
+                switchAnim->tabSprite = dialGraphics->markingsTabSprite;
+                BoxDialGraphics_DeleteThumbnailSprites(dialGraphics);
+                BoxDialGraphics_HideBoxNames(dialGraphics);
                 break;
             default:
-                Heap_Free(v2);
+                Heap_Free(switchAnim);
                 return;
             }
 
-            param0->unk_10 = selectedTouchDialID;
-            v2->unk_10 = (Bg_GetXOffset(param0->unk_08, 5) * FX32_ONE);
-            v2->unk_14 = (Unk_ov19_021E0258[selectedTouchDialID] - v2->unk_10) / v2->unk_0C;
-            v2->unk_18 = Unk_ov19_021E0258[selectedTouchDialID] >> FX32_SHIFT;
+            dialGraphics->shownDial = selectedDialID;
+            switchAnim->bgXOffset = (Bg_GetXOffset(dialGraphics->bgConfig, 5) * FX32_ONE);
+            switchAnim->bgXStep = (sDialPanelXOffsets[selectedDialID] - switchAnim->bgXOffset) / switchAnim->slideFramesLeft;
+            switchAnim->targetBgXOffset = sDialPanelXOffsets[selectedDialID] >> FX32_SHIFT;
 
-            if (v2->unk_08 != NULL) {
-                Sprite_SetAnim(v2->unk_08, 1);
+            if (switchAnim->tabSprite != NULL) {
+                Sprite_SetAnim(switchAnim->tabSprite, 1);
             }
 
-            ov19_021DD344(param0, v1, v2);
+            BoxDialGraphics_StartAnimTask(dialGraphics, taskFunc, switchAnim);
         }
     }
 }
 
-BOOL ov19_021DD45C(UnkStruct_ov19_021DCF88 *param0)
+BOOL BoxDialGraphics_IsSwitchDone(BoxDialGraphics *dialGraphics)
 {
-    if (param0) {
-        return ov19_021DD368(param0);
+    if (dialGraphics != NULL) {
+        return BoxDialGraphics_IsAnimTaskDone(dialGraphics);
     } else {
-        return 1;
+        return TRUE;
     }
 }
 
-static void ov19_021DD46C(SysTask *param0, void *param1)
+static void DialSwitchAnim_OpenTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DD378 *v0 = (UnkStruct_ov19_021DD378 *)param1;
-    UnkStruct_ov19_021DCF88 *v1 = v0->unk_00;
+    DialSwitchAnim *switchAnim = (DialSwitchAnim *)param;
+    BoxDialGraphics *dialGraphics = switchAnim->dialGraphics;
 
-    switch (v0->unk_04) {
-    case 0:
-        if (Sprite_IsAnimated(v0->unk_08) == 0) {
-            v0->unk_04++;
+    switch (switchAnim->state) {
+    case DIAL_OPEN_STATE_WAIT_TAB:
+        if (Sprite_IsAnimated(switchAnim->tabSprite) == 0) {
+            switchAnim->state++;
         }
         break;
-    case 1:
-        if (v0->unk_0C) {
-            v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
-            v0->unk_0C--;
+    case DIAL_OPEN_STATE_SLIDE:
+        if (switchAnim->slideFramesLeft) {
+            switchAnim->bgXOffset += switchAnim->bgXStep;
+            Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_1, 0, (switchAnim->bgXOffset >> FX32_SHIFT));
+            switchAnim->slideFramesLeft--;
         } else {
-            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
+            Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_1, 0, switchAnim->targetBgXOffset);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 0, 16);
-            v0->unk_04++;
+            switchAnim->state++;
         }
         break;
-    case 2:
-        Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
-        v0->unk_0E = 0;
-        v0->unk_04++;
+    case DIAL_OPEN_STATE_SET_CONTENT:
+        Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_2, 0, sDialContentXOffsets[dialGraphics->shownDial]);
+        switchAnim->fadeStep = 0;
+        switchAnim->state++;
         break;
-    case 3:
-        G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
+    case DIAL_OPEN_STATE_FADE_IN:
+        G2S_ChangeBlendAlpha(dialGraphics->fadeBlendA[switchAnim->fadeStep], dialGraphics->fadeBlendB[switchAnim->fadeStep]);
 
-        if (++(v0->unk_0E) >= 16) {
-            Sprite_SetAnim(v0->unk_08, 0);
-            ov19_021DD358(v1);
+        if (++switchAnim->fadeStep >= DIAL_FADE_STEPS) {
+            Sprite_SetAnim(switchAnim->tabSprite, 0);
+            BoxDialGraphics_FinishAnimTask(dialGraphics);
         }
         break;
     }
 }
 
-static void ov19_021DD544(SysTask *param0, void *param1)
+static void DialSwitchAnim_SwitchTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DD378 *v0 = (UnkStruct_ov19_021DD378 *)param1;
-    UnkStruct_ov19_021DCF88 *v1 = v0->unk_00;
+    DialSwitchAnim *switchAnim = (DialSwitchAnim *)param;
+    BoxDialGraphics *dialGraphics = switchAnim->dialGraphics;
 
-    switch (v0->unk_04) {
-    case 0:
-        if (Sprite_IsAnimated(v0->unk_08) == 0) {
+    switch (switchAnim->state) {
+    case DIAL_SWITCH_STATE_WAIT_TAB:
+        if (Sprite_IsAnimated(switchAnim->tabSprite) == 0) {
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 16, 0);
-            v0->unk_0E = (16 - 1);
-            v0->unk_04++;
+            switchAnim->fadeStep = DIAL_FADE_STEPS - 1;
+            switchAnim->state++;
         }
         break;
-    case 1:
-        v0->unk_0E--;
-        G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
+    case DIAL_SWITCH_STATE_FADE_OUT:
+        switchAnim->fadeStep--;
+        G2S_ChangeBlendAlpha(dialGraphics->fadeBlendA[switchAnim->fadeStep], dialGraphics->fadeBlendB[switchAnim->fadeStep]);
 
-        if (v0->unk_0E == 0) {
-            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
-            v0->unk_04++;
+        if (switchAnim->fadeStep == 0) {
+            Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_2, 0, sDialContentXOffsets[dialGraphics->shownDial]);
+            switchAnim->state++;
         }
         break;
-    case 2:
-        if (v0->unk_0C) {
-            v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
-            v0->unk_0C--;
+    case DIAL_SWITCH_STATE_SLIDE:
+        if (switchAnim->slideFramesLeft) {
+            switchAnim->bgXOffset += switchAnim->bgXStep;
+            Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_1, 0, (switchAnim->bgXOffset >> FX32_SHIFT));
+            switchAnim->slideFramesLeft--;
         } else {
-            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
+            Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_1, 0, switchAnim->targetBgXOffset);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 0, 16);
-            v0->unk_04++;
+            switchAnim->state++;
         }
         break;
-    case 3:
-        Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
-        v0->unk_0E = 0;
-        v0->unk_04++;
+    case DIAL_SWITCH_STATE_SET_CONTENT:
+        Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_2, 0, sDialContentXOffsets[dialGraphics->shownDial]);
+        switchAnim->fadeStep = 0;
+        switchAnim->state++;
         break;
-    case 4:
-        G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
+    case DIAL_SWITCH_STATE_FADE_IN:
+        G2S_ChangeBlendAlpha(dialGraphics->fadeBlendA[switchAnim->fadeStep], dialGraphics->fadeBlendB[switchAnim->fadeStep]);
 
-        if (++(v0->unk_0E) >= 16) {
-            Sprite_SetAnim(v0->unk_08, 0);
-            ov19_021DD358(v1);
+        if (++switchAnim->fadeStep >= DIAL_FADE_STEPS) {
+            Sprite_SetAnim(switchAnim->tabSprite, 0);
+            BoxDialGraphics_FinishAnimTask(dialGraphics);
         }
         break;
     }
 }
 
-static void ov19_021DD670(SysTask *param0, void *param1)
+static void DialSwitchAnim_CloseTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021DD378 *v0 = (UnkStruct_ov19_021DD378 *)param1;
-    UnkStruct_ov19_021DCF88 *v1 = v0->unk_00;
+    DialSwitchAnim *switchAnim = (DialSwitchAnim *)param;
+    BoxDialGraphics *dialGraphics = switchAnim->dialGraphics;
 
-    switch (v0->unk_04) {
-    case 0:
-        v0->unk_0E = (16 - 1);
-        v0->unk_04++;
-    case 1:
-        v0->unk_0E--;
-        G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
+    switch (switchAnim->state) {
+    case DIAL_CLOSE_STATE_START_FADE:
+        switchAnim->fadeStep = DIAL_FADE_STEPS - 1;
+        switchAnim->state++;
+    case DIAL_CLOSE_STATE_FADE_OUT:
+        switchAnim->fadeStep--;
+        G2S_ChangeBlendAlpha(dialGraphics->fadeBlendA[switchAnim->fadeStep], dialGraphics->fadeBlendB[switchAnim->fadeStep]);
 
-        if (v0->unk_0E == 0) {
-            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[0]);
-            v0->unk_04++;
+        if (switchAnim->fadeStep == 0) {
+            Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_2, 0, sDialContentXOffsets[0]);
+            switchAnim->state++;
         }
         break;
-    case 2:
-        if (v0->unk_0C) {
-            v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
-            v0->unk_0C--;
+    case DIAL_CLOSE_STATE_SLIDE:
+        if (switchAnim->slideFramesLeft) {
+            switchAnim->bgXOffset += switchAnim->bgXStep;
+            Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_1, 0, (switchAnim->bgXOffset >> FX32_SHIFT));
+            switchAnim->slideFramesLeft--;
         } else {
-            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
-            v0->unk_04++;
+            Bg_SetOffset(dialGraphics->bgConfig, BG_LAYER_SUB_1, 0, switchAnim->targetBgXOffset);
+            switchAnim->state++;
         }
         break;
-    case 3:
-        ov19_021DD358(v1);
+    case DIAL_CLOSE_STATE_FINISH:
+        BoxDialGraphics_FinishAnimTask(dialGraphics);
         break;
     }
 }
 
-void ov19_021DD714(UnkStruct_ov19_021DCF88 *param0)
+void BoxDialGraphics_PopulateDial(BoxDialGraphics *dialGraphics)
 {
-    if (param0) {
-        switch (param0->unk_10) {
-        case 1:
-            ov19_021DD854(param0);
-            ov19_021DDD80(param0);
+    if (dialGraphics != NULL) {
+        switch (dialGraphics->shownDial) {
+        case DIALS_BOX_JUMP:
+            BoxDialGraphics_CreateThumbnailSprites(dialGraphics);
+            BoxDialGraphics_StartThumbnailsAppear(dialGraphics);
             break;
-        case 2:
-            ov19_021DD9DC(param0);
-            ov19_021DE0A0(param0);
+        case DIALS_MARKINGS:
+            BoxDialGraphics_CreateMarkingButtonSprites(dialGraphics);
+            BoxDialGraphics_StartMarkingButtonsAppear(dialGraphics);
             break;
         }
     }
 }
 
-BOOL ov19_021DD740(UnkStruct_ov19_021DCF88 *param0)
+BOOL BoxDialGraphics_IsPopulateDone(BoxDialGraphics *dialGraphics)
 {
-    if (param0) {
-        if (ov19_021DD368(param0)) {
-            if (param0->unk_10 == 1) {
-                ov19_021DE350(param0);
+    if (dialGraphics != NULL) {
+        if (BoxDialGraphics_IsAnimTaskDone(dialGraphics)) {
+            if (dialGraphics->shownDial == DIALS_BOX_JUMP) {
+                BoxDialGraphics_DrawBoxNames(dialGraphics);
             }
 
-            return 1;
+            return TRUE;
         }
 
-        return 0;
+        return FALSE;
     } else {
-        return 1;
+        return TRUE;
     }
 }
 
-void ov19_021DD768(UnkStruct_ov19_021DCF88 *param0)
+void BoxDialGraphics_RotateDial(BoxDialGraphics *dialGraphics)
 {
-    if (param0) {
-        switch (param0->unk_10) {
-        case 1:
-            ov19_021DE324(param0);
-            ov19_021DD8F8(param0);
-            ov19_021DDFA8(param0);
+    if (dialGraphics != NULL) {
+        switch (dialGraphics->shownDial) {
+        case DIALS_BOX_JUMP:
+            BoxDialGraphics_HideBoxNames(dialGraphics);
+            BoxDialGraphics_LoadIncomingThumbnails(dialGraphics);
+            BoxDialGraphics_StartThumbnailsRotate(dialGraphics);
             break;
-        case 2:
-            ov19_021DE2A4(param0);
+        case DIALS_MARKINGS:
+            BoxDialGraphics_StartMarkingButtonsRotate(dialGraphics);
             break;
         }
     }
 }
 
-static void ov19_021DD794(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_UpdateThumbnailRotation(BoxDialGraphics *dialGraphics)
 {
-    int v0, v1, v2, v3;
+    int leadingSlot, direction, scrollDelta;
 
-    v3 = BoxApp_GetTouchDialScrollDelta(param0->unk_04);
+    scrollDelta = BoxApp_GetDialScrollDelta(dialGraphics->boxApp);
 
-    if (v3 > 0) {
-        v0 = param0->unk_80 + (6 - 1);
+    if (scrollDelta > 0) {
+        leadingSlot = dialGraphics->dialRotation + (DIAL_VISIBLE_BUTTONS - 1);
 
-        if (v0 >= 10) {
-            v0 -= 10;
+        if (leadingSlot >= DIAL_THUMBNAIL_COUNT) {
+            leadingSlot -= DIAL_THUMBNAIL_COUNT;
         }
 
-        v1 = -1;
+        direction = -1;
 
-        param0->unk_80 -= v3;
+        dialGraphics->dialRotation -= scrollDelta;
 
-        if (param0->unk_80 < 0) {
-            param0->unk_80 += 10;
+        if (dialGraphics->dialRotation < 0) {
+            dialGraphics->dialRotation += DIAL_THUMBNAIL_COUNT;
         }
     } else {
-        v0 = param0->unk_80;
-        v1 = 1;
+        leadingSlot = dialGraphics->dialRotation;
+        direction = 1;
 
-        param0->unk_80 -= v3;
+        dialGraphics->dialRotation -= scrollDelta;
 
-        if (param0->unk_80 >= 10) {
-            param0->unk_80 -= 10;
+        if (dialGraphics->dialRotation >= DIAL_THUMBNAIL_COUNT) {
+            dialGraphics->dialRotation -= DIAL_THUMBNAIL_COUNT;
         }
     }
 }
 
-static void ov19_021DD7E8(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_UpdateMarkingButtonRotation(BoxDialGraphics *dialGraphics)
 {
-    int v0 = BoxApp_GetTouchDialScrollDelta(param0->unk_04);
-    param0->unk_80 += v0;
+    int scrollDelta = BoxApp_GetDialScrollDelta(dialGraphics->boxApp);
+    dialGraphics->dialRotation += scrollDelta;
 
-    if (param0->unk_80 < 0) {
-        param0->unk_80 += 8;
-    } else if (param0->unk_80 >= 8) {
-        param0->unk_80 -= 8;
+    if (dialGraphics->dialRotation < 0) {
+        dialGraphics->dialRotation += PC_MARKINGS_BUTTON_COUNT;
+    } else if (dialGraphics->dialRotation >= PC_MARKINGS_BUTTON_COUNT) {
+        dialGraphics->dialRotation -= PC_MARKINGS_BUTTON_COUNT;
     }
 }
 
-BOOL ov19_021DD820(UnkStruct_ov19_021DCF88 *param0)
+BOOL BoxDialGraphics_IsRotateDone(BoxDialGraphics *dialGraphics)
 {
-    if (param0) {
-        if (ov19_021DD368(param0)) {
-            if (param0->unk_10 == 1) {
-                ov19_021DE350(param0);
-                ov19_021DD794(param0);
+    if (dialGraphics != NULL) {
+        if (BoxDialGraphics_IsAnimTaskDone(dialGraphics)) {
+            if (dialGraphics->shownDial == DIALS_BOX_JUMP) {
+                BoxDialGraphics_DrawBoxNames(dialGraphics);
+                BoxDialGraphics_UpdateThumbnailRotation(dialGraphics);
             } else {
-                ov19_021DD7E8(param0);
+                BoxDialGraphics_UpdateMarkingButtonRotation(dialGraphics);
             }
 
-            return 1;
+            return TRUE;
         }
 
-        return 0;
+        return FALSE;
     } else {
-        return 1;
+        return TRUE;
     }
 }
 
-static void ov19_021DD854(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_CreateThumbnailSprites(BoxDialGraphics *dialGraphics)
 {
-    SpriteResourcesHeader v0;
-    UnkStruct_ov19_021DBA9C *v1;
-    NNSG2dImageProxy v2;
-    int v3, v4;
+    SpriteResourcesHeader srHeader;
+    BoxPopupGraphics *popupGraphics;
+    NNSG2dImageProxy imageProxy;
+    int i, offset;
 
-    v1 = ov19_021D780C(param0->unk_00);
-    v4 = BoxApp_GetTouchDialOffset(param0->unk_04) + 3;
+    popupGraphics = BoxGraphics_GetPopupGraphics(dialGraphics->boxGraphics);
+    offset = BoxApp_GetDialOffset(dialGraphics->boxApp) + 3;
 
-    if (v4 >= 18) {
-        v4 -= 18;
+    if (offset >= MAX_PC_BOXES) {
+        offset -= MAX_PC_BOXES;
     }
 
-    for (v3 = 0; v3 < 10; v3++) {
-        NNS_G2dInitImageProxy(&v2);
-        ov19_021DBBA8(v1, v4, 192 + v3 * 32, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
-        ov19_021D783C(&v0, &v2, &(param0->unk_18), ov19_021DBD3C(v1), NULL, 2);
+    for (i = 0; i < DIAL_THUMBNAIL_COUNT; i++) {
+        NNS_G2dInitImageProxy(&imageProxy);
+        BoxPopupGraphics_LoadBoxThumbnail(popupGraphics, offset, DIAL_SPRITE_TILE_BASE + i * BOX_THUMBNAIL_TILE_COUNT, NNS_G2D_VRAM_TYPE_2DSUB, &imageProxy);
+        SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, &dialGraphics->plttProxy, BoxPopupGraphics_GetThumbnailCellBank(popupGraphics), NULL, 2);
 
-        param0->unk_54[v3] = ov19_021D785C(param0->unk_0C, &v0, 16, 368, 48, NNS_G2D_VRAM_TYPE_2DSUB);
+        dialGraphics->thumbnailSprites[i] = BoxGraphics_CreateSprite(dialGraphics->spriteList, &srHeader, 16, 368, 48, NNS_G2D_VRAM_TYPE_2DSUB);
 
-        GF_ASSERT(param0->unk_54[v3] != NULL);
+        GF_ASSERT(dialGraphics->thumbnailSprites[i] != NULL);
 
-        v4--;
+        offset--;
 
-        if (v4 < 0) {
-            v4 = 18 - 1;
+        if (offset < 0) {
+            offset = MAX_PC_BOXES - 1;
         }
     }
 
-    param0->unk_80 = 0;
+    dialGraphics->dialRotation = 0;
 }
 
-static void ov19_021DD8F8(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_LoadIncomingThumbnails(BoxDialGraphics *dialGraphics)
 {
-    SpriteResourcesHeader v0;
-    UnkStruct_ov19_021DBA9C *v1;
-    int v2, v3, v4, v5, v6, v7, v8;
+    BoxPopupGraphics *popupGraphics;
+    int i, count, boxID, direction, startX, startY, slot;
 
-    v1 = ov19_021D780C(param0->unk_00);
-    v4 = BoxApp_GetTouchDialOffset(param0->unk_04);
+    popupGraphics = BoxGraphics_GetPopupGraphics(dialGraphics->boxGraphics);
+    boxID = BoxApp_GetDialOffset(dialGraphics->boxApp);
 
-    if (param0->unk_04->touchDialHelper.scrollDelta > 0) {
-        v4 = (v4 - param0->unk_04->touchDialHelper.scrollDelta) + (3 + 1);
+    if (dialGraphics->boxApp->dialHelper.scrollDelta > 0) {
+        boxID = (boxID - dialGraphics->boxApp->dialHelper.scrollDelta) + (3 + 1);
 
-        if (v4 >= 18) {
-            v4 -= 18;
+        if (boxID >= MAX_PC_BOXES) {
+            boxID -= MAX_PC_BOXES;
         }
 
-        v5 = 1;
-        v8 = param0->unk_80 - 1;
+        direction = 1;
+        slot = dialGraphics->dialRotation - 1;
 
-        if (v8 < 0) {
-            v8 += 10;
+        if (slot < 0) {
+            slot += DIAL_THUMBNAIL_COUNT;
         }
 
-        v3 = param0->unk_04->touchDialHelper.scrollDelta;
-        v6 = 16;
-        v7 = 368;
+        count = dialGraphics->boxApp->dialHelper.scrollDelta;
+        startX = 16;
+        startY = 368;
     } else {
-        v4 = (v4 - param0->unk_04->touchDialHelper.scrollDelta) - (2 + 1);
+        boxID = (boxID - dialGraphics->boxApp->dialHelper.scrollDelta) - (2 + 1);
 
-        if (v4 < 0) {
-            v4 += 18;
+        if (boxID < 0) {
+            boxID += MAX_PC_BOXES;
         }
 
-        v5 = -1;
-        v8 = param0->unk_80 + 6;
+        direction = -1;
+        slot = dialGraphics->dialRotation + DIAL_VISIBLE_BUTTONS;
 
-        if (v8 >= 10) {
-            v8 -= 10;
+        if (slot >= DIAL_THUMBNAIL_COUNT) {
+            slot -= DIAL_THUMBNAIL_COUNT;
         }
 
-        v3 = param0->unk_04->touchDialHelper.scrollDelta * -1;
-        v6 = 106;
-        v7 = 592;
+        count = dialGraphics->boxApp->dialHelper.scrollDelta * -1;
+        startX = 106;
+        startY = 592;
     }
 
-    param0->unk_7C = v3;
+    dialGraphics->thumbnailsToUpdate = count;
 
-    for (v2 = 0; v2 < v3; v2++) {
-        ov19_021DBBA8(v1, v4, 192 + v8 * 32, NNS_G2D_VRAM_TYPE_2DSUB, NULL);
+    for (i = 0; i < count; i++) {
+        BoxPopupGraphics_LoadBoxThumbnail(popupGraphics, boxID, DIAL_SPRITE_TILE_BASE + slot * BOX_THUMBNAIL_TILE_COUNT, NNS_G2D_VRAM_TYPE_2DSUB, NULL);
 
-        v4 += v5;
+        boxID += direction;
 
-        if (v4 < 0) {
-            v4 = 18 - 1;
-        } else if (v4 >= 18) {
-            v4 = 0;
+        if (boxID < 0) {
+            boxID = MAX_PC_BOXES - 1;
+        } else if (boxID >= MAX_PC_BOXES) {
+            boxID = 0;
         }
 
-        v8 -= v5;
+        slot -= direction;
 
-        if (v8 < 0) {
-            v8 = (10 - 1);
-        } else if (v8 >= 10) {
-            v8 = 0;
-        }
-    }
-}
-
-static void ov19_021DD998(UnkStruct_ov19_021DCF88 *param0)
-{
-    int v0;
-
-    for (v0 = 0; v0 < 10; v0++) {
-        if (param0->unk_54[v0]) {
-            Sprite_Delete(param0->unk_54[v0]);
-            param0->unk_54[v0] = NULL;
+        if (slot < 0) {
+            slot = DIAL_THUMBNAIL_COUNT - 1;
+        } else if (slot >= DIAL_THUMBNAIL_COUNT) {
+            slot = 0;
         }
     }
 }
 
-static u32 ov19_021DD9B8(u32 param0, u32 param1)
+static void BoxDialGraphics_DeleteThumbnailSprites(BoxDialGraphics *dialGraphics)
 {
-    if (param0 == 0) {
-        return (param1 == 0) ? 1 : 0;
+    for (int i = 0; i < DIAL_THUMBNAIL_COUNT; i++) {
+        if (dialGraphics->thumbnailSprites[i] != NULL) {
+            Sprite_Delete(dialGraphics->thumbnailSprites[i]);
+            dialGraphics->thumbnailSprites[i] = NULL;
+        }
+    }
+}
+
+static u32 GetMarkingButtonAnimID(u32 button, u32 mask)
+{
+    if (button == 0) {
+        return (mask == 0) ? 1 : 0;
     }
 
-    if (param1 & (1 << (param0 - 1))) {
-        return param0 * 2 + 1;
+    if (mask & (1 << (button - 1))) {
+        return button * 2 + 1;
     } else {
-        return param0 * 2;
+        return button * 2;
     }
 }
 
-static void ov19_021DD9DC(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_CreateMarkingButtonSprites(BoxDialGraphics *dialGraphics)
 {
-    SpriteResourcesHeader v0;
-    NNSG2dImageProxy v1;
-    u32 v2;
-    int v3;
+    SpriteResourcesHeader srHeader;
+    NNSG2dImageProxy imageProxy;
+    u32 mask;
 
-    v2 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_04);
+    mask = BoxApp_GetMonSpriteTransparencyMask(dialGraphics->boxApp);
 
-    NNS_G2dInitImageProxy(&v1);
-    Graphics_LoadImageMapping(18, 141, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 192 * 0x20, 10, &v1);
+    NNS_G2dInitImageProxy(&imageProxy);
+    Graphics_LoadImageMapping(NARC_INDEX_GRAPHIC__BOX, 141, TRUE, IMAGE_MAPPING_LAYOUT_1D, 0, NNS_G2D_VRAM_TYPE_2DSUB, DIAL_SPRITE_TILE_BASE * TILE_SIZE_4BPP, HEAP_ID_BOX_GRAPHICS, &imageProxy);
 
-    for (v3 = 0; v3 < 8; v3++) {
-        ov19_021D783C(&v0, &v1, &(param0->unk_18), param0->unk_AC, param0->unk_B4, 2);
+    for (int i = 0; i < PC_MARKINGS_BUTTON_COUNT; i++) {
+        SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, &dialGraphics->plttProxy, dialGraphics->markingButtonCellBank, dialGraphics->markingButtonAnimBank, 2);
 
-        param0->unk_34[v3] = ov19_021D785C(param0->unk_0C, &v0, 240, 368, 48, NNS_G2D_VRAM_TYPE_2DSUB);
-        GF_ASSERT(param0->unk_34[v3] != NULL);
+        dialGraphics->markingButtonSprites[i] = BoxGraphics_CreateSprite(dialGraphics->spriteList, &srHeader, 240, 368, 48, NNS_G2D_VRAM_TYPE_2DSUB);
+        GF_ASSERT(dialGraphics->markingButtonSprites[i] != NULL);
 
-        Sprite_SetAnim(param0->unk_34[v3], ov19_021DD9B8(v3, v2));
+        Sprite_SetAnim(dialGraphics->markingButtonSprites[i], GetMarkingButtonAnimID(i, mask));
     }
 
-    param0->unk_80 = BoxApp_GetMarkingsButtonsScrollOffset(param0->unk_04);
+    dialGraphics->dialRotation = BoxApp_GetMarkingsButtonsScrollOffset(dialGraphics->boxApp);
 }
 
-static void ov19_021DDA7C(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_DeleteMarkingButtonSprites(BoxDialGraphics *dialGraphics)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 8; v0++) {
-        if (param0->unk_34[v0]) {
-            Sprite_Delete(param0->unk_34[v0]);
-            param0->unk_34[v0] = NULL;
+    for (int i = 0; i < PC_MARKINGS_BUTTON_COUNT; i++) {
+        if (dialGraphics->markingButtonSprites[i] != NULL) {
+            Sprite_Delete(dialGraphics->markingButtonSprites[i]);
+            dialGraphics->markingButtonSprites[i] = NULL;
         }
     }
 }
 
-static void ov19_021DDA9C(SysTask *param0, void *param1)
+static void DialSpriteMove_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DDBD0 *v0 = (UnkStruct_ov19_021DDBD0 *)param1;
-    VecFx32 v1;
+    DialSpriteMove *dialSpriteMove = (DialSpriteMove *)param;
+    VecFx32 pos;
 
-    if (v0->unk_16) {
-        v0->unk_16--;
+    if (dialSpriteMove->delayFrames) {
+        dialSpriteMove->delayFrames--;
         return;
     }
 
-    if (v0->unk_14) {
-        u32 v2;
+    if (dialSpriteMove->framesLeft) {
+        u32 pathIndex;
 
-        v0->unk_14--;
-        v0->unk_08 += v0->unk_10;
-        v2 = v0->unk_08 >> FX32_SHIFT;
-        v1.x = Unk_ov19_021E028C[v2].x << FX32_SHIFT;
-        v1.y = Unk_ov19_021E028C[v2].y << FX32_SHIFT;
-        v1.z = 0;
-        Sprite_SetPosition(v0->unk_04, &v1);
+        dialSpriteMove->framesLeft--;
+        dialSpriteMove->pathPos += dialSpriteMove->pathStep;
+        pathIndex = dialSpriteMove->pathPos >> FX32_SHIFT;
+        pos.x = sDialArcPath[pathIndex].x << FX32_SHIFT;
+        pos.y = sDialArcPath[pathIndex].y << FX32_SHIFT;
+        pos.z = 0;
+        Sprite_SetPosition(dialSpriteMove->sprite, &pos);
     } else {
-        u32 v3 = v0->unk_0C >> FX32_SHIFT;
+        u32 targetPathIndex = dialSpriteMove->targetPathPos >> FX32_SHIFT;
 
-        v1.x = Unk_ov19_021E028C[v3].x << FX32_SHIFT;
-        v1.y = Unk_ov19_021E028C[v3].y << FX32_SHIFT;
-        v1.z = 0;
+        pos.x = sDialArcPath[targetPathIndex].x << FX32_SHIFT;
+        pos.y = sDialArcPath[targetPathIndex].y << FX32_SHIFT;
+        pos.z = 0;
 
-        Sprite_SetPosition(v0->unk_04, &v1);
-        ov19_021DDBD0(param0, v0);
+        Sprite_SetPosition(dialSpriteMove->sprite, &pos);
+        DialSpriteMove_Finish(task, dialSpriteMove);
     }
 }
 
-static void ov19_021DDB20(SysTask *param0, void *param1)
+static void DialSpriteMove_MirroredTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DDBD0 *v0 = (UnkStruct_ov19_021DDBD0 *)param1;
-    VecFx32 v1;
+    DialSpriteMove *dialSpriteMove = (DialSpriteMove *)param;
+    VecFx32 pos;
 
-    if (v0->unk_16) {
-        v0->unk_16--;
+    if (dialSpriteMove->delayFrames) {
+        dialSpriteMove->delayFrames--;
         return;
     }
 
-    if (v0->unk_14) {
-        u32 v2;
+    if (dialSpriteMove->framesLeft) {
+        u32 pathIndex;
 
-        v0->unk_14--;
-        v0->unk_08 += v0->unk_10;
-        v2 = v0->unk_08 >> FX32_SHIFT;
-        v1.x = (256 - Unk_ov19_021E028C[v2].x) << FX32_SHIFT;
-        v1.y = Unk_ov19_021E028C[v2].y << FX32_SHIFT;
-        v1.z = 0;
+        dialSpriteMove->framesLeft--;
+        dialSpriteMove->pathPos += dialSpriteMove->pathStep;
+        pathIndex = dialSpriteMove->pathPos >> FX32_SHIFT;
+        pos.x = (256 - sDialArcPath[pathIndex].x) << FX32_SHIFT;
+        pos.y = sDialArcPath[pathIndex].y << FX32_SHIFT;
+        pos.z = 0;
 
-        Sprite_SetPosition(v0->unk_04, &v1);
+        Sprite_SetPosition(dialSpriteMove->sprite, &pos);
     } else {
-        u32 v3 = v0->unk_0C >> FX32_SHIFT;
+        u32 targetPathIndex = dialSpriteMove->targetPathPos >> FX32_SHIFT;
 
-        v1.x = (256 - Unk_ov19_021E028C[v3].x) << FX32_SHIFT;
-        v1.y = Unk_ov19_021E028C[v3].y << FX32_SHIFT;
-        v1.z = 0;
+        pos.x = (256 - sDialArcPath[targetPathIndex].x) << FX32_SHIFT;
+        pos.y = sDialArcPath[targetPathIndex].y << FX32_SHIFT;
+        pos.z = 0;
 
-        Sprite_SetPosition(v0->unk_04, &v1);
+        Sprite_SetPosition(dialSpriteMove->sprite, &pos);
 
-        if (v0->unk_18) {
-            v0->unk_14 = v0->unk_28;
-            v0->unk_08 = v0->unk_1C;
-            v0->unk_10 = v0->unk_24;
-            v0->unk_0C = v0->unk_20;
-            v0->unk_16 = v0->unk_2A;
-            v0->unk_18 = 0;
+        if (dialSpriteMove->hasSecondMove) {
+            dialSpriteMove->framesLeft = dialSpriteMove->nextFramesLeft;
+            dialSpriteMove->pathPos = dialSpriteMove->nextPathPos;
+            dialSpriteMove->pathStep = dialSpriteMove->nextPathStep;
+            dialSpriteMove->targetPathPos = dialSpriteMove->nextTargetPathPos;
+            dialSpriteMove->delayFrames = dialSpriteMove->nextDelayFrames;
+            dialSpriteMove->hasSecondMove = FALSE;
         } else {
-            ov19_021DDBD0(param0, v0);
+            DialSpriteMove_Finish(task, dialSpriteMove);
         }
     }
 }
 
-static void ov19_021DDBD0(SysTask *param0, UnkStruct_ov19_021DDBD0 *param1)
+static void DialSpriteMove_Finish(SysTask *task, DialSpriteMove *dialSpriteMove)
 {
-    UnkStruct_ov19_021DDBF8 *v0 = param1->unk_00;
+    DialRotateAnim *dialRotateAnim = dialSpriteMove->rotateAnim;
 
-    GF_ASSERT(v0->unk_1CB);
-    v0->unk_1CB--;
-    SysTask_Done(param0);
+    GF_ASSERT(dialRotateAnim->activeMoveCount);
+    dialRotateAnim->activeMoveCount--;
+    SysTask_Done(task);
 }
 
-static void ov19_021DDBF8(UnkStruct_ov19_021DDBF8 *param0, Sprite *param1, UnkStruct_ov19_021DDBD0 *param2, u32 param3, u32 param4, u32 param5, u32 param6, BOOL param7)
+static void DialRotateAnim_StartSpriteMove(DialRotateAnim *dialRotateAnim, Sprite *sprite, DialSpriteMove *dialSpriteMove, u32 startRingPos, u32 endRingPos, u32 frames, u32 delay, BOOL isMirrored)
 {
-    SysTaskFunc v0;
+    SysTaskFunc taskFunc;
 
-    GF_ASSERT(param1 != NULL);
+    GF_ASSERT(sprite != NULL);
 
-    if (param6) {
-        param6--;
+    if (delay) {
+        delay--;
     }
 
-    param2->unk_00 = param0;
-    param2->unk_04 = param1;
-    param2->unk_14 = param5;
-    param2->unk_16 = param6;
+    dialSpriteMove->rotateAnim = dialRotateAnim;
+    dialSpriteMove->sprite = sprite;
+    dialSpriteMove->framesLeft = frames;
+    dialSpriteMove->delayFrames = delay;
 
-    v0 = (param7) ? ov19_021DDB20 : ov19_021DDA9C;
+    taskFunc = (isMirrored) ? DialSpriteMove_MirroredTask : DialSpriteMove_Task;
 
-    param2->unk_08 = Unk_ov19_021E0264[param3] << FX32_SHIFT;
-    param2->unk_0C = Unk_ov19_021E0264[param4] << FX32_SHIFT;
-    param2->unk_10 = (param2->unk_0C - param2->unk_08) / (s32)param5;
-    param2->unk_18 = 0;
+    dialSpriteMove->pathPos = sDialRingPathPositions[startRingPos] << FX32_SHIFT;
+    dialSpriteMove->targetPathPos = sDialRingPathPositions[endRingPos] << FX32_SHIFT;
+    dialSpriteMove->pathStep = (dialSpriteMove->targetPathPos - dialSpriteMove->pathPos) / (s32)frames;
+    dialSpriteMove->hasSecondMove = FALSE;
 
-    if (ov19_021D77C8(v0, param2, 0) != NULL) {
-        param0->unk_1CB++;
+    if (BoxGraphics_StartVBlankTask(taskFunc, dialSpriteMove, 0) != NULL) {
+        dialRotateAnim->activeMoveCount++;
     }
 }
 
-static void ov19_021DDC74(UnkStruct_ov19_021DDBF8 *param0, UnkStruct_ov19_021DDBD0 *param1, u32 param2, u32 param3, u32 param4)
+static void DialRotateAnim_QueueSecondMove(DialRotateAnim *unused, DialSpriteMove *dialSpriteMove, u32 delay, u32 startRingPos, u32 endRingPos)
 {
-    int v0;
+    int frames;
 
-    param1->unk_18 = 1;
-    param1->unk_2A = param2;
+    dialSpriteMove->hasSecondMove = TRUE;
+    dialSpriteMove->nextDelayFrames = delay;
 
-    if (param2) {
-        param1->unk_2A--;
+    if (delay) {
+        dialSpriteMove->nextDelayFrames--;
     }
 
-    v0 = param4 - param3;
+    frames = endRingPos - startRingPos;
 
-    if (v0 < 0) {
-        v0 *= -1;
+    if (frames < 0) {
+        frames *= -1;
     }
 
-    v0 *= 6;
+    frames *= DIAL_FRAMES_PER_STEP;
 
-    param1->unk_28 = v0;
-    param1->unk_1C = Unk_ov19_021E0264[param3] << FX32_SHIFT;
-    param1->unk_20 = Unk_ov19_021E0264[param4] << FX32_SHIFT;
-    param1->unk_24 = (param1->unk_20 - param1->unk_1C) / (s32)v0;
+    dialSpriteMove->nextFramesLeft = frames;
+    dialSpriteMove->nextPathPos = sDialRingPathPositions[startRingPos] << FX32_SHIFT;
+    dialSpriteMove->nextTargetPathPos = sDialRingPathPositions[endRingPos] << FX32_SHIFT;
+    dialSpriteMove->nextPathStep = (dialSpriteMove->nextTargetPathPos - dialSpriteMove->nextPathPos) / (s32)frames;
 }
 
-static void ov19_021DDCC0(SysTask *param0, void *param1)
+static void DialRotateAnim_ThumbnailsAppearTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021DDBF8 *v0 = (UnkStruct_ov19_021DDBF8 *)param1;
-    UnkStruct_ov19_021DCF88 *v1 = v0->unk_00;
+    DialRotateAnim *dialRotateAnim = (DialRotateAnim *)param;
+    BoxDialGraphics *dialGraphics = dialRotateAnim->dialGraphics;
 
-    switch (v0->unk_1CC) {
-    case 0: {
-        int v2;
+    switch (dialRotateAnim->state) {
+    case THUMBNAILS_APPEAR_STATE_LAUNCH: {
+        int slot;
 
-        v0->unk_1CA++;
-        v2 = 6 - v0->unk_1CA;
-        ov19_021DDBF8(v0, v1->unk_54[v2], &v0->unk_08[v2], 0, 7 - v0->unk_1CA, (v2 + 1) * 6, 0, 0);
-        v0->unk_1CD = 6 - (1 * 2);
+        dialRotateAnim->appearedCount++;
+        slot = DIAL_VISIBLE_BUTTONS - dialRotateAnim->appearedCount;
+        DialRotateAnim_StartSpriteMove(dialRotateAnim, dialGraphics->thumbnailSprites[slot], &dialRotateAnim->spriteMoves[slot], 0, DIAL_LAST_RING_POS - dialRotateAnim->appearedCount, (slot + 1) * DIAL_FRAMES_PER_STEP, 0, FALSE);
+        dialRotateAnim->appearDelay = 6 - (1 * 2);
 
-        if (v0->unk_1CA >= 6) {
-            v0->unk_1CC = 2;
+        if (dialRotateAnim->appearedCount >= DIAL_VISIBLE_BUTTONS) {
+            dialRotateAnim->state = THUMBNAILS_APPEAR_STATE_WAIT_MOVES;
         } else {
-            if (v0->unk_1CD) {
-                v0->unk_1CC = 1;
+            if (dialRotateAnim->appearDelay) {
+                dialRotateAnim->state = THUMBNAILS_APPEAR_STATE_WAIT_DELAY;
             }
         }
     } break;
-    case 1:
-        v0->unk_1CD -= (1 * 2);
+    case THUMBNAILS_APPEAR_STATE_WAIT_DELAY:
+        dialRotateAnim->appearDelay -= (1 * 2);
 
-        if (v0->unk_1CD == 0) {
-            v0->unk_1CC = 0;
+        if (dialRotateAnim->appearDelay == 0) {
+            dialRotateAnim->state = THUMBNAILS_APPEAR_STATE_LAUNCH;
         }
         break;
-    case 2:
-        if (v0->unk_1CB == 0) {
-            v0->unk_1CC++;
-            ov19_021D79B8(v0, ov19_021DDD78, v1);
+    case THUMBNAILS_APPEAR_STATE_WAIT_MOVES:
+        if (dialRotateAnim->activeMoveCount == 0) {
+            dialRotateAnim->state++;
+            BoxGraphics_DeferFree(dialRotateAnim, DialRotateAnim_Free, dialGraphics);
         }
         break;
     }
 }
 
-static void ov19_021DDD78(void *param0)
+static void DialRotateAnim_Free(void *param)
 {
-    UnkStruct_ov19_021DCF88 *v0 = param0;
-    ov19_021DD358(v0);
+    BoxDialGraphics *dialGraphics = param;
+    BoxDialGraphics_FinishAnimTask(dialGraphics);
 }
 
-static void ov19_021DDD80(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_StartThumbnailsAppear(BoxDialGraphics *dialGraphics)
 {
-    UnkStruct_ov19_021DDBF8 *v0;
-    int v1;
+    DialRotateAnim *dialRotateAnim;
 
-    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
+    dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
 
-    if (v0) {
-        SysTask *v2;
+    if (dialRotateAnim != NULL) {
+        dialRotateAnim->dialGraphics = dialGraphics;
+        dialRotateAnim->state = THUMBNAILS_APPEAR_STATE_LAUNCH;
+        dialRotateAnim->appearedCount = 0;
+        dialRotateAnim->activeMoveCount = 0;
 
-        v0->unk_00 = param0;
-        v0->unk_1CC = 0;
-        v0->unk_1CA = 0;
-        v0->unk_1CB = 0;
-
-        for (v1 = 0; v1 < 8; v1++) {
-            v0->unk_1C0[v1] = 0;
+        for (int i = 0; i < 8; i++) {
+            dialRotateAnim->unused_1C0[i] = 0;
         }
 
-        if (ov19_021DD344(param0, ov19_021DDCC0, v0) == NULL) {
-            Heap_Free(v0);
+        if (BoxDialGraphics_StartAnimTask(dialGraphics, DialRotateAnim_ThumbnailsAppearTask, dialRotateAnim) == NULL) {
+            Heap_Free(dialRotateAnim);
         }
     }
 }
 
-static void ov19_021DDDD0(SysTask *param0, void *param1)
+static void DialRotateAnim_ThumbnailsRotateTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021DDBF8 *v0 = (UnkStruct_ov19_021DDBF8 *)param1;
-    UnkStruct_ov19_021DCF88 *v1 = v0->unk_00;
+    DialRotateAnim *dialRotateAnim = (DialRotateAnim *)param;
+    BoxDialGraphics *dialGraphics = dialRotateAnim->dialGraphics;
 
-    switch (v0->unk_1CC) {
-    case 0: {
-        int v2, v3, v4, v5, v6, v7, v8;
+    switch (dialRotateAnim->state) {
+    case DIAL_ROTATE_STATE_START_MOVES: {
+        int i, count, slot, direction, startPos, endPos;
 
-        if (v1->unk_04->touchDialHelper.scrollDelta > 0) {
-            v4 = v1->unk_80 + 6 - 1;
+        if (dialGraphics->boxApp->dialHelper.scrollDelta > 0) {
+            slot = dialGraphics->dialRotation + DIAL_VISIBLE_BUTTONS - 1;
 
-            if (v4 >= 10) {
-                v4 -= 10;
+            if (slot >= DIAL_THUMBNAIL_COUNT) {
+                slot -= DIAL_THUMBNAIL_COUNT;
             }
 
-            v5 = -1;
-            v7 = 6;
-            v8 = 7;
+            direction = -1;
+            startPos = DIAL_VISIBLE_BUTTONS;
+            endPos = DIAL_LAST_RING_POS;
         } else {
-            v4 = v1->unk_80;
-            v5 = 1;
-            v7 = 1;
-            v8 = 0;
+            slot = dialGraphics->dialRotation;
+            direction = 1;
+            startPos = 1;
+            endPos = 0;
         }
 
-        for (v2 = 0; v2 < v1->unk_7C; v2++) {
-            ov19_021DDBF8(v0, v0->unk_04[v4], &v0->unk_08[v4], v7, v8, (v2 + 1) * 6, 0, 0);
+        for (i = 0; i < dialGraphics->thumbnailsToUpdate; i++) {
+            DialRotateAnim_StartSpriteMove(dialRotateAnim, dialRotateAnim->sprites[slot], &dialRotateAnim->spriteMoves[slot], startPos, endPos, (i + 1) * DIAL_FRAMES_PER_STEP, 0, FALSE);
 
-            v7 += v5;
-            v4 += v5;
+            startPos += direction;
+            slot += direction;
 
-            if (v4 >= 10) {
-                v4 = 0;
-            } else if (v4 < 0) {
-                v4 = 10 - 1;
+            if (slot >= DIAL_THUMBNAIL_COUNT) {
+                slot = 0;
+            } else if (slot < 0) {
+                slot = DIAL_THUMBNAIL_COUNT - 1;
             }
         }
 
-        v3 = (6 - v1->unk_7C);
+        count = (DIAL_VISIBLE_BUTTONS - dialGraphics->thumbnailsToUpdate);
 
-        for (v2 = 0; v2 < v3; v2++) {
-            v8 = v7 - (v5 * v1->unk_7C);
+        for (i = 0; i < count; i++) {
+            endPos = startPos - (direction * dialGraphics->thumbnailsToUpdate);
 
-            ov19_021DDBF8(v0, v0->unk_04[v4], &v0->unk_08[v4], v7, v8, v1->unk_7C * 6, 0, 0);
+            DialRotateAnim_StartSpriteMove(dialRotateAnim, dialRotateAnim->sprites[slot], &dialRotateAnim->spriteMoves[slot], startPos, endPos, dialGraphics->thumbnailsToUpdate * DIAL_FRAMES_PER_STEP, 0, FALSE);
 
-            v7 += v5;
-            v4 += v5;
+            startPos += direction;
+            slot += direction;
 
-            if (v4 >= 10) {
-                v4 = 0;
-            } else if (v4 < 0) {
-                v4 = 10 - 1;
+            if (slot >= DIAL_THUMBNAIL_COUNT) {
+                slot = 0;
+            } else if (slot < 0) {
+                slot = DIAL_THUMBNAIL_COUNT - 1;
             }
         }
 
-        if (v1->unk_04->touchDialHelper.scrollDelta > 0) {
-            v7 = 0;
-            v8 = v1->unk_7C;
+        if (dialGraphics->boxApp->dialHelper.scrollDelta > 0) {
+            startPos = 0;
+            endPos = dialGraphics->thumbnailsToUpdate;
         } else {
-            v7 = 7;
-            v8 = v7 - v1->unk_7C;
+            startPos = DIAL_LAST_RING_POS;
+            endPos = startPos - dialGraphics->thumbnailsToUpdate;
         }
 
-        v3 = v1->unk_7C;
+        count = dialGraphics->thumbnailsToUpdate;
 
-        for (v2 = 0; v2 < v3; v2++) {
-            ov19_021DDBF8(v0, v0->unk_04[v4], &v0->unk_08[v4], v7, v8, (v1->unk_7C - v2) * 6, (v2 + 1) * 6, 0);
+        for (i = 0; i < count; i++) {
+            DialRotateAnim_StartSpriteMove(dialRotateAnim, dialRotateAnim->sprites[slot], &dialRotateAnim->spriteMoves[slot], startPos, endPos, (dialGraphics->thumbnailsToUpdate - i) * DIAL_FRAMES_PER_STEP, (i + 1) * DIAL_FRAMES_PER_STEP, FALSE);
 
-            v8 += v5;
-            v4 += v5;
+            endPos += direction;
+            slot += direction;
 
-            if (v4 >= 10) {
-                v4 -= 10;
-            } else if (v4 < 0) {
-                v4 += 10;
+            if (slot >= DIAL_THUMBNAIL_COUNT) {
+                slot -= DIAL_THUMBNAIL_COUNT;
+            } else if (slot < 0) {
+                slot += DIAL_THUMBNAIL_COUNT;
             }
         }
 
-        v0->unk_1CC++;
+        dialRotateAnim->state++;
     } break;
-    case 1:
-        if (v0->unk_1CB == 0) {
-            v0->unk_1CC++;
-            ov19_021D79B8(v0, ov19_021DDD78, v1);
+    case DIAL_ROTATE_STATE_WAIT_MOVES:
+        if (dialRotateAnim->activeMoveCount == 0) {
+            dialRotateAnim->state++;
+            BoxGraphics_DeferFree(dialRotateAnim, DialRotateAnim_Free, dialGraphics);
         }
         break;
     }
 }
 
-static void ov19_021DDFA8(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_StartThumbnailsRotate(BoxDialGraphics *dialGraphics)
 {
-    UnkStruct_ov19_021DDBF8 *v0;
-    int v1;
+    DialRotateAnim *dialRotateAnim;
 
-    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
+    dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
 
-    if (v0) {
-        SysTask *v2;
+    if (dialRotateAnim != NULL) {
+        dialRotateAnim->dialGraphics = dialGraphics;
+        dialRotateAnim->sprites = dialGraphics->thumbnailSprites;
+        dialRotateAnim->state = DIAL_ROTATE_STATE_START_MOVES;
+        dialRotateAnim->appearedCount = 0;
+        dialRotateAnim->activeMoveCount = 0;
 
-        v0->unk_00 = param0;
-        v0->unk_04 = param0->unk_54;
-        v0->unk_1CC = 0;
-        v0->unk_1CA = 0;
-        v0->unk_1CB = 0;
-
-        for (v1 = 0; v1 < 10; v1++) {
-            v0->unk_1C0[v1] = 0;
+        for (int i = 0; i < DIAL_THUMBNAIL_COUNT; i++) {
+            dialRotateAnim->unused_1C0[i] = 0;
         }
 
-        if (ov19_021DD344(param0, ov19_021DDDD0, v0) == NULL) {
-            Heap_Free(v0);
+        if (BoxDialGraphics_StartAnimTask(dialGraphics, DialRotateAnim_ThumbnailsRotateTask, dialRotateAnim) == NULL) {
+            Heap_Free(dialRotateAnim);
         }
     }
 }
 
-static void ov19_021DDFFC(SysTask *param0, void *param1)
+static void DialRotateAnim_MarkingButtonsAppearTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021DDBF8 *v0 = (UnkStruct_ov19_021DDBF8 *)param1;
-    UnkStruct_ov19_021DCF88 *v1 = v0->unk_00;
+    DialRotateAnim *dialRotateAnim = (DialRotateAnim *)param;
+    BoxDialGraphics *dialGraphics = dialRotateAnim->dialGraphics;
 
-    switch (v0->unk_1CC) {
-    case 0: {
-        int v2, v3, v4;
+    switch (dialRotateAnim->state) {
+    case DIAL_ROTATE_STATE_START_MOVES: {
+        int i, slot, endPos;
 
-        v4 = 6;
-        v3 = v1->unk_80;
+        endPos = DIAL_VISIBLE_BUTTONS;
+        slot = dialGraphics->dialRotation;
 
-        for (v2 = 0; v2 < 6; v2++) {
-            ov19_021DDBF8(v0, v1->unk_34[v3], &(v0->unk_08[v3]), 0, v4, 6 * v4, 6 * v2, 1);
+        for (i = 0; i < DIAL_VISIBLE_BUTTONS; i++) {
+            DialRotateAnim_StartSpriteMove(dialRotateAnim, dialGraphics->markingButtonSprites[slot], &dialRotateAnim->spriteMoves[slot], 0, endPos, DIAL_FRAMES_PER_STEP * endPos, DIAL_FRAMES_PER_STEP * i, TRUE);
 
-            v4--;
+            endPos--;
 
-            if (++v3 >= 8) {
-                v3 = 0;
+            if (++slot >= PC_MARKINGS_BUTTON_COUNT) {
+                slot = 0;
             }
         }
 
-        v0->unk_1CC++;
+        dialRotateAnim->state++;
     } break;
-    case 1:
-        if (v0->unk_1CB == 0) {
-            v0->unk_1CC++;
-            ov19_021D79B8(v0, ov19_021DDD78, v1);
+    case DIAL_ROTATE_STATE_WAIT_MOVES:
+        if (dialRotateAnim->activeMoveCount == 0) {
+            dialRotateAnim->state++;
+            BoxGraphics_DeferFree(dialRotateAnim, DialRotateAnim_Free, dialGraphics);
         }
         break;
     }
 }
 
-static void ov19_021DE0A0(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_StartMarkingButtonsAppear(BoxDialGraphics *dialGraphics)
 {
-    UnkStruct_ov19_021DDBF8 *v0;
-    int v1;
+    DialRotateAnim *dialRotateAnim;
 
-    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
+    dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
 
-    if (v0) {
-        SysTask *v2;
+    if (dialRotateAnim != NULL) {
+        dialRotateAnim->dialGraphics = dialGraphics;
+        dialRotateAnim->state = DIAL_ROTATE_STATE_START_MOVES;
+        dialRotateAnim->appearedCount = 0;
+        dialRotateAnim->activeMoveCount = 0;
 
-        v0->unk_00 = param0;
-        v0->unk_1CC = 0;
-        v0->unk_1CA = 0;
-        v0->unk_1CB = 0;
-
-        for (v1 = 0; v1 < 8; v1++) {
-            v0->unk_1C0[v1] = 0;
+        for (int i = 0; i < PC_MARKINGS_BUTTON_COUNT; i++) {
+            dialRotateAnim->unused_1C0[i] = 0;
         }
 
-        if (ov19_021DD344(param0, ov19_021DDFFC, v0) == NULL) {
-            Heap_Free(v0);
+        if (BoxDialGraphics_StartAnimTask(dialGraphics, DialRotateAnim_MarkingButtonsAppearTask, dialRotateAnim) == NULL) {
+            Heap_Free(dialRotateAnim);
         }
     }
 }
 
-static void ov19_021DE0F0(SysTask *param0, void *param1)
+static void DialRotateAnim_MarkingButtonsRotateTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021DDBF8 *v0 = (UnkStruct_ov19_021DDBF8 *)param1;
-    UnkStruct_ov19_021DCF88 *v1 = v0->unk_00;
+    DialRotateAnim *dialRotateAnim = (DialRotateAnim *)param;
+    BoxDialGraphics *dialGraphics = dialRotateAnim->dialGraphics;
 
-    switch (v0->unk_1CC) {
-    case 0: {
-        int v2, v3, v4, v5, v6, v7, v8, v9, v10;
+    switch (dialRotateAnim->state) {
+    case DIAL_ROTATE_STATE_START_MOVES: {
+        int slot, scrollDelta, direction, i, startPos, endPos, queueEnd, steps, delay;
 
-        v3 = BoxApp_GetTouchDialScrollDelta(v1->unk_04);
-        v2 = v1->unk_80;
+        scrollDelta = BoxApp_GetDialScrollDelta(dialGraphics->boxApp);
+        slot = dialGraphics->dialRotation;
 
-        if (v3 < 0) {
-            v2 += (6 - 1);
+        if (scrollDelta < 0) {
+            slot += DIAL_VISIBLE_BUTTONS - 1;
 
-            if (v2 >= 8) {
-                v2 -= 8;
+            if (slot >= PC_MARKINGS_BUTTON_COUNT) {
+                slot -= PC_MARKINGS_BUTTON_COUNT;
             }
 
-            v4 = -1;
-            v9 = -v3;
-            v6 = 1;
-            v7 = 0;
+            direction = -1;
+            steps = -scrollDelta;
+            startPos = 1;
+            endPos = 0;
         } else {
-            v4 = 1;
-            v9 = v3;
-            v6 = 7 - 1;
-            v7 = 7;
+            direction = 1;
+            steps = scrollDelta;
+            startPos = DIAL_LAST_RING_POS - 1;
+            endPos = DIAL_LAST_RING_POS;
         }
 
-        v8 = 6 + v9;
+        queueEnd = DIAL_VISIBLE_BUTTONS + steps;
 
-        for (v5 = 0; v5 < v9; v5++) {
-            ov19_021DDBF8(v0, v1->unk_34[v2], &(v0->unk_08[v2]), v6, v7, 6 * (v5 + 1), 0, 1);
+        for (i = 0; i < steps; i++) {
+            DialRotateAnim_StartSpriteMove(dialRotateAnim, dialGraphics->markingButtonSprites[slot], &dialRotateAnim->spriteMoves[slot], startPos, endPos, DIAL_FRAMES_PER_STEP * (i + 1), 0, TRUE);
 
-            v6 -= v4;
-            v2 += v4;
+            startPos -= direction;
+            slot += direction;
 
-            if (v2 < 0) {
-                v2 += 8;
-            } else if (v2 >= 8) {
-                v2 -= 8;
+            if (slot < 0) {
+                slot += PC_MARKINGS_BUTTON_COUNT;
+            } else if (slot >= PC_MARKINGS_BUTTON_COUNT) {
+                slot -= PC_MARKINGS_BUTTON_COUNT;
             }
         }
 
-        v10 = 0;
+        delay = 0;
 
-        for (; v5 < 8; v5++) {
-            v7 -= v4;
+        for (; i < PC_MARKINGS_BUTTON_COUNT; i++) {
+            endPos -= direction;
 
-            ov19_021DDBF8(v0, v1->unk_34[v2], &(v0->unk_08[v2]), v6, v7, 6 * (v9), v10, 1);
+            DialRotateAnim_StartSpriteMove(dialRotateAnim, dialGraphics->markingButtonSprites[slot], &dialRotateAnim->spriteMoves[slot], startPos, endPos, DIAL_FRAMES_PER_STEP * steps, delay, TRUE);
 
-            if ((v6 != 0) && (v6 != 7)) {
-                v6 -= v4;
+            if (startPos != 0 && startPos != DIAL_LAST_RING_POS) {
+                startPos -= direction;
             } else {
-                v10 += 6;
+                delay += DIAL_FRAMES_PER_STEP;
             }
 
-            v2 += v4;
+            slot += direction;
 
-            if (v2 < 0) {
-                v2 += 8;
-            } else if (v2 >= 8) {
-                v2 -= 8;
+            if (slot < 0) {
+                slot += PC_MARKINGS_BUTTON_COUNT;
+            } else if (slot >= PC_MARKINGS_BUTTON_COUNT) {
+                slot -= PC_MARKINGS_BUTTON_COUNT;
             }
         }
 
-        if (v3 < 0) {
-            v6 = 7;
-            v7 = v6 - (v9 - 2);
+        if (scrollDelta < 0) {
+            startPos = DIAL_LAST_RING_POS;
+            endPos = startPos - (steps - 2);
         } else {
-            v6 = 0;
-            v7 = v6 + (v9 - 2);
+            startPos = 0;
+            endPos = startPos + (steps - 2);
         }
 
-        for (; v5 < v8; v5++) {
-            ov19_021DDC74(v0, &(v0->unk_08[v2]), 6, v6, v7);
+        for (; i < queueEnd; i++) {
+            DialRotateAnim_QueueSecondMove(dialRotateAnim, &dialRotateAnim->spriteMoves[slot], DIAL_FRAMES_PER_STEP, startPos, endPos);
 
-            v7 -= v4;
-            v2 += v4;
+            endPos -= direction;
+            slot += direction;
 
-            if (v2 < 0) {
-                v2 += 8;
-            } else if (v2 >= 8) {
-                v2 -= 8;
+            if (slot < 0) {
+                slot += PC_MARKINGS_BUTTON_COUNT;
+            } else if (slot >= PC_MARKINGS_BUTTON_COUNT) {
+                slot -= PC_MARKINGS_BUTTON_COUNT;
             }
         }
 
-        v0->unk_1CC++;
+        dialRotateAnim->state++;
     } break;
-    case 1:
-        if (v0->unk_1CB == 0) {
-            v0->unk_1CC++;
-            ov19_021D79B8(v0, ov19_021DDD78, v1);
+    case DIAL_ROTATE_STATE_WAIT_MOVES:
+        if (dialRotateAnim->activeMoveCount == 0) {
+            dialRotateAnim->state++;
+            BoxGraphics_DeferFree(dialRotateAnim, DialRotateAnim_Free, dialGraphics);
         }
         break;
     }
 }
 
-static void ov19_021DE2A4(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_StartMarkingButtonsRotate(BoxDialGraphics *dialGraphics)
 {
-    UnkStruct_ov19_021DDBF8 *v0;
-    int v1;
+    DialRotateAnim *dialRotateAnim;
 
-    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
+    dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
 
-    if (v0) {
-        SysTask *v2;
+    if (dialRotateAnim != NULL) {
+        dialRotateAnim->dialGraphics = dialGraphics;
+        dialRotateAnim->state = DIAL_ROTATE_STATE_START_MOVES;
+        dialRotateAnim->appearedCount = 0;
+        dialRotateAnim->activeMoveCount = 0;
 
-        v0->unk_00 = param0;
-        v0->unk_1CC = 0;
-        v0->unk_1CA = 0;
-        v0->unk_1CB = 0;
-
-        for (v1 = 0; v1 < 8; v1++) {
-            v0->unk_1C0[v1] = 0;
+        for (int i = 0; i < PC_MARKINGS_BUTTON_COUNT; i++) {
+            dialRotateAnim->unused_1C0[i] = 0;
         }
 
-        if (ov19_021DD344(param0, ov19_021DE0F0, v0) == NULL) {
-            Heap_Free(v0);
+        if (BoxDialGraphics_StartAnimTask(dialGraphics, DialRotateAnim_MarkingButtonsRotateTask, dialRotateAnim) == NULL) {
+            Heap_Free(dialRotateAnim);
         }
     }
 }
 
-void ov19_021DE2F4(UnkStruct_ov19_021DCF88 *param0)
+void BoxDialGraphics_UpdateMarkingButtons(BoxDialGraphics *dialGraphics)
 {
-    if (param0) {
-        if (param0->unk_34[0] != NULL) {
-            int v0;
-            u32 v1 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_04);
+    if (dialGraphics != NULL) {
+        if (dialGraphics->markingButtonSprites[0] != NULL) {
+            u32 mask = BoxApp_GetMonSpriteTransparencyMask(dialGraphics->boxApp);
 
-            for (v0 = 0; v0 < 8; v0++) {
-                Sprite_SetAnim(param0->unk_34[v0], ov19_021DD9B8(v0, v1));
+            for (int i = 0; i < PC_MARKINGS_BUTTON_COUNT; i++) {
+                Sprite_SetAnim(dialGraphics->markingButtonSprites[i], GetMarkingButtonAnimID(i, mask));
             }
         }
     }
 }
 
-static void ov19_021DE324(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_HideBoxNames(BoxDialGraphics *unused)
 {
-    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, FALSE);
 }
 
-static void ov19_021DE330(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_ShowBoxNames(BoxDialGraphics *unused)
 {
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_ALL, 14, 2);
-    Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, TRUE);
 }
 
-static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)
+static void BoxDialGraphics_DrawBoxNames(BoxDialGraphics *dialGraphics)
 {
     static const struct {
-        s16 unk_00;
-        s16 unk_02;
-    } v0[] = {
+        s16 x;
+        s16 y;
+    } boxNamePositions[] = {
         { 36, 4 },
         { 36, 36 },
         { 50, 69 },
@@ -1498,24 +1481,24 @@ static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)
         { 114, 124 },
         { 124, 156 },
     };
-    int v1, v2;
+    int i, boxID;
 
-    v2 = BoxApp_GetTouchDialOffset(param0->unk_04) + 3;
+    boxID = BoxApp_GetDialOffset(dialGraphics->boxApp) + 3;
 
-    if (v2 >= MAX_PC_BOXES) {
-        v2 -= MAX_PC_BOXES;
+    if (boxID >= MAX_PC_BOXES) {
+        boxID -= MAX_PC_BOXES;
     }
 
-    for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        PCBoxes_BufferBoxName(param0->unk_04->pcBoxes, v2, param0->unk_84);
-        Window_FillRectWithColor(&param0->unk_88, 0, v0[v1].unk_00, v0[v1].unk_02, 104, 17);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_88, FONT_SYSTEM, param0->unk_84, v0[v1].unk_00 + 4, v0[v1].unk_02 + 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    for (i = 0; i < NELEMS(boxNamePositions); i++) {
+        PCBoxes_BufferBoxName(dialGraphics->boxApp->pcBoxes, boxID, dialGraphics->string);
+        Window_FillRectWithColor(&dialGraphics->window, 0, boxNamePositions[i].x, boxNamePositions[i].y, 104, 17);
+        Text_AddPrinterWithParamsAndColor(&dialGraphics->window, FONT_SYSTEM, dialGraphics->string, boxNamePositions[i].x + 4, boxNamePositions[i].y + 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-        if (--v2 < 0) {
-            v2 = MAX_PC_BOXES - 1;
+        if (--boxID < 0) {
+            boxID = MAX_PC_BOXES - 1;
         }
     }
 
-    Window_LoadTiles(&param0->unk_88);
-    ov19_021DE330(param0);
+    Window_LoadTiles(&dialGraphics->window);
+    BoxDialGraphics_ShowBoxNames(dialGraphics);
 }

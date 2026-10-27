@@ -8,6 +8,7 @@
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/box_application.h"
 #include "applications/pc_boxes/ov19_021D61B0.h"
+#include "applications/pc_boxes/ov19_021D79F8.h"
 #include "applications/pc_boxes/ov19_021D8B54.h"
 #include "applications/pc_boxes/ov19_021DC5F0.h"
 #include "applications/pc_boxes/struct_ov19_021D61B0_decl.h"
@@ -24,532 +25,521 @@
 #include "sys_task_manager.h"
 
 static const struct {
-    u32 unk_00;
-    u32 unk_04;
-} Unk_ov19_021E04CC[] = {
-    { 1536 * 0x20, 7 },
-    { 1552 * 0x20, 8 },
-    { 1568 * 0x20, 9 },
+    u32 vramOffset;
+    u32 palette;
+} sItemIconVramSlots[ITEM_ICON_SPRITE_COUNT] = {
+    { ITEM_ICON_TILE_BASE * TILE_SIZE_4BPP, ITEM_ICON_PLTT_BASE },
+    { (ITEM_ICON_TILE_BASE + ITEM_ICON_TILE_COUNT) * TILE_SIZE_4BPP, ITEM_ICON_PLTT_BASE + 1 },
+    { (ITEM_ICON_TILE_BASE + 2 * ITEM_ICON_TILE_COUNT) * TILE_SIZE_4BPP, ITEM_ICON_PLTT_BASE + 2 },
 };
 
-struct UnkStruct_ov19_021DE3E8_t {
-    BOOL unk_00;
-    UnkStruct_ov19_021D61B0 *unk_04;
-    const BoxApplication *unk_08;
-    BgConfig *unk_0C;
-    SpriteList *unk_10;
-    UnkStruct_ov19_021DA384 *unk_14;
-    UnkStruct_ov19_021D8E00 *unk_18;
-    Sprite *unk_1C[3];
-    int unk_28[3];
-    int unk_34;
-    int unk_38;
+struct BoxItemIconGraphics {
+    BOOL isMoveItemsMode;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BgConfig *unread_0C;
+    SpriteList *spriteList;
+    MonIconHelper *monIconHelper;
+    BoxCursorGraphics *cursorGraphics;
+    Sprite *sprites[ITEM_ICON_SPRITE_COUNT];
+    int spriteRoles[ITEM_ICON_SPRITE_COUNT];
+    int activeMoveCount;
+    int shrinkingSprite;
 };
 
 typedef struct {
-    UnkStruct_ov19_021DE3E8 *unk_00;
-    Sprite *unk_04;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
-    fx32 unk_20;
-    fx32 unk_24;
-    int unk_28;
-    int unk_2C;
-    int unk_30;
-} UnkStruct_ov19_021DE858;
+    BoxItemIconGraphics *itemIconGraphics;
+    Sprite *sprite;
+    VecFx32 pos;
+    VecFx32 targetPos;
+    fx32 stepX;
+    fx32 stepY;
+    int landingPriority;
+    int framesLeft;
+    int state;
+} ItemIconMove;
 
-static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0);
-static void ov19_021DE51C(UnkStruct_ov19_021DE3E8 *param0);
-static int ov19_021DE538(UnkStruct_ov19_021DE3E8 *param0, int param1);
-static int ov19_021DE560(UnkStruct_ov19_021DE3E8 *param0, int param1);
-static void ov19_021DE57C(UnkStruct_ov19_021DE3E8 *param0, int param1, int param2);
-static void ov19_021DE59C(UnkStruct_ov19_021DE3E8 *param0);
-static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0);
-static void ov19_021DE694(UnkStruct_ov19_021DE3E8 *param0, VecFx32 *param1, u32 *param2);
-static void ov19_021DE718(UnkStruct_ov19_021DE3E8 *param0, int param1, int param2);
-static void ov19_021DE858(UnkStruct_ov19_021DE3E8 *param0, int param1, const VecFx32 *param2, int param3, int param4);
-static void ov19_021DE8E0(SysTask *param0, void *param1);
+static void BoxItemIconGraphics_CreateSprites(BoxItemIconGraphics *itemIconGraphics);
+static void BoxItemIconGraphics_DeleteSprites(BoxItemIconGraphics *itemIconGraphics);
+static int BoxItemIconGraphics_ClaimSprite(BoxItemIconGraphics *itemIconGraphics, enum ItemIconRole role);
+static int BoxItemIconGraphics_FindSprite(BoxItemIconGraphics *itemIconGraphics, enum ItemIconRole role);
+static void BoxItemIconGraphics_SetSpriteRole(BoxItemIconGraphics *itemIconGraphics, int spriteIndex, enum ItemIconRole role);
+static void BoxItemIconGraphics_ShowPreviewedMonItem(BoxItemIconGraphics *itemIconGraphics);
+static void BoxItemIconGraphics_ShowCursorItem(BoxItemIconGraphics *itemIconGraphics);
+static void BoxItemIconGraphics_GetMonItemIconPosition(BoxItemIconGraphics *itemIconGraphics, VecFx32 *pos, u32 *bgPriority);
+static void BoxItemIconGraphics_LoadMonItemIcon(BoxItemIconGraphics *itemIconGraphics, int spriteIndex, int heldItem);
+static void BoxItemIconGraphics_StartIconMove(BoxItemIconGraphics *itemIconGraphics, int spriteIndex, const VecFx32 *targetPos, int landingPriority, int frames);
+static void ItemIconMove_Task(SysTask *task, void *param);
 
-BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4)
+BOOL BoxItemIconGraphics_Init(BoxItemIconGraphics **outItemIconGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *spriteList)
 {
-    UnkStruct_ov19_021DE3E8 *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DE3E8));
+    BoxItemIconGraphics *itemIconGraphics = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(BoxItemIconGraphics));
 
-    if (v0) {
-        v0->unk_04 = param1;
-        v0->unk_08 = param2;
-        v0->unk_0C = param3;
-        v0->unk_10 = param4;
-        v0->unk_14 = ov19_021D77D8(param1);
-        v0->unk_18 = ov19_021D77F4(param1);
-        v0->unk_34 = 0;
-        v0->unk_00 = (BoxApp_GetBoxMode(param2) == PC_MODE_MOVE_ITEMS);
+    if (itemIconGraphics != NULL) {
+        itemIconGraphics->boxGraphics = boxGraphics;
+        itemIconGraphics->boxApp = boxApp;
+        itemIconGraphics->unread_0C = bgConfig;
+        itemIconGraphics->spriteList = spriteList;
+        itemIconGraphics->monIconHelper = BoxGraphics_GetMonIconHelper(boxGraphics);
+        itemIconGraphics->cursorGraphics = BoxGraphics_GetCursorGraphics(boxGraphics);
+        itemIconGraphics->activeMoveCount = 0;
+        itemIconGraphics->isMoveItemsMode = (BoxApp_GetBoxMode(boxApp) == PC_MODE_MOVE_ITEMS);
 
-        ov19_021DE450(v0);
-        *param0 = v0;
+        BoxItemIconGraphics_CreateSprites(itemIconGraphics);
+        *outItemIconGraphics = itemIconGraphics;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov19_021DE440(UnkStruct_ov19_021DE3E8 *param0)
+void BoxItemIconGraphics_Free(BoxItemIconGraphics *itemIconGraphics)
 {
-    ov19_021DE51C(param0);
-    Heap_Free(param0);
+    BoxItemIconGraphics_DeleteSprites(itemIconGraphics);
+    Heap_Free(itemIconGraphics);
 }
 
-static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0)
+static void BoxItemIconGraphics_CreateSprites(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00) {
-        SpriteResourcesHeader v0;
-        NNSG2dImageProxy v1;
-        NNSG2dCharacterData *v2;
-        void *v3;
-        int v4;
+    if (itemIconGraphics->isMoveItemsMode) {
+        SpriteResourcesHeader srHeader;
+        NNSG2dImageProxy imageProxy;
+        NNSG2dCharacterData *charData;
+        void *charDataBuffer;
 
-        ov19_021D783C(&v0, &v1, ov19_021D77D0(param0->unk_04), param0->unk_14->unk_1C, param0->unk_14->unk_20, 0);
-        v3 = Graphics_GetCharData(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(1, 1), 0, &v2, HEAP_ID_BOX_GRAPHICS);
+        SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, BoxGraphics_GetImagePaletteProxy(itemIconGraphics->boxGraphics), itemIconGraphics->monIconHelper->itemIconCellBank, itemIconGraphics->monIconHelper->itemIconAnimBank, 0);
+        charDataBuffer = Graphics_GetCharData(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_ICON), FALSE, &charData, HEAP_ID_BOX_GRAPHICS);
 
-        if (v3) {
-            int v5;
+        if (charDataBuffer != NULL) {
+            charData->mappingType = GX_GetOBJVRamModeChar();
 
-            v2->mappingType = GX_GetOBJVRamModeChar();
+            for (int i = 0; i < ITEM_ICON_SPRITE_COUNT; i++) {
+                NNS_G2dInitImageProxy(&imageProxy);
+                NNS_G2dLoadImage1DMapping(charData, sItemIconVramSlots[i].vramOffset, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
 
-            for (v5 = 0; v5 < 3; v5++) {
-                NNS_G2dInitImageProxy(&v1);
-                NNS_G2dLoadImage1DMapping(v2, Unk_ov19_021E04CC[v5].unk_00, NNS_G2D_VRAM_TYPE_2DMAIN, &v1);
+                itemIconGraphics->sprites[i] = BoxGraphics_CreateSprite(itemIconGraphics->spriteList, &srHeader, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                param0->unk_1C[v5] = ov19_021D785C(param0->unk_10, &v0, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+                Sprite_SetExplicitPalette(itemIconGraphics->sprites[i], sItemIconVramSlots[i].palette);
+                Sprite_SetDrawFlag(itemIconGraphics->sprites[i], FALSE);
+                Sprite_SetAffineOverwriteMode(itemIconGraphics->sprites[i], AFFINE_OVERWRITE_MODE_NORMAL);
 
-                Sprite_SetExplicitPalette(param0->unk_1C[v5], Unk_ov19_021E04CC[v5].unk_04);
-                Sprite_SetDrawFlag(param0->unk_1C[v5], FALSE);
-                Sprite_SetAffineOverwriteMode(param0->unk_1C[v5], 1);
-
-                param0->unk_28[v5] = 0;
+                itemIconGraphics->spriteRoles[i] = ITEM_ICON_ROLE_FREE;
             }
 
-            Heap_Free(v3);
+            Heap_Free(charDataBuffer);
         }
     } else {
-        int v6;
-
-        for (v6 = 0; v6 < 3; v6++) {
-            param0->unk_1C[v6] = NULL;
-            param0->unk_28[v6] = 0;
+        for (int i = 0; i < ITEM_ICON_SPRITE_COUNT; i++) {
+            itemIconGraphics->sprites[i] = NULL;
+            itemIconGraphics->spriteRoles[i] = ITEM_ICON_ROLE_FREE;
         }
     }
 }
 
-static void ov19_021DE51C(UnkStruct_ov19_021DE3E8 *param0)
+static void BoxItemIconGraphics_DeleteSprites(BoxItemIconGraphics *itemIconGraphics)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_1C[v0]) {
-            Sprite_Delete(param0->unk_1C[v0]);
+    for (int i = 0; i < ITEM_ICON_SPRITE_COUNT; i++) {
+        if (itemIconGraphics->sprites[i] != NULL) {
+            Sprite_Delete(itemIconGraphics->sprites[i]);
         }
     }
 }
 
-static int ov19_021DE538(UnkStruct_ov19_021DE3E8 *param0, int param1)
+static int BoxItemIconGraphics_ClaimSprite(BoxItemIconGraphics *itemIconGraphics, enum ItemIconRole role)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_28[v0] == 0) {
-            param0->unk_28[v0] = param1;
-            return v0;
+    for (int i = 0; i < ITEM_ICON_SPRITE_COUNT; i++) {
+        if (itemIconGraphics->spriteRoles[i] == ITEM_ICON_ROLE_FREE) {
+            itemIconGraphics->spriteRoles[i] = role;
+            return i;
         }
     }
 
     return -1;
 }
 
-static int ov19_021DE560(UnkStruct_ov19_021DE3E8 *param0, int param1)
+static int BoxItemIconGraphics_FindSprite(BoxItemIconGraphics *itemIconGraphics, enum ItemIconRole role)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_28[v0] == param1) {
-            return v0;
+    for (int i = 0; i < ITEM_ICON_SPRITE_COUNT; i++) {
+        if (itemIconGraphics->spriteRoles[i] == role) {
+            return i;
         }
     }
 
     return -1;
 }
 
-static void ov19_021DE57C(UnkStruct_ov19_021DE3E8 *param0, int param1, int param2)
+static void BoxItemIconGraphics_SetSpriteRole(BoxItemIconGraphics *itemIconGraphics, int spriteIndex, enum ItemIconRole role)
 {
-    param0->unk_28[param1] = param2;
+    itemIconGraphics->spriteRoles[spriteIndex] = role;
 }
 
-void ov19_021DE584(UnkStruct_ov19_021DE3E8 *param0)
+void BoxItemIconGraphics_ShowInitialIcons(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00 == 0) {
+    if (itemIconGraphics->isMoveItemsMode == FALSE) {
         return;
     }
 
-    ov19_021DE59C(param0);
-    ov19_021DE5D4(param0);
+    BoxItemIconGraphics_ShowPreviewedMonItem(itemIconGraphics);
+    BoxItemIconGraphics_ShowCursorItem(itemIconGraphics);
 }
 
-static void ov19_021DE59C(UnkStruct_ov19_021DE3E8 *param0)
+static void BoxItemIconGraphics_ShowPreviewedMonItem(BoxItemIconGraphics *itemIconGraphics)
 {
-    u32 v0 = BoxApp_GetPreviewedMonHeldItem(param0->unk_08);
+    u32 heldItem = BoxApp_GetPreviewedMonHeldItem(itemIconGraphics->boxApp);
 
-    if (v0 != 0) {
-        int v1 = ov19_021DE538(param0, 1);
+    if (heldItem != ITEM_NONE) {
+        int spriteIndex = BoxItemIconGraphics_ClaimSprite(itemIconGraphics, ITEM_ICON_ROLE_PREVIEW);
 
-        ov19_021DE718(param0, v1, v0);
-        Sprite_SetAnim(param0->unk_1C[v1], 6);
-        Sprite_SetDrawFlag(param0->unk_1C[v1], TRUE);
+        BoxItemIconGraphics_LoadMonItemIcon(itemIconGraphics, spriteIndex, heldItem);
+        Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_SHOWN);
+        Sprite_SetDrawFlag(itemIconGraphics->sprites[spriteIndex], TRUE);
     }
 }
 
-static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
+static void BoxItemIconGraphics_ShowCursorItem(BoxItemIconGraphics *itemIconGraphics)
 {
-    u32 item = BoxApp_GetCursorItem(param0->unk_08);
+    u32 item = BoxApp_GetCursorItem(itemIconGraphics->boxApp);
 
     if (item != ITEM_NONE) {
-        VecFx32 v1;
-        u32 v2;
-        int v3 = ov19_021DE538(param0, 3);
+        VecFx32 pos;
+        u32 bgPriority;
+        int spriteIndex = BoxItemIconGraphics_ClaimSprite(itemIconGraphics, ITEM_ICON_ROLE_HELD);
 
-        ov19_021D9B1C(param0->unk_18, &v1);
+        BoxCursorGraphics_GetPosition(itemIconGraphics->cursorGraphics, &pos);
 
-        v1.x += (0 << FX32_SHIFT);
-        v1.y += (8 << FX32_SHIFT);
+        pos.x += ITEM_ICON_CURSOR_OFFSET_X << FX32_SHIFT;
+        pos.y += ITEM_ICON_CURSOR_OFFSET_Y << FX32_SHIFT;
 
-        if (BoxApp_GetCursorLocation(param0->unk_08) == CURSOR_IN_PARTY) {
-            v2 = 1;
+        if (BoxApp_GetCursorLocation(itemIconGraphics->boxApp) == CURSOR_IN_PARTY) {
+            bgPriority = ITEM_ICON_PARTY_BG_PRIORITY;
         } else {
-            v2 = 2;
+            bgPriority = ITEM_ICON_BOX_BG_PRIORITY;
         }
 
-        Graphics_LoadObjectTiles(16, Item_FileID(item, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);
-        Sprite_SetExplicitPriority(param0->unk_1C[v3], v2);
+        Graphics_LoadObjectTiles(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), DS_SCREEN_MAIN, sItemIconVramSlots[spriteIndex].vramOffset, 0, FALSE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), PAL_LOAD_MAIN_OBJ, PLTT_OFFSET(sItemIconVramSlots[spriteIndex].palette), PALETTE_SIZE_BYTES, HEAP_ID_BOX_GRAPHICS);
+        Sprite_SetExplicitPriority(itemIconGraphics->sprites[spriteIndex], bgPriority);
 
-        BoxGraphics_SetSpritePriority(param0->unk_1C[v3], 2);
+        BoxGraphics_SetSpritePriority(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_CURSOR_SPRITE_PRIORITY);
 
-        Sprite_SetPosition(param0->unk_1C[v3], &v1);
-        Sprite_SetAnim(param0->unk_1C[v3], 0);
-        Sprite_SetDrawFlag(param0->unk_1C[v3], TRUE);
+        Sprite_SetPosition(itemIconGraphics->sprites[spriteIndex], &pos);
+        Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_HELD);
+        Sprite_SetDrawFlag(itemIconGraphics->sprites[spriteIndex], TRUE);
     }
 }
 
-static void ov19_021DE694(UnkStruct_ov19_021DE3E8 *param0, VecFx32 *param1, u32 *param2)
+static void BoxItemIconGraphics_GetMonItemIconPosition(BoxItemIconGraphics *itemIconGraphics, VecFx32 *pos, u32 *bgPriority)
 {
-    param1->z = 0;
+    pos->z = 0;
 
-    if (BoxApp_GetCursorLocation(param0->unk_08) == CURSOR_IN_PARTY) {
-        s32 v0, v1;
+    if (BoxApp_GetCursorLocation(itemIconGraphics->boxApp) == CURSOR_IN_PARTY) {
+        s32 slotX, slotY;
 
-        ov19_021DCD30(ov19_021D77E8(param0->unk_04), BoxApp_GetCursorPartyPosition(param0->unk_08), &v0, &v1);
+        BoxPartyGraphics_GetCursorSlotPosition(BoxGraphics_GetPartyGraphics(itemIconGraphics->boxGraphics), BoxApp_GetCursorPartyPosition(itemIconGraphics->boxApp), &slotX, &slotY);
 
-        param1->x = (v0 + 10) << FX32_SHIFT;
-        param1->y = (v1 + 8) << FX32_SHIFT;
-        *param2 = 1;
+        pos->x = (slotX + ITEM_ICON_MON_OFFSET_X) << FX32_SHIFT;
+        pos->y = (slotY + ITEM_ICON_MON_OFFSET_Y) << FX32_SHIFT;
+        *bgPriority = ITEM_ICON_PARTY_BG_PRIORITY;
     } else {
-        param1->x = 112 + ov19_021D7820(param0->unk_04) + BoxApp_GetCursorBoxCol(param0->unk_08) * 24 + 10;
-        param1->y = 40 + BoxApp_GetCursorBoxRow(param0->unk_08) * 24 + 8;
-        param1->x <<= FX32_SHIFT;
-        param1->y <<= FX32_SHIFT;
-        *param2 = 2;
+        pos->x = BOX_GRID_LEFT + BoxGraphics_GetCompareModeXOffset(itemIconGraphics->boxGraphics) + BoxApp_GetCursorBoxCol(itemIconGraphics->boxApp) * BOX_GRID_CELL_SIZE + ITEM_ICON_MON_OFFSET_X;
+        pos->y = BOX_GRID_TOP + BoxApp_GetCursorBoxRow(itemIconGraphics->boxApp) * BOX_GRID_CELL_SIZE + ITEM_ICON_MON_OFFSET_Y;
+        pos->x <<= FX32_SHIFT;
+        pos->y <<= FX32_SHIFT;
+        *bgPriority = ITEM_ICON_BOX_BG_PRIORITY;
     }
 }
 
-static void ov19_021DE718(UnkStruct_ov19_021DE3E8 *param0, int param1, int param2)
+static void BoxItemIconGraphics_LoadMonItemIcon(BoxItemIconGraphics *itemIconGraphics, int spriteIndex, int heldItem)
 {
-    if (param1 >= 0) {
-        VecFx32 v0;
-        u32 v1;
+    if (spriteIndex >= 0) {
+        VecFx32 pos;
+        u32 bgPriority;
 
-        ov19_021DE694(param0, &v0, &v1);
+        BoxItemIconGraphics_GetMonItemIconPosition(itemIconGraphics, &pos, &bgPriority);
 
-        Graphics_LoadObjectTiles(16, Item_FileID(param2, 1), 0, Unk_ov19_021E04CC[param1].unk_00, 0, 0, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);
-        Sprite_SetExplicitPriority(param0->unk_1C[param1], v1);
+        Graphics_LoadObjectTiles(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(heldItem, ITEM_FILE_TYPE_ICON), DS_SCREEN_MAIN, sItemIconVramSlots[spriteIndex].vramOffset, 0, FALSE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(heldItem, ITEM_FILE_TYPE_PALETTE), PAL_LOAD_MAIN_OBJ, PLTT_OFFSET(sItemIconVramSlots[spriteIndex].palette), PALETTE_SIZE_BYTES, HEAP_ID_BOX_GRAPHICS);
+        Sprite_SetExplicitPriority(itemIconGraphics->sprites[spriteIndex], bgPriority);
 
-        BoxGraphics_SetSpritePriority(param0->unk_1C[param1], 3);
-        Sprite_SetPosition(param0->unk_1C[param1], &v0);
+        BoxGraphics_SetSpritePriority(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_MON_SPRITE_PRIORITY);
+        Sprite_SetPosition(itemIconGraphics->sprites[spriteIndex], &pos);
     }
 }
 
-void ov19_021DE7A0(UnkStruct_ov19_021DE3E8 *param0)
+void BoxItemIconGraphics_UpdatePreviewIcon(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00) {
-        int v0, v1;
+    if (itemIconGraphics->isMoveItemsMode) {
+        int spriteIndex, heldItem;
 
-        v0 = ov19_021DE560(param0, 1);
+        spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_PREVIEW);
 
-        if (v0 >= 0) {
-            ov19_021DE57C(param0, v0, 2);
-            Sprite_SetAnim(param0->unk_1C[v0], 2);
+        if (spriteIndex >= 0) {
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, spriteIndex, ITEM_ICON_ROLE_HIDING);
+            Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_HIDE);
         }
 
-        v1 = BoxApp_GetPreviewedMonHeldItem(param0->unk_08);
+        heldItem = BoxApp_GetPreviewedMonHeldItem(itemIconGraphics->boxApp);
 
-        if (v1 != 0) {
-            v0 = ov19_021DE538(param0, 1);
+        if (heldItem != ITEM_NONE) {
+            spriteIndex = BoxItemIconGraphics_ClaimSprite(itemIconGraphics, ITEM_ICON_ROLE_PREVIEW);
 
-            if (v0 >= 0) {
-                ov19_021DE718(param0, v0, v1);
-                Sprite_SetAnim(param0->unk_1C[v0], 1);
-                Sprite_SetDrawFlag(param0->unk_1C[v0], TRUE);
+            if (spriteIndex >= 0) {
+                BoxItemIconGraphics_LoadMonItemIcon(itemIconGraphics, spriteIndex, heldItem);
+                Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_APPEAR);
+                Sprite_SetDrawFlag(itemIconGraphics->sprites[spriteIndex], TRUE);
             }
         }
     }
 }
 
-BOOL ov19_021DE800(UnkStruct_ov19_021DE3E8 *param0)
+BOOL BoxItemIconGraphics_IsPreviewUpdateDone(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00 == 0) {
-        return 1;
+    if (itemIconGraphics->isMoveItemsMode == FALSE) {
+        return TRUE;
     } else {
-        int v0 = ov19_021DE560(param0, 1);
+        int spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_PREVIEW);
 
-        if (v0 >= 0) {
-            if (Sprite_IsAnimated(param0->unk_1C[v0])) {
-                return 0;
+        if (spriteIndex >= 0) {
+            if (Sprite_IsAnimated(itemIconGraphics->sprites[spriteIndex])) {
+                return FALSE;
             }
         }
 
-        v0 = ov19_021DE560(param0, 2);
+        spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_HIDING);
 
-        if (v0 >= 0) {
-            if (Sprite_IsAnimated(param0->unk_1C[v0])) {
-                return 0;
+        if (spriteIndex >= 0) {
+            if (Sprite_IsAnimated(itemIconGraphics->sprites[spriteIndex])) {
+                return FALSE;
             }
 
-            ov19_021DE57C(param0, v0, 0);
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, spriteIndex, ITEM_ICON_ROLE_FREE);
         }
 
-        return 1;
+        return TRUE;
     }
 }
 
-static void ov19_021DE858(UnkStruct_ov19_021DE3E8 *param0, int param1, const VecFx32 *param2, int param3, int param4)
+static void BoxItemIconGraphics_StartIconMove(BoxItemIconGraphics *itemIconGraphics, int spriteIndex, const VecFx32 *targetPos, int landingPriority, int frames)
 {
-    UnkStruct_ov19_021DE858 *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DE858));
+    ItemIconMove *iconMove = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(ItemIconMove));
 
-    if (v0) {
-        v0->unk_00 = param0;
-        v0->unk_04 = param0->unk_1C[param1];
-        v0->unk_08 = *(Sprite_GetPosition(v0->unk_04));
-        v0->unk_14 = *param2;
-        v0->unk_20 = (v0->unk_14.x - v0->unk_08.x) / param4;
-        v0->unk_24 = (v0->unk_14.y - v0->unk_08.y) / param4;
-        v0->unk_2C = param4;
-        v0->unk_28 = param3;
-        v0->unk_30 = 0;
+    if (iconMove != NULL) {
+        iconMove->itemIconGraphics = itemIconGraphics;
+        iconMove->sprite = itemIconGraphics->sprites[spriteIndex];
+        iconMove->pos = *(Sprite_GetPosition(iconMove->sprite));
+        iconMove->targetPos = *targetPos;
+        iconMove->stepX = (iconMove->targetPos.x - iconMove->pos.x) / frames;
+        iconMove->stepY = (iconMove->targetPos.y - iconMove->pos.y) / frames;
+        iconMove->framesLeft = frames;
+        iconMove->landingPriority = landingPriority;
+        iconMove->state = ITEM_ICON_MOVE_STATE_MOVE;
 
-        if (ov19_021D77C8(ov19_021DE8E0, v0, 0)) {
-            param0->unk_34++;
+        if (BoxGraphics_StartVBlankTask(ItemIconMove_Task, iconMove, 0)) {
+            itemIconGraphics->activeMoveCount++;
         } else {
-            Heap_Free(v0);
+            Heap_Free(iconMove);
         }
     }
 }
 
-static void ov19_021DE8E0(SysTask *param0, void *param1)
+static void ItemIconMove_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DE858 *v0 = param1;
+    ItemIconMove *iconMove = param;
 
-    switch (v0->unk_30) {
-    case 0:
-        if (v0->unk_2C) {
-            v0->unk_08.x += v0->unk_20;
-            v0->unk_08.y += v0->unk_24;
-            Sprite_SetPosition(v0->unk_04, &v0->unk_08);
-            v0->unk_2C--;
+    switch (iconMove->state) {
+    case ITEM_ICON_MOVE_STATE_MOVE:
+        if (iconMove->framesLeft) {
+            iconMove->pos.x += iconMove->stepX;
+            iconMove->pos.y += iconMove->stepY;
+            Sprite_SetPosition(iconMove->sprite, &iconMove->pos);
+            iconMove->framesLeft--;
         } else {
-            Sprite_SetPosition(v0->unk_04, &v0->unk_14);
-            v0->unk_30++;
+            Sprite_SetPosition(iconMove->sprite, &iconMove->targetPos);
+            iconMove->state++;
         }
         break;
-    case 1:
-        if (Sprite_IsAnimated(v0->unk_04) == 0) {
-            BoxGraphics_SetSpritePriority(v0->unk_04, v0->unk_28);
-            v0->unk_00->unk_34--;
-            SysTask_Done(param0);
-            ov19_021D79B8(v0, NULL, NULL);
+    case ITEM_ICON_MOVE_STATE_WAIT_ANIM:
+        if (Sprite_IsAnimated(iconMove->sprite) == FALSE) {
+            BoxGraphics_SetSpritePriority(iconMove->sprite, iconMove->landingPriority);
+            iconMove->itemIconGraphics->activeMoveCount--;
+            SysTask_Done(task);
+            BoxGraphics_DeferFree(iconMove, NULL, NULL);
         }
         break;
     }
 }
 
-void ov19_021DE954(UnkStruct_ov19_021DE3E8 *param0)
+void BoxItemIconGraphics_StartTakeItem(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00) {
-        int v0 = ov19_021DE560(param0, 1);
+    if (itemIconGraphics->isMoveItemsMode) {
+        int spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_PREVIEW);
 
-        if (v0 >= 0) {
-            VecFx32 v1;
+        if (spriteIndex >= 0) {
+            VecFx32 targetPos;
 
-            ov19_021D9B1C(param0->unk_18, &v1);
+            BoxCursorGraphics_GetPosition(itemIconGraphics->cursorGraphics, &targetPos);
 
-            v1.x += (0 << FX32_SHIFT);
-            v1.y += (8 << FX32_SHIFT);
+            targetPos.x += ITEM_ICON_CURSOR_OFFSET_X << FX32_SHIFT;
+            targetPos.y += ITEM_ICON_CURSOR_OFFSET_Y << FX32_SHIFT;
 
-            ov19_021DE57C(param0, v0, 3);
-            Sprite_SetAnim(param0->unk_1C[v0], 3);
-            ov19_021DE858(param0, v0, &v1, 2, 12);
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, spriteIndex, ITEM_ICON_ROLE_HELD);
+            Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_PICK_UP);
+            BoxItemIconGraphics_StartIconMove(itemIconGraphics, spriteIndex, &targetPos, ITEM_ICON_CURSOR_SPRITE_PRIORITY, ITEM_ICON_MOVE_FRAMES);
         }
     }
 }
 
-BOOL ov19_021DE9A8(UnkStruct_ov19_021DE3E8 *param0)
+BOOL BoxItemIconGraphics_IsTakeItemDone(BoxItemIconGraphics *itemIconGraphics)
 {
-    return param0->unk_34 == 0;
+    return itemIconGraphics->activeMoveCount == 0;
 }
 
-void ov19_021DE9B8(UnkStruct_ov19_021DE3E8 *param0)
+void BoxItemIconGraphics_HidePreviewIcon(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00) {
-        int v0 = ov19_021DE560(param0, 1);
+    if (itemIconGraphics->isMoveItemsMode) {
+        int spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_PREVIEW);
 
-        if (v0 >= 0) {
-            ov19_021DE57C(param0, v0, 2);
-            Sprite_SetAnim(param0->unk_1C[v0], 2);
+        if (spriteIndex >= 0) {
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, spriteIndex, ITEM_ICON_ROLE_HIDING);
+            Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_HIDE);
         }
     }
 }
 
-BOOL ov19_021DE9E4(UnkStruct_ov19_021DE3E8 *param0)
+BOOL BoxItemIconGraphics_IsPreviewIconHidden(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00) {
-        int v0 = ov19_021DE560(param0, 2);
+    if (itemIconGraphics->isMoveItemsMode) {
+        int spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_HIDING);
 
-        if (v0 >= 0) {
-            if (Sprite_IsAnimated(param0->unk_1C[v0])) {
-                return 0;
+        if (spriteIndex >= 0) {
+            if (Sprite_IsAnimated(itemIconGraphics->sprites[spriteIndex])) {
+                return FALSE;
             }
 
-            ov19_021DE57C(param0, v0, 0);
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, spriteIndex, ITEM_ICON_ROLE_FREE);
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DEA18(UnkStruct_ov19_021DE3E8 *param0)
+void BoxItemIconGraphics_StartGiveItem(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00) {
-        int v0 = ov19_021DE560(param0, 3);
+    if (itemIconGraphics->isMoveItemsMode) {
+        int spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_HELD);
 
-        if (v0 >= 0) {
-            VecFx32 v1;
-            u32 v2;
+        if (spriteIndex >= 0) {
+            VecFx32 targetPos;
+            u32 bgPriority;
 
-            ov19_021DE694(param0, &v1, &v2);
-            ov19_021DE57C(param0, v0, 1);
-            Sprite_SetAnim(param0->unk_1C[v0], 4);
-            ov19_021DE858(param0, v0, &v1, 3, 12);
-        }
-    }
-}
-
-BOOL ov19_021DEA64(UnkStruct_ov19_021DE3E8 *param0)
-{
-    return param0->unk_34 == 0;
-}
-
-void ov19_021DEA74(UnkStruct_ov19_021DE3E8 *param0)
-{
-    if (param0->unk_00) {
-        int v0 = ov19_021DE560(param0, 3);
-        int v1 = ov19_021DE560(param0, 1);
-
-        if ((v0 >= 0) && (v1 >= 0)) {
-            VecFx32 v2;
-            u32 v3;
-
-            ov19_021DE694(param0, &v2, &v3);
-            ov19_021DE57C(param0, v0, 1);
-            Sprite_SetAnim(param0->unk_1C[v0], 4);
-
-            ov19_021DE858(param0, v0, &v2, 3, 12);
-            ov19_021D9B1C(param0->unk_18, &v2);
-
-            v2.x += (0 << FX32_SHIFT);
-            v2.y += (8 << FX32_SHIFT);
-
-            ov19_021DE57C(param0, v1, 3);
-            Sprite_SetAnim(param0->unk_1C[v1], 3);
-            ov19_021DE858(param0, v1, &v2, 2, 12);
+            BoxItemIconGraphics_GetMonItemIconPosition(itemIconGraphics, &targetPos, &bgPriority);
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, spriteIndex, ITEM_ICON_ROLE_PREVIEW);
+            Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_PUT_DOWN);
+            BoxItemIconGraphics_StartIconMove(itemIconGraphics, spriteIndex, &targetPos, ITEM_ICON_MON_SPRITE_PRIORITY, ITEM_ICON_MOVE_FRAMES);
         }
     }
 }
 
-BOOL ov19_021DEB08(UnkStruct_ov19_021DE3E8 *param0)
+BOOL BoxItemIconGraphics_IsTakeItemDone2(BoxItemIconGraphics *itemIconGraphics)
 {
-    return param0->unk_34 == 0;
+    return itemIconGraphics->activeMoveCount == 0;
 }
 
-void ov19_021DEB18(UnkStruct_ov19_021DE3E8 *param0)
+void BoxItemIconGraphics_StartSwapItems(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00) {
-        int v0 = ov19_021DE560(param0, 3);
+    if (itemIconGraphics->isMoveItemsMode) {
+        int heldSpriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_HELD);
+        int previewSpriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_PREVIEW);
 
-        if (v0 >= 0) {
-            Sprite_SetAnim(param0->unk_1C[v0], 5);
-            param0->unk_38 = v0;
+        if (heldSpriteIndex >= 0 && previewSpriteIndex >= 0) {
+            VecFx32 targetPos;
+            u32 bgPriority;
+
+            BoxItemIconGraphics_GetMonItemIconPosition(itemIconGraphics, &targetPos, &bgPriority);
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, heldSpriteIndex, ITEM_ICON_ROLE_PREVIEW);
+            Sprite_SetAnim(itemIconGraphics->sprites[heldSpriteIndex], ITEM_ICON_ANIM_PUT_DOWN);
+
+            BoxItemIconGraphics_StartIconMove(itemIconGraphics, heldSpriteIndex, &targetPos, ITEM_ICON_MON_SPRITE_PRIORITY, ITEM_ICON_MOVE_FRAMES);
+            BoxCursorGraphics_GetPosition(itemIconGraphics->cursorGraphics, &targetPos);
+
+            targetPos.x += ITEM_ICON_CURSOR_OFFSET_X << FX32_SHIFT;
+            targetPos.y += ITEM_ICON_CURSOR_OFFSET_Y << FX32_SHIFT;
+
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, previewSpriteIndex, ITEM_ICON_ROLE_HELD);
+            Sprite_SetAnim(itemIconGraphics->sprites[previewSpriteIndex], ITEM_ICON_ANIM_PICK_UP);
+            BoxItemIconGraphics_StartIconMove(itemIconGraphics, previewSpriteIndex, &targetPos, ITEM_ICON_CURSOR_SPRITE_PRIORITY, ITEM_ICON_MOVE_FRAMES);
+        }
+    }
+}
+
+BOOL BoxItemIconGraphics_IsTakeItemDone3(BoxItemIconGraphics *itemIconGraphics)
+{
+    return itemIconGraphics->activeMoveCount == 0;
+}
+
+void BoxItemIconGraphics_StartShrinkItem(BoxItemIconGraphics *itemIconGraphics)
+{
+    if (itemIconGraphics->isMoveItemsMode) {
+        int spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_HELD);
+
+        if (spriteIndex >= 0) {
+            Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_SHRINK);
+            itemIconGraphics->shrinkingSprite = spriteIndex;
             return;
         }
 
-        v0 = ov19_021DE560(param0, 1);
+        spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_PREVIEW);
 
-        if (v0 >= 0) {
-            Sprite_SetAnim(param0->unk_1C[v0], 2);
-            param0->unk_38 = v0;
+        if (spriteIndex >= 0) {
+            Sprite_SetAnim(itemIconGraphics->sprites[spriteIndex], ITEM_ICON_ANIM_HIDE);
+            itemIconGraphics->shrinkingSprite = spriteIndex;
             return;
         }
 
-        param0->unk_38 = -1;
+        itemIconGraphics->shrinkingSprite = -1;
     }
 }
 
-BOOL ov19_021DEB60(UnkStruct_ov19_021DE3E8 *param0)
+BOOL BoxItemIconGraphics_IsShrinkItemDone(BoxItemIconGraphics *itemIconGraphics)
 {
-    if (param0->unk_00) {
-        if (param0->unk_38 != -1) {
-            if (Sprite_IsAnimated(param0->unk_1C[param0->unk_38])) {
-                return 0;
+    if (itemIconGraphics->isMoveItemsMode) {
+        if (itemIconGraphics->shrinkingSprite != -1) {
+            if (Sprite_IsAnimated(itemIconGraphics->sprites[itemIconGraphics->shrinkingSprite])) {
+                return FALSE;
             }
 
-            ov19_021DE57C(param0, param0->unk_38, 0);
-            param0->unk_38 = -1;
+            BoxItemIconGraphics_SetSpriteRole(itemIconGraphics, itemIconGraphics->shrinkingSprite, ITEM_ICON_ROLE_FREE);
+            itemIconGraphics->shrinkingSprite = -1;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DEB9C(UnkStruct_ov19_021DE3E8 *param0, const VecFx32 *param1)
+void BoxItemIconGraphics_SetHeldIconPosition(BoxItemIconGraphics *itemIconGraphics, const VecFx32 *cursorPos)
 {
-    if (param0->unk_00) {
-        int v0 = ov19_021DE560(param0, 3);
+    if (itemIconGraphics->isMoveItemsMode) {
+        int spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_HELD);
 
-        if (v0 >= 0) {
-            VecFx32 v1 = *param1;
+        if (spriteIndex >= 0) {
+            VecFx32 pos = *cursorPos;
 
-            v1.x += (0 << FX32_SHIFT);
-            v1.y += (8 << FX32_SHIFT);
+            pos.x += ITEM_ICON_CURSOR_OFFSET_X << FX32_SHIFT;
+            pos.y += ITEM_ICON_CURSOR_OFFSET_Y << FX32_SHIFT;
 
-            Sprite_SetPosition(param0->unk_1C[v0], &v1);
+            Sprite_SetPosition(itemIconGraphics->sprites[spriteIndex], &pos);
         }
     }
 }
 
-void ov19_021DEBDC(UnkStruct_ov19_021DE3E8 *param0, u32 param1)
+void BoxItemIconGraphics_SetHeldIconBgPriority(BoxItemIconGraphics *itemIconGraphics, u32 bgPriority)
 {
-    if (param0->unk_00) {
-        int v0 = ov19_021DE560(param0, 3);
+    if (itemIconGraphics->isMoveItemsMode) {
+        int spriteIndex = BoxItemIconGraphics_FindSprite(itemIconGraphics, ITEM_ICON_ROLE_HELD);
 
-        if (v0 >= 0) {
-            Sprite_SetExplicitPriority(param0->unk_1C[v0], param1);
+        if (spriteIndex >= 0) {
+            Sprite_SetExplicitPriority(itemIconGraphics->sprites[spriteIndex], bgPriority);
         }
     }
 }

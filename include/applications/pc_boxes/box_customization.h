@@ -3,7 +3,7 @@
 
 #include "string_gf.h"
 
-typedef struct {
+typedef struct BoxCustomization {
     u8 boxID;
     u8 wallpaper;
     u8 padding_02[2];

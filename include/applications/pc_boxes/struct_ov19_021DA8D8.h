@@ -8,17 +8,18 @@
 
 #include "sprite.h"
 
-typedef struct {
-    SpriteList *unk_00;
-    Sprite *unk_04;
-    void *unk_08;
-    void *unk_0C;
-    NNSG2dCellDataBank *unk_10;
-    NNSG2dAnimBankData *unk_14;
-    NNSG2dImageProxy unk_18;
-    SpriteList *unk_3C;
-    const BoxApplication *unk_40;
-    UnkStruct_ov19_021D61B0 *unk_44;
-} UnkStruct_ov19_021DA8D8;
+// The "PARTY POKEMON" and "CLOSE" buttons
+typedef struct BoxButtonsGraphics {
+    SpriteList *spriteList;
+    Sprite *sprite;
+    void *cellBankBuffer;
+    void *animBankBuffer;
+    NNSG2dCellDataBank *cellBank;
+    NNSG2dAnimBankData *animBank;
+    NNSG2dImageProxy imageProxy;
+    SpriteList *unread_3C;
+    const BoxApplication *unread_40;
+    BoxGraphics *boxGraphics;
+} BoxButtonsGraphics;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021DA8D8_H

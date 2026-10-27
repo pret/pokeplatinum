@@ -11,22 +11,22 @@
 #include "string_gf.h"
 #include "string_template.h"
 
-typedef struct {
-    BgConfig *unk_00;
-    u8 padding_04[4];
-    const BoxApplication *unk_08;
-    UnkStruct_ov19_021D61B0 *unk_0C;
-    MessageLoader *unk_10;
-    MessageLoader *unk_14;
-    Window *unk_18;
-    u16 unk_1C;
-    u16 unk_1E;
-    int unk_20;
-    void *unk_24;
-    NNSG2dCharacterData *unk_28;
-    const StringTemplate *unk_2C;
-    String *unk_30;
-    String *unk_34;
-} UnkStruct_ov19_021DB6F0;
+typedef struct BoxMenuGraphics {
+    BgConfig *bgConfig;
+    u8 unused_04[4];
+    const BoxApplication *unread_08;
+    BoxGraphics *unread_0C;
+    MessageLoader *boxMessagesLoader;
+    MessageLoader *menuItemsLoader;
+    Window *windows;
+    u16 isMessageBoxOpen;
+    u16 isMenuOpen;
+    int optionsFrame;
+    void *markingsCharDataBuffer;
+    NNSG2dCharacterData *markingsCharData;
+    const StringTemplate *messageVariableBuffer;
+    String *tempString;
+    String *formattedString;
+} BoxMenuGraphics;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021DB6F0_H

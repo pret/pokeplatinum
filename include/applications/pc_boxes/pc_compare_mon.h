@@ -1,9 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_PC_COMPARE_MON_H
 #define POKEPLATINUM_STRUCT_PC_COMPARE_MON_H
 
+#include "constants/moves.h"
+
 #include "string_gf.h"
 
-typedef struct {
+typedef struct PCCompareMon {
     void *mon;
     u16 species;
     u8 isEgg;
@@ -20,7 +22,7 @@ typedef struct {
     u16 cute;
     u16 smart;
     u16 tough;
-    u16 moves[4];
+    u16 moves[LEARNED_MOVES_MAX];
     String *monName;
     String *nature;
 } PCCompareMon;

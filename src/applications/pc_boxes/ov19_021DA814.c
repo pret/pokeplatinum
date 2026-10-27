@@ -13,59 +13,59 @@
 #include "narc.h"
 #include "sprite.h"
 
-BOOL ov19_021DA814(UnkStruct_ov19_021DA8D8 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4)
+BOOL BoxButtonsGraphics_Init(BoxButtonsGraphics *buttonsGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, SpriteList *spriteList, NARC *narc)
 {
-    param0->unk_44 = param1;
-    param0->unk_3C = param3;
-    param0->unk_40 = param2;
-    param0->unk_00 = param3;
-    param0->unk_04 = NULL;
-    param0->unk_08 = Graphics_GetCellBankFromOpenNARC(param4, 10, 1, &(param0->unk_10), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_0C = Graphics_GetAnimBankFromOpenNARC(param4, 11, 1, &(param0->unk_14), HEAP_ID_BOX_GRAPHICS);
+    buttonsGraphics->boxGraphics = boxGraphics;
+    buttonsGraphics->unread_3C = spriteList;
+    buttonsGraphics->unread_40 = boxApp;
+    buttonsGraphics->spriteList = spriteList;
+    buttonsGraphics->sprite = NULL;
+    buttonsGraphics->cellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 10, TRUE, &buttonsGraphics->cellBank, HEAP_ID_BOX_GRAPHICS);
+    buttonsGraphics->animBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 11, TRUE, &buttonsGraphics->animBank, HEAP_ID_BOX_GRAPHICS);
 
-    if ((param0->unk_08 == NULL) || (param0->unk_0C == NULL)) {
-        return 0;
+    if (buttonsGraphics->cellBankBuffer == NULL || buttonsGraphics->animBankBuffer == NULL) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DA864(UnkStruct_ov19_021DA8D8 *param0, NARC *param1)
+void BoxButtonsGraphics_CreateSprite(BoxButtonsGraphics *buttonsGraphics, NARC *narc)
 {
-    SpriteResourcesHeader v0;
+    SpriteResourcesHeader srHeader;
 
-    NNS_G2dInitImageProxy(&(param0->unk_18));
+    NNS_G2dInitImageProxy(&buttonsGraphics->imageProxy);
 
-    Graphics_LoadImageMappingFromOpenNARC(param1, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1256 * 0x20, 10, &(param0->unk_18));
-    ov19_021D783C(&v0, &(param0->unk_18), ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_14, 2);
-    param0->unk_04 = ov19_021D785C(param0->unk_00, &v0, 183 + ov19_021D7820(param0->unk_44), 176, 44, NNS_G2D_VRAM_TYPE_2DMAIN);
-    Sprite_SetExplicitPalette(param0->unk_04, 1);
+    Graphics_LoadImageMappingFromOpenNARC(narc, 9, TRUE, IMAGE_MAPPING_LAYOUT_1D, 0, NNS_G2D_VRAM_TYPE_2DMAIN, BOX_BUTTONS_TILE_BASE * TILE_SIZE_4BPP, HEAP_ID_BOX_GRAPHICS, &buttonsGraphics->imageProxy);
+    SpriteResourcesHeader_InitFromProxies(&srHeader, &buttonsGraphics->imageProxy, BoxGraphics_GetImagePaletteProxy(buttonsGraphics->boxGraphics), buttonsGraphics->cellBank, buttonsGraphics->animBank, 2);
+    buttonsGraphics->sprite = BoxGraphics_CreateSprite(buttonsGraphics->spriteList, &srHeader, BOX_BUTTONS_X + BoxGraphics_GetCompareModeXOffset(buttonsGraphics->boxGraphics), BOX_BUTTONS_Y, 44, NNS_G2D_VRAM_TYPE_2DMAIN);
+    Sprite_SetExplicitPalette(buttonsGraphics->sprite, 1);
 }
 
-void ov19_021DA8D8(UnkStruct_ov19_021DA8D8 *param0)
+void BoxButtonsGraphics_Free(BoxButtonsGraphics *buttonsGraphics)
 {
-    if (param0->unk_08 != NULL) {
-        Heap_Free(param0->unk_08);
-        param0->unk_08 = NULL;
+    if (buttonsGraphics->cellBankBuffer != NULL) {
+        Heap_Free(buttonsGraphics->cellBankBuffer);
+        buttonsGraphics->cellBankBuffer = NULL;
     }
 
-    if (param0->unk_0C != NULL) {
-        Heap_Free(param0->unk_0C);
-        param0->unk_0C = NULL;
+    if (buttonsGraphics->animBankBuffer != NULL) {
+        Heap_Free(buttonsGraphics->animBankBuffer);
+        buttonsGraphics->animBankBuffer = NULL;
     }
 }
 
-void ov19_021DA8FC(UnkStruct_ov19_021DA8D8 *param0, int param1)
+void BoxButtonsGraphics_SetPressedButton(BoxButtonsGraphics *buttonsGraphics, enum BoxButtonsAnim button)
 {
-    switch (param1) {
-    case 0:
-        Sprite_SetAnim(param0->unk_04, 0);
+    switch (button) {
+    case BOX_BUTTONS_ANIM_NONE_PRESSED:
+        Sprite_SetAnim(buttonsGraphics->sprite, BOX_BUTTONS_ANIM_NONE_PRESSED);
         break;
-    case 1:
-        Sprite_SetAnim(param0->unk_04, 1);
+    case BOX_BUTTONS_ANIM_PARTY_PRESSED:
+        Sprite_SetAnim(buttonsGraphics->sprite, BOX_BUTTONS_ANIM_PARTY_PRESSED);
         break;
-    case 2:
-        Sprite_SetAnim(param0->unk_04, 2);
+    case BOX_BUTTONS_ANIM_CLOSE_PRESSED:
+        Sprite_SetAnim(buttonsGraphics->sprite, BOX_BUTTONS_ANIM_CLOSE_PRESSED);
         break;
     }
 }

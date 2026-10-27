@@ -8,9 +8,19 @@
 #include "narc.h"
 #include "sprite.h"
 
-BOOL ov19_021DA814(UnkStruct_ov19_021DA8D8 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4);
-void ov19_021DA864(UnkStruct_ov19_021DA8D8 *param0, NARC *param1);
-void ov19_021DA8D8(UnkStruct_ov19_021DA8D8 *param0);
-void ov19_021DA8FC(UnkStruct_ov19_021DA8D8 *param0, int param1);
+#define BOX_BUTTONS_TILE_BASE 1256
+#define BOX_BUTTONS_X         183
+#define BOX_BUTTONS_Y         176
+
+enum BoxButtonsAnim {
+    BOX_BUTTONS_ANIM_NONE_PRESSED = 0,
+    BOX_BUTTONS_ANIM_PARTY_PRESSED,
+    BOX_BUTTONS_ANIM_CLOSE_PRESSED,
+};
+
+BOOL BoxButtonsGraphics_Init(BoxButtonsGraphics *buttonsGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, SpriteList *spriteList, NARC *narc);
+void BoxButtonsGraphics_CreateSprite(BoxButtonsGraphics *buttonsGraphics, NARC *narc);
+void BoxButtonsGraphics_Free(BoxButtonsGraphics *buttonsGraphics);
+void BoxButtonsGraphics_SetPressedButton(BoxButtonsGraphics *buttonsGraphics, enum BoxButtonsAnim button);
 
 #endif // POKEPLATINUM_OV19_021DA814_H

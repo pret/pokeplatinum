@@ -25,7 +25,7 @@ void BoxMenu_FillYesNo(BoxApplication *boxApp, u32 menuItemIndex)
     BoxMenu_AddMenuItem(menu, BOX_MENU_NO);
 
     menu->selectedMenuItemIndex = menuItemIndex;
-    menu->unused = 0;
+    menu->unread_23 = 0;
 }
 
 void BoxMenu_FillTopLevelMenuItems(BoxApplication *boxApp)
@@ -33,7 +33,7 @@ void BoxMenu_FillTopLevelMenuItems(BoxApplication *boxApp)
     BoxMenu *menu = &(boxApp->boxMenu);
 
     BoxMenu_ClearMenuItems(menu);
-    menu->unused = 1;
+    menu->unread_23 = 1;
 
     switch (BoxApp_GetBoxMode(boxApp)) {
     case PC_MODE_MOVE_MONS:
@@ -89,7 +89,7 @@ void BoxMenu_FillItemsMenu(BoxApplication *boxApp)
     monItem = BoxApp_GetPreviewedMonHeldItem(boxApp);
 
     BoxMenu_ClearMenuItems(menu);
-    menu->unused = 1;
+    menu->unread_23 = 1;
 
     if (cursorItem != ITEM_NONE) {
         if (monItem != ITEM_NONE) {
@@ -128,7 +128,7 @@ void BoxMenu_FillHeaderMenu(BoxApplication *boxApp)
 
     BoxMenu_AddMenuItem(menu, BOX_MENU_HEADER_CANCEL);
 
-    menu->unused = 2;
+    menu->unread_23 = 2;
 }
 
 void BoxMenu_FillWallpaperMenu(BoxApplication *boxApp, enum BoxMenuItem menuItem)
@@ -149,11 +149,11 @@ void BoxMenu_FillWallpaperMenu(BoxApplication *boxApp, enum BoxMenuItem menuItem
         BoxMenu_AddMenuItem(menu, BOX_MENU_FRIENDS_1);
     }
 
-    if (numUnlockedWallpapers > 4) {
+    if (numUnlockedWallpapers > MAX_WALLPAPERS_PER_PAGE) {
         BoxMenu_AddMenuItem(menu, BOX_MENU_FRIENDS_2);
     }
 
-    menu->unused = 3;
+    menu->unread_23 = 3;
 
     if (menuItem >= BOX_MENU_FIRST_WALLPAPER_PAGE && menuItem <= BOX_MENU_LAST_WALLPAPER_PAGE) {
         menu->selectedMenuItemIndex = menuItem - BOX_MENU_FIRST_WALLPAPER_PAGE;
@@ -187,7 +187,7 @@ void BoxMenu_FillWallpaperSelectionMenu(BoxApplication *boxApp, enum BoxMenuItem
         int addedWallpaperCount = 0;
 
         if (menuItem == BOX_MENU_FRIENDS_2) {
-            firstUnlockedWallpaperPageCount = 4;
+            firstUnlockedWallpaperPageCount = MAX_WALLPAPERS_PER_PAGE;
         }
 
         for (i = 0; i < MAX_UNLOCKABLE_WALLPAPERS; i++) {
@@ -205,7 +205,7 @@ void BoxMenu_FillWallpaperSelectionMenu(BoxApplication *boxApp, enum BoxMenuItem
         }
     }
 
-    menu->unused = 3;
+    menu->unread_23 = 3;
 }
 
 void BoxMenu_FillMarkingsMenu(BoxApplication *boxApp)
@@ -213,7 +213,7 @@ void BoxMenu_FillMarkingsMenu(BoxApplication *boxApp)
     BoxMenu *menu = &(boxApp->boxMenu);
     BoxMenu_ClearMenuItems(menu);
 
-    menu->unused = 4;
+    menu->unread_23 = 4;
     menu->markings = boxApp->pcMonPreview.markings;
 
     BoxMenu_AddMenuItem(menu, BOX_MENU_CIRCLE);

@@ -27,10 +27,10 @@
 #include "text.h"
 
 static const struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-} Unk_ov19_021E0178[] = {
+    u8 tilemapMember;
+    u8 tileMember;
+    u8 plttMember;
+} sWallpaperNarcMembers[] = {
     { 30, 29, 28 },
     { 33, 32, 31 },
     { 36, 35, 34 },
@@ -65,547 +65,541 @@ static const struct {
     { 123, 122, 121 },
 };
 
-typedef struct {
-    UnkStruct_ov19_021D8318 *unk_00;
-    s16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-    u32 unk_0C;
-} UnkStruct_ov19_021D81B8;
+typedef struct WallpaperChangeFlashTask {
+    BoxView *boxView;
+    s16 currentIndex;
+    s16 targetIndex;
+    s16 step;
+    s16 tickDelay;
+    u32 plttOffset;
+} WallpaperChangeFlashTask;
 
-static void ov19_021D7AF4(const UnkStruct_ov19_021D8318 *param0, int param1, u32 *param2, u32 *param3, u32 *param4);
-static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int param2, BOOL param3);
-static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int param2);
-static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, u32 param2, u32 param3, u32 param4);
-static void ov19_021D7E24(SysTask *param0, void *param1);
-static void ov19_021D7E6C(SysTask *param0, void *param1);
-static void ov19_021D7F14(UnkStruct_ov19_021D8318 *param0, fx32 param1, s32 param2);
-static void ov19_021D7F9C(UnkStruct_ov19_021D8318 *param0, fx32 param1);
-static void ov19_021D803C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, int param2, int param3);
-static void ov19_021D8114(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, int param2);
-static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 boxID);
-static void ov19_021D81B8(UnkStruct_ov19_021D8318 *param0, int param1, int param2, u32 param3);
-static void ov19_021D8210(SysTask *param0, void *param1);
-static void ov19_021D826C(void *param0);
-static void ov19_021D8274(SysTask *param0, void *param1);
-static void ov19_021D8318(UnkStruct_ov19_021D8318 *param0);
-static u32 ov19_021D85B4(u32 param0);
-static void ov19_021D85C4(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DA384 *param1, u32 param2, u32 param3, s32 param4, UnkStruct_ov19_021DCD18 *param5);
-static void ov19_021D865C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-static void ov19_021D86B4(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
-static void ov19_021D870C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1);
-static void ov19_021D8764(u16 *param0, const u16 *param1, u32 param2, u32 param3, u32 param4);
+static void BoxView_GetWallpaperLayout(const BoxView *boxView, int boxChangeDirection, u32 *tileOffset, u32 *tilemapRow, u32 *plttSlot);
+static void BoxView_LoadWallpaperPltt(BoxView *boxView, const BoxCustomization *customization, int plttSlot, BOOL refreshNow);
+static void BoxView_LoadWallpaperTiles(BoxView *boxView, const BoxCustomization *customization, int tileStart);
+static void BoxView_LoadWallpaperTilemap(BoxView *boxView, const BoxCustomization *customization, u32 tilemapRow, u32 tileOffset, u32 plttSlot);
+static void BoxView_ScrollTask(SysTask *task, void *param);
+static void BoxView_ScrollVBlankTask(SysTask *task, void *param);
+static void BoxView_InitIconScrollPositions(BoxView *boxView, fx32 stepX, s32 distanceX);
+static void BoxView_StepIconScroll(BoxView *boxView, fx32 stepX);
+static void BoxView_CreateColumnIcons(BoxView *boxView, MonIcon *icon, int iconX, int col);
+static void BoxView_DeleteColumnIcons(BoxView *boxView, MonIcon *monIcon, int col);
+static void BoxView_PrepareIconData(BoxView *boxView, u32 boxID);
+static void BoxView_StartWallpaperChangeFlash(BoxView *boxView, int startIndex, int targetIndex, u32 plttOffset);
+static void BoxView_WallpaperChangeFlashTask(SysTask *task, void *param);
+static void BoxView_OnWallpaperChangeFlashDone(void *param);
+static void BoxView_ReloadWallpaperTask(SysTask *task, void *param);
+static void BoxView_StartWallpaperReload(BoxView *boxView);
+static u32 BoxView_GetIconPriority(u32 boxPos);
+static void BoxView_CreateAllIcons(BoxView *boxView, MonIconHelper *monIconHelper, u32 boxID, u32 page, s32 distanceX, MonIcon *boxIcon);
+static void BoxView_UpdateOutgoingIconPositions(BoxView *boxView, MonIcon *icons, u32 scrollStep);
+static void BoxView_UpdateIncomingIconPositions(BoxView *boxView, MonIcon *icons, u32 scrollStep);
+static void BoxView_SnapIconsToGrid(BoxView *boxView, MonIcon *monIcon);
+static void BoxView_WriteWallpaperTilemap(u16 *buffer, const u16 *screenData, u32 tilemapRow, u32 tileOffset, u32 plttSlot);
+static void BoxView_UpdateIconForm(BoxView *boxView, u32 posInBox);
 
-static const u16 Unk_ov19_021E0138[] = {
+static const u16 sPagePlttSlot[] = {
     9,
     10,
 };
 
-BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4)
+BOOL BoxView_Init(BoxView *boxView, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *unused)
 {
-    param0->boxID = param2->customization.boxID;
-    param0->unk_01 = 11;
-    param0->unk_02 = 0;
-    param0->unk_585C = ov19_021D7820(param1);
-    param0->unk_5854 = 72 + param0->unk_585C;
-    param0->unk_5858 = (256 + 16) + param0->unk_585C;
-    param0->unk_58F0 = ov19_021D77D8(param1);
+    boxView->boxID = boxApp->customization.boxID;
+    boxView->unk_01 = 11;
+    boxView->currentPage = 0;
+    boxView->compareModeXOffset = BoxGraphics_GetCompareModeXOffset(boxGraphics);
+    boxView->unk_5854 = 72 + boxView->compareModeXOffset;
+    boxView->unk_5858 = (256 + 16) + boxView->compareModeXOffset;
+    boxView->monIconHelper = BoxGraphics_GetMonIconHelper(boxGraphics);
 
-    ov19_021DA3CC(param0->unk_58F0, param0->unk_A8[0], (5 * 6));
-    ov19_021DA3CC(param0->unk_58F0, param0->unk_A8[1], (5 * 6));
+    MonIconHelper_InitIcons(boxView->monIconHelper, boxView->icons[0], (5 * 6));
+    MonIconHelper_InitIcons(boxView->monIconHelper, boxView->icons[1], (5 * 6));
 
-    param0->unk_58F4 = param3;
-    param0->unk_58F8 = param2;
-    param0->unk_58FC = param1;
+    boxView->bgConfig = bgConfig;
+    boxView->boxApp = boxApp;
+    boxView->boxGraphics = boxGraphics;
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021D7A74(UnkStruct_ov19_021D8318 *param0)
+void BoxView_Free(BoxView *boxView)
 {
-    ov19_021DA3F0(param0->unk_58F0, param0->unk_A8[0], (5 * 6));
-    ov19_021DA3F0(param0->unk_58F0, param0->unk_A8[1], (5 * 6));
+    MonIconHelper_DeleteIcons(boxView->monIconHelper, boxView->icons[0], (5 * 6));
+    MonIconHelper_DeleteIcons(boxView->monIconHelper, boxView->icons[1], (5 * 6));
 }
 
-void ov19_021D7A9C(UnkStruct_ov19_021D8318 *param0)
+void BoxView_InitBgScroll(BoxView *boxView)
 {
-    param0->unk_0C = Bg_GetXOffset(param0->unk_58F4, 3);
-    param0->unk_0C -= param0->unk_585C;
-    param0->unk_0C &= (REG_G2_BG3HOFS_OFFSET_MASK);
+    boxView->bgScrollX = Bg_GetXOffset(boxView->bgConfig, 3);
+    boxView->bgScrollX -= boxView->compareModeXOffset;
+    boxView->bgScrollX &= (REG_G2_BG3HOFS_OFFSET_MASK);
 
-    Bg_SetOffset(param0->unk_58F4, BG_LAYER_MAIN_3, 0, param0->unk_0C);
-    Bg_FillTilemapRect(param0->unk_58F4, 3, 0x18, 0, 0, 64, 32, 9);
+    Bg_SetOffset(boxView->bgConfig, BG_LAYER_MAIN_3, 0, boxView->bgScrollX);
+    Bg_FillTilemapRect(boxView->bgConfig, 3, 0x18, 0, 0, 64, 32, 9);
 }
 
-static void ov19_021D7AF4(const UnkStruct_ov19_021D8318 *param0, int param1, u32 *param2, u32 *param3, u32 *param4)
+static void BoxView_GetWallpaperLayout(const BoxView *boxView, int boxChangeDirection, u32 *tileOffset, u32 *tilemapRow, u32 *plttSlot)
 {
-    if (param1 != 0) {
-        *param2 = (param0->unk_02 ^ 1) * (21 * 20);
-        *param3 = (param0->unk_01 + (param1 * (21 + 2))) & 63;
-        *param4 = Unk_ov19_021E0138[param0->unk_02 ^ 1];
+    if (boxChangeDirection != 0) {
+        *tileOffset = (boxView->currentPage ^ 1) * (21 * 20);
+        *tilemapRow = (boxView->unk_01 + (boxChangeDirection * (21 + 2))) & 63;
+        *plttSlot = sPagePlttSlot[boxView->currentPage ^ 1];
     } else {
-        *param2 = param0->unk_02 * (21 * 20);
-        *param3 = param0->unk_01;
-        *param4 = Unk_ov19_021E0138[param0->unk_02];
+        *tileOffset = boxView->currentPage * (21 * 20);
+        *tilemapRow = boxView->unk_01;
+        *plttSlot = sPagePlttSlot[boxView->currentPage];
     }
 }
 
-void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int boxChangeDirection, BOOL param3)
+void BoxView_Show(BoxView *boxView, const BoxCustomization *customization, int boxChangeDirection, BOOL refreshNow)
 {
-    u32 v0, v1, v2;
+    u32 tileOffset, tilemapRow, plttSlot;
 
-    ov19_021D7AF4(param0, boxChangeDirection, &v0, &v1, &v2);
-    ov19_021D7BC0(param0, customization, v2, param3);
-    ov19_021D7C58(param0, customization, v0);
-    ov19_021D7D00(param0, customization, v1, v0, v2);
+    BoxView_GetWallpaperLayout(boxView, boxChangeDirection, &tileOffset, &tilemapRow, &plttSlot);
+    BoxView_LoadWallpaperPltt(boxView, customization, plttSlot, refreshNow);
+    BoxView_LoadWallpaperTiles(boxView, customization, tileOffset);
+    BoxView_LoadWallpaperTilemap(boxView, customization, tilemapRow, tileOffset, plttSlot);
 
-    if (param3) {
+    if (refreshNow) {
         if (boxChangeDirection == 0) {
-            ov19_021D85C4(param0, param0->unk_58F0, customization->boxID, param0->unk_02, boxChangeDirection * ((21 + 2) * 8), param0->unk_A8[param0->unk_02]);
+            BoxView_CreateAllIcons(boxView, boxView->monIconHelper, customization->boxID, boxView->currentPage, boxChangeDirection * ((21 + 2) * 8), boxView->icons[boxView->currentPage]);
         }
     }
 }
 
-static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int param2, BOOL param3)
+static void BoxView_LoadWallpaperPltt(BoxView *boxView, const BoxCustomization *customization, int plttSlot, BOOL refreshNow)
 {
-    NNSG2dPaletteData *v0;
-    void *v1 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_02, &v0, HEAP_ID_BOX_GRAPHICS);
+    NNSG2dPaletteData *plttData;
+    void *buffer = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__BOX, sWallpaperNarcMembers[customization->wallpaper].plttMember, &plttData, HEAP_ID_BOX_GRAPHICS);
 
-    if (v1) {
-        int v2;
-        fx32 v3;
+    if (buffer) {
+        int i;
+        fx32 blendAmount;
 
-        if (param3) {
-            DC_FlushRange(v0->pRawData, 0x20);
-            GX_LoadBGPltt(v0->pRawData, param2 * 0x20, 0x20);
+        if (refreshNow) {
+            DC_FlushRange(plttData->pRawData, 0x20);
+            GX_LoadBGPltt(plttData->pRawData, plttSlot * 0x20, 0x20);
         }
 
-        for (v2 = 0, v3 = 0; v2 < 8; v2++) {
-            ov19_021D78C8(v0->pRawData, param0->unk_5860[v2], 16, 0x7fff, (v3 >> FX32_SHIFT));
-            v3 += ((16 << FX32_SHIFT) / 8);
+        for (i = 0, blendAmount = 0; i < 8; i++) {
+            BoxGraphics_BlendPltt(plttData->pRawData, boxView->unk_5860[i], 16, 0x7fff, (blendAmount >> FX32_SHIFT));
+            blendAmount += ((16 << FX32_SHIFT) / 8);
         }
 
-        ov19_021D78C8(v0->pRawData, param0->unk_5860[v2], 16, 0x7fff, 16);
-        DC_FlushRange(param0->unk_5860, sizeof(param0->unk_5860));
-        Heap_Free(v1);
+        BoxGraphics_BlendPltt(plttData->pRawData, boxView->unk_5860[i], 16, 0x7fff, 16);
+        DC_FlushRange(boxView->unk_5860, sizeof(boxView->unk_5860));
+        Heap_Free(buffer);
     }
 }
 
-static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int param2)
+static void BoxView_LoadWallpaperTiles(BoxView *boxView, const BoxCustomization *customization, int tileStart)
 {
-    void *v0 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_01, TRUE, HEAP_ID_BOX_GRAPHICS, TRUE);
+    void *data = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__BOX, sWallpaperNarcMembers[customization->wallpaper].tileMember, TRUE, HEAP_ID_BOX_GRAPHICS, TRUE);
 
-    if (v0 != NULL) {
-        NNSG2dCharacterData *v1;
+    if (data != NULL) {
+        NNSG2dCharacterData *charData;
 
-        if (NNS_G2dGetUnpackedBGCharacterData(v0, &v1)) {
-            Window *v2;
+        if (NNS_G2dGetUnpackedBGCharacterData(data, &charData)) {
+            Window *window;
 
-            v2 = Window_New(HEAP_ID_BOX_GRAPHICS, 1);
+            window = Window_New(HEAP_ID_BOX_GRAPHICS, 1);
 
-            if (v2) {
-                u32 v3, v4;
+            if (window) {
+                window->bgConfig = boxView->bgConfig;
+                window->width = 21;
+                window->height = 4;
+                window->pixels = charData->pRawData;
 
-                v2->bgConfig = param0->unk_58F4;
-                v2->width = 21;
-                v2->height = 4;
-                v2->pixels = v1->pRawData;
+                u32 nameWidth = Font_CalcStringWidth(FONT_SYSTEM, customization->name, 0);
+                u32 textX = 84 - (nameWidth / 2);
 
-                v4 = Font_CalcStringWidth(FONT_SYSTEM, customization->name, 0);
-                v3 = 84 - (v4 / 2);
-
-                Text_AddPrinterWithParamsAndColor(v2, FONT_SYSTEM, customization->name, v3, 13, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 0), NULL);
-                Heap_Free(v2);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, customization->name, textX, 13, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 0), NULL);
+                Heap_Free(window);
             }
 
-            Bg_LoadTiles(param0->unk_58F4, 3, v1->pRawData, v1->szByte, param2);
+            Bg_LoadTiles(boxView->bgConfig, 3, charData->pRawData, charData->szByte, tileStart);
         }
 
-        Heap_Free(v0);
+        Heap_Free(data);
     }
 }
 
-static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, u32 param2, u32 param3, u32 param4)
+static void BoxView_LoadWallpaperTilemap(BoxView *boxView, const BoxCustomization *customization, u32 tilemapRow, u32 tileOffset, u32 plttSlot)
 {
-    void *v0 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__BOX, Unk_ov19_021E0178[customization->wallpaper].unk_00, TRUE, HEAP_ID_BOX_GRAPHICS, TRUE);
+    void *data = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__BOX, sWallpaperNarcMembers[customization->wallpaper].tilemapMember, TRUE, HEAP_ID_BOX_GRAPHICS, TRUE);
 
-    if (v0) {
-        u16 *v1;
-        NNSG2dScreenData *v2;
+    if (data) {
+        NNSG2dScreenData *screenData;
 
-        NNS_G2dGetUnpackedScreenData(v0, &v2);
-        v1 = Bg_GetTilemapBuffer(param0->unk_58F4, 3);
+        NNS_G2dGetUnpackedScreenData(data, &screenData);
+        u16 *buffer = Bg_GetTilemapBuffer(boxView->bgConfig, 3);
 
-        if (v1) {
-            ov19_021D8764(v1, (const u16 *)(v2->rawData), param2, param3, param4);
+        if (buffer) {
+            BoxView_WriteWallpaperTilemap(buffer, (const u16 *)(screenData->rawData), tilemapRow, tileOffset, plttSlot);
         }
 
-        Heap_Free(v0);
-        Bg_CopyTilemapBufferRangeToVRAM(param0->unk_58F4, 3, v1, 0x1000, 0);
+        Heap_Free(data);
+        Bg_CopyTilemapBufferRangeToVRAM(boxView->bgConfig, 3, buffer, 0x1000, 0);
     }
 }
 
-void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int boxChangeDirection)
+void BoxView_StartScroll(BoxView *boxView, const BoxCustomization *customization, int boxChangeDirection)
 {
-    param0->unk_08 = (Bg_GetXOffset(param0->unk_58F4, 3) & (REG_G2_BG3HOFS_OFFSET_MASK)) << FX32_SHIFT;
-    param0->unk_14 = param0->unk_08 + ((((21 + 2) * 8) * boxChangeDirection) << FX32_SHIFT);
-    param0->unk_10 = (param0->unk_14 - param0->unk_08) / (15 * 2);
-    param0->unk_14 >>= FX32_SHIFT;
-    param0->unk_14 &= (REG_G2_BG3HOFS_OFFSET_MASK);
-    param0->unk_04 = (15 * 2);
-    param0->unk_03 = param0->unk_02;
-    param0->unk_01 += ((21 + 2) * boxChangeDirection);
-    param0->unk_01 &= 63;
-    param0->unk_02 ^= 1;
+    boxView->scrollStartX = (Bg_GetXOffset(boxView->bgConfig, 3) & (REG_G2_BG3HOFS_OFFSET_MASK)) << FX32_SHIFT;
+    boxView->scrollTargetX = boxView->scrollStartX + ((((21 + 2) * 8) * boxChangeDirection) << FX32_SHIFT);
+    boxView->scrollStepX = (boxView->scrollTargetX - boxView->scrollStartX) / (15 * 2);
+    boxView->scrollTargetX >>= FX32_SHIFT;
+    boxView->scrollTargetX &= (REG_G2_BG3HOFS_OFFSET_MASK);
+    boxView->scrollTicksRemaining = (15 * 2);
+    boxView->previousPage = boxView->currentPage;
+    boxView->unk_01 += ((21 + 2) * boxChangeDirection);
+    boxView->unk_01 &= 63;
+    boxView->currentPage ^= 1;
 
-    {
-        ov19_021D813C(param0, customization->boxID);
-        ov19_021D7F14(param0, param0->unk_10, boxChangeDirection * ((21 + 2) * 8));
+    BoxView_PrepareIconData(boxView, customization->boxID);
+    BoxView_InitIconScrollPositions(boxView, boxView->scrollStepX, boxChangeDirection * ((21 + 2) * 8));
 
-        param0->unk_30 = customization->boxID;
-        param0->unk_34 = param0->unk_02;
-    }
+    boxView->pendingBoxID = customization->boxID;
+    boxView->pendingPage = boxView->currentPage;
 
-    param0->unk_98 = 1;
-    param0->unk_9C = 0;
+    boxView->scrollStep = 1;
+    boxView->scrollDone = 0;
 
-    SysTask_Start(ov19_021D7E24, param0, 0);
-    ov19_021D77C8(ov19_021D7E6C, param0, 1);
+    SysTask_Start(BoxView_ScrollTask, boxView, 0);
+    BoxGraphics_StartVBlankTask(BoxView_ScrollVBlankTask, boxView, 1);
 }
 
-BOOL ov19_021D7E1C(UnkStruct_ov19_021D8318 *param0)
+BOOL BoxView_IsScrollDone(BoxView *boxView)
 {
-    return param0->unk_9C;
+    return boxView->scrollDone;
 }
 
-static void ov19_021D7E24(SysTask *param0, void *param1)
+static void BoxView_ScrollTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8318 *v0 = (UnkStruct_ov19_021D8318 *)param1;
+    BoxView *boxView = (BoxView *)param;
 
-    if (v0->unk_04) {
-        if (v0->unk_98 == 2) {
-            ov19_021D7F9C(v0, v0->unk_10);
-            v0->unk_98 = 0;
+    if (boxView->scrollTicksRemaining) {
+        if (boxView->scrollStep == 2) {
+            BoxView_StepIconScroll(boxView, boxView->scrollStepX);
+            boxView->scrollStep = 0;
         }
 
         return;
     }
 
-    v0->unk_0C = v0->unk_14;
-    v0->boxID = BoxApp_GetCurrentBox(v0->unk_58F8);
-    SysTask_Done(param0);
-    v0->unk_9C = 1;
+    boxView->bgScrollX = boxView->scrollTargetX;
+    boxView->boxID = BoxApp_GetCurrentBox(boxView->boxApp);
+    SysTask_Done(task);
+    boxView->scrollDone = TRUE;
 }
 
-static void ov19_021D7E6C(SysTask *param0, void *param1)
+static void BoxView_ScrollVBlankTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D8318 *v0 = (UnkStruct_ov19_021D8318 *)param1;
-    u32 v1 = v0->unk_03;
-    u32 v2 = v1 ^ 1;
+    BoxView *boxView = (BoxView *)param;
+    u32 outgoingPage = boxView->previousPage;
+    u32 incomingPage = outgoingPage ^ 1;
 
-    if (v0->unk_04) {
-        if (v0->unk_98 < 2) {
-            ov19_021D865C(v0, v0->unk_A8[v1], v0->unk_98);
-            ov19_021D86B4(v0, v0->unk_A8[v2], v0->unk_98);
+    if (boxView->scrollTicksRemaining) {
+        if (boxView->scrollStep < 2) {
+            BoxView_UpdateOutgoingIconPositions(boxView, boxView->icons[outgoingPage], boxView->scrollStep);
+            BoxView_UpdateIncomingIconPositions(boxView, boxView->icons[incomingPage], boxView->scrollStep);
 
-            v0->unk_98++;
-            v0->unk_0C = (v0->unk_08 >> FX32_SHIFT) & (REG_G2_BG3HOFS_OFFSET_MASK);
-            v0->unk_08 += v0->unk_10;
-            Bg_SetOffset(v0->unk_58F4, BG_LAYER_MAIN_3, 0, v0->unk_0C);
-            v0->unk_04--;
+            boxView->scrollStep++;
+            boxView->bgScrollX = (boxView->scrollStartX >> FX32_SHIFT) & (REG_G2_BG3HOFS_OFFSET_MASK);
+            boxView->scrollStartX += boxView->scrollStepX;
+            Bg_SetOffset(boxView->bgConfig, BG_LAYER_MAIN_3, 0, boxView->bgScrollX);
+            boxView->scrollTicksRemaining--;
         }
     } else {
-        Bg_SetOffset(v0->unk_58F4, BG_LAYER_MAIN_3, 0, v0->unk_14);
-        ov19_021D870C(v0, v0->unk_A8[v2]);
-        SysTask_Done(param0);
+        Bg_SetOffset(boxView->bgConfig, BG_LAYER_MAIN_3, 0, boxView->scrollTargetX);
+        BoxView_SnapIconsToGrid(boxView, boxView->icons[incomingPage]);
+        SysTask_Done(task);
     }
 }
 
-static void ov19_021D7F14(UnkStruct_ov19_021D8318 *param0, fx32 param1, s32 param2)
+static void BoxView_InitIconScrollPositions(BoxView *boxView, fx32 stepX, s32 distanceX)
 {
-    int v0, v1;
+    int col, iconX;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_68[0][v0] = (112 + param0->unk_585C + 24 * v0) * FX32_ONE;
-        param0->unk_68[1][v0] = param0->unk_68[0][v0] - param1;
-        param0->unk_38[0][v0] = (112 + param0->unk_585C + 24 * v0 + param2) * FX32_ONE;
-        param0->unk_38[1][v0] = param0->unk_38[0][v0] - param1;
+    for (col = 0; col < MAX_PC_COLS; col++) {
+        boxView->unk_68[0][col] = (BOX_GRID_LEFT + boxView->compareModeXOffset + BOX_GRID_CELL_SIZE * col) * FX32_ONE;
+        boxView->unk_68[1][col] = boxView->unk_68[0][col] - stepX;
+        boxView->unk_38[0][col] = (BOX_GRID_LEFT + boxView->compareModeXOffset + BOX_GRID_CELL_SIZE * col + distanceX) * FX32_ONE;
+        boxView->unk_38[1][col] = boxView->unk_38[0][col] - stepX;
 
-        v1 = param0->unk_38[1][v0] >> FX32_SHIFT;
+        iconX = boxView->unk_38[1][col] >> FX32_SHIFT;
 
-        if ((v1 > param0->unk_5854) && (v1 < param0->unk_5858)) {
-            int v2 = param0->unk_03 ^ 1;
-            ov19_021D803C(param0, param0->unk_A8[v2], v1, v0);
+        if ((iconX > boxView->unk_5854) && (iconX < boxView->unk_5858)) {
+            int incomingPage = boxView->previousPage ^ 1;
+            BoxView_CreateColumnIcons(boxView, boxView->icons[incomingPage], iconX, col);
         }
     }
 }
 
-static void ov19_021D7F9C(UnkStruct_ov19_021D8318 *param0, fx32 param1)
+static void BoxView_StepIconScroll(BoxView *boxView, fx32 stepX)
 {
-    int v0, v1, v2, v3;
+    int col, iconX, incomingPage, outgoingPage;
 
-    v3 = param0->unk_03;
-    v2 = v3 ^ 1;
+    outgoingPage = boxView->previousPage;
+    incomingPage = outgoingPage ^ 1;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v1 = param0->unk_68[1][v0] >> FX32_SHIFT;
+    for (col = 0; col < MAX_PC_COLS; col++) {
+        iconX = boxView->unk_68[1][col] >> FX32_SHIFT;
 
-        if ((v1 <= param0->unk_5854) || (v1 >= param0->unk_5858)) {
-            ov19_021D8114(param0, param0->unk_A8[v3], v0);
+        if ((iconX <= boxView->unk_5854) || (iconX >= boxView->unk_5858)) {
+            BoxView_DeleteColumnIcons(boxView, boxView->icons[outgoingPage], col);
         }
 
-        param0->unk_68[0][v0] = param0->unk_68[1][v0] - param1;
-        param0->unk_68[1][v0] = param0->unk_68[0][v0] - param1;
-        param0->unk_38[0][v0] = param0->unk_38[1][v0] - param1;
-        param0->unk_38[1][v0] = param0->unk_38[0][v0] - param1;
+        boxView->unk_68[0][col] = boxView->unk_68[1][col] - stepX;
+        boxView->unk_68[1][col] = boxView->unk_68[0][col] - stepX;
+        boxView->unk_38[0][col] = boxView->unk_38[1][col] - stepX;
+        boxView->unk_38[1][col] = boxView->unk_38[0][col] - stepX;
 
-        v1 = param0->unk_38[1][v0] >> FX32_SHIFT;
+        iconX = boxView->unk_38[1][col] >> FX32_SHIFT;
 
-        if ((v1 > param0->unk_5854) && (v1 < param0->unk_5858)) {
-            ov19_021D803C(param0, param0->unk_A8[v2], v1, v0);
+        if ((iconX > boxView->unk_5854) && (iconX < boxView->unk_5858)) {
+            BoxView_CreateColumnIcons(boxView, boxView->icons[incomingPage], iconX, col);
         }
     }
 }
 
-static void ov19_021D803C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, int param2, int param3)
+static void BoxView_CreateColumnIcons(BoxView *boxView, MonIcon *icon, int iconX, int col)
 {
     const PCBoxes *pcBoxes;
-    BoxPokemon *v1;
-    int v2, v3;
-    u32 v4;
+    BoxPokemon *boxMon;
+    int row, boxPos;
+    u32 tileOffset;
 
-    pcBoxes = BoxApp_GetPCBoxes(param0->unk_58F8);
-    v4 = (88 + (param0->unk_34 * 480)) + param3 * (4 * 4);
-    param1 += param3;
-    v3 = param3;
+    pcBoxes = BoxApp_GetPCBoxes(boxView->boxApp);
+    tileOffset = (BOX_ICON_TILE_BASE + (boxView->pendingPage * BOX_ICON_PAGE_TILE_COUNT)) + col * MON_ICON_TILE_COUNT;
+    icon += col;
+    boxPos = col;
 
-    for (v2 = 0; v2 < 5; v2++) {
-        if (param1->unk_00 == NULL) {
-            v1 = PCBoxes_GetBoxMonAt(pcBoxes, param0->unk_30, v3);
+    for (row = 0; row < MAX_PC_ROWS; row++) {
+        if (icon->sprite == NULL) {
+            boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxView->pendingBoxID, boxPos);
 
-            if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES_EXISTS, NULL)) {
-                ov19_021DA548(param0->unk_58F0, v1, param0->unk_5814[v3], param0->unk_57D8[v3], param0->unk_CD8[v3], param2, 40 + 24 * v2, 2, ov19_021D85B4(v3), v4, param1);
+            if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+                MonIconHelper_CreateIconFromTiles(boxView->monIconHelper, boxMon, boxView->species[boxPos], boxView->iconSpriteIndex[boxPos], boxView->iconTileData[boxPos], iconX, BOX_GRID_TOP + BOX_GRID_CELL_SIZE * row, 2, BoxView_GetIconPriority(boxPos), tileOffset, icon);
             }
         }
 
-        v4 += (6 * (4 * 4));
-        param1 += 6;
-        v3 += 6;
+        tileOffset += (MAX_PC_COLS * MON_ICON_TILE_COUNT);
+        icon += MAX_PC_COLS;
+        boxPos += MAX_PC_COLS;
     }
 }
 
-static void ov19_021D8114(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, int param2)
+static void BoxView_DeleteColumnIcons(BoxView *boxView, MonIcon *monIcon, int col)
 {
-    int v0;
+    monIcon += col;
 
-    param1 += param2;
-
-    for (v0 = 0; v0 < 5; v0++) {
-        if (param1->unk_00 != NULL) {
-            Sprite_Delete(param1->unk_00);
-            param1->unk_00 = NULL;
+    for (int row = 0; row < MAX_PC_ROWS; row++) {
+        if (monIcon->sprite != NULL) {
+            Sprite_Delete(monIcon->sprite);
+            monIcon->sprite = NULL;
         }
 
-        param1 += 6;
+        monIcon += MAX_PC_COLS;
     }
 }
 
-static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 boxID)
+static void BoxView_PrepareIconData(BoxView *boxView, u32 boxID)
 {
     const PCBoxes *pcBoxes;
     BoxPokemon *boxMon;
     u32 i, species;
 
-    pcBoxes = BoxApp_GetPCBoxes(param0->unk_58F8);
+    pcBoxes = BoxApp_GetPCBoxes(boxView->boxApp);
 
     for (i = 0; i < MAX_MONS_PER_BOX; i++) {
         boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, i);
         species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
         if (species != SPECIES_NONE) {
-            param0->unk_5814[i] = species;
-            param0->unk_57D8[i] = BoxPokemon_IconSpriteIndex(boxMon);
-            ov19_021DA744(param0->unk_58F0, param0->unk_CD8[i], param0->unk_57D8[i], ((4 * 4) * 0x20 + 0x80));
+            boxView->species[i] = species;
+            boxView->iconSpriteIndex[i] = BoxPokemon_IconSpriteIndex(boxMon);
+            MonIconHelper_ReadIconData(boxView->monIconHelper, boxView->iconTileData[i], boxView->iconSpriteIndex[i], ((4 * 4) * 0x20 + 0x80));
         }
     }
 }
 
-static void ov19_021D81B8(UnkStruct_ov19_021D8318 *param0, int param1, int param2, u32 param3)
+static void BoxView_StartWallpaperChangeFlash(BoxView *boxView, int startIndex, int targetIndex, u32 plttOffset)
 {
-    UnkStruct_ov19_021D81B8 *v0;
+    WallpaperChangeFlashTask *flashTask;
 
-    param0->unk_A3 = 0;
-    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D81B8));
+    boxView->taskBusy = 0;
+    flashTask = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(WallpaperChangeFlashTask));
 
-    if (v0) {
-        v0->unk_00 = param0;
-        v0->unk_04 = param1;
-        v0->unk_06 = param2;
-        v0->unk_0C = param3;
-        v0->unk_0A = 2;
-        v0->unk_08 = (param2 > param1) ? 1 : -1;
+    if (flashTask) {
+        flashTask->boxView = boxView;
+        flashTask->currentIndex = startIndex;
+        flashTask->targetIndex = targetIndex;
+        flashTask->plttOffset = plttOffset;
+        flashTask->tickDelay = 2;
+        flashTask->step = (targetIndex > startIndex) ? 1 : -1;
 
-        if (ov19_021D77C8(ov19_021D8210, v0, 0) != NULL) {
-            param0->unk_A3 = 1;
+        if (BoxGraphics_StartVBlankTask(BoxView_WallpaperChangeFlashTask, flashTask, 0) != NULL) {
+            boxView->taskBusy = 1;
         } else {
-            Heap_Free(v0);
+            Heap_Free(flashTask);
         }
     }
 }
 
-static void ov19_021D8210(SysTask *param0, void *param1)
+static void BoxView_WallpaperChangeFlashTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021D81B8 *v0 = param1;
+    WallpaperChangeFlashTask *flashTask = param;
 
-    if (v0->unk_0A) {
-        v0->unk_0A--;
+    if (flashTask->tickDelay) {
+        flashTask->tickDelay--;
     } else {
-        if (v0->unk_04 != v0->unk_06) {
-            v0->unk_04 += v0->unk_08;
-            GX_LoadBGPltt(v0->unk_00->unk_5860[v0->unk_04], v0->unk_0C, 0x20);
-            v0->unk_0A = 2;
+        if (flashTask->currentIndex != flashTask->targetIndex) {
+            flashTask->currentIndex += flashTask->step;
+            GX_LoadBGPltt(flashTask->boxView->unk_5860[flashTask->currentIndex], flashTask->plttOffset, 0x20);
+            flashTask->tickDelay = 2;
         } else {
-            ov19_021D79B8(v0, ov19_021D826C, v0->unk_00);
-            SysTask_Done(param0);
+            BoxGraphics_DeferFree(flashTask, BoxView_OnWallpaperChangeFlashDone, flashTask->boxView);
+            SysTask_Done(task);
         }
     }
 }
 
-static void ov19_021D826C(void *param0)
+static void BoxView_OnWallpaperChangeFlashDone(void *param)
 {
-    UnkStruct_ov19_021D8318 *v0 = param0;
-    v0->unk_A3 = 0;
+    BoxView *boxView = param;
+    boxView->taskBusy = 0;
 }
 
-static int Unk_ov19_021E077C = 0;
+static int sWallpaperReloadStep = 0;
 
-static void ov19_021D8274(SysTask *param0, void *param1)
+static void BoxView_ReloadWallpaperTask(SysTask *task, void *param)
 {
-    static u32 v0 = 0, v1 = 0, v2 = 0;
+    static u32 tileOffset = 0, tilemapRow = 0, plttSlot = 0;
     static const BoxCustomization *customization;
-    UnkStruct_ov19_021D8318 *v4 = param1;
+    BoxView *boxView = param;
 
-    switch (Unk_ov19_021E077C) {
-    case 0:
-        ov19_021D7AF4(v4, 0, &v0, &v1, &v2);
-        customization = BoxApp_GetBoxCustomization(v4->unk_58F8);
-        ov19_021D7BC0(v4, customization, v2, FALSE);
-        Unk_ov19_021E077C++;
+    switch (sWallpaperReloadStep) {
+    case RELOAD_WALLPAPER_STATE_PLTT:
+        BoxView_GetWallpaperLayout(boxView, 0, &tileOffset, &tilemapRow, &plttSlot);
+        customization = BoxApp_GetBoxCustomization(boxView->boxApp);
+        BoxView_LoadWallpaperPltt(boxView, customization, plttSlot, FALSE);
+        sWallpaperReloadStep++;
         break;
-    case 1:
-        ov19_021D7D00(v4, customization, v1, v0, v2);
-        ov19_021D7C58(v4, customization, v0);
-        Unk_ov19_021E077C++;
+    case RELOAD_WALLPAPER_STATE_TILES:
+        BoxView_LoadWallpaperTilemap(boxView, customization, tilemapRow, tileOffset, plttSlot);
+        BoxView_LoadWallpaperTiles(boxView, customization, tileOffset);
+        sWallpaperReloadStep++;
         break;
-    case 2:
-        v4->unk_A3 = 0;
-        Unk_ov19_021E077C = 0;
-        SysTask_Done(param0);
+    case RELOAD_WALLPAPER_STATE_DONE:
+        boxView->taskBusy = 0;
+        sWallpaperReloadStep = 0;
+        SysTask_Done(task);
         break;
+    }
+}
+
+static void BoxView_StartWallpaperReload(BoxView *boxView)
+{
+    boxView->taskBusy = (SysTask_ExecuteAfterVBlank(BoxView_ReloadWallpaperTask, boxView, 0) != NULL);
+
+    if (boxView->taskBusy) {
+        sWallpaperReloadStep = 0;
     }
 }
 
-static void ov19_021D8318(UnkStruct_ov19_021D8318 *param0)
+void BoxView_StartWallpaperChange(BoxView *boxView)
 {
-    param0->unk_A3 = (SysTask_ExecuteAfterVBlank(ov19_021D8274, param0, 0) != NULL);
-
-    if (param0->unk_A3) {
-        Unk_ov19_021E077C = 0;
-    }
+    boxView->wallpaperChangeStep = 0;
+    BoxView_StartWallpaperChangeFlash(boxView, 0, 8, sPagePlttSlot[boxView->currentPage] * 0x20);
 }
 
-void ov19_021D8350(UnkStruct_ov19_021D8318 *param0)
+BOOL BoxView_IsWallpaperChangeDone(BoxView *boxView)
 {
-    param0->unk_A2 = 0;
-    ov19_021D81B8(param0, 0, 8, Unk_ov19_021E0138[param0->unk_02] * 0x20);
-}
-
-BOOL ov19_021D8370(UnkStruct_ov19_021D8318 *param0)
-{
-    switch (param0->unk_A2) {
-    case 0:
-        if (param0->unk_A3 == 0) {
-            param0->unk_A2++;
+    switch (boxView->wallpaperChangeStep) {
+    case WALLPAPER_CHANGE_STATE_WAIT_FLASH_IN:
+        if (boxView->taskBusy == 0) {
+            boxView->wallpaperChangeStep++;
         }
         break;
-    case 1:
-        ov19_021D8318(param0);
-        param0->unk_A2++;
+    case WALLPAPER_CHANGE_STATE_START_RELOAD:
+        BoxView_StartWallpaperReload(boxView);
+        boxView->wallpaperChangeStep++;
         break;
-    case 2:
-        if (param0->unk_A3 == 0) {
-            param0->unk_A2++;
+    case WALLPAPER_CHANGE_STATE_WAIT_RELOAD:
+        if (boxView->taskBusy == 0) {
+            boxView->wallpaperChangeStep++;
         }
         break;
-    case 3:
-        ov19_021D81B8(param0, 8, 0, Unk_ov19_021E0138[param0->unk_02] * 0x20);
-        param0->unk_A2++;
+    case WALLPAPER_CHANGE_STATE_START_FLASH_OUT:
+        BoxView_StartWallpaperChangeFlash(boxView, 8, 0, sPagePlttSlot[boxView->currentPage] * 0x20);
+        boxView->wallpaperChangeStep++;
         break;
-    case 4:
-        if (param0->unk_A3 == 0) {
-            return 1;
+    case WALLPAPER_CHANGE_STATE_WAIT_FLASH_OUT:
+        if (boxView->taskBusy == 0) {
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov19_021D8408(UnkStruct_ov19_021D8318 *param0, u32 param1, s32 param2, UnkStruct_ov19_021DCD18 *param3)
+void BoxView_PickUpIcon(BoxView *boxView, u32 boxPos, s32 tileOffset, MonIcon *monIcon)
 {
-    ov19_021DA418(&param0->unk_A8[param0->unk_02][param1], param3, 1);
-    ov19_021DA754(param0->unk_58F0, param3, param2);
-    ov19_021DA3CC(param0->unk_58F0, &param0->unk_A8[param0->unk_02][param1], 1);
+    MonIcon_Copy(&boxView->icons[boxView->currentPage][boxPos], monIcon, 1);
+    MonIconHelper_MoveIconTiles(boxView->monIconHelper, monIcon, tileOffset);
+    MonIconHelper_InitIcons(boxView->monIconHelper, &boxView->icons[boxView->currentPage][boxPos], 1);
 }
 
-void ov19_021D845C(UnkStruct_ov19_021D8318 *param0, u32 param1, const UnkStruct_ov19_021DCD18 *param2)
+void BoxView_PlaceDownIcon(BoxView *boxView, u32 boxPos, const MonIcon *monIcon)
 {
-    u32 v0;
-    UnkStruct_ov19_021DCD18 *v1;
+    u32 tileOffset;
+    MonIcon *icon;
 
-    v0 = 88 + (param0->unk_02 * 480) + ((4 * 4) * param1);
-    v1 = &param0->unk_A8[param0->unk_02][param1];
-    ov19_021DA418(param2, v1, 1);
-    BoxGraphics_ApplyMonInMultiSelectShading(param0->unk_58F0, v1, FALSE);
-    ov19_021DA754(param0->unk_58F0, v1, v0);
-    BoxGraphics_SetSpritePriority(v1->unk_00, ov19_021D85B4(param1));
+    tileOffset = BOX_ICON_TILE_BASE + (boxView->currentPage * BOX_ICON_PAGE_TILE_COUNT) + (MON_ICON_TILE_COUNT * boxPos);
+    icon = &boxView->icons[boxView->currentPage][boxPos];
+    MonIcon_Copy(monIcon, icon, 1);
+    MonIconHelper_SetMultiSelectShading(boxView->monIconHelper, icon, FALSE);
+    MonIconHelper_MoveIconTiles(boxView->monIconHelper, icon, tileOffset);
+    BoxGraphics_SetSpritePriority(icon->sprite, BoxView_GetIconPriority(boxPos));
 
-    ov19_021D89F4(param0, param1);
+    BoxView_UpdateIconForm(boxView, boxPos);
 }
 
-UnkStruct_ov19_021DCD18 *ov19_021D84C8(UnkStruct_ov19_021D8318 *param0, u32 posInBox)
+MonIcon *BoxView_GetIcon(BoxView *boxView, u32 posInBox)
 {
-    return &param0->unk_A8[param0->unk_02][posInBox];
+    return &boxView->icons[boxView->currentPage][posInBox];
 }
 
-void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0)
+void BoxView_CreateMissingIcons(BoxView *boxView)
 {
     int i, boxID;
     BoxPokemon *boxMon;
 
-    boxID = PCBoxes_GetCurrentBoxID(param0->unk_58F8->pcBoxes);
+    boxID = PCBoxes_GetCurrentBoxID(boxView->boxApp->pcBoxes);
 
     for (i = 0; i < MAX_MONS_PER_BOX; i++) {
-        boxMon = PCBoxes_GetBoxMonAt(param0->unk_58F8->pcBoxes, boxID, i);
+        boxMon = PCBoxes_GetBoxMonAt(boxView->boxApp->pcBoxes, boxID, i);
 
         if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
-            if (param0->unk_A8[param0->unk_02][i].unk_00 == NULL) {
-                int boxCol, boxRow, v5;
+            if (boxView->icons[boxView->currentPage][i].sprite == NULL) {
+                int boxCol, boxRow, tileOffset;
 
                 boxRow = i / MAX_PC_COLS;
                 boxCol = i % MAX_PC_COLS;
-                v5 = (88 + (param0->unk_02 * 480)) + ((4 * 4) * i);
+                tileOffset = (BOX_ICON_TILE_BASE + (boxView->currentPage * BOX_ICON_PAGE_TILE_COUNT)) + (MON_ICON_TILE_COUNT * i);
 
-                ov19_021DA428(param0->unk_58F0, boxMon, 112 + param0->unk_585C + 24 * boxCol, 40 + 24 * boxRow, 2, ov19_021D85B4(i), v5, &(param0->unk_A8[param0->unk_02][i]));
+                MonIconHelper_CreateIcon(boxView->monIconHelper, boxMon, BOX_GRID_LEFT + boxView->compareModeXOffset + BOX_GRID_CELL_SIZE * boxCol, BOX_GRID_TOP + BOX_GRID_CELL_SIZE * boxRow, 2, BoxView_GetIconPriority(i), tileOffset, &(boxView->icons[boxView->currentPage][i]));
             }
         }
     }
 }
 
-static u32 ov19_021D85B4(u32 param0)
+static u32 BoxView_GetIconPriority(u32 boxPos)
 {
-    static const u16 v0[(5 * 6)] = {
+    static const u16 sMirroredBoxPos[(5 * 6)] = {
         5,
         4,
         3,
@@ -638,180 +632,179 @@ static u32 ov19_021D85B4(u32 param0)
         24,
     };
 
-    return 11 + v0[param0];
+    return 11 + sMirroredBoxPos[boxPos];
 }
 
-static void ov19_021D85C4(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DA384 *param1, u32 param2, u32 param3, s32 param4, UnkStruct_ov19_021DCD18 *param5)
+static void BoxView_CreateAllIcons(BoxView *boxView, MonIconHelper *monIconHelper, u32 boxID, u32 page, s32 distanceX, MonIcon *boxIcon)
 {
-    BoxPokemon *v0;
-    u32 v1, v2, v3, v4, v5;
-    u64 v6, v7;
+    BoxPokemon *boxMon;
+    u32 species, col, row, boxPos, tileOffset;
 
-    v5 = (88 + (param3 * 480));
-    v4 = 0;
+    tileOffset = (BOX_ICON_TILE_BASE + (page * BOX_ICON_PAGE_TILE_COUNT));
+    boxPos = 0;
 
-    for (v3 = 0; v3 < 5; v3++) {
-        for (v2 = 0; v2 < 6; v2++) {
-            v0 = PCBoxes_GetBoxMonAt(param1->unk_40->pcBoxes, param2, v4);
-            v1 = BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_SPECIES, NULL);
+    for (row = 0; row < MAX_PC_ROWS; row++) {
+        for (col = 0; col < MAX_PC_COLS; col++) {
+            boxMon = PCBoxes_GetBoxMonAt(monIconHelper->boxApp->pcBoxes, boxID, boxPos);
+            species = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
 
-            if (v1 != 0) {
-                ov19_021DA428(param1, v0, 112 + param0->unk_585C + 24 * v2 + param4, 40 + 24 * v3, 2, ov19_021D85B4(v4), v5, param5);
+            if (species != 0) {
+                MonIconHelper_CreateIcon(monIconHelper, boxMon, BOX_GRID_LEFT + boxView->compareModeXOffset + BOX_GRID_CELL_SIZE * col + distanceX, BOX_GRID_TOP + BOX_GRID_CELL_SIZE * row, 2, BoxView_GetIconPriority(boxPos), tileOffset, boxIcon);
             }
 
-            param5++;
-            v4++;
-            v5 += (4 * 4);
+            boxIcon++;
+            boxPos++;
+            tileOffset += MON_ICON_TILE_COUNT;
         }
     }
 }
 
-static void ov19_021D865C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+static void BoxView_UpdateOutgoingIconPositions(BoxView *boxView, MonIcon *icons, u32 scrollStep)
 {
-    VecFx32 v0;
-    int v1, v2;
+    VecFx32 pos;
+    int col, row;
 
-    for (v2 = 0; v2 < 5; v2++) {
-        for (v1 = 0; v1 < 6; v1++) {
-            if (param1->unk_00 != NULL) {
-                v0 = *(Sprite_GetPosition(param1->unk_00));
-                v0.x = param0->unk_68[param2][v1];
-                Sprite_SetPosition(param1->unk_00, &v0);
+    for (row = 0; row < MAX_PC_ROWS; row++) {
+        for (col = 0; col < MAX_PC_COLS; col++) {
+            if (icons->sprite != NULL) {
+                pos = *(Sprite_GetPosition(icons->sprite));
+                pos.x = boxView->unk_68[scrollStep][col];
+                Sprite_SetPosition(icons->sprite, &pos);
             }
 
-            param1++;
+            icons++;
         }
     }
 }
 
-static void ov19_021D86B4(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+static void BoxView_UpdateIncomingIconPositions(BoxView *boxView, MonIcon *icons, u32 scrollStep)
 {
-    VecFx32 v0;
-    int v1, v2;
+    VecFx32 pos;
+    int col, row;
 
-    for (v2 = 0; v2 < 5; v2++) {
-        for (v1 = 0; v1 < 6; v1++) {
-            if (param1->unk_00 != NULL) {
-                v0 = *(Sprite_GetPosition(param1->unk_00));
-                v0.x = param0->unk_38[param2][v1];
-                Sprite_SetPosition(param1->unk_00, &v0);
+    for (row = 0; row < MAX_PC_ROWS; row++) {
+        for (col = 0; col < MAX_PC_COLS; col++) {
+            if (icons->sprite != NULL) {
+                pos = *(Sprite_GetPosition(icons->sprite));
+                pos.x = boxView->unk_38[scrollStep][col];
+                Sprite_SetPosition(icons->sprite, &pos);
             }
 
-            param1++;
+            icons++;
         }
     }
 }
 
-static void ov19_021D870C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1)
+static void BoxView_SnapIconsToGrid(BoxView *boxView, MonIcon *monIcon)
 {
-    VecFx32 v0;
-    int v1, v2, v3;
+    VecFx32 pos;
+    int col, row;
 
-    v0.z = 0;
+    pos.z = 0;
 
-    for (v2 = 0; v2 < 5; v2++) {
-        v0.y = (40 + v2 * 24) * FX32_ONE;
+    for (row = 0; row < MAX_PC_ROWS; row++) {
+        pos.y = (BOX_GRID_TOP + row * BOX_GRID_CELL_SIZE) * FX32_ONE;
 
-        for (v1 = 0; v1 < 6; v1++) {
-            v0.x = (112 + param0->unk_585C + v1 * 24) * FX32_ONE;
+        for (col = 0; col < MAX_PC_COLS; col++) {
+            pos.x = (BOX_GRID_LEFT + boxView->compareModeXOffset + col * BOX_GRID_CELL_SIZE) * FX32_ONE;
 
-            if (param1->unk_00 != NULL) {
-                Sprite_SetPosition(param1->unk_00, &v0);
+            if (monIcon->sprite != NULL) {
+                Sprite_SetPosition(monIcon->sprite, &pos);
             }
 
-            param1++;
+            monIcon++;
         }
     }
 }
 
-static void ov19_021D8764(u16 *param0, const u16 *param1, u32 param2, u32 param3, u32 param4)
+static void BoxView_WriteWallpaperTilemap(u16 *buffer, const u16 *screenData, u32 tilemapRow, u32 tileOffset, u32 plttSlot)
 {
-    u32 v0, v1;
-    u16 *v2;
-    u16 v3;
+    u32 srcCol, row;
+    u16 *dest;
+    u16 value;
 
-    if (param2 >= 32) {
-        param0 += 1024;
+    if (tilemapRow >= 32) {
+        buffer += 1024;
     }
 
-    for (v0 = 0; v0 < 21; v0++) {
-        v2 = param0 + ((32 * 0) + (param2 & 31));
+    for (srcCol = 0; srcCol < 21; srcCol++) {
+        dest = buffer + ((32 * 0) + (tilemapRow & 31));
 
-        for (v1 = 0; v1 < 20; v1++) {
-            v3 = param1[v1 * 21 + v0];
-            v3 = ((GX_SCRFMT_TEXT_CHARNAME_MASK & v3) + param3) | ((GX_SCRFMT_TEXT_HF_MASK | GX_SCRFMT_TEXT_VF_MASK) & v3) | (param4 << GX_SCRFMT_TEXT_COLORPLTT_SHIFT);
-            *v2 = v3;
-            v2 += 32;
+        for (row = 0; row < 20; row++) {
+            value = screenData[row * 21 + srcCol];
+            value = ((GX_SCRFMT_TEXT_CHARNAME_MASK & value) + tileOffset) | ((GX_SCRFMT_TEXT_HF_MASK | GX_SCRFMT_TEXT_VF_MASK) & value) | (plttSlot << GX_SCRFMT_TEXT_COLORPLTT_SHIFT);
+            *dest = value;
+            dest += 32;
         }
 
-        for (v1 = 0; v1 < 4; v1++) {
-            *v2 = (param4 << GX_SCRFMT_TEXT_COLORPLTT_SHIFT) | (param3 + 0);
-            v2 += 32;
+        for (row = 0; row < 4; row++) {
+            *dest = (plttSlot << GX_SCRFMT_TEXT_COLORPLTT_SHIFT) | (tileOffset + 0);
+            dest += 32;
         }
 
-        param2 = (param2 + 1) & 63;
+        tilemapRow = (tilemapRow + 1) & 63;
 
-        if (param2 == 0) {
-            param0 -= 1024;
+        if (tilemapRow == 0) {
+            buffer -= 1024;
         }
 
-        if (param2 == 32) {
-            param0 += 1024;
+        if (tilemapRow == 32) {
+            buffer += 1024;
         }
     }
 
-    for (v0 = 0; v0 < 2; v0++) {
-        v2 = param0 + ((32 * 0) + (param2 & 31));
+    for (srcCol = 0; srcCol < 2; srcCol++) {
+        dest = buffer + ((32 * 0) + (tilemapRow & 31));
 
-        for (v1 = 0; v1 < (20 + 4); v1++) {
-            *v2 = (param4 << GX_SCRFMT_TEXT_COLORPLTT_SHIFT) | (param3 + 0);
-            v2 += 32;
+        for (row = 0; row < (20 + 4); row++) {
+            *dest = (plttSlot << GX_SCRFMT_TEXT_COLORPLTT_SHIFT) | (tileOffset + 0);
+            dest += 32;
         }
 
-        param2 = (param2 + 1) & 63;
+        tilemapRow = (tilemapRow + 1) & 63;
 
-        if (param2 == 0) {
-            param0 -= 1024;
+        if (tilemapRow == 0) {
+            buffer -= 1024;
         }
 
-        if (param2 == 32) {
-            param0 += 1024;
+        if (tilemapRow == 32) {
+            buffer += 1024;
         }
     }
 }
 
-void ov19_021D8860(UnkStruct_ov19_021D8318 *param0, u32 boxCursorPosition)
+void BoxView_StartReleaseMonAnimation(BoxView *boxView, u32 boxCursorPosition)
 {
-    param0->unk_A0 = boxCursorPosition;
-    param0->unk_A4 = 0;
+    boxView->boxCursorPosition = boxCursorPosition;
+    boxView->releaseAnimStep = 0;
 
-    ov19_021DA7B8(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][boxCursorPosition]), 1);
+    MonIconHelper_SetIconAnim(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][boxCursorPosition]), MON_ICON_ANIM_RELEASE);
 }
 
-BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
+BOOL BoxView_IsReleaseMonAnimationDone(BoxView *boxView)
 {
-    UnkStruct_ov19_021DCD18 *v0 = &(param0->unk_A8[param0->unk_02][param0->unk_A0]);
+    MonIcon *monIcon = &(boxView->icons[boxView->currentPage][boxView->boxCursorPosition]);
 
-    switch (param0->unk_A4) {
-    case 0:
-        if (ov19_021DA7E0(param0->unk_58F0, v0)) {
-            const BoxApplicationManager *v1 = ov19_021D7964(param0->unk_58FC);
+    switch (boxView->releaseAnimStep) {
+    case RELEASE_ANIM_STEP_RELEASING:
+        if (MonIconHelper_IsIconAnimDone(boxView->monIconHelper, monIcon)) {
+            const BoxApplicationManager *boxAppMan = BoxGraphics_GetBoxAppMan(boxView->boxGraphics);
 
-            if (BoxAppMan_HasCheckedCanReleaseMon(v1)) {
-                if (BoxAppMan_CanReleaseMon(v1)) {
-                    ov19_021DA3F0(param0->unk_58F0, v0, 1);
+            if (BoxAppMan_HasCheckedCanReleaseMon(boxAppMan)) {
+                if (BoxAppMan_CanReleaseMon(boxAppMan)) {
+                    MonIconHelper_DeleteIcons(boxView->monIconHelper, monIcon, 1);
                     return TRUE;
                 } else {
-                    ov19_021DA7B8(param0->unk_58F0, v0, 2);
-                    param0->unk_A4++;
+                    MonIconHelper_SetIconAnim(boxView->monIconHelper, monIcon, MON_ICON_ANIM_RELEASE_REJECTED);
+                    boxView->releaseAnimStep++;
                 }
             }
         }
 
         break;
 
-    case 1:
-        if (ov19_021DA7E0(param0->unk_58F0, v0)) {
+    case RELEASE_ANIM_STEP_REJECTED:
+        if (MonIconHelper_IsIconAnimDone(boxView->monIconHelper, monIcon)) {
             return TRUE;
         }
         break;
@@ -820,61 +813,59 @@ BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
     return FALSE;
 }
 
-void ov19_021D8938(UnkStruct_ov19_021D8318 *param0)
+void BoxView_UpdateMarkingsTransparency(BoxView *boxView)
 {
-    u32 v0;
     int monPosInBox;
-
-    v0 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_58F8);
+    u32 mask = BoxApp_GetMonSpriteTransparencyMask(boxView->boxApp);
 
     for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
-        if (param0->unk_A8[param0->unk_02][monPosInBox].unk_00 != NULL) {
-            ov19_021DA63C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][monPosInBox]), v0);
+        if (boxView->icons[boxView->currentPage][monPosInBox].sprite != NULL) {
+            MonIconHelper_UpdateTransparency(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][monPosInBox]), mask);
         }
     }
 }
 
-void ov19_021D8988(UnkStruct_ov19_021D8318 *param0, u32 posInBox, u32 item)
+void BoxView_UpdateHeldItemIcon(BoxView *boxView, u32 posInBox, u32 item)
 {
-    if (param0->unk_A8[param0->unk_02][posInBox].unk_00 != NULL) {
-        ov19_021DA690(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), item);
-        ov19_021DA63C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), BoxApp_GetMonSpriteTransparencyMask(param0->unk_58F8));
-        ov19_021DA694(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), 1);
+    if (boxView->icons[boxView->currentPage][posInBox].sprite != NULL) {
+        MonIconHelper_SetHeldItem(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][posInBox]), item);
+        MonIconHelper_UpdateTransparency(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][posInBox]), BoxApp_GetMonSpriteTransparencyMask(boxView->boxApp));
+        MonIconHelper_UpdateIconForm(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][posInBox]), 1);
     }
 }
 
-void ov19_021D89F4(UnkStruct_ov19_021D8318 *param0, u32 param1)
+static void BoxView_UpdateIconForm(BoxView *boxView, u32 posInBox)
 {
-    if (param0->unk_A8[param0->unk_02][param1].unk_00 != NULL) {
-        ov19_021DA694(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][param1]), 1);
+    if (boxView->icons[boxView->currentPage][posInBox].sprite != NULL) {
+        MonIconHelper_UpdateIconForm(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][posInBox]), TRUE);
     }
 }
 
-void ov19_021D8A24(UnkStruct_ov19_021D8318 *param0)
+void BoxView_UpdateMarkingsIcon(BoxView *boxView)
 {
-    u32 posInBox = BoxApp_GetCursorBoxPosition(param0->unk_58F8);
-    u32 monMarkings = BoxApp_GetPreviewedMonMarkings(param0->unk_58F8);
+    u32 posInBox = BoxApp_GetCursorBoxPosition(boxView->boxApp);
+    u32 monMarkings = BoxApp_GetPreviewedMonMarkings(boxView->boxApp);
 
-    if (param0->unk_A8[param0->unk_02][posInBox].unk_00 != NULL) {
-        ov19_021DA68C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), monMarkings);
+    if (boxView->icons[boxView->currentPage][posInBox].sprite != NULL) {
+        MonIconHelper_SetMarkings(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][posInBox]), monMarkings);
     }
 }
 
-void BoxGraphics_ApplyMultiSelectMonShading(UnkStruct_ov19_021D8318 *param0)
+void BoxView_ApplyMultiSelectMonShading(BoxView *boxView)
 {
     u32 leftCol, rightCol, topRow, bottomRow, col, row, posInBox;
 
-    BoxApp_GetMultiSelectBoundingBox(param0->unk_58F8, &leftCol, &rightCol, &topRow, &bottomRow);
+    BoxApp_GetMultiSelectBoundingBox(boxView->boxApp, &leftCol, &rightCol, &topRow, &bottomRow);
 
     posInBox = 0;
 
     for (row = 0; row < MAX_PC_ROWS; row++) {
         for (col = 0; col < MAX_PC_COLS; col++) {
-            if (param0->unk_A8[param0->unk_02][posInBox].unk_00 != NULL) {
+            if (boxView->icons[boxView->currentPage][posInBox].sprite != NULL) {
                 if (((u32)(col - leftCol) <= (u32)(rightCol - leftCol)) & ((u32)(row - topRow) <= (u32)(bottomRow - topRow))) {
-                    BoxGraphics_ApplyMonInMultiSelectShading(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), TRUE);
+                    MonIconHelper_SetMultiSelectShading(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][posInBox]), TRUE);
                 } else {
-                    BoxGraphics_ApplyMonInMultiSelectShading(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), FALSE);
+                    MonIconHelper_SetMultiSelectShading(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][posInBox]), FALSE);
                 }
             }
 
@@ -883,11 +874,11 @@ void BoxGraphics_ApplyMultiSelectMonShading(UnkStruct_ov19_021D8318 *param0)
     }
 }
 
-void ov19_021D8B14(UnkStruct_ov19_021D8318 *param0)
+void BoxView_ClearMultiSelectShading(BoxView *boxView)
 {
     for (int i = 0; i < MAX_MONS_PER_BOX; i++) {
-        if (param0->unk_A8[param0->unk_02][i].unk_00 != NULL) {
-            BoxGraphics_ApplyMonInMultiSelectShading(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][i]), FALSE);
+        if (boxView->icons[boxView->currentPage][i].sprite != NULL) {
+            MonIconHelper_SetMultiSelectShading(boxView->monIconHelper, &(boxView->icons[boxView->currentPage][i]), FALSE);
         }
     }
 }

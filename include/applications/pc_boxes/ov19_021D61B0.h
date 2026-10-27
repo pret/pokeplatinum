@@ -17,81 +17,129 @@
 #include "sprite.h"
 #include "sys_task_manager.h"
 
-enum BoxGraphicsFunctions {
-    FUNC_ov19_021D6694,
-    FUNC_BoxGraphics_ScreenFadeBothToBlack0,
-    FUNC_BoxGraphics_ScreenFadeBothToBlack1,
-    FUNC_BoxGraphics_ScreenFadeBothToBlack2,
+#define BOX_GRAPHICS_MAX_TASKS             4
+#define BOX_GRAPHICS_COMPARE_MODE_X_OFFSET (-44)
+
+enum BoxGraphicsFunction {
+    FUNC_BoxGraphics_ShowBoxScreen = 0,
+    FUNC_BoxGraphics_ScreenFadeBothToBlackLogIn,
+    FUNC_BoxGraphics_ScreenFadeInReturnToBox,
+    FUNC_BoxGraphics_ScreenFadeOutToOtherApp,
     FUNC_BoxGraphics_ChangeToNewBox,
     FUNC_BoxGraphics_MoveCursor,
     FUNC_BoxGraphics_PreviewMon,
-    FUNC_ov19_021D69BC,
-    FUNC_ov19_021D6A1C,
+    FUNC_BoxGraphics_UpdateMarkingsIcon,
+    FUNC_BoxGraphics_ClearMonPreview,
     FUNC_BoxGraphics_PickUpMonIntoCursor,
     FUNC_BoxGraphics_PlaceMonDownFromCursor,
-    FUNC_ov19_021D6AB0,
-    FUNC_ov19_021D6AEC,
-    FUNC_ov19_021D6B1C,
+    FUNC_BoxGraphics_PlayShiftMonAnimation,
+    FUNC_BoxGraphics_StoreMonFromCursor,
+    FUNC_BoxGraphics_StoreMonFromParty,
     FUNC_BoxGraphics_PlayReleaseCursorMonAnimation,
     FUNC_BoxGraphics_PlayReleaseBoxMonAnimation,
     FUNC_BoxGraphics_PlayReleasePartyMonAnimation,
     FUNC_BoxGraphics_DisplayItemInfo,
     FUNC_BoxGraphics_CloseItemInfo,
-    FUNC_ov19_021D6CB0,
-    FUNC_ov19_021D6CF8,
-    FUNC_ov19_021D6D40,
-    FUNC_ov19_021D6D88,
+    FUNC_BoxGraphics_PlayTakeItemAnimation,
+    FUNC_BoxGraphics_PlayGiveItemAnimation,
+    FUNC_BoxGraphics_PlaySwitchItemAnimation,
+    FUNC_BoxGraphics_UpdateHeldItemIcon,
     FUNC_BoxGraphics_ItemShrinkToNothing,
     FUNC_BoxGraphics_DisplayBoxMessage,
     FUNC_BoxGraphics_ShowMenu,
     FUNC_BoxGraphics_CloseMessageBox,
-    FUNC_ov19_021D6EC0,
+    FUNC_BoxGraphics_CloseMenu,
     FUNC_BoxGraphics_UpdateMenuCursor,
-    FUNC_ov19_021D6F0C,
+    FUNC_BoxGraphics_UpdateMenuMarkings,
     FUNC_BoxGraphics_ShowBoxSelectionPopup,
     FUNC_BoxGraphics_ScrollBoxSelectionPopup,
-    FUNC_ov19_021D6FB0,
+    FUNC_BoxGraphics_CloseBoxSelectionPopup,
     FUNC_BoxGraphics_TransitionWallpaper,
     FUNC_BoxGraphics_PressBoxButton,
     FUNC_BoxGraphics_OpenPartyPopup,
-    FUNC_ov19_021D7138,
+    FUNC_BoxGraphics_ClosePartyPopup,
     FUNC_BoxGraphics_PlayAdjustPartyAnimation,
-    FUNC_ov19_021D71F8,
+    FUNC_BoxGraphics_FinishAdjustPartyAnimation,
     FUNC_BoxGraphics_SetMonMarkingsTransparency,
-    FUNC_BoxGraphics_OpenOrCloseSelectedTouchDial,
-    FUNC_ov19_021D72E8,
+    FUNC_BoxGraphics_OpenOrCloseSelectedDial,
+    FUNC_BoxGraphics_UpdateSelectedDial,
     FUNC_BoxGraphics_UpdateMarkingsTouchButton,
-    FUNC_ov19_021D7340,
+    FUNC_BoxGraphics_UpdateCursorPalette,
     FUNC_BoxGraphics_StartDrawMultiSelect,
-    FUNC_ov19_021D7380,
-    FUNC_BoxGraphics_ApplyMultiSelectMonShadingTask,
-    FUNC_ov19_021D73B0,
-    FUNC_ov19_021D73EC,
-    FUNC_ov19_021D7408,
-    FUNC_ov19_021D7424,
+    FUNC_BoxGraphics_ClearMultiSelectShading,
+    FUNC_BoxGraphics_ApplyMultiSelectMonShading,
+    FUNC_BoxGraphics_PickUpMultiSelectedMonsIntoCursor,
+    FUNC_BoxGraphics_SetCompareSlotTab,
+    FUNC_BoxGraphics_SwitchCompareSlotTab,
+    FUNC_BoxGraphics_TransitionCompareMode,
     FUNC_BoxGraphics_ScreenFadeBothToBlackLogOff,
 };
 
-BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const BoxApplication *param1, const BoxApplicationManager *param2);
-void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0);
-void BoxGraphics_TaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function);
-BOOL BoxGraphics_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function);
-BOOL BoxGraphics_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0);
-SysTask *ov19_021D77C8(SysTaskFunc param0, void *param1, u32 param2);
-NNSG2dImagePaletteProxy *ov19_021D77D0(UnkStruct_ov19_021D61B0 *param0);
-UnkStruct_ov19_021DA384 *ov19_021D77D8(UnkStruct_ov19_021D61B0 *param0);
-UnkStruct_ov19_021D8318 *ov19_021D77E0(UnkStruct_ov19_021D61B0 *param0);
-UnkStruct_ov19_021DC680 *ov19_021D77E8(UnkStruct_ov19_021D61B0 *param0);
-UnkStruct_ov19_021D8E00 *ov19_021D77F4(UnkStruct_ov19_021D61B0 *param0);
-UnkStruct_ov19_021DE3E8 *ov19_021D7800(UnkStruct_ov19_021D61B0 *param0);
-UnkStruct_ov19_021DBA9C *ov19_021D780C(UnkStruct_ov19_021D61B0 *param0);
-PokemonSpriteManager *ov19_021D7818(UnkStruct_ov19_021D61B0 *param0);
-int ov19_021D7820(UnkStruct_ov19_021D61B0 *param0);
-void ov19_021D783C(SpriteResourcesHeader *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, NNSG2dCellDataBank *param3, NNSG2dCellAnimBankData *param4, u32 param5);
-Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5);
+enum BoxGraphicsShowBoxScreenState {
+    SHOW_BOX_SCREEN_STATE_LOAD = 0,
+    SHOW_BOX_SCREEN_STATE_WAIT_SPRITE_REMOVED,
+};
+
+enum BoxGraphicsChangeToNewBoxState {
+    CHANGE_BOX_STATE_HIDE_SPRITES = 0,
+    CHANGE_BOX_STATE_WAIT_SPRITES_HIDDEN,
+    CHANGE_BOX_STATE_SWITCH_BOX,
+    CHANGE_BOX_STATE_WAIT_SWITCH_DONE,
+    CHANGE_BOX_STATE_WAIT_SPRITES_SHOWN,
+};
+
+enum BoxGraphicsTaskState {
+    BOX_GRAPHICS_TASK_START = 0,
+    BOX_GRAPHICS_TASK_WAIT,
+    BOX_GRAPHICS_TASK_FREE = 1,
+};
+
+enum BoxGraphicsStoreMonFromPartyState {
+    STORE_MON_FROM_PARTY_STATE_START = 0,
+    STORE_MON_FROM_PARTY_STATE_ADJUST,
+    STORE_MON_FROM_PARTY_STATE_WAIT_ADJUST_DONE,
+};
+
+enum BoxGraphicsPressBoxButtonState {
+    PRESS_BOX_BUTTON_STATE_START = 0,
+    PRESS_BOX_BUTTON_STATE_WAIT_ANIM,
+    PRESS_BOX_BUTTON_STATE_HOLD,
+    PRESS_BOX_BUTTON_STATE_WAIT_RETURN,
+};
+
+enum BoxGraphicsClosePartyPopupState {
+    CLOSE_PARTY_POPUP_STATE_HIDE_SPRITES = 0,
+    CLOSE_PARTY_POPUP_STATE_WAIT_SPRITES_HIDDEN,
+    CLOSE_PARTY_POPUP_STATE_CLOSE,
+    CLOSE_PARTY_POPUP_STATE_WAIT_CLOSE_DONE,
+};
+
+enum BoxGraphicsOpenOrCloseSelectedDialState {
+    DIAL_STATE_START = 0,
+    DIAL_STATE_WAIT_TOGGLE_DONE,
+    DIAL_STATE_WAIT_SELECT_DONE,
+};
+
+BOOL BoxGraphics_Load(BoxGraphics **dest, const BoxApplication *boxApp, const BoxApplicationManager *boxAppMan);
+void BoxGraphics_Free(BoxGraphics *boxGraphics);
+void BoxGraphics_TaskHandler(BoxGraphics *boxGraphics, enum BoxGraphicsFunction function);
+BOOL BoxGraphics_IsSysTaskDone(BoxGraphics *boxGraphics, enum BoxGraphicsFunction function);
+BOOL BoxGraphics_CheckAllTasksDone(BoxGraphics *boxGraphics);
+SysTask *BoxGraphics_StartVBlankTask(SysTaskFunc callback, void *param, u32 priority);
+NNSG2dImagePaletteProxy *BoxGraphics_GetImagePaletteProxy(BoxGraphics *boxGraphics);
+MonIconHelper *BoxGraphics_GetMonIconHelper(BoxGraphics *boxGraphics);
+BoxView *BoxGraphics_GetBoxView(BoxGraphics *boxGraphics);
+BoxPartyGraphics *BoxGraphics_GetPartyGraphics(BoxGraphics *boxGraphics);
+BoxCursorGraphics *BoxGraphics_GetCursorGraphics(BoxGraphics *boxGraphics);
+BoxItemIconGraphics *BoxGraphics_GetItemIconGraphics(BoxGraphics *boxGraphics);
+BoxPopupGraphics *BoxGraphics_GetPopupGraphics(BoxGraphics *boxGraphics);
+PokemonSpriteManager *BoxGraphics_GetMonSpriteManager(BoxGraphics *boxGraphics);
+int BoxGraphics_GetCompareModeXOffset(BoxGraphics *boxGraphics);
+void SpriteResourcesHeader_InitFromProxies(SpriteResourcesHeader *srHeader, NNSG2dImageProxy *imageProxy, NNSG2dImagePaletteProxy *plttProxy, NNSG2dCellDataBank *cellBank, NNSG2dCellAnimBankData *animBank, u32 priority);
+Sprite *BoxGraphics_CreateSprite(SpriteList *spriteList, SpriteResourcesHeader *srHeader, u32 x, u32 y, u32 priority, NNS_G2D_VRAM_TYPE vramType);
 void BoxGraphics_SetSpritePriority(Sprite *sprite, u32 priority);
-void ov19_021D78C8(const u16 *param0, u16 *param1, u32 param2, u16 param3, u32 param4);
-const BoxApplicationManager *ov19_021D7964(UnkStruct_ov19_021D61B0 *param0);
-void ov19_021D79B8(void *param0, UnkFuncPtr_ov19_021D79B8 param1, void *param2);
+void BoxGraphics_BlendPltt(const u16 *src, u16 *dest, u32 size, u16 target, u32 fraction);
+const BoxApplicationManager *BoxGraphics_GetBoxAppMan(BoxGraphics *boxGraphics);
+void BoxGraphics_DeferFree(void *heapPtr, BoxGraphicsDeferredFreeCallback callback, void *callbackParam);
 
 #endif // POKEPLATINUM_OV19_021D61B0_H

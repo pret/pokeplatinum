@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/items.h"
+
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/box_application.h"
 #include "applications/pc_boxes/ov19_021D61B0.h"
@@ -17,284 +19,281 @@
 #include "pokemon_icon.h"
 #include "sprite.h"
 
-BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4)
+BOOL MonIconHelper_Init(MonIconHelper *iconHelper, BoxGraphics *boxGraphics, const BoxApplication *boxApp, SpriteList *spriteList, NARC *narc)
 {
-    NNSG2dImagePaletteProxy v0;
-    NNSG2dPaletteData *v1;
-    void *v2;
+    NNSG2dImagePaletteProxy plttProxy;
+    NNSG2dPaletteData *plttData;
+    void *data;
 
-    param0->unk_48 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_BOX_GRAPHICS);
+    iconHelper->iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_BOX_GRAPHICS);
 
-    NNS_G2dInitImagePaletteProxy(&v0);
-    Graphics_LoadPartialPaletteFromOpenNARC(param0->unk_48, PokeIconPalettesFileIndex(), NNS_G2D_VRAM_TYPE_2DMAIN, 2 * 0x20, 10, &v0);
+    NNS_G2dInitImagePaletteProxy(&plttProxy);
+    Graphics_LoadPartialPaletteFromOpenNARC(iconHelper->iconNarc, PokeIconPalettesFileIndex(), NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_OFFSET(2), HEAP_ID_BOX_GRAPHICS, &plttProxy);
 
-    v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_48, PokeIconPalettesFileIndex(), &v1, HEAP_ID_BOX_GRAPHICS);
+    data = Graphics_GetPlttDataFromOpenNARC(iconHelper->iconNarc, PokeIconPalettesFileIndex(), &plttData, HEAP_ID_BOX_GRAPHICS);
 
-    if (v2) {
-        BOOL v3;
-        NNSG2dPaletteCompressInfo *v4;
+    if (data != NULL) {
+        BOOL hasCompressInfo;
+        NNSG2dPaletteCompressInfo *plttCompressInfo;
 
-        NNS_G2dInitImagePaletteProxy(&v0);
-        v3 = NNS_G2dGetUnpackedPaletteCompressInfo(v2, &v4);
-        ov19_021D78C8(v1->pRawData, v1->pRawData, v1->szByte / sizeof(u16), 0x57f, 8);
+        NNS_G2dInitImagePaletteProxy(&plttProxy);
+        hasCompressInfo = NNS_G2dGetUnpackedPaletteCompressInfo(data, &plttCompressInfo);
+        BoxGraphics_BlendPltt(plttData->pRawData, plttData->pRawData, plttData->szByte / sizeof(u16), 0x57f, 8);
 
-        if (v3) {
-            NNS_G2dLoadPaletteEx(v1, v4, 6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v0);
+        if (hasCompressInfo) {
+            NNS_G2dLoadPaletteEx(plttData, plttCompressInfo, PLTT_OFFSET(6), NNS_G2D_VRAM_TYPE_2DMAIN, &plttProxy);
         } else {
-            NNS_G2dLoadPalette(v1, 6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v0);
+            NNS_G2dLoadPalette(plttData, PLTT_OFFSET(6), NNS_G2D_VRAM_TYPE_2DMAIN, &plttProxy);
         }
 
-        Heap_Free(v2);
+        Heap_Free(data);
     }
 
-    param0->unk_08 = Graphics_GetCellBankFromOpenNARC(param4, 21, 1, &(param0->unk_10), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_00 = Graphics_GetAnimBankFromOpenNARC(param4, 22, 1, &(param0->unk_04), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 23, 1, &(param0->unk_1C), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 24, 1, &(param0->unk_20), HEAP_ID_BOX_GRAPHICS);
+    iconHelper->iconCellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 21, 1, &iconHelper->iconCellBank, HEAP_ID_BOX_GRAPHICS);
+    iconHelper->iconAnimBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 22, 1, &iconHelper->iconAnimBank, HEAP_ID_BOX_GRAPHICS);
+    iconHelper->itemIconCellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 23, 1, &iconHelper->itemIconCellBank, HEAP_ID_BOX_GRAPHICS);
+    iconHelper->itemIconAnimBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 24, 1, &iconHelper->itemIconAnimBank, HEAP_ID_BOX_GRAPHICS);
 
-    if ((param0->unk_08 == NULL) || (param0->unk_00 == NULL) || (param0->unk_48 == NULL)) {
-        return 0;
+    if ((iconHelper->iconCellBankBuffer == NULL) || (iconHelper->iconAnimBankBuffer == NULL) || (iconHelper->iconNarc == NULL)) {
+        return FALSE;
     }
 
-    param0->unk_24 = param3;
-    param0->unk_40 = param2;
-    param0->unk_44 = param1;
+    iconHelper->spriteList = spriteList;
+    iconHelper->boxApp = boxApp;
+    iconHelper->boxGraphics = boxGraphics;
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DA384(UnkStruct_ov19_021DA384 *param0)
+void MonIconHelper_Free(MonIconHelper *iconHelper)
 {
-    if (param0->unk_08 != NULL) {
-        Heap_Free(param0->unk_08);
-        param0->unk_08 = NULL;
+    if (iconHelper->iconCellBankBuffer != NULL) {
+        Heap_Free(iconHelper->iconCellBankBuffer);
+        iconHelper->iconCellBankBuffer = NULL;
     }
 
-    if (param0->unk_00 != NULL) {
-        Heap_Free(param0->unk_00);
-        param0->unk_00 = NULL;
+    if (iconHelper->iconAnimBankBuffer != NULL) {
+        Heap_Free(iconHelper->iconAnimBankBuffer);
+        iconHelper->iconAnimBankBuffer = NULL;
     }
 
-    if (param0->unk_14 != NULL) {
-        Heap_Free(param0->unk_14);
-        param0->unk_14 = NULL;
+    if (iconHelper->itemIconCellBankBuffer != NULL) {
+        Heap_Free(iconHelper->itemIconCellBankBuffer);
+        iconHelper->itemIconCellBankBuffer = NULL;
     }
 
-    if (param0->unk_18 != NULL) {
-        Heap_Free(param0->unk_18);
-        param0->unk_18 = NULL;
+    if (iconHelper->itemIconAnimBankBuffer != NULL) {
+        Heap_Free(iconHelper->itemIconAnimBankBuffer);
+        iconHelper->itemIconAnimBankBuffer = NULL;
     }
 
-    if (param0->unk_48 != NULL) {
-        NARC_dtor(param0->unk_48);
-    }
-}
-
-void ov19_021DA3CC(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
-{
-    while (param2--) {
-        param1->unk_00 = NULL;
-        NNS_G2dInitImageProxy(&(param1->unk_04));
-        param1++;
+    if (iconHelper->iconNarc != NULL) {
+        NARC_dtor(iconHelper->iconNarc);
     }
 }
 
-void ov19_021DA3F0(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+void MonIconHelper_InitIcons(MonIconHelper *unused, MonIcon *monIcon, u32 count)
 {
-    while (param2--) {
-        if (param1->unk_00 != NULL) {
-            Sprite_Delete(param1->unk_00);
-            param1->unk_00 = NULL;
+    while (count--) {
+        monIcon->sprite = NULL;
+        NNS_G2dInitImageProxy(&(monIcon->imageProxy));
+        monIcon++;
+    }
+}
+
+void MonIconHelper_DeleteIcons(MonIconHelper *unused, MonIcon *monIcon, u32 count)
+{
+    while (count--) {
+        if (monIcon->sprite != NULL) {
+            Sprite_Delete(monIcon->sprite);
+            monIcon->sprite = NULL;
         }
 
-        param1++;
+        monIcon++;
     }
 }
 
-void ov19_021DA418(const UnkStruct_ov19_021DCD18 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+void MonIcon_Copy(const MonIcon *src, MonIcon *dest, u32 count)
 {
-    MI_CpuCopy32(param0, param1, sizeof(UnkStruct_ov19_021DCD18) * param2);
+    MI_CpuCopy32(src, dest, sizeof(MonIcon) * count);
 }
 
-void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 *param7)
+void MonIconHelper_CreateIcon(MonIconHelper *iconHelper, BoxPokemon *boxMon, s32 x, s32 y, u32 headerPriority, u32 priority, u32 tileOffset, MonIcon *monIcon)
 {
-    NNSG2dCharacterData *v0;
-    SpriteResourcesHeader v1;
+    NNSG2dCharacterData *charData;
+    SpriteResourcesHeader srHeader;
     u16 species;
     u8 isEgg;
     u8 form;
     u8 reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param4);
+    SpriteResourcesHeader_InitFromProxies(&srHeader, NULL, BoxGraphics_GetImagePaletteProxy(iconHelper->boxGraphics), iconHelper->iconCellBank, iconHelper->iconAnimBank, headerPriority);
 
     species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL);
     form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
-    param7->unk_28 = BoxPokemon_IconSpriteIndex((BoxPokemon *)boxMon);
-    param7->unk_2C = PokeIconPaletteIndex(species, form, isEgg);
-    param7->unk_30 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
-    param7->unk_2E = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
+    monIcon->spriteIndex = BoxPokemon_IconSpriteIndex(boxMon);
+    monIcon->plttIndex = PokeIconPaletteIndex(species, form, isEgg);
+    monIcon->heldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    monIcon->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
 
-    NNS_G2dInitImageProxy(&(param7->unk_04));
-    NARC_ReadFromMember(param0->unk_48, param7->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
-    NNS_G2dGetUnpackedCharacterData(param0->unk_4C, &v0);
+    NNS_G2dInitImageProxy(&(monIcon->imageProxy));
+    NARC_ReadFromMember(iconHelper->iconNarc, monIcon->spriteIndex, 0, MON_ICON_FILE_SIZE, iconHelper->iconCharBuffer);
+    NNS_G2dGetUnpackedCharacterData(iconHelper->iconCharBuffer, &charData);
 
-    v0->mappingType = GX_GetOBJVRamModeChar();
-    v0->szByte = (4 * 4) * 0x20;
+    charData->mappingType = GX_GetOBJVRamModeChar();
+    charData->szByte = MON_ICON_TILE_DATA_SIZE;
 
-    NNS_G2dLoadImage1DMapping(v0, param6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param7->unk_04));
+    NNS_G2dLoadImage1DMapping(charData, tileOffset * TILE_SIZE_4BPP, NNS_G2D_VRAM_TYPE_2DMAIN, &(monIcon->imageProxy));
 
-    v1.imageProxy = &(param7->unk_04);
-    param7->unk_00 = ov19_021D785C(param0->unk_24, &v1, param2, param3, param5, NNS_G2D_VRAM_TYPE_2DMAIN);
+    srHeader.imageProxy = &(monIcon->imageProxy);
+    monIcon->sprite = BoxGraphics_CreateSprite(iconHelper->spriteList, &srHeader, x, y, priority, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    GF_ASSERT(param7->unk_00 != NULL);
+    GF_ASSERT(monIcon->sprite != NULL);
 
-    Sprite_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
-    ov19_021DA63C(param0, param7, BoxApp_GetMonSpriteTransparencyMask(param0->unk_40));
+    Sprite_SetExplicitPalette(monIcon->sprite, 2 + monIcon->plttIndex);
+    MonIconHelper_UpdateTransparency(iconHelper, monIcon, BoxApp_GetMonSpriteTransparencyMask(iconHelper->boxApp));
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 param2, u32 param3, u8 *param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 *param10)
+void MonIconHelper_CreateIconFromTiles(MonIconHelper *iconHelper, BoxPokemon *boxMon, u32 species, u32 spriteIndex, u8 *tileData, s32 x, s32 y, u32 headerPriority, u32 priority, u32 tileOffset, MonIcon *monIcon)
 {
-    NNSG2dCharacterData *v0;
-    SpriteResourcesHeader v1;
+    NNSG2dCharacterData *charData;
+    SpriteResourcesHeader srHeader;
 
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
     u8 isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL);
     u8 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
-    ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param7);
+    SpriteResourcesHeader_InitFromProxies(&srHeader, NULL, BoxGraphics_GetImagePaletteProxy(iconHelper->boxGraphics), iconHelper->iconCellBank, iconHelper->iconAnimBank, headerPriority);
 
-    param10->unk_28 = param3;
-    param10->unk_2C = PokeIconPaletteIndex(param2, form, isEgg);
-    param10->unk_30 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
-    param10->unk_2E = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
+    monIcon->spriteIndex = spriteIndex;
+    monIcon->plttIndex = PokeIconPaletteIndex(species, form, isEgg);
+    monIcon->heldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    monIcon->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
 
-    NNS_G2dInitImageProxy(&(param10->unk_04));
-    NNS_G2dGetUnpackedCharacterData(param4, &v0);
+    NNS_G2dInitImageProxy(&(monIcon->imageProxy));
+    NNS_G2dGetUnpackedCharacterData(tileData, &charData);
 
-    v0->mappingType = GX_GetOBJVRamModeChar();
-    v0->szByte = (4 * 4) * 0x20;
+    charData->mappingType = GX_GetOBJVRamModeChar();
+    charData->szByte = MON_ICON_TILE_DATA_SIZE;
 
-    NNS_G2dLoadImage1DMapping(v0, param9 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param10->unk_04));
+    NNS_G2dLoadImage1DMapping(charData, tileOffset * TILE_SIZE_4BPP, NNS_G2D_VRAM_TYPE_2DMAIN, &(monIcon->imageProxy));
 
-    v1.imageProxy = &(param10->unk_04);
-    param10->unk_00 = ov19_021D785C(param0->unk_24, &v1, param5, param6, param8, NNS_G2D_VRAM_TYPE_2DMAIN);
+    srHeader.imageProxy = &(monIcon->imageProxy);
+    monIcon->sprite = BoxGraphics_CreateSprite(iconHelper->spriteList, &srHeader, x, y, priority, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    GF_ASSERT(param10->unk_00 != NULL);
+    GF_ASSERT(monIcon->sprite != NULL);
 
-    Sprite_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
-    ov19_021DA63C(param0, param10, BoxApp_GetMonSpriteTransparencyMask(param0->unk_40));
+    Sprite_SetExplicitPalette(monIcon->sprite, 2 + monIcon->plttIndex);
+    MonIconHelper_UpdateTransparency(iconHelper, monIcon, BoxApp_GetMonSpriteTransparencyMask(iconHelper->boxApp));
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-void ov19_021DA63C(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+void MonIconHelper_UpdateTransparency(MonIconHelper *unused, MonIcon *monIcon, u32 mask)
 {
-    if (param2 != 0) {
-        int v0;
-
-        if (param2 & 1) {
-            if (param1->unk_30 == 0) {
-                Sprite_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
+    if (mask != 0) {
+        if (mask & 1) {
+            if (monIcon->heldItem == ITEM_NONE) {
+                Sprite_SetExplicitOAMMode(monIcon->sprite, GX_OAM_MODE_XLU);
                 return;
             }
         }
 
-        for (v0 = 0; v0 < 6; v0++) {
-            if ((param2 & (2 << v0)) && ((param1->unk_2E & (1 << v0)) == 0)) {
-                Sprite_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
+        for (int i = 0; i < MAX_POKEMON_MARKINGS; i++) {
+            if ((mask & (2 << i)) && ((monIcon->markings & (1 << i)) == 0)) {
+                Sprite_SetExplicitOAMMode(monIcon->sprite, GX_OAM_MODE_XLU);
                 return;
             }
         }
     }
 
-    Sprite_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_NORMAL);
+    Sprite_SetExplicitOAMMode(monIcon->sprite, GX_OAM_MODE_NORMAL);
 }
 
-void ov19_021DA68C(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+void MonIconHelper_SetMarkings(MonIconHelper *unused, MonIcon *monIcon, u32 markings)
 {
-    param1->unk_2E = param2;
+    monIcon->markings = markings;
 }
 
-void ov19_021DA690(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+void MonIconHelper_SetHeldItem(MonIconHelper *unused, MonIcon *monIcon, u32 heldItem)
 {
-    param1->unk_30 = param2;
+    monIcon->heldItem = heldItem;
 }
 
-void ov19_021DA694(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL param2)
+void MonIconHelper_UpdateIconForm(MonIconHelper *iconHelper, MonIcon *monIcon, BOOL isStored)
 {
-    int v0;
-    u32 v1;
-    NNSG2dCharacterData *v2;
+    u32 vramAddr;
+    NNSG2dCharacterData *charData;
 
-    if (param1->unk_30 == 112 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ALTERED)) {
-        param1->unk_28 = PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ORIGIN);
-    } else if (param1->unk_30 != 112 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ORIGIN)) {
-        param1->unk_28 = PokeIconSpriteIndex(SPECIES_GIRATINA, 0, GIRATINA_FORM_ALTERED);
-    } else if (param2 == 1 && param1->unk_28 == PokeIconSpriteIndex(SPECIES_SHAYMIN, 0, SHAYMIN_FORM_SKY)) {
-        param1->unk_28 = PokeIconSpriteIndex(SPECIES_SHAYMIN, 0, SHAYMIN_FORM_LAND);
+    if (monIcon->heldItem == ITEM_GRISEOUS_ORB && monIcon->spriteIndex == PokeIconSpriteIndex(SPECIES_GIRATINA, FALSE, GIRATINA_FORM_ALTERED)) {
+        monIcon->spriteIndex = PokeIconSpriteIndex(SPECIES_GIRATINA, FALSE, GIRATINA_FORM_ORIGIN);
+    } else if (monIcon->heldItem != ITEM_GRISEOUS_ORB && monIcon->spriteIndex == PokeIconSpriteIndex(SPECIES_GIRATINA, FALSE, GIRATINA_FORM_ORIGIN)) {
+        monIcon->spriteIndex = PokeIconSpriteIndex(SPECIES_GIRATINA, FALSE, GIRATINA_FORM_ALTERED);
+    } else if (isStored == TRUE && monIcon->spriteIndex == PokeIconSpriteIndex(SPECIES_SHAYMIN, FALSE, SHAYMIN_FORM_SKY)) {
+        monIcon->spriteIndex = PokeIconSpriteIndex(SPECIES_SHAYMIN, FALSE, SHAYMIN_FORM_LAND);
     } else {
         return;
     }
 
-    v1 = param1->unk_04.vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN] + (u32)G2_GetOBJCharPtr();
+    vramAddr = monIcon->imageProxy.vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN] + (u32)G2_GetOBJCharPtr();
 
-    NARC_ReadFromMember(param0->unk_48, param1->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
-    NNS_G2dGetUnpackedCharacterData(param0->unk_4C, &v2);
-    MI_CpuCopy32(v2->pRawData, (void *)v1, (4 * 4) * 0x20);
+    NARC_ReadFromMember(iconHelper->iconNarc, monIcon->spriteIndex, 0, MON_ICON_FILE_SIZE, iconHelper->iconCharBuffer);
+    NNS_G2dGetUnpackedCharacterData(iconHelper->iconCharBuffer, &charData);
+    MI_CpuCopy32(charData->pRawData, (void *)vramAddr, MON_ICON_TILE_DATA_SIZE);
 }
 
-void ov19_021DA744(UnkStruct_ov19_021DA384 *param0, void *param1, u32 param2, u32 param3)
+void MonIconHelper_ReadIconData(MonIconHelper *iconHelper, void *dest, u32 spriteIndex, u32 size)
 {
-    NARC_ReadFromMember(param0->unk_48, param2, 0, param3, param1);
+    NARC_ReadFromMember(iconHelper->iconNarc, spriteIndex, 0, size, dest);
 }
 
-void ov19_021DA754(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+void MonIconHelper_MoveIconTiles(MonIconHelper *iconHelper, MonIcon *monIcon, u32 tileOffset)
 {
-    if (param1->unk_00 != NULL) {
-        NNSG2dCharacterData *v0;
+    if (monIcon->sprite != NULL) {
+        NNSG2dCharacterData *charData;
 
-        NNS_G2dInitImageProxy(&(param1->unk_04));
+        NNS_G2dInitImageProxy(&(monIcon->imageProxy));
 
-        NARC_ReadFromMember(param0->unk_48, param1->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
-        NNS_G2dGetUnpackedCharacterData(param0->unk_4C, &v0);
-        v0->mappingType = GX_GetOBJVRamModeChar();
-        v0->szByte = (4 * 4) * 0x20;
+        NARC_ReadFromMember(iconHelper->iconNarc, monIcon->spriteIndex, 0, MON_ICON_FILE_SIZE, iconHelper->iconCharBuffer);
+        NNS_G2dGetUnpackedCharacterData(iconHelper->iconCharBuffer, &charData);
+        charData->mappingType = GX_GetOBJVRamModeChar();
+        charData->szByte = MON_ICON_TILE_DATA_SIZE;
 
-        NNS_G2dLoadImage1DMapping(v0, param2 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param1->unk_04));
+        NNS_G2dLoadImage1DMapping(charData, tileOffset * TILE_SIZE_4BPP, NNS_G2D_VRAM_TYPE_2DMAIN, &(monIcon->imageProxy));
 
-        Sprite_SetImageProxy(param1->unk_00, &(param1->unk_04));
+        Sprite_SetImageProxy(monIcon->sprite, &(monIcon->imageProxy));
     }
 }
 
-void ov19_021DA7B8(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
+void MonIconHelper_SetIconAnim(MonIconHelper *unused, MonIcon *monIcon, enum MonIconAnim anim)
 {
-    if ((param2 == 1) || (param2 == 2)) {
-        Sprite_SetAffineOverwriteMode(param1->unk_00, 1);
+    if ((anim == MON_ICON_ANIM_RELEASE) || (anim == MON_ICON_ANIM_RELEASE_REJECTED)) {
+        Sprite_SetAffineOverwriteMode(monIcon->sprite, AFFINE_OVERWRITE_MODE_NORMAL);
     } else {
-        Sprite_SetAffineOverwriteMode(param1->unk_00, 0);
+        Sprite_SetAffineOverwriteMode(monIcon->sprite, AFFINE_OVERWRITE_MODE_NONE);
     }
 
-    Sprite_SetAnim(param1->unk_00, param2);
+    Sprite_SetAnim(monIcon->sprite, anim);
 }
 
-BOOL ov19_021DA7E0(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1)
+BOOL MonIconHelper_IsIconAnimDone(MonIconHelper *unused, MonIcon *monIcon)
 {
-    return Sprite_IsAnimated(param1->unk_00) == 0;
+    return Sprite_IsAnimated(monIcon->sprite) == FALSE;
 }
 
-void BoxGraphics_ApplyMonInMultiSelectShading(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL isSelected)
+void MonIconHelper_SetMultiSelectShading(MonIconHelper *unused, MonIcon *monIcon, BOOL isSelected)
 {
-    u32 v0 = ((isSelected) ? 6 : 2) + param1->unk_2C;
+    u32 plttSlot = (isSelected ? 6 : 2) + monIcon->plttIndex;
 
-    Sprite_SetExplicitPalette(param1->unk_00, v0);
+    Sprite_SetExplicitPalette(monIcon->sprite, plttSlot);
 }
 
-NNSG2dCellDataBank *ov19_021DA80C(UnkStruct_ov19_021DA384 *param0)
+NNSG2dCellDataBank *MonIconHelper_GetIconCellBank(MonIconHelper *iconHelper)
 {
-    return param0->unk_10;
+    return iconHelper->iconCellBank;
 }
 
-NNSG2dAnimBankData *ov19_021DA810(UnkStruct_ov19_021DA384 *param0)
+NNSG2dAnimBankData *MonIconHelper_GetIconAnimBank(MonIconHelper *iconHelper)
 {
-    return param0->unk_04;
+    return iconHelper->iconAnimBank;
 }

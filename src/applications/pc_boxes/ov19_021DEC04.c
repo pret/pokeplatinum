@@ -31,435 +31,480 @@
 
 #include "res/text/bank/box_messages.h"
 
-struct UnkStruct_ov19_021DEC04_t {
-    BOOL unk_00;
-    UnkStruct_ov19_021D61B0 *unk_04;
-    const BoxApplication *unk_08;
-    BgConfig *unk_0C;
-    SpriteList *unk_10;
-    UnkStruct_ov19_021DA384 *unk_14;
-    u32 unk_18[2];
-    Sprite *unk_20[2];
-    Sprite *unk_28[2];
-    Sprite *unk_30;
-    Sprite *unk_34[2][5];
-    void *unk_5C;
-    NNSG2dCellDataBank *unk_60;
-    void *unk_64;
-    NNSG2dAnimBankData *unk_68;
-    MessageLoader *unk_6C;
-    MessageLoader *unk_70;
+struct BoxCompareGraphics_t {
+    BOOL unused_00;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BgConfig *bgConfig;
+    SpriteList *spriteList;
+    MonIconHelper *monIconHelper;
+    u32 monIconVramOffsets[NUM_COMPARE_SLOTS];
+    Sprite *monIconSprites[NUM_COMPARE_SLOTS];
+    Sprite *slotTabSprites[NUM_COMPARE_SLOTS];
+    Sprite *compareButtonSprite;
+    Sprite *contestStatSprites[NUM_COMPARE_SLOTS][CONTEST_TYPE_MAX];
+    void *cellBankBuffer;
+    NNSG2dCellDataBank *cellBank;
+    void *animBankBuffer;
+    NNSG2dAnimBankData *animBank;
+    MessageLoader *boxMessagesLoader;
+    MessageLoader *moveNamesLoader;
     String *boxDisplayText;
-    Window unk_78[7];
-    u8 unk_E8[640];
-    NNSG2dScreenData *unk_368;
-    NNSG2dScreenData *unk_36C;
-    void *unk_370;
-    void *unk_374;
-    enum CompareMode unk_378;
-    int unk_37C;
-    SysTask *unk_380;
+    Window windows[COMPARE_WINDOW_COUNT];
+    u8 iconCharBuffer[MON_ICON_FILE_SIZE];
+    NNSG2dScreenData *slot0HighlightScreenData;
+    NNSG2dScreenData *slot1HighlightScreenData;
+    void *slot0HighlightScreenBuffer;
+    void *slot1HighlightScreenBuffer;
+    enum CompareMode shownCompareMode;
+    int modeTransitionState;
+    SysTask *compareButtonTask;
 };
 
-static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DEF64(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DEFC8(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF03C(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF064(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF0CC(UnkStruct_ov19_021DEC04 *param0, int param1);
-static void ov19_021DF108(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF140(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int param1);
-static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int param1);
-static void ov19_021DF270(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 *param0);
-static inline u32 inline_ov19_021DF3AC(Window *param0, u32 param1, const String *param2);
-static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF394(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int param1);
-static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int param1);
-static void ov19_021DF5D0(UnkStruct_ov19_021DEC04 *param0, NARC *param1);
-static void ov19_021DF730(UnkStruct_ov19_021DEC04 *param0, u32 param1);
-static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0);
-static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1);
-static void ov19_021DF930(SysTask *param0, void *param1);
+static void BoxCompareGraphics_DrawSlotHighlight(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_ShowPageLayer(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_InitWindows(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_RemoveWindows(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_DrawPage(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_ClearPage(BoxCompareGraphics *compareGraphics, int compareMode);
+static void BoxCompareGraphics_CreateBattleStatsWindows(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_RemoveBattleStatsWindows(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_DrawContestStats(BoxCompareGraphics *compareGraphics, int compareMonSlot);
+static void BoxCompareGraphics_HideContestStats(BoxCompareGraphics *compareGraphics, int compareMonSlot);
+static void BoxCompareGraphics_CreateMovesWindows(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_RemoveMovesWindows(BoxCompareGraphics *compareGraphics);
+static inline u32 GetCenteredTextX(Window *window, u32 font, const String *string);
+static void BoxCompareGraphics_DrawLabels(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_ClearLabels(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_DrawBattleStats(BoxCompareGraphics *compareGraphics, int compareMonSlot);
+static void BoxCompareGraphics_DrawMoves(BoxCompareGraphics *compareGraphics, int compareMonSlot);
+static void BoxCompareGraphics_CreateSprites(BoxCompareGraphics *compareGraphics, NARC *narc);
+static void BoxCompareGraphics_CreateMonIconSprites(BoxCompareGraphics *compareGraphics, u32 vramOffset);
+static void BoxCompareGraphics_DeleteSprites(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_UpdateMonIcon(BoxCompareGraphics *compareGraphics);
+static void BoxCompareGraphics_DrawMonName(BoxCompareGraphics *compareGraphics, int compareMonSlot);
+static void BoxCompareGraphics_CompareButtonTask(SysTask *unused, void *param);
 
-BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, NARC *param6)
+BOOL BoxCompareGraphics_Init(BoxCompareGraphics **outCompareGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *spriteList, MessageLoader *msgLoader, NARC *narc)
 {
-    if (BoxApp_GetBoxMode(param2) != PC_MODE_COMPARE) {
-        *param0 = NULL;
-        return 1;
+    if (BoxApp_GetBoxMode(boxApp) != PC_MODE_COMPARE) {
+        *outCompareGraphics = NULL;
+        return TRUE;
     } else {
-        UnkStruct_ov19_021DEC04 *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DEC04));
+        BoxCompareGraphics *compareGraphics = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(BoxCompareGraphics));
 
-        if (v0) {
-            v0->unk_04 = param1;
-            v0->unk_08 = param2;
-            v0->unk_0C = param3;
-            v0->unk_10 = param4;
-            v0->unk_14 = ov19_021D77D8(param1);
-            v0->unk_370 = Graphics_GetScrnDataFromOpenNARC(param6, 7, 1, &(v0->unk_368), HEAP_ID_BOX_GRAPHICS);
-            v0->unk_374 = Graphics_GetScrnDataFromOpenNARC(param6, 8, 1, &(v0->unk_36C), HEAP_ID_BOX_GRAPHICS);
-            v0->unk_6C = param5;
-            v0->unk_70 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_BOX_GRAPHICS);
-            v0->boxDisplayText = String_Init(32, HEAP_ID_BOX_GRAPHICS);
-            v0->unk_380 = NULL;
-            *param0 = v0;
-            return 1;
+        if (compareGraphics != NULL) {
+            compareGraphics->boxGraphics = boxGraphics;
+            compareGraphics->boxApp = boxApp;
+            compareGraphics->bgConfig = bgConfig;
+            compareGraphics->spriteList = spriteList;
+            compareGraphics->monIconHelper = BoxGraphics_GetMonIconHelper(boxGraphics);
+            compareGraphics->slot0HighlightScreenBuffer = Graphics_GetScrnDataFromOpenNARC(narc, 7, TRUE, &compareGraphics->slot0HighlightScreenData, HEAP_ID_BOX_GRAPHICS);
+            compareGraphics->slot1HighlightScreenBuffer = Graphics_GetScrnDataFromOpenNARC(narc, 8, TRUE, &compareGraphics->slot1HighlightScreenData, HEAP_ID_BOX_GRAPHICS);
+            compareGraphics->boxMessagesLoader = msgLoader;
+            compareGraphics->moveNamesLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_BOX_GRAPHICS);
+            compareGraphics->boxDisplayText = String_Init(32, HEAP_ID_BOX_GRAPHICS);
+            compareGraphics->compareButtonTask = NULL;
+            *outCompareGraphics = compareGraphics;
+            return TRUE;
         }
 
-        return 0;
+        return FALSE;
     }
 }
 
-void ov19_021DECAC(UnkStruct_ov19_021DEC04 *param0)
+void BoxCompareGraphics_Free(BoxCompareGraphics *compareGraphics)
 {
-    if (param0) {
-        Heap_Free(param0->unk_370);
-        Heap_Free(param0->unk_374);
-        MessageLoader_Free(param0->unk_70);
-        ov19_021DF7D0(param0);
-        ov19_021DF03C(param0);
-        String_Free(param0->boxDisplayText);
-        Heap_Free(param0);
+    if (compareGraphics != NULL) {
+        Heap_Free(compareGraphics->slot0HighlightScreenBuffer);
+        Heap_Free(compareGraphics->slot1HighlightScreenBuffer);
+        MessageLoader_Free(compareGraphics->moveNamesLoader);
+        BoxCompareGraphics_DeleteSprites(compareGraphics);
+        BoxCompareGraphics_RemoveWindows(compareGraphics);
+        String_Free(compareGraphics->boxDisplayText);
+        Heap_Free(compareGraphics);
     }
 }
 
-void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
+void BoxCompareGraphics_LoadGraphics(BoxCompareGraphics *compareGraphics, NARC *narc)
 {
-    if (param0) {
-        ov19_021DEEFC(param0);
+    if (compareGraphics != NULL) {
+        BoxCompareGraphics_DrawSlotHighlight(compareGraphics);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 132, param0->unk_0C, 5, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 129, param0->unk_0C, 5, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 130, param0->unk_0C, 6, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 131, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadPaletteFromOpenNARC(param1, 133, 4, 0, 0x20 * 4, HEAP_ID_BOX_GRAPHICS);
-        Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), 5, 4 * 0x20, 4 * 0x20, HEAP_ID_BOX_GRAPHICS);
-        Bg_ClearTilesRange(4, 0x20, 0, HEAP_ID_BOX_GRAPHICS);
-        Bg_FillTilemapRect(param0->unk_0C, 4, 0x0, 0, 0, 32, 32, 17);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 132, compareGraphics->bgConfig, BG_LAYER_SUB_1, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 129, compareGraphics->bgConfig, BG_LAYER_SUB_1, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 130, compareGraphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 131, compareGraphics->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadPaletteFromOpenNARC(narc, 133, PAL_LOAD_SUB_BG, 0, 4 * PALETTE_SIZE_BYTES, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), PAL_LOAD_SUB_OBJ, PLTT_OFFSET(4), 4 * PALETTE_SIZE_BYTES, HEAP_ID_BOX_GRAPHICS);
+        Bg_ClearTilesRange(BG_LAYER_SUB_0, TILE_SIZE_4BPP, 0, HEAP_ID_BOX_GRAPHICS);
+        Bg_FillTilemapRect(compareGraphics->bgConfig, BG_LAYER_SUB_0, 0, 0, 0, 32, 32, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
 
-        ov19_021DEF64(param0);
-        ov19_021DEFC8(param0);
+        BoxCompareGraphics_ShowPageLayer(compareGraphics);
+        BoxCompareGraphics_InitWindows(compareGraphics);
 
-        param0->unk_378 = BoxApp_GetCompareMode(param0->unk_08);
+        compareGraphics->shownCompareMode = BoxApp_GetCompareMode(compareGraphics->boxApp);
 
-        Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 4);
-        ov19_021DF5D0(param0, param1);
+        Bg_CopyTilemapBufferToVRAM(compareGraphics->bgConfig, BG_LAYER_SUB_0);
+        BoxCompareGraphics_CreateSprites(compareGraphics, narc);
     }
 }
 
-void ov19_021DEDDC(UnkStruct_ov19_021DEC04 *param0, BOOL param1)
+void BoxCompareGraphics_UpdateSlotTabs(BoxCompareGraphics *compareGraphics, BOOL isSwitching)
 {
-    if (param0) {
-        int v0 = BoxApp_GetCompareMonSlot(param0->unk_08);
+    if (compareGraphics != NULL) {
+        int slot = BoxApp_GetCompareMonSlot(compareGraphics->boxApp);
 
-        if (param1) {
-            Sprite_SetAnim(param0->unk_28[v0 ^ 1], 2);
-            Sprite_SetAnim(param0->unk_28[v0], 0);
+        if (isSwitching) {
+            Sprite_SetAnim(compareGraphics->slotTabSprites[slot ^ 1], 2);
+            Sprite_SetAnim(compareGraphics->slotTabSprites[slot], 0);
         } else {
-            Sprite_SetAnim(param0->unk_28[v0 ^ 1], 1);
-            Sprite_SetAnim(param0->unk_28[v0], 0);
+            Sprite_SetAnim(compareGraphics->slotTabSprites[slot ^ 1], 1);
+            Sprite_SetAnim(compareGraphics->slotTabSprites[slot], 0);
         }
 
-        ov19_021DEEFC(param0);
+        BoxCompareGraphics_DrawSlotHighlight(compareGraphics);
     }
 }
 
-void ov19_021DEE34(UnkStruct_ov19_021DEC04 *param0)
+void BoxCompareGraphics_RefreshSelectedSlot(BoxCompareGraphics *compareGraphics)
 {
-    ov19_021DF834(param0);
+    BoxCompareGraphics_UpdateMonIcon(compareGraphics);
 
-    if (param0) {
-        int compareMonSlot = BoxApp_GetCompareMonSlot(param0->unk_08);
+    if (compareGraphics != NULL) {
+        int compareMonSlot = BoxApp_GetCompareMonSlot(compareGraphics->boxApp);
 
-        ov19_021DF8C8(param0, compareMonSlot);
+        BoxCompareGraphics_DrawMonName(compareGraphics, compareMonSlot);
 
-        switch (BoxApp_GetCompareMode(param0->unk_08)) {
+        switch (BoxApp_GetCompareMode(compareGraphics->boxApp)) {
         case COMPARE_BATTLE_STATS:
-            ov19_021DF3AC(param0, compareMonSlot);
+            BoxCompareGraphics_DrawBattleStats(compareGraphics, compareMonSlot);
             break;
         case COMPARE_CONTEST_STATS:
-            ov19_021DF178(param0, compareMonSlot);
+            BoxCompareGraphics_DrawContestStats(compareGraphics, compareMonSlot);
             break;
         case COMPARE_MOVES:
-            ov19_021DF4D0(param0, compareMonSlot);
+            BoxCompareGraphics_DrawMoves(compareGraphics, compareMonSlot);
             break;
         }
     }
 }
 
-BOOL ov19_021DEE84(UnkStruct_ov19_021DEC04 *param0)
+BOOL BoxCompareGraphics_ReturnTrue(BoxCompareGraphics *compareGraphics)
 {
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DEE88(UnkStruct_ov19_021DEC04 *param0)
+void BoxCompareGraphics_StartPageChange(BoxCompareGraphics *compareGraphics)
 {
-    if (param0) {
-        param0->unk_37C = 0;
-        ov19_021DF0CC(param0, param0->unk_378);
-        Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 4);
+    if (compareGraphics != NULL) {
+        compareGraphics->modeTransitionState = COMPARE_PAGE_CHANGE_STATE_SHOW_LAYER;
+        BoxCompareGraphics_ClearPage(compareGraphics, compareGraphics->shownCompareMode);
+        Bg_CopyTilemapBufferToVRAM(compareGraphics->bgConfig, BG_LAYER_SUB_0);
     }
 }
 
-BOOL ov19_021DEEA8(UnkStruct_ov19_021DEC04 *param0)
+BOOL BoxCompareGraphics_IsPageChangeDone(BoxCompareGraphics *compareGraphics)
 {
-    if (param0) {
-        switch (param0->unk_37C) {
-        case 0:
-            ov19_021DEF64(param0);
-            param0->unk_37C++;
+    if (compareGraphics != NULL) {
+        switch (compareGraphics->modeTransitionState) {
+        case COMPARE_PAGE_CHANGE_STATE_SHOW_LAYER:
+            BoxCompareGraphics_ShowPageLayer(compareGraphics);
+            compareGraphics->modeTransitionState++;
             break;
-        case 1:
-            ov19_021DF2E0(param0);
-            ov19_021DF064(param0);
-            Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 4);
-            param0->unk_37C++;
+        case COMPARE_PAGE_CHANGE_STATE_DRAW_PAGE:
+            BoxCompareGraphics_DrawLabels(compareGraphics);
+            BoxCompareGraphics_DrawPage(compareGraphics);
+            Bg_CopyTilemapBufferToVRAM(compareGraphics->bgConfig, BG_LAYER_SUB_0);
+            compareGraphics->modeTransitionState++;
             break;
-        case 2:
-            return 1;
+        case COMPARE_PAGE_CHANGE_STATE_DONE:
+            return TRUE;
         }
-        return 0;
+        return FALSE;
     } else {
-        return 1;
+        return TRUE;
     }
 }
 
-static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_DrawSlotHighlight(BoxCompareGraphics *compareGraphics)
 {
-    NNSG2dScreenData *v0 = (BoxApp_GetCompareMonSlot(param0->unk_08) == 0) ? param0->unk_368 : param0->unk_36C;
+    NNSG2dScreenData *screenData = (BoxApp_GetCompareMonSlot(compareGraphics->boxApp) == 0) ? compareGraphics->slot0HighlightScreenData : compareGraphics->slot1HighlightScreenData;
 
-    Bg_CopyToTilemapRect(param0->unk_0C, 2, 0, 0, 6, 32, v0->rawData, 0, 0, 32, 32);
-    Bg_CopyToTilemapRect(param0->unk_0C, 2, 26, 0, 6, 32, v0->rawData, 26, 0, 32, 32);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 2);
+    Bg_CopyToTilemapRect(compareGraphics->bgConfig, BG_LAYER_MAIN_2, 0, 0, 6, 32, screenData->rawData, 0, 0, 32, 32);
+    Bg_CopyToTilemapRect(compareGraphics->bgConfig, BG_LAYER_MAIN_2, 26, 0, 6, 32, screenData->rawData, 26, 0, 32, 32);
+    Bg_CopyTilemapBufferToVRAM(compareGraphics->bgConfig, BG_LAYER_MAIN_2);
 }
 
-static void ov19_021DEF64(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_ShowPageLayer(BoxCompareGraphics *compareGraphics)
 {
-    switch (BoxApp_GetCompareMode(param0->unk_08)) {
+    switch (BoxApp_GetCompareMode(compareGraphics->boxApp)) {
     case COMPARE_BATTLE_STATS:
-        Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
-        Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
-        Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, TRUE);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, FALSE);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, FALSE);
         break;
     case COMPARE_CONTEST_STATS:
-        Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
-        Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
-        Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, TRUE);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, FALSE);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, FALSE);
         break;
     case COMPARE_MOVES:
-        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
-        Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
-        Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, TRUE);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, FALSE);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, FALSE);
         break;
     }
 }
 
-static void ov19_021DEFC8(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_InitWindows(BoxCompareGraphics *compareGraphics)
 {
-    static const WindowTemplate v0[] = {
-        { 4, 3, 1, 9, 2, 0, 1 },
-        { 4, 20, 1, 9, 2, 1, 19 },
-        { 4, 13, 4, 6, 16, 0, 37 }
+    static const WindowTemplate windowTemplate[] = {
+        [COMPARE_WINDOW_SLOT_0_NAME] = {
+            .bgLayer = BG_LAYER_SUB_0,
+            .tilemapLeft = 3,
+            .tilemapTop = 1,
+            .width = 9,
+            .height = 2,
+            .palette = 0,
+            .baseTile = 1,
+        },
+        [COMPARE_WINDOW_SLOT_1_NAME] = {
+            .bgLayer = BG_LAYER_SUB_0,
+            .tilemapLeft = 20,
+            .tilemapTop = 1,
+            .width = 9,
+            .height = 2,
+            .palette = 1,
+            .baseTile = 19,
+        },
+        [COMPARE_WINDOW_LABELS] = {
+            .bgLayer = BG_LAYER_SUB_0,
+            .tilemapLeft = 13,
+            .tilemapTop = 4,
+            .width = 6,
+            .height = 16,
+            .palette = 0,
+            .baseTile = 37,
+        },
     };
-    int v1;
+    int i;
 
-    for (v1 = 0; v1 < 7; v1++) {
-        param0->unk_78[v1].pixels = NULL;
+    for (i = 0; i < COMPARE_WINDOW_COUNT; i++) {
+        compareGraphics->windows[i].pixels = NULL;
     }
 
-    for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        Window_AddFromTemplate(param0->unk_0C, &param0->unk_78[0 + v1], &v0[v1]);
-        Window_PutToTilemap(&param0->unk_78[0 + v1]);
+    for (i = 0; i < NELEMS(windowTemplate); i++) {
+        Window_AddFromTemplate(compareGraphics->bgConfig, &compareGraphics->windows[COMPARE_WINDOW_SLOT_0_NAME + i], &windowTemplate[i]);
+        Window_PutToTilemap(&compareGraphics->windows[COMPARE_WINDOW_SLOT_0_NAME + i]);
     }
 
-    ov19_021DF2E0(param0);
-    Window_FillTilemap(&param0->unk_78[0], 0);
-    Window_FillTilemap(&param0->unk_78[1], 0);
+    BoxCompareGraphics_DrawLabels(compareGraphics);
+    Window_FillTilemap(&compareGraphics->windows[COMPARE_WINDOW_SLOT_0_NAME], 0);
+    Window_FillTilemap(&compareGraphics->windows[COMPARE_WINDOW_SLOT_1_NAME], 0);
 
-    for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        Window_LoadTiles(&param0->unk_78[0 + v1]);
+    for (i = 0; i < NELEMS(windowTemplate); i++) {
+        Window_LoadTiles(&compareGraphics->windows[COMPARE_WINDOW_SLOT_0_NAME + i]);
     }
 
-    ov19_021DF064(param0);
+    BoxCompareGraphics_DrawPage(compareGraphics);
 }
 
-static void ov19_021DF03C(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_RemoveWindows(BoxCompareGraphics *compareGraphics)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 7; v0++) {
-        if (param0->unk_78[v0].pixels) {
-            Window_Remove(&(param0->unk_78[v0]));
+    for (int i = 0; i < COMPARE_WINDOW_COUNT; i++) {
+        if (compareGraphics->windows[i].pixels != NULL) {
+            Window_Remove(&compareGraphics->windows[i]);
         }
     }
 }
 
-static void ov19_021DF064(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_DrawPage(BoxCompareGraphics *compareGraphics)
 {
-    int v0 = BoxApp_GetCompareMode(param0->unk_08);
+    int compareMode = BoxApp_GetCompareMode(compareGraphics->boxApp);
 
-    switch (BoxApp_GetCompareMode(param0->unk_08)) {
+    switch (BoxApp_GetCompareMode(compareGraphics->boxApp)) {
     case COMPARE_BATTLE_STATS:
-        ov19_021DF108(param0);
-        ov19_021DF3AC(param0, 0);
-        ov19_021DF3AC(param0, 1);
+        BoxCompareGraphics_CreateBattleStatsWindows(compareGraphics);
+        BoxCompareGraphics_DrawBattleStats(compareGraphics, 0);
+        BoxCompareGraphics_DrawBattleStats(compareGraphics, 1);
         break;
     case COMPARE_CONTEST_STATS:
-        ov19_021DF178(param0, 0);
-        ov19_021DF178(param0, 1);
+        BoxCompareGraphics_DrawContestStats(compareGraphics, 0);
+        BoxCompareGraphics_DrawContestStats(compareGraphics, 1);
         break;
     case COMPARE_MOVES:
-        ov19_021DF270(param0);
-        ov19_021DF4D0(param0, 0);
-        ov19_021DF4D0(param0, 1);
+        BoxCompareGraphics_CreateMovesWindows(compareGraphics);
+        BoxCompareGraphics_DrawMoves(compareGraphics, 0);
+        BoxCompareGraphics_DrawMoves(compareGraphics, 1);
         break;
     }
 
-    param0->unk_378 = v0;
+    compareGraphics->shownCompareMode = compareMode;
 }
 
-static void ov19_021DF0CC(UnkStruct_ov19_021DEC04 *param0, int param1)
+static void BoxCompareGraphics_ClearPage(BoxCompareGraphics *compareGraphics, int compareMode)
 {
-    switch (param1) {
-    case 0:
-        ov19_021DF140(param0);
-        ov19_021DF394(param0);
+    switch (compareMode) {
+    case COMPARE_BATTLE_STATS:
+        BoxCompareGraphics_RemoveBattleStatsWindows(compareGraphics);
+        BoxCompareGraphics_ClearLabels(compareGraphics);
         break;
-    case 1:
-        ov19_021DF250(param0, 0);
-        ov19_021DF250(param0, 1);
+    case COMPARE_CONTEST_STATS:
+        BoxCompareGraphics_HideContestStats(compareGraphics, 0);
+        BoxCompareGraphics_HideContestStats(compareGraphics, 1);
         break;
-    case 2:
-        ov19_021DF2A8(param0);
-        ov19_021DF394(param0);
+    case COMPARE_MOVES:
+        BoxCompareGraphics_RemoveMovesWindows(compareGraphics);
+        BoxCompareGraphics_ClearLabels(compareGraphics);
         break;
     }
 }
 
-static void ov19_021DF108(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_CreateBattleStatsWindows(BoxCompareGraphics *compareGraphics)
 {
-    static const WindowTemplate v0[] = {
-        { 4, 3, 4, 9, 16, 0, 133 },
-        { 4, 20, 4, 9, 16, 1, 277 }
+    static const WindowTemplate windowTemplate[NUM_COMPARE_SLOTS] = {
+        {
+            .bgLayer = BG_LAYER_SUB_0,
+            .tilemapLeft = 3,
+            .tilemapTop = 4,
+            .width = 9,
+            .height = 16,
+            .palette = 0,
+            .baseTile = 133,
+        },
+        {
+            .bgLayer = BG_LAYER_SUB_0,
+            .tilemapLeft = 20,
+            .tilemapTop = 4,
+            .width = 9,
+            .height = 16,
+            .palette = 1,
+            .baseTile = 277,
+        },
     };
-    int v1;
 
-    for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        Window_AddFromTemplate(param0->unk_0C, &param0->unk_78[3 + v1], &v0[v1]);
-        Window_PutToTilemap(&param0->unk_78[3 + v1]);
-        Window_FillTilemap(&param0->unk_78[3 + v1], 0);
+    for (int i = 0; i < NELEMS(windowTemplate); i++) {
+        Window_AddFromTemplate(compareGraphics->bgConfig, &compareGraphics->windows[COMPARE_WINDOW_SLOT_0_STATS + i], &windowTemplate[i]);
+        Window_PutToTilemap(&compareGraphics->windows[COMPARE_WINDOW_SLOT_0_STATS + i]);
+        Window_FillTilemap(&compareGraphics->windows[COMPARE_WINDOW_SLOT_0_STATS + i], 0);
     }
 }
 
-static void ov19_021DF140(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_RemoveBattleStatsWindows(BoxCompareGraphics *compareGraphics)
 {
-    int v0;
-
-    for (v0 = 3; v0 <= 4; v0++) {
-        if (param0->unk_78[v0].pixels) {
-            Window_ClearTilemap(&(param0->unk_78[v0]));
-            Window_Remove(&(param0->unk_78[v0]));
-            param0->unk_78[v0].pixels = NULL;
+    for (int i = COMPARE_WINDOW_SLOT_0_STATS; i <= COMPARE_WINDOW_SLOT_1_STATS; i++) {
+        if (compareGraphics->windows[i].pixels != NULL) {
+            Window_ClearTilemap(&compareGraphics->windows[i]);
+            Window_Remove(&compareGraphics->windows[i]);
+            compareGraphics->windows[i].pixels = NULL;
         }
     }
 }
 
-static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
+static void BoxCompareGraphics_DrawContestStats(BoxCompareGraphics *compareGraphics, int compareMonSlot)
 {
-#define DEFINE_00(tx) ((128 << FX32_SHIFT) + (((((tx) - 128) << FX32_SHIFT) * 10) / 100))
-#define DEFINE_01(ty) ((484 << FX32_SHIFT) + (((((ty) - 484) << FX32_SHIFT) * 10) / 100))
+#define AXIS_START_X(cornerX) ((CONTEST_CHART_CENTER_X << FX32_SHIFT) + (((((cornerX) - CONTEST_CHART_CENTER_X) << FX32_SHIFT) * 10) / 100))
+#define AXIS_START_Y(cornerY) ((CONTEST_CHART_CENTER_Y << FX32_SHIFT) + (((((cornerY) - CONTEST_CHART_CENTER_Y) << FX32_SHIFT) * 10) / 100))
 
     static const struct {
-        fx32 unk_00;
-        fx32 unk_04;
-        fx32 unk_08;
-        fx32 unk_0C;
-    } v0[] = {
-        { DEFINE_00(128), DEFINE_01(438), 128 << FX32_SHIFT, 438 << FX32_SHIFT },
-        { DEFINE_00(172), DEFINE_01(470), 172 << FX32_SHIFT, 470 << FX32_SHIFT },
-        { DEFINE_00(155), DEFINE_01(520), 155 << FX32_SHIFT, 520 << FX32_SHIFT },
-        { DEFINE_00(100), DEFINE_01(520), 100 << FX32_SHIFT, 520 << FX32_SHIFT },
-        { DEFINE_00(84), DEFINE_01(470), 84 << FX32_SHIFT, 470 << FX32_SHIFT },
+        fx32 startX;
+        fx32 startY;
+        fx32 endX;
+        fx32 endY;
+    } axes[] = {
+        { AXIS_START_X(128), AXIS_START_Y(438), 128 << FX32_SHIFT, 438 << FX32_SHIFT },
+        { AXIS_START_X(172), AXIS_START_Y(470), 172 << FX32_SHIFT, 470 << FX32_SHIFT },
+        { AXIS_START_X(155), AXIS_START_Y(520), 155 << FX32_SHIFT, 520 << FX32_SHIFT },
+        { AXIS_START_X(100), AXIS_START_Y(520), 100 << FX32_SHIFT, 520 << FX32_SHIFT },
+        { AXIS_START_X(84), AXIS_START_Y(470), 84 << FX32_SHIFT, 470 << FX32_SHIFT },
     };
 
     const PCCompareMon *compareMon;
-    BOOL isMonUnderCursor, v3, v4;
+    BOOL isMonUnderCursor, isSelectedSlot, hasMon;
 
-    compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-    isMonUnderCursor = BoxApp_IsMonUnderCursor(param0->unk_08);
-    v3 = BoxApp_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
-    v4 = BoxApp_CompareSlotHasMon(param0->unk_08, compareMonSlot);
+    compareMon = BoxApp_GetCompareMonFrom(compareGraphics->boxApp, compareMonSlot);
+    isMonUnderCursor = BoxApp_IsMonUnderCursor(compareGraphics->boxApp);
+    isSelectedSlot = BoxApp_GetCompareMonSlot(compareGraphics->boxApp) == compareMonSlot;
+    hasMon = BoxApp_CompareSlotHasMon(compareGraphics->boxApp, compareMonSlot);
 
-    if ((((isMonUnderCursor == TRUE) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (compareMon->isEgg == FALSE)) {
+    if (((isMonUnderCursor == TRUE && isSelectedSlot == TRUE) || (isSelectedSlot == FALSE && hasMon == TRUE)) && compareMon->isEgg == FALSE) {
         int i;
-        VecFx32 v6;
+        VecFx32 pos;
         const u16 *contestStat = &compareMon->cool;
 
-        v6.z = 0;
+        pos.z = 0;
 
         for (i = 0; i < CONTEST_TYPE_MAX; i++) {
-            v6.x = v0[i].unk_00 + (((v0[i].unk_08 - v0[i].unk_00) / 256) * (int)(*contestStat));
-            v6.y = v0[i].unk_04 + (((v0[i].unk_0C - v0[i].unk_04) / 256) * (int)(*contestStat));
-            Sprite_SetPosition(param0->unk_34[compareMonSlot][i], &v6);
-            BoxGraphics_SetSpritePriority(param0->unk_34[compareMonSlot][i], 0);
-            BoxGraphics_SetSpritePriority(param0->unk_34[compareMonSlot ^ 1][i], 1);
-            Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][i], TRUE);
+            pos.x = axes[i].startX + (((axes[i].endX - axes[i].startX) / 256) * (int)(*contestStat));
+            pos.y = axes[i].startY + (((axes[i].endY - axes[i].startY) / 256) * (int)(*contestStat));
+            Sprite_SetPosition(compareGraphics->contestStatSprites[compareMonSlot][i], &pos);
+            BoxGraphics_SetSpritePriority(compareGraphics->contestStatSprites[compareMonSlot][i], 0);
+            BoxGraphics_SetSpritePriority(compareGraphics->contestStatSprites[compareMonSlot ^ 1][i], 1);
+            Sprite_SetDrawFlag(compareGraphics->contestStatSprites[compareMonSlot][i], TRUE);
             contestStat++;
         }
     } else {
-        ov19_021DF250(param0, compareMonSlot);
+        BoxCompareGraphics_HideContestStats(compareGraphics, compareMonSlot);
     }
 
-#undef DEFINE_00
-#undef DEFINE_01
+#undef AXIS_START_X
+#undef AXIS_START_Y
 }
 
-static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
+static void BoxCompareGraphics_HideContestStats(BoxCompareGraphics *compareGraphics, int compareMonSlot)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 5; v0++) {
-        Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][v0], FALSE);
+    for (int i = 0; i < CONTEST_TYPE_MAX; i++) {
+        Sprite_SetDrawFlag(compareGraphics->contestStatSprites[compareMonSlot][i], FALSE);
     }
 }
 
-static void ov19_021DF270(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_CreateMovesWindows(BoxCompareGraphics *compareGraphics)
 {
-    static const WindowTemplate v0[] = {
-        { 4, 1, 4, 11, 12, 0, 133 },
-        { 4, 20, 4, 11, 12, 1, 265 }
+    static const WindowTemplate windowTemplate[NUM_COMPARE_SLOTS] = {
+        {
+            .bgLayer = BG_LAYER_SUB_0,
+            .tilemapLeft = 1,
+            .tilemapTop = 4,
+            .width = 11,
+            .height = 12,
+            .palette = 0,
+            .baseTile = 133,
+        },
+        {
+            .bgLayer = BG_LAYER_SUB_0,
+            .tilemapLeft = 20,
+            .tilemapTop = 4,
+            .width = 11,
+            .height = 12,
+            .palette = 1,
+            .baseTile = 265,
+        },
     };
-    int v1;
-
-    for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        Window_AddFromTemplate(param0->unk_0C, &param0->unk_78[5 + v1], &v0[v1]);
-        Window_PutToTilemap(&param0->unk_78[5 + v1]);
-        Window_FillTilemap(&param0->unk_78[5 + v1], 0);
+    for (int i = 0; i < NELEMS(windowTemplate); i++) {
+        Window_AddFromTemplate(compareGraphics->bgConfig, &compareGraphics->windows[COMPARE_WINDOW_SLOT_0_MOVES + i], &windowTemplate[i]);
+        Window_PutToTilemap(&compareGraphics->windows[COMPARE_WINDOW_SLOT_0_MOVES + i]);
+        Window_FillTilemap(&compareGraphics->windows[COMPARE_WINDOW_SLOT_0_MOVES + i], 0);
     }
 }
 
-static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_RemoveMovesWindows(BoxCompareGraphics *compareGraphics)
 {
-    int v0;
-
-    for (v0 = 5; v0 <= 6; v0++) {
-        if (param0->unk_78[v0].pixels) {
-            Window_ClearTilemap(&(param0->unk_78[v0]));
-            Window_Remove(&(param0->unk_78[v0]));
-            param0->unk_78[v0].pixels = NULL;
+    for (int i = COMPARE_WINDOW_SLOT_0_MOVES; i <= COMPARE_WINDOW_SLOT_1_MOVES; i++) {
+        if (compareGraphics->windows[i].pixels != NULL) {
+            Window_ClearTilemap(&compareGraphics->windows[i]);
+            Window_Remove(&compareGraphics->windows[i]);
+            compareGraphics->windows[i].pixels = NULL;
         }
     }
 }
 
-static inline u32 inline_ov19_021DF3AC(Window *param0, u32 param1, const String *param2)
+static inline u32 GetCenteredTextX(Window *window, u32 font, const String *string)
 {
-    return ((param0->width * 8) - Font_CalcStringWidth(param1, param2, 0)) / 2;
+    return (window->width * TILE_WIDTH_PIXELS - Font_CalcStringWidth(font, string, 0)) / 2;
 }
 
-static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
+static void BoxCompareGraphics_DrawLabels(BoxCompareGraphics *compareGraphics)
 {
     static const u16 compareMessages[] = {
         BoxText_Nature,
@@ -471,66 +516,64 @@ static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
         BoxText_SpecialDefense,
         BoxText_Speed,
     };
-    Window *v1 = &param0->unk_78[2];
-    int v2;
-
-    Window_FillTilemap(v1, 0);
-
-    switch (BoxApp_GetCompareMode(param0->unk_08)) {
-    case COMPARE_BATTLE_STATS:
-        for (v2 = 0; v2 < NELEMS(compareMessages); v2++) {
-            MessageLoader_GetString(param0->unk_6C, compareMessages[v2], param0->boxDisplayText);
-            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0 + 16 * v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        }
-        break;
-    case COMPARE_MOVES:
-        MessageLoader_GetString(param0->unk_6C, BoxText_Move, param0->boxDisplayText);
-        Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        break;
-    }
-
-    Window_LoadTiles(v1);
-}
-
-static void ov19_021DF394(UnkStruct_ov19_021DEC04 *param0)
-{
-    Window *v0 = &param0->unk_78[2];
-
-    Window_FillTilemap(v0, 0);
-    Window_LoadTiles(v0);
-}
-
-static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
-{
-    Window *window;
-    const PCCompareMon *compareMon;
-    BOOL isMonUnderCursor, compareSlot, v4;
-
-    window = &(param0->unk_78[3 + compareMonSlot]);
-    compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-    isMonUnderCursor = BoxApp_IsMonUnderCursor(param0->unk_08);
-    compareSlot = BoxApp_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
-    v4 = BoxApp_CompareSlotHasMon(param0->unk_08, compareMonSlot);
+    Window *window = &compareGraphics->windows[COMPARE_WINDOW_LABELS];
 
     Window_FillTilemap(window, 0);
 
-    if (((isMonUnderCursor == TRUE) && (compareSlot == 1)) || ((compareSlot == 0) && (v4 == 1))) {
-        int v5;
+    switch (BoxApp_GetCompareMode(compareGraphics->boxApp)) {
+    case COMPARE_BATTLE_STATS:
+        for (int i = 0; i < NELEMS(compareMessages); i++) {
+            MessageLoader_GetString(compareGraphics->boxMessagesLoader, compareMessages[i], compareGraphics->boxDisplayText);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 0 + 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+        }
+        break;
+    case COMPARE_MOVES:
+        MessageLoader_GetString(compareGraphics->boxMessagesLoader, BoxText_Move, compareGraphics->boxDisplayText);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+        break;
+    }
 
+    Window_LoadTiles(window);
+}
+
+static void BoxCompareGraphics_ClearLabels(BoxCompareGraphics *compareGraphics)
+{
+    Window *window = &compareGraphics->windows[COMPARE_WINDOW_LABELS];
+
+    Window_FillTilemap(window, 0);
+    Window_LoadTiles(window);
+}
+
+static void BoxCompareGraphics_DrawBattleStats(BoxCompareGraphics *compareGraphics, int compareMonSlot)
+{
+    Window *window;
+    const PCCompareMon *compareMon;
+    BOOL isMonUnderCursor, isSelectedSlot, hasMon;
+
+    window = &compareGraphics->windows[COMPARE_WINDOW_SLOT_0_STATS + compareMonSlot];
+    compareMon = BoxApp_GetCompareMonFrom(compareGraphics->boxApp, compareMonSlot);
+    isMonUnderCursor = BoxApp_IsMonUnderCursor(compareGraphics->boxApp);
+    isSelectedSlot = BoxApp_GetCompareMonSlot(compareGraphics->boxApp) == compareMonSlot;
+    hasMon = BoxApp_CompareSlotHasMon(compareGraphics->boxApp, compareMonSlot);
+
+    Window_FillTilemap(window, 0);
+
+    if ((isMonUnderCursor == TRUE && isSelectedSlot == TRUE) || (isSelectedSlot == FALSE && hasMon == TRUE)) {
         if (compareMon->isEgg == FALSE) {
-            const u16 *v6 = &compareMon->level;
+            // stats points at the position of the level field in PCCompareMon and the fields after level (the six stats) can be cycled through, this relies on struct layout.
+            const u16 *stats = &compareMon->level;
 
-            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->nature, inline_ov19_021DF3AC(window, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->nature, GetCenteredTextX(window, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 
-            for (v5 = 0; v5 < 7; v5++) {
-                String_FormatInt(param0->boxDisplayText, v6[v5], 3, 0, 1);
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(window, 0, param0->boxDisplayText), (1 + v5) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            for (int i = 0; i < 7; i++) {
+                String_FormatInt(compareGraphics->boxDisplayText, stats[i], 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), (1 + i) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
             }
         } else {
-            MessageLoader_GetString(param0->unk_6C, 44, param0->boxDisplayText);
+            MessageLoader_GetString(compareGraphics->boxMessagesLoader, BoxText_QuestionMarks, compareGraphics->boxDisplayText);
 
-            for (v5 = 0; v5 < 8; v5++) {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(window, 0, param0->boxDisplayText), v5 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            for (int i = 0; i < 8; i++) {
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), i * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
             }
         }
     }
@@ -538,185 +581,183 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     Window_LoadTiles(window);
 }
 
-static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
+static void BoxCompareGraphics_DrawMoves(BoxCompareGraphics *compareGraphics, int compareMonSlot)
 {
-    Window *v0;
+    Window *window;
     const PCCompareMon *compareMon;
-    BOOL isMonUnderCursor, v3, v4;
+    BOOL isMonUnderCursor, isSelectedSlot, hasMon;
 
-    v0 = &(param0->unk_78[5 + compareMonSlot]);
-    compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-    isMonUnderCursor = BoxApp_IsMonUnderCursor(param0->unk_08);
-    v3 = BoxApp_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
-    v4 = BoxApp_CompareSlotHasMon(param0->unk_08, compareMonSlot);
+    window = &compareGraphics->windows[COMPARE_WINDOW_SLOT_0_MOVES + compareMonSlot];
+    compareMon = BoxApp_GetCompareMonFrom(compareGraphics->boxApp, compareMonSlot);
+    isMonUnderCursor = BoxApp_IsMonUnderCursor(compareGraphics->boxApp);
+    isSelectedSlot = BoxApp_GetCompareMonSlot(compareGraphics->boxApp) == compareMonSlot;
+    hasMon = BoxApp_CompareSlotHasMon(compareGraphics->boxApp, compareMonSlot);
 
-    Window_FillTilemap(v0, 0);
+    Window_FillTilemap(window, 0);
 
-    if (((isMonUnderCursor == TRUE) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
+    if ((isMonUnderCursor == TRUE && isSelectedSlot == TRUE) || (isSelectedSlot == FALSE && hasMon == TRUE)) {
         int i;
 
         if (compareMon->isEgg == FALSE) {
             for (i = 0; i < LEARNED_MOVES_MAX; i++) {
                 if (compareMon->moves[i]) {
-                    MessageLoader_GetString(param0->unk_70, compareMon->moves[i], param0->boxDisplayText);
-                    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                    MessageLoader_GetString(compareGraphics->moveNamesLoader, compareMon->moves[i], compareGraphics->boxDisplayText);
+                    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
                 }
             }
         } else {
-            MessageLoader_GetString(param0->unk_6C, 44, param0->boxDisplayText);
+            MessageLoader_GetString(compareGraphics->boxMessagesLoader, BoxText_QuestionMarks, compareGraphics->boxDisplayText);
 
             for (i = 0; i < 4; i++) {
-                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
             }
         }
-    }
-
-    Window_LoadTiles(v0);
-}
-
-static void ov19_021DF5D0(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
-{
-    static const struct {
-        s16 unk_00;
-        s16 unk_02;
-    } v0[] = {
-        { 0, 568 },
-        { 256, 568 },
-    };
-    NNSG2dImageProxy v1;
-    SpriteResourcesHeader v2;
-    u32 v3, v4, v5;
-
-    param0->unk_5C = Graphics_GetCellBankFromOpenNARC(param1, 135, 1, &(param0->unk_60), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_64 = Graphics_GetAnimBankFromOpenNARC(param1, 136, 1, &(param0->unk_68), HEAP_ID_BOX_GRAPHICS);
-
-    Graphics_LoadPaletteFromOpenNARC(param1, 137, 5, 0, 0x20 * 3, HEAP_ID_BOX_GRAPHICS);
-    NNS_G2dInitImageProxy(&v1);
-    v3 = Graphics_LoadImageMappingFromOpenNARC(param1, 134, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &v1);
-    ov19_021D783C(&v2, &v1, ov19_021D77D0(param0->unk_04), param0->unk_60, param0->unk_68, 1);
-
-    for (v4 = 0; v4 < 2; v4++) {
-        param0->unk_28[v4] = ov19_021D785C(param0->unk_10, &v2, v0[v4].unk_00, v0[v4].unk_02, 0, NNS_G2D_VRAM_TYPE_2DSUB);
-
-        Sprite_SetExplicitPalette(param0->unk_28[v4], v4);
-        Sprite_SetAnim(param0->unk_28[v4], 0);
-
-        for (v5 = 0; v5 < 5; v5++) {
-            param0->unk_34[v4][v5] = ov19_021D785C(param0->unk_10, &v2, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB);
-            Sprite_SetAnim(param0->unk_34[v4][v5], 5 + v4);
-            Sprite_SetExplicitPalette(param0->unk_34[v4][v5], v4);
-            Sprite_SetDrawFlag(param0->unk_34[v4][v5], FALSE);
-        }
-    }
-
-    Sprite_SetFlipMode(param0->unk_28[1], 1);
-    param0->unk_30 = ov19_021D785C(param0->unk_10, &v2, 128, 176 + 384, 0, NNS_G2D_VRAM_TYPE_2DSUB);
-    Sprite_SetAnim(param0->unk_30, 3);
-    Sprite_SetExplicitPalette(param0->unk_30, 2);
-    param0->unk_380 = SysTask_Start(ov19_021DF930, param0, 1);
-
-    ov19_021DF730(param0, v3);
-}
-
-static void ov19_021DF730(UnkStruct_ov19_021DEC04 *param0, u32 param1)
-{
-    static const struct {
-        s16 unk_00;
-        s16 unk_02;
-    } v0[] = {
-        { 112, 394 },
-        { 144, 394 },
-    };
-    NNSG2dImageProxy v1;
-    SpriteResourcesHeader v2;
-
-    ov19_021D783C(&v2, &v1, ov19_021D77D0(param0->unk_04), ov19_021DA80C(param0->unk_14), ov19_021DA810(param0->unk_14), 1);
-
-    for (int i = 0; i < 2; i++) {
-        param0->unk_18[i] = param1 + (i * (4 * 4) * 0x20);
-        NNS_G2dInitImageProxy(&v1);
-        NNS_G2dSetImageLocation(&v1, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_18[i]);
-        v1.attr.mappingType = GXS_GetOBJVRamModeChar();
-        param0->unk_20[i] = ov19_021D785C(param0->unk_10, &v2, v0[i].unk_00, v0[i].unk_02, 1 - i, NNS_G2D_VRAM_TYPE_2DSUB);
-        Sprite_SetDrawFlag(param0->unk_20[i], FALSE);
-    }
-}
-
-static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0)
-{
-    int v0, v1;
-
-    if (param0->unk_380) {
-        SysTask_Done(param0->unk_380);
-    }
-
-    for (v0 = 0; v0 < 2; v0++) {
-        Sprite_Delete(param0->unk_20[v0]);
-        Sprite_Delete(param0->unk_28[v0]);
-
-        for (v1 = 0; v1 < 5; v1++) {
-            Sprite_Delete(param0->unk_34[v0][v1]);
-        }
-    }
-
-    Sprite_Delete(param0->unk_30);
-    Heap_Free(param0->unk_5C);
-    Heap_Free(param0->unk_64);
-}
-
-static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
-{
-    int compareMonSlot = BoxApp_GetCompareMonSlot(param0->unk_08);
-    const PCCompareMon *compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-    Sprite *v2 = param0->unk_20[compareMonSlot];
-    BoxPokemon *boxMon = compareMon->mon;
-    NNSG2dCharacterData *v4;
-
-    if (BoxApp_IsMonUnderCursor(param0->unk_08)) {
-        u32 v5 = 4 + PokeIconPaletteIndex(compareMon->species, compareMon->form, compareMon->isEgg);
-
-        ov19_021DA744(param0->unk_14, param0->unk_E8, BoxPokemon_IconSpriteIndex(boxMon), sizeof(param0->unk_E8));
-
-        NNS_G2dGetUnpackedCharacterData(param0->unk_E8, &v4);
-        DC_FlushRange(v4->pRawData, (4 * 4) * 0x20);
-        GXS_LoadOBJ(v4->pRawData, param0->unk_18[compareMonSlot], (4 * 4) * 0x20);
-
-        Sprite_SetExplicitPalette(v2, v5);
-        Sprite_SetDrawFlag(v2, TRUE);
-    } else {
-        Sprite_SetDrawFlag(v2, FALSE);
-    }
-}
-
-static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
-{
-    Window *window;
-
-    compareMonSlot = BoxApp_GetCompareMonSlot(param0->unk_08);
-    window = &(param0->unk_78[0 + compareMonSlot]);
-
-    Window_FillTilemap(window, 0);
-
-    if (BoxApp_IsMonUnderCursor(param0->unk_08)) {
-        const PCCompareMon *compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->monName, inline_ov19_021DF3AC(window, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
     Window_LoadTiles(window);
 }
 
-static void ov19_021DF930(SysTask *param0, void *param1)
+static void BoxCompareGraphics_CreateSprites(BoxCompareGraphics *compareGraphics, NARC *narc)
 {
-    UnkStruct_ov19_021DEC04 *v0 = param1;
-    BOOL pressedAnimation = BoxApp_IsCompareButtonPressed(v0->unk_08);
+    static const struct {
+        s16 x;
+        s16 y;
+    } tabPositions[] = {
+        { 0, 568 },
+        { 256, 568 },
+    };
+    NNSG2dImageProxy imageProxy;
+    SpriteResourcesHeader srHeader;
+    u32 tilesSize, slot, i;
 
-    if (Sprite_GetActiveAnim(v0->unk_30) == 3) {
+    compareGraphics->cellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 135, TRUE, &compareGraphics->cellBank, HEAP_ID_BOX_GRAPHICS);
+    compareGraphics->animBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 136, TRUE, &compareGraphics->animBank, HEAP_ID_BOX_GRAPHICS);
+
+    Graphics_LoadPaletteFromOpenNARC(narc, 137, PAL_LOAD_SUB_OBJ, 0, 3 * PALETTE_SIZE_BYTES, HEAP_ID_BOX_GRAPHICS);
+    NNS_G2dInitImageProxy(&imageProxy);
+    tilesSize = Graphics_LoadImageMappingFromOpenNARC(narc, 134, TRUE, IMAGE_MAPPING_LAYOUT_1D, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, HEAP_ID_BOX_GRAPHICS, &imageProxy);
+    SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, BoxGraphics_GetImagePaletteProxy(compareGraphics->boxGraphics), compareGraphics->cellBank, compareGraphics->animBank, 1);
+
+    for (slot = 0; slot < NUM_COMPARE_SLOTS; slot++) {
+        compareGraphics->slotTabSprites[slot] = BoxGraphics_CreateSprite(compareGraphics->spriteList, &srHeader, tabPositions[slot].x, tabPositions[slot].y, 0, NNS_G2D_VRAM_TYPE_2DSUB);
+
+        Sprite_SetExplicitPalette(compareGraphics->slotTabSprites[slot], slot);
+        Sprite_SetAnim(compareGraphics->slotTabSprites[slot], 0);
+
+        for (i = 0; i < CONTEST_TYPE_MAX; i++) {
+            compareGraphics->contestStatSprites[slot][i] = BoxGraphics_CreateSprite(compareGraphics->spriteList, &srHeader, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB);
+            Sprite_SetAnim(compareGraphics->contestStatSprites[slot][i], 5 + slot);
+            Sprite_SetExplicitPalette(compareGraphics->contestStatSprites[slot][i], slot);
+            Sprite_SetDrawFlag(compareGraphics->contestStatSprites[slot][i], FALSE);
+        }
+    }
+
+    Sprite_SetFlipMode(compareGraphics->slotTabSprites[1], NNS_G2D_RENDERERFLIP_H);
+    compareGraphics->compareButtonSprite = BoxGraphics_CreateSprite(compareGraphics->spriteList, &srHeader, 128, 176 + 384, 0, NNS_G2D_VRAM_TYPE_2DSUB);
+    Sprite_SetAnim(compareGraphics->compareButtonSprite, 3);
+    Sprite_SetExplicitPalette(compareGraphics->compareButtonSprite, 2);
+    compareGraphics->compareButtonTask = SysTask_Start(BoxCompareGraphics_CompareButtonTask, compareGraphics, 1);
+
+    BoxCompareGraphics_CreateMonIconSprites(compareGraphics, tilesSize);
+}
+
+static void BoxCompareGraphics_CreateMonIconSprites(BoxCompareGraphics *compareGraphics, u32 vramOffset)
+{
+    static const struct {
+        s16 x;
+        s16 y;
+    } tabPositions[] = {
+        { 112, 394 },
+        { 144, 394 },
+    };
+    NNSG2dImageProxy imageProxy;
+    SpriteResourcesHeader srHeader;
+
+    SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, BoxGraphics_GetImagePaletteProxy(compareGraphics->boxGraphics), MonIconHelper_GetIconCellBank(compareGraphics->monIconHelper), MonIconHelper_GetIconAnimBank(compareGraphics->monIconHelper), 1);
+
+    for (int i = 0; i < NUM_COMPARE_SLOTS; i++) {
+        compareGraphics->monIconVramOffsets[i] = vramOffset + i * MON_ICON_TILE_DATA_SIZE;
+        NNS_G2dInitImageProxy(&imageProxy);
+        NNS_G2dSetImageLocation(&imageProxy, NNS_G2D_VRAM_TYPE_2DSUB, compareGraphics->monIconVramOffsets[i]);
+        imageProxy.attr.mappingType = GXS_GetOBJVRamModeChar();
+        compareGraphics->monIconSprites[i] = BoxGraphics_CreateSprite(compareGraphics->spriteList, &srHeader, tabPositions[i].x, tabPositions[i].y, 1 - i, NNS_G2D_VRAM_TYPE_2DSUB);
+        Sprite_SetDrawFlag(compareGraphics->monIconSprites[i], FALSE);
+    }
+}
+
+static void BoxCompareGraphics_DeleteSprites(BoxCompareGraphics *compareGraphics)
+{
+    if (compareGraphics->compareButtonTask != NULL) {
+        SysTask_Done(compareGraphics->compareButtonTask);
+    }
+
+    for (int i = 0; i < NUM_COMPARE_SLOTS; i++) {
+        Sprite_Delete(compareGraphics->monIconSprites[i]);
+        Sprite_Delete(compareGraphics->slotTabSprites[i]);
+
+        for (int j = 0; j < CONTEST_TYPE_MAX; j++) {
+            Sprite_Delete(compareGraphics->contestStatSprites[i][j]);
+        }
+    }
+
+    Sprite_Delete(compareGraphics->compareButtonSprite);
+    Heap_Free(compareGraphics->cellBankBuffer);
+    Heap_Free(compareGraphics->animBankBuffer);
+}
+
+static void BoxCompareGraphics_UpdateMonIcon(BoxCompareGraphics *compareGraphics)
+{
+    int compareMonSlot = BoxApp_GetCompareMonSlot(compareGraphics->boxApp);
+    const PCCompareMon *compareMon = BoxApp_GetCompareMonFrom(compareGraphics->boxApp, compareMonSlot);
+    Sprite *sprite = compareGraphics->monIconSprites[compareMonSlot];
+    BoxPokemon *boxMon = compareMon->mon;
+    NNSG2dCharacterData *charData;
+
+    if (BoxApp_IsMonUnderCursor(compareGraphics->boxApp)) {
+        u32 palette = 4 + PokeIconPaletteIndex(compareMon->species, compareMon->form, compareMon->isEgg);
+
+        MonIconHelper_ReadIconData(compareGraphics->monIconHelper, compareGraphics->iconCharBuffer, BoxPokemon_IconSpriteIndex(boxMon), sizeof(compareGraphics->iconCharBuffer));
+
+        NNS_G2dGetUnpackedCharacterData(compareGraphics->iconCharBuffer, &charData);
+        DC_FlushRange(charData->pRawData, MON_ICON_TILE_DATA_SIZE);
+        GXS_LoadOBJ(charData->pRawData, compareGraphics->monIconVramOffsets[compareMonSlot], MON_ICON_TILE_DATA_SIZE);
+
+        Sprite_SetExplicitPalette(sprite, palette);
+        Sprite_SetDrawFlag(sprite, TRUE);
+    } else {
+        Sprite_SetDrawFlag(sprite, FALSE);
+    }
+}
+
+static void BoxCompareGraphics_DrawMonName(BoxCompareGraphics *compareGraphics, int compareMonSlot)
+{
+    Window *window;
+
+    compareMonSlot = BoxApp_GetCompareMonSlot(compareGraphics->boxApp);
+    window = &compareGraphics->windows[COMPARE_WINDOW_SLOT_0_NAME + compareMonSlot];
+
+    Window_FillTilemap(window, 0);
+
+    if (BoxApp_IsMonUnderCursor(compareGraphics->boxApp)) {
+        const PCCompareMon *compareMon = BoxApp_GetCompareMonFrom(compareGraphics->boxApp, compareMonSlot);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->monName, GetCenteredTextX(window, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+    }
+
+    Window_LoadTiles(window);
+}
+
+static void BoxCompareGraphics_CompareButtonTask(SysTask *unused, void *param)
+{
+    BoxCompareGraphics *compareGraphics = param;
+    BOOL pressedAnimation = BoxApp_IsCompareButtonPressed(compareGraphics->boxApp);
+
+    if (Sprite_GetActiveAnim(compareGraphics->compareButtonSprite) == 3) {
         if (pressedAnimation) {
-            Sprite_SetAnim(v0->unk_30, 4);
+            Sprite_SetAnim(compareGraphics->compareButtonSprite, 4);
         }
     } else {
         if (pressedAnimation == FALSE) {
-            Sprite_SetAnim(v0->unk_30, 3);
+            Sprite_SetAnim(compareGraphics->compareButtonSprite, 3);
         }
     }
 }

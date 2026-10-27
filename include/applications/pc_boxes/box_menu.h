@@ -3,6 +3,9 @@
 
 #include "applications/pc_boxes/box_application.h"
 
+#define BOX_YES_NO_DEFAULT_YES 0
+#define BOX_YES_NO_DEFAULT_NO  1
+
 void BoxMenu_FillYesNo(BoxApplication *boxApp, u32 menuItemIndex);
 void BoxMenu_FillTopLevelMenuItems(BoxApplication *boxApp);
 void BoxMenu_FillItemsMenu(BoxApplication *boxApp);

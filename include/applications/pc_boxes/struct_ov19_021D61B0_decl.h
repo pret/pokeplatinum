@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D61B0_DECL_H
 #define POKEPLATINUM_STRUCT_OV19_021D61B0_DECL_H
 
-typedef struct UnkStruct_ov19_021D61B0_t UnkStruct_ov19_021D61B0;
+typedef struct BoxGraphics BoxGraphics;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021D61B0_DECL_H

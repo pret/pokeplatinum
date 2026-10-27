@@ -3,7 +3,7 @@
 
 #include "string_gf.h"
 
-typedef struct {
+typedef struct PCMonPreview {
     void *mon;
     u16 species;
     u16 heldItem;

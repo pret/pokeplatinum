@@ -6,7 +6,7 @@ enum BoxMode {
     PC_MODE_WITHDRAW,
     PC_MODE_MOVE_MONS,
     PC_MODE_MOVE_ITEMS,
-    PC_MODE_COMPARE
+    PC_MODE_COMPARE,
 };
 
 typedef struct BoxSettings {

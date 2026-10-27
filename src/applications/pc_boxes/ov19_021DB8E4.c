@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 
+#include "generated/items.h"
 #include "generated/pokemon_colors.h"
 #include "generated/species.h"
 
@@ -28,226 +29,239 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
-typedef struct {
-    UnkStruct_ov19_021DBA9C *unk_00;
-    u8 unk_04;
-    u8 unk_05;
-    BOOL unk_08;
-} UnkStruct_ov19_021DC034;
+typedef struct BoxSelectionAnimState {
+    BoxPopupGraphics *popupGraphics;
+    u8 state;
+    u8 counter;
+    BOOL unused_08;
+} BoxSelectionAnimState;
 
-typedef struct {
-    UnkStruct_ov19_021DBA9C *unk_00;
-    BgConfig *unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
-    fx32 unk_10;
-    u16 unk_14;
-    u16 unk_16;
-} UnkStruct_ov19_021DC29C;
+typedef struct ItemInfoSlideState {
+    BoxPopupGraphics *popupGraphics;
+    BgConfig *bgConfig;
+    fx32 yOffset;
+    fx32 targetYOffset;
+    fx32 yOffsetStep;
+    u16 framesLeft;
+    u16 state;
+} ItemInfoSlideState;
 
-static int ov19_021DBD40(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DBD4C(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DBD68(UnkStruct_ov19_021DBA9C *param0, u32 param1);
-static void ov19_021DBD9C(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2);
-static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DBEF8(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DBF18(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DBFB0(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DBFC4(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DC01C(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DC034(UnkStruct_ov19_021DBA9C *param0, int param1);
-static void ov19_021DC074(SysTask *param0, void *param1);
-static BOOL ov19_021DC090(UnkStruct_ov19_021DBA9C *param0);
-static void ov19_021DC0A0(SysTask *param0, void *param1);
-static void ov19_021DC1CC(SysTask *param0, void *param1);
-static void ov19_021DC37C(SysTask *param0, void *param1);
-static void ov19_021DC46C(SysTask *param0, void *param1);
-static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1);
-static void ov19_021DC5B8(UnkStruct_ov19_021DBA9C *param0, fx32 param1);
-static void ov19_021DC5E0(UnkStruct_ov19_021DBA9C *param0);
+static int BoxPopupGraphics_GetFirstVisibleBoxID(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_ClearThumbnailCache(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_CacheThumbnail(BoxPopupGraphics *popupGraphics, u32 boxID);
+static void BoxPopupGraphics_LoadThumbnailToSlot(BoxPopupGraphics *popupGraphics, u32 slot, u32 boxID);
+static void BoxPopupGraphics_CreateThumbnailSprites(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_DeleteThumbnailSprites(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_RefreshThumbnails(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_DrawBoxName(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_ClearBoxName(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_DrawMonCounts(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_ClearMonCounts(BoxPopupGraphics *popupGraphics);
+static void BoxPopupGraphics_StartBoxSelectionAnim(BoxPopupGraphics *popupGraphics, enum BoxSelectionAnim anim);
+static void BoxSelectionAnim_Finish(SysTask *task, void *param);
+static BOOL BoxPopupGraphics_IsAnimDone(BoxPopupGraphics *popupGraphics);
+static void BoxSelectionAnim_OpenTask(SysTask *task, void *param);
+static void BoxSelectionAnim_CloseTask(SysTask *task, void *param);
+static void ItemInfoSlide_SlideInTask(SysTask *task, void *param);
+static void ItemInfoSlide_SlideOutTask(SysTask *task, void *param);
+static void BoxPopupGraphics_CreateItemIconSprite(BoxPopupGraphics *popupGraphics, u32 item);
+static void BoxPopupGraphics_SetItemIconY(BoxPopupGraphics *popupGraphics, fx32 y);
+static void BoxPopupGraphics_DeleteItemIconSprite(BoxPopupGraphics *popupGraphics);
 
-BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, NARC *param5)
+BOOL BoxPopupGraphics_Init(BoxPopupGraphics *popupGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *spriteList, NARC *narc)
 {
-    int v0;
+    popupGraphics->boxGraphics = boxGraphics;
+    popupGraphics->bgConfig = bgConfig;
+    popupGraphics->boxApp = boxApp;
+    popupGraphics->spriteList = spriteList;
 
-    param0->unk_00 = param1;
-    param0->unk_04 = param3;
-    param0->unk_0C = param2;
-    param0->unk_08 = param4;
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 4, bgConfig, BG_LAYER_MAIN_1, 0, 0, TRUE, HEAP_ID_BOX_GRAPHICS);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 4, param3, 1, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+    NNSG2dPaletteData *plttData;
+    void *data;
 
-    {
-        NNSG2dPaletteData *v1;
-        void *v2;
+    data = Graphics_GetPlttDataFromOpenNARC(narc, 27, &plttData, HEAP_ID_BOX_GRAPHICS);
+    MI_CpuCopy16(plttData->pRawData, &popupGraphics->thumbnailFadePltts[0][0], 2 * PALETTE_SIZE_BYTES);
+    Heap_Free(data);
 
-        v2 = Graphics_GetPlttDataFromOpenNARC(param5, 27, &v1, HEAP_ID_BOX_GRAPHICS);
-        MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][0]), 0x40);
-        Heap_Free(v2);
+    data = Graphics_GetPlttDataFromOpenNARC(narc, 20, &plttData, HEAP_ID_BOX_GRAPHICS);
+    MI_CpuCopy16(plttData->pRawData, &popupGraphics->thumbnailFadePltts[0][2 * PALETTE_SIZE], PALETTE_SIZE_BYTES);
+    Heap_Free(data);
 
-        v2 = Graphics_GetPlttDataFromOpenNARC(param5, 20, &v1, HEAP_ID_BOX_GRAPHICS);
-        MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][32]), 0x20);
-        Heap_Free(v2);
+    fx32 blendAmount, blendStep;
 
-        {
-            int v3;
-            fx32 v4, v5;
+    blendAmount = BOX_THUMBNAIL_FADE_MAX_BLEND << FX32_SHIFT;
+    blendStep = blendAmount / (BOX_THUMBNAIL_FADE_STEPS - 1);
 
-            v4 = 16 << FX32_SHIFT;
-            v5 = v4 / (8 - 1);
-
-            for (v3 = 8 - 1; v3 >= 1; v3--) {
-                ov19_021D78C8(param0->unk_E4[0], param0->unk_E4[v3], 48, 0x7fff, (v4 >> FX32_SHIFT));
-                v4 -= v5;
-            }
-
-            DC_FlushRange(param0->unk_E4, 8 * 96);
-        }
-
-        GX_LoadOBJPltt(param0->unk_E4[8 - 1], 13 * 0x20, 96);
-        GXS_LoadOBJPltt(param0->unk_E4[0], 13 * 0x20, 96);
+    for (int i = BOX_THUMBNAIL_FADE_STEPS - 1; i >= 1; i--) {
+        BoxGraphics_BlendPltt(popupGraphics->thumbnailFadePltts[0], popupGraphics->thumbnailFadePltts[i], BOX_THUMBNAIL_FADE_PLTT_COLORS, GX_RGB(31, 31, 31), blendAmount >> FX32_SHIFT);
+        blendAmount -= blendStep;
     }
 
-    param0->unk_14 = Graphics_GetCharDataFromOpenNARC(param5, 17, 1, &(param0->unk_18), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_1C = Graphics_GetCellBankFromOpenNARC(param5, 18, 1, &(param0->unk_20), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_34 = Graphics_GetScrnDataFromOpenNARC(param5, 2, 1, &(param0->unk_38), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_2C = Graphics_GetScrnDataFromOpenNARC(param5, 3, 1, &(param0->unk_30), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_44 = FontSpecialChars_Init(2, 13, 4, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_4BFC = String_Init(500, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_10 = NULL;
-    param0->unk_3C.pixels = param0->unk_18->pRawData;
-    param0->unk_3C.width = 32;
-    param0->unk_3C.height = 32;
-    param0->unk_4BF8 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, HEAP_ID_BOX_GRAPHICS);
+    DC_FlushRange(popupGraphics->thumbnailFadePltts, BOX_THUMBNAIL_FADE_STEPS * BOX_THUMBNAIL_FADE_PLTT_SIZE);
 
-    for (v0 = 0; v0 < 18; v0++) {
-        param0->unk_48[v0] = NULL;
+    GX_LoadOBJPltt(popupGraphics->thumbnailFadePltts[BOX_THUMBNAIL_FADE_STEPS - 1], PLTT_OFFSET(BOX_THUMBNAIL_PLTT_SLOT), BOX_THUMBNAIL_FADE_PLTT_SIZE);
+    GXS_LoadOBJPltt(popupGraphics->thumbnailFadePltts[0], PLTT_OFFSET(BOX_THUMBNAIL_PLTT_SLOT), BOX_THUMBNAIL_FADE_PLTT_SIZE);
+
+    popupGraphics->thumbnailCharDataBuffer = Graphics_GetCharDataFromOpenNARC(narc, 17, TRUE, &popupGraphics->thumbnailCharData, HEAP_ID_BOX_GRAPHICS);
+    popupGraphics->thumbnailCellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 18, TRUE, &popupGraphics->thumbnailCellBank, HEAP_ID_BOX_GRAPHICS);
+    popupGraphics->itemInfoScreenBuffer = Graphics_GetScrnDataFromOpenNARC(narc, 2, TRUE, &popupGraphics->itemInfoScreenData, HEAP_ID_BOX_GRAPHICS);
+    popupGraphics->boxSelectionScreenBuffer = Graphics_GetScrnDataFromOpenNARC(narc, 3, TRUE, &popupGraphics->boxSelectionScreenData, HEAP_ID_BOX_GRAPHICS);
+    popupGraphics->monCountChars = FontSpecialChars_Init(2, 13, 4, HEAP_ID_BOX_GRAPHICS);
+    popupGraphics->string = String_Init(500, HEAP_ID_BOX_GRAPHICS);
+    popupGraphics->windows = NULL;
+    popupGraphics->thumbnailBitmap.pixels = popupGraphics->thumbnailCharData->pRawData;
+    popupGraphics->thumbnailBitmap.width = BOX_THUMBNAIL_SIZE;
+    popupGraphics->thumbnailBitmap.height = BOX_THUMBNAIL_SIZE;
+    popupGraphics->itemDescriptionsLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, HEAP_ID_BOX_GRAPHICS);
+
+    for (int i = 0; i < MAX_PC_BOXES; i++) {
+        popupGraphics->thumbnailSprites[i] = NULL;
     }
 
-    if ((param0->unk_14 == NULL) || (param0->unk_1C == NULL) || (param0->unk_2C == NULL) || (param0->unk_34 == NULL) || (param0->unk_44 == NULL) || (param0->unk_4BFC == NULL)) {
-        return 0;
+    if (popupGraphics->thumbnailCharDataBuffer == NULL || popupGraphics->thumbnailCellBankBuffer == NULL || popupGraphics->boxSelectionScreenBuffer == NULL || popupGraphics->itemInfoScreenBuffer == NULL || popupGraphics->monCountChars == NULL || popupGraphics->string == NULL) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DBA9C(UnkStruct_ov19_021DBA9C *param0)
+void BoxPopupGraphics_LoadGraphics(BoxPopupGraphics *popupGraphics)
 {
-    static const WindowTemplate v0[] = {
-        { 1, 10, 6, 12, 2, 2, 128 },
-        { 1, 3, 13, 26, 1, 2, 152 },
-        { 1, 5, 25, 27, 6, 2, 178 }
+    static const WindowTemplate windowTemplates[POPUP_GRAPHICS_WINDOW_COUNT] = {
+        [POPUP_GRAPHICS_WINDOW_BOX_NAME] = {
+            .bgLayer = BG_LAYER_MAIN_1,
+            .tilemapLeft = 10,
+            .tilemapTop = 6,
+            .width = 12,
+            .height = 2,
+            .palette = 2,
+            .baseTile = 128,
+        },
+        [POPUP_GRAPHICS_WINDOW_MON_COUNTS] = {
+            .bgLayer = BG_LAYER_MAIN_1,
+            .tilemapLeft = 3,
+            .tilemapTop = 13,
+            .width = 26,
+            .height = 1,
+            .palette = 2,
+            .baseTile = 152,
+        },
+        [POPUP_GRAPHICS_WINDOW_ITEM_DESCRIPTION] = {
+            .bgLayer = BG_LAYER_MAIN_1,
+            .tilemapLeft = 5,
+            .tilemapTop = 25,
+            .width = 27,
+            .height = 6,
+            .palette = 2,
+            .baseTile = 178,
+        },
     };
 
-    param0->unk_10 = Window_New(HEAP_ID_BOX_GRAPHICS, NELEMS(v0));
+    popupGraphics->windows = Window_New(HEAP_ID_BOX_GRAPHICS, NELEMS(windowTemplates));
 
-    if (param0->unk_10) {
-        int v1;
-
-        for (v1 = 0; v1 < NELEMS(v0); v1++) {
-            Window_AddFromTemplate(param0->unk_04, &param0->unk_10[v1], &v0[v1]);
+    if (popupGraphics->windows != NULL) {
+        for (int i = 0; i < NELEMS(windowTemplates); i++) {
+            Window_AddFromTemplate(popupGraphics->bgConfig, &popupGraphics->windows[i], &windowTemplates[i]);
         }
     }
 }
 
-void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
+void BoxPopupGraphics_Free(BoxPopupGraphics *popupGraphics)
 {
-    if (param0->unk_4BF8) {
-        MessageLoader_Free(param0->unk_4BF8);
+    if (popupGraphics->itemDescriptionsLoader != NULL) {
+        MessageLoader_Free(popupGraphics->itemDescriptionsLoader);
     }
 
-    if (param0->unk_14) {
-        Heap_Free(param0->unk_14);
+    if (popupGraphics->thumbnailCharDataBuffer != NULL) {
+        Heap_Free(popupGraphics->thumbnailCharDataBuffer);
     }
 
-    if (param0->unk_1C) {
-        Heap_Free(param0->unk_1C);
+    if (popupGraphics->thumbnailCellBankBuffer != NULL) {
+        Heap_Free(popupGraphics->thumbnailCellBankBuffer);
     }
 
-    if (param0->unk_2C) {
-        Heap_Free(param0->unk_2C);
+    if (popupGraphics->boxSelectionScreenBuffer != NULL) {
+        Heap_Free(popupGraphics->boxSelectionScreenBuffer);
     }
 
-    if (param0->unk_34) {
-        Heap_Free(param0->unk_34);
+    if (popupGraphics->itemInfoScreenBuffer != NULL) {
+        Heap_Free(popupGraphics->itemInfoScreenBuffer);
     }
 
-    if (param0->unk_44) {
-        FontSpecialChars_Free(param0->unk_44);
+    if (popupGraphics->monCountChars != NULL) {
+        FontSpecialChars_Free(popupGraphics->monCountChars);
     }
 
-    if (param0->unk_4BFC) {
-        String_Free(param0->unk_4BFC);
+    if (popupGraphics->string != NULL) {
+        String_Free(popupGraphics->string);
     }
 
-    if (param0->unk_10) {
-        int v0;
-
-        for (v0 = 0; v0 < 3; v0++) {
-            Window_Remove(&(param0->unk_10[v0]));
+    if (popupGraphics->windows != NULL) {
+        for (int i = 0; i < POPUP_GRAPHICS_WINDOW_COUNT; i++) {
+            Window_Remove(&popupGraphics->windows[i]);
         }
 
-        Heap_Free(param0->unk_10);
+        Heap_Free(popupGraphics->windows);
     }
 }
 
-void ov19_021DBB48(UnkStruct_ov19_021DBA9C *param0)
+void BoxPopupGraphics_OpenBoxSelection(BoxPopupGraphics *popupGraphics)
 {
-    param0->unk_E0 = BoxApp_GetBoxSelectionBoxID(param0->unk_0C);
-    ov19_021DBDF4(param0);
-    ov19_021DC034(param0, 0);
+    popupGraphics->selectedBoxID = BoxApp_GetBoxSelectionBoxID(popupGraphics->boxApp);
+    BoxPopupGraphics_CreateThumbnailSprites(popupGraphics);
+    BoxPopupGraphics_StartBoxSelectionAnim(popupGraphics, BOX_SELECTION_ANIM_OPEN);
 }
 
-BOOL ov19_021DBB68(UnkStruct_ov19_021DBA9C *param0)
+BOOL BoxPopupGraphics_IsBoxSelectionOpen(BoxPopupGraphics *popupGraphics)
 {
-    return ov19_021DC090(param0);
+    return BoxPopupGraphics_IsAnimDone(popupGraphics);
 }
 
-void ov19_021DBB70(UnkStruct_ov19_021DBA9C *param0)
+void BoxPopupGraphics_ScrollBoxSelection(BoxPopupGraphics *popupGraphics)
 {
-    param0->unk_E0 = BoxApp_GetBoxSelectionBoxID(param0->unk_0C);
+    popupGraphics->selectedBoxID = BoxApp_GetBoxSelectionBoxID(popupGraphics->boxApp);
 
-    ov19_021DBF18(param0);
-    ov19_021DBF4C(param0);
-    ov19_021DBFC4(param0);
+    BoxPopupGraphics_RefreshThumbnails(popupGraphics);
+    BoxPopupGraphics_DrawBoxName(popupGraphics);
+    BoxPopupGraphics_DrawMonCounts(popupGraphics);
 }
 
-void ov19_021DBB94(UnkStruct_ov19_021DBA9C *param0)
+void BoxPopupGraphics_CloseBoxSelection(BoxPopupGraphics *popupGraphics)
 {
-    ov19_021DC034(param0, 1);
+    BoxPopupGraphics_StartBoxSelectionAnim(popupGraphics, BOX_SELECTION_ANIM_CLOSE);
 }
 
-BOOL ov19_021DBBA0(UnkStruct_ov19_021DBA9C *param0)
+BOOL BoxPopupGraphics_IsBoxSelectionOpen2(BoxPopupGraphics *popupGraphics)
 {
-    return ov19_021DC090(param0);
+    return BoxPopupGraphics_IsAnimDone(popupGraphics);
 }
 
-void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_G2D_VRAM_TYPE param3, NNSG2dImageProxy *param4)
+void BoxPopupGraphics_LoadBoxThumbnail(BoxPopupGraphics *popupGraphics, u32 boxID, u32 tileOffset, NNS_G2D_VRAM_TYPE vramType, NNSG2dImageProxy *imageProxy)
 {
     const PCBoxes *pcBoxes;
     BoxPokemon *boxMon;
-    u32 v2, v3, v4, species;
-    u8 color, v7;
-    int v8;
+    u32 col, row, slot, species;
+    u8 color, reencrypt;
+    int wallpaper;
 
-    pcBoxes = BoxApp_GetPCBoxes(param0->unk_0C);
-    v8 = PCBoxes_GetWallpaper(pcBoxes, param1);
+    pcBoxes = BoxApp_GetPCBoxes(popupGraphics->boxApp);
+    wallpaper = PCBoxes_GetWallpaper(pcBoxes, boxID);
 
-    if (v8 >= (16 + 8)) {
-        v8 -= 8;
+    if (wallpaper >= MAX_WALLPAPERS) {
+        wallpaper -= MAX_UNLOCKABLE_WALLPAPERS;
     }
 
-    color = 13 * 0x10 + v8;
-    Bitmap_FillRect8bpp(&(param0->unk_3C), 9, 10, 14, 12, color);
+    color = BOX_THUMBNAIL_PLTT_SLOT * PALETTE_SIZE + wallpaper;
+    Bitmap_FillRect8bpp(&popupGraphics->thumbnailBitmap, 9, 10, 14, 12, color);
 
-    for (v3 = 0, v4 = 0; v3 < 5; v3++) {
-        for (v2 = 0; v2 < 6; v2++) {
-            boxMon = PCBoxes_GetBoxMonAt(pcBoxes, param1, v4++);
-            v7 = BoxPokemon_EnterDecryptionContext(boxMon);
+    for (row = 0, slot = 0; row < MAX_PC_ROWS; row++) {
+        for (col = 0; col < MAX_PC_COLS; col++) {
+            boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, slot++);
+            reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
             species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
-            if (species) {
+            if (species != SPECIES_NONE) {
                 if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
                     u16 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
@@ -256,496 +270,490 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
                     color = (species != SPECIES_MANAPHY) ? MON_COLOR_WHITE : MON_COLOR_BLUE;
                 }
 
-                {
-                    static const u8 v10[] = {
-                        0xe,
-                        0xf,
-                        0x5,
-                        0x4,
-                        0xd,
-                        0xc,
-                        0x3,
-                        0xb,
-                        0xa,
-                        0x9,
-                    };
+                static const u8 bodyColorPlttIndices[] = {
+                    14,
+                    15,
+                    5,
+                    4,
+                    13,
+                    12,
+                    3,
+                    11,
+                    10,
+                    9,
+                };
 
-                    color = 14 * 0x10 + v10[color];
-                }
+                color = (BOX_THUMBNAIL_PLTT_SLOT + 1) * PALETTE_SIZE + bodyColorPlttIndices[color];
 
-                Bitmap_FillRect8bpp(&(param0->unk_3C), 10 + v2 * 2, 11 + v3 * 2, 2, 2, color);
+                Bitmap_FillRect8bpp(&popupGraphics->thumbnailBitmap, 10 + col * 2, 11 + row * 2, 2, 2, color);
             }
 
-            BoxPokemon_ExitDecryptionContext(boxMon, v7);
+            BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
         }
     }
 
-    if (param4) {
-        switch (param3) {
+    if (imageProxy != NULL) {
+        switch (vramType) {
         case NNS_G2D_VRAM_TYPE_2DMAIN:
-            param0->unk_18->mappingType = GX_GetOBJVRamModeChar();
+            popupGraphics->thumbnailCharData->mappingType = GX_GetOBJVRamModeChar();
             break;
         case NNS_G2D_VRAM_TYPE_2DSUB:
-            param0->unk_18->mappingType = GXS_GetOBJVRamModeChar();
+            popupGraphics->thumbnailCharData->mappingType = GXS_GetOBJVRamModeChar();
             break;
         }
 
-        NNS_G2dLoadImage1DMapping(param0->unk_18, param2 * 0x20, param3, param4);
+        NNS_G2dLoadImage1DMapping(popupGraphics->thumbnailCharData, tileOffset * TILE_SIZE_4BPP, vramType, imageProxy);
     } else {
-        DC_FlushRange(param0->unk_18->pRawData, param0->unk_18->szByte);
+        DC_FlushRange(popupGraphics->thumbnailCharData->pRawData, popupGraphics->thumbnailCharData->szByte);
 
-        switch (param3) {
+        switch (vramType) {
         case NNS_G2D_VRAM_TYPE_2DMAIN:
-            GX_LoadOBJ(param0->unk_18->pRawData, param2 * 0x20, param0->unk_18->szByte);
+            GX_LoadOBJ(popupGraphics->thumbnailCharData->pRawData, tileOffset * TILE_SIZE_4BPP, popupGraphics->thumbnailCharData->szByte);
             break;
         case NNS_G2D_VRAM_TYPE_2DSUB:
-            GXS_LoadOBJ(param0->unk_18->pRawData, param2 * 0x20, param0->unk_18->szByte);
+            GXS_LoadOBJ(popupGraphics->thumbnailCharData->pRawData, tileOffset * TILE_SIZE_4BPP, popupGraphics->thumbnailCharData->szByte);
             break;
         }
     }
 }
 
-NNSG2dCellDataBank *ov19_021DBD3C(UnkStruct_ov19_021DBA9C *param0)
+NNSG2dCellDataBank *BoxPopupGraphics_GetThumbnailCellBank(BoxPopupGraphics *popupGraphics)
 {
-    return param0->unk_20;
+    return popupGraphics->thumbnailCellBank;
 }
 
-static int ov19_021DBD40(UnkStruct_ov19_021DBA9C *param0)
+static int BoxPopupGraphics_GetFirstVisibleBoxID(BoxPopupGraphics *popupGraphics)
 {
-    int v0 = param0->unk_E0 - (7 / 2);
+    int boxID = popupGraphics->selectedBoxID - BOX_SELECTION_VISIBLE_BOXES / 2;
 
-    if (v0 < 0) {
-        v0 += 18;
+    if (boxID < 0) {
+        boxID += MAX_PC_BOXES;
     }
 
-    return v0;
+    return boxID;
 }
 
-static void ov19_021DBD4C(UnkStruct_ov19_021DBA9C *param0)
+static void BoxPopupGraphics_ClearThumbnailCache(BoxPopupGraphics *popupGraphics)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 18; v0++) {
-        param0->unk_4BE4[v0] = 0;
+    for (int i = 0; i < MAX_PC_BOXES; i++) {
+        popupGraphics->isThumbnailCached[i] = FALSE;
     }
 }
 
-static void ov19_021DBD68(UnkStruct_ov19_021DBA9C *param0, u32 param1)
+static void BoxPopupGraphics_CacheThumbnail(BoxPopupGraphics *popupGraphics, u32 boxID)
 {
-    MI_CpuCopy32(param0->unk_18->pRawData, param0->unk_3E4[param1], 1024);
-    DC_FlushRange(param0->unk_3E4, 1024);
-    param0->unk_4BE4[param1] = 1;
+    MI_CpuCopy32(popupGraphics->thumbnailCharData->pRawData, popupGraphics->thumbnailCache[boxID], BOX_THUMBNAIL_SIZE * BOX_THUMBNAIL_SIZE);
+    DC_FlushRange(popupGraphics->thumbnailCache, BOX_THUMBNAIL_SIZE * BOX_THUMBNAIL_SIZE);
+    popupGraphics->isThumbnailCached[boxID] = TRUE;
 }
 
-static void ov19_021DBD9C(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2)
+static void BoxPopupGraphics_LoadThumbnailToSlot(BoxPopupGraphics *popupGraphics, u32 slot, u32 boxID)
 {
-    u32 v0 = 1584 + 32 * param1;
+    u32 tileOffset = BOX_THUMBNAIL_TILE_BASE + BOX_THUMBNAIL_TILE_COUNT * slot;
 
-    if (param0->unk_4BE4[param2]) {
-        GX_LoadOBJ(param0->unk_3E4[param2], v0 * 0x20, 1024);
+    if (popupGraphics->isThumbnailCached[boxID]) {
+        GX_LoadOBJ(popupGraphics->thumbnailCache[boxID], tileOffset * TILE_SIZE_4BPP, BOX_THUMBNAIL_SIZE * BOX_THUMBNAIL_SIZE);
     } else {
-        NNSG2dImageProxy v1;
+        NNSG2dImageProxy imageProxy;
 
-        NNS_G2dInitImageProxy(&v1);
-        ov19_021DBBA8(param0, param2, v0, NNS_G2D_VRAM_TYPE_2DMAIN, &v1);
-        ov19_021DBD68(param0, param2);
+        NNS_G2dInitImageProxy(&imageProxy);
+        BoxPopupGraphics_LoadBoxThumbnail(popupGraphics, boxID, tileOffset, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
+        BoxPopupGraphics_CacheThumbnail(popupGraphics, boxID);
     }
 }
 
-static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0)
+static void BoxPopupGraphics_CreateThumbnailSprites(BoxPopupGraphics *popupGraphics)
 {
-    SpriteResourcesHeader v0;
-    UnkStruct_ov19_021DA384 *v1;
-    NNSG2dImageProxy v2;
-    VecFx32 v3;
-    int v4, v5;
+    SpriteResourcesHeader srHeader;
+    MonIconHelper *iconHelper;
+    NNSG2dImageProxy imageProxy;
+    VecFx32 pos;
+    int slot, boxID;
 
-    ov19_021DBD4C(param0);
-    v1 = ov19_021D77D8(param0->unk_00);
-    ov19_021D783C(&v0, NULL, ov19_021D77D0(param0->unk_00), param0->unk_20, v1->unk_04, 0);
-    v5 = ov19_021DBD40(param0);
+    BoxPopupGraphics_ClearThumbnailCache(popupGraphics);
+    iconHelper = BoxGraphics_GetMonIconHelper(popupGraphics->boxGraphics);
+    SpriteResourcesHeader_InitFromProxies(&srHeader, NULL, BoxGraphics_GetImagePaletteProxy(popupGraphics->boxGraphics), popupGraphics->thumbnailCellBank, iconHelper->iconAnimBank, 0);
+    boxID = BoxPopupGraphics_GetFirstVisibleBoxID(popupGraphics);
 
-    for (v4 = 0; v4 < 7; v4++) {
-        NNS_G2dInitImageProxy(&v2);
-        ov19_021DBBA8(param0, v5, 1584 + 32 * v4, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+    for (slot = 0; slot < BOX_SELECTION_VISIBLE_BOXES; slot++) {
+        NNS_G2dInitImageProxy(&imageProxy);
+        BoxPopupGraphics_LoadBoxThumbnail(popupGraphics, boxID, BOX_THUMBNAIL_TILE_BASE + BOX_THUMBNAIL_TILE_COUNT * slot, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
 
-        v0.imageProxy = &v2;
-        param0->unk_48[v4] = ov19_021D785C(param0->unk_08, &v0, 512, 256, 11, NNS_G2D_VRAM_TYPE_2DMAIN);
+        srHeader.imageProxy = &imageProxy;
+        popupGraphics->thumbnailSprites[slot] = BoxGraphics_CreateSprite(popupGraphics->spriteList, &srHeader, 512, 256, 11, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        GF_ASSERT(param0->unk_48[v4] != NULL);
+        GF_ASSERT(popupGraphics->thumbnailSprites[slot] != NULL);
 
-        Sprite_SetDrawFlag(param0->unk_48[v4], FALSE);
-        VEC_Set(&v3, FX32_CONST(32 + v4 * 32), FX32_CONST(88), 0);
-        Sprite_SetPosition(param0->unk_48[v4], &v3);
-        ov19_021DBD68(param0, v5);
+        Sprite_SetDrawFlag(popupGraphics->thumbnailSprites[slot], FALSE);
+        VEC_Set(&pos, FX32_CONST(32 + slot * BOX_THUMBNAIL_SIZE), FX32_CONST(88), 0);
+        Sprite_SetPosition(popupGraphics->thumbnailSprites[slot], &pos);
+        BoxPopupGraphics_CacheThumbnail(popupGraphics, boxID);
 
-        if (++v5 >= 18) {
-            v5 = 0;
+        if (++boxID >= MAX_PC_BOXES) {
+            boxID = 0;
         }
     }
 
-    for (v4 = 0; v4 < MAX_PC_BOXES; v4++) {
-        param0->unk_94[v4] = PCBoxes_CountMonsInBox(BoxApp_GetPCBoxes(param0->unk_0C), v4);
+    for (slot = 0; slot < MAX_PC_BOXES; slot++) {
+        popupGraphics->boxMonCounts[slot] = PCBoxes_CountMonsInBox(BoxApp_GetPCBoxes(popupGraphics->boxApp), slot);
     }
 }
 
-static void ov19_021DBEF8(UnkStruct_ov19_021DBA9C *param0)
+static void BoxPopupGraphics_DeleteThumbnailSprites(BoxPopupGraphics *popupGraphics)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 7; v0++) {
-        if (param0->unk_48[v0] != NULL) {
-            Sprite_Delete(param0->unk_48[v0]);
-            param0->unk_48[v0] = NULL;
-        }
-    }
-}
-
-static void ov19_021DBF18(UnkStruct_ov19_021DBA9C *param0)
-{
-    int v0, v1;
-
-    v0 = ov19_021DBD40(param0);
-
-    for (v1 = 0; v1 < 7; v1++) {
-        ov19_021DBD9C(param0, v1, v0);
-        Sprite_SetDrawFlag(param0->unk_48[v1], TRUE);
-
-        if (++v0 >= 18) {
-            v0 = 0;
+    for (int slot = 0; slot < BOX_SELECTION_VISIBLE_BOXES; slot++) {
+        if (popupGraphics->thumbnailSprites[slot] != NULL) {
+            Sprite_Delete(popupGraphics->thumbnailSprites[slot]);
+            popupGraphics->thumbnailSprites[slot] = NULL;
         }
     }
 }
 
-static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0)
+static void BoxPopupGraphics_RefreshThumbnails(BoxPopupGraphics *popupGraphics)
+{
+    int boxID, slot;
+
+    boxID = BoxPopupGraphics_GetFirstVisibleBoxID(popupGraphics);
+
+    for (slot = 0; slot < BOX_SELECTION_VISIBLE_BOXES; slot++) {
+        BoxPopupGraphics_LoadThumbnailToSlot(popupGraphics, slot, boxID);
+        Sprite_SetDrawFlag(popupGraphics->thumbnailSprites[slot], TRUE);
+
+        if (++boxID >= MAX_PC_BOXES) {
+            boxID = 0;
+        }
+    }
+}
+
+static void BoxPopupGraphics_DrawBoxName(BoxPopupGraphics *popupGraphics)
 {
     const PCBoxes *pcBoxes;
-    Window *v1;
-    u32 v2, v3;
+    Window *window;
+    u32 textWidth, xOffset;
 
-    pcBoxes = BoxApp_GetPCBoxes(param0->unk_0C);
-    v1 = &param0->unk_10[0];
+    pcBoxes = BoxApp_GetPCBoxes(popupGraphics->boxApp);
+    window = &popupGraphics->windows[POPUP_GRAPHICS_WINDOW_BOX_NAME];
 
-    PCBoxes_BufferBoxName(pcBoxes, param0->unk_E0, param0->unk_4BFC);
+    PCBoxes_BufferBoxName(pcBoxes, popupGraphics->selectedBoxID, popupGraphics->string);
 
-    v2 = Font_CalcStringWidth(FONT_SYSTEM, param0->unk_4BFC, 0);
-    v3 = 48 - (v2 / 2);
+    textWidth = Font_CalcStringWidth(FONT_SYSTEM, popupGraphics->string, 0);
+    xOffset = 48 - textWidth / 2;
 
-    Window_FillTilemap(v1, 7);
-    Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->unk_4BFC, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 8, 7), NULL);
-    Window_LoadTiles(v1);
+    Window_FillTilemap(window, 7);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, popupGraphics->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 8, 7), NULL);
+    Window_LoadTiles(window);
 }
 
-static void ov19_021DBFB0(UnkStruct_ov19_021DBA9C *param0)
+static void BoxPopupGraphics_ClearBoxName(BoxPopupGraphics *popupGraphics)
 {
-    Window *v0 = &param0->unk_10[0];
+    Window *window = &popupGraphics->windows[POPUP_GRAPHICS_WINDOW_BOX_NAME];
 
-    Window_FillTilemap(v0, 7);
-    Window_LoadTiles(v0);
+    Window_FillTilemap(window, 7);
+    Window_LoadTiles(window);
 }
 
-static void ov19_021DBFC4(UnkStruct_ov19_021DBA9C *param0)
+static void BoxPopupGraphics_DrawMonCounts(BoxPopupGraphics *popupGraphics)
 {
-    s32 v0, v1;
-    Window *v2 = &param0->unk_10[1];
-    Window_FillTilemap(v2, 4);
-    v0 = ov19_021DBD40(param0);
+    s32 boxID, slot;
+    Window *window = &popupGraphics->windows[POPUP_GRAPHICS_WINDOW_MON_COUNTS];
+    Window_FillTilemap(window, 4);
+    boxID = BoxPopupGraphics_GetFirstVisibleBoxID(popupGraphics);
 
-    for (v1 = 0; v1 < 7; v1++) {
-        FontSpecialChars_DrawPartyScreenHPText(param0->unk_44, param0->unk_94[v0], 2, 2, v2, 32 * v1, 0);
+    for (slot = 0; slot < BOX_SELECTION_VISIBLE_BOXES; slot++) {
+        FontSpecialChars_DrawPartyScreenHPText(popupGraphics->monCountChars, popupGraphics->boxMonCounts[boxID], 2, PADDING_MODE_ZEROES, window, BOX_THUMBNAIL_SIZE * slot, 0);
 
-        if (++v0 >= 18) {
-            v0 = 0;
+        if (++boxID >= MAX_PC_BOXES) {
+            boxID = 0;
         }
     }
 
-    Window_LoadTiles(v2);
+    Window_LoadTiles(window);
 }
 
-static void ov19_021DC01C(UnkStruct_ov19_021DBA9C *param0)
+static void BoxPopupGraphics_ClearMonCounts(BoxPopupGraphics *popupGraphics)
 {
-    Window *v0 = &param0->unk_10[1];
+    Window *window = &popupGraphics->windows[POPUP_GRAPHICS_WINDOW_MON_COUNTS];
 
-    Window_FillTilemap(v0, 4);
-    Window_LoadTiles(v0);
+    Window_FillTilemap(window, 4);
+    Window_LoadTiles(window);
 }
 
-static void ov19_021DC034(UnkStruct_ov19_021DBA9C *param0, int param1)
+static void BoxPopupGraphics_StartBoxSelectionAnim(BoxPopupGraphics *popupGraphics, enum BoxSelectionAnim anim)
 {
-    static const SysTaskFunc v0[] = {
-        ov19_021DC0A0,
-        ov19_021DC1CC,
+    static const SysTaskFunc animTasks[] = {
+        [BOX_SELECTION_ANIM_OPEN] = BoxSelectionAnim_OpenTask,
+        [BOX_SELECTION_ANIM_CLOSE] = BoxSelectionAnim_CloseTask,
     };
-    UnkStruct_ov19_021DC034 *v1 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DC034));
+    BoxSelectionAnimState *animState = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(BoxSelectionAnimState));
 
-    if (v1) {
-        v1->unk_00 = param0;
-        v1->unk_04 = 0;
-        v1->unk_05 = 0;
+    if (animState != NULL) {
+        animState->popupGraphics = popupGraphics;
+        animState->state = 0;
+        animState->counter = 0;
 
-        param0->unk_DC = SysTask_Start(v0[param1], v1, 0);
+        popupGraphics->animTask = SysTask_Start(animTasks[anim], animState, 0);
 
-        if (param0->unk_DC == NULL) {
-            Heap_Free(v1);
+        if (popupGraphics->animTask == NULL) {
+            Heap_Free(animState);
         }
     }
 }
 
-static void ov19_021DC074(SysTask *param0, void *param1)
+static void BoxSelectionAnim_Finish(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC034 *v0 = (UnkStruct_ov19_021DC034 *)param1;
+    BoxSelectionAnimState *animState = (BoxSelectionAnimState *)param;
 
-    v0->unk_00->unk_DC = NULL;
+    animState->popupGraphics->animTask = NULL;
 
-    Heap_Free(v0);
-    SysTask_Done(param0);
+    Heap_Free(animState);
+    SysTask_Done(task);
 }
 
-static BOOL ov19_021DC090(UnkStruct_ov19_021DBA9C *param0)
+static BOOL BoxPopupGraphics_IsAnimDone(BoxPopupGraphics *popupGraphics)
 {
-    return param0->unk_DC == NULL;
+    return popupGraphics->animTask == NULL;
 }
 
-static void ov19_021DC0A0(SysTask *param0, void *param1)
+static void BoxSelectionAnim_OpenTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC034 *v0 = (UnkStruct_ov19_021DC034 *)param1;
-    UnkStruct_ov19_021DBA9C *v1 = v0->unk_00;
+    BoxSelectionAnimState *animState = (BoxSelectionAnimState *)param;
+    BoxPopupGraphics *popupGraphics = animState->popupGraphics;
 
-    switch (v0->unk_04) {
-    case 0:
-        v0->unk_05 += 1;
+    switch (animState->state) {
+    case BOX_SELECTION_OPEN_STATE_UNROLL:
+        animState->counter += 1;
 
-        if ((v0->unk_05 * 2) < 10) {
-            u32 v2 = 5 + (10 / 2);
+        if (animState->counter * 2 < BOX_SELECTION_HEIGHT) {
+            u32 midRow = BOX_SELECTION_TOP_ROW + BOX_SELECTION_HEIGHT / 2;
 
-            Bg_LoadToTilemapRect(v1->unk_04, 1, v1->unk_30->rawData, 0, v2 - v0->unk_05, 32, v0->unk_05);
-            Bg_CopyToTilemapRect(v1->unk_04, 1, 0, v2, 32, v0->unk_05, v1->unk_30->rawData, 0, 10 - v0->unk_05, 32, 10);
+            Bg_LoadToTilemapRect(popupGraphics->bgConfig, BG_LAYER_MAIN_1, popupGraphics->boxSelectionScreenData->rawData, 0, midRow - animState->counter, 32, animState->counter);
+            Bg_CopyToTilemapRect(popupGraphics->bgConfig, BG_LAYER_MAIN_1, 0, midRow, 32, animState->counter, popupGraphics->boxSelectionScreenData->rawData, 0, BOX_SELECTION_HEIGHT - animState->counter, 32, BOX_SELECTION_HEIGHT);
         } else {
-            Bg_LoadToTilemapRect(v1->unk_04, 1, v1->unk_30->rawData, 0, 5, 32, 10);
-            v0->unk_04++;
+            Bg_LoadToTilemapRect(popupGraphics->bgConfig, BG_LAYER_MAIN_1, popupGraphics->boxSelectionScreenData->rawData, 0, BOX_SELECTION_TOP_ROW, 32, BOX_SELECTION_HEIGHT);
+            animState->state++;
         }
 
-        Bg_CopyTilemapBufferToVRAM(v1->unk_04, 1);
-        v0->unk_05 = 8 - 1;
+        Bg_CopyTilemapBufferToVRAM(popupGraphics->bgConfig, BG_LAYER_MAIN_1);
+        animState->counter = BOX_THUMBNAIL_FADE_STEPS - 1;
         break;
-    case 1:
-        GX_LoadOBJPltt(v1->unk_E4[v0->unk_05], 13 * 0x20, 96);
-        ov19_021DBF18(v1);
-        v0->unk_04++;
+    case BOX_SELECTION_OPEN_STATE_SHOW_THUMBNAILS:
+        GX_LoadOBJPltt(popupGraphics->thumbnailFadePltts[animState->counter], PLTT_OFFSET(BOX_THUMBNAIL_PLTT_SLOT), BOX_THUMBNAIL_FADE_PLTT_SIZE);
+        BoxPopupGraphics_RefreshThumbnails(popupGraphics);
+        animState->state++;
         break;
-    case 2:
-        if (v0->unk_05) {
-            v0->unk_05--;
+    case BOX_SELECTION_OPEN_STATE_FADE_IN:
+        if (animState->counter) {
+            animState->counter--;
         }
 
-        GX_LoadOBJPltt(v1->unk_E4[v0->unk_05], 13 * 0x20, 96);
+        GX_LoadOBJPltt(popupGraphics->thumbnailFadePltts[animState->counter], PLTT_OFFSET(BOX_THUMBNAIL_PLTT_SLOT), BOX_THUMBNAIL_FADE_PLTT_SIZE);
 
-        if (v0->unk_05 == 0) {
-            Window_PutToTilemap(&v1->unk_10[0]);
-            Window_PutToTilemap(&v1->unk_10[1]);
-            ov19_021DBF4C(v1);
-            ov19_021DBFC4(v1);
-            Bg_CopyTilemapBufferToVRAM(v1->unk_04, 1);
-            v0->unk_04++;
+        if (animState->counter == 0) {
+            Window_PutToTilemap(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_BOX_NAME]);
+            Window_PutToTilemap(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_MON_COUNTS]);
+            BoxPopupGraphics_DrawBoxName(popupGraphics);
+            BoxPopupGraphics_DrawMonCounts(popupGraphics);
+            Bg_CopyTilemapBufferToVRAM(popupGraphics->bgConfig, BG_LAYER_MAIN_1);
+            animState->state++;
         }
         break;
-    case 3:
-        ov19_021DC074(param0, v0);
+    case BOX_SELECTION_OPEN_STATE_FINISH:
+        BoxSelectionAnim_Finish(task, animState);
         break;
     }
 }
 
-static void ov19_021DC1CC(SysTask *param0, void *param1)
+static void BoxSelectionAnim_CloseTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC034 *v0 = (UnkStruct_ov19_021DC034 *)param1;
-    UnkStruct_ov19_021DBA9C *v1 = v0->unk_00;
+    BoxSelectionAnimState *animState = (BoxSelectionAnimState *)param;
+    BoxPopupGraphics *popupGraphics = animState->popupGraphics;
 
-    switch (v0->unk_04) {
-    case 0:
-        ov19_021DBEF8(v1);
-        ov19_021DBFB0(v1);
-        ov19_021DC01C(v1);
-        v0->unk_04++;
+    switch (animState->state) {
+    case BOX_SELECTION_CLOSE_STATE_CLEAR:
+        BoxPopupGraphics_DeleteThumbnailSprites(popupGraphics);
+        BoxPopupGraphics_ClearBoxName(popupGraphics);
+        BoxPopupGraphics_ClearMonCounts(popupGraphics);
+        animState->state++;
         break;
-    case 1:
-        Bg_FillTilemapRect(v1->unk_04, 1, 0x0, 0, 5, 32, 10, 17);
-        v0->unk_05 += 1;
+    case BOX_SELECTION_CLOSE_STATE_ROLL_UP:
+        Bg_FillTilemapRect(popupGraphics->bgConfig, BG_LAYER_MAIN_1, 0, 0, BOX_SELECTION_TOP_ROW, 32, BOX_SELECTION_HEIGHT, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
+        animState->counter += 1;
 
-        if ((v0->unk_05 * 2) < 10) {
-            u32 v2 = 5 + (10 / 2);
+        if (animState->counter * 2 < BOX_SELECTION_HEIGHT) {
+            u32 midRow = BOX_SELECTION_TOP_ROW + BOX_SELECTION_HEIGHT / 2;
 
-            Bg_LoadToTilemapRect(v1->unk_04, 1, v1->unk_30->rawData, 0, 5 + v0->unk_05, 32, (10 / 2) - v0->unk_05);
-            Bg_CopyToTilemapRect(v1->unk_04, 1, 0, v2, 32, (10 / 2) - v0->unk_05, v1->unk_30->rawData, 0, 10 - v0->unk_05, 32, 10);
+            Bg_LoadToTilemapRect(popupGraphics->bgConfig, BG_LAYER_MAIN_1, popupGraphics->boxSelectionScreenData->rawData, 0, BOX_SELECTION_TOP_ROW + animState->counter, 32, BOX_SELECTION_HEIGHT / 2 - animState->counter);
+            Bg_CopyToTilemapRect(popupGraphics->bgConfig, BG_LAYER_MAIN_1, 0, midRow, 32, BOX_SELECTION_HEIGHT / 2 - animState->counter, popupGraphics->boxSelectionScreenData->rawData, 0, BOX_SELECTION_HEIGHT - animState->counter, 32, BOX_SELECTION_HEIGHT);
         } else {
-            v0->unk_04++;
+            animState->state++;
         }
 
-        Bg_CopyTilemapBufferToVRAM(v1->unk_04, 1);
+        Bg_CopyTilemapBufferToVRAM(popupGraphics->bgConfig, BG_LAYER_MAIN_1);
         break;
-    case 2:
-        ov19_021DC074(param0, v0);
+    case BOX_SELECTION_CLOSE_STATE_FINISH:
+        BoxSelectionAnim_Finish(task, animState);
     }
 }
 
-void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
+void BoxPopupGraphics_OpenItemInfo(BoxPopupGraphics *popupGraphics)
 {
-    UnkStruct_ov19_021DC29C *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DC29C));
+    ItemInfoSlideState *slideState = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(ItemInfoSlideState));
 
-    if (v0) {
-        u32 v1 = BoxApp_GetCursorOrPreviewedItem(param0->unk_0C);
+    if (slideState != NULL) {
+        u32 item = BoxApp_GetCursorOrPreviewedItem(popupGraphics->boxApp);
 
-        Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, 0);
-        Bg_LoadToTilemapRect(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);
-        Window_FillTilemap(&param0->unk_10[2], 4);
-        MessageLoader_GetString(param0->unk_4BF8, v1, param0->unk_4BFC);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_10[2], FONT_SYSTEM, param0->unk_4BFC, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 4), NULL);
-        Window_CopyToVRAM(&param0->unk_10[2]);
+        Bg_SetOffset(popupGraphics->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, 0);
+        Bg_LoadToTilemapRect(popupGraphics->bgConfig, BG_LAYER_MAIN_1, popupGraphics->itemInfoScreenData->rawData, 0, ITEM_INFO_TOP_ROW, 32, ITEM_INFO_HEIGHT);
+        Window_FillTilemap(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_ITEM_DESCRIPTION], 4);
+        MessageLoader_GetString(popupGraphics->itemDescriptionsLoader, item, popupGraphics->string);
+        Text_AddPrinterWithParamsAndColor(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, popupGraphics->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 4), NULL);
+        Window_CopyToVRAM(&popupGraphics->windows[POPUP_GRAPHICS_WINDOW_ITEM_DESCRIPTION]);
 
-        ov19_021DC4F8(param0, v1);
+        BoxPopupGraphics_CreateItemIconSprite(popupGraphics, item);
 
-        v0->unk_16 = 0;
-        v0->unk_00 = param0;
-        v0->unk_04 = param0->unk_04;
-        v0->unk_08 = (0 << FX32_SHIFT);
-        v0->unk_0C = 56 << FX32_SHIFT;
-        v0->unk_10 = (v0->unk_0C - v0->unk_08) / 6;
-        v0->unk_14 = 6;
+        slideState->state = ITEM_INFO_SLIDE_IN_STATE_WAIT;
+        slideState->popupGraphics = popupGraphics;
+        slideState->bgConfig = popupGraphics->bgConfig;
+        slideState->yOffset = 0 << FX32_SHIFT;
+        slideState->targetYOffset = ITEM_INFO_SLIDE_DISTANCE << FX32_SHIFT;
+        slideState->yOffsetStep = (slideState->targetYOffset - slideState->yOffset) / ITEM_INFO_SLIDE_FRAMES;
+        slideState->framesLeft = ITEM_INFO_SLIDE_FRAMES;
 
-        param0->unk_DC = ov19_021D77C8(ov19_021DC37C, v0, 0);
+        popupGraphics->animTask = BoxGraphics_StartVBlankTask(ItemInfoSlide_SlideInTask, slideState, 0);
     }
 }
 
-BOOL ov19_021DC364(UnkStruct_ov19_021DBA9C *param0)
+BOOL BoxPopupGraphics_IsAnimDone2(BoxPopupGraphics *popupGraphics)
 {
-    return param0->unk_DC == NULL;
+    return popupGraphics->animTask == NULL;
 }
 
-static void ov19_021DC374(void *param0)
+static void BoxPopupGraphics_ClearAnimTask(void *param)
 {
-    UnkStruct_ov19_021DBA9C *v0 = param0;
-    v0->unk_DC = NULL;
+    BoxPopupGraphics *popupGraphics = param;
+    popupGraphics->animTask = NULL;
 }
 
-static void ov19_021DC37C(SysTask *param0, void *param1)
+static void ItemInfoSlide_SlideInTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC29C *v0 = param1;
+    ItemInfoSlideState *slideState = param;
 
-    switch (v0->unk_16) {
-    case 0:
-        v0->unk_16++;
+    switch (slideState->state) {
+    case ITEM_INFO_SLIDE_IN_STATE_WAIT:
+        slideState->state++;
         break;
-    case 1:
-        if (v0->unk_14) {
-            v0->unk_14--;
-            v0->unk_08 += v0->unk_10;
-            Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, (v0->unk_08 >> FX32_SHIFT));
-            ov19_021DC5B8(v0->unk_00, (224 << FX32_SHIFT) - v0->unk_08);
+    case ITEM_INFO_SLIDE_IN_STATE_SLIDE:
+        if (slideState->framesLeft) {
+            slideState->framesLeft--;
+            slideState->yOffset += slideState->yOffsetStep;
+            Bg_SetOffset(slideState->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, slideState->yOffset >> FX32_SHIFT);
+            BoxPopupGraphics_SetItemIconY(slideState->popupGraphics, (ITEM_INFO_ICON_Y << FX32_SHIFT) - slideState->yOffset);
         } else {
-            Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, (v0->unk_0C >> FX32_SHIFT));
-            ov19_021DC5B8(v0->unk_00, (224 << FX32_SHIFT) - v0->unk_0C);
-            ov19_021D79B8(v0, ov19_021DC374, v0->unk_00);
-            SysTask_Done(param0);
+            Bg_SetOffset(slideState->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, slideState->targetYOffset >> FX32_SHIFT);
+            BoxPopupGraphics_SetItemIconY(slideState->popupGraphics, (ITEM_INFO_ICON_Y << FX32_SHIFT) - slideState->targetYOffset);
+            BoxGraphics_DeferFree(slideState, BoxPopupGraphics_ClearAnimTask, slideState->popupGraphics);
+            SysTask_Done(task);
         }
         break;
     }
 }
 
-void ov19_021DC3F4(UnkStruct_ov19_021DBA9C *param0)
+void BoxPopupGraphics_CloseItemInfo(BoxPopupGraphics *popupGraphics)
 {
-    UnkStruct_ov19_021DC29C *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DC29C));
+    ItemInfoSlideState *slideState = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(ItemInfoSlideState));
 
-    if (v0) {
-        v0->unk_16 = 0;
-        v0->unk_00 = param0;
-        v0->unk_04 = param0->unk_04;
-        v0->unk_08 = 56 << FX32_SHIFT;
-        v0->unk_0C = 0 << FX32_SHIFT;
-        v0->unk_10 = (v0->unk_0C - v0->unk_08) / 6;
-        v0->unk_14 = 6;
-        param0->unk_DC = ov19_021D77C8(ov19_021DC46C, v0, 0);
+    if (slideState != NULL) {
+        slideState->state = ITEM_INFO_SLIDE_IN_STATE_WAIT;
+        slideState->popupGraphics = popupGraphics;
+        slideState->bgConfig = popupGraphics->bgConfig;
+        slideState->yOffset = ITEM_INFO_SLIDE_DISTANCE << FX32_SHIFT;
+        slideState->targetYOffset = 0 << FX32_SHIFT;
+        slideState->yOffsetStep = (slideState->targetYOffset - slideState->yOffset) / ITEM_INFO_SLIDE_FRAMES;
+        slideState->framesLeft = ITEM_INFO_SLIDE_FRAMES;
+        popupGraphics->animTask = BoxGraphics_StartVBlankTask(ItemInfoSlide_SlideOutTask, slideState, 0);
     }
 }
 
-BOOL ov19_021DC43C(UnkStruct_ov19_021DBA9C *param0)
+BOOL BoxPopupGraphics_IsItemInfoClosed(BoxPopupGraphics *popupGraphics)
 {
-    if (param0->unk_DC == NULL) {
-        Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, 0);
-        ov19_021DC5E0(param0);
-        return 1;
+    if (popupGraphics->animTask == NULL) {
+        Bg_SetOffset(popupGraphics->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, 0);
+        BoxPopupGraphics_DeleteItemIconSprite(popupGraphics);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov19_021DC464(void *param0)
+static void BoxPopupGraphics_ClearAnimTask2(void *param)
 {
-    UnkStruct_ov19_021DBA9C *v0 = param0;
-    v0->unk_DC = NULL;
+    BoxPopupGraphics *popupGraphics = param;
+    popupGraphics->animTask = NULL;
 }
 
-static void ov19_021DC46C(SysTask *param0, void *param1)
+static void ItemInfoSlide_SlideOutTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC29C *v0 = param1;
+    ItemInfoSlideState *slideState = param;
 
-    if (v0->unk_14) {
-        v0->unk_14--;
-        v0->unk_08 += v0->unk_10;
-        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, (v0->unk_08 >> FX32_SHIFT));
-        ov19_021DC5B8(v0->unk_00, (224 << FX32_SHIFT) - v0->unk_08);
+    if (slideState->framesLeft) {
+        slideState->framesLeft--;
+        slideState->yOffset += slideState->yOffsetStep;
+        Bg_SetOffset(slideState->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, slideState->yOffset >> FX32_SHIFT);
+        BoxPopupGraphics_SetItemIconY(slideState->popupGraphics, (ITEM_INFO_ICON_Y << FX32_SHIFT) - slideState->yOffset);
     } else {
-        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, (v0->unk_0C >> FX32_SHIFT));
-        ov19_021DC5B8(v0->unk_00, (224 << FX32_SHIFT) - v0->unk_0C);
-        Bg_FillTilemapRect(v0->unk_04, 1, 0x0, 0, 0, 32, 32, 17);
-        Bg_CopyTilemapBufferToVRAM(v0->unk_04, 1);
-        ov19_021D79B8(v0, ov19_021DC464, v0->unk_00);
-        SysTask_Done(param0);
+        Bg_SetOffset(slideState->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, slideState->targetYOffset >> FX32_SHIFT);
+        BoxPopupGraphics_SetItemIconY(slideState->popupGraphics, (ITEM_INFO_ICON_Y << FX32_SHIFT) - slideState->targetYOffset);
+        Bg_FillTilemapRect(slideState->bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, 32, 32, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
+        Bg_CopyTilemapBufferToVRAM(slideState->bgConfig, BG_LAYER_MAIN_1);
+        BoxGraphics_DeferFree(slideState, BoxPopupGraphics_ClearAnimTask2, slideState->popupGraphics);
+        SysTask_Done(task);
     }
 }
 
-static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1)
+static void BoxPopupGraphics_CreateItemIconSprite(BoxPopupGraphics *popupGraphics, u32 item)
 {
-    if (param1 != 0) {
-        SpriteResourcesHeader v0;
-        UnkStruct_ov19_021DA384 *v1;
-        NNSG2dImageProxy v2;
-        NNSG2dCharacterData *v3;
-        void *v4;
+    if (item != ITEM_NONE) {
+        SpriteResourcesHeader srHeader;
+        MonIconHelper *iconHelper;
+        NNSG2dImageProxy imageProxy;
+        NNSG2dCharacterData *charData;
+        void *charDataBuffer;
 
-        v1 = ov19_021D77D8(param0->unk_00);
-        ov19_021D783C(&v0, &v2, ov19_021D77D0(param0->unk_00), v1->unk_1C, v1->unk_20, 0);
-        NNS_G2dInitImageProxy(&v2);
+        iconHelper = BoxGraphics_GetMonIconHelper(popupGraphics->boxGraphics);
+        SpriteResourcesHeader_InitFromProxies(&srHeader, &imageProxy, BoxGraphics_GetImagePaletteProxy(popupGraphics->boxGraphics), iconHelper->itemIconCellBank, iconHelper->itemIconAnimBank, 0);
+        NNS_G2dInitImageProxy(&imageProxy);
 
-        v4 = Graphics_GetCharData(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(param1, 1), 0, &v3, HEAP_ID_BOX_GRAPHICS);
-        v3->mappingType = GX_GetOBJVRamModeChar();
-        NNS_G2dLoadImage1DMapping(v3, 1520 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+        charDataBuffer = Graphics_GetCharData(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), 0, &charData, HEAP_ID_BOX_GRAPHICS);
+        charData->mappingType = GX_GetOBJVRamModeChar();
+        NNS_G2dLoadImage1DMapping(charData, 1520 * TILE_SIZE_4BPP, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
 
-        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(param1, 2), 1, 6 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);
-        param0->unk_90 = ov19_021D785C(param0->unk_08, &v0, 18, 224, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+        Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), PAL_LOAD_MAIN_OBJ, PLTT_OFFSET(ITEM_INFO_ICON_PLTT_SLOT), PALETTE_SIZE_BYTES, HEAP_ID_BOX_GRAPHICS);
+        popupGraphics->itemIconSprite = BoxGraphics_CreateSprite(popupGraphics->spriteList, &srHeader, ITEM_INFO_ICON_X, ITEM_INFO_ICON_Y, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        if (param0->unk_90) {
-            Sprite_SetExplicitPalette(param0->unk_90, 6);
+        if (popupGraphics->itemIconSprite != NULL) {
+            Sprite_SetExplicitPalette(popupGraphics->itemIconSprite, ITEM_INFO_ICON_PLTT_SLOT);
         }
 
-        Heap_Free(v4);
+        Heap_Free(charDataBuffer);
     }
 }
 
-static void ov19_021DC5B8(UnkStruct_ov19_021DBA9C *param0, fx32 param1)
+static void BoxPopupGraphics_SetItemIconY(BoxPopupGraphics *popupGraphics, fx32 y)
 {
-    if (param0->unk_90) {
-        VecFx32 v0;
+    if (popupGraphics->itemIconSprite != NULL) {
+        VecFx32 pos;
 
-        v0.x = 18 << FX32_SHIFT;
-        v0.y = param1;
-        v0.z = 0;
+        pos.x = ITEM_INFO_ICON_X << FX32_SHIFT;
+        pos.y = y;
+        pos.z = 0;
 
-        Sprite_SetPosition(param0->unk_90, &v0);
+        Sprite_SetPosition(popupGraphics->itemIconSprite, &pos);
     }
 }
 
-static void ov19_021DC5E0(UnkStruct_ov19_021DBA9C *param0)
+static void BoxPopupGraphics_DeleteItemIconSprite(BoxPopupGraphics *popupGraphics)
 {
-    if (param0->unk_90) {
-        Sprite_Delete(param0->unk_90);
+    if (popupGraphics->itemIconSprite != NULL) {
+        Sprite_Delete(popupGraphics->itemIconSprite);
     }
 }

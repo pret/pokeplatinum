@@ -20,6 +20,12 @@ typedef u32 TextColor;
 #define GET_TEXT_SHADOW_COLOR(color) (((color) >> TEXT_COLOR_SHADOW_SHIFT) & TEXT_COLOR_MASK)
 #define GET_TEXT_BG_COLOR(color)     (((color) >> TEXT_COLOR_BG_SHIFT) & TEXT_COLOR_MASK)
 
+#define TEXT_COLOR_BLACK             TEXT_COLOR(1, 2, 0)
+#define TEXT_COLOR_WHITE             TEXT_COLOR(15, 14, 0)
+#define TEXT_COLOR_BLUE              TEXT_COLOR(3, 4, 0)
+#define TEXT_COLOR_RED               TEXT_COLOR(5, 6, 0)
+#define TEXT_COLOR_BLACK_DARK_SHADOW TEXT_COLOR(1, 2, 15)
+
 #define MAX_TEXT_PRINTERS 8
 
 #define TEXT_SPEED_INSTANT     0

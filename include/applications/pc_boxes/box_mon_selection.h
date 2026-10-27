@@ -12,8 +12,8 @@ typedef struct BoxMonSelection {
     u8 selectionEndRow;
     u8 selectedMonCount;
     u8 origSelectionTopLeftPos;
-    u8 unused;
-    u8 cursorMonIsPartyMon;
+    u8 unused_0A;
+    u8 isCursorMonFromParty;
     s8 selectedMonsOrigBoxPos[MAX_MONS_PER_BOX];
     u8 padding_2A[2];
 } BoxMonSelection;

@@ -23,11 +23,11 @@ typedef struct BoxApplication {
     PCMonPreview pcMonPreview;
     BoxMenu boxMenu;
     u32 boxSelectionBoxID;
-    BoxTouchDialHelper touchDialHelper;
+    BoxDialHelper dialHelper;
     u8 padding_A2[2];
     CompareModeHelper compareModeHelper;
     u32 boxMessageID;
-    u16 selectedBoxID;
+    u16 depositBoxID;
     u16 cursorItem;
 } BoxApplication;
 

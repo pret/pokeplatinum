@@ -13,49 +13,49 @@
 
 #include "sprite.h"
 
-typedef struct {
-    SpriteList *unk_00;
-    Sprite *unk_04;
-    Sprite *unk_08;
-    Sprite *unk_0C;
-    Sprite *unk_10;
-    void *unk_14;
-    void *unk_18;
-    NNSG2dCellDataBank *unk_1C;
-    NNSG2dAnimBankData *unk_20;
-    NNSG2dImageProxy unk_24;
-    UnkStruct_ov19_021DA384 *unk_48;
-    UnkStruct_ov19_021DCD18 unk_4C[30];
+typedef struct BoxCursorGraphics {
+    SpriteList *spriteList;
+    Sprite *cursorSprite;
+    Sprite *shadowSprite;
+    Sprite *leftArrowSprite;
+    Sprite *rightArrowSprite;
+    void *cellBankBuffer;
+    void *animBankBuffer;
+    NNSG2dCellDataBank *cellBank;
+    NNSG2dAnimBankData *animBank;
+    NNSG2dImageProxy imageProxy;
+    MonIconHelper *monIconHelper;
+    MonIcon monIcon[MAX_MONS_PER_BOX];
     struct {
-        fx32 unk_00;
-        fx32 unk_04;
-    } unk_664[30];
-    u32 unk_754;
-    UnkStruct_ov19_021D8318 *unk_758;
-    UnkStruct_ov19_021DC680 *unk_75C;
-    UnkStruct_ov19_021DE3E8 *unk_760;
-    s32 unk_764;
-    s32 unk_768;
-    s32 unk_76C;
-    s32 unk_770;
-    s32 unk_774;
-    s32 unk_778;
-    s32 unk_77C;
-    s32 unk_780;
-    u8 unk_784;
-    u8 unk_785;
-    u8 unk_786;
-    u8 unk_787;
-    u8 unk_788;
-    s8 unk_789;
-    s8 unk_78A;
-    s8 unk_78B;
-    u8 unk_78C;
-    u8 unk_78D;
-    u8 unk_78E;
+        fx32 x;
+        fx32 y;
+    } heldIconOffsets[MAX_MONS_PER_BOX];
+    u32 heldIconCount;
+    BoxView *box;
+    BoxPartyGraphics *party;
+    BoxItemIconGraphics *itemIconGraphics;
+    s32 posX;
+    s32 posY;
+    s32 targetX;
+    s32 targetY;
+    s32 animX;
+    s32 animY;
+    s32 stepX;
+    s32 stepY;
+    u8 animPhase;
+    u8 cursorLocation;
+    u8 newCursorLocation;
+    u8 moveStepsRemaining;
+    u8 isAnimating;
+    s8 boxCol;
+    s8 boxRow;
+    s8 partyPosition;
+    u8 hasHeldMonIcon;
+    u8 isHoldingItem;
+    u8 shadowFollowsCursor;
     u8 padding_78F;
-    const BoxApplication *unk_790;
-    UnkStruct_ov19_021D61B0 *unk_794;
-} UnkStruct_ov19_021D8E00;
+    const BoxApplication *boxApp;
+    BoxGraphics *boxGraphics;
+} BoxCursorGraphics;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021D8E00_H

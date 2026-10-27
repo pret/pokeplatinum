@@ -10,13 +10,33 @@
 #include "narc.h"
 #include "sprite.h"
 
-BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, NARC *param6);
-void ov19_021DECAC(UnkStruct_ov19_021DEC04 *param0);
-void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1);
-void ov19_021DEDDC(UnkStruct_ov19_021DEC04 *param0, BOOL param1);
-void ov19_021DEE34(UnkStruct_ov19_021DEC04 *param0);
-BOOL ov19_021DEE84(UnkStruct_ov19_021DEC04 *param0);
-void ov19_021DEE88(UnkStruct_ov19_021DEC04 *param0);
-BOOL ov19_021DEEA8(UnkStruct_ov19_021DEC04 *param0);
+#define CONTEST_CHART_CENTER_X 128
+#define CONTEST_CHART_CENTER_Y 484
+
+enum CompareWindow {
+    COMPARE_WINDOW_SLOT_0_NAME = 0,
+    COMPARE_WINDOW_SLOT_1_NAME,
+    COMPARE_WINDOW_LABELS,
+    COMPARE_WINDOW_SLOT_0_STATS,
+    COMPARE_WINDOW_SLOT_1_STATS,
+    COMPARE_WINDOW_SLOT_0_MOVES,
+    COMPARE_WINDOW_SLOT_1_MOVES,
+    COMPARE_WINDOW_COUNT,
+};
+
+enum ComparePageChangeState {
+    COMPARE_PAGE_CHANGE_STATE_SHOW_LAYER = 0,
+    COMPARE_PAGE_CHANGE_STATE_DRAW_PAGE,
+    COMPARE_PAGE_CHANGE_STATE_DONE,
+};
+
+BOOL BoxCompareGraphics_Init(BoxCompareGraphics **outCompareGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *spriteList, MessageLoader *msgLoader, NARC *narc);
+void BoxCompareGraphics_Free(BoxCompareGraphics *compareGraphics);
+void BoxCompareGraphics_LoadGraphics(BoxCompareGraphics *compareGraphics, NARC *narc);
+void BoxCompareGraphics_UpdateSlotTabs(BoxCompareGraphics *compareGraphics, BOOL isSwitching);
+void BoxCompareGraphics_RefreshSelectedSlot(BoxCompareGraphics *compareGraphics);
+BOOL BoxCompareGraphics_ReturnTrue(BoxCompareGraphics *compareGraphics);
+void BoxCompareGraphics_StartPageChange(BoxCompareGraphics *compareGraphics);
+BOOL BoxCompareGraphics_IsPageChangeDone(BoxCompareGraphics *compareGraphics);
 
 #endif // POKEPLATINUM_OV19_021DEC04_H

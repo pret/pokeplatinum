@@ -47,172 +47,171 @@
 #include "sys_task_manager.h"
 #include "system.h"
 
-struct UnkStruct_ov19_021D61B0_t {
+struct BoxGraphics {
     SysTask *unk_00;
     SysTask *unk_04;
-    SysTask *unk_08[4];
-    SpriteList *unk_18;
-    G2dRenderer unk_1C;
-    NNSG2dImagePaletteProxy unk_1A8;
-    PokemonSpriteManager *unk_1BC;
-    BgConfig *unk_1C0;
-    const BoxApplication *unk_1C4;
-    UnkStruct_ov19_021DA384 unk_1C8;
-    UnkStruct_ov19_021D8318 unk_494;
-    UnkStruct_ov19_021D8E00 unk_5E24;
-    UnkStruct_ov19_021DA8D8 unk_65BC;
-    UnkStruct_ov19_021DA9E0 unk_6604;
-    UnkStruct_ov19_021DB6F0 unk_6658;
-    UnkStruct_ov19_021DBA9C unk_6690;
-    UnkStruct_ov19_021DC680 unk_B290;
-    UnkStruct_ov19_021DCF88 *unk_B408;
-    UnkStruct_ov19_021DE3E8 *unk_B40C;
-    UnkStruct_ov19_021DEC04 *unk_B410;
-    const BoxApplicationManager *unk_B414;
+    SysTask *taskSlots[BOX_GRAPHICS_MAX_TASKS];
+    SpriteList *spriteList;
+    G2dRenderer renderer;
+    NNSG2dImagePaletteProxy imagePaletteProxy;
+    PokemonSpriteManager *monSpriteManager;
+    BgConfig *bgConfig;
+    const BoxApplication *boxApp;
+    MonIconHelper monIconHelper;
+    BoxView box;
+    BoxCursorGraphics cursorGraphics;
+    BoxButtonsGraphics buttonsGraphics;
+    PCMonPreviewDisplay previewDisplay;
+    BoxMenuGraphics menuGraphics;
+    BoxPopupGraphics popupGraphics;
+    BoxPartyGraphics partyGraphics;
+    BoxDialGraphics *dialGraphics;
+    BoxItemIconGraphics *itemIconGraphics;
+    BoxCompareGraphics *compareGraphics;
+    const BoxApplicationManager *boxAppMan;
 };
 
-typedef struct BoxTaskParams {
-    enum BoxGraphicsFunctions function;
-    u16 unk_04;
+typedef struct BoxGraphicsTaskHeader {
+    enum BoxGraphicsFunction function;
+    u16 slotIndex;
     u16 state;
-    u16 unk_08;
-    u16 unk_0A;
-    UnkStruct_ov19_021D61B0 *unk_0C;
-    void *unk_10;
-} BoxTaskParams;
+    u16 frameCounter;
+    u16 unused_0A;
+    BoxGraphics *boxGraphics;
+    void *extraData; // TODO: might need a more descriptive name
+} BoxGraphicsTaskHeader;
 
-static void ov19_021D6474(SysTask *param0, void *param1);
-static void BoxTaskParams_Free(BoxTaskParams *params);
-static void ov19_021D6664(SysTask *param0, void *param1);
-static void ov19_021D6694(SysTask *param0, void *param1);
-static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1);
-static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1);
-static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1);
-static void BoxGraphics_ChangeToNewBox(SysTask *param0, void *param1);
-static void BoxGraphics_MoveCursor(SysTask *param0, void *param1);
-static void BoxGraphics_PreviewMon(SysTask *param0, void *param1);
-static void ov19_021D69BC(SysTask *param0, void *param1);
-static void ov19_021D6A1C(SysTask *param0, void *param1);
-static void BoxGraphics_PickUpMonIntoCursor(SysTask *param0, void *param1);
-static void BoxGraphics_PlaceMonDownFromCursor(SysTask *param0, void *param1);
-static void ov19_021D6AB0(SysTask *param0, void *param1);
-static void ov19_021D6AEC(SysTask *param0, void *param1);
-static void ov19_021D6B1C(SysTask *param0, void *param1);
-static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *task, void *param1);
-static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *task, void *param1);
-static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *task, void *param1);
-static void BoxGraphics_DisplayItemInfo(SysTask *param0, void *param1);
-static void BoxGraphics_CloseItemInfo(SysTask *param0, void *param1);
-static void ov19_021D6CB0(SysTask *param0, void *param1);
-static void ov19_021D6CF8(SysTask *param0, void *param1);
-static void ov19_021D6D40(SysTask *param0, void *param1);
-static void ov19_021D6D88(SysTask *param0, void *param1);
-static void BoxGraphics_ItemShrinkToNothing(SysTask *param0, void *param1);
-static void BoxGraphics_DisplayBoxMessage(SysTask *task, void *param1);
-static void BoxGraphics_ShowMenu(SysTask *param0, void *param1);
-static void BoxGraphics_CloseMessageBox(SysTask *task, void *param1);
-static void ov19_021D6EC0(SysTask *param0, void *param1);
-static void BoxGraphics_UpdateMenuCursor(SysTask *param0, void *param1);
-static void ov19_021D6F0C(SysTask *param0, void *param1);
-static void BoxGraphics_ShowBoxSelectionPopup(SysTask *param0, void *param1);
-static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1);
-static void ov19_021D6FB0(SysTask *param0, void *param1);
-static void BoxGraphics_TransitionWallpaper(SysTask *param0, void *param1);
-static void BoxGraphics_PressBoxButton(SysTask *param0, void *param1);
-static void BoxGraphics_OpenPartyPopup(SysTask *param0, void *param1);
-static void ov19_021D7138(SysTask *param0, void *param1);
-static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *task, void *param1);
-static void ov19_021D71F8(SysTask *param0, void *param1);
-static void BoxGraphics_SetMonMarkingsTransparency(SysTask *param0, void *param1);
-static void BoxGraphics_OpenOrCloseSelectedTouchDial(SysTask *param0, void *param1);
-static void ov19_021D72E8(SysTask *param0, void *param1);
-static void BoxGraphics_UpdateMarkingsTouchButton(SysTask *param0, void *param1);
-static void ov19_021D7340(SysTask *param0, void *param1);
-static void BoxGraphics_StartDrawMultiSelect(SysTask *param0, void *param1);
-static void ov19_021D7380(SysTask *param0, void *param1);
-static void BoxGraphics_ApplyMultiSelectMonShadingTask(SysTask *param0, void *param1);
-static void ov19_021D73B0(SysTask *param0, void *param1);
-static void ov19_021D73EC(SysTask *param0, void *param1);
-static void ov19_021D7408(SysTask *param0, void *param1);
-static void ov19_021D7424(SysTask *param0, void *param1);
-static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1);
-static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const BoxApplication *param1);
-static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const BoxApplication *param1, NARC *param2);
-static void ov19_021D76FC(void);
-static void ov19_021D7774(UnkStruct_ov19_021D61B0 *param0, const BoxApplication *param1, NARC *param2);
+static void BoxGraphics_DrawScene(SysTask *unused, void *param);
+static void BoxGraphicsTaskHeader_Free(BoxGraphicsTaskHeader *header);
+static void BoxGraphics_VBlankTask(SysTask *unused, void *param);
+static void BoxGraphics_ShowBoxScreen(SysTask *unused, void *param);
+static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *unused, void *param);
+static void BoxGraphics_ScreenFadeInReturnToBox(SysTask *unused, void *param);
+static void BoxGraphics_ScreenFadeOutToOtherApp(SysTask *unused, void *param);
+static void BoxGraphics_ChangeToNewBox(SysTask *unused, void *param);
+static void BoxGraphics_MoveCursor(SysTask *unused, void *param);
+static void BoxGraphics_PreviewMon(SysTask *unused, void *param);
+static void BoxGraphics_UpdateMarkingsIcon(SysTask *unused, void *param);
+static void BoxGraphics_ClearMonPreview(SysTask *unused, void *param);
+static void BoxGraphics_PickUpMonIntoCursor(SysTask *unused, void *param);
+static void BoxGraphics_PlaceMonDownFromCursor(SysTask *unused, void *param);
+static void BoxGraphics_PlayShiftMonAnimation(SysTask *unused, void *param);
+static void BoxGraphics_StoreMonFromCursor(SysTask *unused, void *param);
+static void BoxGraphics_StoreMonFromParty(SysTask *unused, void *param);
+static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *unused, void *param);
+static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *unused, void *param);
+static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *unused, void *param);
+static void BoxGraphics_DisplayItemInfo(SysTask *unused, void *param);
+static void BoxGraphics_CloseItemInfo(SysTask *unused, void *param);
+static void BoxGraphics_PlayTakeItemAnimation(SysTask *unused, void *param);
+static void BoxGraphics_PlayGiveItemAnimation(SysTask *unused, void *param);
+static void BoxGraphics_PlaySwitchItemAnimation(SysTask *unused, void *param);
+static void BoxGraphics_UpdateHeldItemIcon(SysTask *unused, void *param);
+static void BoxGraphics_ItemShrinkToNothing(SysTask *unused, void *param);
+static void BoxGraphics_DisplayBoxMessage(SysTask *unused, void *param);
+static void BoxGraphics_ShowMenu(SysTask *unused, void *param);
+static void BoxGraphics_CloseMessageBox(SysTask *unused, void *param);
+static void BoxGraphics_CloseMenu(SysTask *unused, void *param);
+static void BoxGraphics_UpdateMenuCursor(SysTask *unused, void *param);
+static void BoxGraphics_UpdateMenuMarkings(SysTask *unused, void *param);
+static void BoxGraphics_ShowBoxSelectionPopup(SysTask *unused, void *param);
+static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *unused, void *param);
+static void BoxGraphics_CloseBoxSelectionPopup(SysTask *unused, void *param);
+static void BoxGraphics_TransitionWallpaper(SysTask *unused, void *param);
+static void BoxGraphics_PressBoxButton(SysTask *unused, void *param);
+static void BoxGraphics_OpenPartyPopup(SysTask *unused, void *param);
+static void BoxGraphics_ClosePartyPopup(SysTask *unused, void *param);
+static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *unused, void *param);
+static void BoxGraphics_FinishAdjustPartyAnimation(SysTask *unused, void *param);
+static void BoxGraphics_SetMonMarkingsTransparency(SysTask *unused, void *param);
+static void BoxGraphics_OpenOrCloseSelectedDial(SysTask *unused, void *param);
+static void BoxGraphics_UpdateSelectedDial(SysTask *unused, void *param);
+static void BoxGraphics_UpdateMarkingsTouchButton(SysTask *unused, void *param);
+static void BoxGraphics_UpdateCursorPalette(SysTask *unused, void *param);
+static void BoxGraphics_StartDrawMultiSelect(SysTask *unused, void *param);
+static void BoxGraphics_ClearMultiSelectShading(SysTask *unused, void *param);
+static void BoxGraphics_ApplyMultiSelectMonShading(SysTask *unused, void *param);
+static void BoxGraphics_PickUpMultiSelectedMonsIntoCursor(SysTask *unused, void *param);
+static void BoxGraphics_SetCompareSlotTab(SysTask *unused, void *param);
+static void BoxGraphics_SwitchCompareSlotTab(SysTask *unused, void *param);
+static void BoxGraphics_TransitionCompareMode(SysTask *unused, void *param);
+static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *unused, void *param);
+static void BoxGraphics_InitBackground(BoxGraphics *boxGraphics, const BoxApplication *boxApp);
+static void BoxGraphics_LoadGraphics(BoxGraphics *boxGraphics, const BoxApplication *boxApp, NARC *narc);
+static void BoxGraphics_Init3D(void);
+static void BoxGraphics_LoadSpriteGraphics(BoxGraphics *boxGraphics, const BoxApplication *unused, NARC *narc);
 static int BoxGraphics_GetBoxMoveDirection(u32 param0, u32 param1);
-static void ov19_021D7970(void);
-static void ov19_021D797C(void);
+static void BoxGraphics_ResetDeferredFrees(void);
+static void BoxGraphics_ProcessDeferredFrees(void);
 
 static const struct {
     SysTaskFunc sysTaskFunc;
     u32 unk_04;
 } sBoxGraphicsTaskHandlers[] = {
-    [FUNC_ov19_021D6694] = { ov19_021D6694, 0 },
-    [FUNC_BoxGraphics_ScreenFadeBothToBlack0] = { BoxGraphics_ScreenFadeBothToBlackLogIn, 0 },
-    [FUNC_BoxGraphics_ScreenFadeBothToBlack1] = { BoxGraphics_ScreenFadeBothToBlack1, 0 },
-    [FUNC_BoxGraphics_ScreenFadeBothToBlack2] = { BoxGraphics_ScreenFadeBothToBlack2, 0 },
+    [FUNC_BoxGraphics_ShowBoxScreen] = { BoxGraphics_ShowBoxScreen, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlackLogIn] = { BoxGraphics_ScreenFadeBothToBlackLogIn, 0 },
+    [FUNC_BoxGraphics_ScreenFadeInReturnToBox] = { BoxGraphics_ScreenFadeInReturnToBox, 0 },
+    [FUNC_BoxGraphics_ScreenFadeOutToOtherApp] = { BoxGraphics_ScreenFadeOutToOtherApp, 0 },
     [FUNC_BoxGraphics_ChangeToNewBox] = { BoxGraphics_ChangeToNewBox, 0 },
     [FUNC_BoxGraphics_MoveCursor] = { BoxGraphics_MoveCursor, 0 },
     [FUNC_BoxGraphics_PreviewMon] = { BoxGraphics_PreviewMon, 0 },
-    [FUNC_ov19_021D69BC] = { ov19_021D69BC, 0 },
-    [FUNC_ov19_021D6A1C] = { ov19_021D6A1C, 0 },
+    [FUNC_BoxGraphics_UpdateMarkingsIcon] = { BoxGraphics_UpdateMarkingsIcon, 0 },
+    [FUNC_BoxGraphics_ClearMonPreview] = { BoxGraphics_ClearMonPreview, 0 },
     [FUNC_BoxGraphics_PickUpMonIntoCursor] = { BoxGraphics_PickUpMonIntoCursor, 0 },
     [FUNC_BoxGraphics_PlaceMonDownFromCursor] = { BoxGraphics_PlaceMonDownFromCursor, 0 },
-    [FUNC_ov19_021D6AB0] = { ov19_021D6AB0, 0 },
-    [FUNC_ov19_021D6AEC] = { ov19_021D6AEC, 0 },
-    [FUNC_ov19_021D6B1C] = { ov19_021D6B1C, 0 },
+    [FUNC_BoxGraphics_PlayShiftMonAnimation] = { BoxGraphics_PlayShiftMonAnimation, 0 },
+    [FUNC_BoxGraphics_StoreMonFromCursor] = { BoxGraphics_StoreMonFromCursor, 0 },
+    [FUNC_BoxGraphics_StoreMonFromParty] = { BoxGraphics_StoreMonFromParty, 0 },
     [FUNC_BoxGraphics_PlayReleaseCursorMonAnimation] = { BoxGraphics_PlayReleaseCursorMonAnimation, 0 },
     [FUNC_BoxGraphics_PlayReleaseBoxMonAnimation] = { BoxGraphics_PlayReleaseBoxMonAnimation, 0 },
     [FUNC_BoxGraphics_PlayReleasePartyMonAnimation] = { BoxGraphics_PlayReleasePartyMonAnimation, 0 },
     [FUNC_BoxGraphics_DisplayItemInfo] = { BoxGraphics_DisplayItemInfo, 0 },
     [FUNC_BoxGraphics_CloseItemInfo] = { BoxGraphics_CloseItemInfo, 0 },
-    [FUNC_ov19_021D6CB0] = { ov19_021D6CB0, 0 },
-    [FUNC_ov19_021D6CF8] = { ov19_021D6CF8, 0 },
-    [FUNC_ov19_021D6D40] = { ov19_021D6D40, 0 },
-    [FUNC_ov19_021D6D88] = { ov19_021D6D88, 0 },
+    [FUNC_BoxGraphics_PlayTakeItemAnimation] = { BoxGraphics_PlayTakeItemAnimation, 0 },
+    [FUNC_BoxGraphics_PlayGiveItemAnimation] = { BoxGraphics_PlayGiveItemAnimation, 0 },
+    [FUNC_BoxGraphics_PlaySwitchItemAnimation] = { BoxGraphics_PlaySwitchItemAnimation, 0 },
+    [FUNC_BoxGraphics_UpdateHeldItemIcon] = { BoxGraphics_UpdateHeldItemIcon, 0 },
     [FUNC_BoxGraphics_ItemShrinkToNothing] = { BoxGraphics_ItemShrinkToNothing, 0 },
     [FUNC_BoxGraphics_DisplayBoxMessage] = { BoxGraphics_DisplayBoxMessage, 0 },
     [FUNC_BoxGraphics_ShowMenu] = { BoxGraphics_ShowMenu, 0 },
     [FUNC_BoxGraphics_CloseMessageBox] = { BoxGraphics_CloseMessageBox, 0 },
-    [FUNC_ov19_021D6EC0] = { ov19_021D6EC0, 0 },
+    [FUNC_BoxGraphics_CloseMenu] = { BoxGraphics_CloseMenu, 0 },
     [FUNC_BoxGraphics_UpdateMenuCursor] = { BoxGraphics_UpdateMenuCursor, 0 },
-    [FUNC_ov19_021D6F0C] = { ov19_021D6F0C, 0 },
+    [FUNC_BoxGraphics_UpdateMenuMarkings] = { BoxGraphics_UpdateMenuMarkings, 0 },
     [FUNC_BoxGraphics_ShowBoxSelectionPopup] = { BoxGraphics_ShowBoxSelectionPopup, 0 },
     [FUNC_BoxGraphics_ScrollBoxSelectionPopup] = { BoxGraphics_ScrollBoxSelectionPopup, 0 },
-    [FUNC_ov19_021D6FB0] = { ov19_021D6FB0, 0 },
+    [FUNC_BoxGraphics_CloseBoxSelectionPopup] = { BoxGraphics_CloseBoxSelectionPopup, 0 },
     [FUNC_BoxGraphics_TransitionWallpaper] = { BoxGraphics_TransitionWallpaper, 0 },
     [FUNC_BoxGraphics_PressBoxButton] = { BoxGraphics_PressBoxButton, 0 },
     [FUNC_BoxGraphics_OpenPartyPopup] = { BoxGraphics_OpenPartyPopup, 0 },
-    [FUNC_ov19_021D7138] = { ov19_021D7138, 0 },
+    [FUNC_BoxGraphics_ClosePartyPopup] = { BoxGraphics_ClosePartyPopup, 0 },
     [FUNC_BoxGraphics_PlayAdjustPartyAnimation] = { BoxGraphics_PlayAdjustPartyAnimation, 0 },
-    [FUNC_ov19_021D71F8] = { ov19_021D71F8, 0 },
+    [FUNC_BoxGraphics_FinishAdjustPartyAnimation] = { BoxGraphics_FinishAdjustPartyAnimation, 0 },
     [FUNC_BoxGraphics_SetMonMarkingsTransparency] = { BoxGraphics_SetMonMarkingsTransparency, 0 },
-    [FUNC_BoxGraphics_OpenOrCloseSelectedTouchDial] = { BoxGraphics_OpenOrCloseSelectedTouchDial, 0 },
-    [FUNC_ov19_021D72E8] = { ov19_021D72E8, 0 },
+    [FUNC_BoxGraphics_OpenOrCloseSelectedDial] = { BoxGraphics_OpenOrCloseSelectedDial, 0 },
+    [FUNC_BoxGraphics_UpdateSelectedDial] = { BoxGraphics_UpdateSelectedDial, 0 },
     [FUNC_BoxGraphics_UpdateMarkingsTouchButton] = { BoxGraphics_UpdateMarkingsTouchButton, 0 },
-    [FUNC_ov19_021D7340] = { ov19_021D7340, 0 },
+    [FUNC_BoxGraphics_UpdateCursorPalette] = { BoxGraphics_UpdateCursorPalette, 0 },
     [FUNC_BoxGraphics_StartDrawMultiSelect] = { BoxGraphics_StartDrawMultiSelect, 0 },
-    [FUNC_ov19_021D7380] = { ov19_021D7380, 0 },
-    [FUNC_BoxGraphics_ApplyMultiSelectMonShadingTask] = { BoxGraphics_ApplyMultiSelectMonShadingTask, 0 },
-    [FUNC_ov19_021D73B0] = { ov19_021D73B0, 0 },
-    [FUNC_ov19_021D73EC] = { ov19_021D73EC, 0 },
-    [FUNC_ov19_021D7408] = { ov19_021D7408, 0 },
-    [FUNC_ov19_021D7424] = { ov19_021D7424, 0 },
+    [FUNC_BoxGraphics_ClearMultiSelectShading] = { BoxGraphics_ClearMultiSelectShading, 0 },
+    [FUNC_BoxGraphics_ApplyMultiSelectMonShading] = { BoxGraphics_ApplyMultiSelectMonShading, 0 },
+    [FUNC_BoxGraphics_PickUpMultiSelectedMonsIntoCursor] = { BoxGraphics_PickUpMultiSelectedMonsIntoCursor, 0 },
+    [FUNC_BoxGraphics_SetCompareSlotTab] = { BoxGraphics_SetCompareSlotTab, 0 },
+    [FUNC_BoxGraphics_SwitchCompareSlotTab] = { BoxGraphics_SwitchCompareSlotTab, 0 },
+    [FUNC_BoxGraphics_TransitionCompareMode] = { BoxGraphics_TransitionCompareMode, 0 },
     [FUNC_BoxGraphics_ScreenFadeBothToBlackLogOff] = { BoxGraphics_ScreenFadeBothToBlackLogOff, 0 },
 };
 
-BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const BoxApplication *param1, const BoxApplicationManager *param2)
+BOOL BoxGraphics_Load(BoxGraphics **dest, const BoxApplication *boxApp, const BoxApplicationManager *boxAppMan)
 {
-    UnkStruct_ov19_021D61B0 *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D61B0));
+    BoxGraphics *boxGraphics = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(BoxGraphics));
 
-    if (v0 != NULL) {
-        v0->unk_1C4 = param1;
-        v0->unk_1C0 = BgConfig_New(HEAP_ID_BOX_GRAPHICS);
+    if (boxGraphics != NULL) {
+        boxGraphics->boxApp = boxApp;
+        boxGraphics->bgConfig = BgConfig_New(HEAP_ID_BOX_GRAPHICS);
 
-        if (v0->unk_1C0 != NULL) {
-            u32 v1;
-            BOOL v2 = TRUE;
+        if (boxGraphics->bgConfig != NULL) {
+            BOOL result = TRUE;
             NARC *boxGraphicsNarc;
 
             boxGraphicsNarc = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
@@ -229,110 +228,110 @@ BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const BoxApplication *pa
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
-            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, HEAP_ID_BOX_GRAPHICS);
-            SetSubScreenViewRect(&(v0->unk_1C), 0, 384 << FX32_SHIFT);
+            boxGraphics->spriteList = SpriteList_InitRendering(128, &boxGraphics->renderer, HEAP_ID_BOX_GRAPHICS);
+            SetSubScreenViewRect(&(boxGraphics->renderer), 0, 384 << FX32_SHIFT);
 
-            NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
+            NNS_G2dInitImagePaletteProxy(&(boxGraphics->imagePaletteProxy));
 
-            Graphics_LoadPartialPaletteFromOpenNARC(boxGraphicsNarc, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
+            Graphics_LoadPartialPaletteFromOpenNARC(boxGraphicsNarc, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(boxGraphics->imagePaletteProxy));
             Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
-            v0->unk_1BC = PokemonSpriteManager_New(HEAP_ID_BOX_GRAPHICS);
+            boxGraphics->monSpriteManager = PokemonSpriteManager_New(HEAP_ID_BOX_GRAPHICS);
 
-            for (v1 = 0; v1 < 4; v1++) {
-                v0->unk_08[v1] = NULL;
+            for (u32 i = 0; i < BOX_GRAPHICS_MAX_TASKS; i++) {
+                boxGraphics->taskSlots[i] = NULL;
             }
 
-            ov19_021D7970();
-            *param0 = v0;
+            BoxGraphics_ResetDeferredFrees();
+            *dest = boxGraphics;
 
-            v2 &= ov19_021DA270(&(v0->unk_1C8), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
-            v2 &= ov19_021D79F8(&(v0->unk_494), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
-            v2 &= ov19_021D8B54(&(v0->unk_5E24), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
-            v2 &= ov19_021DA814(&(v0->unk_65BC), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
-            v2 &= ov19_021DA92C(&(v0->unk_6604), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, BoxAppMan_GetBoxMessagesLoader(param2), boxGraphicsNarc);
-            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, BoxAppMan_GetBoxMessagesLoader(param2), BoxAppMan_GetMessageVariableBuffer(param2), BoxAppMan_GetOptionsFrame(param2), boxGraphicsNarc);
-            v2 &= ov19_021DB8E4(&(v0->unk_6690), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, boxGraphicsNarc);
-            v2 &= ov19_021DC5F0(&(v0->unk_B290), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, boxGraphicsNarc);
-            v2 &= ov19_021DCF88(&(v0->unk_B408), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
-            v2 &= ov19_021DE3E8(&(v0->unk_B40C), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
-            v2 &= ov19_021DEC04(&(v0->unk_B410), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, BoxAppMan_GetBoxMessagesLoader(param2), boxGraphicsNarc);
+            result &= MonIconHelper_Init(&(boxGraphics->monIconHelper), boxGraphics, boxGraphics->boxApp, boxGraphics->spriteList, boxGraphicsNarc);
+            result &= BoxView_Init(&(boxGraphics->box), boxGraphics, boxGraphics->boxApp, boxGraphics->bgConfig, boxGraphics->spriteList);
+            result &= BoxCursorGraphics_Init(&(boxGraphics->cursorGraphics), boxGraphics, boxGraphics->boxApp, boxGraphics->spriteList, boxGraphicsNarc);
+            result &= BoxButtonsGraphics_Init(&(boxGraphics->buttonsGraphics), boxGraphics, boxGraphics->boxApp, boxGraphics->spriteList, boxGraphicsNarc);
+            result &= PCMonPreviewDisplay_Init(&(boxGraphics->previewDisplay), boxGraphics, boxGraphics->boxApp, boxGraphics->bgConfig, boxGraphics->spriteList, BoxAppMan_GetBoxMessagesLoader(boxAppMan), boxGraphicsNarc);
+            result &= BoxMenuGraphics_Init(&(boxGraphics->menuGraphics), boxGraphics, boxGraphics->boxApp, boxGraphics->bgConfig, boxGraphics->spriteList, BoxAppMan_GetBoxMessagesLoader(boxAppMan), BoxAppMan_GetMessageVariableBuffer(boxAppMan), BoxAppMan_GetOptionsFrame(boxAppMan), boxGraphicsNarc);
+            result &= BoxPopupGraphics_Init(&(boxGraphics->popupGraphics), boxGraphics, boxGraphics->boxApp, boxGraphics->bgConfig, boxGraphics->spriteList, boxGraphicsNarc);
+            result &= BoxPartyGraphics_Init(&(boxGraphics->partyGraphics), boxGraphics, boxGraphics->boxApp, boxGraphics->bgConfig, boxGraphics->spriteList, boxGraphicsNarc);
+            result &= BoxDialGraphics_Init(&(boxGraphics->dialGraphics), boxGraphics, boxGraphics->boxApp, boxGraphics->bgConfig, boxGraphics->spriteList);
+            result &= BoxItemIconGraphics_Init(&(boxGraphics->itemIconGraphics), boxGraphics, boxGraphics->boxApp, boxGraphics->bgConfig, boxGraphics->spriteList);
+            result &= BoxCompareGraphics_Init(&(boxGraphics->compareGraphics), boxGraphics, boxGraphics->boxApp, boxGraphics->bgConfig, boxGraphics->spriteList, BoxAppMan_GetBoxMessagesLoader(boxAppMan), boxGraphicsNarc);
 
-            v0->unk_B414 = param2;
-            v0->unk_00 = SysTask_Start(ov19_021D6474, v0, 2);
-            v0->unk_04 = ov19_021D77C8(ov19_021D6664, v0, 1);
+            boxGraphics->boxAppMan = boxAppMan;
+            boxGraphics->unk_00 = SysTask_Start(BoxGraphics_DrawScene, boxGraphics, 2);
+            boxGraphics->unk_04 = BoxGraphics_StartVBlankTask(BoxGraphics_VBlankTask, boxGraphics, 1);
 
             NARC_dtor(boxGraphicsNarc);
 
-            return v2;
+            return result;
         }
     }
 
     return FALSE;
 }
 
-static void ov19_021D6474(SysTask *param0, void *param1)
+static void BoxGraphics_DrawScene(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0 = (UnkStruct_ov19_021D61B0 *)param1;
+    BoxGraphics *boxGraphics = (BoxGraphics *)param;
 
-    ov19_021D797C();
+    BoxGraphics_ProcessDeferredFrees();
 
     G3X_Reset();
     G3X_ResetMtxStack();
     NNS_G2dSetupSoftwareSpriteCamera();
 
-    PokemonSpriteManager_DrawSprites(v0->unk_1BC);
+    PokemonSpriteManager_DrawSprites(boxGraphics->monSpriteManager);
 
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
-void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0)
+void BoxGraphics_Free(BoxGraphics *boxGraphics)
 {
     SetVBlankCallback(NULL, NULL);
-    SysTask_Done(param0->unk_00);
-    SysTask_Done(param0->unk_04);
+    SysTask_Done(boxGraphics->unk_00);
+    SysTask_Done(boxGraphics->unk_04);
 
-    ov19_021DECAC(param0->unk_B410);
-    ov19_021DE440(param0->unk_B40C);
-    ov19_021DD078(param0->unk_B408);
-    ov19_021DC680(&(param0->unk_B290));
-    ov19_021DBAD0(&(param0->unk_6690));
-    ov19_021DB370(&(param0->unk_6658));
-    ov19_021DA9E0(&(param0->unk_6604));
-    ov19_021DA8D8(&(param0->unk_65BC));
-    ov19_021D8E84(&(param0->unk_5E24));
-    ov19_021D7A74(&(param0->unk_494));
-    ov19_021DA384(&(param0->unk_1C8));
+    BoxCompareGraphics_Free(boxGraphics->compareGraphics);
+    BoxItemIconGraphics_Free(boxGraphics->itemIconGraphics);
+    BoxDialGraphics_Free(boxGraphics->dialGraphics);
+    BoxPartyGraphics_Free(&(boxGraphics->partyGraphics));
+    BoxPopupGraphics_Free(&(boxGraphics->popupGraphics));
+    BoxMenuGraphics_Free(&(boxGraphics->menuGraphics));
+    PCMonPreviewDisplay_Free(&(boxGraphics->previewDisplay));
+    BoxButtonsGraphics_Free(&(boxGraphics->buttonsGraphics));
+    BoxCursorGraphics_Free(&(boxGraphics->cursorGraphics));
+    BoxView_Free(&(boxGraphics->box));
+    MonIconHelper_Free(&(boxGraphics->monIconHelper));
 
-    SpriteList_Delete(param0->unk_18);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_SUB_0);
-    PokemonSpriteManager_Free(param0->unk_1BC);
+    SpriteList_Delete(boxGraphics->spriteList);
+    Bg_FreeTilemapBuffer(boxGraphics->bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(boxGraphics->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(boxGraphics->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(boxGraphics->bgConfig, BG_LAYER_SUB_0);
+    PokemonSpriteManager_Free(boxGraphics->monSpriteManager);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
-    Heap_Free(param0->unk_1C0);
-    Heap_Free(param0);
+    Heap_Free(boxGraphics->bgConfig);
+    Heap_Free(boxGraphics);
     RenderOam_Free();
 }
 
-void BoxGraphics_TaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function)
+void BoxGraphics_TaskHandler(BoxGraphics *boxGraphics, enum BoxGraphicsFunction function)
 {
     if (function < NELEMS(sBoxGraphicsTaskHandlers)) {
-        BoxTaskParams *taskParams;
+        BoxGraphicsTaskHeader *header;
 
-        for (u32 i = 0; i < 4; i++) {
-            if (param0->unk_08[i] == NULL) {
-                taskParams = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(BoxTaskParams) + sBoxGraphicsTaskHandlers[function].unk_04);
+        for (u32 i = 0; i < BOX_GRAPHICS_MAX_TASKS; i++) {
+            if (boxGraphics->taskSlots[i] == NULL) {
+                header = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(BoxGraphicsTaskHeader) + sBoxGraphicsTaskHandlers[function].unk_04);
 
-                if (taskParams != NULL) {
-                    taskParams->function = function;
-                    taskParams->unk_04 = i;
-                    taskParams->state = 0;
-                    taskParams->unk_0C = param0;
-                    taskParams->unk_10 = ((u8 *)(taskParams) + sBoxGraphicsTaskHandlers[function].unk_04);
+                if (header != NULL) {
+                    header->function = function;
+                    header->slotIndex = i;
+                    header->state = 0;
+                    header->boxGraphics = boxGraphics;
+                    header->extraData = ((u8 *)(header) + sBoxGraphicsTaskHandlers[function].unk_04);
 
-                    param0->unk_08[i] = SysTask_Start(sBoxGraphicsTaskHandlers[function].sysTaskFunc, taskParams, 1);
+                    boxGraphics->taskSlots[i] = SysTask_Start(sBoxGraphicsTaskHandlers[function].sysTaskFunc, header, 1);
                 } else {
                     GF_ASSERT(FALSE);
                 }
@@ -345,15 +344,15 @@ void BoxGraphics_TaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFu
     }
 }
 
-BOOL BoxGraphics_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function)
+BOOL BoxGraphics_IsSysTaskDone(BoxGraphics *boxGraphics, enum BoxGraphicsFunction function)
 {
-    BoxTaskParams *params;
+    BoxGraphicsTaskHeader *header;
 
-    for (int i = 0; i < 4; i++) {
-        if (param0->unk_08[i] != NULL) {
-            params = SysTask_GetParam(param0->unk_08[i]);
+    for (int i = 0; i < BOX_GRAPHICS_MAX_TASKS; i++) {
+        if (boxGraphics->taskSlots[i] != NULL) {
+            header = SysTask_GetParam(boxGraphics->taskSlots[i]);
 
-            if (params->function == function) {
+            if (header->function == function) {
                 return FALSE;
             }
         }
@@ -362,10 +361,10 @@ BOOL BoxGraphics_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphics
     return TRUE;
 }
 
-BOOL BoxGraphics_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0)
+BOOL BoxGraphics_CheckAllTasksDone(BoxGraphics *boxGraphics)
 {
-    for (int i = 0; i < 4; i++) {
-        if (param0->unk_08[i] != NULL) {
+    for (int i = 0; i < BOX_GRAPHICS_MAX_TASKS; i++) {
+        if (boxGraphics->taskSlots[i] != NULL) {
             return FALSE;
         }
     }
@@ -373,1161 +372,1159 @@ BOOL BoxGraphics_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0)
     return TRUE;
 }
 
-static void BoxTaskParams_Free(BoxTaskParams *params)
+static void BoxGraphicsTaskHeader_Free(BoxGraphicsTaskHeader *header)
 {
-    UnkStruct_ov19_021D61B0 *v0 = params->unk_0C;
+    BoxGraphics *boxGraphics = header->boxGraphics;
 
-    SysTask_Done(v0->unk_08[params->unk_04]);
-    v0->unk_08[params->unk_04] = NULL;
-    Heap_Free(params);
+    SysTask_Done(boxGraphics->taskSlots[header->slotIndex]);
+    boxGraphics->taskSlots[header->slotIndex] = NULL;
+    Heap_Free(header);
 }
 
-static void ov19_021D6664(SysTask *param0, void *param1)
+static void BoxGraphics_VBlankTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0 = (UnkStruct_ov19_021D61B0 *)param1;
+    BoxGraphics *boxGraphics = (BoxGraphics *)param;
 
-    ov19_021DAA80(&v0->unk_6604);
+    PCMonPreviewDisplay_UpdateAnimation(&boxGraphics->previewDisplay);
 
-    SpriteList_Update(v0->unk_18);
+    SpriteList_Update(boxGraphics->spriteList);
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov19_021D6694(SysTask *param0, void *param1)
+static void BoxGraphics_ShowBoxScreen(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *params = (BoxTaskParams *)param1;
-    v0 = params->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (params->state) {
-    case 0: {
+    switch (header->state) {
+    case SHOW_BOX_SCREEN_STATE_LOAD:
         NARC *boxGraphicsNarc = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
 
-        ov19_021D74B4(v0, v1);
-        ov19_021D75CC(v0, v1, boxGraphicsNarc);
-        ov19_021D7774(v0, v1, boxGraphicsNarc);
+        BoxGraphics_InitBackground(boxGraphics, boxApp);
+        BoxGraphics_LoadGraphics(boxGraphics, boxApp, boxGraphicsNarc);
+        BoxGraphics_LoadSpriteGraphics(boxGraphics, boxApp, boxGraphicsNarc);
         NARC_dtor(boxGraphicsNarc);
-    }
 
-        if (BoxApp_GetBoxMode(v1) != PC_MODE_COMPARE) {
-            ov19_021DAA90(&v0->unk_6604);
-            params->state++;
+        if (BoxApp_GetBoxMode(boxApp) != PC_MODE_COMPARE) {
+            PCMonPreviewDisplay_CreatePlaceholderSprite(&boxGraphics->previewDisplay);
+            header->state++;
         } else {
-            BoxTaskParams_Free(params);
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
-    case 1:
-        if (ov19_021DAAC4(&v0->unk_6604)) {
-            ov19_021DAF98(&(v0->unk_6604));
-            BoxTaskParams_Free(params);
+    case SHOW_BOX_SCREEN_STATE_WAIT_SPRITE_REMOVED:
+        if (PCMonPreviewDisplay_IsPlaceholderSpriteDeleted(&boxGraphics->previewDisplay)) {
+            PCMonPreviewDisplay_ShowInitial(&(boxGraphics->previewDisplay));
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN_sseq);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
-        v2->state++;
+        header->state++;
         break;
-    case 1:
+    case BOX_GRAPHICS_TASK_WAIT:
         if (IsScreenFadeDone()) {
-            BoxTaskParams_Free(v2);
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1)
+static void BoxGraphics_ScreenFadeInReturnToBox(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
-        v2->state++;
+        header->state++;
         break;
-    case 1:
+    case BOX_GRAPHICS_TASK_WAIT:
         if (IsScreenFadeDone()) {
-            BoxTaskParams_Free(v2);
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1)
+static void BoxGraphics_ScreenFadeOutToOtherApp(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
-        v2->state++;
+        header->state++;
         break;
-    case 1:
+    case BOX_GRAPHICS_TASK_WAIT:
         if (IsScreenFadeDone()) {
-            BoxTaskParams_Free(v2);
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_ChangeToNewBox(SysTask *param0, void *taskParams)
+static void BoxGraphics_ChangeToNewBox(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *params = (BoxTaskParams *)taskParams;
-    v0 = params->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (params->state) {
-    case 0:
-        ov19_021DE9B8(v0->unk_B40C);
-        params->state++;
-    case 1:
-        if (ov19_021DE9E4(v0->unk_B40C) == FALSE) {
+    switch (header->state) {
+    case CHANGE_BOX_STATE_HIDE_SPRITES:
+        BoxItemIconGraphics_HidePreviewIcon(boxGraphics->itemIconGraphics);
+        header->state++;
+    case CHANGE_BOX_STATE_WAIT_SPRITES_HIDDEN:
+        if (BoxItemIconGraphics_IsPreviewIconHidden(boxGraphics->itemIconGraphics) == FALSE) {
             break;
         }
 
-        params->state++;
-    case 2: {
-        int boxChangeDirection = BoxGraphics_GetBoxMoveDirection(v0->unk_494.boxID, v1->customization.boxID);
+        header->state++;
+    case CHANGE_BOX_STATE_SWITCH_BOX: {
+        int boxChangeDirection = BoxGraphics_GetBoxMoveDirection(boxGraphics->box.boxID, boxApp->customization.boxID);
 
-        ov19_021D7B4C(&v0->unk_494, &v1->customization, boxChangeDirection, TRUE);
-        ov19_021D7D70(&v0->unk_494, &v1->customization, boxChangeDirection);
+        BoxView_Show(&boxGraphics->box, &boxApp->customization, boxChangeDirection, TRUE);
+        BoxView_StartScroll(&boxGraphics->box, &boxApp->customization, boxChangeDirection);
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
-        params->state++;
+        header->state++;
     }
-    case 3:
-        if (ov19_021D7E1C(&v0->unk_494) == 0) {
+    case CHANGE_BOX_STATE_WAIT_SWITCH_DONE:
+        if (BoxView_IsScrollDone(&boxGraphics->box) == 0) {
             break;
         }
 
-        ov19_021DE7A0(v0->unk_B40C);
-        params->state++;
-    case 4:
-        if (ov19_021DE800(v0->unk_B40C) == 0) {
+        BoxItemIconGraphics_UpdatePreviewIcon(boxGraphics->itemIconGraphics);
+        header->state++;
+    case CHANGE_BOX_STATE_WAIT_SPRITES_SHOWN:
+        if (BoxItemIconGraphics_IsPreviewUpdateDone(boxGraphics->itemIconGraphics) == 0) {
             break;
         }
 
-        BoxTaskParams_Free(params);
+        BoxGraphicsTaskHeader_Free(header);
         break;
     }
 }
 
-static void BoxGraphics_MoveCursor(SysTask *param0, void *param1)
+static void BoxGraphics_MoveCursor(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
-        ov19_021D8F60(&(v0->unk_5E24));
-        ov19_021DE7A0(v0->unk_B40C);
-        v2->state++;
+        BoxCursorGraphics_StartMove(&(boxGraphics->cursorGraphics));
+        BoxItemIconGraphics_UpdatePreviewIcon(boxGraphics->itemIconGraphics);
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D9074(&(v0->unk_5E24))
-            && ov19_021DE800(v0->unk_B40C)) {
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsMoveDone(&(boxGraphics->cursorGraphics))
+            && BoxItemIconGraphics_IsPreviewUpdateDone(boxGraphics->itemIconGraphics)) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_PreviewMon(SysTask *param0, void *param1)
+static void BoxGraphics_PreviewMon(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    if (BoxApp_GetBoxMode(v1) != PC_MODE_COMPARE) {
-        switch (v2->state) {
-        case 0:
-            ov19_021DAFF8(&(v0->unk_6604));
-            v2->state++;
+    if (BoxApp_GetBoxMode(boxApp) != PC_MODE_COMPARE) {
+        switch (header->state) {
+        case BOX_GRAPHICS_TASK_START:
+            PCMonPreviewDisplay_Refresh(&(boxGraphics->previewDisplay));
+            header->state++;
             break;
-        case 1:
-            if (ov19_021DB220(&(v0->unk_6604))) {
-                BoxTaskParams_Free(v2);
+        case BOX_GRAPHICS_TASK_WAIT:
+            if (PCMonPreviewDisplay_IsRefreshDone(&(boxGraphics->previewDisplay))) {
+                BoxGraphicsTaskHeader_Free(header);
             }
             break;
         }
     } else {
-        switch (v2->state) {
-        case 0:
-            ov19_021DEE34(v0->unk_B410);
-            v2->state++;
+        switch (header->state) {
+        case BOX_GRAPHICS_TASK_START:
+            BoxCompareGraphics_RefreshSelectedSlot(boxGraphics->compareGraphics);
+            header->state++;
             break;
-        case 1:
-            if (ov19_021DEE84(v0->unk_B410)) {
-                BoxTaskParams_Free(v2);
+        case BOX_GRAPHICS_TASK_WAIT:
+            if (BoxCompareGraphics_ReturnTrue(boxGraphics->compareGraphics)) {
+                BoxGraphicsTaskHeader_Free(header);
             }
             break;
         }
     }
 }
 
-static void ov19_021D69BC(SysTask *param0, void *param1)
+static void BoxGraphics_UpdateMarkingsIcon(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    if (BoxApp_GetPreviewMonSource(v1) == PREVIEW_MON_IN_CURSOR) {
-        ov19_021D9A64(&v0->unk_5E24);
+    if (BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_IN_CURSOR) {
+        BoxCursorGraphics_UpdateMarkingsIcon(&boxGraphics->cursorGraphics);
     } else {
-        switch (BoxApp_GetCursorLocation(v1)) {
+        switch (BoxApp_GetCursorLocation(boxApp)) {
         case CURSOR_IN_BOX:
-            ov19_021D8A24(&v0->unk_494);
+            BoxView_UpdateMarkingsIcon(&boxGraphics->box);
             break;
         case CURSOR_IN_PARTY:
-            ov19_021DCC14(&v0->unk_B290);
+            BoxPartyGraphics_UpdateMarkingsIcon(&boxGraphics->partyGraphics);
             break;
         }
     }
 
-    ov19_021DB224(&v0->unk_6604);
-    BoxTaskParams_Free(v2);
+    PCMonPreviewDisplay_UpdateMarkings(&boxGraphics->previewDisplay);
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void ov19_021D6A1C(SysTask *param0, void *param1)
+static void BoxGraphics_ClearMonPreview(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021DB078(&(v0->unk_6604));
-    BoxTaskParams_Free(v2);
+    PCMonPreviewDisplay_Clear(&(boxGraphics->previewDisplay));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_PickUpMonIntoCursor(SysTask *task, void *param1)
+static void BoxGraphics_PickUpMonIntoCursor(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *params = (BoxTaskParams *)param1;
-    v0 = params->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (params->state) {
-    case 0:
-        ov19_021D9230(&(v0->unk_5E24));
-        params->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_StartPickUpAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D9278(&(v0->unk_5E24))) {
-            BoxTaskParams_Free(params);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsPickUpAnimationDone(&(boxGraphics->cursorGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_PlaceMonDownFromCursor(SysTask *param0, void *param1)
+static void BoxGraphics_PlaceMonDownFromCursor(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D9368(&(v0->unk_5E24));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_StartPlaceDownAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D939C(&(v0->unk_5E24))) {
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsPlaceDownAnimationDone(&(boxGraphics->cursorGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D6AB0(SysTask *param0, void *param1)
+static void BoxGraphics_PlayShiftMonAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D94B4(&(v0->unk_5E24));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_StartShiftAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D9530(&(v0->unk_5E24))) {
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsShiftAnimationDone(&(boxGraphics->cursorGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D6AEC(SysTask *param0, void *param1)
+static void BoxGraphics_StoreMonFromCursor(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D9900(&(v0->unk_5E24));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_OnMonStoredFromCursor(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_FREE:
+        BoxGraphicsTaskHeader_Free(header);
         break;
     }
 }
 
-static void ov19_021D6B1C(SysTask *param0, void *param1)
+static void BoxGraphics_StoreMonFromParty(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021DCAC0(&(v0->unk_B290));
-        v2->state++;
+    switch (header->state) {
+    case STORE_MON_FROM_PARTY_STATE_START:
+        BoxPartyGraphics_StoreMon(&(boxGraphics->partyGraphics));
+        header->state++;
         break;
-    case 1:
-        ov19_021DC834(&(v0->unk_B290));
-        v2->state++;
+    case STORE_MON_FROM_PARTY_STATE_ADJUST:
+        BoxPartyGraphics_ShiftIconsUp(&(boxGraphics->partyGraphics));
+        header->state++;
         break;
-    case 2:
-        if (ov19_021DC95C(&(v0->unk_B290))) {
-            BoxTaskParams_Free(v2);
+    case STORE_MON_FROM_PARTY_STATE_WAIT_ADJUST_DONE:
+        if (BoxPartyGraphics_HasFinishedAnimating2(&(boxGraphics->partyGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *task, void *param1)
+static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D9938(&(v0->unk_5E24));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_StartReleaseAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D995C(&(v0->unk_5E24))) {
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsReleaseAnimationDone(&(boxGraphics->cursorGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *param0, void *param1)
+static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D8860(&(v0->unk_494), BoxApp_GetCursorBoxPosition(v1));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxView_StartReleaseMonAnimation(&(boxGraphics->box), BoxApp_GetCursorBoxPosition(boxApp));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D8898(&(v0->unk_494))) {
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxView_IsReleaseMonAnimationDone(&(boxGraphics->box))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *param0, void *param1)
+static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021DCAFC(&(v0->unk_B290), BoxApp_GetCursorPartyPosition(v1));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxPartyGraphics_StartReleaseMonAnimation(&(boxGraphics->partyGraphics), BoxApp_GetCursorPartyPosition(boxApp));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DCB20(&(v0->unk_B290))) {
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxPartyGraphics_IsReleaseMonAnimationDone(&(boxGraphics->partyGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_DisplayItemInfo(SysTask *param0, void *param1)
+static void BoxGraphics_DisplayItemInfo(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021DC29C(&(v0->unk_6690));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxPopupGraphics_OpenItemInfo(&(boxGraphics->popupGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DC364(&(v0->unk_6690))) {
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxPopupGraphics_IsAnimDone2(&(boxGraphics->popupGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_CloseItemInfo(SysTask *param0, void *param1)
+static void BoxGraphics_CloseItemInfo(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021DC3F4(&(v0->unk_6690));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxPopupGraphics_CloseItemInfo(&(boxGraphics->popupGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DC43C(&(v0->unk_6690))) {
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxPopupGraphics_IsItemInfoClosed(&(boxGraphics->popupGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D6CB0(SysTask *param0, void *param1)
+static void BoxGraphics_PlayTakeItemAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D9B34(&(v0->unk_5E24));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_StartTakeItemAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D9B64(&(v0->unk_5E24))) {
-            ov19_021DB2B0(&(v0->unk_6604));
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsAnimationDone3(&(boxGraphics->cursorGraphics))) {
+            PCMonPreviewDisplay_UpdateHeldItem(&(boxGraphics->previewDisplay));
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D6CF8(SysTask *param0, void *param1)
+static void BoxGraphics_PlayGiveItemAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D9BD4(&(v0->unk_5E24));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_StartGiveItemAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D9C04(&(v0->unk_5E24))) {
-            ov19_021DB2B0(&(v0->unk_6604));
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsAnimationDone4(&(boxGraphics->cursorGraphics))) {
+            PCMonPreviewDisplay_UpdateHeldItem(&(boxGraphics->previewDisplay));
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D6D40(SysTask *param0, void *param1)
+static void BoxGraphics_PlaySwitchItemAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D9C74(&(v0->unk_5E24));
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_StartSwitchItemAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D9CA0(&(v0->unk_5E24))) {
-            ov19_021DB2B0(&(v0->unk_6604));
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsAnimationDone5(&(boxGraphics->cursorGraphics))) {
+            PCMonPreviewDisplay_UpdateHeldItem(&(boxGraphics->previewDisplay));
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D6D88(SysTask *param0, void *param1)
+static void BoxGraphics_UpdateHeldItemIcon(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header;
     u32 item;
 
-    v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
-    item = BoxApp_GetPreviewedMonHeldItem(v1);
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
+    item = BoxApp_GetPreviewedMonHeldItem(boxApp);
 
-    if (BoxApp_GetPreviewMonSource(v1) == PREVIEW_MON_IN_CURSOR) {
-        ov19_021D9AB0(&v0->unk_5E24, item);
+    if (BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_IN_CURSOR) {
+        BoxCursorGraphics_UpdateHeldItemIcon(&boxGraphics->cursorGraphics, item);
     } else {
-        switch (BoxApp_GetCursorLocation(v1)) {
+        switch (BoxApp_GetCursorLocation(boxApp)) {
         case CURSOR_IN_PARTY:
-            ov19_021DCBDC(&v0->unk_B290, BoxApp_GetCursorPartyPosition(v1), item);
+            BoxPartyGraphics_UpdateHeldItemIcon(&boxGraphics->partyGraphics, BoxApp_GetCursorPartyPosition(boxApp), item);
             break;
         case CURSOR_IN_BOX:
-            ov19_021D8988(&v0->unk_494, BoxApp_GetCursorBoxPosition(v1), item);
+            BoxView_UpdateHeldItemIcon(&boxGraphics->box, BoxApp_GetCursorBoxPosition(boxApp), item);
             break;
         }
     }
 
-    BoxTaskParams_Free(v2);
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_ItemShrinkToNothing(SysTask *param0, void *param1)
+static void BoxGraphics_ItemShrinkToNothing(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *v2;
-    u32 v3;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header;
 
-    v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
-    v1 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v2->state) {
-    case 0:
-        ov19_021D9D10(&v0->unk_5E24);
-        ov19_021DEB18(v0->unk_B40C);
-        v2->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_ShowReachingPose(&boxGraphics->cursorGraphics);
+        BoxItemIconGraphics_StartShrinkItem(boxGraphics->itemIconGraphics);
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DEB60(v0->unk_B40C)) {
-            ov19_021D9D28(&v0->unk_5E24);
-            BoxTaskParams_Free(v2);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxItemIconGraphics_IsShrinkItemDone(boxGraphics->itemIconGraphics)) {
+            BoxCursorGraphics_ClearHeldItem(&boxGraphics->cursorGraphics);
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_DisplayBoxMessage(SysTask *param0, void *param1)
+static void BoxGraphics_DisplayBoxMessage(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *params;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    params = (BoxTaskParams *)param1;
-    v0 = params->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021DB448(&(v0->unk_6658), BoxApp_GetBoxMessageID(v2));
-    BoxTaskParams_Free(params);
+    BoxMenuGraphics_ShowMessage(&(boxGraphics->menuGraphics), BoxApp_GetBoxMessageID(boxApp));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_ShowMenu(SysTask *param0, void *param1)
+static void BoxGraphics_ShowMenu(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021DB448(&(v0->unk_6658), BoxApp_GetBoxMessageID(v2));
-    ov19_021DB57C(&(v0->unk_6658), &(v2->boxMenu));
-    BoxTaskParams_Free(v1);
+    BoxMenuGraphics_ShowMessage(&(boxGraphics->menuGraphics), BoxApp_GetBoxMessageID(boxApp));
+    BoxMenuGraphics_ShowMenu(&(boxGraphics->menuGraphics), &(boxApp->boxMenu));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_CloseMessageBox(SysTask *param0, void *param1)
+static void BoxGraphics_CloseMessageBox(SysTask *unused, void *param)
 {
-    BoxTaskParams *v1 = (BoxTaskParams *)param1;
-    UnkStruct_ov19_021D61B0 *v0 = v1->unk_0C;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
 
-    ov19_021DB6F0(&(v0->unk_6658));
-    BoxTaskParams_Free(v1);
+    BoxMenuGraphics_CloseMessageBox(&(boxGraphics->menuGraphics));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void ov19_021D6EC0(SysTask *param0, void *param1)
+static void BoxGraphics_CloseMenu(SysTask *unused, void *param)
 {
-    BoxTaskParams *v1 = (BoxTaskParams *)param1;
-    UnkStruct_ov19_021D61B0 *v0 = v1->unk_0C;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
 
-    ov19_021DB724(&(v0->unk_6658));
-    BoxTaskParams_Free(v1);
+    BoxMenuGraphics_CloseMenu(&(boxGraphics->menuGraphics));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_UpdateMenuCursor(SysTask *task, void *param1)
+static void BoxGraphics_UpdateMenuCursor(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
     Sound_PlayEffect(SE_CONFIRM_sseq_3);
-    BoxGraphics_DrawMenuCursorBox(&(v0->unk_6658), &(v2->boxMenu));
-    BoxTaskParams_Free(v1);
+    BoxMenuGraphics_DrawMenuCursor(&(boxGraphics->menuGraphics), &(boxApp->boxMenu));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void ov19_021D6F0C(SysTask *param0, void *param1)
+static void BoxGraphics_UpdateMenuMarkings(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
     Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
-    ov19_021DB790(&(v0->unk_6658), &(v2->boxMenu));
-    BoxTaskParams_Free(v1);
+    BoxMenuGraphics_UpdateMarkings(&(boxGraphics->menuGraphics), &(boxApp->boxMenu));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_ShowBoxSelectionPopup(SysTask *task, void *param1)
+static void BoxGraphics_ShowBoxSelectionPopup(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *params;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    params = (BoxTaskParams *)param1;
-    v0 = params->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (params->state) {
-    case 0:
-        ov19_021DBB48(&(v0->unk_6690));
-        params->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxPopupGraphics_OpenBoxSelection(&(boxGraphics->popupGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DBB68(&(v0->unk_6690))) {
-            BoxTaskParams_Free(params);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxPopupGraphics_IsBoxSelectionOpen(&(boxGraphics->popupGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
     }
 }
 
-static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1)
+static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
-        ov19_021DBB70(&(v0->unk_6690));
-        v1->state++;
+        BoxPopupGraphics_ScrollBoxSelection(&(boxGraphics->popupGraphics));
+        header->state++;
         break;
-    case 1:
-        BoxTaskParams_Free(v1);
+    case BOX_GRAPHICS_TASK_FREE:
+        BoxGraphicsTaskHeader_Free(header);
     }
 }
 
-static void ov19_021D6FB0(SysTask *param0, void *param1)
+static void BoxGraphics_CloseBoxSelectionPopup(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
-        ov19_021DBB94(&(v0->unk_6690));
-        v1->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxPopupGraphics_CloseBoxSelection(&(boxGraphics->popupGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DBBA0(&(v0->unk_6690))) {
-            BoxTaskParams_Free(v1);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxPopupGraphics_IsBoxSelectionOpen2(&(boxGraphics->popupGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
     }
 }
 
-static void BoxGraphics_TransitionWallpaper(SysTask *task, void *param1)
+static void BoxGraphics_TransitionWallpaper(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *params;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    params = (BoxTaskParams *)param1;
-    v0 = params->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (params->state) {
-    case 0:
-        ov19_021D8350(&(v0->unk_494));
-        params->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxView_StartWallpaperChange(&(boxGraphics->box));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D8370(&(v0->unk_494))) {
-            BoxTaskParams_Free(params);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxView_IsWallpaperChangeDone(&(boxGraphics->box))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_PressBoxButton(SysTask *param0, void *param1)
+static void BoxGraphics_PressBoxButton(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
+    switch (header->state) {
+    case PRESS_BOX_BUTTON_STATE_START:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
-        ov19_021D9690(&(v0->unk_5E24));
-        v1->state++;
+        BoxCursorGraphics_StartButtonPressAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D9704(&(v0->unk_5E24))) {
-            switch (BoxApp_GetCursorLocation(v2)) {
+    case PRESS_BOX_BUTTON_STATE_WAIT_ANIM:
+        if (BoxCursorGraphics_IsAnimationDone2(&(boxGraphics->cursorGraphics))) {
+            switch (BoxApp_GetCursorLocation(boxApp)) {
             case CURSOR_ON_PARTY_BUTTON:
-                ov19_021DA8FC(&(v0->unk_65BC), 1);
+                BoxButtonsGraphics_SetPressedButton(&(boxGraphics->buttonsGraphics), BOX_BUTTONS_ANIM_PARTY_PRESSED);
                 break;
             case CURSOR_ON_CLOSE_BUTTON:
-                ov19_021DA8FC(&(v0->unk_65BC), 2);
+                BoxButtonsGraphics_SetPressedButton(&(boxGraphics->buttonsGraphics), BOX_BUTTONS_ANIM_CLOSE_PRESSED);
                 break;
             }
 
-            v1->unk_08 = 0;
-            v1->state++;
+            header->frameCounter = 0;
+            header->state++;
         }
         break;
-    case 2:
-        if (++(v1->unk_08) >= 6) {
-            ov19_021D97FC(&(v0->unk_5E24));
-            ov19_021DA8FC(&(v0->unk_65BC), 0);
-            v1->state++;
+    case PRESS_BOX_BUTTON_STATE_HOLD:
+        if (++(header->frameCounter) >= 6) {
+            BoxCursorGraphics_StartReturnToRestAnimation(&(boxGraphics->cursorGraphics));
+            BoxButtonsGraphics_SetPressedButton(&(boxGraphics->buttonsGraphics), BOX_BUTTONS_ANIM_NONE_PRESSED);
+            header->state++;
         }
         break;
-    case 3:
-        if (ov19_021D9858(&(v0->unk_5E24))) {
-            BoxTaskParams_Free(v1);
+    case PRESS_BOX_BUTTON_STATE_WAIT_RETURN:
+        if (BoxCursorGraphics_IsReturnToRestAnimationDone(&(boxGraphics->cursorGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_OpenPartyPopup(SysTask *param0, void *param1)
+static void BoxGraphics_OpenPartyPopup(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
         Sound_PlayEffect(SEQ_SE_DP_OPEN7_sseq);
-        ov19_021D99F4(&(v0->unk_5E24));
-        ov19_021DC6C8(&(v0->unk_B290));
-        v1->state++;
+        BoxCursorGraphics_RaisePriority(&(boxGraphics->cursorGraphics));
+        BoxPartyGraphics_Open(&(boxGraphics->partyGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DC6F8(&(v0->unk_B290))) {
-            BoxTaskParams_Free(v1);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxPartyGraphics_HasFinishedAnimating(&(boxGraphics->partyGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D7138(SysTask *param0, void *param1)
+static void BoxGraphics_ClosePartyPopup(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
-        ov19_021DE9B8(v0->unk_B40C);
-        v1->state++;
-    case 1:
-        if (ov19_021DE9E4(v0->unk_B40C) == 0) {
+    switch (header->state) {
+    case CLOSE_PARTY_POPUP_STATE_HIDE_SPRITES:
+        BoxItemIconGraphics_HidePreviewIcon(boxGraphics->itemIconGraphics);
+        header->state++;
+    case CLOSE_PARTY_POPUP_STATE_WAIT_SPRITES_HIDDEN:
+        if (BoxItemIconGraphics_IsPreviewIconHidden(boxGraphics->itemIconGraphics) == 0) {
             break;
         }
 
-        v1->state++;
-    case 2:
+        header->state++;
+    case CLOSE_PARTY_POPUP_STATE_CLOSE:
         Sound_PlayEffect(SEQ_SE_DP_CLOSE7_sseq);
-        ov19_021DC768(&(v0->unk_B290));
-        v1->state++;
+        BoxPartyGraphics_Close(&(boxGraphics->partyGraphics));
+        header->state++;
         break;
-    case 3:
-        if (ov19_021DC788(&(v0->unk_B290))) {
-            ov19_021D9A2C(&(v0->unk_5E24));
-            BoxTaskParams_Free(v1);
+    case CLOSE_PARTY_POPUP_STATE_WAIT_CLOSE_DONE:
+        if (BoxPartyGraphics_IsClosed(&(boxGraphics->partyGraphics))) {
+            BoxCursorGraphics_RestorePriority(&(boxGraphics->cursorGraphics));
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *task, void *param1)
+static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *params;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    params = (BoxTaskParams *)param1;
-    v0 = params->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (params->state) {
-    case 0:
-        ov19_021DC834(&(v0->unk_B290));
-        params->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxPartyGraphics_ShiftIconsUp(&(boxGraphics->partyGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DC95C(&(v0->unk_B290))) {
-            BoxTaskParams_Free(params);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxPartyGraphics_HasFinishedAnimating2(&(boxGraphics->partyGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D71F8(SysTask *param0, void *param1)
+static void BoxGraphics_FinishAdjustPartyAnimation(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
-        if (BoxApp_GetCursorLocation(v2) == CURSOR_IN_PARTY) {
-            ov19_021DC96C(&v0->unk_B290);
-            v1->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_PARTY) {
+            BoxPartyGraphics_GlideIconToLastSlot(&boxGraphics->partyGraphics);
+            header->state++;
             break;
         }
 
-        BoxTaskParams_Free(v1);
+        BoxGraphicsTaskHeader_Free(header);
         break;
-    case 1:
-        if (ov19_021DCA08(&v0->unk_B290)) {
-            BoxTaskParams_Free(v1);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxPartyGraphics_HasFinishedAnimating3(&boxGraphics->partyGraphics)) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_SetMonMarkingsTransparency(SysTask *param0, void *param1)
+static void BoxGraphics_SetMonMarkingsTransparency(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021D8938(&v0->unk_494);
-    ov19_021DCBA0(&v0->unk_B290);
-    ov19_021D9A8C(&v0->unk_5E24);
-    BoxTaskParams_Free(v1);
+    BoxView_UpdateMarkingsTransparency(&boxGraphics->box);
+    BoxPartyGraphics_UpdateMarkingsTransparency(&boxGraphics->partyGraphics);
+    BoxCursorGraphics_UpdateHeldMonTransparency(&boxGraphics->cursorGraphics);
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_OpenOrCloseSelectedTouchDial(SysTask *param0, void *param1)
+static void BoxGraphics_OpenOrCloseSelectedDial(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
-        ov19_021DD378(v0->unk_B408);
-        v1->state++;
+    switch (header->state) {
+    case DIAL_STATE_START:
+        BoxDialGraphics_SwitchDial(boxGraphics->dialGraphics);
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DD45C(v0->unk_B408)) {
-            if (v2->touchDialHelper.selectedTouchDial == TOUCH_DIALS_NONE) {
-                BoxTaskParams_Free(v1);
+    case DIAL_STATE_WAIT_TOGGLE_DONE:
+        if (BoxDialGraphics_IsSwitchDone(boxGraphics->dialGraphics)) {
+            if (boxApp->dialHelper.selectedDial == DIALS_NONE) {
+                BoxGraphicsTaskHeader_Free(header);
             } else {
-                ov19_021DD714(v0->unk_B408);
-                v1->state++;
+                BoxDialGraphics_PopulateDial(boxGraphics->dialGraphics);
+                header->state++;
             }
         }
         break;
-    case 2:
-        if (ov19_021DD740(v0->unk_B408)) {
-            BoxTaskParams_Free(v1);
+    case DIAL_STATE_WAIT_SELECT_DONE:
+        if (BoxDialGraphics_IsPopulateDone(boxGraphics->dialGraphics)) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D72E8(SysTask *param0, void *param1)
+static void BoxGraphics_UpdateSelectedDial(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
-        ov19_021DD768(v0->unk_B408);
-        v1->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxDialGraphics_RotateDial(boxGraphics->dialGraphics);
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DD820(v0->unk_B408)) {
-            BoxTaskParams_Free(v1);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxDialGraphics_IsRotateDone(boxGraphics->dialGraphics)) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_UpdateMarkingsTouchButton(SysTask *param0, void *param1)
+static void BoxGraphics_UpdateMarkingsTouchButton(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021DE2F4(v0->unk_B408);
-    BoxTaskParams_Free(v1);
+    BoxDialGraphics_UpdateMarkingButtons(boxGraphics->dialGraphics);
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void ov19_021D7340(SysTask *param0, void *param1)
+static void BoxGraphics_UpdateCursorPalette(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021D9AEC(&(v0->unk_5E24));
-    BoxTaskParams_Free(v1);
+    BoxCursorGraphics_UpdateFastModePalette(&(boxGraphics->cursorGraphics));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_StartDrawMultiSelect(SysTask *param0, void *param1)
+static void BoxGraphics_StartDrawMultiSelect(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    BoxGraphics_OpenMultiSelectCursor(&(v0->unk_5E24));
-    BoxGraphics_ApplyMultiSelectMonShading(&(v0->unk_494));
-    BoxTaskParams_Free(v1);
+    BoxGraphics_OpenMultiSelectCursor(&(boxGraphics->cursorGraphics));
+    BoxView_ApplyMultiSelectMonShading(&(boxGraphics->box));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void ov19_021D7380(SysTask *param0, void *param1)
+static void BoxGraphics_ClearMultiSelectShading(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021D8B14(&(v0->unk_494));
-    BoxTaskParams_Free(v1);
+    BoxView_ClearMultiSelectShading(&(boxGraphics->box));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void BoxGraphics_ApplyMultiSelectMonShadingTask(SysTask *param0, void *param1)
+static void BoxGraphics_ApplyMultiSelectMonShading(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    BoxGraphics_ApplyMultiSelectMonShading(&(v0->unk_494));
-    BoxTaskParams_Free(v1);
+    BoxView_ApplyMultiSelectMonShading(&(boxGraphics->box));
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void ov19_021D73B0(SysTask *param0, void *param1)
+static void BoxGraphics_PickUpMultiSelectedMonsIntoCursor(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
-        ov19_021D9230(&(v0->unk_5E24));
-        v1->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCursorGraphics_StartPickUpAnimation(&(boxGraphics->cursorGraphics));
+        header->state++;
         break;
-    case 1:
-        if (ov19_021D9278(&(v0->unk_5E24))) {
-            BoxTaskParams_Free(v1);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCursorGraphics_IsPickUpAnimationDone(&(boxGraphics->cursorGraphics))) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D73EC(SysTask *param0, void *param1)
+static void BoxGraphics_SetCompareSlotTab(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021DEDDC(v0->unk_B410, 0);
-    BoxTaskParams_Free(v1);
+    BoxCompareGraphics_UpdateSlotTabs(boxGraphics->compareGraphics, 0);
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void ov19_021D7408(SysTask *param0, void *param1)
+static void BoxGraphics_SwitchCompareSlotTab(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    ov19_021DEDDC(v0->unk_B410, 1);
-    BoxTaskParams_Free(v1);
+    BoxCompareGraphics_UpdateSlotTabs(boxGraphics->compareGraphics, 1);
+    BoxGraphicsTaskHeader_Free(header);
 }
 
-static void ov19_021D7424(SysTask *param0, void *param1)
+static void BoxGraphics_TransitionCompareMode(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
-    const BoxApplication *v2;
+    BoxGraphics *boxGraphics;
+    BoxGraphicsTaskHeader *header;
+    const BoxApplication *boxApp;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
+    header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (v1->state) {
-    case 0:
-        ov19_021DEE88(v0->unk_B410);
-        v1->state++;
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
+        BoxCompareGraphics_StartPageChange(boxGraphics->compareGraphics);
+        header->state++;
         break;
-    case 1:
-        if (ov19_021DEEA8(v0->unk_B410)) {
-            BoxTaskParams_Free(v1);
+    case BOX_GRAPHICS_TASK_WAIT:
+        if (BoxCompareGraphics_IsPageChangeDone(boxGraphics->compareGraphics)) {
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *unused, void *param)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    const BoxApplication *v1;
-    BoxTaskParams *params = (BoxTaskParams *)param1;
-    v0 = params->unk_0C;
-    v1 = v0->unk_1C4;
+    BoxGraphics *boxGraphics;
+    const BoxApplication *boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    boxGraphics = header->boxGraphics;
+    boxApp = boxGraphics->boxApp;
 
-    switch (params->state) {
-    case 0:
+    switch (header->state) {
+    case BOX_GRAPHICS_TASK_START:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF_sseq);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
-        params->state++;
+        header->state++;
         break;
-    case 1:
+    case BOX_GRAPHICS_TASK_WAIT:
         if (IsScreenFadeDone()) {
-            BoxTaskParams_Free(params);
+            BoxGraphicsTaskHeader_Free(header);
         }
         break;
     }
 }
 
-static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const BoxApplication *param1)
+static void BoxGraphics_InitBackground(BoxGraphics *boxGraphics, const BoxApplication *boxApp)
 {
-    static const GXBanks v0 = {
+    static const GXBanks vramBanks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -1540,14 +1537,14 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const BoxApplication 
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    static const GraphicsModes v1 = {
+    static const GraphicsModes graphicsModes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D,
     };
 
-    static const BgTemplate v2 = {
+    static const BgTemplate unusedBgTemplate = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -1562,112 +1559,112 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const BoxApplication 
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v3 = {
+    static const BgTemplate mainBg1Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
-        .screenBase = (GX_BG_SCRBASE_0xe000),
-        .charBase = (GX_BG_CHARBASE_0x18000),
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x18000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v4 = {
+    static const BgTemplate mainBg2Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
-        .screenBase = (GX_BG_SCRBASE_0xe800),
-        .charBase = (GX_BG_CHARBASE_0x00000),
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x00000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 1,
         .areaOver = 0,
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v5 = {
+    static const BgTemplate mainBg3Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x1000,
         .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_512x256,
         .colorMode = GX_BG_COLORMODE_16,
-        .screenBase = (GX_BG_SCRBASE_0xf000),
-        .charBase = (GX_BG_CHARBASE_0x10000),
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 3,
         .areaOver = 0,
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v6 = {
+    static const BgTemplate subBg0Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
-        .screenBase = (GX_BG_SCRBASE_0xf000),
-        .charBase = (GX_BG_CHARBASE_0x10000),
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v7 = {
+    static const BgTemplate subBg1Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x0,
         .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_512x256,
         .colorMode = GX_BG_COLORMODE_16,
-        .screenBase = (GX_BG_SCRBASE_0xd000),
-        .charBase = (GX_BG_CHARBASE_0x00000),
+        .screenBase = GX_BG_SCRBASE_0xd000,
+        .charBase = GX_BG_CHARBASE_0x00000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 1,
         .areaOver = 0,
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v8 = {
+    static const BgTemplate subBg2Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x0,
         .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_512x256,
         .colorMode = GX_BG_COLORMODE_16,
-        .screenBase = (GX_BG_SCRBASE_0xe000),
-        .charBase = (GX_BG_CHARBASE_0x00000),
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 2,
         .areaOver = 0,
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v9 = {
+    static const BgTemplate subBg3Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x0,
         .baseTile = 0,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
-        .screenBase = (GX_BG_SCRBASE_0xf800),
-        .charBase = (GX_BG_CHARBASE_0x00000),
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 3,
         .areaOver = 0,
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v10 = {
+    static const BgTemplate compareSubBg1Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x0,
@@ -1682,7 +1679,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const BoxApplication 
         .mosaic = FALSE,
     };
 
-    static const BgTemplate v11 = {
+    static const BgTemplate compareSubBg2Template = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x0,
@@ -1697,53 +1694,53 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const BoxApplication 
         .mosaic = FALSE,
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&vramBanks);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
 
-    SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_1, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_2, &v4, 0);
-    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_3, &v5, 0);
+    SetAllGraphicsModes(&graphicsModes);
+    Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_MAIN_1, &mainBg1Template, 0);
+    Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_MAIN_2, &mainBg2Template, 0);
+    Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_MAIN_3, &mainBg3Template, 0);
 
-    if (BoxApp_GetBoxMode(param1) != PC_MODE_COMPARE) {
-        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_0, &v6, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_1, &v7, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_2, &v8, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_3, &v9, 0);
+    if (BoxApp_GetBoxMode(boxApp) != PC_MODE_COMPARE) {
+        Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_SUB_0, &subBg0Template, 0);
+        Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_SUB_1, &subBg1Template, 0);
+        Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_SUB_2, &subBg2Template, 0);
+        Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_SUB_3, &subBg3Template, 0);
     } else {
-        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_0, &v6, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_1, &v10, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_2, &v11, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_3, &v9, 0);
+        Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_SUB_0, &subBg0Template, 0);
+        Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_SUB_1, &compareSubBg1Template, 0);
+        Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_SUB_2, &compareSubBg2Template, 0);
+        Bg_InitFromTemplate(boxGraphics->bgConfig, BG_LAYER_SUB_3, &subBg3Template, 0);
     }
 
-    ov19_021D76FC();
+    BoxGraphics_Init3D();
 }
 
-static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const BoxApplication *param1, NARC *param2)
+static void BoxGraphics_LoadGraphics(BoxGraphics *boxGraphics, const BoxApplication *boxApp, NARC *narc)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 4, param0->unk_1C0, 1, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-    Bg_FillTilemapRect(param0->unk_1C0, 1, 0x0, 0, 0, 32, 32, 17);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_1C0, 1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
-    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, HEAP_ID_BOX_GRAPHICS);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 4, boxGraphics->bgConfig, 1, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+    Bg_FillTilemapRect(boxGraphics->bgConfig, 1, 0x0, 0, 0, 32, 32, 17);
+    Bg_CopyTilemapBufferToVRAM(boxGraphics->bgConfig, 1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 1, boxGraphics->bgConfig, 2, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+    Graphics_LoadPaletteFromOpenNARC(narc, 5, 0, 0, 0x20 * 7, HEAP_ID_BOX_GRAPHICS);
 
-    if (BoxApp_GetBoxMode(param1) != PC_MODE_COMPARE) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+    if (BoxApp_GetBoxMode(boxApp) != PC_MODE_COMPARE) {
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 0, boxGraphics->bgConfig, 2, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
     }
 
-    ov19_021D7A9C(&param0->unk_494);
-    ov19_021D7B4C(&param0->unk_494, &param1->customization, 0, TRUE);
-    ov19_021DAADC(&(param0->unk_6604));
-    ov19_021DB3C4(&(param0->unk_6658));
-    ov19_021DBA9C(&(param0->unk_6690));
-    ov19_021DD114(param0->unk_B408, param2);
-    ov19_021DECE8(param0->unk_B410, param2);
+    BoxView_InitBgScroll(&boxGraphics->box);
+    BoxView_Show(&boxGraphics->box, &boxApp->customization, 0, TRUE);
+    PCMonPreviewDisplay_LoadGraphics(&(boxGraphics->previewDisplay));
+    BoxMenuGraphics_LoadGraphics(&(boxGraphics->menuGraphics));
+    BoxPopupGraphics_LoadGraphics(&(boxGraphics->popupGraphics));
+    BoxDialGraphics_LoadGraphics(boxGraphics->dialGraphics, narc);
+    BoxCompareGraphics_LoadGraphics(boxGraphics->compareGraphics, narc);
 
-    if (BoxApp_GetCursorLocation(param1) == CURSOR_IN_PARTY) {
-        ov19_021DC6A0(&(param0->unk_B290));
+    if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_PARTY) {
+        BoxPartyGraphics_ShowInstantly(&(boxGraphics->partyGraphics));
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1751,7 +1748,7 @@ static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const BoxApplication 
     GX_DispOn();
 }
 
-static void ov19_021D76FC(void)
+static void BoxGraphics_Init3D(void)
 {
     NNS_G3dInit();
     G3X_InitMtxStack();
@@ -1768,11 +1765,11 @@ static void ov19_021D76FC(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov19_021D7774(UnkStruct_ov19_021D61B0 *param0, const BoxApplication *param1, NARC *param2)
+static void BoxGraphics_LoadSpriteGraphics(BoxGraphics *boxGraphics, const BoxApplication *unused, NARC *narc)
 {
-    ov19_021D8C1C(&param0->unk_5E24, param2);
-    ov19_021DA864(&param0->unk_65BC, param2);
-    ov19_021DE584(param0->unk_B40C);
+    BoxCursorGraphics_Load(&boxGraphics->cursorGraphics, narc);
+    BoxButtonsGraphics_CreateSprite(&boxGraphics->buttonsGraphics, narc);
+    BoxItemIconGraphics_ShowInitialIcons(boxGraphics->itemIconGraphics);
 }
 
 static int BoxGraphics_GetBoxMoveDirection(u32 sourceBoxID, u32 destBoxID)
@@ -1790,100 +1787,98 @@ static int BoxGraphics_GetBoxMoveDirection(u32 sourceBoxID, u32 destBoxID)
     return (distanceRight >= distanceLeft) ? -1 : 1;
 }
 
-SysTask *ov19_021D77C8(SysTaskFunc param0, void *param1, u32 param2)
+SysTask *BoxGraphics_StartVBlankTask(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTask_ExecuteOnVBlank(param0, param1, param2);
+    return SysTask_ExecuteOnVBlank(callback, param, priority);
 }
 
-NNSG2dImagePaletteProxy *ov19_021D77D0(UnkStruct_ov19_021D61B0 *param0)
+NNSG2dImagePaletteProxy *BoxGraphics_GetImagePaletteProxy(BoxGraphics *boxGraphics)
 {
-    return &(param0->unk_1A8);
+    return &(boxGraphics->imagePaletteProxy);
 }
 
-UnkStruct_ov19_021DA384 *ov19_021D77D8(UnkStruct_ov19_021D61B0 *param0)
+MonIconHelper *BoxGraphics_GetMonIconHelper(BoxGraphics *boxGraphics)
 {
-    return &(param0->unk_1C8);
+    return &(boxGraphics->monIconHelper);
 }
 
-UnkStruct_ov19_021D8318 *ov19_021D77E0(UnkStruct_ov19_021D61B0 *param0)
+BoxView *BoxGraphics_GetBoxView(BoxGraphics *boxGraphics)
 {
-    return &(param0->unk_494);
+    return &(boxGraphics->box);
 }
 
-UnkStruct_ov19_021DC680 *ov19_021D77E8(UnkStruct_ov19_021D61B0 *param0)
+BoxPartyGraphics *BoxGraphics_GetPartyGraphics(BoxGraphics *boxGraphics)
 {
-    return &(param0->unk_B290);
+    return &(boxGraphics->partyGraphics);
 }
 
-UnkStruct_ov19_021D8E00 *ov19_021D77F4(UnkStruct_ov19_021D61B0 *param0)
+BoxCursorGraphics *BoxGraphics_GetCursorGraphics(BoxGraphics *boxGraphics)
 {
-    return &(param0->unk_5E24);
+    return &(boxGraphics->cursorGraphics);
 }
 
-UnkStruct_ov19_021DE3E8 *ov19_021D7800(UnkStruct_ov19_021D61B0 *param0)
+BoxItemIconGraphics *BoxGraphics_GetItemIconGraphics(BoxGraphics *boxGraphics)
 {
-    return param0->unk_B40C;
+    return boxGraphics->itemIconGraphics;
 }
 
-UnkStruct_ov19_021DBA9C *ov19_021D780C(UnkStruct_ov19_021D61B0 *param0)
+BoxPopupGraphics *BoxGraphics_GetPopupGraphics(BoxGraphics *boxGraphics)
 {
-    return &(param0->unk_6690);
+    return &(boxGraphics->popupGraphics);
 }
 
-PokemonSpriteManager *ov19_021D7818(UnkStruct_ov19_021D61B0 *param0)
+PokemonSpriteManager *BoxGraphics_GetMonSpriteManager(BoxGraphics *boxGraphics)
 {
-    return param0->unk_1BC;
+    return boxGraphics->monSpriteManager;
 }
 
-int ov19_021D7820(UnkStruct_ov19_021D61B0 *param0)
+int BoxGraphics_GetCompareModeXOffset(BoxGraphics *boxGraphics)
 {
-    if (BoxApp_GetBoxMode(param0->unk_1C4) != PC_MODE_COMPARE) {
+    if (BoxApp_GetBoxMode(boxGraphics->boxApp) != PC_MODE_COMPARE) {
         return 0;
     } else {
-        return -44;
+        return BOX_GRAPHICS_COMPARE_MODE_X_OFFSET;
     }
 }
 
-void ov19_021D783C(SpriteResourcesHeader *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, NNSG2dCellDataBank *param3, NNSG2dCellAnimBankData *param4, u32 param5)
+void SpriteResourcesHeader_InitFromProxies(SpriteResourcesHeader *srHeader, NNSG2dImageProxy *imageProxy, NNSG2dImagePaletteProxy *plttProxy, NNSG2dCellDataBank *cellBank, NNSG2dCellAnimBankData *animBank, u32 priority)
 {
-    param0->imageProxy = param1;
-    param0->paletteProxy = param2;
-    param0->cellBank = param3;
-    param0->cellAnimBank = param4;
-    param0->priority = param5;
-    param0->charData = NULL;
-    param0->multiCellBank = NULL;
-    param0->multiCellAnimBank = NULL;
-    param0->isVRamTransfer = 0;
+    srHeader->imageProxy = imageProxy;
+    srHeader->paletteProxy = plttProxy;
+    srHeader->cellBank = cellBank;
+    srHeader->cellAnimBank = animBank;
+    srHeader->priority = priority;
+    srHeader->charData = NULL;
+    srHeader->multiCellBank = NULL;
+    srHeader->multiCellAnimBank = NULL;
+    srHeader->isVRamTransfer = 0;
 }
 
-Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5)
+Sprite *BoxGraphics_CreateSprite(SpriteList *spriteList, SpriteResourcesHeader *srHeader, u32 x, u32 y, u32 priority, NNS_G2D_VRAM_TYPE vramType)
 {
-    SpriteListTemplate v0;
-    Sprite *v1;
+    SpriteListTemplate template;
+    Sprite *sprite;
 
-    v0.list = param0;
-    v0.resourceData = param1;
-    v0.position.x = param2 * FX32_ONE;
-    v0.position.y = param3 * FX32_ONE;
-    v0.position.z = 0;
-    v0.priority = param4;
-    v0.vramType = param5;
-    v0.heapID = HEAP_ID_BOX_GRAPHICS;
+    template.list = spriteList;
+    template.resourceData = srHeader;
+    template.position.x = x * FX32_ONE;
+    template.position.y = y * FX32_ONE;
+    template.position.z = 0;
+    template.priority = priority;
+    template.vramType = vramType;
+    template.heapID = HEAP_ID_BOX_GRAPHICS;
 
-    {
-        OSIntrMode v2 = OS_DisableInterrupts();
+    OSIntrMode intrMode = OS_DisableInterrupts();
 
-        v1 = SpriteList_Add(&v0);
-        OS_RestoreInterrupts(v2);
+    sprite = SpriteList_Add(&template);
+    OS_RestoreInterrupts(intrMode);
+
+    if (sprite) {
+        Sprite_SetAnimateFlag(sprite, 1);
+        Sprite_SetAnimSpeed(sprite, FX32_ONE * (2 / 2));
     }
 
-    if (v1) {
-        Sprite_SetAnimateFlag(v1, 1);
-        Sprite_SetAnimSpeed(v1, FX32_ONE * (2 / 2));
-    }
-
-    return v1;
+    return sprite;
 }
 
 void BoxGraphics_SetSpritePriority(Sprite *sprite, u32 priority)
@@ -1894,77 +1889,74 @@ void BoxGraphics_SetSpritePriority(Sprite *sprite, u32 priority)
     OS_RestoreInterrupts(mode);
 }
 
-void ov19_021D78C8(const u16 *param0, u16 *param1, u32 param2, u16 param3, u32 param4)
+void BoxGraphics_BlendPltt(const u16 *src, u16 *dest, u32 size, u16 target, u32 fraction)
 {
-    int v0, v1, v2;
-    int v3, v4, v5;
-    int v6;
+    int r, g, b;
+    int targetR, targetG, targetB;
 
-    v3 = (param3 & 0x1f) << 8;
-    v4 = ((param3 >> 5) & 0x1f) << 8;
-    v5 = ((param3 >> 10) & 0x1f) << 8;
+    targetR = (target & 0x1f) << 8;
+    targetG = ((target >> 5) & 0x1f) << 8;
+    targetB = ((target >> 10) & 0x1f) << 8;
 
-    while (param2--) {
-        v0 = ((*param0) & 0x1f) << 8;
-        v1 = (((*param0) >> 5) & 0x1f) << 8;
-        v2 = (((*param0) >> 10) & 0x1f) << 8;
+    while (size--) {
+        r = ((*src) & 0x1f) << 8;
+        g = (((*src) >> 5) & 0x1f) << 8;
+        b = (((*src) >> 10) & 0x1f) << 8;
 
-        v0 += (((v3 - v0) / 16) * param4);
-        v1 += (((v4 - v1) / 16) * param4);
-        v2 += (((v5 - v2) / 16) * param4);
+        r += (((targetR - r) / 16) * fraction);
+        g += (((targetG - g) / 16) * fraction);
+        b += (((targetB - b) / 16) * fraction);
 
-        v0 = (v0 >> 8) & 0x1f;
-        v1 = (v1 >> 8) & 0x1f;
-        v2 = (v2 >> 8) & 0x1f;
+        r = (r >> 8) & 0x1f;
+        g = (g >> 8) & 0x1f;
+        b = (b >> 8) & 0x1f;
 
-        *param1 = ((v2 << 10) | (v1 << 5) | v0);
+        *dest = ((b << 10) | (g << 5) | r);
 
-        param0++;
-        param1++;
+        src++;
+        dest++;
     }
 }
 
-const BoxApplicationManager *ov19_021D7964(UnkStruct_ov19_021D61B0 *param0)
+const BoxApplicationManager *BoxGraphics_GetBoxAppMan(BoxGraphics *boxGraphics)
 {
-    return param0->unk_B414;
+    return boxGraphics->boxAppMan;
 }
 
-static u32 Unk_ov19_021E05EC = 0;
+static u32 sDeferredFreeCount = 0;
 
 static struct {
-    UnkFuncPtr_ov19_021D79B8 unk_00;
-    void *unk_04;
-    void *unk_08;
-} Unk_ov19_021E05F0[32];
+    BoxGraphicsDeferredFreeCallback callback;
+    void *callbackParam;
+    void *heapPtr;
+} sDeferredFrees[32];
 
-static void ov19_021D7970(void)
+static void BoxGraphics_ResetDeferredFrees(void)
 {
-    Unk_ov19_021E05EC = 0;
+    sDeferredFreeCount = 0;
 }
 
-static void ov19_021D797C(void)
+static void BoxGraphics_ProcessDeferredFrees(void)
 {
-    if (Unk_ov19_021E05EC) {
-        u32 i;
+    if (sDeferredFreeCount) {
+        for (u32 i = 0; i < sDeferredFreeCount; i++) {
+            Heap_Free(sDeferredFrees[i].heapPtr);
 
-        for (i = 0; i < Unk_ov19_021E05EC; i++) {
-            Heap_Free(Unk_ov19_021E05F0[i].unk_08);
-
-            if (Unk_ov19_021E05F0[i].unk_00) {
-                Unk_ov19_021E05F0[i].unk_00(Unk_ov19_021E05F0[i].unk_04);
+            if (sDeferredFrees[i].callback) {
+                sDeferredFrees[i].callback(sDeferredFrees[i].callbackParam);
             }
         }
 
-        Unk_ov19_021E05EC = 0;
+        sDeferredFreeCount = 0;
     }
 }
 
-void ov19_021D79B8(void *param0, UnkFuncPtr_ov19_021D79B8 param1, void *param2)
+void BoxGraphics_DeferFree(void *heapPtr, BoxGraphicsDeferredFreeCallback callback, void *callbackParam)
 {
-    GF_ASSERT(Unk_ov19_021E05EC < 32);
+    GF_ASSERT(sDeferredFreeCount < 32);
 
-    Unk_ov19_021E05F0[Unk_ov19_021E05EC].unk_08 = param0;
-    Unk_ov19_021E05F0[Unk_ov19_021E05EC].unk_00 = param1;
-    Unk_ov19_021E05F0[Unk_ov19_021E05EC].unk_04 = param2;
-    Unk_ov19_021E05EC++;
+    sDeferredFrees[sDeferredFreeCount].heapPtr = heapPtr;
+    sDeferredFrees[sDeferredFreeCount].callback = callback;
+    sDeferredFrees[sDeferredFreeCount].callbackParam = callbackParam;
+    sDeferredFreeCount++;
 }

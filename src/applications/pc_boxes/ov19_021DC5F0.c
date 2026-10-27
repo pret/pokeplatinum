@@ -23,9 +23,9 @@
 #include "sys_task_manager.h"
 
 static const struct {
-    u16 unk_00;
-    u16 unk_02;
-} Unk_ov19_021E0234[] = {
+    u16 x;
+    u16 y;
+} sPartyIconPositions[MAX_PARTY_SIZE] = {
     { 144, 28 },
     { 192, 36 },
     { 144, 68 },
@@ -34,469 +34,465 @@ static const struct {
     { 192, 116 },
 };
 
-static void ov19_021DC708(SysTask *param0, void *param1);
-static void ov19_021DC79C(SysTask *param0, void *param1);
-static void ov19_021DC8E8(SysTask *param0, void *param1);
-static void ov19_021DCA18(SysTask *param0, void *param1);
-static void ov19_021DCD64(UnkStruct_ov19_021DC680 *param0, u32 param1);
-static void ov19_021DCDB4(UnkStruct_ov19_021DC680 *param0, VecFx32 *param1);
-static void ov19_021DCE50(UnkStruct_ov19_021DC680 *param0, fx32 param1);
-static void ov19_021DCEB8(UnkStruct_ov19_021DC680 *param0, BOOL param1);
-static void ov19_021DCF50(UnkStruct_ov19_021DC680 *param0);
+static void BoxPartyGraphics_SlideInTask(SysTask *task, void *param);
+static void BoxPartyGraphics_SlideOutTask(SysTask *task, void *param);
+static void BoxPartyGraphics_ShiftIconsTask(SysTask *task, void *param);
+static void BoxPartyGraphics_GlideIconTask(SysTask *task, void *param);
+static void BoxPartyGraphics_DrawPanel(BoxPartyGraphics *partyGraphics, u32 hiddenRows);
+static void BoxPartyGraphics_InitShiftPositions(BoxPartyGraphics *partyGraphics, VecFx32 *positions);
+static void BoxPartyGraphics_MoveIconsY(BoxPartyGraphics *partyGraphics, fx32 dy);
+static void BoxPartyGraphics_CreateIcons(BoxPartyGraphics *partyGraphics, BOOL visible);
+static void BoxPartyGraphics_DeleteIcons(BoxPartyGraphics *partyGraphics);
 
-BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, NARC *param5)
+BOOL BoxPartyGraphics_Init(BoxPartyGraphics *partyGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *spriteList, NARC *narc)
 {
-    param0->unk_00 = param1;
-    param0->unk_0C = param2;
-    param0->unk_08 = param4;
-    param0->unk_04 = param3;
-    param0->unk_38 = ov19_021D77D8(param1);
-    param0->unk_10 = ov19_021D77E0(param1);
+    partyGraphics->boxGraphics = boxGraphics;
+    partyGraphics->boxApp = boxApp;
+    partyGraphics->unread_08 = spriteList;
+    partyGraphics->bgConfig = bgConfig;
+    partyGraphics->monIconHelper = BoxGraphics_GetMonIconHelper(boxGraphics);
+    partyGraphics->boxView = BoxGraphics_GetBoxView(boxGraphics);
 
-    if (BoxApp_GetBoxMode(param2) != PC_MODE_COMPARE) {
-        param0->unk_30 = 14;
-        param0->unk_34 = 0;
+    if (BoxApp_GetBoxMode(boxApp) != PC_MODE_COMPARE) {
+        partyGraphics->tilemapLeft = PARTY_PANEL_TILEMAP_LEFT;
+        partyGraphics->xOffset = 0;
     } else {
-        param0->unk_30 = 9;
-        param0->unk_34 = (9 - 14) * 8;
+        partyGraphics->tilemapLeft = PARTY_PANEL_COMPARE_TILEMAP_LEFT;
+        partyGraphics->xOffset = (PARTY_PANEL_COMPARE_TILEMAP_LEFT - PARTY_PANEL_TILEMAP_LEFT) * TILE_WIDTH_PIXELS;
     }
 
-    param0->unk_2B = 0;
-    param0->unk_2C = 0;
+    partyGraphics->hiddenRows = 0;
+    partyGraphics->isAnimating = FALSE;
 
-    ov19_021DA3CC(param0->unk_38, param0->unk_3C, 6);
+    MonIconHelper_InitIcons(partyGraphics->monIconHelper, partyGraphics->monIcons, MAX_PARTY_SIZE);
 
-    param0->unk_1C = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(VecFx32) * 6 * 8);
-    param0->unk_14 = Graphics_GetScrnDataFromOpenNARC(param5, 6, 1, &(param0->unk_18), HEAP_ID_BOX_GRAPHICS);
+    partyGraphics->shiftPositions = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(VecFx32) * MAX_PARTY_SIZE * PARTY_ICON_ANIM_FRAMES);
+    partyGraphics->panelScreenBuffer = Graphics_GetScrnDataFromOpenNARC(narc, 6, TRUE, &partyGraphics->panelScreenData, HEAP_ID_BOX_GRAPHICS);
 
-    if ((param0->unk_14 == NULL) || (param0->unk_1C == NULL)) {
-        return 0;
+    if (partyGraphics->panelScreenBuffer == NULL || partyGraphics->shiftPositions == NULL) {
+        return FALSE;
     }
 
-    ov19_021DCDB4(param0, param0->unk_1C);
+    BoxPartyGraphics_InitShiftPositions(partyGraphics, partyGraphics->shiftPositions);
 
-    return 1;
+    return TRUE;
 }
 
-void ov19_021DC680(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_Free(BoxPartyGraphics *partyGraphics)
 {
-    if (param0->unk_14) {
-        Heap_Free(param0->unk_14);
+    if (partyGraphics->panelScreenBuffer != NULL) {
+        Heap_Free(partyGraphics->panelScreenBuffer);
     }
 
-    if (param0->unk_1C != NULL) {
-        Heap_Free(param0->unk_1C);
+    if (partyGraphics->shiftPositions != NULL) {
+        Heap_Free(partyGraphics->shiftPositions);
     }
 
-    ov19_021DCF50(param0);
+    BoxPartyGraphics_DeleteIcons(partyGraphics);
 }
 
-void ov19_021DC6A0(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_ShowInstantly(BoxPartyGraphics *partyGraphics)
 {
-    param0->unk_2B = 0;
-    ov19_021DCD64(param0, param0->unk_2B);
-    ov19_021DCEB8(param0, 1);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_04, 2);
+    partyGraphics->hiddenRows = 0;
+    BoxPartyGraphics_DrawPanel(partyGraphics, partyGraphics->hiddenRows);
+    BoxPartyGraphics_CreateIcons(partyGraphics, TRUE);
+    Bg_CopyTilemapBufferToVRAM(partyGraphics->bgConfig, BG_LAYER_MAIN_2);
 }
 
-void ov19_021DC6C8(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_Open(BoxPartyGraphics *partyGraphics)
 {
-    ov19_021DCEB8(param0, 0);
+    BoxPartyGraphics_CreateIcons(partyGraphics, FALSE);
 
-    param0->unk_2B = 26;
-    param0->unk_2C = (ov19_021D77C8(ov19_021DC708, param0, 0) != NULL);
+    partyGraphics->hiddenRows = PARTY_PANEL_HEIGHT;
+    partyGraphics->isAnimating = (BoxGraphics_StartVBlankTask(BoxPartyGraphics_SlideInTask, partyGraphics, 0) != NULL);
 }
 
-BOOL ov19_021DC6F8(UnkStruct_ov19_021DC680 *param0)
+BOOL BoxPartyGraphics_HasFinishedAnimating(BoxPartyGraphics *partyGraphics)
 {
-    return param0->unk_2C == 0;
+    return partyGraphics->isAnimating == FALSE;
 }
 
-static void ov19_021DC708(SysTask *param0, void *param1)
+static void BoxPartyGraphics_SlideInTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC680 *v0 = (UnkStruct_ov19_021DC680 *)param1;
-    fx32 v1;
+    BoxPartyGraphics *partyGraphics = (BoxPartyGraphics *)param;
+    fx32 dy;
 
-    if (v0->unk_2B > 2) {
-        v1 = -((2 * 8) << FX32_SHIFT);
-        v0->unk_2B -= 2;
+    if (partyGraphics->hiddenRows > PARTY_PANEL_SLIDE_ROWS) {
+        dy = -((PARTY_PANEL_SLIDE_ROWS * TILE_HEIGHT_PIXELS) << FX32_SHIFT);
+        partyGraphics->hiddenRows -= PARTY_PANEL_SLIDE_ROWS;
     } else {
-        v1 = -((v0->unk_2B * 8) << FX32_SHIFT);
-        v0->unk_2B = 0;
+        dy = -((partyGraphics->hiddenRows * TILE_HEIGHT_PIXELS) << FX32_SHIFT);
+        partyGraphics->hiddenRows = 0;
     }
 
-    ov19_021DCD64(v0, v0->unk_2B);
-    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 2);
-    ov19_021DCE50(v0, v1);
+    BoxPartyGraphics_DrawPanel(partyGraphics, partyGraphics->hiddenRows);
+    Bg_CopyTilemapBufferToVRAM(partyGraphics->bgConfig, BG_LAYER_MAIN_2);
+    BoxPartyGraphics_MoveIconsY(partyGraphics, dy);
 
-    if (v0->unk_2B == 0) {
-        v0->unk_2C = 0;
-        SysTask_Done(param0);
+    if (partyGraphics->hiddenRows == 0) {
+        partyGraphics->isAnimating = FALSE;
+        SysTask_Done(task);
     }
 }
 
-void ov19_021DC768(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_Close(BoxPartyGraphics *partyGraphics)
 {
-    param0->unk_2C = (ov19_021D77C8(ov19_021DC79C, param0, 0) != NULL);
+    partyGraphics->isAnimating = (BoxGraphics_StartVBlankTask(BoxPartyGraphics_SlideOutTask, partyGraphics, 0) != NULL);
 }
 
-BOOL ov19_021DC788(UnkStruct_ov19_021DC680 *param0)
+BOOL BoxPartyGraphics_IsClosed(BoxPartyGraphics *partyGraphics)
 {
-    if (param0->unk_2C == 0) {
-        ov19_021DCF50(param0);
-        return 1;
+    if (partyGraphics->isAnimating == FALSE) {
+        BoxPartyGraphics_DeleteIcons(partyGraphics);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov19_021DC79C(SysTask *param0, void *param1)
+static void BoxPartyGraphics_SlideOutTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC680 *v0 = (UnkStruct_ov19_021DC680 *)param1;
-    fx32 v1;
+    BoxPartyGraphics *partyGraphics = (BoxPartyGraphics *)param;
+    fx32 dy;
 
-    if (v0->unk_2B < (26 - 2)) {
-        v1 = ((2 * 8) << FX32_SHIFT);
-        v0->unk_2B += 2;
+    if (partyGraphics->hiddenRows < PARTY_PANEL_HEIGHT - PARTY_PANEL_SLIDE_ROWS) {
+        dy = (PARTY_PANEL_SLIDE_ROWS * TILE_HEIGHT_PIXELS) << FX32_SHIFT;
+        partyGraphics->hiddenRows += PARTY_PANEL_SLIDE_ROWS;
     } else {
-        v1 = ((26 - v0->unk_2B) * 8) << FX32_SHIFT;
-        v0->unk_2B = 26;
+        dy = ((PARTY_PANEL_HEIGHT - partyGraphics->hiddenRows) * TILE_HEIGHT_PIXELS) << FX32_SHIFT;
+        partyGraphics->hiddenRows = PARTY_PANEL_HEIGHT;
     }
 
-    if (v0->unk_2B > 2) {
-        u32 v2, v3;
+    if (partyGraphics->hiddenRows > PARTY_PANEL_OVERFLOW_ROWS) {
+        u32 clearTopRow, clearRowCount;
 
-        v3 = (u32)((v1) >> FX32_SHIFT) / 8;
-        v2 = v0->unk_2B - 2 - v3;
+        clearRowCount = (u32)(dy >> FX32_SHIFT) / TILE_HEIGHT_PIXELS;
+        clearTopRow = partyGraphics->hiddenRows - PARTY_PANEL_OVERFLOW_ROWS - clearRowCount;
 
-        Bg_FillTilemapRect(v0->unk_04, 2, 0x0, v0->unk_30, v2, 15, v3, 17);
+        Bg_FillTilemapRect(partyGraphics->bgConfig, BG_LAYER_MAIN_2, 0, partyGraphics->tilemapLeft, clearTopRow, PARTY_PANEL_WIDTH, clearRowCount, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
     }
 
-    ov19_021DCD64(v0, v0->unk_2B);
-    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 2);
-    ov19_021DCE50(v0, v1);
+    BoxPartyGraphics_DrawPanel(partyGraphics, partyGraphics->hiddenRows);
+    Bg_CopyTilemapBufferToVRAM(partyGraphics->bgConfig, BG_LAYER_MAIN_2);
+    BoxPartyGraphics_MoveIconsY(partyGraphics, dy);
 
-    if (v0->unk_2B == 26) {
-        v0->unk_2C = 0;
-        SysTask_Done(param0);
+    if (partyGraphics->hiddenRows == PARTY_PANEL_HEIGHT) {
+        partyGraphics->isAnimating = FALSE;
+        SysTask_Done(task);
     }
 }
 
-void ov19_021DC834(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_ShiftIconsUp(BoxPartyGraphics *partyGraphics)
 {
-    int partyCount = Party_GetCurrentCount(param0->unk_0C->party);
+    int partyCount = Party_GetCurrentCount(partyGraphics->boxApp->party);
 
-    if (param0->unk_28 < partyCount) {
-        int v2 = partyCount - param0->unk_28;
+    if (partyGraphics->animSlot < partyCount) {
+        int shiftCount = partyCount - partyGraphics->animSlot;
 
-        for (int v1 = param0->unk_28; v1 < MAX_PARTY_SIZE - 1; v1++) {
-            ov19_021DA418(&(param0->unk_3C[v1 + 1]), &(param0->unk_3C[v1]), 1);
-            ov19_021DA3CC(param0->unk_38, &(param0->unk_3C[v1 + 1]), 1);
+        for (int slot = partyGraphics->animSlot; slot < MAX_PARTY_SIZE - 1; slot++) {
+            MonIcon_Copy(&partyGraphics->monIcons[slot + 1], &partyGraphics->monIcons[slot], 1);
+            MonIconHelper_InitIcons(partyGraphics->monIconHelper, &partyGraphics->monIcons[slot + 1], 1);
 
-            if (param0->unk_3C[v1].unk_00 != NULL) {
-                ov19_021DA754(param0->unk_38, &(param0->unk_3C[v1]), 1048 + 32 * v1);
+            if (partyGraphics->monIcons[slot].sprite != NULL) {
+                MonIconHelper_MoveIconTiles(partyGraphics->monIconHelper, &partyGraphics->monIcons[slot], PARTY_ICON_TILE_BASE + PARTY_ICON_TILE_COUNT * slot);
             }
         }
 
-        param0->unk_29 = v2;
-        param0->unk_2A = 0;
-        param0->unk_2C = (ov19_021D77C8(ov19_021DC8E8, param0, 0) != NULL);
+        partyGraphics->shiftCount = shiftCount;
+        partyGraphics->animFrame = 0;
+        partyGraphics->isAnimating = (BoxGraphics_StartVBlankTask(BoxPartyGraphics_ShiftIconsTask, partyGraphics, 0) != NULL);
     } else {
-        param0->unk_2C = 0;
+        partyGraphics->isAnimating = FALSE;
     }
 }
 
-static void ov19_021DC8E8(SysTask *param0, void *param1)
+static void BoxPartyGraphics_ShiftIconsTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC680 *v0;
-    VecFx32 *v1;
-    int v2, v3, v4;
+    BoxPartyGraphics *partyGraphics;
+    VecFx32 *pos;
+    int slot, i, shiftCount;
 
-    v0 = (UnkStruct_ov19_021DC680 *)param1;
-    v2 = v0->unk_28;
-    v4 = v0->unk_29;
-    v1 = ((VecFx32 *)(v0->unk_1C)) + ((v2 * 8) + v0->unk_2A);
+    partyGraphics = (BoxPartyGraphics *)param;
+    slot = partyGraphics->animSlot;
+    shiftCount = partyGraphics->shiftCount;
+    pos = partyGraphics->shiftPositions + (slot * PARTY_ICON_ANIM_FRAMES + partyGraphics->animFrame);
 
-    for (v3 = 0; v3 < v4; v3++) {
-        if (v0->unk_3C[v2].unk_00 != NULL) {
-            Sprite_SetPosition(v0->unk_3C[v2].unk_00, v1);
+    for (i = 0; i < shiftCount; i++) {
+        if (partyGraphics->monIcons[slot].sprite != NULL) {
+            Sprite_SetPosition(partyGraphics->monIcons[slot].sprite, pos);
         }
 
-        v2++;
-        v1 += 8;
+        slot++;
+        pos += PARTY_ICON_ANIM_FRAMES;
     }
 
-    if (++(v0->unk_2A) >= 8) {
-        v0->unk_2C = 0;
-        SysTask_Done(param0);
+    if (++(partyGraphics->animFrame) >= PARTY_ICON_ANIM_FRAMES) {
+        partyGraphics->isAnimating = FALSE;
+        SysTask_Done(task);
     }
 }
 
-BOOL ov19_021DC95C(UnkStruct_ov19_021DC680 *param0)
+BOOL BoxPartyGraphics_HasFinishedAnimating2(BoxPartyGraphics *partyGraphics)
 {
-    return param0->unk_2C == 0;
+    return partyGraphics->isAnimating == FALSE;
 }
 
-void ov19_021DC96C(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_GlideIconToLastSlot(BoxPartyGraphics *partyGraphics)
 {
-    u32 v0 = Party_GetCurrentCount(param0->unk_0C->party) - 1;
+    u32 lastSlot = Party_GetCurrentCount(partyGraphics->boxApp->party) - 1;
 
-    if (param0->unk_28 > v0) {
-        VecFx32 v1;
+    if (partyGraphics->animSlot > lastSlot) {
+        VecFx32 pos;
 
-        v1 = *Sprite_GetPosition(param0->unk_3C[v0].unk_00);
-        param0->unk_20 = (((Unk_ov19_021E0234[v0].unk_00 + param0->unk_34) << FX32_SHIFT) - v1.x) / 8;
-        param0->unk_24 = ((Unk_ov19_021E0234[v0].unk_02 << FX32_SHIFT) - v1.y) / 8;
-        param0->unk_2A = 0;
-        param0->unk_28 = v0;
-        param0->unk_2C = (ov19_021D77C8(ov19_021DCA18, param0, 0) != NULL);
+        pos = *Sprite_GetPosition(partyGraphics->monIcons[lastSlot].sprite);
+        partyGraphics->moveStepX = (((sPartyIconPositions[lastSlot].x + partyGraphics->xOffset) << FX32_SHIFT) - pos.x) / PARTY_ICON_ANIM_FRAMES;
+        partyGraphics->moveStepY = ((sPartyIconPositions[lastSlot].y << FX32_SHIFT) - pos.y) / PARTY_ICON_ANIM_FRAMES;
+        partyGraphics->animFrame = 0;
+        partyGraphics->animSlot = lastSlot;
+        partyGraphics->isAnimating = (BoxGraphics_StartVBlankTask(BoxPartyGraphics_GlideIconTask, partyGraphics, 0) != NULL);
     } else {
-        param0->unk_2C = 0;
+        partyGraphics->isAnimating = FALSE;
     }
 }
 
-BOOL ov19_021DCA08(UnkStruct_ov19_021DC680 *param0)
+BOOL BoxPartyGraphics_HasFinishedAnimating3(BoxPartyGraphics *partyGraphics)
 {
-    return param0->unk_2C == 0;
+    return partyGraphics->isAnimating == FALSE;
 }
 
-static void ov19_021DCA18(SysTask *param0, void *param1)
+static void BoxPartyGraphics_GlideIconTask(SysTask *task, void *param)
 {
-    UnkStruct_ov19_021DC680 *v0;
-    VecFx32 v1;
-    BOOL v2;
+    BoxPartyGraphics *partyGraphics;
+    VecFx32 pos;
+    BOOL isDone;
 
-    v0 = (UnkStruct_ov19_021DC680 *)param1;
-    v1 = *Sprite_GetPosition(v0->unk_3C[v0->unk_28].unk_00);
+    partyGraphics = (BoxPartyGraphics *)param;
+    pos = *Sprite_GetPosition(partyGraphics->monIcons[partyGraphics->animSlot].sprite);
 
-    if (++(v0->unk_2A) >= 8) {
-        v1.x = (Unk_ov19_021E0234[v0->unk_28].unk_00 + v0->unk_34) << FX32_SHIFT;
-        v1.y = Unk_ov19_021E0234[v0->unk_28].unk_02 << FX32_SHIFT;
-        v2 = 1;
+    if (++(partyGraphics->animFrame) >= PARTY_ICON_ANIM_FRAMES) {
+        pos.x = (sPartyIconPositions[partyGraphics->animSlot].x + partyGraphics->xOffset) << FX32_SHIFT;
+        pos.y = sPartyIconPositions[partyGraphics->animSlot].y << FX32_SHIFT;
+        isDone = TRUE;
     } else {
-        v1.x += v0->unk_20;
-        v1.y += v0->unk_24;
-        v2 = 0;
+        pos.x += partyGraphics->moveStepX;
+        pos.y += partyGraphics->moveStepY;
+        isDone = FALSE;
     }
 
-    Sprite_SetPosition(v0->unk_3C[v0->unk_28].unk_00, &v1);
+    Sprite_SetPosition(partyGraphics->monIcons[partyGraphics->animSlot].sprite, &pos);
 
-    if (v2) {
-        v0->unk_2C = 0;
-        SysTask_Done(param0);
+    if (isDone) {
+        partyGraphics->isAnimating = FALSE;
+        SysTask_Done(task);
     }
 }
 
-void ov19_021DCAC0(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_StoreMon(BoxPartyGraphics *partyGraphics)
 {
-    u32 v0;
+    u32 partySlot;
 
-    if (param0->unk_0C->selectedBoxID == BoxApp_GetCurrentBox(param0->unk_0C)) {
-        ov19_021D84E0(param0->unk_10);
+    if (partyGraphics->boxApp->depositBoxID == BoxApp_GetCurrentBox(partyGraphics->boxApp)) {
+        BoxView_CreateMissingIcons(partyGraphics->boxView);
     }
 
-    v0 = BoxApp_GetCursorPartyPosition(param0->unk_0C);
-    ov19_021DA3F0(param0->unk_38, &param0->unk_3C[v0], 1);
-    param0->unk_28 = v0;
+    partySlot = BoxApp_GetCursorPartyPosition(partyGraphics->boxApp);
+    MonIconHelper_DeleteIcons(partyGraphics->monIconHelper, &partyGraphics->monIcons[partySlot], 1);
+    partyGraphics->animSlot = partySlot;
 }
 
-void ov19_021DCAFC(UnkStruct_ov19_021DC680 *param0, u32 param1)
+void BoxPartyGraphics_StartReleaseMonAnimation(BoxPartyGraphics *partyGraphics, u32 partySlot)
 {
-    param0->unk_174 = 0;
-    param0->unk_28 = param1;
-    ov19_021DA7B8(param0->unk_38, &(param0->unk_3C[param1]), 1);
+    partyGraphics->releaseAnimStep = RELEASE_ANIM_STEP_RELEASING;
+    partyGraphics->animSlot = partySlot;
+    MonIconHelper_SetIconAnim(partyGraphics->monIconHelper, &partyGraphics->monIcons[partySlot], MON_ICON_ANIM_RELEASE);
 }
 
-BOOL ov19_021DCB20(UnkStruct_ov19_021DC680 *param0)
+BOOL BoxPartyGraphics_IsReleaseMonAnimationDone(BoxPartyGraphics *partyGraphics)
 {
-    UnkStruct_ov19_021DCD18 *v0 = &(param0->unk_3C[param0->unk_28]);
+    MonIcon *monIcon = &partyGraphics->monIcons[partyGraphics->animSlot];
 
-    switch (param0->unk_174) {
-    case 0:
-        if (ov19_021DA7E0(param0->unk_38, v0)) {
-            const BoxApplicationManager *v1 = ov19_021D7964(param0->unk_00);
+    switch (partyGraphics->releaseAnimStep) {
+    case RELEASE_ANIM_STEP_RELEASING:
+        if (MonIconHelper_IsIconAnimDone(partyGraphics->monIconHelper, monIcon)) {
+            const BoxApplicationManager *boxAppMan = BoxGraphics_GetBoxAppMan(partyGraphics->boxGraphics);
 
-            if (BoxAppMan_HasCheckedCanReleaseMon(v1)) {
-                if (BoxAppMan_CanReleaseMon(v1)) {
-                    ov19_021DA3F0(param0->unk_38, v0, 1);
-                    return 1;
+            if (BoxAppMan_HasCheckedCanReleaseMon(boxAppMan)) {
+                if (BoxAppMan_CanReleaseMon(boxAppMan)) {
+                    MonIconHelper_DeleteIcons(partyGraphics->monIconHelper, monIcon, 1);
+                    return TRUE;
                 } else {
-                    ov19_021DA7B8(param0->unk_38, v0, 2);
-                    param0->unk_174++;
+                    MonIconHelper_SetIconAnim(partyGraphics->monIconHelper, monIcon, MON_ICON_ANIM_RELEASE_REJECTED);
+                    partyGraphics->releaseAnimStep++;
                 }
             }
         }
         break;
-    case 1:
-        if (ov19_021DA7E0(param0->unk_38, v0)) {
-            return 1;
+    case RELEASE_ANIM_STEP_REJECTED:
+        if (MonIconHelper_IsIconAnimDone(partyGraphics->monIconHelper, monIcon)) {
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov19_021DCBA0(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_UpdateMarkingsTransparency(BoxPartyGraphics *partyGraphics)
 {
-    if (BoxApp_GetCursorLocation(param0->unk_0C) == CURSOR_IN_PARTY) {
-        u32 v0;
-        int v1;
+    if (BoxApp_GetCursorLocation(partyGraphics->boxApp) == CURSOR_IN_PARTY) {
+        u32 mask;
 
-        v0 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_0C);
+        mask = BoxApp_GetMonSpriteTransparencyMask(partyGraphics->boxApp);
 
-        for (v1 = 0; v1 < 6; v1++) {
-            if (param0->unk_3C[v1].unk_00 != NULL) {
-                ov19_021DA63C(param0->unk_38, &(param0->unk_3C[v1]), v0);
+        for (int i = 0; i < MAX_PARTY_SIZE; i++) {
+            if (partyGraphics->monIcons[i].sprite != NULL) {
+                MonIconHelper_UpdateTransparency(partyGraphics->monIconHelper, &partyGraphics->monIcons[i], mask);
             }
         }
     }
 }
 
-void ov19_021DCBDC(UnkStruct_ov19_021DC680 *param0, u32 param1, u32 param2)
+void BoxPartyGraphics_UpdateHeldItemIcon(BoxPartyGraphics *partyGraphics, u32 partySlot, u32 item)
 {
-    if (param0->unk_3C[param1].unk_00 != NULL) {
-        ov19_021DA690(param0->unk_38, &param0->unk_3C[param1], param2);
-        ov19_021DA63C(param0->unk_38, &param0->unk_3C[param1], BoxApp_GetMonSpriteTransparencyMask(param0->unk_0C));
-        ov19_021DA694(param0->unk_38, &param0->unk_3C[param1], 0);
+    if (partyGraphics->monIcons[partySlot].sprite != NULL) {
+        MonIconHelper_SetHeldItem(partyGraphics->monIconHelper, &partyGraphics->monIcons[partySlot], item);
+        MonIconHelper_UpdateTransparency(partyGraphics->monIconHelper, &partyGraphics->monIcons[partySlot], BoxApp_GetMonSpriteTransparencyMask(partyGraphics->boxApp));
+        MonIconHelper_UpdateIconForm(partyGraphics->monIconHelper, &partyGraphics->monIcons[partySlot], FALSE);
     }
 }
 
-void ov19_021DCC14(UnkStruct_ov19_021DC680 *param0)
+void BoxPartyGraphics_UpdateMarkingsIcon(BoxPartyGraphics *partyGraphics)
 {
-    u32 v0 = BoxApp_GetCursorPartyPosition(param0->unk_0C);
-    u32 v1 = BoxApp_GetPreviewedMonMarkings(param0->unk_0C);
+    u32 partySlot = BoxApp_GetCursorPartyPosition(partyGraphics->boxApp);
+    u32 markings = BoxApp_GetPreviewedMonMarkings(partyGraphics->boxApp);
 
-    if (param0->unk_3C[v0].unk_00 != NULL) {
-        ov19_021DA68C(param0->unk_38, &(param0->unk_3C[v0]), v1);
+    if (partyGraphics->monIcons[partySlot].sprite != NULL) {
+        MonIconHelper_SetMarkings(partyGraphics->monIconHelper, &partyGraphics->monIcons[partySlot], markings);
     }
 }
 
-void ov19_021DCC44(UnkStruct_ov19_021DC680 *param0, u32 param1, u32 param2, UnkStruct_ov19_021DCD18 *param3)
+void BoxPartyGraphics_PickUpIcon(BoxPartyGraphics *partyGraphics, u32 partySlot, u32 tileOffset, MonIcon *monIcon)
 {
-    ov19_021DA418(&param0->unk_3C[param1], param3, 1);
-    ov19_021DA754(param0->unk_38, param3, param2);
-    ov19_021DA3CC(param0->unk_38, &param0->unk_3C[param1], 1);
+    MonIcon_Copy(&partyGraphics->monIcons[partySlot], monIcon, 1);
+    MonIconHelper_MoveIconTiles(partyGraphics->monIconHelper, monIcon, tileOffset);
+    MonIconHelper_InitIcons(partyGraphics->monIconHelper, &partyGraphics->monIcons[partySlot], 1);
 
-    param0->unk_28 = param1;
+    partyGraphics->animSlot = partySlot;
 }
 
-void ov19_021DCC80(UnkStruct_ov19_021DC680 *param0, u32 param1, const UnkStruct_ov19_021DCD18 *param2)
+void BoxPartyGraphics_PlaceDownIcon(BoxPartyGraphics *partyGraphics, u32 partySlot, const MonIcon *monIcon)
 {
-    u32 v0;
-    u32 v1;
-    UnkStruct_ov19_021DCD18 *v2;
+    u32 slot;
+    u32 tileOffset;
+    MonIcon *slotIcon;
 
-    v0 = Party_GetCurrentCount(param0->unk_0C->party) - 1;
-    v1 = 1048 + 32 * v0;
-    v2 = &param0->unk_3C[v0];
+    slot = Party_GetCurrentCount(partyGraphics->boxApp->party) - 1;
+    tileOffset = PARTY_ICON_TILE_BASE + PARTY_ICON_TILE_COUNT * slot;
+    slotIcon = &partyGraphics->monIcons[slot];
 
-    ov19_021DA418(param2, v2, 1);
-    ov19_021DA754(param0->unk_38, v2, v1);
-    Sprite_SetExplicitPriority(v2->unk_00, 1);
-    BoxGraphics_SetSpritePriority(v2->unk_00, 4 + v0);
+    MonIcon_Copy(monIcon, slotIcon, 1);
+    MonIconHelper_MoveIconTiles(partyGraphics->monIconHelper, slotIcon, tileOffset);
+    Sprite_SetExplicitPriority(slotIcon->sprite, 1);
+    BoxGraphics_SetSpritePriority(slotIcon->sprite, PARTY_ICON_SPRITE_PRIORITY_BASE + slot);
 
-    param0->unk_28 = param1;
+    partyGraphics->animSlot = partySlot;
 }
 
-void ov19_021DCCD4(UnkStruct_ov19_021DC680 *param0, u32 param1, const UnkStruct_ov19_021DCD18 *param2)
+void BoxPartyGraphics_PlaceDownIconAtSlot(BoxPartyGraphics *partyGraphics, u32 partySlot, const MonIcon *monIcon)
 {
-    u32 v0;
-    u32 v1;
-    UnkStruct_ov19_021DCD18 *v2;
+    u32 slot;
+    u32 tileOffset;
+    MonIcon *slotIcon;
 
-    v0 = param1;
-    v1 = 1048 + 32 * v0;
-    v2 = &param0->unk_3C[v0];
+    slot = partySlot;
+    tileOffset = PARTY_ICON_TILE_BASE + PARTY_ICON_TILE_COUNT * slot;
+    slotIcon = &partyGraphics->monIcons[slot];
 
-    ov19_021DA418(param2, v2, 1);
-    ov19_021DA754(param0->unk_38, v2, v1);
-    Sprite_SetExplicitPriority(v2->unk_00, 1);
-    BoxGraphics_SetSpritePriority(v2->unk_00, 4 + v0);
+    MonIcon_Copy(monIcon, slotIcon, 1);
+    MonIconHelper_MoveIconTiles(partyGraphics->monIconHelper, slotIcon, tileOffset);
+    Sprite_SetExplicitPriority(slotIcon->sprite, 1);
+    BoxGraphics_SetSpritePriority(slotIcon->sprite, PARTY_ICON_SPRITE_PRIORITY_BASE + slot);
 
-    param0->unk_28 = param1;
+    partyGraphics->animSlot = partySlot;
 }
 
-UnkStruct_ov19_021DCD18 *ov19_021DCD18(UnkStruct_ov19_021DC680 *param0, u32 param1)
+MonIcon *BoxPartyGraphics_GetIcon(BoxPartyGraphics *partyGraphics, u32 partySlot)
 {
-    GF_ASSERT(param1 < 6);
-    return &param0->unk_3C[param1];
+    GF_ASSERT(partySlot < MAX_PARTY_SIZE);
+    return &partyGraphics->monIcons[partySlot];
 }
 
-void ov19_021DCD30(UnkStruct_ov19_021DC680 *param0, u32 param1, s32 *param2, s32 *param3)
+void BoxPartyGraphics_GetCursorSlotPosition(BoxPartyGraphics *partyGraphics, u32 partyPosition, s32 *x, s32 *y)
 {
-    if (param1 == 6) {
-        *param2 = 192 + param0->unk_34;
-        *param3 = 184;
+    if (partyPosition == MAX_PARTY_SIZE) {
+        *x = PARTY_CLOSE_BUTTON_X + partyGraphics->xOffset;
+        *y = PARTY_CLOSE_BUTTON_Y;
     } else {
-        *param2 = Unk_ov19_021E0234[param1].unk_00 + param0->unk_34;
-        *param3 = Unk_ov19_021E0234[param1].unk_02;
+        *x = sPartyIconPositions[partyPosition].x + partyGraphics->xOffset;
+        *y = sPartyIconPositions[partyPosition].y;
     }
 }
 
-static void ov19_021DCD64(UnkStruct_ov19_021DC680 *param0, u32 param1)
+static void BoxPartyGraphics_DrawPanel(BoxPartyGraphics *partyGraphics, u32 hiddenRows)
 {
-    u32 v0, v1, v2;
+    u32 srcOffset, rowCount, topRow;
 
-    if (param1 <= 2) {
-        v0 = ((2 - param1) * 15) * 2;
-        v1 = 24;
-        v2 = 0;
+    if (hiddenRows <= PARTY_PANEL_OVERFLOW_ROWS) {
+        srcOffset = (PARTY_PANEL_OVERFLOW_ROWS - hiddenRows) * PARTY_PANEL_WIDTH * sizeof(u16);
+        rowCount = SCREEN_HEIGHT_TILES;
+        topRow = 0;
     } else {
-        if (param1 >= 26) {
+        if (hiddenRows >= PARTY_PANEL_HEIGHT) {
             return;
         }
 
-        v0 = 0;
-        v1 = 26 - param1;
-        v2 = 24 - v1;
+        srcOffset = 0;
+        rowCount = PARTY_PANEL_HEIGHT - hiddenRows;
+        topRow = SCREEN_HEIGHT_TILES - rowCount;
     }
 
-    Bg_LoadToTilemapRect(param0->unk_04, 2, ((u8 *)param0->unk_18->rawData) + v0, param0->unk_30, v2, 15, v1);
+    Bg_LoadToTilemapRect(partyGraphics->bgConfig, BG_LAYER_MAIN_2, ((u8 *)partyGraphics->panelScreenData->rawData) + srcOffset, partyGraphics->tilemapLeft, topRow, PARTY_PANEL_WIDTH, rowCount);
 }
 
-static void ov19_021DCDB4(UnkStruct_ov19_021DC680 *param0, VecFx32 *param1)
+static void BoxPartyGraphics_InitShiftPositions(BoxPartyGraphics *partyGraphics, VecFx32 *positions)
 {
-    fx32 v0, v1;
-    u32 v2, v3, v4;
+    fx32 stepX, stepY;
+    u32 slot, frame;
 
-    v4 = 0;
+    for (slot = 0; slot < (MAX_PARTY_SIZE - 1); slot++) {
+        stepX = (sPartyIconPositions[slot].x - sPartyIconPositions[slot + 1].x) * FX32_ONE / PARTY_ICON_ANIM_FRAMES;
+        stepY = (sPartyIconPositions[slot].y - sPartyIconPositions[slot + 1].y) * FX32_ONE / PARTY_ICON_ANIM_FRAMES;
 
-    for (v2 = 0; v2 < (6 - 1); v2++) {
-        v0 = ((Unk_ov19_021E0234[v2].unk_00 - Unk_ov19_021E0234[v2 + 1].unk_00) * FX32_ONE) / 8;
-        v1 = ((Unk_ov19_021E0234[v2].unk_02 - Unk_ov19_021E0234[v2 + 1].unk_02) * FX32_ONE) / 8;
-
-        for (v3 = 0; v3 < (8 - 1); v3++) {
-            param1[v3].x = ((Unk_ov19_021E0234[v2 + 1].unk_00 + param0->unk_34) * FX32_ONE) + (v0 * (v3 + 1));
-            param1[v3].y = (Unk_ov19_021E0234[v2 + 1].unk_02 * FX32_ONE) + (v1 * (v3 + 1));
-            param1[v3].z = 0;
+        for (frame = 0; frame < PARTY_ICON_ANIM_FRAMES - 1; frame++) {
+            positions[frame].x = (sPartyIconPositions[slot + 1].x + partyGraphics->xOffset) * FX32_ONE + stepX * (frame + 1);
+            positions[frame].y = sPartyIconPositions[slot + 1].y * FX32_ONE + stepY * (frame + 1);
+            positions[frame].z = 0;
         }
 
-        param1[v3].x = ((Unk_ov19_021E0234[v2].unk_00 + param0->unk_34) * FX32_ONE);
-        param1[v3].y = (Unk_ov19_021E0234[v2].unk_02 * FX32_ONE);
-        param1[v3].z = 0;
-        param1 += 8;
+        positions[frame].x = (sPartyIconPositions[slot].x + partyGraphics->xOffset) * FX32_ONE;
+        positions[frame].y = sPartyIconPositions[slot].y * FX32_ONE;
+        positions[frame].z = 0;
+        positions += PARTY_ICON_ANIM_FRAMES;
     }
 }
 
-static void ov19_021DCE50(UnkStruct_ov19_021DC680 *param0, fx32 param1)
+static void BoxPartyGraphics_MoveIconsY(BoxPartyGraphics *partyGraphics, fx32 dy)
 {
-    VecFx32 v0;
-    int v1;
+    VecFx32 pos;
 
-    for (v1 = 0; v1 < 6; v1++) {
-        if (param0->unk_3C[v1].unk_00 != NULL) {
-            v0 = *Sprite_GetPosition(param0->unk_3C[v1].unk_00);
-            v0.y += param1;
-            Sprite_SetPosition(param0->unk_3C[v1].unk_00, &v0);
+    for (int slot = 0; slot < MAX_PARTY_SIZE; slot++) {
+        if (partyGraphics->monIcons[slot].sprite != NULL) {
+            pos = *Sprite_GetPosition(partyGraphics->monIcons[slot].sprite);
+            pos.y += dy;
+            Sprite_SetPosition(partyGraphics->monIcons[slot].sprite, &pos);
 
-            if (param1 < 0) {
-                if (v0.y < 851968) {
-                    Sprite_SetDrawFlag(param0->unk_3C[v1].unk_00, TRUE);
+            if (dy < 0) {
+                if (pos.y < PARTY_ICON_HIDE_Y << FX32_SHIFT) {
+                    Sprite_SetDrawFlag(partyGraphics->monIcons[slot].sprite, TRUE);
                 }
             } else {
-                if (v0.y >= 851968) {
-                    Sprite_SetDrawFlag(param0->unk_3C[v1].unk_00, FALSE);
+                if (pos.y >= PARTY_ICON_HIDE_Y << FX32_SHIFT) {
+                    Sprite_SetDrawFlag(partyGraphics->monIcons[slot].sprite, FALSE);
                 }
             }
         } else {
@@ -505,30 +501,30 @@ static void ov19_021DCE50(UnkStruct_ov19_021DC680 *param0, fx32 param1)
     }
 }
 
-static void ov19_021DCEB8(UnkStruct_ov19_021DC680 *param0, BOOL param1)
+static void BoxPartyGraphics_CreateIcons(BoxPartyGraphics *partyGraphics, BOOL visible)
 {
-    Pokemon *v0;
-    int v1, v2, v3;
+    Pokemon *mon;
+    int slot, count, yOffset;
 
-    v3 = (param1) ? 0 : 208;
-    v2 = Party_GetCurrentCount(param0->unk_0C->party);
+    yOffset = (visible) ? 0 : PARTY_ICON_HIDE_Y;
+    count = Party_GetCurrentCount(partyGraphics->boxApp->party);
 
-    for (v1 = 0; v1 < v2; v1++) {
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_0C->party, v1);
-        ov19_021DA428(param0->unk_38, (BoxPokemon *)v0, Unk_ov19_021E0234[v1].unk_00 + param0->unk_34, Unk_ov19_021E0234[v1].unk_02 + v3, 1, 4 + v1, 1048 + 32 * v1, &param0->unk_3C[v1]);
-        Sprite_SetDrawFlag(param0->unk_3C[v1].unk_00, param1);
+    for (slot = 0; slot < count; slot++) {
+        mon = Party_GetPokemonBySlotIndex(partyGraphics->boxApp->party, slot);
+        MonIconHelper_CreateIcon(partyGraphics->monIconHelper, (BoxPokemon *)mon, sPartyIconPositions[slot].x + partyGraphics->xOffset, sPartyIconPositions[slot].y + yOffset, 1, PARTY_ICON_SPRITE_PRIORITY_BASE + slot, PARTY_ICON_TILE_BASE + PARTY_ICON_TILE_COUNT * slot, &partyGraphics->monIcons[slot]);
+        Sprite_SetDrawFlag(partyGraphics->monIcons[slot].sprite, visible);
     }
 }
 
-static void ov19_021DCF50(UnkStruct_ov19_021DC680 *param0)
+static void BoxPartyGraphics_DeleteIcons(BoxPartyGraphics *partyGraphics)
 {
-    int v0, v1;
+    int slot, count;
 
-    v1 = Party_GetCurrentCount(param0->unk_0C->party);
+    count = Party_GetCurrentCount(partyGraphics->boxApp->party);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if (param0->unk_3C[v0].unk_00) {
-            ov19_021DA3F0(param0->unk_38, &(param0->unk_3C[v0]), 1);
+    for (slot = 0; slot < count; slot++) {
+        if (partyGraphics->monIcons[slot].sprite != NULL) {
+            MonIconHelper_DeleteIcons(partyGraphics->monIconHelper, &partyGraphics->monIcons[slot], 1);
         }
     }
 }

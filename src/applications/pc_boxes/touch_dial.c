@@ -1,113 +1,112 @@
 #include "applications/pc_boxes/touch_dial.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "touch_screen.h"
 
-static void TouchDial_RegisterAction(TouchDial *touchDial, int (*func)(TouchDial *, BOOL, BOOL));
-static int TouchDial_TrySetInitialTouchAction(TouchDial *touchDial, BOOL touchInBounds, BOOL param2);
-static int TouchDial_CheckForNewScrollAction(TouchDial *touchDial, BOOL touchInBounds, BOOL param2);
-static u16 TouchDial_GetTouchAngle(const TouchDial *touchDial, u32 x, u32 y);
-static int TouchDial_CalcScrollAmountFromAngle(const TouchDial *touchDial, u16 initialAngle, u16 currentAngle);
+static void BoxDial_RegisterAction(BoxDial *dial, int (*action)(BoxDial *, BOOL, BOOL));
+static int BoxDial_TrySetInitialTouchAction(BoxDial *dial, BOOL touchInBounds, BOOL isNewTouch);
+static int BoxDial_WaitForReleaseAction(BoxDial *dial, BOOL touchInBounds, BOOL isNewTouch);
+static u16 BoxDial_GetTouchAngle(const BoxDial *dial, u32 x, u32 y);
+static int BoxDial_CalcScrollAmountFromAngle(const BoxDial *dial, u16 initialAngle, u16 currentAngle);
 
-void TouchDial_Init(TouchDial *touchDial, int circleX, int circleY, int innerRadius, int outerRadius)
+void BoxDial_Init(BoxDial *dial, int circleX, int circleY, int innerRadius, int outerRadius)
 {
-    touchDial->action = TouchDial_TrySetInitialTouchAction;
-    touchDial->touchInBounds = FALSE;
-    touchDial->circleX = circleX;
-    touchDial->circleY = circleY;
-    touchDial->currentTouchX = circleX;
-    touchDial->currentTouchY = circleY;
-    touchDial->initialTouchX = circleX;
-    touchDial->initialTouchY = circleY;
-    touchDial->innerCircle.circle.code = TOUCHSCREEN_USE_CIRCLE;
-    touchDial->innerCircle.circle.x = circleX;
-    touchDial->innerCircle.circle.y = circleY;
-    touchDial->innerCircle.circle.r = innerRadius;
-    touchDial->outerCircle.circle.code = TOUCHSCREEN_USE_CIRCLE;
-    touchDial->outerCircle.circle.x = circleX;
-    touchDial->outerCircle.circle.y = circleY;
-    touchDial->outerCircle.circle.r = outerRadius;
+    dial->action = BoxDial_TrySetInitialTouchAction;
+    dial->touchInBounds = FALSE;
+    dial->circleX = circleX;
+    dial->circleY = circleY;
+    dial->currentTouchX = circleX;
+    dial->currentTouchY = circleY;
+    dial->initialTouchX = circleX;
+    dial->initialTouchY = circleY;
+    dial->innerCircle.circle.code = TOUCHSCREEN_USE_CIRCLE;
+    dial->innerCircle.circle.x = circleX;
+    dial->innerCircle.circle.y = circleY;
+    dial->innerCircle.circle.r = innerRadius;
+    dial->outerCircle.circle.code = TOUCHSCREEN_USE_CIRCLE;
+    dial->outerCircle.circle.x = circleX;
+    dial->outerCircle.circle.y = circleY;
+    dial->outerCircle.circle.r = outerRadius;
 
-    if (circleX < 128) {
-        touchDial->buttonDirection = 1;
+    if (circleX < HW_LCD_WIDTH / 2) {
+        dial->scrollSign = 1;
     } else {
-        touchDial->buttonDirection = -1;
+        dial->scrollSign = -1;
     }
 }
 
-int TouchDial_HandleAction(TouchDial *touchDial)
+int BoxDial_HandleAction(BoxDial *dial)
 {
-    BOOL touchInBounds, previousTouchInBounds;
+    BOOL touchInBounds, isNewTouch;
 
-    if (TouchScreen_LocationHeld(&touchDial->outerCircle) == TRUE && TouchScreen_LocationHeld(&touchDial->innerCircle) == FALSE) {
+    if (TouchScreen_LocationHeld(&dial->outerCircle) == TRUE && TouchScreen_LocationHeld(&dial->innerCircle) == FALSE) {
         u32 x, y;
 
         touchInBounds = TRUE;
-        previousTouchInBounds = !touchDial->touchInBounds;
+        isNewTouch = !dial->touchInBounds;
 
         if (TouchScreen_GetHoldState(&x, &y)) {
-            touchDial->currentTouchX = x;
-            touchDial->currentTouchY = y;
+            dial->currentTouchX = x;
+            dial->currentTouchY = y;
         }
     } else {
         touchInBounds = FALSE;
-        previousTouchInBounds = FALSE;
+        isNewTouch = FALSE;
     }
 
-    touchDial->touchInBounds = touchInBounds;
-    return touchDial->action(touchDial, touchInBounds, previousTouchInBounds);
+    dial->touchInBounds = touchInBounds;
+    return dial->action(dial, touchInBounds, isNewTouch);
 }
 
-static void TouchDial_RegisterAction(TouchDial *touchDial, int (*action)(TouchDial *, BOOL, BOOL))
+static void BoxDial_RegisterAction(BoxDial *dial, int (*action)(BoxDial *, BOOL, BOOL))
 {
-    touchDial->unused = 0;
-    touchDial->action = action;
+    dial->unread_00 = 0;
+    dial->action = action;
 }
 
-static int TouchDial_TrySetInitialTouchAction(TouchDial *touchDial, BOOL touchInBounds, BOOL previousTouchInBounds)
+static int BoxDial_TrySetInitialTouchAction(BoxDial *dial, BOOL touchInBounds, BOOL isNewTouch)
 {
-    if (touchInBounds && previousTouchInBounds) {
-        touchDial->initialTouchX = touchDial->currentTouchX;
-        touchDial->initialTouchY = touchDial->currentTouchY;
-        touchDial->initialTouchAngle = TouchDial_GetTouchAngle(touchDial, touchDial->initialTouchX, touchDial->initialTouchY);
-        TouchDial_RegisterAction(touchDial, TouchDial_CheckForNewScrollAction);
-        return TOUCH_DIAL_INITIAL_TOUCH;
+    if (touchInBounds && isNewTouch) {
+        dial->initialTouchX = dial->currentTouchX;
+        dial->initialTouchY = dial->currentTouchY;
+        dial->initialTouchAngle = BoxDial_GetTouchAngle(dial, dial->initialTouchX, dial->initialTouchY);
+        BoxDial_RegisterAction(dial, BoxDial_WaitForReleaseAction);
+        return BOX_DIAL_INITIAL_TOUCH;
     }
 
-    return TOUCH_DIAL_NO_TOUCH;
+    return BOX_DIAL_NO_TOUCH;
 }
 
-static int TouchDial_CheckForNewScrollAction(TouchDial *touchDial, BOOL touchInBounds, BOOL previousTouchInBounds)
+static int BoxDial_WaitForReleaseAction(BoxDial *dial, BOOL touchInBounds, BOOL isNewTouch)
 {
     if (touchInBounds == FALSE) {
-        TouchDial_RegisterAction(touchDial, TouchDial_TrySetInitialTouchAction);
-        return TOUCH_DIAL_END_SCROLL;
+        BoxDial_RegisterAction(dial, BoxDial_TrySetInitialTouchAction);
+        return BOX_DIAL_END_SCROLL;
     }
 
-    return TOUCH_DIAL_SCROLLING;
+    return BOX_DIAL_SCROLLING;
 }
 
-int TouchDial_CalcScrollAmount(const TouchDial *touchDial)
+int BoxDial_CalcScrollAmount(const BoxDial *dial)
 {
-    u16 currentAngle = TouchDial_GetTouchAngle(touchDial, touchDial->currentTouchX, touchDial->currentTouchY);
-    return TouchDial_CalcScrollAmountFromAngle(touchDial, touchDial->initialTouchAngle, currentAngle);
+    u16 currentAngle = BoxDial_GetTouchAngle(dial, dial->currentTouchX, dial->currentTouchY);
+    return BoxDial_CalcScrollAmountFromAngle(dial, dial->initialTouchAngle, currentAngle);
 }
 
-static u16 TouchDial_GetTouchAngle(const TouchDial *touchDial, u32 x, u32 y)
+static u16 BoxDial_GetTouchAngle(const BoxDial *dial, u32 x, u32 y)
 {
-    fx32 relativeX = (int)(x - touchDial->circleX) << FX32_SHIFT;
-    fx32 relativeY = (int)(y - touchDial->circleY) << FX32_SHIFT;
+    fx32 relativeX = (int)(x - dial->circleX) << FX32_SHIFT;
+    fx32 relativeY = (int)(y - dial->circleY) << FX32_SHIFT;
 
     return FX_Atan2Idx(relativeY, relativeX);
 }
 
-static int TouchDial_CalcScrollAmountFromAngle(const TouchDial *touchDial, u16 initialAngle, u16 currentAngle)
+static int BoxDial_CalcScrollAmountFromAngle(const BoxDial *dial, u16 initialAngle, u16 currentAngle)
 {
     static const u16 angleBreakpoints[] = {
-        FX_DEG_TO_IDX(FX32_CONST(4.219)),
-        FX_DEG_TO_IDX(FX32_CONST(33.75)),
+        FX_DEG_TO_IDX(FX32_CONST(4.219)), // minimum turn to scroll 1 step
+        FX_DEG_TO_IDX(FX32_CONST(33.75)), // minimum turn to scroll 2 steps
     };
     int angleChange, i;
 
@@ -127,5 +126,5 @@ static int TouchDial_CalcScrollAmountFromAngle(const TouchDial *touchDial, u16 i
         }
     }
 
-    return i * angleChangeDirection * touchDial->buttonDirection;
+    return i * angleChangeDirection * dial->scrollSign;
 }

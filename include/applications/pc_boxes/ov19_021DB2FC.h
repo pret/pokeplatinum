@@ -11,14 +11,35 @@
 #include "narc.h"
 #include "sprite.h"
 
-BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, const StringTemplate *param6, int param7, NARC *param8);
-void ov19_021DB370(UnkStruct_ov19_021DB6F0 *param0);
-void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0);
-void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 boxMessageID);
-void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu);
-void ov19_021DB6F0(UnkStruct_ov19_021DB6F0 *param0);
-void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0);
-void BoxGraphics_DrawMenuCursorBox(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu);
-void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu);
+#define MESSAGE_BOX_FRAME_TILE_BASE   521
+#define MESSAGE_BOX_FRAME_PLTT_SLOT   8
+#define MENU_FRAME_TILE_BASE          512
+#define MENU_FRAME_PLTT_SLOT          7
+#define MENU_ITEM_HEIGHT              16
+#define MENU_GRAPHICS_WINDOW_BG_COLOR 15
+
+#define MENU_ITEM_TILE_ROWS      (MENU_ITEM_HEIGHT / TILE_HEIGHT_PIXELS)
+#define MENU_WINDOW_TILEMAP_LEFT 19
+#define MENU_WINDOW_TILEMAP_TOP  3
+#define MENU_WINDOW_WIDTH        12
+#define MENU_WINDOW_HEIGHT       (MAX_MENU_ITEMS * MENU_ITEM_TILE_ROWS)
+#define MENU_WINDOW_PLTT_SLOT    4
+#define MENU_WINDOW_BASE_TILE    593
+
+enum MenuGraphicsWindow {
+    MENU_GRAPHICS_WINDOW_MESSAGE = 0,
+    MENU_GRAPHICS_WINDOW_MENU,
+    MENU_GRAPHICS_WINDOW_COUNT,
+};
+
+BOOL BoxMenuGraphics_Init(BoxMenuGraphics *menuGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *unused, MessageLoader *boxMessagesLoader, const StringTemplate *messageVariableBuffer, int optionsFrame, NARC *narc);
+void BoxMenuGraphics_Free(BoxMenuGraphics *menuGraphics);
+void BoxMenuGraphics_LoadGraphics(BoxMenuGraphics *menuGraphics);
+void BoxMenuGraphics_ShowMessage(BoxMenuGraphics *menuGraphics, u32 boxMessageID);
+void BoxMenuGraphics_ShowMenu(BoxMenuGraphics *menuGraphics, const BoxMenu *menu);
+void BoxMenuGraphics_CloseMessageBox(BoxMenuGraphics *menuGraphics);
+void BoxMenuGraphics_CloseMenu(BoxMenuGraphics *menuGraphics);
+void BoxMenuGraphics_DrawMenuCursor(BoxMenuGraphics *menuGraphics, const BoxMenu *menu);
+void BoxMenuGraphics_UpdateMarkings(BoxMenuGraphics *menuGraphics, const BoxMenu *menu);
 
 #endif // POKEPLATINUM_OV19_021DB2FC_H
