@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_FUNCPTR_OV19_021D79B8_H
-#define POKEPLATINUM_FUNCPTR_OV19_021D79B8_H
-
-typedef void (*BoxGraphicsDeferredFreeCallback)(void *);
-
-#endif // POKEPLATINUM_FUNCPTR_OV19_021D79B8_H
