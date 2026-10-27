@@ -524,12 +524,12 @@ static void BoxCompareGraphics_DrawLabels(BoxCompareGraphics *compareGraphics)
     case COMPARE_BATTLE_STATS:
         for (int i = 0; i < NELEMS(compareMessages); i++) {
             MessageLoader_GetString(compareGraphics->boxMessagesLoader, compareMessages[i], compareGraphics->boxDisplayText);
-            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 0 + 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 0 + 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         }
         break;
     case COMPARE_MOVES:
         MessageLoader_GetString(compareGraphics->boxMessagesLoader, BoxText_Move, compareGraphics->boxDisplayText);
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         break;
     }
 
@@ -563,17 +563,17 @@ static void BoxCompareGraphics_DrawBattleStats(BoxCompareGraphics *compareGraphi
             // stats points at the position of the level field in PCCompareMon and the fields after level (the six stats) can be cycled through, this relies on struct layout.
             const u16 *stats = &compareMon->level;
 
-            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->nature, GetCenteredTextX(window, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->nature, GetCenteredTextX(window, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
             for (int i = 0; i < 7; i++) {
                 String_FormatInt(compareGraphics->boxDisplayText, stats[i], 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), (1 + i) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), (1 + i) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         } else {
             MessageLoader_GetString(compareGraphics->boxMessagesLoader, BoxText_QuestionMarks, compareGraphics->boxDisplayText);
 
             for (int i = 0; i < 8; i++) {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), i * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), i * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         }
     }
@@ -602,14 +602,14 @@ static void BoxCompareGraphics_DrawMoves(BoxCompareGraphics *compareGraphics, in
             for (i = 0; i < LEARNED_MOVES_MAX; i++) {
                 if (compareMon->moves[i]) {
                     MessageLoader_GetString(compareGraphics->moveNamesLoader, compareMon->moves[i], compareGraphics->boxDisplayText);
-                    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+                    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
                 }
             }
         } else {
             MessageLoader_GetString(compareGraphics->boxMessagesLoader, BoxText_QuestionMarks, compareGraphics->boxDisplayText);
 
             for (i = 0; i < 4; i++) {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         }
     }
@@ -740,7 +740,7 @@ static void BoxCompareGraphics_DrawMonName(BoxCompareGraphics *compareGraphics, 
 
     if (BoxApp_IsMonUnderCursor(compareGraphics->boxApp)) {
         const PCCompareMon *compareMon = BoxApp_GetCompareMonFrom(compareGraphics->boxApp, compareMonSlot);
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->monName, GetCenteredTextX(window, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->monName, GetCenteredTextX(window, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
     Window_LoadTiles(window);
