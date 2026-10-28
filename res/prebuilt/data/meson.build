@@ -1,4 +1,3 @@
-subdir('mmodel')
 subdir('sound')
 
 prebuilt_files = [

@@ -12,7 +12,6 @@ metang_exe = find_program('metang', native: true)
 
 metang_generators = {
     'abilities': { 'type': 'enum', 'tag': 'Ability' },
-    'accessories': {'type': 'enum', 'tag': 'Accessory'},
     'ai_action_choices': { 'type': 'enum', 'tag': 'AIActionChoice' },
     'ai_flags': { 'type': 'mask', 'tag': 'AIFlag', 'extra': ['--no-auto'] },
     'ai_load_type_targets': { 'type': 'enum', 'tag': 'AILoadTypeTarget' },
@@ -55,7 +54,6 @@ metang_generators = {
     'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
-    'giratina_shadow_animations': {'type': 'enum', 'tag': 'GiratinaShadowAnimation'},
     'goods': { 'type': 'enum', 'tag': 'Good' },
     'hidden_locations': { 'type': 'enum', 'tag': 'HiddenLocation' },
     'item_ai_categories': { 'type': 'enum', 'tag': 'ItemAICategory' },

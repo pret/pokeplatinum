@@ -75,6 +75,7 @@
 #include "vars_flags.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
 #include "res/sound/pl_sound_data.naix"
 
 #define DISTORTION_WORLD_CAMERA_BASE_ANGLE_X            -10750
@@ -2193,7 +2194,7 @@ static void InitMapObjectRotatorManager(DistWorldSystem *system, int rotatorCoun
     memset(mapObjRotatorMan->rotators, 0, rotatorSize);
 
     HeapExp_FndInitAllocator(&mapObjRotatorMan->allocator, HEAP_ID_FIELD1, 4);
-    mapObjRotatorMan->animData = FieldEffectManager_AllocAndReadNARCWholeMember(system->fieldSystem->fieldEffMan, 197, TRUE);
+    mapObjRotatorMan->animData = FieldEffectManager_AllocAndReadNARCWholeMember(system->fieldSystem->fieldEffMan, player_rotation_nsbta, TRUE);
     mapObjRotatorMan->anim = NNS_G3dGetAnmByIdx(mapObjRotatorMan->animData, 0);
 }
 
@@ -9930,39 +9931,39 @@ static const fx32 sSkyCloudsRotAngleDeltas[SKY_KIND_COUNT][SKY_CLOUD_GROUP_COUNT
 };
 
 static const u32 sProp3DModelNARCIndexByKind[PROP_KIND_COUNT] = {
-    [PROP_KIND_SMALL_PLATFORM] = 0x7C,
-    [PROP_KIND_FLOATING_BLUE_ROCK] = 0x7D,
-    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_1] = 0x7E,
-    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_2] = 0x7F,
-    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_SW] = 0x80,
-    [PROP_KIND_MEDIUM_MOVING_PLATFORM_1] = 0x81,
-    [PROP_KIND_MEDIUM_MOVING_PLATFORM_2] = 0x82,
-    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_3] = 0x83,
-    [PROP_KIND_LARGE_ELEVATOR_PLATFORM_1] = 0x84,
-    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_4] = 0x85,
-    [PROP_KIND_HORIZONTAL_PLATFORM_1] = 0x86,
-    [PROP_KIND_VERTICAL_PLATFORM_1] = 0x87,
-    [PROP_KIND_VERTICAL_PLATFORM_2] = 0x88,
-    [PROP_KIND_HORIZONTAL_PLATFORM_2] = 0x89,
-    [PROP_KIND_ROTATED_PLATFORM_EAST] = 0x8A,
-    [PROP_KIND_ROTATED_PLATFORM_WEST] = 0x8B,
-    [PROP_KIND_LARGE_ELEVATOR_PLATFORM_2] = 0x8C,
-    [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = 0x8D,
-    [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = 0x8E,
-    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = 0x8F,
-    [PROP_KIND_GIRATINA_SHADOW] = 0x90,
-    [PROP_KIND_WATERFALL] = 0x91,
-    [PROP_KIND_LAND_VINE_FLOWER] = 0x92,
-    [PROP_KIND_LAND_ROCK] = 0x93,
-    [PROP_KIND_PORTAL] = 0x94
+    [PROP_KIND_SMALL_PLATFORM] = distortion_world_small_platform_nsbmd,
+    [PROP_KIND_FLOATING_BLUE_ROCK] = distortion_world_floating_blue_rock_nsbmd,
+    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_1] = distortion_world_medium_elevator_platform_1_nsbmd,
+    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_2] = distortion_world_medium_elevator_platform_2_nsbmd,
+    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_SW] = distortion_world_medium_elevator_platform_sw_nsbmd,
+    [PROP_KIND_MEDIUM_MOVING_PLATFORM_1] = distortion_world_medium_moving_platform_1_nsbmd,
+    [PROP_KIND_MEDIUM_MOVING_PLATFORM_2] = distortion_world_medium_moving_platform_2_nsbmd,
+    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_3] = distortion_world_medium_elevator_platform_3_nsbmd,
+    [PROP_KIND_LARGE_ELEVATOR_PLATFORM_1] = distortion_world_large_elevator_platform_1_nsbmd,
+    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_4] = distortion_world_medium_elevator_platform_4_nsbmd,
+    [PROP_KIND_HORIZONTAL_PLATFORM_1] = distortion_world_horizontal_platform_1_nsbmd,
+    [PROP_KIND_VERTICAL_PLATFORM_1] = distortion_world_vertical_platform_1_nsbmd,
+    [PROP_KIND_VERTICAL_PLATFORM_2] = distortion_world_vertical_platform_2_nsbmd,
+    [PROP_KIND_HORIZONTAL_PLATFORM_2] = distortion_world_horizontal_platform_2_nsbmd,
+    [PROP_KIND_ROTATED_PLATFORM_EAST] = distortion_world_rotated_platform_east_nsbmd,
+    [PROP_KIND_ROTATED_PLATFORM_WEST] = distortion_world_rotated_platform_west_nsbmd,
+    [PROP_KIND_LARGE_ELEVATOR_PLATFORM_2] = distortion_world_large_elevator_platform_2_nsbmd,
+    [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = distortion_world_large_elevator_platform_3_nsbmd,
+    [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = distortion_world_large_elevator_platform_4_nsbmd,
+    [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = distortion_world_medium_elevator_platform_5_nsbmd,
+    [PROP_KIND_GIRATINA_SHADOW] = distortion_world_giratina_shadow_nsbmd,
+    [PROP_KIND_WATERFALL] = distortion_world_waterfall_nsbmd,
+    [PROP_KIND_LAND_VINE_FLOWER] = distortion_world_land_vine_flower_nsbmd,
+    [PROP_KIND_LAND_ROCK] = distortion_world_land_rock_nsbmd,
+    [PROP_KIND_PORTAL] = distortion_world_portal_nsbmd
 };
 
 static const u32 sPropAnimSetNARCIndexByKind[PROP_ANIM_KIND_COUNT] = {
-    [PROP_ANIM_KIND_GIRATINA_SHADOW] = 0xC6,
-    [PROP_ANIM_KIND_LAND_VINE_FLOWER] = 0xBF,
-    [PROP_ANIM_KIND_LAND_ROCK] = 0xC0,
-    [PROP_ANIM_KIND_WATERFALL] = 0xC8,
-    [PROP_ANIM_KIND_PORTAL] = 0xC1
+    [PROP_ANIM_KIND_GIRATINA_SHADOW] = distortion_world_giratina_shadow_nsbta,
+    [PROP_ANIM_KIND_LAND_VINE_FLOWER] = distortion_world_land_vine_flower_nsbca,
+    [PROP_ANIM_KIND_LAND_ROCK] = distortion_world_land_rock_nsbca,
+    [PROP_ANIM_KIND_WATERFALL] = distortion_world_waterfall_nsbta,
+    [PROP_ANIM_KIND_PORTAL] = distortion_world_portal_nsbca
 };
 
 // clang-format off

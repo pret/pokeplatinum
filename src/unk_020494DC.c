@@ -17,6 +17,7 @@
 #include "overlay005/field_menu.h"
 
 #include "battle_frontier_stats.h"
+#include "battle_tower.h"
 #include "bg_window.h"
 #include "communication_system.h"
 #include "field_script_context.h"
@@ -28,7 +29,6 @@
 #include "trainer_info.h"
 #include "unk_020363E8.h"
 #include "unk_02049D08.h"
-#include "unk_0204AEE8.h"
 #include "unk_0206B9D8.h"
 #include "unk_0209BA80.h"
 #include "wifi_battle_tower_save.h"
@@ -254,15 +254,15 @@ BOOL ScrCmd_1E1(ScriptContext *ctx)
     switch (v3) {
     case 0:
         cmd = 62;
-        sub_0204B060(ctx->fieldSystem->battleTower, ctx->fieldSystem->saveData);
+        BattleTower_SendPlayerData(ctx->fieldSystem->battleTower, ctx->fieldSystem->saveData);
         break;
     case 1:
         cmd = 63;
-        sub_0204B0BC(ctx->fieldSystem->battleTower);
+        BattleTower_SendTrainers(ctx->fieldSystem->battleTower);
         break;
     case 2:
         cmd = 64;
-        sub_0204B0D4(ctx->fieldSystem->battleTower, v4);
+        BattleTower_SendShouldRetire(ctx->fieldSystem->battleTower, v4);
         break;
     }
 

@@ -10,21 +10,18 @@
 #include "overlay005/ov5_021ECC20.h"
 
 #include "berry_patch_manager.h"
+#include "berry_patches.h"
 #include "billboard.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
 
-// Berry patch moisture effect resource IDs
-#define BERRY_PATCH_MOISTURE_RESOURCE_COUNT 3
-#define BERRY_PATCH_MOISTURE_RESOURCE_DRY   77
-#define BERRY_PATCH_MOISTURE_RESOURCE_MOIST 76
-#define BERRY_PATCH_MOISTURE_RESOURCE_WET   75
+#include "res/graphics/field_effects/field_effects.naix"
 
 typedef struct BerryPatchGraphicsManager {
     FieldEffectManager *fieldEffMan;
-    Simple3DRenderObj resourceData[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
-    Simple3DModel resources[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
+    Simple3DRenderObj resourceData[SOIL_COUNT];
+    Simple3DModel resources[SOIL_COUNT];
 } BerryPatchGraphicsManager;
 
 typedef struct BerryPatchMoistureEffectContext {
@@ -72,7 +69,7 @@ static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counte
 
 static const OverworldAnimManagerFuncs sBerryPatchMoistureEffectDefinition;
 static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition;
-static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
+static const u32 sBerryPatchMoistureResourceIDs[SOIL_COUNT];
 static const BillboardAnim sBerryPatchSparkleEffectData[];
 
 void *BerryPatchGraphicsManager_New(FieldEffectManager *fieldEffMan)
@@ -101,7 +98,7 @@ static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *m
             manager->fieldEffMan, &manager->resources[i], 0, sBerryPatchMoistureResourceIDs[i], 0);
         Simple3D_CreateRenderObject(&manager->resourceData[i], &manager->resources[i]);
         i++;
-    } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
+    } while (i < SOIL_COUNT);
 }
 
 static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *manager)
@@ -111,7 +108,7 @@ static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *m
     do {
         Simple3D_FreeModel(&manager->resources[i]);
         i++;
-    } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
+    } while (i < SOIL_COUNT);
 }
 
 void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
@@ -226,9 +223,9 @@ static void BerryPatchEffectCounter_EnableEffects(BerryPatchEffectCounter *count
     if (!counter->isEnabled) {
         counter->isEnabled = TRUE;
         // Load sparkle effect graphics resources
-        ov5_021DF9E0(counter->fieldEffMan, 11, 109);
-        ov5_021DFA14(counter->fieldEffMan, 11, 181);
-        ov5_021DFA3C(counter->fieldEffMan, 12, 14, 1);
+        ov5_021DF9E0(counter->fieldEffMan, 11, berry_patch_sparkle_nsbmd);
+        ov5_021DFA14(counter->fieldEffMan, 11, berry_patch_sparkle_bin);
+        ov5_021DFA3C(counter->fieldEffMan, 12, berry_patch_sparkle_nsbtx, 1);
         ov5_021DF864(counter->fieldEffMan, 13, 11, 11, 12, 0, sBerryPatchSparkleEffectData);
     }
 }
@@ -345,15 +342,15 @@ static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition = {
     BerryPatchSparkleEffect_Render
 };
 
-static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_COUNT] = {
-    BERRY_PATCH_MOISTURE_RESOURCE_DRY,
-    BERRY_PATCH_MOISTURE_RESOURCE_MOIST,
-    BERRY_PATCH_MOISTURE_RESOURCE_WET
+static const u32 sBerryPatchMoistureResourceIDs[SOIL_COUNT] = {
+    [SOIL_VERY_DRY] = berry_patch_very_dry_nsbmd,
+    [SOIL_DRY] = berry_patch_dry_nsbmd,
+    [SOIL_MOIST] = berry_patch_moist_nsbmd,
 };
 
 // Sparkle effect configuration data for berry patches
 // Each entry defines: { model_variant, animation_frame_count, effect_type }
 static const BillboardAnim sBerryPatchSparkleEffectData[] = {
     { 0, 9, 1 }, // Animated sparkle effect (9 animation frames, type 1)
-    { 0, 0, 2 } // Static sparkle effect (no animation, type 2)
+    { 0, 0, 2 }, // Static sparkle effect (no animation, type 2)
 };

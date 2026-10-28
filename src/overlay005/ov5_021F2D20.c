@@ -13,6 +13,8 @@
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
 
+#include "res/graphics/field_effects/field_effects.naix"
+
 typedef struct UnkStruct_ov5_021F2D20_t {
     FieldEffectManager *unk_00;
 } UnkStruct_ov5_021F2D20;
@@ -100,18 +102,18 @@ void ov5_021F2D3C(void *param0)
 
 static void ov5_021F2D4C(UnkStruct_ov5_021F2D20 *param0)
 {
-    ov5_021DF9E0(param0->unk_00, 0, 83);
-    ov5_021DF9E0(param0->unk_00, 5, 84);
+    ov5_021DF9E0(param0->unk_00, 0, tall_grass_nsbmd);
+    ov5_021DF9E0(param0->unk_00, 5, tall_grass_2_nsbmd);
 
-    ov5_021DFA14(param0->unk_00, 0, 170);
-    ov5_021DFA14(param0->unk_00, 3, 171);
-    ov5_021DFA14(param0->unk_00, 4, 172);
-    ov5_021DFA14(param0->unk_00, 5, 173);
+    ov5_021DFA14(param0->unk_00, 0, tall_grass_trainer_see_rematch_icon_bin);
+    ov5_021DFA14(param0->unk_00, 3, tall_grass_2_bin);
+    ov5_021DFA14(param0->unk_00, 4, tall_grass_3_bin);
+    ov5_021DFA14(param0->unk_00, 5, tall_grass_4_bin);
 
-    ov5_021DFA3C(param0->unk_00, 0, 0, 1);
-    ov5_021DFA3C(param0->unk_00, 4, 1, 1);
-    ov5_021DFA3C(param0->unk_00, 5, 2, 1);
-    ov5_021DFA3C(param0->unk_00, 6, 3, 1);
+    ov5_021DFA3C(param0->unk_00, 0, tall_grass_nsbtx, 1);
+    ov5_021DFA3C(param0->unk_00, 4, tall_grass_2_nsbtx, 1);
+    ov5_021DFA3C(param0->unk_00, 5, tall_grass_3_nsbtx, 1);
+    ov5_021DFA3C(param0->unk_00, 6, tall_grass_4_nsbtx, 1);
 
     ov5_021DF864(param0->unk_00, 0, 0, 0, 0, 0, Unk_ov5_02200540);
     ov5_021DF864(param0->unk_00, 5, 5, 3, 4, 0, Unk_ov5_02200558);

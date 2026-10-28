@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/object_events_gfx.h"
+
 #include "struct_decls/map_object.h"
 
 #include "overlay005/field_effect_manager.h"
@@ -10,6 +12,8 @@
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
+
+#include "res/graphics/field_effects/field_effects.naix"
 
 typedef struct {
     u32 unk_00;
@@ -38,10 +42,12 @@ typedef struct {
     UnkStruct_021F121C unk_1C;
 } UnkStruct_021F1258;
 
-typedef struct {
-    u32 unk_00;
-    u32 unk_04;
-} UnkStruct_ov5_02200230;
+typedef struct ObjectEventGfxModelEntry {
+    u32 id;
+    u32 file;
+} ObjectEventGfxModelEntry;
+
+#define OBJ_EVENT_MODEL(gfx, model) { .id = OBJ_EVENT_GFX_##gfx, .file = model }
 
 static void ov5_021F1118(UnkStruct_021F1118 *param0, u32 param1, u32 param2, FieldEffectManager *param3);
 static void ov5_021F113C(UnkStruct_021F1118 *param0);
@@ -50,17 +56,19 @@ static UnkStruct_021F1118 *ov5_021F1174(UnkStruct_021F114C *param0, u32 param1);
 
 static const OverworldAnimManagerFuncs Unk_ov5_0220021C;
 
-static const UnkStruct_ov5_02200230 Unk_ov5_02200230[] = {
-    { 0x5B, 0x45 },
-    { 0x5C, 0x46 },
-    { 0x5D, 0x47 },
-    { 0x5E, 0x48 },
-    { 0x5f, 0x49 },
-    { 0x60, 0x4A },
-    { 0xB7, 0x4F },
-    { 0xD1, 0x6E },
-    { 0x106, 0x95 }
+// clang-format off
+static const ObjectEventGfxModelEntry sObjectEventGfxModelEntries[] = {
+    OBJ_EVENT_MODEL(MAP_SIGNPOST,              map_signpost_nsbmd),
+    OBJ_EVENT_MODEL(MAILBOX,                   mailbox_nsbmd),
+    OBJ_EVENT_MODEL(SIGNBOARD,                 signboard_nsbmd),
+    OBJ_EVENT_MODEL(ARROW_SIGNPOST,            arrow_signpost_nsbmd),
+    OBJ_EVENT_MODEL(GYM_SIGNPOST,              gym_signpost_nsbmd),
+    OBJ_EVENT_MODEL(TRAINER_TIPS_SIGNPOST,     trainer_tips_nsbmd),
+    OBJ_EVENT_MODEL(BOOK,                      book_nsbmd),
+    OBJ_EVENT_MODEL(ELITE_FOUR_ROOM_DOOR,      elite_four_room_door_nsbmd),
+    OBJ_EVENT_MODEL(WALL_BLOCKING_ROTOMS_ROOM, rotom_room_wall_nsbmd),
 };
+// clang-format on
 
 void *ov5_021F10E8(FieldEffectManager *param0)
 {
@@ -261,13 +269,13 @@ static const OverworldAnimManagerFuncs Unk_ov5_0220021C = {
 
 void FieldEffect_InitRenderObject(FieldEffectManager *param0)
 {
-    const UnkStruct_ov5_02200230 *v0 = Unk_ov5_02200230;
-    u32 v1 = NELEMS(Unk_ov5_02200230);
+    const ObjectEventGfxModelEntry *v0 = sObjectEventGfxModelEntries;
+    u32 v1 = NELEMS(sObjectEventGfxModelEntries);
 
     ov5_021F1188(param0, v1);
 
     do {
-        ov5_021F11C0(param0, v0->unk_00, v0->unk_04);
+        ov5_021F11C0(param0, v0->id, v0->file);
         v0++;
         v1--;
     } while (v1);
