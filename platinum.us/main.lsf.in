@@ -55,7 +55,7 @@ Static main
 	Object src/string_list.c
 	Object src/screen_scroll_manager.c
 	Object src/particle_system.c
-	Object src/colored_arrow.c
+	Object src/menu_cursor.c
 	Object src/easy_chat_sentence.c
 	Object src/easy_chat_words.c
 	Object src/password_word_bank.c
