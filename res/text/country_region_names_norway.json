@@ -1,0 +1,89 @@
+{
+  "key": 62904,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Norway_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Akershus",
+      "en_US": "Akershus"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Aust_Agder",
+      "en_US": "Aust-Agder"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Buskerud",
+      "en_US": "Buskerud"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Finnmark",
+      "en_US": "Finnmark"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Hedmark",
+      "en_US": "Hedmark"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Hordaland",
+      "en_US": "Hordaland"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Lofoten",
+      "en_US": "Lofoten"
+    },
+    {
+      "id": "Country_Region_Text_Norway_More_og_Romsdal",
+      "en_US": "More og Romsdal"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Nordland",
+      "en_US": "Nordland"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Nord_Trondelag",
+      "en_US": "Nord-Trondelag"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Oppland",
+      "en_US": "Oppland"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Oslo",
+      "en_US": "Oslo"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Rogaland",
+      "en_US": "Rogaland"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Sogn_og_Fjordane",
+      "en_US": "Sogn og Fjordane"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Sor_Trondelag",
+      "en_US": "Sor-Trondelag"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Svalbard",
+      "en_US": "Svalbard"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Telemark",
+      "en_US": "Telemark"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Troms",
+      "en_US": "Troms"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Vest_Agder",
+      "en_US": "Vest-Agder"
+    },
+    {
+      "id": "Country_Region_Text_Norway_Ostfold",
+      "en_US": "Ostfold"
+    }
+  ]
+}

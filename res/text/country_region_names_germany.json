@@ -1,0 +1,73 @@
+{
+  "key": 56820,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Germany_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Baden_Wurttemberg",
+      "en_US": "Baden-Wurttemberg"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Bayern",
+      "en_US": "Bayern"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Berlin",
+      "en_US": "Berlin"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Brandenburg",
+      "en_US": "Brandenburg"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Bremen",
+      "en_US": "Bremen"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Hamburg",
+      "en_US": "Hamburg"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Hessen",
+      "en_US": "Hessen"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Mecklenburg_Vorpommern",
+      "en_US": "Mecklenburg-Vorpommern"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Niedersachsen",
+      "en_US": "Niedersachsen"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Nordrhein_Westfalen",
+      "en_US": "Nordrhein-Westfalen"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Rheinland_Pfalz",
+      "en_US": "Rheinland-Pfalz"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Saarland",
+      "en_US": "Saarland"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Sachsen",
+      "en_US": "Sachsen"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Sachsen_Anhalt",
+      "en_US": "Sachsen-Anhalt"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Schleswig_Holstein",
+      "en_US": "Schleswig-Holstein"
+    },
+    {
+      "id": "Country_Region_Text_Germany_Freistaat_Thuringen",
+      "en_US": "Freistaat Thuringen"
+    }
+  ]
+}

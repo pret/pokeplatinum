@@ -1,0 +1,209 @@
+{
+  "key": 2537,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Japan_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Hokkaido_Sapporo",
+      "en_US": "Hokkaido (Sapporo)"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Hokkaido_Hakodate",
+      "en_US": "Hokkaido (Hakodate)"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Hokkaido_Wakkanai",
+      "en_US": "Hokkaido (Wakkanai)"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Hokkaido_Kushiro",
+      "en_US": "Hokkaido (Kushiro)"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Aomori",
+      "en_US": "Aomori"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Iwate",
+      "en_US": "Iwate"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Miyagi",
+      "en_US": "Miyagi"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Akita",
+      "en_US": "Akita"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Yamagata",
+      "en_US": "Yamagata"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Fukushima",
+      "en_US": "Fukushima"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Ibaraki",
+      "en_US": "Ibaraki"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Tochigi",
+      "en_US": "Tochigi"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Gunma",
+      "en_US": "Gunma"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Saitama",
+      "en_US": "Saitama"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Chiba",
+      "en_US": "Chiba"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Tokyo",
+      "en_US": "Tokyo"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Kanagawa",
+      "en_US": "Kanagawa"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Niigata",
+      "en_US": "Niigata"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Toyama",
+      "en_US": "Toyama"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Ishikawa",
+      "en_US": "Ishikawa"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Fukui",
+      "en_US": "Fukui"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Yamanashi",
+      "en_US": "Yamanashi"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Nagano",
+      "en_US": "Nagano"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Gifu",
+      "en_US": "Gifu"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Shizuoka",
+      "en_US": "Shizuoka"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Aichi",
+      "en_US": "Aichi"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Mie",
+      "en_US": "Mie"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Shiga",
+      "en_US": "Shiga"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Kyoto",
+      "en_US": "Kyoto"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Osaka",
+      "en_US": "Osaka"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Hyogo",
+      "en_US": "Hyogo"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Nara",
+      "en_US": "Nara"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Wakayama",
+      "en_US": "Wakayama"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Tottori",
+      "en_US": "Tottori"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Shimane",
+      "en_US": "Shimane"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Okayama",
+      "en_US": "Okayama"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Hiroshima",
+      "en_US": "Hiroshima"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Yamaguchi",
+      "en_US": "Yamaguchi"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Tokushima",
+      "en_US": "Tokushima"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Kagawa",
+      "en_US": "Kagawa"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Ehime",
+      "en_US": "Ehime"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Kochi",
+      "en_US": "Kochi"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Fukuoka",
+      "en_US": "Fukuoka"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Saga",
+      "en_US": "Saga"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Nagasaki",
+      "en_US": "Nagasaki"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Kumamoto",
+      "en_US": "Kumamoto"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Oita",
+      "en_US": "Oita"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Miyazaki",
+      "en_US": "Miyazaki"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Kagoshima",
+      "en_US": "Kagoshima"
+    },
+    {
+      "id": "Country_Region_Text_Japan_Okinawa",
+      "en_US": "Okinawa"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "key": 33172,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Brazil_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Acre",
+      "en_US": "Acre"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Rondonia",
+      "en_US": "Rondonia"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Alagoas",
+      "en_US": "Alagoas"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Amapa",
+      "en_US": "Amapa"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Amazonas",
+      "en_US": "Amazonas"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Bahia",
+      "en_US": "Bahia"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Ceara",
+      "en_US": "Ceara"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Distrito_Federal",
+      "en_US": "Distrito Federal"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Espirito_Santo",
+      "en_US": "Espirito Santo"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Goias",
+      "en_US": "Goias"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Maranhao",
+      "en_US": "Maranhao"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Mato_Grosso",
+      "en_US": "Mato Grosso"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Mato_Grosso_do_Sul",
+      "en_US": "Mato Grosso do Sul"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Minas_Gerais",
+      "en_US": "Minas Gerais"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Para",
+      "en_US": "Para"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Paraiba",
+      "en_US": "Paraiba"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Parana",
+      "en_US": "Parana"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Pernambuco",
+      "en_US": "Pernambuco"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Piaui",
+      "en_US": "Piaui"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Rio_de_Janeiro",
+      "en_US": "Rio de Janeiro"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Rio_Grande_do_Sul",
+      "en_US": "Rio Grande do Sul"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Rio_Grande_do_Norte",
+      "en_US": "Rio Grande do Norte"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Roraima",
+      "en_US": "Roraima"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Santa_Catarina",
+      "en_US": "Santa Catarina"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Sao_Paulo",
+      "en_US": "Sao Paulo"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Sergipe",
+      "en_US": "Sergipe"
+    },
+    {
+      "id": "Country_Region_Text_Brazil_Tocantins",
+      "en_US": "Tocantins"
+    }
+  ]
+}

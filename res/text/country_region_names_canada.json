@@ -1,0 +1,61 @@
+{
+  "key": 19873,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Canada_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Alberta",
+      "en_US": "Alberta"
+    },
+    {
+      "id": "Country_Region_Text_Canada_British_Columbia",
+      "en_US": "British Columbia"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Manitoba",
+      "en_US": "Manitoba"
+    },
+    {
+      "id": "Country_Region_Text_Canada_New_Brunswick",
+      "en_US": "New Brunswick"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Newfoundland_and_Labrador",
+      "en_US": "Newfoundland and Labrador"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Northwest_Territories",
+      "en_US": "Northwest Territories"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Nova_Scotia",
+      "en_US": "Nova Scotia"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Nunavut",
+      "en_US": "Nunavut"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Ontario",
+      "en_US": "Ontario"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Prince_Edward_Island",
+      "en_US": "Prince Edward Island"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Quebec",
+      "en_US": "Quebec"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Saskatchewan",
+      "en_US": "Saskatchewan"
+    },
+    {
+      "id": "Country_Region_Text_Canada_Yukon_Territory",
+      "en_US": "Yukon Territory"
+    }
+  ]
+}

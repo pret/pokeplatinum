@@ -1,0 +1,33 @@
+{
+  "key": 28041,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Finland_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Finland_Aland_Islands",
+      "en_US": "Aland Islands"
+    },
+    {
+      "id": "Country_Region_Text_Finland_Lapland",
+      "en_US": "Lapland"
+    },
+    {
+      "id": "Country_Region_Text_Finland_East_Finland",
+      "en_US": "East Finland"
+    },
+    {
+      "id": "Country_Region_Text_Finland_South_Finland",
+      "en_US": "South Finland"
+    },
+    {
+      "id": "Country_Region_Text_Finland_Oulun",
+      "en_US": "Oulun"
+    },
+    {
+      "id": "Country_Region_Text_Finland_West_Finland",
+      "en_US": "West Finland"
+    }
+  ]
+}

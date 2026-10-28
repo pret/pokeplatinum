@@ -1,0 +1,77 @@
+{
+  "key": 1513,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Spain_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Andalucia",
+      "en_US": "Andalucia"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Aragon",
+      "en_US": "Aragon"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Asturias_",
+      "en_US": "Asturias "
+    },
+    {
+      "id": "Country_Region_Text_Spain_Islas_Baleares",
+      "en_US": "Islas Baleares"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Pais_Vasco",
+      "en_US": "Pais Vasco"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Islas_Canarias",
+      "en_US": "Islas Canarias"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Cantabria",
+      "en_US": "Cantabria"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Castilla_La_Mancha",
+      "en_US": "Castilla-La Mancha"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Castilla_Leon",
+      "en_US": "Castilla Leon"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Cataluna",
+      "en_US": "Cataluna"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Extremadura",
+      "en_US": "Extremadura"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Galicia",
+      "en_US": "Galicia"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Madrid",
+      "en_US": "Madrid"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Murcia",
+      "en_US": "Murcia"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Navarra",
+      "en_US": "Navarra"
+    },
+    {
+      "id": "Country_Region_Text_Spain_La_Rioja",
+      "en_US": "La Rioja"
+    },
+    {
+      "id": "Country_Region_Text_Spain_Comunidad_Valenciana_",
+      "en_US": "Comunidad Valenciana "
+    }
+  ]
+}

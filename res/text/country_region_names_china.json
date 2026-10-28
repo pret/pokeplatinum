@@ -1,0 +1,133 @@
+{
+  "key": 27041,
+  "messages": [
+    {
+      "id": "Country_Region_Text_China_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_China_Anhui",
+      "en_US": "Anhui"
+    },
+    {
+      "id": "Country_Region_Text_China_Beijing",
+      "en_US": "Beijing"
+    },
+    {
+      "id": "Country_Region_Text_China_Chongqing",
+      "en_US": "Chongqing"
+    },
+    {
+      "id": "Country_Region_Text_China_Fujian",
+      "en_US": "Fujian"
+    },
+    {
+      "id": "Country_Region_Text_China_Gansu",
+      "en_US": "Gansu"
+    },
+    {
+      "id": "Country_Region_Text_China_Guangdong",
+      "en_US": "Guangdong"
+    },
+    {
+      "id": "Country_Region_Text_China_Guanxi",
+      "en_US": "Guanxi"
+    },
+    {
+      "id": "Country_Region_Text_China_Guizhou",
+      "en_US": "Guizhou"
+    },
+    {
+      "id": "Country_Region_Text_China_Hainan",
+      "en_US": "Hainan"
+    },
+    {
+      "id": "Country_Region_Text_China_Hebei",
+      "en_US": "Hebei"
+    },
+    {
+      "id": "Country_Region_Text_China_Heilongjiang",
+      "en_US": "Heilongjiang"
+    },
+    {
+      "id": "Country_Region_Text_China_Henan",
+      "en_US": "Henan"
+    },
+    {
+      "id": "Country_Region_Text_China_Hubei",
+      "en_US": "Hubei"
+    },
+    {
+      "id": "Country_Region_Text_China_Hunan",
+      "en_US": "Hunan"
+    },
+    {
+      "id": "Country_Region_Text_China_Jiangsu",
+      "en_US": "Jiangsu"
+    },
+    {
+      "id": "Country_Region_Text_China_Jiangxi",
+      "en_US": "Jiangxi"
+    },
+    {
+      "id": "Country_Region_Text_China_Jilin",
+      "en_US": "Jilin"
+    },
+    {
+      "id": "Country_Region_Text_China_Liaoning",
+      "en_US": "Liaoning"
+    },
+    {
+      "id": "Country_Region_Text_China_Neimenggu",
+      "en_US": "Neimenggu"
+    },
+    {
+      "id": "Country_Region_Text_China_Ningxia",
+      "en_US": "Ningxia"
+    },
+    {
+      "id": "Country_Region_Text_China_Qinghai",
+      "en_US": "Qinghai"
+    },
+    {
+      "id": "Country_Region_Text_China_Shaanxi",
+      "en_US": "Shaanxi"
+    },
+    {
+      "id": "Country_Region_Text_China_Shandong",
+      "en_US": "Shandong"
+    },
+    {
+      "id": "Country_Region_Text_China_Shanghai",
+      "en_US": "Shanghai"
+    },
+    {
+      "id": "Country_Region_Text_China_Shanxi",
+      "en_US": "Shanxi"
+    },
+    {
+      "id": "Country_Region_Text_China_Sichuan",
+      "en_US": "Sichuan"
+    },
+    {
+      "id": "Country_Region_Text_China_Tianjin",
+      "en_US": "Tianjin"
+    },
+    {
+      "id": "Country_Region_Text_China_Xinjiang",
+      "en_US": "Xinjiang"
+    },
+    {
+      "id": "Country_Region_Text_China_Xizang",
+      "en_US": "Xizang"
+    },
+    {
+      "id": "Country_Region_Text_China_Yunnan",
+      "en_US": "Yunnan"
+    },
+    {
+      "id": "Country_Region_Text_China_Zhejiang",
+      "en_US": "Zhejiang"
+    }
+  ]
+}

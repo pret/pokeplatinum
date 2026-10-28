@@ -1,0 +1,89 @@
+{
+  "key": 6605,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Italy_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Abruzzo",
+      "en_US": "Abruzzo"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Basilicata",
+      "en_US": "Basilicata"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Calabria",
+      "en_US": "Calabria"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Campania",
+      "en_US": "Campania"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Emilia_Romagna",
+      "en_US": "Emilia-Romagna"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Friuli_Venezia_Giulia",
+      "en_US": "Friuli-Venezia Giulia"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Lazio",
+      "en_US": "Lazio"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Liguria",
+      "en_US": "Liguria"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Lombardia",
+      "en_US": "Lombardia"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Marche",
+      "en_US": "Marche"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Molise",
+      "en_US": "Molise"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Piemonte",
+      "en_US": "Piemonte"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Puglia",
+      "en_US": "Puglia"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Sardegna",
+      "en_US": "Sardegna"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Sicilia",
+      "en_US": "Sicilia"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Toscana",
+      "en_US": "Toscana"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Trentino_Alto_Adige",
+      "en_US": "Trentino-Alto Adige"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Umbria",
+      "en_US": "Umbria"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Valle_d_Aosta",
+      "en_US": "Valle d’Aosta"
+    },
+    {
+      "id": "Country_Region_Text_Italy_Veneto",
+      "en_US": "Veneto"
+    }
+  ]
+}

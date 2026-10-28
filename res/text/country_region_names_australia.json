@@ -1,0 +1,37 @@
+{
+  "key": 40388,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Australia_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Australia_New_South_Wales",
+      "en_US": "New South Wales"
+    },
+    {
+      "id": "Country_Region_Text_Australia_North",
+      "en_US": "North"
+    },
+    {
+      "id": "Country_Region_Text_Australia_Queensland",
+      "en_US": "Queensland"
+    },
+    {
+      "id": "Country_Region_Text_Australia_South_Australia",
+      "en_US": "South Australia"
+    },
+    {
+      "id": "Country_Region_Text_Australia_Tasmania",
+      "en_US": "Tasmania"
+    },
+    {
+      "id": "Country_Region_Text_Australia_Victoria",
+      "en_US": "Victoria"
+    },
+    {
+      "id": "Country_Region_Text_Australia_Western_Australia",
+      "en_US": "Western Australia"
+    }
+  ]
+}

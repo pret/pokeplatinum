@@ -1,0 +1,105 @@
+{
+  "key": 33172,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Argentina_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Buenos_Aires",
+      "en_US": "Buenos Aires"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Ciudad_Autonoma_de_Buenos_Aires_",
+      "en_US": "Ciudad Autonoma de Buenos Aires "
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Catamarca",
+      "en_US": "Catamarca"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Chaco",
+      "en_US": "Chaco"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Chubut",
+      "en_US": "Chubut"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Cordoba",
+      "en_US": "Cordoba"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Corrientes",
+      "en_US": "Corrientes"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Entre_Rios",
+      "en_US": "Entre Rios"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Formosa",
+      "en_US": "Formosa"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Jujuy",
+      "en_US": "Jujuy"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_La_Pampa",
+      "en_US": "La Pampa"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_La_Rioja",
+      "en_US": "La Rioja"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Mendoza",
+      "en_US": "Mendoza"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Misiones",
+      "en_US": "Misiones"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Neuquen",
+      "en_US": "Neuquen"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Rio_Negro",
+      "en_US": "Rio Negro"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Salta",
+      "en_US": "Salta"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_San_Juan",
+      "en_US": "San Juan"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_San_Luis",
+      "en_US": "San Luis"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Santa_Cruz",
+      "en_US": "Santa Cruz"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Santa_Fe",
+      "en_US": "Santa Fe"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Santiago_del_Estero",
+      "en_US": "Santiago del Estero"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Tierra_del_Fuego",
+      "en_US": "Tierra del Fuego"
+    },
+    {
+      "id": "Country_Region_Text_Argentina_Tucuman",
+      "en_US": "Tucuman"
+    }
+  ]
+}

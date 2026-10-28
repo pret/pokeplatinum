@@ -1,0 +1,37 @@
+{
+  "key": 7517,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Russia_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Russia_Central_Federal_District",
+      "en_US": "Central Federal District"
+    },
+    {
+      "id": "Country_Region_Text_Russia_Far_Eastern_Federal_District_",
+      "en_US": "Far Eastern Federal District "
+    },
+    {
+      "id": "Country_Region_Text_Russia_Northwestern_Federal_District",
+      "en_US": "Northwestern Federal District"
+    },
+    {
+      "id": "Country_Region_Text_Russia_Volga_Federal_District_",
+      "en_US": "Volga Federal District "
+    },
+    {
+      "id": "Country_Region_Text_Russia_Siberian_Federal_District",
+      "en_US": "Siberian Federal District"
+    },
+    {
+      "id": "Country_Region_Text_Russia_Southern_Federal_District",
+      "en_US": "Southern Federal District"
+    },
+    {
+      "id": "Country_Region_Text_Russia_Urals_Federal_District_",
+      "en_US": "Urals Federal District "
+    }
+  ]
+}

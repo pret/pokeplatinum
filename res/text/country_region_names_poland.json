@@ -1,0 +1,73 @@
+{
+  "key": 62768,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Poland_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Dolnoslaskie",
+      "en_US": "Dolnoslaskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Kujawsko_Pomorskie",
+      "en_US": "Kujawsko-Pomorskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Lubelskie",
+      "en_US": "Lubelskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Lubuskie",
+      "en_US": "Lubuskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Lodzkie",
+      "en_US": "Lodzkie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Malopolskie",
+      "en_US": "Malopolskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Mazowieckie",
+      "en_US": "Mazowieckie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Opolskie",
+      "en_US": "Opolskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Podkarpackie",
+      "en_US": "Podkarpackie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Podlaskie",
+      "en_US": "Podlaskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Pomorskie",
+      "en_US": "Pomorskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Slaskie",
+      "en_US": "Slaskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Swietokrzyskie",
+      "en_US": "Swietokrzyskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Warminsko_Mazurskie",
+      "en_US": "Warminsko-Mazurskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Wielkopolskie",
+      "en_US": "Wielkopolskie"
+    },
+    {
+      "id": "Country_Region_Text_Poland_Zachodniopomorskie",
+      "en_US": "Zachodniopomorskie"
+    }
+  ]
+}

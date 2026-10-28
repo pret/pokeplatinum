@@ -1,0 +1,213 @@
+{
+  "key": 34092,
+  "messages": [
+    {
+      "id": "Country_Region_Text_United_States_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Alabama",
+      "en_US": "Alabama"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Alaska",
+      "en_US": "Alaska"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Arizona",
+      "en_US": "Arizona"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Arkansas",
+      "en_US": "Arkansas"
+    },
+    {
+      "id": "Country_Region_Text_United_States_California",
+      "en_US": "California"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Colorado",
+      "en_US": "Colorado"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Connecticut",
+      "en_US": "Connecticut"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Delaware",
+      "en_US": "Delaware"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Florida",
+      "en_US": "Florida"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Georgia",
+      "en_US": "Georgia"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Hawaii",
+      "en_US": "Hawaii"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Idaho",
+      "en_US": "Idaho"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Illinois",
+      "en_US": "Illinois"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Indiana",
+      "en_US": "Indiana"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Iowa",
+      "en_US": "Iowa"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Kansas",
+      "en_US": "Kansas"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Kentucky",
+      "en_US": "Kentucky"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Louisiana",
+      "en_US": "Louisiana"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Maine",
+      "en_US": "Maine"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Maryland",
+      "en_US": "Maryland"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Massachusetts",
+      "en_US": "Massachusetts"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Michigan",
+      "en_US": "Michigan"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Minnesota",
+      "en_US": "Minnesota"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Mississippi",
+      "en_US": "Mississippi"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Missouri",
+      "en_US": "Missouri"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Montana",
+      "en_US": "Montana"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Nebraska",
+      "en_US": "Nebraska"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Nevada",
+      "en_US": "Nevada"
+    },
+    {
+      "id": "Country_Region_Text_United_States_New_Hampshire",
+      "en_US": "New Hampshire"
+    },
+    {
+      "id": "Country_Region_Text_United_States_New_Jersey",
+      "en_US": "New Jersey"
+    },
+    {
+      "id": "Country_Region_Text_United_States_New_Mexico",
+      "en_US": "New Mexico"
+    },
+    {
+      "id": "Country_Region_Text_United_States_New_York",
+      "en_US": "New York"
+    },
+    {
+      "id": "Country_Region_Text_United_States_North_Carolina",
+      "en_US": "North Carolina"
+    },
+    {
+      "id": "Country_Region_Text_United_States_North_Dakota",
+      "en_US": "North Dakota"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Ohio",
+      "en_US": "Ohio"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Oklahoma",
+      "en_US": "Oklahoma"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Oregon",
+      "en_US": "Oregon"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Pennsylvania",
+      "en_US": "Pennsylvania"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Rhode_Island",
+      "en_US": "Rhode Island"
+    },
+    {
+      "id": "Country_Region_Text_United_States_South_Carolina",
+      "en_US": "South Carolina"
+    },
+    {
+      "id": "Country_Region_Text_United_States_South_Dakota",
+      "en_US": "South Dakota"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Tennessee",
+      "en_US": "Tennessee"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Texas",
+      "en_US": "Texas"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Utah",
+      "en_US": "Utah"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Vermont",
+      "en_US": "Vermont"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Virginia",
+      "en_US": "Virginia"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Washington",
+      "en_US": "Washington"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Washington_DC",
+      "en_US": "Washington, DC "
+    },
+    {
+      "id": "Country_Region_Text_United_States_West_Virginia",
+      "en_US": "West Virginia"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Wisconsin",
+      "en_US": "Wisconsin"
+    },
+    {
+      "id": "Country_Region_Text_United_States_Wyoming",
+      "en_US": "Wyoming"
+    }
+  ]
+}

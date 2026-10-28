@@ -1,0 +1,105 @@
+{
+  "key": 38156,
+  "messages": [
+    {
+      "id": "Country_Region_Text_Sweden_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Angermanland",
+      "en_US": "Angermanland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Blekinge",
+      "en_US": "Blekinge"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Bohuslan",
+      "en_US": "Bohuslan"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Dalarna",
+      "en_US": "Dalarna"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Dalsland",
+      "en_US": "Dalsland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Gastrikland",
+      "en_US": "Gastrikland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Gotland",
+      "en_US": "Gotland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Halland",
+      "en_US": "Halland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Halsingland",
+      "en_US": "Halsingland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Jamtland",
+      "en_US": "Jamtland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_North_Lapland",
+      "en_US": "North Lapland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_South_Lapland",
+      "en_US": "South Lapland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Medelpad",
+      "en_US": "Medelpad"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Narke",
+      "en_US": "Narke"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Norrbotten",
+      "en_US": "Norrbotten"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Oland",
+      "en_US": "Oland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Ostergotland_Vastergotland",
+      "en_US": "Ostergotland / Vastergotland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Skane",
+      "en_US": "Skane"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Smaland",
+      "en_US": "Smaland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Sodermanland",
+      "en_US": "Sodermanland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Uppland",
+      "en_US": "Uppland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Varmland",
+      "en_US": "Varmland"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Vasterbotten",
+      "en_US": "Vasterbotten"
+    },
+    {
+      "id": "Country_Region_Text_Sweden_Vastmanland",
+      "en_US": "Vastmanland"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "key": 437,
+  "messages": [
+    {
+      "id": "Country_Region_Text_France_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_France_Aquitaine",
+      "en_US": "Aquitaine"
+    },
+    {
+      "id": "Country_Region_Text_France_Alsace",
+      "en_US": "Alsace"
+    },
+    {
+      "id": "Country_Region_Text_France_Ile_de_France",
+      "en_US": "Ile de France"
+    },
+    {
+      "id": "Country_Region_Text_France_Auvergne",
+      "en_US": "Auvergne"
+    },
+    {
+      "id": "Country_Region_Text_France_Cote_d_Azur",
+      "en_US": "Cote d’Azur"
+    },
+    {
+      "id": "Country_Region_Text_France_Corse",
+      "en_US": "Corse"
+    },
+    {
+      "id": "Country_Region_Text_France_Champagne_Ardenne",
+      "en_US": "Champagne-Ardenne"
+    },
+    {
+      "id": "Country_Region_Text_France_Nord_Pas_de_Calais",
+      "en_US": "Nord-Pas-de-Calais"
+    },
+    {
+      "id": "Country_Region_Text_France_Normandie",
+      "en_US": "Normandie"
+    },
+    {
+      "id": "Country_Region_Text_France_Picardie",
+      "en_US": "Picardie"
+    },
+    {
+      "id": "Country_Region_Text_France_Franche_Comte",
+      "en_US": "Franche-Comte"
+    },
+    {
+      "id": "Country_Region_Text_France_Bourgogne",
+      "en_US": "Bourgogne"
+    },
+    {
+      "id": "Country_Region_Text_France_Bretagne",
+      "en_US": "Bretagne"
+    },
+    {
+      "id": "Country_Region_Text_France_Provence",
+      "en_US": "Provence"
+    },
+    {
+      "id": "Country_Region_Text_France_Pays_de_la_Loire",
+      "en_US": "Pays-de-la-Loire"
+    },
+    {
+      "id": "Country_Region_Text_France_Poitou_Charentes",
+      "en_US": "Poitou-Charentes"
+    },
+    {
+      "id": "Country_Region_Text_France_Midi_Pyrenees",
+      "en_US": "Midi-Pyrenees"
+    },
+    {
+      "id": "Country_Region_Text_France_Languedoc_Roussillon",
+      "en_US": "Languedoc-Roussillon"
+    },
+    {
+      "id": "Country_Region_Text_France_Limousin",
+      "en_US": "Limousin"
+    },
+    {
+      "id": "Country_Region_Text_France_Rhone_Alpes",
+      "en_US": "Rhone-Alpes"
+    },
+    {
+      "id": "Country_Region_Text_France_Lorraine",
+      "en_US": "Lorraine"
+    },
+    {
+      "id": "Country_Region_Text_France_Loire",
+      "en_US": "Loire"
+    }
+  ]
+}
