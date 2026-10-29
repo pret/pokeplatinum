@@ -557,9 +557,9 @@ static int write_index(
     char  *guard = NULL;
     FILE  *fnaix = NULL;
     FILE  *frecs = NULL;
-    char  *pdot  = strrstem(fname, '.');
     char  *psep  = strrstem(fname, '/');
-    psep        += *psep == '/';
+    psep         = psep ? psep + 1 : (char *)fname; // basename follows last '/'
+    char  *pdot  = strrstem(psep, '.');             // extension is within base
 
     size_t size  = pdot - fname;
     char  *bname = malloc(pdot - psep + 2);
