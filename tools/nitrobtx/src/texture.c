@@ -2,15 +2,15 @@
  * Copyright (c) 2026 Gudf
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
@@ -346,8 +346,9 @@ int TexturesVec_ExtendFromSpritesheetPNG(struct TexturesVec *textures, const str
 
     png_colorp pal;
     int numColors;
+    bool hasPLTE = png_get_PLTE(png_ptr, info_ptr, &pal, &numColors) != 0;
     if (texture->combinedPalette) {
-        if (png_get_PLTE(png_ptr, info_ptr, &pal, &numColors)) {
+        if (hasPLTE) {
             if (numColors % (numFrames * MIN_PAL_ALIGNMENT) != 0) {
                 fprintf(stderr, "Palette from spritesheet '%s' doesn't divide cleanly into %u palettes whose sizes are a multiple of %u!\n", texture->path, numFrames, MIN_PAL_ALIGNMENT);
                 res = ERR_CODE_INPUT_INVALID;
@@ -378,8 +379,8 @@ int TexturesVec_ExtendFromSpritesheetPNG(struct TexturesVec *textures, const str
         goto spritesheet_read_cleanup;
     }
 
-    if (bitDepth > GetPNGBitdepthForTexFmt(format)) {
-        fprintf(stderr, "File '%s' has a bit depth too high for conversion to NDS texture format %u!\n", texture->path, format);
+    if (bitDepth > GetPNGBitdepthForTexFmt(format) && !(hasPLTE && CalcBitDepth(numColors) <= GetPNGBitdepthForTexFmt(format))) {
+        fprintf(stderr, "File '%s' has too many colors for conversion to NDS texture format %u!\n", texture->path, format);
         res = ERR_CODE_INPUT_INVALID;
         goto spritesheet_read_cleanup;
     }
@@ -548,10 +549,13 @@ int TexturesVec_AppendFromPNG(struct TexturesVec *textures, const struct Texture
         return ERR_CODE_INPUT_INVALID;
     }
 
-    if (bitDepth > GetPNGBitdepthForTexFmt(format)) {
+    png_colorp pal;
+    int numColors;
+    bool hasPLTE = png_get_PLTE(png_ptr, info_ptr, &pal, &numColors) != 0;
+    if (bitDepth > GetPNGBitdepthForTexFmt(format) && !(hasPLTE && CalcBitDepth(numColors) <= GetPNGBitdepthForTexFmt(format))) {
+        fprintf(stderr, "File '%s' has too many colors for conversion to NDS texture format %u!\n", texture->path, format);
         png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
         fclose(fp);
-        fprintf(stderr, "File '%s' has a bit depth too high for conversion to NDS texture format %u!\n", texture->path, format);
         return ERR_CODE_INPUT_INVALID;
     }
 
@@ -560,25 +564,29 @@ int TexturesVec_AppendFromPNG(struct TexturesVec *textures, const struct Texture
     }
 
     bool unpacked = false;
-    if (bitDepth < 8) {
+    if (colorType == PNG_COLOR_TYPE_PALETTE || colorType == PNG_COLOR_TYPE_GRAY) {
         png_set_packswap(png_ptr);
 
-        if (GetPNGBitdepthForTexFmt(format) > bitDepth) {
+        if (!PNGBitDepthMatchesFmt(bitDepth, format)) {
             unpacked = true;
             png_set_packing(png_ptr);
             switch (format) {
-            case TEX_FORMAT_2BPP_PALETTED:
-                bitDepth = 2;
-                png_set_user_transform_info(png_ptr, NULL, bitDepth, 1);
-                png_set_read_user_transform_fn(png_ptr, PackTo2BPP);
-                break;
-            case TEX_FORMAT_4BPP_PALETTED:
-                bitDepth = 4;
-                png_set_user_transform_info(png_ptr, NULL, bitDepth, 1);
-                png_set_read_user_transform_fn(png_ptr, PackTo4BPP);
-                break;
-            default:
-                break;
+                case TEX_FORMAT_2BPP_PALETTED:
+                    bitDepth = 2;
+                    png_set_user_transform_info(png_ptr, NULL, bitDepth, 1);
+                    png_set_read_user_transform_fn(png_ptr, PackTo2BPP);
+                    break;
+                case TEX_FORMAT_4BPP_PALETTED:
+                    bitDepth = 4;
+                    png_set_user_transform_info(png_ptr, NULL, bitDepth, 1);
+                    png_set_read_user_transform_fn(png_ptr, PackTo4BPP);
+                    break;
+                case TEX_FORMAT_8BPP_PALETTED:
+                    bitDepth = 8;
+                    png_set_user_transform_info(png_ptr, NULL, bitDepth, 1);
+                    png_set_read_user_transform_fn(png_ptr, ReduceColors8BPP);
+                default:
+                    break;
             }
         }
     }

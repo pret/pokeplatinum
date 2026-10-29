@@ -2,15 +2,15 @@
  * Copyright (c) 2026 Gudf
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
@@ -84,7 +84,7 @@ enum ErrorCode InitializeReadPNG(const char *inputPath, FILE **fp, png_structp *
 
     *png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 
-    if (!png_ptr) {
+    if (!*png_ptr) {
         fprintf(stderr, "Failed to create libPNG read struct for file '%s'!\n", inputPath);
         fclose(*fp);
         return ERR_CODE_LIBPNG_ERROR;
