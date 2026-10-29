@@ -4,7 +4,9 @@ import json
 import pathlib
 import subprocess
 import sys
+from collections import defaultdict
 
+from generated.map_headers import MapHeaderID
 from generated.species import Species
 
 ANSI_BOLD_WHITE = "\033[1;37m"
@@ -40,6 +42,9 @@ argparser.add_argument('-g', '--trophy-file',
 argparser.add_argument('-m', '--marsh-file',
                        required=True,
                        help='encounter file for the Great Marsh Lookout')
+argparser.add_argument('-x', '--matrix-file',
+                       required=True,
+                       help='overworld map matrix, for the shapes of fields')
 argparser.add_argument('src_files',
                        nargs='+',
                        help='List of files to process in-order')
@@ -53,161 +58,85 @@ output_name = 'zukan_enc_platinum'
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
-# dungeon position on map
-file_0 = [
-    [0, 0, 0, 0],
-    [9, 24, 0, 0],
-    [6, 17, 0, 0],
-    [12, 17, 1, 0],
-    [18, 24, 0, 0],
-    [18, 20, 0, 0],
-    [26, 18, 0, 0],
-    [5, 22, 0, 0],
-    [7, 23, 0, 0],
-    [23, 7, 0, 0],
-    [24, 21, 0, 0],
-    [11, 6, 0, 0],
-    [9, 19, 0, 0],
-    [22, 21, 0, 0],
-    [14, 24, 0, 0],
-    [3, 15, 0, 0],
-    [7, 16, 0, 0],
-    [2, 26, 0, 0],
-    [22, 23, 0, 0],
-    [10, 7, 0, 0],
-    [17, 21, 0, 0],
-    [5, 19, 0, 0]
+# Pokedex dungeons: map header and dot position on the town map
+DUNGEONS = [
+    (None, 0, 0),
+    (MapHeaderID.MAP_HEADER_OREBURGH_MINE_B1F, 9, 24),
+    (MapHeaderID.MAP_HEADER_ETERNA_FOREST, 6, 17),
+    (MapHeaderID.MAP_HEADER_MT_CORONET_1F_SOUTH, 12, 17),
+    (MapHeaderID.MAP_HEADER_GREAT_MARSH_1, 18, 24),
+    (MapHeaderID.MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM, 18, 20),
+    (MapHeaderID.MAP_HEADER_VICTORY_ROAD_1F, 26, 18),
+    (MapHeaderID.MAP_HEADER_RAVAGED_PATH, 5, 22),
+    (MapHeaderID.MAP_HEADER_OREBURGH_GATE_1F, 7, 23),
+    (MapHeaderID.MAP_HEADER_STARK_MOUNTAIN_ROOM_1, 23, 7),
+    (MapHeaderID.MAP_HEADER_SENDOFF_SPRING, 24, 21),
+    (MapHeaderID.MAP_HEADER_SNOWPOINT_TEMPLE_1F, 11, 6),
+    (MapHeaderID.MAP_HEADER_WAYWARD_CAVE_1F, 9, 19),
+    (MapHeaderID.MAP_HEADER_RUIN_MANIAC_CAVE_SHORT, 22, 21),
+    (MapHeaderID.MAP_HEADER_TROPHY_GARDEN, 14, 24),
+    (MapHeaderID.MAP_HEADER_IRON_ISLAND_1F, 3, 15),
+    (MapHeaderID.MAP_HEADER_OLD_CHATEAU, 7, 16),
+    (MapHeaderID.MAP_HEADER_LAKE_VERITY_LOW_WATER, 2, 26),
+    (MapHeaderID.MAP_HEADER_LAKE_VALOR, 22, 23),
+    (MapHeaderID.MAP_HEADER_LAKE_ACUITY, 10, 7),
+    (MapHeaderID.MAP_HEADER_ROUTE_209_LOST_TOWER_1F, 17, 21),
+    (MapHeaderID.MAP_HEADER_FLOAROMA_MEADOW, 5, 19),
 ]
-file_1 = [
-    [255, 255, 255, 255],
-    [198, 0, 0, 0],
-    [203, 0, 0, 0],
-    [207, 0, 0, 0],
-    [248, 1, 0, 0],
-    [225, 0, 0, 0],
-    [244, 0, 0, 0],
-    [254, 0, 0, 0],
-    [2, 1, 0, 0],
-    [7, 1, 0, 0],
-    [11, 1, 0, 0],
-    [22, 1, 0, 0],
-    [28, 1, 0, 0],
-    [30, 1, 0, 0],
-    [31, 1, 0, 0],
-    [33, 1, 0, 0],
-    [39, 1, 0, 0],
-    [55, 1, 0, 0],
-    [59, 1, 0, 0],
-    [62, 1, 0, 0],
-    [101, 1, 0, 0],
-    [0, 1, 0, 0]
-]
-# field position on map
-file_2 = [
-    [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 22, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [9, 16, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [18, 25, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [26, 23, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [26, 17, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [7, 20, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [5, 18, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [23, 7, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [3, 15, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [21, 23, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [9, 6, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [3, 26, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [5, 25, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [6, 23, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [5, 22, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [5, 21, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [6, 18, 1, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [8, 16, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [9, 18, 1, 4, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [9, 22, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [12, 22, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [17, 21, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [17, 17, 1, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [15, 16, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [11, 16, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [13, 16, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [14, 23, 1, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [14, 26, 4, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [20, 25, 3, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [22, 20, 1, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [18, 18, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [9, 12, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [9, 8, 1, 4, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [2, 23, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [5, 27, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [7, 28, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [23, 24, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [27, 15, 2, 3, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [19, 10, 1, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [23, 8, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [24, 10, 1, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [24, 13, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [3, 27, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [14, 16, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [25, 14, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [5, 28, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [26, 19, 1, 4, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [21, 10, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [21, 13, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [6, 16, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-]
-file_3 = [
-    [255, 255, 255, 255],
-    [33, 0, 0, 0],
-    [65, 0, 0, 0],
-    [120, 0, 0, 0],
-    [150, 0, 0, 0],
-    [172, 0, 0, 0],
-    [200, 0, 0, 0],
-    [204, 0, 0, 0],
-    [6, 1, 0, 0],
-    [32, 1, 0, 0],
-    [80, 1, 0, 0],
-    [84, 1, 0, 0],
-    [86, 1, 0, 0],
-    [87, 1, 0, 0],
-    [88, 1, 0, 0],
-    [89, 1, 0, 0],
-    [90, 1, 0, 0],
-    [91, 1, 0, 0],
-    [93, 1, 0, 0],
-    [94, 1, 0, 0],
-    [97, 1, 0, 0],
-    [98, 1, 0, 0],
-    [100, 1, 0, 0],
-    [106, 1, 0, 0],
-    [107, 1, 0, 0],
-    [109, 1, 0, 0],
-    [110, 1, 0, 0],
-    [111, 1, 0, 0],
-    [115, 1, 0, 0],
-    [117, 1, 0, 0],
-    [124, 1, 0, 0],
-    [126, 1, 0, 0],
-    [127, 1, 0, 0],
-    [129, 1, 0, 0],
-    [132, 1, 0, 0],
-    [135, 1, 0, 0],
-    [136, 1, 0, 0],
-    [139, 1, 0, 0],
-    [143, 1, 0, 0],
-    [144, 1, 0, 0],
-    [147, 1, 0, 0],
-    [150, 1, 0, 0],
-    [151, 1, 0, 0],
-    [155, 1, 0, 0],
-    [186, 1, 0, 0],
-    [201, 1, 0, 0],
-    [211, 1, 0, 0],
-    [212, 1, 0, 0],
-    [213, 1, 0, 0],
-    [215, 1, 0, 0],
-    [202, 0, 0, 0]
+
+# Pokedex fields, shaped by their map header's cells in the overworld matrix
+FIELDS = [
+    None,
+    MapHeaderID.MAP_HEADER_CANALAVE_CITY,
+    MapHeaderID.MAP_HEADER_ETERNA_CITY,
+    MapHeaderID.MAP_HEADER_PASTORIA_CITY,
+    MapHeaderID.MAP_HEADER_SUNYSHORE_CITY,
+    MapHeaderID.MAP_HEADER_POKEMON_LEAGUE,
+    MapHeaderID.MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE,
+    MapHeaderID.MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
+    MapHeaderID.MAP_HEADER_STARK_MOUNTAIN_OUTSIDE,
+    MapHeaderID.MAP_HEADER_IRON_ISLAND,
+    MapHeaderID.MAP_HEADER_VALOR_LAKEFRONT,
+    MapHeaderID.MAP_HEADER_ACUITY_LAKEFRONT,
+    MapHeaderID.MAP_HEADER_ROUTE_201,
+    MapHeaderID.MAP_HEADER_ROUTE_202,
+    MapHeaderID.MAP_HEADER_ROUTE_203,
+    MapHeaderID.MAP_HEADER_ROUTE_204_SOUTH,
+    MapHeaderID.MAP_HEADER_ROUTE_204_NORTH,
+    MapHeaderID.MAP_HEADER_ROUTE_205_SOUTH,
+    MapHeaderID.MAP_HEADER_ROUTE_205_NORTH,
+    MapHeaderID.MAP_HEADER_ROUTE_206,
+    MapHeaderID.MAP_HEADER_ROUTE_207,
+    MapHeaderID.MAP_HEADER_ROUTE_208,
+    MapHeaderID.MAP_HEADER_ROUTE_209,
+    MapHeaderID.MAP_HEADER_ROUTE_210_SOUTH,
+    MapHeaderID.MAP_HEADER_ROUTE_210_NORTH,
+    MapHeaderID.MAP_HEADER_ROUTE_211_WEST,
+    MapHeaderID.MAP_HEADER_ROUTE_211_EAST,
+    MapHeaderID.MAP_HEADER_ROUTE_212_NORTH,
+    MapHeaderID.MAP_HEADER_ROUTE_212_SOUTH,
+    MapHeaderID.MAP_HEADER_ROUTE_213,
+    MapHeaderID.MAP_HEADER_ROUTE_214,
+    MapHeaderID.MAP_HEADER_ROUTE_215,
+    MapHeaderID.MAP_HEADER_ROUTE_216,
+    MapHeaderID.MAP_HEADER_ROUTE_217,
+    MapHeaderID.MAP_HEADER_ROUTE_218,
+    MapHeaderID.MAP_HEADER_ROUTE_219,
+    MapHeaderID.MAP_HEADER_ROUTE_221,
+    MapHeaderID.MAP_HEADER_ROUTE_222,
+    MapHeaderID.MAP_HEADER_ROUTE_224,
+    MapHeaderID.MAP_HEADER_ROUTE_225,
+    MapHeaderID.MAP_HEADER_ROUTE_227,
+    MapHeaderID.MAP_HEADER_ROUTE_228,
+    MapHeaderID.MAP_HEADER_ROUTE_229,
+    MapHeaderID.MAP_HEADER_TWINLEAF_TOWN,
+    MapHeaderID.MAP_HEADER_CELESTIC_TOWN,
+    MapHeaderID.MAP_HEADER_RESORT_AREA,
+    MapHeaderID.MAP_HEADER_ROUTE_220,
+    MapHeaderID.MAP_HEADER_ROUTE_223,
+    MapHeaderID.MAP_HEADER_ROUTE_226,
+    MapHeaderID.MAP_HEADER_ROUTE_230,
+    MapHeaderID.MAP_HEADER_ETERNA_FOREST_OUTSIDE,
 ]
 
 honey_tree_dungeons = [
@@ -241,41 +170,50 @@ NUM_POKEMON = len(Species) - 1
 
 NUM_DIGITS = 8
 
-bin_data = bytes()
-for dungeon in file_0:
-    for pos in dungeon:
-        bin_data = bin_data + pos.to_bytes(1, 'little')
+NO_MAP_HEADER = 0xFFFFFFFF
+MT_CORONET_DUNGEON = MapHeaderID.MAP_HEADER_MT_CORONET_1F_SOUTH
 
-target_fname = str(private_dir / output_name) + f'_{0:0{NUM_DIGITS}}.bin'
-with open(target_fname, 'wb+') as target_file:
-    target_file.write(bin_data)
+# Matrix cells that the Pokedex leaves out
+FIELD_CELLS_NOT_SHOWN = {
+    MapHeaderID.MAP_HEADER_ETERNA_CITY: {(10, 16)},
+    MapHeaderID.MAP_HEADER_ROUTE_209: {(16, 22)},
+}
 
-bin_data = bytes()
-for dungeon in file_1:
-    for pos in dungeon:
-        bin_data = bin_data + pos.to_bytes(1, 'little')
 
-target_fname = str(private_dir / output_name) + f'_{1:0{NUM_DIGITS}}.bin'
-with open(target_fname, 'wb+') as target_file:
-    target_file.write(bin_data)
+def write_file(file_num, data):
+    target_fname = str(private_dir / output_name) + f'_{file_num:0{NUM_DIGITS}}.bin'
+    with open(target_fname, 'wb+') as target_file:
+        target_file.write(data)
 
-bin_data = bytes()
-for field in file_2:
-    for pos in field:
-        bin_data = bin_data + pos.to_bytes(1, 'little')
 
-target_fname = str(private_dir / output_name) + f'_{2:0{NUM_DIGITS}}.bin'
-with open(target_fname, 'wb+') as target_file:
-    target_file.write(bin_data)
+def map_header_ids(headers):
+    return b''.join((NO_MAP_HEADER if header is None else header).to_bytes(4, 'little') for header in headers)
 
-bin_data = bytes()
-for field in file_3:
-    for pos in field:
-        bin_data = bin_data + pos.to_bytes(1, 'little')
 
-target_fname = str(private_dir / output_name) + f'_{3:0{NUM_DIGITS}}.bin'
-with open(target_fname, 'wb+') as target_file:
-    target_file.write(bin_data)
+def field_coordinates(header, matrix_cells):
+    if header is None:
+        cells = {(0, 0)}
+    else:
+        cells = matrix_cells[header.name] - FIELD_CELLS_NOT_SHOWN.get(header, set())
+
+    x0 = min(x for x, _ in cells)
+    z0 = min(z for _, z in cells)
+    width = max(x for x, _ in cells) - x0 + 1
+    height = max(z for _, z in cells) - z0 + 1
+    cell_matrix = bytes((x0 + i % width, z0 + i // width) in cells for i in range(width * height))
+    return bytes([x0, z0, width, height]) + cell_matrix.ljust(32, b'\0')
+
+
+with open(args.matrix_file, encoding='utf-8') as matrix_file:
+    matrix_cells = defaultdict(set)
+    for z, row in enumerate(json.load(matrix_file)['headers']):
+        for x, header in enumerate(row):
+            matrix_cells[header].add((x, z))
+
+write_file(0, b''.join(bytes([x, z, header == MT_CORONET_DUNGEON, 0]) for header, x, z in DUNGEONS))
+write_file(1, map_header_ids(header for header, _, _ in DUNGEONS))
+write_file(2, b''.join(field_coordinates(header, matrix_cells) for header in FIELDS))
+write_file(3, map_header_ids(FIELDS))
 
 dungeon_morning = [set() for species in range(NUM_POKEMON)]
 dungeon_day = [set() for species in range(NUM_POKEMON)]
