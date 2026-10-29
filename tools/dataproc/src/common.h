@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdnoreturn.h>
 
 #define FORMATTER(fmt_i, args_i) __attribute__((format(printf, fmt_i, args_i)))
@@ -47,6 +48,15 @@ typedef struct Option {
 
 // Issue a CLI failure with a formatted message and usage, then abort.
 noreturn void CLI_Fail(const char *fmt, ...) FORMATTER(1, 2);
+
+// Access the current driver's program name.
+const char* CLI_ProgramName(void);
+
+// Access the current driver's output directory.
+const char* CLI_OutputDir(void);
+
+// Access the current driver's depfile path.
+const char* CLI_Depfile(void);
 
 // ================================== LOOKUPS ==================================
 
@@ -100,6 +110,12 @@ void TextBank_PushString(int id, const char *content, const char *idFmt, ...) FO
 void TextBank_PushLines(int id, const char *const *lines, size_t count, const char *idFmt, ...) FORMATTER(4, 5);
 void TextBank_PushGarbage(int id, uint64_t size, const char *idFmt, ...) FORMATTER(3, 4);
 
+// All outputs written to the file-stream are written during Driver_Finish. They
+// thus always come after TextFile_Printf for the same output-file.
+//
+// The stream returned here belongs to the outputs layer: do not `fclose` it.
+FILE* TextFile_Stream(int id);
+
 // =================================== DRIVER ==================================
 
 typedef struct Driver {
@@ -145,6 +161,7 @@ typedef struct Entry {
 typedef struct Entries Entries;
 
 // Read entries from an enum definition. pathFmt always receives exactly (baseDir, stem).
+// If pathFmt is NULL, then no formatting is done, and no files are automatically loaded.
 Entries* Entries_FromEnum(const char *file, const char *enumName, const char *prefix,
                           const char *pathFmt, const char *baseDir);
 
@@ -201,9 +218,32 @@ bool String_EndsWith(const char *s, const char *suffix);
 // Safe duplicator. Aborts on allocation failure.
 char* String_Dupe(const char *s);
 
+// =============================== DYNAMIC ARRAY ===============================
+
+typedef struct Buffer { void *data; size_t size; size_t cap; } Buffer;
+
+void  Buffer_Append(Buffer *b, const void *data, size_t size);
+void* Buffer_Ptr(Buffer *b, size_t index, size_t size);
+
+#define Buffer_Push(b, T, ...) Buffer_Append((b), &(T){ __VA_ARGS__ }, sizeof(T))
+#define Buffer_At(b, T, i)     (*(T *)Buffer_Ptr((b), (i), sizeof(T)))
+#define Buffer_Count(b, T)     ((b)->size / sizeof(T))
+
+// Frees member-pointers and the encasing buffer; only use this on owned data.
+#define Buffer_Free(b, T)                                 \
+    do {                                                  \
+        for (size_t i = 0; i < Buffer_Count(b, T); i++) { \
+            free(Buffer_At(b, T, i));                     \
+        }                                                 \
+        free((b)->data);                                  \
+    } while (0)
+
 // =============================== COMMON HELPERS ==============================
 
 // Extract the string-value of a node, or return "BAD_SYMBOL" if it's invalid.
 const char* Symbol_Name(dp_node node);
+
+// Mark the given path as a driver dependency for the depfile's output.
+void Deps_Add(const char *path);
 
 #endif // DATAPROC_COMMON_H

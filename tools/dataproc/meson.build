@@ -19,6 +19,7 @@ repo_build = meson.global_build_root()
 dataproc_templates_dir = meson.current_source_dir() / 'data'
 
 subdir('lib')
+subdir('src/buildgen')
 subdir('src/common')
 
 cc = meson.get_compiler('c', native: true)
@@ -103,5 +104,14 @@ frameseqproc_exe = executable(
     c_args: dataproc_cflags,
     include_directories: [ public_includes, toplevel_includes ],
     dependencies: common_dep,
+    native: true,
+)
+
+mapgen_exe = executable(
+    'mapgen',
+    sources: files('src/maps/generator.c'),
+    c_args: dataproc_cflags,
+    include_directories: [ public_includes, toplevel_includes ],
+    dependencies: [ buildgen_dep, common_dep ],
     native: true,
 )
