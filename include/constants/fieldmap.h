@@ -642,6 +642,7 @@ enum MapHeaderID {
     MAP_HEADER_ROUTE_228_ROCK_PEAK_RUINS,
     MAP_HEADER_ROCK_PEAK_RUINS,
 
+    // Add any new headers here, before the following entries
     MAP_HEADER_INVALID,
     MAP_HEADER_DYNAMIC = 4095,
 };

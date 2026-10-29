@@ -22,9 +22,17 @@ static const char *banner = ""
 
 typedef struct Member { void *data; size_t size; } Member;
 
-typedef struct ArchiveState  { Buffer members;                          } ArchiveState; // T = Member
-typedef struct TextFileState { Buffer body; char *template; char *tail; } TextFileState;
-typedef struct TextBankState { dp_file *file; dp_node messages;         } TextBankState;
+typedef struct ArchiveState  { Buffer members;                  } ArchiveState; // T = Member
+typedef struct TextBankState { dp_file *file; dp_node messages; } TextBankState;
+
+typedef struct TextFileState {
+    Buffer body;
+    char  *template;
+    char  *tail;
+    char  *buffer;
+    size_t size;
+    FILE  *stream;
+} TextFileState;
 
 static Outputs *outputs;
 
@@ -225,6 +233,36 @@ void TextFile_Printf(int id, const char *fmt, ...)
     va_end(args);
 }
 
+FILE* TextFile_Stream(int id)
+{
+    CheckID("text file", id, numTextFiles);
+
+    TextFileState *state = &textFileState[id];
+    if (!state->stream && !(state->stream = open_memstream(&state->buffer, &state->size))) {
+        abort();
+    }
+
+    return state->stream;
+}
+
+static bool FlushStream(const char *path, TextFileState *state)
+{
+    if (state->stream == NULL) return true;
+
+    if (fclose(state->stream) != 0) {
+        fprintf(stderr, "error writing stream for file '%s': %s\n", path, strerror(errno));
+        state->stream = NULL;
+        return false;
+    }
+
+    Buffer_Append(&state->body, state->buffer, state->size);
+    free(state->buffer);
+    state->buffer = NULL;
+    state->size   = 0;
+    state->stream = NULL;
+    return true;
+}
+
 FORMATTER(2, 3) static void AppendFormat(Buffer *b, const char *fmt, ...)
 {
     va_list args;
@@ -256,6 +294,7 @@ static char* GuardFor(const char *filename)
 static bool WriteTextFile(const TextFile *file, TextFileState *state)
 {
     Buffer out = { 0 };
+    if (!FlushStream(file->filename, state)) return false;
 
     switch (file->wrap) {
     case TEXT_FILE_WRAP_NONE:
@@ -438,8 +477,12 @@ void Output_Close(void)
     }
 
     for (size_t i = 0; i < numTextFiles; i++) {
-        free(textFileState[i].body.data);
-        free(textFileState[i].template);
+        TextFileState *state = &textFileState[i];
+        if (state->stream != NULL) { fclose(state->stream); state->stream = NULL; }
+        free(state->body.data);
+        free(state->template);
+        free(state->buffer);
+        memset(state, 0, sizeof(*state));
     }
 
     for (size_t i = 0; i < numBinaryFiles; i++) {
