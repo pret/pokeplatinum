@@ -26,7 +26,7 @@
 #include "trainer_data.h"
 #include "vars_flags.h"
 
-#include "res/field/scripts/scr_seq.naix"
+#include "res/field/maps/scr_seq.naix"
 
 // clang-format off
 #define SCRIPT_RANGE_TABLE(Entry) \
