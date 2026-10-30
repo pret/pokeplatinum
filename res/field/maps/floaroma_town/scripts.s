@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town.h"
-#include "res/field/events/events_floaroma_town.h"
+#include "res/field/maps/locals/floaroma_town.h"
 
     ScriptEntry FloaromaTown_OnTransition
     ScriptEntry FloaromaTown_Grunts

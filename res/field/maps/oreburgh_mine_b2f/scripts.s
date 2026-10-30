@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_mine_b2f.h"
-#include "res/field/events/events_oreburgh_mine_b2f.h"
+#include "res/field/maps/locals/oreburgh_mine_b2f.h"
 
 
     ScriptEntry OreburghMineB2F_Roark

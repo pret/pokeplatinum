@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209_gate_to_hearthome_city.h"
-#include "res/field/events/events_route_209_gate_to_hearthome_city.h"
+#include "res/field/maps/locals/route_209_gate_to_hearthome_city.h"
 
 
     ScriptEntry Route209GateToHearthomeCity_BattleGirl

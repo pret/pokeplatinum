@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/acuity_cavern.h"
-#include "res/field/events/events_acuity_cavern.h"
+#include "res/field/maps/locals/acuity_cavern.h"
 
 
     ScriptEntry AcuityCavern_OnTransition

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town.h"
-#include "res/field/events/events_twinleaf_town.h"
+#include "res/field/maps/locals/twinleaf_town.h"
 
 
     ScriptEntry TwinleafTown_OnTransition

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city_pokecenter_1f.h"
-#include "res/field/events/events_snowpoint_city_pokecenter_1f.h"
+#include "res/field/maps/locals/snowpoint_city_pokecenter_1f.h"
 
 
     ScriptEntry SnowpointCityPokecenter1F_Nurse

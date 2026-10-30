@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_forest.h"
-#include "res/field/events/events_eterna_forest.h"
+#include "res/field/maps/locals/eterna_forest.h"
 
     ScriptEntry EternaForest_CoordEvent_CherylStartFollowing
     ScriptEntry EternaForest_CoordEvent_PlayerLeaveCheryl

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_gym.h"
-#include "res/field/events/events_eterna_city_gym.h"
+#include "res/field/maps/locals/eterna_city_gym.h"
 
 
     ScriptEntry EternaGym_InitFeatures

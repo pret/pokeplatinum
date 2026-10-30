@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city.h"
-#include "res/field/events/events_pastoria_city.h"
+#include "res/field/maps/locals/pastoria_city.h"
 
 
     ScriptEntry PastoriaCity_OnTransition

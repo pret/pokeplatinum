@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "generated/hidden_locations.h"
 #include "res/text/bank/pokemon_league_hall_of_fame.h"
-#include "res/field/events/events_pokemon_league_hall_of_fame.h"
+#include "res/field/maps/locals/pokemon_league_hall_of_fame.h"
 
 
     ScriptEntry PokemonLeagueHallOfFame_OnFrame_EnterHallOfFame

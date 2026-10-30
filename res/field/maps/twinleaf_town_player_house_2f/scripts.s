@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_2f.h"
-#include "res/field/events/events_twinleaf_town_player_house_2f.h"
+#include "res/field/maps/locals/twinleaf_town_player_house_2f.h"
 
 
     ScriptEntry TwinleafTownPlayerHouse2F_Wii

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/spear_pillar_distorted.h"
-#include "res/field/events/events_spear_pillar_distorted.h"
+#include "res/field/maps/locals/spear_pillar_distorted.h"
 
 
     ScriptEntry SpearPillarDistorted_OnFrame_AfterWarp

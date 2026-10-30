@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/team_galactic_eterna_building_4f.h"
-#include "res/field/events/events_team_galactic_eterna_building_4f.h"
+#include "res/field/maps/locals/team_galactic_eterna_building_4f.h"
 
 
     ScriptEntry TeamGalacticEternaBuilding4F_OnLoad

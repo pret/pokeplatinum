@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/verity_cavern.h"
-#include "res/field/events/events_verity_cavern.h"
+#include "res/field/maps/locals/verity_cavern.h"
 
 
     ScriptEntry VerityCavern_OnTransition

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_temple_b5f.h"
-#include "res/field/events/events_snowpoint_temple_b5f.h"
+#include "res/field/maps/locals/snowpoint_temple_b5f.h"
 
 
     ScriptEntry SnowpointTempleB5F_OnLoad

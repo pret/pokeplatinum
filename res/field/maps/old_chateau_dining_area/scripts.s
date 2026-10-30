@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/field/events/events_old_chateau_dining_area.h"
+#include "res/field/maps/locals/old_chateau_dining_area.h"
 
 
     ScriptEntry OldChateauDiningArea_OnTransition

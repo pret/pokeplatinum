@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_1f_north_room_1.h"
-#include "res/field/events/events_mt_coronet_1f_north_room_1.h"
+#include "res/field/maps/locals/mt_coronet_1f_north_room_1.h"
 
 
     ScriptEntry MtCoronet1FNorthRoom1_GruntF

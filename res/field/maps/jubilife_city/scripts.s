@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_jubilife_city.h"
+#include "res/field/maps/locals/jubilife_city.h"
 
 
     ScriptEntry JubilifeCity_OnTransition

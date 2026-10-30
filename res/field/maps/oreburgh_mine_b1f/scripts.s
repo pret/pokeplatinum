@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_mine_b1f.h"
-#include "res/field/events/events_oreburgh_mine_b1f.h"
+#include "res/field/maps/locals/oreburgh_mine_b1f.h"
 
 
     ScriptEntry OreburghMineB1F_OnTransition

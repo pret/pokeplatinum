@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_southeast_house.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_veilstone_city_southeast_house.h"
+#include "res/field/maps/locals/veilstone_city_southeast_house.h"
 
 
     ScriptEntry VeilstoneCitySoutheastHouse_Clown

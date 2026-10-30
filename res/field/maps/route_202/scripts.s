@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_202.h"
-#include "res/field/events/events_route_202.h"
+#include "res/field/maps/locals/route_202.h"
 
 
     ScriptEntry Route202_OnTransition

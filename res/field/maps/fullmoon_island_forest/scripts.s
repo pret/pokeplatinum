@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fullmoon_island_forest.h"
-#include "res/field/events/events_fullmoon_island_forest.h"
+#include "res/field/maps/locals/fullmoon_island_forest.h"
 
 
     ScriptEntry FullmoonIslandForest_Dummy1

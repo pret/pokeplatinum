@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/day_care_common.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_pokemon_day_care.h"
+#include "res/field/maps/locals/pokemon_day_care.h"
 #include "constants/daycare.h"
 
 

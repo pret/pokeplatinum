@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town_pokecenter_1f.h"
-#include "res/field/events/events_solaceon_town_pokecenter_1f.h"
+#include "res/field/maps/locals/solaceon_town_pokecenter_1f.h"
 
 
     ScriptEntry SolaceonTownPokecenter1F_Nurse

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/acuity_lakefront.h"
-#include "res/field/events/events_acuity_lakefront.h"
+#include "res/field/maps/locals/acuity_lakefront.h"
 
 
     ScriptEntry AcuityLakefront_OnTransition

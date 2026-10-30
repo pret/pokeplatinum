@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_pokecenter_1f.h"
-#include "res/field/events/events_celestic_town_pokecenter_1f.h"
+#include "res/field/maps/locals/celestic_town_pokecenter_1f.h"
 
 
     ScriptEntry CelesticTownPokecenter1F_Nurse

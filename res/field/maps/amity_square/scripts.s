@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/amity_square.h"
-#include "res/field/events/events_amity_square.h"
+#include "res/field/maps/locals/amity_square.h"
 #include "generated/object_events_gfx.h"
 
 #define LOCAL_VAR_HAS_NATIONAL_DEX        VAR_MAP_LOCAL_0x00

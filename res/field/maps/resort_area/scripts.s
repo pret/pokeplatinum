@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area.h"
-#include "res/field/events/events_resort_area.h"
+#include "res/field/maps/locals/resort_area.h"
 
 
     ScriptEntry ResortArea_Beauty1

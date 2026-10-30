@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island_house.h"
-#include "res/field/events/events_iron_island_house.h"
+#include "res/field/maps/locals/iron_island_house.h"
 
 
     ScriptEntry IronIslandHouse_OnTransition

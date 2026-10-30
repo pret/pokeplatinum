@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_pokecenter_1f.h"
-#include "res/field/events/events_resort_area_pokecenter_1f.h"
+#include "res/field/maps/locals/resort_area_pokecenter_1f.h"
 
 
     ScriptEntry ResortAreaPokecenter1F_Nurse

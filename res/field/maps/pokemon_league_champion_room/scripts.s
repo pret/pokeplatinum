@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_champion_room.h"
-#include "res/field/events/events_pokemon_league_champion_room.h"
+#include "res/field/maps/locals/pokemon_league_champion_room.h"
 
 
     ScriptEntry PokemonLeagueChampionRoom_OnTransition

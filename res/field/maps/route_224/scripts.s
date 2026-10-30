@@ -2,7 +2,7 @@
 #include "generated/distribution_events.h"
 #include "generated/hidden_locations.h"
 #include "res/text/bank/route_224.h"
-#include "res/field/events/events_route_224.h"
+#include "res/field/maps/locals/route_224.h"
 
 
     ScriptEntry Route224_OnTransition

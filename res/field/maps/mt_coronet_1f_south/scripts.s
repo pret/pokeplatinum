@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_1f_south.h"
-#include "res/field/events/events_mt_coronet_1f_south.h"
+#include "res/field/maps/locals/mt_coronet_1f_south.h"
 
 
     ScriptEntry MtCoronet1FSouth_CoordEvent_Cyrus

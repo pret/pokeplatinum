@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_frontier.h"
-#include "res/field/events/events_battle_frontier.h"
+#include "res/field/maps/locals/battle_frontier.h"
 
 
     ScriptEntry BattleFrontier_Dummy1

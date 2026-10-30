@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_bertha_room.h"
-#include "res/field/events/events_pokemon_league_bertha_room.h"
+#include "res/field/maps/locals/pokemon_league_bertha_room.h"
 
 
     ScriptEntry PokemonLeagueBerthaRoom_Bertha

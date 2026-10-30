@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/turnback_cave_giratina_room.h"
-#include "res/field/events/events_turnback_cave_giratina_room.h"
+#include "res/field/maps/locals/turnback_cave_giratina_room.h"
 
 
     ScriptEntry TurnbackCaveGiratinaRoom_OnLoad

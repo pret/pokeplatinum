@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_203.h"
-#include "res/field/events/events_route_203.h"
+#include "res/field/maps/locals/route_203.h"
 
 
     ScriptEntry Route203_Lass

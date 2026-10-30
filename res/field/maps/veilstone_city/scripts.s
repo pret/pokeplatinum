@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city.h"
-#include "res/field/events/events_veilstone_city.h"
+#include "res/field/maps/locals/veilstone_city.h"
 
 
     ScriptEntry VeilstoneCity_OnTransition

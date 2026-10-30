@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_north_pokecenter_1f.h"
-#include "res/field/events/events_pokemon_league_north_pokecenter_1f.h"
+#include "res/field/maps/locals/pokemon_league_north_pokecenter_1f.h"
 
 
     ScriptEntry PokemonLeagueNorthPokecenter1F_DoorGuard

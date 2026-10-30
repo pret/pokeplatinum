@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_elevator.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_veilstone_store_elevator.h"
+#include "res/field/maps/locals/veilstone_store_elevator.h"
 
 
     ScriptEntry VeilstoneStoreElevator_Receptionist

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/grand_lake_route_213_lobby.h"
-#include "res/field/events/events_grand_lake_route_213_lobby.h"
+#include "res/field/maps/locals/grand_lake_route_213_lobby.h"
 
 
     ScriptEntry GrandLakeRoute213Lobby_OnTransition

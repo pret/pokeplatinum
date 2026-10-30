@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_4f.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_galactic_hq_4f.h"
+#include "res/field/maps/locals/galactic_hq_4f.h"
 
 
     ScriptEntry GalacticHQ4F_CoordEvent_Cyrus

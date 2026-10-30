@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/restaurant.h"
-#include "res/field/events/events_restaurant.h"
+#include "res/field/maps/locals/restaurant.h"
 
 
     ScriptEntry Restaurant_Waiter

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town.h"
-#include "res/field/events/events_solaceon_town.h"
+#include "res/field/maps/locals/solaceon_town.h"
 
 
     ScriptEntry SolaceonTown_Rancher1

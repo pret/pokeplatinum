@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/vista_lighthouse.h"
-#include "res/field/events/events_vista_lighthouse.h"
+#include "res/field/maps/locals/vista_lighthouse.h"
 
 
     ScriptEntry VistaLighthouse_Sailor

@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_battle_tower.h"
+#include "res/field/maps/locals/battle_tower.h"
 #include "generated/goods.h"
 
 

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pal_park.h"
-#include "res/field/events/events_pal_park.h"
+#include "res/field/maps/locals/pal_park.h"
 
 
     ScriptEntry PalPark_OnTransition

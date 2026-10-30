@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city_pokecenter_1f.h"
-#include "res/field/events/events_sunyshore_city_pokecenter_1f.h"
+#include "res/field/maps/locals/sunyshore_city_pokecenter_1f.h"
 
 
     ScriptEntry SunyshoreCityPokecenter1F_Nurse

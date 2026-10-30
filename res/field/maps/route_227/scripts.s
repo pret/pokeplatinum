@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_227.h"
-#include "res/field/events/events_route_227.h"
+#include "res/field/maps/locals/route_227.h"
 
 
     ScriptEntry Route227_CoordEvent_WakeRival

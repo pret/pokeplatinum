@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/field/events/events_jubilife_tv_elevator.h"
+#include "res/field/maps/locals/jubilife_tv_elevator.h"
 #include "res/text/bank/jubilife_tv_elevator.h"
 #include "res/text/bank/menu_entries.h"
 

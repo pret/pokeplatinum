@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island_b2f_left_room.h"
 #include "res/text/bank/special_met_location_names.h"
-#include "res/field/events/events_iron_island_b2f_left_room.h"
+#include "res/field/maps/locals/iron_island_b2f_left_room.h"
 
 
     ScriptEntry IronIslandB2FLeftRoom_OnTransition

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town_pokecenter_1f.h"
-#include "res/field/events/events_floaroma_town_pokecenter_1f.h"
+#include "res/field/maps/locals/floaroma_town_pokecenter_1f.h"
 
 
     ScriptEntry FloaromaTownPokecenter1F_Nurse

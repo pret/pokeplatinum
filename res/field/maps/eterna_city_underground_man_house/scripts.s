@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_eterna_city_underground_man_house.h"
+#include "res/field/maps/locals/eterna_city_underground_man_house.h"
 #include "generated/goods.h"
 #include "generated/sphere_types.h"
 #include "generated/traps.h"

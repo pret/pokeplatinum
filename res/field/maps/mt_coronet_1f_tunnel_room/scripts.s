@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_1f_tunnel_room.h"
-#include "res/field/events/events_mt_coronet_1f_tunnel_room.h"
+#include "res/field/maps/locals/mt_coronet_1f_tunnel_room.h"
 
 
     ScriptEntry MtCoronet1FTunnelRoom_GruntM

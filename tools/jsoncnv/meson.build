@@ -4,7 +4,6 @@ jsoncnv_env.set('PYTHONPATH', meson.project_build_root()) # access to constants 
 # New single-file-parser scripts
 area_data_py = find_program('area_data.py', native: true)
 encounter_py = find_program('encounter.py', native: true)
-event_py = find_program('event.py', native: true)
 encdata_ex_elusive_rod_py = find_program('encdata_ex_elusive_rod.py', native: true)
 encdata_ex_honey_trees_py = find_program('encdata_ex_honey_trees.py', native: true)
 encdata_ex_trophy_garden_py = find_program('encdata_ex_trophy_garden.py', native: true)

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/lake_verity.h"
-#include "res/field/events/events_lake_verity.h"
+#include "res/field/maps/locals/lake_verity.h"
 
 
     ScriptEntry LakeVerity_OnTransition

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/wifi_plaza_entrance.h"
-#include "res/field/events/events_wifi_plaza_entrance.h"
+#include "res/field/maps/locals/wifi_plaza_entrance.h"
 #include "constants/map_object.h"
 
 

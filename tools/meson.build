@@ -1,4 +1,3 @@
-rapidjson_dep = dependency('rapidjson')
 
 # Native tools with helper libraries
 subdir('nitroarc') # libnitroarc
@@ -7,7 +6,6 @@ subdir('dataproc') # Requires libnitroarc and libenum
 subdir('msgenc')   # Requires libdataproc
 
 # Other native tools
-subdir('datagen')
 subdir('fixrom')
 subdir('jsoncnv')
 subdir('nitrobtx')

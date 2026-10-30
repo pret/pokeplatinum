@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_206_cycling_road_south_gate.h"
-#include "res/field/events/events_route_206_cycling_road_south_gate.h"
+#include "res/field/maps/locals/route_206_cycling_road_south_gate.h"
 
 
     ScriptEntry Route206CyclingRoadSouthGate_OnTransition

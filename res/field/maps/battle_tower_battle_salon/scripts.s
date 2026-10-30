@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_salon.h"
-#include "res/field/events/events_battle_tower_battle_salon.h"
+#include "res/field/maps/locals/battle_tower_battle_salon.h"
 #include "constants/map_object.h"
 
 

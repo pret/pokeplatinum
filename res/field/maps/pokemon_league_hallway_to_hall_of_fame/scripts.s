@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_hallway_to_hall_of_fame.h"
-#include "res/field/events/events_pokemon_league_hallway_to_hall_of_fame.h"
+#include "res/field/maps/locals/pokemon_league_hallway_to_hall_of_fame.h"
 
 
     ScriptEntry PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame

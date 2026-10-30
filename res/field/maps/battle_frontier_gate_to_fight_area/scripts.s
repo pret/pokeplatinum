@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_frontier_gate_to_fight_area.h"
-#include "res/field/events/events_battle_frontier_gate_to_fight_area.h"
+#include "res/field/maps/locals/battle_frontier_gate_to_fight_area.h"
 
 
     ScriptEntry BattleFrontierGateToFightArea_OnFrame_FirstEntry

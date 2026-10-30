@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city_pokecenter_1f.h"
-#include "res/field/events/events_jubilife_city_pokecenter_1f.h"
+#include "res/field/maps/locals/jubilife_city_pokecenter_1f.h"
 
 
     ScriptEntry JubilifeCityPokecenter1F_Nurse

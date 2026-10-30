@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_ruins_room_2.h"
-#include "res/field/events/events_solaceon_ruins_room_2.h"
+#include "res/field/maps/locals/solaceon_ruins_room_2.h"
 
 
     ScriptEntry SolaceonRuinsRoom2_Hiker

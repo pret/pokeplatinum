@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_elevator.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_resort_area_ribbon_syndicate_elevator.h"
+#include "res/field/maps/locals/resort_area_ribbon_syndicate_elevator.h"
 
 
     ScriptEntry ResortAreaRibbonSyndicateElevator_Receptionist

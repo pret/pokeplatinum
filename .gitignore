@@ -11,15 +11,9 @@
 /subprojects/NitroSDK-*/
 /subprojects/NitroSystem-*/
 /subprojects/NitroWiFi-*/
-/subprojects/nitrogfx/
-/subprojects/libpng-*/
-/subprojects/zlib-*/
 /subprojects/packagecache
 /subprojects/metang/
-/subprojects/rapidjson-*/
 /subprojects/meson-*/
-/subprojects/nitrorom/
-/subprojects/metroskrew/
 /subprojects/yyjson-*/
 /subprojects/.wraplock
 

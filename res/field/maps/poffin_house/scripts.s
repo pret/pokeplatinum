@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poffin_house.h"
-#include "res/field/events/events_poffin_house.h"
+#include "res/field/maps/locals/poffin_house.h"
 
 
     ScriptEntry PoffinHouse_Idol

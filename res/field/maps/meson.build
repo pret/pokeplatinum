@@ -8,6 +8,7 @@ mapgen = custom_target('mapgen',
         '-G', global_scripts,
         '-N', nitroarc_exe,
         '-E', enumproc_exe,
+        '-P', mapproc_exe,
         '-S', make_script_bin_sh,
         '-s', scripts_order,
         meson.project_source_root() / 'include/constants/fieldmap.h',
@@ -28,6 +29,8 @@ mapbuild = custom_target('mapbuild',
     output: [
         'scr_seq.narc',
         'scr_seq.naix',
+        'zone_event.narc',
+        'zone_event.naix',
     ],
 
     console: true,
@@ -38,8 +41,8 @@ mapbuild = custom_target('mapbuild',
     depends: [
         nitroarc_exe,
         enumproc_exe,
+        mapproc_exe,
         text_banks,
-        events_headers,
         pl_sound_data_sdat,
         c_consts_generators,
         h_headers,
@@ -53,3 +56,5 @@ mapbuild = custom_target('mapbuild',
 
 nitrofs_files += mapbuild[0]
 naix_headers += mapbuild[1]
+nitrofs_files += mapbuild[2]
+naix_headers += mapbuild[3]

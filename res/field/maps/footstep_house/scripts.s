@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/footstep_house.h"
-#include "res/field/events/events_footstep_house.h"
+#include "res/field/maps/locals/footstep_house.h"
 #include "constants/footstep_house.h"
 #include "generated/ribbons.h"
 

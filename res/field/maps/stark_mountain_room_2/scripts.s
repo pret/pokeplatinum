@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_room_2.h"
-#include "res/field/events/events_stark_mountain_room_2.h"
+#include "res/field/maps/locals/stark_mountain_room_2.h"
 
 
     ScriptEntry StarkMountainRoom2_CoordEvent_BuckStartFollowing

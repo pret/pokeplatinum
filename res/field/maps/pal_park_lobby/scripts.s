@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/pal_park_lobby.h"
-#include "res/field/events/events_pal_park_lobby.h"
+#include "res/field/maps/locals/pal_park_lobby.h"
 #include "constants/pokemon.h"
 #include "constants/versions.h"
 

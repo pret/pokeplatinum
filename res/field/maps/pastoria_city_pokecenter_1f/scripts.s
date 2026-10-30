@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_pokecenter_1f.h"
-#include "res/field/events/events_pastoria_city_pokecenter_1f.h"
+#include "res/field/maps/locals/pastoria_city_pokecenter_1f.h"
 
 
     ScriptEntry PastoriaCityPokecenter1F_Nurse

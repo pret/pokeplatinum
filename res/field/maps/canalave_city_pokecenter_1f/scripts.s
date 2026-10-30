@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_pokecenter_1f.h"
-#include "res/field/events/events_canalave_city_pokecenter_1f.h"
+#include "res/field/maps/locals/canalave_city_pokecenter_1f.h"
 
 
     ScriptEntry CanalaveCityPokecenter1F_Nurse

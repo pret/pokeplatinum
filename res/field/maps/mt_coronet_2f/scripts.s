@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_2f.h"
-#include "res/field/events/events_mt_coronet_2f.h"
+#include "res/field/maps/locals/mt_coronet_2f.h"
 
 
     ScriptEntry MtCoronet2F_CavePainting

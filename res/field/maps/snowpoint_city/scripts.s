@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city.h"
-#include "res/field/events/events_snowpoint_city.h"
+#include "res/field/maps/locals/snowpoint_city.h"
 
 
     ScriptEntry SnowpointCity_OnTransition

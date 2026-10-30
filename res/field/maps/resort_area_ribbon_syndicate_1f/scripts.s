@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_1f.h"
-#include "res/field/events/events_resort_area_ribbon_syndicate_1f.h"
+#include "res/field/maps/locals/resort_area_ribbon_syndicate_1f.h"
 #include "generated/ribbons.h"
 
 

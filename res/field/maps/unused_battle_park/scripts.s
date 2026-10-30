@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unused_battle_park.h"
-#include "res/field/events/events_unused_battle_park.h"
+#include "res/field/maps/locals/unused_battle_park.h"
 
 
     ScriptEntry BattlePark_CoordEvent_PalmerRival
