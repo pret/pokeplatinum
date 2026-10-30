@@ -4,6 +4,7 @@
 #include <nnsys.h>
 
 #include "generated/pokemon_contest_types.h"
+#include "generated/pokemon_stats.h"
 
 #include "applications/pc_boxes/defs.h"
 #include "applications/pc_boxes/icon_helper.h"
@@ -14,6 +15,9 @@
 #include "sprite.h"
 #include "string_gf.h"
 #include "sys_task_manager.h"
+
+#define COMPARE_NUM_LEVEL_AND_STATS (1 + STAT_MAX)
+#define COMPARE_NUM_STATS_ROWS      (1 + COMPARE_NUM_LEVEL_AND_STATS)
 
 #define CONTEST_CHART_CENTER_X 128
 #define CONTEST_CHART_CENTER_Y 484

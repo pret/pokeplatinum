@@ -108,8 +108,8 @@ BOOL BoxView_Init(BoxView *boxView, BoxGraphics *boxGraphics, const BoxApplicati
     boxView->unk_5858 = (256 + 16) + boxView->compareModeXOffset;
     boxView->monIconHelper = BoxGraphics_GetMonIconHelper(boxGraphics);
 
-    MonIconHelper_InitIcons(boxView->monIconHelper, boxView->icons[0], (5 * 6));
-    MonIconHelper_InitIcons(boxView->monIconHelper, boxView->icons[1], (5 * 6));
+    MonIconHelper_InitIcons(boxView->monIconHelper, boxView->icons[0], MAX_MONS_PER_BOX);
+    MonIconHelper_InitIcons(boxView->monIconHelper, boxView->icons[1], MAX_MONS_PER_BOX);
 
     boxView->bgConfig = bgConfig;
     boxView->boxApp = boxApp;
@@ -120,8 +120,8 @@ BOOL BoxView_Init(BoxView *boxView, BoxGraphics *boxGraphics, const BoxApplicati
 
 void BoxView_Free(BoxView *boxView)
 {
-    MonIconHelper_DeleteIcons(boxView->monIconHelper, boxView->icons[0], (5 * 6));
-    MonIconHelper_DeleteIcons(boxView->monIconHelper, boxView->icons[1], (5 * 6));
+    MonIconHelper_DeleteIcons(boxView->monIconHelper, boxView->icons[0], MAX_MONS_PER_BOX);
+    MonIconHelper_DeleteIcons(boxView->monIconHelper, boxView->icons[1], MAX_MONS_PER_BOX);
 }
 
 void BoxView_InitBgScroll(BoxView *boxView)
@@ -415,7 +415,7 @@ static void BoxView_PrepareIconData(BoxView *boxView, u32 boxID)
         if (species != SPECIES_NONE) {
             boxView->species[i] = species;
             boxView->iconSpriteIndex[i] = BoxPokemon_IconSpriteIndex(boxMon);
-            MonIconHelper_ReadIconData(boxView->monIconHelper, boxView->iconTileData[i], boxView->iconSpriteIndex[i], ((4 * 4) * 0x20 + 0x80));
+            MonIconHelper_ReadIconData(boxView->monIconHelper, boxView->iconTileData[i], boxView->iconSpriteIndex[i], MON_ICON_FILE_SIZE);
         }
     }
 }
@@ -594,7 +594,7 @@ void BoxView_CreateMissingIcons(BoxView *boxView)
 
 static u32 BoxView_GetIconPriority(u32 boxPos)
 {
-    static const u16 sMirroredBoxPos[(5 * 6)] = {
+    static const u16 sMirroredBoxPos[MAX_MONS_PER_BOX] = {
         5,
         4,
         3,

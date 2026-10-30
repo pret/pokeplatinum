@@ -117,7 +117,12 @@ BOOL BoxPopupGraphics_Init(BoxPopupGraphics *popupGraphics, BoxGraphics *boxGrap
         popupGraphics->thumbnailSprites[i] = NULL;
     }
 
-    if (popupGraphics->thumbnailCharDataBuffer == NULL || popupGraphics->thumbnailCellBankBuffer == NULL || popupGraphics->boxSelectionScreenBuffer == NULL || popupGraphics->itemInfoScreenBuffer == NULL || popupGraphics->monCountChars == NULL || popupGraphics->string == NULL) {
+    if (popupGraphics->thumbnailCharDataBuffer == NULL
+        || popupGraphics->thumbnailCellBankBuffer == NULL
+        || popupGraphics->boxSelectionScreenBuffer == NULL
+        || popupGraphics->itemInfoScreenBuffer == NULL
+        || popupGraphics->monCountChars == NULL
+        || popupGraphics->string == NULL) {
         return FALSE;
     }
 

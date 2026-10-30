@@ -9,6 +9,7 @@
 #include "applications/pc_boxes/party_graphics.h"
 #include "applications/pc_boxes/view.h"
 
+#include "coordinates.h"
 #include "narc.h"
 #include "sprite.h"
 
@@ -36,10 +37,7 @@ typedef struct BoxCursorGraphics {
     NNSG2dImageProxy imageProxy;
     MonIconHelper *monIconHelper;
     MonIcon monIcon[MAX_MONS_PER_BOX];
-    struct {
-        fx32 x;
-        fx32 y;
-    } heldIconOffsets[MAX_MONS_PER_BOX];
+    CoordinatesFX32 heldIconOffsets[MAX_MONS_PER_BOX];
     u32 heldIconCount;
     BoxView *box;
     BoxPartyGraphics *party;

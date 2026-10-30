@@ -259,11 +259,8 @@ void BoxMenuGraphics_CloseMenu(BoxMenuGraphics *menuGraphics)
 
 void BoxMenuGraphics_DrawMenuCursor(BoxMenuGraphics *menuGraphics, const BoxMenu *menu)
 {
-    Window *menuWindow;
-    u32 y;
-
-    menuWindow = &menuGraphics->windows[MENU_GRAPHICS_WINDOW_MENU];
-    y = (MAX_MENU_ITEMS - menu->totalMenuItems) * MENU_ITEM_HEIGHT;
+    Window *menuWindow = &menuGraphics->windows[MENU_GRAPHICS_WINDOW_MENU];
+    u32 y = (MAX_MENU_ITEMS - menu->totalMenuItems) * MENU_ITEM_HEIGHT;
 
     Window_FillRectWithColor(menuWindow, MENU_GRAPHICS_WINDOW_BG_COLOR, 0, y, 10, menu->totalMenuItems * MENU_ITEM_HEIGHT);
     Window_DrawMenuCursor(menuWindow, 0, y + (menu->selectedMenuItemIndex * MENU_ITEM_HEIGHT));

@@ -497,7 +497,9 @@ static int BoxAppMan_CursorInPartyInputHandler(BoxApplicationManager *boxAppMan)
             break;
         }
 
-        if (JOY_NEW(PAD_BUTTON_B) || JOY_NEW(PAD_KEY_RIGHT) && BoxApp_GetCursorPartyPosition(&boxAppMan->boxApp) & 1 || JOY_NEW(PAD_KEY_RIGHT) && BoxApp_GetCursorPartyPosition(&boxAppMan->boxApp) == MAX_PARTY_SIZE) {
+        if (JOY_NEW(PAD_BUTTON_B)
+            || JOY_NEW(PAD_KEY_RIGHT) && BoxApp_GetCursorPartyPosition(&boxAppMan->boxApp) & 1
+            || JOY_NEW(PAD_KEY_RIGHT) && BoxApp_GetCursorPartyPosition(&boxAppMan->boxApp) == MAX_PARTY_SIZE) {
             boxAppMan->cursorLocationHandlerState = CURSOR_IN_PARTY_LEAVE_PARTY;
             break;
         }
@@ -1031,13 +1033,13 @@ static void BoxAppMan_MonCursorMenuAction(BoxApplicationManager *boxAppMan, u32 
         case BOX_MENU_SUMMARY:
             BoxAppMan_RegisterBoxApplicationAction(boxAppMan, BoxAppMan_OpenSummaryAction);
             break;
-        case BOX_MENU_ITEM: {
+        case BOX_MENU_ITEM:
             if (BoxApp_GetPreviewedMonHeldItem(&boxAppMan->boxApp) == ITEM_NONE) {
                 BoxAppMan_RegisterBoxApplicationAction(boxAppMan, BoxAppMan_GiveItemFromBagAction);
             } else {
                 BoxAppMan_RegisterBoxApplicationAction(boxAppMan, BoxAppMan_MonItemHeldAction);
             }
-        } break;
+            break;
         case BOX_MENU_SET_ON_LEFT:
         case BOX_MENU_SET_ON_RIGHT:
             BoxApp_ToggleCompareMonSlot(&boxAppMan->boxApp);
@@ -1700,7 +1702,7 @@ static BOOL BoxAppMan_CheckLastAliveMonReason(BoxApplicationManager *boxAppMan, 
 static void BoxAppMan_ShiftMonAction(BoxApplicationManager *boxAppMan, u32 *state)
 {
     switch (*state) {
-    case SHIFT_START: {
+    case SHIFT_START:
         u32 messageID;
 
         if (BoxAppMan_CheckLastAliveMonReason(boxAppMan, &messageID)) {
@@ -1715,7 +1717,7 @@ static void BoxAppMan_ShiftMonAction(BoxApplicationManager *boxAppMan, u32 *stat
             BoxGraphics_TaskHandler(boxAppMan->boxGraphics, FUNC_BoxGraphics_PreviewMon);
             *state = SHIFT_END;
         }
-    } break;
+        break;
     case SHIFT_CONFIRM_MESSAGE:
         if (BoxGraphics_IsSysTaskDone(boxAppMan->boxGraphics, FUNC_BoxGraphics_DisplayBoxMessage) == FALSE) {
             break;
@@ -1984,7 +1986,7 @@ static BOOL BoxAppMan_CheckReleaseMonValid(BoxApplicationManager *boxAppMan, int
 static void BoxAppMan_ReleaseMonAction(BoxApplicationManager *boxAppMan, u32 *state)
 {
     switch (*state) {
-    case RELEASE_MON_START: {
+    case RELEASE_MON_START:
         int boxMessageID;
 
         if (BoxAppMan_CheckReleaseMonValid(boxAppMan, &boxMessageID)) {
@@ -1999,7 +2001,7 @@ static void BoxAppMan_ReleaseMonAction(BoxApplicationManager *boxAppMan, u32 *st
             BoxGraphics_TaskHandler(boxAppMan->boxGraphics, FUNC_BoxGraphics_DisplayBoxMessage);
             *state = RELEASE_MON_CANNOT_RELEASE;
         }
-    } break;
+        break;
 
     case RELEASE_MON_CONFIRM:
         if (BoxGraphics_CheckAllTasksDone(boxAppMan->boxGraphics) == FALSE) {
@@ -2823,7 +2825,7 @@ static void BoxAppMan_TouchScreenBoxJump(BoxApplicationManager *boxAppMan, u32 *
             boxAppMan->dialScrollAmount = 0;
             boxAppMan->scrollEnded = FALSE;
             break;
-        case BOX_DIAL_SCROLLING: {
+        case BOX_DIAL_SCROLLING:
             int scrollAmount = BoxDial_CalcScrollAmount(&boxAppMan->dial);
 
             if (scrollAmount != boxAppMan->dialScrollAmount) {
@@ -2843,15 +2845,15 @@ static void BoxAppMan_TouchScreenBoxJump(BoxApplicationManager *boxAppMan, u32 *
                 Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 *state = TOUCH_BOX_JUMP_END_SCROLL;
             }
-        } break;
-        case BOX_DIAL_END_SCROLL: {
+            break;
+        case BOX_DIAL_END_SCROLL:
             int currentBox = BoxApp_GetCurrentBox(&boxAppMan->boxApp);
             int selectedBox = BoxApp_GetDialOffset(&boxAppMan->boxApp);
 
             boxAppMan->dialBoxChanged = currentBox != selectedBox;
             boxAppMan->boxJumpDelayCounter = 0;
             boxAppMan->scrollEnded = TRUE;
-        } break;
+            break;
         }
         break;
     case TOUCH_BOX_JUMP_END_SCROLL:
@@ -2940,7 +2942,7 @@ static void BoxAppMan_MarkingsFilterAction(BoxApplicationManager *boxAppMan, u32
             boxAppMan->dialScrollAmount = 0;
             boxAppMan->scrollEnded = FALSE;
             break;
-        case BOX_DIAL_SCROLLING: {
+        case BOX_DIAL_SCROLLING:
             int scrollAmount = BoxDial_CalcScrollAmount(&boxAppMan->dial);
 
             if (scrollAmount != boxAppMan->dialScrollAmount) {
@@ -2962,8 +2964,8 @@ static void BoxAppMan_MarkingsFilterAction(BoxApplicationManager *boxAppMan, u32
                 Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 *state = TOUCH_MARKINGS_END_SCROLL;
             }
-        } break;
-        case BOX_DIAL_END_SCROLL: {
+            break;
+        case BOX_DIAL_END_SCROLL:
             // Seems like GF just copy-pasted the code from the box jump touch dial into this section for the markings touch dial
             // Somehow surprisingly doesn't cause any bugs
             int currentBox = BoxApp_GetCurrentBox(&boxAppMan->boxApp);
@@ -2972,7 +2974,7 @@ static void BoxAppMan_MarkingsFilterAction(BoxApplicationManager *boxAppMan, u32
             boxAppMan->dialBoxChanged = currentBox != markingsScrollAmount;
             boxAppMan->boxJumpDelayCounter = 0;
             boxAppMan->scrollEnded = TRUE;
-        } break;
+            break;
         }
         break;
     case TOUCH_MARKINGS_END_SCROLL:
@@ -3317,7 +3319,7 @@ static BOOL BoxApp_TryMoveCursor(BoxApplication *boxApp, int colChange, int rowC
             return TRUE;
         }
         break;
-    case CURSOR_IN_PARTY: {
+    case CURSOR_IN_PARTY:
         u32 initialPosition = cursor->posInParty;
 
         if (rowChange < 0) {
@@ -3356,7 +3358,7 @@ static BOOL BoxApp_TryMoveCursor(BoxApplication *boxApp, int colChange, int rowC
             return TRUE;
         }
         break;
-    } break;
+        break;
     }
 
     return FALSE;

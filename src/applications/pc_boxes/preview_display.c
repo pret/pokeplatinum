@@ -388,7 +388,7 @@ static void PCMonPreviewDisplay_DrawRotationPage(Window *window, PCMonPreviewDis
         str = previewDisplay->boxApp->pcMonPreview.ability;
         break;
 
-    case ROTATION_PAGE_TYPES: {
+    case ROTATION_PAGE_TYPES:
         VecFx32 pos;
         u32 unused2, unused3;
 
@@ -415,7 +415,6 @@ static void PCMonPreviewDisplay_DrawRotationPage(Window *window, PCMonPreviewDis
         } else {
             Sprite_SetDrawFlag(previewDisplay->typeIconSprites[1], FALSE);
         }
-    }
         return;
     default:
         return;

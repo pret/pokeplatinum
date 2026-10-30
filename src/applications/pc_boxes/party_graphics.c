@@ -10,6 +10,7 @@
 #include "applications/pc_boxes/view.h"
 
 #include "bg_window.h"
+#include "coordinates.h"
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
@@ -19,10 +20,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-static const struct {
-    u16 x;
-    u16 y;
-} sPartyIconPositions[MAX_PARTY_SIZE] = {
+static const CoordinatesU16 sPartyIconPositions[MAX_PARTY_SIZE] = {
     { 144, 28 },
     { 192, 36 },
     { 144, 68 },
@@ -259,12 +257,9 @@ BOOL BoxPartyGraphics_HasFinishedAnimating3(BoxPartyGraphics *partyGraphics)
 
 static void BoxPartyGraphics_GlideIconTask(SysTask *task, void *param)
 {
-    BoxPartyGraphics *partyGraphics;
-    VecFx32 pos;
+    BoxPartyGraphics *partyGraphics = (BoxPartyGraphics *)param;
+    VecFx32 pos = *Sprite_GetPosition(partyGraphics->monIcons[partyGraphics->animSlot].sprite);
     BOOL isDone;
-
-    partyGraphics = (BoxPartyGraphics *)param;
-    pos = *Sprite_GetPosition(partyGraphics->monIcons[partyGraphics->animSlot].sprite);
 
     if (++(partyGraphics->animFrame) >= PARTY_ICON_ANIM_FRAMES) {
         pos.x = (sPartyIconPositions[partyGraphics->animSlot].x + partyGraphics->xOffset) << FX32_SHIFT;
@@ -379,13 +374,9 @@ void BoxPartyGraphics_PickUpIcon(BoxPartyGraphics *partyGraphics, u32 partySlot,
 
 void BoxPartyGraphics_PlaceDownIcon(BoxPartyGraphics *partyGraphics, u32 partySlot, const MonIcon *monIcon)
 {
-    u32 slot;
-    u32 tileOffset;
-    MonIcon *slotIcon;
-
-    slot = Party_GetCurrentCount(partyGraphics->boxApp->party) - 1;
-    tileOffset = PARTY_ICON_TILE_BASE + PARTY_ICON_TILE_COUNT * slot;
-    slotIcon = &partyGraphics->monIcons[slot];
+    u32 slot = Party_GetCurrentCount(partyGraphics->boxApp->party) - 1;
+    u32 tileOffset = PARTY_ICON_TILE_BASE + PARTY_ICON_TILE_COUNT * slot;
+    MonIcon *slotIcon = &partyGraphics->monIcons[slot];
 
     MonIcon_Copy(monIcon, slotIcon, 1);
     MonIconHelper_MoveIconTiles(partyGraphics->monIconHelper, slotIcon, tileOffset);
@@ -397,13 +388,9 @@ void BoxPartyGraphics_PlaceDownIcon(BoxPartyGraphics *partyGraphics, u32 partySl
 
 void BoxPartyGraphics_PlaceDownIconAtSlot(BoxPartyGraphics *partyGraphics, u32 partySlot, const MonIcon *monIcon)
 {
-    u32 slot;
-    u32 tileOffset;
-    MonIcon *slotIcon;
-
-    slot = partySlot;
-    tileOffset = PARTY_ICON_TILE_BASE + PARTY_ICON_TILE_COUNT * slot;
-    slotIcon = &partyGraphics->monIcons[slot];
+    u32 slot = partySlot;
+    u32 tileOffset = PARTY_ICON_TILE_BASE + PARTY_ICON_TILE_COUNT * slot;
+    MonIcon *slotIcon = &partyGraphics->monIcons[slot];
 
     MonIcon_Copy(monIcon, slotIcon, 1);
     MonIconHelper_MoveIconTiles(partyGraphics->monIconHelper, slotIcon, tileOffset);

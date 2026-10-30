@@ -473,14 +473,13 @@ static void BoxGraphics_ChangeToNewBox(SysTask *unused, void *param)
         }
 
         header->state++;
-    case CHANGE_BOX_STATE_SWITCH_BOX: {
+    case CHANGE_BOX_STATE_SWITCH_BOX:
         int boxChangeDirection = BoxGraphics_GetBoxMoveDirection(boxGraphics->box.boxID, boxApp->customization.boxID);
 
         BoxView_Show(&boxGraphics->box, &boxApp->customization, boxChangeDirection, TRUE);
         BoxView_StartScroll(&boxGraphics->box, &boxApp->customization, boxChangeDirection);
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
         header->state++;
-    }
     case CHANGE_BOX_STATE_WAIT_SWITCH_DONE:
         if (BoxView_IsScrollDone(&boxGraphics->box) == 0) {
             break;
@@ -874,15 +873,10 @@ static void BoxGraphics_PlaySwitchItemAnimation(SysTask *unused, void *param)
 
 static void BoxGraphics_UpdateHeldItemIcon(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    const BoxApplication *boxApp;
-    BoxGraphicsTaskHeader *header;
-    u32 item;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
-    item = BoxApp_GetPreviewedMonHeldItem(boxApp);
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
+    u32 item = BoxApp_GetPreviewedMonHeldItem(boxApp);
 
     if (BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_IN_CURSOR) {
         BoxCursorGraphics_UpdateHeldItemIcon(&boxGraphics->cursorGraphics, item);
@@ -902,13 +896,9 @@ static void BoxGraphics_UpdateHeldItemIcon(SysTask *unused, void *param)
 
 static void BoxGraphics_ItemShrinkToNothing(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    const BoxApplication *boxApp;
-    BoxGraphicsTaskHeader *header;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -927,13 +917,9 @@ static void BoxGraphics_ItemShrinkToNothing(SysTask *unused, void *param)
 
 static void BoxGraphics_DisplayBoxMessage(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxMenuGraphics_ShowMessage(&(boxGraphics->menuGraphics), BoxApp_GetBoxMessageID(boxApp));
     BoxGraphicsTaskHeader_Free(header);
@@ -941,13 +927,9 @@ static void BoxGraphics_DisplayBoxMessage(SysTask *unused, void *param)
 
 static void BoxGraphics_ShowMenu(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxMenuGraphics_ShowMessage(&(boxGraphics->menuGraphics), BoxApp_GetBoxMessageID(boxApp));
     BoxMenuGraphics_ShowMenu(&(boxGraphics->menuGraphics), &(boxApp->boxMenu));
@@ -974,13 +956,9 @@ static void BoxGraphics_CloseMenu(SysTask *unused, void *param)
 
 static void BoxGraphics_UpdateMenuCursor(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     Sound_PlayEffect(SE_CONFIRM_sseq_3);
     BoxMenuGraphics_DrawMenuCursor(&(boxGraphics->menuGraphics), &(boxApp->boxMenu));
@@ -989,13 +967,9 @@ static void BoxGraphics_UpdateMenuCursor(SysTask *unused, void *param)
 
 static void BoxGraphics_UpdateMenuMarkings(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
     BoxMenuGraphics_UpdateMarkings(&(boxGraphics->menuGraphics), &(boxApp->boxMenu));
@@ -1004,13 +978,9 @@ static void BoxGraphics_UpdateMenuMarkings(SysTask *unused, void *param)
 
 static void BoxGraphics_ShowBoxSelectionPopup(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1026,13 +996,9 @@ static void BoxGraphics_ShowBoxSelectionPopup(SysTask *unused, void *param)
 
 static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1047,13 +1013,9 @@ static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *unused, void *param)
 
 static void BoxGraphics_CloseBoxSelectionPopup(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1069,13 +1031,9 @@ static void BoxGraphics_CloseBoxSelectionPopup(SysTask *unused, void *param)
 
 static void BoxGraphics_TransitionWallpaper(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1092,13 +1050,9 @@ static void BoxGraphics_TransitionWallpaper(SysTask *unused, void *param)
 
 static void BoxGraphics_PressBoxButton(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case PRESS_BOX_BUTTON_STATE_START:
@@ -1138,13 +1092,9 @@ static void BoxGraphics_PressBoxButton(SysTask *unused, void *param)
 
 static void BoxGraphics_OpenPartyPopup(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1163,13 +1113,9 @@ static void BoxGraphics_OpenPartyPopup(SysTask *unused, void *param)
 
 static void BoxGraphics_ClosePartyPopup(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case CLOSE_PARTY_POPUP_STATE_HIDE_SPRITES:
@@ -1197,13 +1143,9 @@ static void BoxGraphics_ClosePartyPopup(SysTask *unused, void *param)
 
 static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1220,13 +1162,9 @@ static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *unused, void *param)
 
 static void BoxGraphics_FinishAdjustPartyAnimation(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1248,13 +1186,9 @@ static void BoxGraphics_FinishAdjustPartyAnimation(SysTask *unused, void *param)
 
 static void BoxGraphics_SetMonMarkingsTransparency(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxView_UpdateMarkingsTransparency(&boxGraphics->box);
     BoxPartyGraphics_UpdateMarkingsTransparency(&boxGraphics->partyGraphics);
@@ -1264,13 +1198,9 @@ static void BoxGraphics_SetMonMarkingsTransparency(SysTask *unused, void *param)
 
 static void BoxGraphics_OpenOrCloseSelectedDial(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case DIAL_STATE_START:
@@ -1297,13 +1227,9 @@ static void BoxGraphics_OpenOrCloseSelectedDial(SysTask *unused, void *param)
 
 static void BoxGraphics_UpdateSelectedDial(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1320,13 +1246,9 @@ static void BoxGraphics_UpdateSelectedDial(SysTask *unused, void *param)
 
 static void BoxGraphics_UpdateMarkingsTouchButton(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxDialGraphics_UpdateMarkingButtons(boxGraphics->dialGraphics);
     BoxGraphicsTaskHeader_Free(header);
@@ -1334,13 +1256,9 @@ static void BoxGraphics_UpdateMarkingsTouchButton(SysTask *unused, void *param)
 
 static void BoxGraphics_UpdateCursorPalette(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxCursorGraphics_UpdateFastModePalette(&(boxGraphics->cursorGraphics));
     BoxGraphicsTaskHeader_Free(header);
@@ -1348,13 +1266,9 @@ static void BoxGraphics_UpdateCursorPalette(SysTask *unused, void *param)
 
 static void BoxGraphics_StartDrawMultiSelect(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxGraphics_OpenMultiSelectCursor(&(boxGraphics->cursorGraphics));
     BoxView_ApplyMultiSelectMonShading(&(boxGraphics->box));
@@ -1363,13 +1277,9 @@ static void BoxGraphics_StartDrawMultiSelect(SysTask *unused, void *param)
 
 static void BoxGraphics_ClearMultiSelectShading(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxView_ClearMultiSelectShading(&(boxGraphics->box));
     BoxGraphicsTaskHeader_Free(header);
@@ -1377,13 +1287,9 @@ static void BoxGraphics_ClearMultiSelectShading(SysTask *unused, void *param)
 
 static void BoxGraphics_ApplyMultiSelectMonShading(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxView_ApplyMultiSelectMonShading(&(boxGraphics->box));
     BoxGraphicsTaskHeader_Free(header);
@@ -1391,13 +1297,9 @@ static void BoxGraphics_ApplyMultiSelectMonShading(SysTask *unused, void *param)
 
 static void BoxGraphics_PickUpMultiSelectedMonsIntoCursor(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:
@@ -1414,13 +1316,9 @@ static void BoxGraphics_PickUpMultiSelectedMonsIntoCursor(SysTask *unused, void 
 
 static void BoxGraphics_SetCompareSlotTab(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxCompareGraphics_UpdateSlotTabs(boxGraphics->compareGraphics, 0);
     BoxGraphicsTaskHeader_Free(header);
@@ -1428,13 +1326,9 @@ static void BoxGraphics_SetCompareSlotTab(SysTask *unused, void *param)
 
 static void BoxGraphics_SwitchCompareSlotTab(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     BoxCompareGraphics_UpdateSlotTabs(boxGraphics->compareGraphics, 1);
     BoxGraphicsTaskHeader_Free(header);
@@ -1442,13 +1336,9 @@ static void BoxGraphics_SwitchCompareSlotTab(SysTask *unused, void *param)
 
 static void BoxGraphics_TransitionCompareMode(SysTask *unused, void *param)
 {
-    BoxGraphics *boxGraphics;
-    BoxGraphicsTaskHeader *header;
-    const BoxApplication *boxApp;
-
-    header = (BoxGraphicsTaskHeader *)param;
-    boxGraphics = header->boxGraphics;
-    boxApp = boxGraphics->boxApp;
+    BoxGraphicsTaskHeader *header = (BoxGraphicsTaskHeader *)param;
+    BoxGraphics *boxGraphics = header->boxGraphics;
+    const BoxApplication *boxApp = boxGraphics->boxApp;
 
     switch (header->state) {
     case BOX_GRAPHICS_TASK_START:

@@ -30,7 +30,7 @@
 #define CURSOR_MOVE_WRAP_STEPS   12
 #define CURSOR_MOVE_NORMAL_STEPS 6
 
-typedef struct {
+typedef struct SpriteArcMove {
     Sprite *sprite;
     u16 ticksRemaining;
     u16 midpointTick;
@@ -90,7 +90,7 @@ BOOL BoxCursorGraphics_Init(BoxCursorGraphics *bcGraphics, BoxGraphics *boxGraph
     bcGraphics->cellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 13, TRUE, &bcGraphics->cellBank, HEAP_ID_BOX_GRAPHICS);
     bcGraphics->animBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 14, TRUE, &bcGraphics->animBank, HEAP_ID_BOX_GRAPHICS);
 
-    if ((bcGraphics->cellBankBuffer == NULL) || (bcGraphics->animBankBuffer == NULL)) {
+    if (bcGraphics->cellBankBuffer == NULL || bcGraphics->animBankBuffer == NULL) {
         return FALSE;
     }
 
@@ -147,7 +147,7 @@ void BoxCursorGraphics_Load(BoxCursorGraphics *bcGraphics, NARC *narc)
     if (pcMode != PC_MODE_MOVE_ITEMS) {
         if (BoxApp_GetPreviewMonSource(bcGraphics->boxApp) == PREVIEW_MON_UNDER_CURSOR) {
             Sprite_SetAnim(bcGraphics->cursorSprite, 0);
-            MonIconHelper_InitIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, (5 * 6));
+            MonIconHelper_InitIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, MAX_MONS_PER_BOX);
             bcGraphics->hasHeldMonIcon = FALSE;
         } else {
             Sprite_SetAnim(bcGraphics->cursorSprite, 2);
@@ -165,7 +165,7 @@ void BoxCursorGraphics_Load(BoxCursorGraphics *bcGraphics, NARC *narc)
             bcGraphics->isHoldingItem = 1;
         }
 
-        MonIconHelper_InitIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, (5 * 6));
+        MonIconHelper_InitIcons(bcGraphics->monIconHelper, bcGraphics->monIcon, MAX_MONS_PER_BOX);
         bcGraphics->hasHeldMonIcon = FALSE;
     }
 
@@ -671,7 +671,7 @@ static void BoxCursorGraphics_ButtonPressAnimationTask(SysTask *task, void *para
             bcGraphics->animPhase++;
         }
         break;
-    case BUTTON_PRESS_ANIM_SETTLE: {
+    case BUTTON_PRESS_ANIM_SETTLE:
         VecFx32 pos = *Sprite_GetPosition(bcGraphics->cursorSprite);
 
         if (bcGraphics->moveStepsRemaining) {
@@ -684,7 +684,7 @@ static void BoxCursorGraphics_ButtonPressAnimationTask(SysTask *task, void *para
             bcGraphics->isAnimating = FALSE;
             SysTask_Done(task);
         }
-    } break;
+        break;
     }
 }
 
@@ -719,11 +719,8 @@ BOOL BoxCursorGraphics_IsReturnToRestAnimationDone(BoxCursorGraphics *bcGraphics
 
 static void BoxCursorGraphics_ReturnToRestAnimationTask(SysTask *task, void *param)
 {
-    BoxCursorGraphics *bcGraphics;
-    VecFx32 pos;
-
-    bcGraphics = (BoxCursorGraphics *)param;
-    pos = *Sprite_GetPosition(bcGraphics->cursorSprite);
+    BoxCursorGraphics *bcGraphics = (BoxCursorGraphics *)param;
+    VecFx32 pos = *Sprite_GetPosition(bcGraphics->cursorSprite);
 
     if (bcGraphics->moveStepsRemaining) {
         pos.y += bcGraphics->stepY;
@@ -1008,13 +1005,13 @@ static void BoxCursorGraphics_GetTargetPosition(s32 *targetX, s32 *targetY, u8 *
         *targetX = BOX_GRID_LEFT + BoxGraphics_GetCompareModeXOffset(bcGraphics->boxGraphics) + BoxApp_GetCursorBoxCol(boxApp) * BOX_GRID_CELL_SIZE + 0;
         *targetY = BOX_GRID_TOP + BoxApp_GetCursorBoxRow(boxApp) * BOX_GRID_CELL_SIZE + -16;
         break;
-    case CURSOR_IN_PARTY: {
+    case CURSOR_IN_PARTY:
         u32 partyIndex = BoxApp_GetCursorPartyPosition(boxApp);
 
         BoxPartyGraphics_GetCursorSlotPosition(BoxGraphics_GetPartyGraphics(bcGraphics->boxGraphics), partyIndex, targetX, targetY);
         (*targetX) += 0;
         (*targetY) += -16;
-    } break;
+        break;
     case CURSOR_ON_BOX_HEADER:
         *targetX = 168 + BoxGraphics_GetCompareModeXOffset(bcGraphics->boxGraphics);
         *targetY = 8;

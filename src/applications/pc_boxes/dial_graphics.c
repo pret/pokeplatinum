@@ -9,6 +9,7 @@
 #include "applications/pc_boxes/popup_graphics.h"
 
 #include "bg_window.h"
+#include "coordinates.h"
 #include "enums.h"
 #include "graphics.h"
 #include "heap.h"
@@ -97,10 +98,7 @@ static const int sDialContentXOffsets[] = {
     128
 };
 
-static const struct {
-    s16 x;
-    s16 y;
-} sDialArcPath[] = {
+static const CoordinatesS16 sDialArcPath[] = {
     { 106, 584 },
     { 106, 578 },
     { 106, 574 },
@@ -879,11 +877,9 @@ static u32 GetMarkingButtonAnimID(u32 button, u32 mask)
 
 static void BoxDialGraphics_CreateMarkingButtonSprites(BoxDialGraphics *dialGraphics)
 {
+    u32 mask = BoxApp_GetMonSpriteTransparencyMask(dialGraphics->boxApp);
     SpriteResourcesHeader srHeader;
     NNSG2dImageProxy imageProxy;
-    u32 mask;
-
-    mask = BoxApp_GetMonSpriteTransparencyMask(dialGraphics->boxApp);
 
     NNS_G2dInitImageProxy(&imageProxy);
     Graphics_LoadImageMapping(NARC_INDEX_GRAPHIC__BOX, 141, TRUE, IMAGE_MAPPING_LAYOUT_1D, 0, NNS_G2D_VRAM_TYPE_2DSUB, DIAL_SPRITE_TILE_BASE * TILE_SIZE_4BPP, HEAP_ID_BOX_GRAPHICS, &imageProxy);
@@ -1052,7 +1048,7 @@ static void DialRotateAnim_ThumbnailsAppearTask(SysTask *unused, void *param)
     BoxDialGraphics *dialGraphics = dialRotateAnim->dialGraphics;
 
     switch (dialRotateAnim->state) {
-    case THUMBNAILS_APPEAR_STATE_LAUNCH: {
+    case THUMBNAILS_APPEAR_STATE_LAUNCH:
         int slot;
 
         dialRotateAnim->appearedCount++;
@@ -1067,7 +1063,7 @@ static void DialRotateAnim_ThumbnailsAppearTask(SysTask *unused, void *param)
                 dialRotateAnim->state = THUMBNAILS_APPEAR_STATE_WAIT_DELAY;
             }
         }
-    } break;
+        break;
     case THUMBNAILS_APPEAR_STATE_WAIT_DELAY:
         dialRotateAnim->appearDelay -= (1 * 2);
 
@@ -1092,9 +1088,7 @@ static void DialRotateAnim_Free(void *param)
 
 static void BoxDialGraphics_StartThumbnailsAppear(BoxDialGraphics *dialGraphics)
 {
-    DialRotateAnim *dialRotateAnim;
-
-    dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
+    DialRotateAnim *dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
 
     if (dialRotateAnim != NULL) {
         dialRotateAnim->dialGraphics = dialGraphics;
@@ -1118,7 +1112,7 @@ static void DialRotateAnim_ThumbnailsRotateTask(SysTask *unused, void *param)
     BoxDialGraphics *dialGraphics = dialRotateAnim->dialGraphics;
 
     switch (dialRotateAnim->state) {
-    case DIAL_ROTATE_STATE_START_MOVES: {
+    case DIAL_ROTATE_STATE_START_MOVES:
         int i, count, slot, direction, startPos, endPos;
 
         if (dialGraphics->boxApp->dialHelper.scrollDelta > 0) {
@@ -1192,7 +1186,7 @@ static void DialRotateAnim_ThumbnailsRotateTask(SysTask *unused, void *param)
         }
 
         dialRotateAnim->state++;
-    } break;
+        break;
     case DIAL_ROTATE_STATE_WAIT_MOVES:
         if (dialRotateAnim->activeMoveCount == 0) {
             dialRotateAnim->state++;
@@ -1204,9 +1198,7 @@ static void DialRotateAnim_ThumbnailsRotateTask(SysTask *unused, void *param)
 
 static void BoxDialGraphics_StartThumbnailsRotate(BoxDialGraphics *dialGraphics)
 {
-    DialRotateAnim *dialRotateAnim;
-
-    dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
+    DialRotateAnim *dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
 
     if (dialRotateAnim != NULL) {
         dialRotateAnim->dialGraphics = dialGraphics;
@@ -1231,7 +1223,7 @@ static void DialRotateAnim_MarkingButtonsAppearTask(SysTask *unused, void *param
     BoxDialGraphics *dialGraphics = dialRotateAnim->dialGraphics;
 
     switch (dialRotateAnim->state) {
-    case DIAL_ROTATE_STATE_START_MOVES: {
+    case DIAL_ROTATE_STATE_START_MOVES:
         int i, slot, endPos;
 
         endPos = DIAL_VISIBLE_BUTTONS;
@@ -1248,7 +1240,7 @@ static void DialRotateAnim_MarkingButtonsAppearTask(SysTask *unused, void *param
         }
 
         dialRotateAnim->state++;
-    } break;
+        break;
     case DIAL_ROTATE_STATE_WAIT_MOVES:
         if (dialRotateAnim->activeMoveCount == 0) {
             dialRotateAnim->state++;
@@ -1260,9 +1252,7 @@ static void DialRotateAnim_MarkingButtonsAppearTask(SysTask *unused, void *param
 
 static void BoxDialGraphics_StartMarkingButtonsAppear(BoxDialGraphics *dialGraphics)
 {
-    DialRotateAnim *dialRotateAnim;
-
-    dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
+    DialRotateAnim *dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
 
     if (dialRotateAnim != NULL) {
         dialRotateAnim->dialGraphics = dialGraphics;
@@ -1286,7 +1276,7 @@ static void DialRotateAnim_MarkingButtonsRotateTask(SysTask *unused, void *param
     BoxDialGraphics *dialGraphics = dialRotateAnim->dialGraphics;
 
     switch (dialRotateAnim->state) {
-    case DIAL_ROTATE_STATE_START_MOVES: {
+    case DIAL_ROTATE_STATE_START_MOVES:
         int slot, scrollDelta, direction, i, startPos, endPos, queueEnd, steps, delay;
 
         scrollDelta = BoxApp_GetDialScrollDelta(dialGraphics->boxApp);
@@ -1369,7 +1359,7 @@ static void DialRotateAnim_MarkingButtonsRotateTask(SysTask *unused, void *param
         }
 
         dialRotateAnim->state++;
-    } break;
+        break;
     case DIAL_ROTATE_STATE_WAIT_MOVES:
         if (dialRotateAnim->activeMoveCount == 0) {
             dialRotateAnim->state++;
@@ -1381,9 +1371,7 @@ static void DialRotateAnim_MarkingButtonsRotateTask(SysTask *unused, void *param
 
 static void BoxDialGraphics_StartMarkingButtonsRotate(BoxDialGraphics *dialGraphics)
 {
-    DialRotateAnim *dialRotateAnim;
-
-    dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
+    DialRotateAnim *dialRotateAnim = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(DialRotateAnim));
 
     if (dialRotateAnim != NULL) {
         dialRotateAnim->dialGraphics = dialGraphics;
@@ -1427,10 +1415,7 @@ static void BoxDialGraphics_ShowBoxNames(BoxDialGraphics *unused)
 
 static void BoxDialGraphics_DrawBoxNames(BoxDialGraphics *dialGraphics)
 {
-    static const struct {
-        s16 x;
-        s16 y;
-    } boxNamePositions[] = {
+    static const CoordinatesS16 boxNamePositions[] = {
         { 36, 4 },
         { 36, 36 },
         { 50, 69 },

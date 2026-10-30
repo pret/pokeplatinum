@@ -30,7 +30,7 @@ static const struct {
     { (ITEM_ICON_TILE_BASE + 2 * ITEM_ICON_TILE_COUNT) * TILE_SIZE_4BPP, ITEM_ICON_PLTT_BASE + 2 },
 };
 
-typedef struct {
+typedef struct ItemIconMove {
     BoxItemIconGraphics *itemIconGraphics;
     Sprite *sprite;
     VecFx32 pos;

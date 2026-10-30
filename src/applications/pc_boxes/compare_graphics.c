@@ -11,6 +11,7 @@
 #include "applications/pc_boxes/icon_helper.h"
 
 #include "bg_window.h"
+#include "coordinates.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -531,14 +532,14 @@ static void BoxCompareGraphics_DrawBattleStats(BoxCompareGraphics *compareGraphi
 
             Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->nature, GetCenteredTextX(window, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_COMPARE, NULL);
 
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < COMPARE_NUM_LEVEL_AND_STATS; i++) {
                 String_FormatInt(compareGraphics->boxDisplayText, stats[i], 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
                 Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), (1 + i) * 16, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_COMPARE, NULL);
             }
         } else {
             MessageLoader_GetString(compareGraphics->boxMessagesLoader, BoxText_QuestionMarks, compareGraphics->boxDisplayText);
 
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < COMPARE_NUM_STATS_ROWS; i++) {
                 Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), i * 16, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_COMPARE, NULL);
             }
         }
@@ -574,7 +575,7 @@ static void BoxCompareGraphics_DrawMoves(BoxCompareGraphics *compareGraphics, in
         } else {
             MessageLoader_GetString(compareGraphics->boxMessagesLoader, BoxText_QuestionMarks, compareGraphics->boxDisplayText);
 
-            for (i = 0; i < 4; i++) {
+            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
                 Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareGraphics->boxDisplayText, GetCenteredTextX(window, 0, compareGraphics->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, BOX_TEXT_COLOR_COMPARE, NULL);
             }
         }
@@ -585,10 +586,7 @@ static void BoxCompareGraphics_DrawMoves(BoxCompareGraphics *compareGraphics, in
 
 static void BoxCompareGraphics_CreateSprites(BoxCompareGraphics *compareGraphics, NARC *narc)
 {
-    static const struct {
-        s16 x;
-        s16 y;
-    } tabPositions[] = {
+    static const CoordinatesS16 tabPositions[] = {
         { 0, 568 },
         { 256, 568 },
     };
@@ -629,10 +627,7 @@ static void BoxCompareGraphics_CreateSprites(BoxCompareGraphics *compareGraphics
 
 static void BoxCompareGraphics_CreateMonIconSprites(BoxCompareGraphics *compareGraphics, u32 vramOffset)
 {
-    static const struct {
-        s16 x;
-        s16 y;
-    } tabPositions[] = {
+    static const CoordinatesS16 tabPositions[] = {
         { 112, 394 },
         { 144, 394 },
     };

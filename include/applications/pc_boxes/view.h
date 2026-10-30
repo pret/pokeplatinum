@@ -55,10 +55,10 @@ typedef struct BoxView {
     u8 taskBusy;
     u8 releaseAnimStep;
     u8 padding_A5[3];
-    MonIcon icons[2][30];
-    u8 iconTileData[30][640];
-    u16 iconSpriteIndex[30];
-    u16 species[30];
+    MonIcon icons[2][MAX_MONS_PER_BOX];
+    u8 iconTileData[MAX_MONS_PER_BOX][MON_ICON_FILE_SIZE];
+    u16 iconSpriteIndex[MAX_MONS_PER_BOX];
+    u16 species[MAX_MONS_PER_BOX];
     u8 padding_5850[4];
     int unk_5854;
     int unk_5858;
