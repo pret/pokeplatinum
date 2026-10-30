@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 
+#include "constants/badges.h"
 #include "constants/trainer_card_levels.h"
 #include "constants/versions.h"
 #include "generated/genders.h"
@@ -12,7 +13,6 @@
 #include "applications/trainer_case/sprites.h"
 
 #include "appearance.h"
-#include "badges.h"
 #include "bg_window.h"
 #include "graphics.h"
 #include "gx_layers.h"

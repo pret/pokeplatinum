@@ -2,8 +2,8 @@
 #define POKEPLATINUM_CONSTANTS_SCRCMD_H
 
 #include "constants/accessories.h"
+#include "constants/backdrops.h"
 #include "constants/menu.h"
-#include "generated/backdrops.h"
 
 #define BATTLEGROUND_TRAINER_NONE 0xFFF
 

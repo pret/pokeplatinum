@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
+#include "constants/distribution_events.h"
 #include "res/text/bank/spear_pillar.h"
 #include "res/field/events/events_spear_pillar.h"
 #include "constants/versions.h"

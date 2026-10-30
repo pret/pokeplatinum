@@ -3,7 +3,8 @@
 
 #include <nnsys.h>
 
-#include "badges.h"
+#include "constants/badges.h"
+
 #include "bg_window.h"
 #include "sound.h"
 #include "sprite.h"

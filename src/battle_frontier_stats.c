@@ -2,11 +2,11 @@
 
 #include "constants/battle_frontier.h"
 #include "constants/battle_frontier_stats.h"
+#include "constants/battle_tower_modes.h"
 #include "constants/versions.h"
 
 #include "nintendo_wfc/main.h"
 
-#include "battle_tower_modes.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "save_player.h"

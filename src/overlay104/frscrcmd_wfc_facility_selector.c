@@ -4,8 +4,8 @@
 #include <nitro/code16.h>
 
 #include "constants/battle_tower.h"
+#include "constants/battle_tower_modes.h"
 #include "constants/wfc_facility_selector_functions.h"
-#include "generated/battle_tower_modes.h"
 
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/wifi_battle_tower_data.h"

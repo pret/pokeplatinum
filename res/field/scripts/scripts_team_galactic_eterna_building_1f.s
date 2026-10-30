@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
+#include "constants/distribution_events.h"
 #include "res/text/bank/team_galactic_eterna_building_1f.h"
 #include "res/field/events/events_team_galactic_eterna_building_1f.h"
 

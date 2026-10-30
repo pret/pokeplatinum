@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/berry_trees.h"
+#include "constants/berry_growth_stages.h"
 #include "constants/items.h"
-#include "generated/berry_growth_stages.h"
 
 
     ScriptEntry BerryTree_Main

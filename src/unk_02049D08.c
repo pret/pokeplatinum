@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
-#include "generated/battle_tower_modes.h"
+#include "constants/battle_tower_modes.h"
 #include "generated/frontier_trainers.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"

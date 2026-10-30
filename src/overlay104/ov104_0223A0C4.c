@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
+#include "constants/battle_tower_modes.h"
 #include "constants/charcode.h"
 #include "constants/pokemon.h"
 #include "generated/ai_flags.h"
-#include "generated/battle_tower_modes.h"
 #include "generated/moves.h"
 #include "generated/species_data_params.h"
 

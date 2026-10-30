@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_TRAINER_CASE_SAVE_DATA_H
 #define POKEPLATINUM_TRAINER_CASE_SAVE_DATA_H
 
+#include "constants/badges.h"
 #include "constants/graphics.h"
 
-#include "badges.h"
 #include "savedata.h"
 #include "trainer_case.h"
 
