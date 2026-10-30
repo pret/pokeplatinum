@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_library_1f.h"
-#include "res/field/events/events_canalave_library_1f.h"
+#include "res/field/maps/locals/canalave_library_1f.h"
 
 
     ScriptEntry CanalaveLibrary1F_Receptionist

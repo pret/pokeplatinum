@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city.h"
-#include "res/field/events/events_sunyshore_city.h"
+#include "res/field/maps/locals/sunyshore_city.h"
 
 
     ScriptEntry SunyshoreCity_OnFrame_Flint

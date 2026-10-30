@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_room_1.h"
-#include "res/field/events/events_stark_mountain_room_1.h"
+#include "res/field/maps/locals/stark_mountain_room_1.h"
 
 
     ScriptEntry StarkMountainOutside_OnTransition

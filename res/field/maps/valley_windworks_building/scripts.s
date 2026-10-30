@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valley_windworks_building.h"
-#include "res/field/events/events_valley_windworks_building.h"
+#include "res/field/maps/locals/valley_windworks_building.h"
 
 
     ScriptEntry ValleyWindworksBuilding_OnTransition

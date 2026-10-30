@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_gate_1f.h"
-#include "res/field/events/events_oreburgh_gate_1f.h"
+#include "res/field/maps/locals/oreburgh_gate_1f.h"
 
 
     ScriptEntry OreburghGate1F_OnTransition

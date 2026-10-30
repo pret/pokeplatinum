@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_217.h"
-#include "res/field/events/events_route_217.h"
+#include "res/field/maps/locals/route_217.h"
 
 
     ScriptEntry Route217_IceRock

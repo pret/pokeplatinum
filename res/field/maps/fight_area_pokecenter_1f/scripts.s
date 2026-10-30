@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area_pokecenter_1f.h"
-#include "res/field/events/events_fight_area_pokecenter_1f.h"
+#include "res/field/maps/locals/fight_area_pokecenter_1f.h"
 
 
     ScriptEntry FightAreaPokecenter1F_Nurse

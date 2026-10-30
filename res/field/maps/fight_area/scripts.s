@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area.h"
-#include "res/field/events/events_fight_area.h"
+#include "res/field/maps/locals/fight_area.h"
 
 
     ScriptEntry FightArea_OnFrame_Rival

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
-#include "res/field/events/events_contest_hall_stage_ongoing_contest.h"
-#include "res/field/events/events_contest_hall_lobby.h"
+#include "res/field/maps/locals/contest_hall_stage_ongoing_contest.h"
+#include "res/field/maps/locals/contest_hall_lobby.h"
 #include "res/text/bank/contest_common.h"
 #include "res/text/bank/menu_entries.h"
 

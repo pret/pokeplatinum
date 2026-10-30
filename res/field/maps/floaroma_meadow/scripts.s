@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_meadow.h"
-#include "res/field/events/events_floaroma_meadow.h"
+#include "res/field/maps/locals/floaroma_meadow.h"
 
 
     ScriptEntry FloaromaMeadow_OnTransition

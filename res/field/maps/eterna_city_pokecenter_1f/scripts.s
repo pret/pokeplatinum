@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_pokecenter_1f.h"
-#include "res/field/events/events_eterna_city_pokecenter_1f.h"
+#include "res/field/maps/locals/eterna_city_pokecenter_1f.h"
 
 
     ScriptEntry EternaCityPokecenter1F_Nurse

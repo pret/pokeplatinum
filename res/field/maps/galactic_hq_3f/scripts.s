@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_3f.h"
-#include "res/field/events/events_galactic_hq_3f.h"
+#include "res/field/maps/locals/galactic_hq_3f.h"
 
 
     ScriptEntry GalacticHQ3F_GruntM

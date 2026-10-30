@@ -638,7 +638,7 @@
             "width": 1,
             "length": 1,
             "var": "VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE",
-            "value": false
+            "value": 0
         },
         {
             "script": 15,

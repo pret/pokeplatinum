@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/field/events/events_battle_tower_corridor.h"
+#include "res/field/maps/locals/battle_tower_corridor.h"
 #include "constants/map_object.h"
 
 

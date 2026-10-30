@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_cave.h"
-#include "res/field/events/events_celestic_town_cave.h"
+#include "res/field/maps/locals/celestic_town_cave.h"
 
 
     ScriptEntry CelesticTownCave_Painting

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/lake_acuity.h"
-#include "res/field/events/events_lake_acuity.h"
+#include "res/field/maps/locals/lake_acuity.h"
 
 
     ScriptEntry LakeAcuity_CoordEvent_JupiterRival

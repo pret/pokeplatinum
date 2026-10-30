@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/underground_npcs.h"
 #include "constants/map_object.h"
-#include "res/field/events/events_underground.h"
+#include "res/field/maps/locals/underground.h"
 
 
     ScriptEntry Underground_OnTransition

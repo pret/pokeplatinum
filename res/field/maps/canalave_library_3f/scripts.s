@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_library_3f.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_canalave_library_3f.h"
+#include "res/field/maps/locals/canalave_library_3f.h"
 
 
     ScriptEntry CanalaveLibrary3F_OnTransition

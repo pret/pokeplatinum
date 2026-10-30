@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_sailor_eldritch_house.h"
-#include "res/field/events/events_canalave_city_sailor_eldritch_house.h"
+#include "res/field/maps/locals/canalave_city_sailor_eldritch_house.h"
 
 
     ScriptEntry CanalaveCitySailorEldritchHouse_OnTransition

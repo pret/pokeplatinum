@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_218_gate_to_canalave_city.h"
-#include "res/field/events/events_route_218_gate_to_canalave_city.h"
+#include "res/field/maps/locals/route_218_gate_to_canalave_city.h"
 
 
     ScriptEntry Route218GateToCanalaveCity_Policeman

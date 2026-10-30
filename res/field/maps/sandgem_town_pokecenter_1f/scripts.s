@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_pokecenter_1f.h"
-#include "res/field/events/events_sandgem_town_pokecenter_1f.h"
+#include "res/field/maps/locals/sandgem_town_pokecenter_1f.h"
 
 
     ScriptEntry SandgemTownPokecenter1F_Nurse

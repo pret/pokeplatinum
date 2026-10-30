@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/wayward_cave_1f.h"
-#include "res/field/events/events_wayward_cave_1f.h"
+#include "res/field/maps/locals/wayward_cave_1f.h"
 
 
     ScriptEntry WaywardCave1F_OnTransition

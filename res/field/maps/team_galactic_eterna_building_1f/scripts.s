@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/team_galactic_eterna_building_1f.h"
-#include "res/field/events/events_team_galactic_eterna_building_1f.h"
+#include "res/field/maps/locals/team_galactic_eterna_building_1f.h"
 
 
     ScriptEntry TeamGalacticEternaBuilding1F_GruntM1

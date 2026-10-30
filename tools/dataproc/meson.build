@@ -115,3 +115,12 @@ mapgen_exe = executable(
     dependencies: [ buildgen_dep, common_dep ],
     native: true,
 )
+
+mapproc_exe = executable(
+    'mapproc',
+    sources: files('src/maps/mapproc.c'),
+    c_args: dataproc_cflags,
+    include_directories: [ public_includes, toplevel_includes ],
+    dependencies: [ common_dep ],
+    native: true,
+)

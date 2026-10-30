@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town.h"
-#include "res/field/events/events_celestic_town.h"
+#include "res/field/maps/locals/celestic_town.h"
 
 
     ScriptEntry CelesticTown_OnTransition

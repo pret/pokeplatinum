@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poketch_co_1f.h"
-#include "res/field/events/events_poketch_co_1f.h"
+#include "res/field/maps/locals/poketch_co_1f.h"
 
 
     ScriptEntry PoketchCo1F_PoketchCoPresident

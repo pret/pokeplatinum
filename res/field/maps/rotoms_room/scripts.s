@@ -2,7 +2,7 @@
 #include "generated/distribution_events.h"
 #include "constants/moves.h"
 #include "res/text/bank/rotoms_room.h"
-#include "res/field/events/events_rotoms_room.h"
+#include "res/field/maps/locals/rotoms_room.h"
 
 #define LOCAL_VAR_PARTY_SLOT    VAR_0x8000
 #define LOCAL_VAR_MOVE_TO_LEARN VAR_0x8001

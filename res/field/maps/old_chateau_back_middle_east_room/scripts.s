@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/field/events/events_old_chateau_back_middle_east_room.h"
+#include "res/field/maps/locals/old_chateau_back_middle_east_room.h"
 
 
     ScriptEntry OldChateauBackMiddleEastRoom_OnTransition

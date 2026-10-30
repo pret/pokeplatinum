@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valor_lakefront.h"
-#include "res/field/events/events_valor_lakefront.h"
+#include "res/field/maps/locals/valor_lakefront.h"
 
 
     ScriptEntry ValorLakefront_OnTransition

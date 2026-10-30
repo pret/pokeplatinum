@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area_pokecenter_1f.h"
-#include "res/field/events/events_survival_area_pokecenter_1f.h"
+#include "res/field/maps/locals/survival_area_pokecenter_1f.h"
 
 
     ScriptEntry SurvivalAreaPokecenter1F_Nurse

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/villa.h"
-#include "res/field/events/events_villa.h"
+#include "res/field/maps/locals/villa.h"
 
 
     ScriptEntry Villa_OnTransition
