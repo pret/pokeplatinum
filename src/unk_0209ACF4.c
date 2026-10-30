@@ -7,12 +7,12 @@
 #include "overlay005/fieldmap.h"
 
 #include "bg_window.h"
-#include "colored_arrow.h"
 #include "easy_chat_args.h"
 #include "easy_chat_sentence.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "heap.h"
+#include "menu_cursor.h"
 #include "message.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -33,7 +33,7 @@ typedef struct {
     String *unk_08;
     StringTemplate *unk_0C;
     MessageLoader *unk_10;
-    ColoredArrow *unk_14;
+    MenuCursor *unk_14;
     Window unk_18;
     Window unk_28;
     Window unk_38;
@@ -69,7 +69,7 @@ void sub_0209ACF4(FieldTask *param0)
     v1->unk_08 = String_Init(400, HEAP_ID_FIELD3);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_FIELD3);
     v1->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD3);
-    v1->unk_14 = ColoredArrow_New(HEAP_ID_FIELD3);
+    v1->unk_14 = MenuCursor_New(HEAP_ID_FIELD3);
     v1->unk_50 = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, v1->fieldSystem->saveData, HEAP_ID_FIELD3);
 
     sub_02097520(v1->unk_50);
@@ -85,7 +85,7 @@ void sub_0209ACF4(FieldTask *param0)
 static void sub_0209AD84(UnkStruct_0209AD84 *param0)
 {
     EasyChatArgs_Free(param0->unk_50);
-    ColoredArrow_Free(param0->unk_14);
+    MenuCursor_Free(param0->unk_14);
     String_Free(param0->unk_04);
     String_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_0C);
@@ -304,7 +304,7 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
             Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_08, 12, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
-        ColoredArrow_Print(param0->unk_14, v0, 0, 0);
+        MenuCursor_Print(param0->unk_14, v0, 0, 0);
     }
 
     param0->unk_68 = v0;
@@ -336,7 +336,7 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
             Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_08, 12, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
-        ColoredArrow_Print(param0->unk_14, v0, 0, 0);
+        MenuCursor_Print(param0->unk_14, v0, 0, 0);
     }
 
     param0->unk_68 = v0;
@@ -396,7 +396,7 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0)
 
     {
         Window_FillRectWithColor(param0->unk_68, 15, 0, 0, 12, param0->unk_68->height * 8);
-        ColoredArrow_Print(param0->unk_14, param0->unk_68, 0, param0->unk_5C * 16);
+        MenuCursor_Print(param0->unk_14, param0->unk_68, 0, param0->unk_5C * 16);
         Window_LoadTiles(param0->unk_68);
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }

@@ -119,10 +119,10 @@ static int BattleSystem_Cursor_Menu(BattleSubscreen *btlSubscreen, BOOL cursorHi
 static int BattleSystem_Cursor_Moves(BattleSubscreen *btlSubscreen, BOOL cursorHidden);
 static int BattleSystem_Cursor_Battler(BattleSubscreen *btlSubscreen, BOOL isCursorHidden);
 static int BattleSystem_Cursor_YesNo(BattleSubscreen *btlSubscreen, BOOL isCursorHidden);
-static u32 BattleSystem_MoveCursor(MenuCursor *cursor, int width, int height, const u8 *layout);
-static void SaveActionMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedAction);
-static void SaveMoveSelectMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedMove);
-static void SaveTargetSelectMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedTarget);
+static u32 BattleSystem_MoveCursor(BattleMenuCursor *cursor, int width, int height, const u8 *layout);
+static void SaveActionBattleMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedAction);
+static void SaveMoveSelectBattleMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedMove);
+static void SaveTargetSelectBattleMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedTarget);
 static void ApplyMoveSlotTilemap(BattleSubscreen *btlSubscreen, const s16 *tileOffsets, const SubscreenTilemapRect *tilemapRect, int srcBufIndex, int offsetIndex);
 static MoveDisplayData *GetMoveDisplayData(BattleSubscreen *btlSubscreen, int battlerSlot);
 static void FreeMoveDisplayData(BattleSubscreen *btlSubscreen);
@@ -414,7 +414,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sActionMenuButtonResults,
         Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
-        SaveActionMenuCursorPos,
+        SaveActionBattleMenuCursorPos,
         BattleSubscreen_OpenActionMenu,
         BattleSubscreen_ProcessActionInput,
     },
@@ -427,7 +427,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sActionMenuButtonResults,
         Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
-        SaveActionMenuCursorPos,
+        SaveActionBattleMenuCursorPos,
         BattleSubscreen_OpenActionMenu,
         BattleSubscreen_ProcessActionInput,
     },
@@ -440,7 +440,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sActionMenuButtonResults,
         Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
-        SaveActionMenuCursorPos,
+        SaveActionBattleMenuCursorPos,
         BattleSubscreen_DrawActionMenu,
         BattleSubscreen_ProcessActionInput,
     },
@@ -453,7 +453,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sActionMenuButtonResults,
         Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
-        SaveActionMenuCursorPos,
+        SaveActionBattleMenuCursorPos,
         BattleSubscreen_DrawActionMenu,
         BattleSubscreen_ProcessActionInput,
     },
@@ -466,7 +466,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sActionMenuButtonResults,
         Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
-        SaveActionMenuCursorPos,
+        SaveActionBattleMenuCursorPos,
         BattleSubscreen_OpenFirstBattleMenu,
         BattleSubscreen_ProcessActionInput,
     },
@@ -479,7 +479,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sActionMenuButtonResults,
         Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
-        SaveActionMenuCursorPos,
+        SaveActionBattleMenuCursorPos,
         BattleSubscreen_DrawFirstBattleMenu,
         BattleSubscreen_ProcessActionInput,
     },
@@ -492,7 +492,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sActionMenuButtonResults,
         Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
-        SaveActionMenuCursorPos,
+        SaveActionBattleMenuCursorPos,
         BattleSubscreen_OpenActionMenu,
         BattleSubscreen_ProcessActionInput,
     },
@@ -505,7 +505,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sActionMenuButtonResults,
         Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
-        SaveActionMenuCursorPos,
+        SaveActionBattleMenuCursorPos,
         BattleSubscreen_DrawActionMenu,
         BattleSubscreen_ProcessActionInput,
     },
@@ -544,7 +544,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sMoveSelectButtonResults,
         sMoveSelectButtonSlots,
         BattleSystem_Cursor_Moves,
-        SaveMoveSelectMenuCursorPos,
+        SaveMoveSelectBattleMenuCursorPos,
         BattleSubscreen_DrawMoveSelectMenu,
         BattleSubscreen_ProcessMoveInput,
     },
@@ -557,7 +557,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         sTargetSelectButtonResults,
         sTargetSelectButtonSlots,
         BattleSystem_Cursor_Battler,
-        SaveTargetSelectMenuCursorPos,
+        SaveTargetSelectBattleMenuCursorPos,
         BattleSubscreen_DrawTargetSelectMenu,
         BattleSubscreen_ProcessTargetInput,
     },
@@ -1314,7 +1314,7 @@ int BattleSystem_MenuInput(BattleSubscreen *btlSubscreen)
                 battleMenuConfig->saveCursorPos(btlSubscreen, buttonIndex);
             }
 
-            MI_CpuClear8(&btlSubscreen->cursor, sizeof(MenuCursor));
+            MI_CpuClear8(&btlSubscreen->cursor, sizeof(BattleMenuCursor));
             CursorRenderer_HideAllSprites(btlSubscreen->cursorRenderer);
 
             if (isKeyInput > 0) {
@@ -3157,7 +3157,7 @@ static void SysTask_UpdateSpeedUpPalette(SysTask *unused, void *subscreen)
 
 static int BattleSystem_MenuKeys(BattleSubscreen *btlSubscreen)
 {
-    MenuCursor *cursor = &btlSubscreen->cursor;
+    BattleMenuCursor *cursor = &btlSubscreen->cursor;
     const BattleMenuConfig *battleMenuConfig = &sBattleMenuConfigs[btlSubscreen->activeMenuConfigIndex];
 
     if (!battleMenuConfig->handleCursorInput) {
@@ -3184,7 +3184,7 @@ static int BattleSystem_MenuKeys(BattleSubscreen *btlSubscreen)
 static int BattleSystem_Cursor_Menu(BattleSubscreen *btlSubscreen, BOOL cursorHidden)
 {
     // Returns the ID of the menu button pressed, or -1 if nothing was pressed
-    MenuCursor *cursor;
+    BattleMenuCursor *cursor;
     u32 button;
     int buttonId;
 
@@ -3253,7 +3253,7 @@ static int BattleSystem_Cursor_Menu(BattleSubscreen *btlSubscreen, BOOL cursorHi
     return 0xffffffff;
 }
 
-static void SaveActionMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedAction)
+static void SaveActionBattleMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedAction)
 {
     int j;
     int battlerType = BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType);
@@ -3279,7 +3279,7 @@ static int BattleSystem_Cursor_PalPark(BattleSubscreen *btlSubscreen, BOOL isCur
     u32 button;
     int buttonIndex;
 
-    MenuCursor *cursor = &btlSubscreen->cursor;
+    BattleMenuCursor *cursor = &btlSubscreen->cursor;
     const BattleMenuConfig *battleMenuConfig = &sBattleMenuConfigs[btlSubscreen->activeMenuConfigIndex];
 
     if (isCursorHidden == TRUE) {
@@ -3315,7 +3315,7 @@ static int BattleSystem_Cursor_Moves(BattleSubscreen *btlSubscreen, BOOL cursorH
     int buttonIndex, i;
     u8 buttonLayout[3][2];
     SavedCursorPosition *savedCursorPos = BattlerData_GetSavedCursorPosition(BattleSystem_GetBattlerData(btlSubscreen->battleSys, BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType)));
-    MenuCursor *cursor = &btlSubscreen->cursor;
+    BattleMenuCursor *cursor = &btlSubscreen->cursor;
     const BattleMenuConfig *battleMenuConfig = &sBattleMenuConfigs[btlSubscreen->activeMenuConfigIndex];
     MoveSelectData *moveData = &btlSubscreen->activeMenuData.moveData;
 
@@ -3362,7 +3362,7 @@ static int BattleSystem_Cursor_Moves(BattleSubscreen *btlSubscreen, BOOL cursorH
     return 0xffffffff;
 }
 
-static void SaveMoveSelectMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedMove)
+static void SaveMoveSelectBattleMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedMove)
 {
     if (!selectedMove) {
         return;
@@ -3385,7 +3385,7 @@ static void SaveMoveSelectMenuCursorPos(BattleSubscreen *btlSubscreen, int selec
 
 static int BattleSystem_Cursor_Battler(BattleSubscreen *btlSubscreen, BOOL isCursorHidden)
 {
-    MenuCursor *cursor;
+    BattleMenuCursor *cursor;
     u32 button;
     const BattleMenuConfig *battleMenuConfig;
     int isSingleTarget = 0;
@@ -3635,7 +3635,7 @@ static int BattleSystem_Cursor_Battler(BattleSubscreen *btlSubscreen, BOOL isCur
     return 0xffffffff;
 }
 
-static void SaveTargetSelectMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedTarget)
+static void SaveTargetSelectBattleMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedTarget)
 {
     if (selectedTarget == 4) {
         return;
@@ -3662,7 +3662,7 @@ static void SaveTargetSelectMenuCursorPos(BattleSubscreen *btlSubscreen, int sel
 
 static int BattleSystem_Cursor_YesNo(BattleSubscreen *btlSubscreen, BOOL isCursorHidden)
 {
-    MenuCursor *cursor = &btlSubscreen->cursor;
+    BattleMenuCursor *cursor = &btlSubscreen->cursor;
     const BattleMenuConfig *battleMenuConfig = &sBattleMenuConfigs[btlSubscreen->activeMenuConfigIndex];
     int buttonIndex;
 
@@ -3692,7 +3692,7 @@ static int BattleSystem_Cursor_YesNo(BattleSubscreen *btlSubscreen, BOOL isCurso
     return 0xffffffff;
 }
 
-static u32 BattleSystem_MoveCursor(MenuCursor *cursor, int width, int height, const u8 *layout)
+static u32 BattleSystem_MoveCursor(BattleMenuCursor *cursor, int width, int height, const u8 *layout)
 {
     int y, x;
     u32 key;
