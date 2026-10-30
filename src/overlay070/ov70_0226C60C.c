@@ -23,7 +23,7 @@
 
 typedef struct UnkStruct_ov70_0226C6F8_t {
     UnkStruct_ov70_0225DEE8 *unk_00;
-    UnkStruct_ov66_0222DFF8 *unk_04;
+    WiFiPlazaSystem *unk_04;
     UnkStruct_ov70_02261E10 *unk_08;
     UnkStruct_ov70_0225CA20 *unk_0C;
     UnkStruct_ov70_0226C39C *unk_10;

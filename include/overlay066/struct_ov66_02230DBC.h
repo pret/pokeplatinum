@@ -13,7 +13,7 @@ typedef struct {
     UnkStruct_ov66_02232068 unk_08;
     BOOL unk_1C;
     TrainerInfo *unk_20[4];
-    UnkStruct_ov66_0222DFF8 *unk_30;
+    WiFiPlazaSystem *unk_30;
 } UnkStruct_ov66_02230DBC;
 
 #endif // POKEPLATINUM_STRUCT_OV66_02230DBC_H

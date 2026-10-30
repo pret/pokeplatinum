@@ -7,7 +7,7 @@
 
 typedef struct {
     SaveData *saveData;
-    UnkStruct_ov66_0222DFF8 *unk_04;
+    WiFiPlazaSystem *unk_04;
     BOOL unk_08;
 } UnkStruct_ov66_02231300;
 

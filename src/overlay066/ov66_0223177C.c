@@ -61,14 +61,14 @@ static void ov66_02231D58(UnkStruct_ov66_02231D38 *param0, u32 param1, u32 param
 static void ov66_02231D74(UnkStruct_ov66_02231D38 *param0, u32 param1, u32 param2, UnkEnum_ov66_02231E54 param3);
 static void ov66_02231D90(UnkStruct_ov66_02231D38 *param0, u32 param1);
 static void ov66_02231DA8(UnkStruct_ov66_02231D38 *param0, u32 param1, UnkEnum_ov66_02231E54 param2);
-static void ov66_02231DC0(UnkStruct_ov66_02231D38 *param0, UnkEnum_ov66_02231E6C param1);
+static void ov66_02231DC0(UnkStruct_ov66_02231D38 *param0, enum WiFiPlazaPlayerEvent param1);
 static void ov66_02231DD4(UnkStruct_ov66_02231D38 *param0, u32 param1);
 static BOOL ov66_02231DE8(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static u32 ov66_02231DFC(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static BOOL ov66_02231E10(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static BOOL ov66_02231E30(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static UnkEnum_ov66_02231E54 ov66_02231E54(const UnkStruct_ov66_02231D38 *param0, u32 param1);
-static UnkEnum_ov66_02231E6C ov66_02231E6C(const UnkStruct_ov66_02231D38 *param0);
+static enum WiFiPlazaPlayerEvent ov66_02231E6C(const UnkStruct_ov66_02231D38 *param0);
 static BOOL ov66_02231E74(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 heapID);
 static void ov66_02231EEC(UnkStruct_ov66_02231E94 *param0);
@@ -117,7 +117,7 @@ void ov66_022317AC(UnkStruct_ov66_0223177C *param0)
 void ov66_022317C0(UnkStruct_ov66_0223177C *param0)
 {
     ov66_02231F1C(&param0->unk_5C);
-    ov66_02231DC0(&param0->unk_08, UnkEnum_ov66_02231E6C_00);
+    ov66_02231DC0(&param0->unk_08, WIFI_PLAZA_PLAYER_EVENT_NONE);
 }
 
 void ov66_022317D8(UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02231428 *param1)
@@ -376,7 +376,7 @@ BOOL ov66_02231C48(const UnkStruct_ov66_0223177C *param0, u32 param1)
     return ov66_02231E74(&param0->unk_08, param1);
 }
 
-UnkEnum_ov66_02231E6C ov66_02231C54(const UnkStruct_ov66_0223177C *param0)
+enum WiFiPlazaPlayerEvent ov66_02231C54(const UnkStruct_ov66_0223177C *param0)
 {
     return ov66_02231E6C(&param0->unk_08);
 }
@@ -483,14 +483,14 @@ static void ov66_02231D58(UnkStruct_ov66_02231D38 *param0, u32 param1, u32 param
 static void ov66_02231D74(UnkStruct_ov66_02231D38 *param0, u32 param1, u32 param2, UnkEnum_ov66_02231E54 param3)
 {
     ov66_02231D58(param0, param1, param2, param3);
-    ov66_02231DC0(param0, UnkEnum_ov66_02231E6C_01);
+    ov66_02231DC0(param0, WIFI_PLAZA_PLAYER_EVENT_JOINED);
     ov66_02231DD4(param0, param1);
 }
 
 static void ov66_02231D90(UnkStruct_ov66_02231D38 *param0, u32 param1)
 {
     ov66_02231D58(param0, param1, 2, 0);
-    ov66_02231DC0(param0, UnkEnum_ov66_02231E6C_02);
+    ov66_02231DC0(param0, WIFI_PLAZA_PLAYER_EVENT_LEFT);
 }
 
 static void ov66_02231DA8(UnkStruct_ov66_02231D38 *param0, u32 param1, UnkEnum_ov66_02231E54 param2)
@@ -499,7 +499,7 @@ static void ov66_02231DA8(UnkStruct_ov66_02231D38 *param0, u32 param1, UnkEnum_o
     param0->unk_00[param1].unk_02 = param2;
 }
 
-static void ov66_02231DC0(UnkStruct_ov66_02231D38 *param0, UnkEnum_ov66_02231E6C param1)
+static void ov66_02231DC0(UnkStruct_ov66_02231D38 *param0, enum WiFiPlazaPlayerEvent param1)
 {
     GF_ASSERT(param1 <= UnkEnum_ov66_02231E54_02);
     param0->unk_50 = param1;
@@ -556,7 +556,7 @@ static UnkEnum_ov66_02231E54 ov66_02231E54(const UnkStruct_ov66_02231D38 *param0
     return param0->unk_00[param1].unk_02;
 }
 
-static UnkEnum_ov66_02231E6C ov66_02231E6C(const UnkStruct_ov66_02231D38 *param0)
+static enum WiFiPlazaPlayerEvent ov66_02231E6C(const UnkStruct_ov66_02231D38 *param0)
 {
     return param0->unk_50;
 }

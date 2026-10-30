@@ -8,7 +8,7 @@
 typedef struct {
     UnkStruct_ov66_0223177C *unk_00;
     const UnkStruct_ov66_02231428 *unk_04;
-    UnkStruct_ov66_0222DFF8 *unk_08;
-} UnkStruct_ov66_02230FA0;
+    WiFiPlazaSystem *unk_08;
+} WiFiPlazaApplicationArgs;
 
 #endif // POKEPLATINUM_STRUCT_OV66_02230FA0_H

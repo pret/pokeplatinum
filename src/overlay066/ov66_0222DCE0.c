@@ -23,7 +23,7 @@ FS_EXTERN_OVERLAY(overlay63);
 
 typedef struct {
     SaveData *saveData;
-    UnkStruct_ov66_0222DFF8 *unk_04;
+    WiFiPlazaSystem *unk_04;
     UnkStruct_ov66_02230C90 *unk_08;
     SysTask *unk_0C;
 } UnkStruct_ov66_0222DD90;

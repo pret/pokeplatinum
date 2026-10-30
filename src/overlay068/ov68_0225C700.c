@@ -99,7 +99,7 @@ typedef struct {
     StringTemplate *unk_24;
     String *unk_28;
     String *unk_2C;
-    UnkStruct_ov66_0222DFF8 *unk_30;
+    WiFiPlazaSystem *unk_30;
 } UnkStruct_ov68_0225CB70;
 
 typedef struct {
@@ -126,7 +126,7 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, enu
 static void ov68_0225CA8C(UnkStruct_ov68_0225C91C *param0);
 static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, enum HeapID heapID);
 static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0);
-static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, enum HeapID heapID);
+static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, WiFiPlazaSystem *param1, enum HeapID heapID);
 static void ov68_0225CBC0(UnkStruct_ov68_0225CB70 *param0);
 static String *ov68_0225CBEC(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2);
 static String *ov68_0225CC18(UnkStruct_ov68_0225CB70 *param0, u32 param1);
@@ -138,7 +138,7 @@ static String *ov68_0225DC40(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov
 static String *ov68_0225DC58(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1, u32 param2);
 static void ov68_0225DC74(UnkStruct_ov68_0225DC74 *param0);
 static u32 ov68_0225DCA4(const UnkStruct_ov68_0225DC74 *param0, u32 param1, u32 param2);
-static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_0222DFF8 *param1);
+static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const WiFiPlazaSystem *param1);
 static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4);
 static BOOL ov68_0225CCB4(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID);
 static void ov68_0225CCC8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
@@ -530,7 +530,7 @@ static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0)
     RenderOam_Free();
 }
 
-static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, enum HeapID heapID)
+static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, WiFiPlazaSystem *param1, enum HeapID heapID)
 {
     int v0;
     static const v1[9] = {
@@ -1493,7 +1493,7 @@ static u32 ov68_0225DCA4(const UnkStruct_ov68_0225DC74 *param0, u32 param1, u32 
     return (u32)(((u64)(v0 * v1)) / param0->unk_0C);
 }
 
-static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_0222DFF8 *param1)
+static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const WiFiPlazaSystem *param1)
 {
     const WiFiPlazaProfile *v0;
     UnkStruct_ov66_0222E908 v1;

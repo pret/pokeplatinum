@@ -17,6 +17,12 @@
 #include "enums.h"
 #include "string_gf.h"
 
+enum WiFiPlazaPlayerEvent {
+    WIFI_PLAZA_PLAYER_EVENT_NONE = 0,
+    WIFI_PLAZA_PLAYER_EVENT_JOINED,
+    WIFI_PLAZA_PLAYER_EVENT_LEFT,
+};
+
 UnkStruct_ov66_0223177C *ov66_0223177C(u32 heapID);
 void ov66_022317AC(UnkStruct_ov66_0223177C *param0);
 void ov66_022317C0(UnkStruct_ov66_0223177C *param0);
@@ -40,7 +46,7 @@ u32 ov66_02231C24(const UnkStruct_ov66_0223177C *param0, u32 param1);
 BOOL ov66_02231C30(const UnkStruct_ov66_0223177C *param0, u32 param1);
 BOOL ov66_02231C3C(const UnkStruct_ov66_0223177C *param0, u32 param1);
 BOOL ov66_02231C48(const UnkStruct_ov66_0223177C *param0, u32 param1);
-UnkEnum_ov66_02231E6C ov66_02231C54(const UnkStruct_ov66_0223177C *param0);
+enum WiFiPlazaPlayerEvent ov66_02231C54(const UnkStruct_ov66_0223177C *param0);
 BOOL ov66_02231C60(const UnkStruct_ov66_0223177C *param0);
 int ov66_02231C78(const UnkStruct_ov66_0223177C *param0);
 BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02232068 *param1, int param2, String *param3, u32 heapID);

@@ -35,7 +35,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov70_0226CF38_t {
     UnkStruct_ov70_0225DEE8 *unk_00;
-    UnkStruct_ov66_0222DFF8 *unk_04;
+    WiFiPlazaSystem *unk_04;
     UnkStruct_ov70_02261E10 *unk_08;
     UnkStruct_ov70_0225C894 *unk_0C;
     u8 unk_10[9][3];
