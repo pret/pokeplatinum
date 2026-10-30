@@ -9,7 +9,7 @@
 #include "overlay066/struct_ov66_02231560.h"
 
 #include "comm_manager.h"
-#include "unk_020996D0.h"
+#include "geonet_locations.h"
 
 void ov66_02231428(UnkStruct_ov66_02231428 *param0, const s64 *param1)
 {
@@ -97,7 +97,7 @@ void ov66_02231560(UnkStruct_ov66_02231560 *param0, u16 param1, u8 param2, BOOL 
         return;
     }
 
-    v2 = sub_020996F4(param1);
+    v2 = GeonetLocations_GetLocationCountFromCountry(param1);
 
     if (param2 > v2) {
         return;
@@ -172,7 +172,7 @@ void ov66_02231668(void *param0)
 
 BOOL ov66_022316C4(u16 param0, u16 param1)
 {
-    u32 v0 = sub_020996F4(param0);
+    u32 v0 = GeonetLocations_GetLocationCountFromCountry(param0);
 
     if (v0 == 0) {
         if (param1 == 0) {

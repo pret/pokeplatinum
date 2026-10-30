@@ -347,7 +347,7 @@ Static main
 	Object src/unk_02099500.c
 	Object src/wifi_overlays.c
 	Object src/poffin_berry_selection_context.c
-	Object src/unk_020996D0.c
+	Object src/geonet_locations.c
 	Object src/move_reminder_data.c
 	Object src/easy_chat_word_list.c
 	Object src/poketch_memory.c

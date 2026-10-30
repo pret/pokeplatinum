@@ -2,103 +2,103 @@
   "key": 33172,
   "messages": [
     {
-      "id": "pl_msg_00000676_00000",
+      "id": "Country_Region_Text_Argentina_None",
       "en_US": "None"
     },
     {
-      "id": "pl_msg_00000676_00001",
+      "id": "Country_Region_Text_Argentina_Buenos_Aires",
       "en_US": "Buenos Aires"
     },
     {
-      "id": "pl_msg_00000676_00002",
+      "id": "Country_Region_Text_Argentina_Ciudad_Autonoma_de_Buenos_Aires_",
       "en_US": "Ciudad Autonoma de Buenos Aires "
     },
     {
-      "id": "pl_msg_00000676_00003",
+      "id": "Country_Region_Text_Argentina_Catamarca",
       "en_US": "Catamarca"
     },
     {
-      "id": "pl_msg_00000676_00004",
+      "id": "Country_Region_Text_Argentina_Chaco",
       "en_US": "Chaco"
     },
     {
-      "id": "pl_msg_00000676_00005",
+      "id": "Country_Region_Text_Argentina_Chubut",
       "en_US": "Chubut"
     },
     {
-      "id": "pl_msg_00000676_00006",
+      "id": "Country_Region_Text_Argentina_Cordoba",
       "en_US": "Cordoba"
     },
     {
-      "id": "pl_msg_00000676_00007",
+      "id": "Country_Region_Text_Argentina_Corrientes",
       "en_US": "Corrientes"
     },
     {
-      "id": "pl_msg_00000676_00008",
+      "id": "Country_Region_Text_Argentina_Entre_Rios",
       "en_US": "Entre Rios"
     },
     {
-      "id": "pl_msg_00000676_00009",
+      "id": "Country_Region_Text_Argentina_Formosa",
       "en_US": "Formosa"
     },
     {
-      "id": "pl_msg_00000676_00010",
+      "id": "Country_Region_Text_Argentina_Jujuy",
       "en_US": "Jujuy"
     },
     {
-      "id": "pl_msg_00000676_00011",
+      "id": "Country_Region_Text_Argentina_La_Pampa",
       "en_US": "La Pampa"
     },
     {
-      "id": "pl_msg_00000676_00012",
+      "id": "Country_Region_Text_Argentina_La_Rioja",
       "en_US": "La Rioja"
     },
     {
-      "id": "pl_msg_00000676_00013",
+      "id": "Country_Region_Text_Argentina_Mendoza",
       "en_US": "Mendoza"
     },
     {
-      "id": "pl_msg_00000676_00014",
+      "id": "Country_Region_Text_Argentina_Misiones",
       "en_US": "Misiones"
     },
     {
-      "id": "pl_msg_00000676_00015",
+      "id": "Country_Region_Text_Argentina_Neuquen",
       "en_US": "Neuquen"
     },
     {
-      "id": "pl_msg_00000676_00016",
+      "id": "Country_Region_Text_Argentina_Rio_Negro",
       "en_US": "Rio Negro"
     },
     {
-      "id": "pl_msg_00000676_00017",
+      "id": "Country_Region_Text_Argentina_Salta",
       "en_US": "Salta"
     },
     {
-      "id": "pl_msg_00000676_00018",
+      "id": "Country_Region_Text_Argentina_San_Juan",
       "en_US": "San Juan"
     },
     {
-      "id": "pl_msg_00000676_00019",
+      "id": "Country_Region_Text_Argentina_San_Luis",
       "en_US": "San Luis"
     },
     {
-      "id": "pl_msg_00000676_00020",
+      "id": "Country_Region_Text_Argentina_Santa_Cruz",
       "en_US": "Santa Cruz"
     },
     {
-      "id": "pl_msg_00000676_00021",
+      "id": "Country_Region_Text_Argentina_Santa_Fe",
       "en_US": "Santa Fe"
     },
     {
-      "id": "pl_msg_00000676_00022",
+      "id": "Country_Region_Text_Argentina_Santiago_del_Estero",
       "en_US": "Santiago del Estero"
     },
     {
-      "id": "pl_msg_00000676_00023",
+      "id": "Country_Region_Text_Argentina_Tierra_del_Fuego",
       "en_US": "Tierra del Fuego"
     },
     {
-      "id": "pl_msg_00000676_00024",
+      "id": "Country_Region_Text_Argentina_Tucuman",
       "en_US": "Tucuman"
     }
   ]

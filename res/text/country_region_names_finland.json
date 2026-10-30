@@ -2,31 +2,31 @@
   "key": 28041,
   "messages": [
     {
-      "id": "pl_msg_00000683_00000",
+      "id": "Country_Region_Text_Finland_None",
       "en_US": "None"
     },
     {
-      "id": "pl_msg_00000683_00001",
+      "id": "Country_Region_Text_Finland_Aland_Islands",
       "en_US": "Aland Islands"
     },
     {
-      "id": "pl_msg_00000683_00002",
+      "id": "Country_Region_Text_Finland_Lapland",
       "en_US": "Lapland"
     },
     {
-      "id": "pl_msg_00000683_00003",
+      "id": "Country_Region_Text_Finland_East_Finland",
       "en_US": "East Finland"
     },
     {
-      "id": "pl_msg_00000683_00004",
+      "id": "Country_Region_Text_Finland_South_Finland",
       "en_US": "South Finland"
     },
     {
-      "id": "pl_msg_00000683_00005",
+      "id": "Country_Region_Text_Finland_Oulun",
       "en_US": "Oulun"
     },
     {
-      "id": "pl_msg_00000683_00006",
+      "id": "Country_Region_Text_Finland_West_Finland",
       "en_US": "West Finland"
     }
   ]

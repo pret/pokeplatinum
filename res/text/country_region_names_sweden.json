@@ -2,103 +2,103 @@
   "key": 38156,
   "messages": [
     {
-      "id": "pl_msg_00000692_00000",
+      "id": "Country_Region_Text_Sweden_None",
       "en_US": "None"
     },
     {
-      "id": "pl_msg_00000692_00001",
+      "id": "Country_Region_Text_Sweden_Angermanland",
       "en_US": "Angermanland"
     },
     {
-      "id": "pl_msg_00000692_00002",
+      "id": "Country_Region_Text_Sweden_Blekinge",
       "en_US": "Blekinge"
     },
     {
-      "id": "pl_msg_00000692_00003",
+      "id": "Country_Region_Text_Sweden_Bohuslan",
       "en_US": "Bohuslan"
     },
     {
-      "id": "pl_msg_00000692_00004",
+      "id": "Country_Region_Text_Sweden_Dalarna",
       "en_US": "Dalarna"
     },
     {
-      "id": "pl_msg_00000692_00005",
+      "id": "Country_Region_Text_Sweden_Dalsland",
       "en_US": "Dalsland"
     },
     {
-      "id": "pl_msg_00000692_00006",
+      "id": "Country_Region_Text_Sweden_Gastrikland",
       "en_US": "Gastrikland"
     },
     {
-      "id": "pl_msg_00000692_00007",
+      "id": "Country_Region_Text_Sweden_Gotland",
       "en_US": "Gotland"
     },
     {
-      "id": "pl_msg_00000692_00008",
+      "id": "Country_Region_Text_Sweden_Halland",
       "en_US": "Halland"
     },
     {
-      "id": "pl_msg_00000692_00009",
+      "id": "Country_Region_Text_Sweden_Halsingland",
       "en_US": "Halsingland"
     },
     {
-      "id": "pl_msg_00000692_00010",
+      "id": "Country_Region_Text_Sweden_Jamtland",
       "en_US": "Jamtland"
     },
     {
-      "id": "pl_msg_00000692_00011",
+      "id": "Country_Region_Text_Sweden_North_Lapland",
       "en_US": "North Lapland"
     },
     {
-      "id": "pl_msg_00000692_00012",
+      "id": "Country_Region_Text_Sweden_South_Lapland",
       "en_US": "South Lapland"
     },
     {
-      "id": "pl_msg_00000692_00013",
+      "id": "Country_Region_Text_Sweden_Medelpad",
       "en_US": "Medelpad"
     },
     {
-      "id": "pl_msg_00000692_00014",
+      "id": "Country_Region_Text_Sweden_Narke",
       "en_US": "Narke"
     },
     {
-      "id": "pl_msg_00000692_00015",
+      "id": "Country_Region_Text_Sweden_Norrbotten",
       "en_US": "Norrbotten"
     },
     {
-      "id": "pl_msg_00000692_00016",
+      "id": "Country_Region_Text_Sweden_Oland",
       "en_US": "Oland"
     },
     {
-      "id": "pl_msg_00000692_00017",
+      "id": "Country_Region_Text_Sweden_Ostergotland_Vastergotland",
       "en_US": "Ostergotland / Vastergotland"
     },
     {
-      "id": "pl_msg_00000692_00018",
+      "id": "Country_Region_Text_Sweden_Skane",
       "en_US": "Skane"
     },
     {
-      "id": "pl_msg_00000692_00019",
+      "id": "Country_Region_Text_Sweden_Smaland",
       "en_US": "Smaland"
     },
     {
-      "id": "pl_msg_00000692_00020",
+      "id": "Country_Region_Text_Sweden_Sodermanland",
       "en_US": "Sodermanland"
     },
     {
-      "id": "pl_msg_00000692_00021",
+      "id": "Country_Region_Text_Sweden_Uppland",
       "en_US": "Uppland"
     },
     {
-      "id": "pl_msg_00000692_00022",
+      "id": "Country_Region_Text_Sweden_Varmland",
       "en_US": "Varmland"
     },
     {
-      "id": "pl_msg_00000692_00023",
+      "id": "Country_Region_Text_Sweden_Vasterbotten",
       "en_US": "Vasterbotten"
     },
     {
-      "id": "pl_msg_00000692_00024",
+      "id": "Country_Region_Text_Sweden_Vastmanland",
       "en_US": "Vastmanland"
     }
   ]

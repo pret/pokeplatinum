@@ -18,6 +18,7 @@
 #include "charcode.h"
 #include "easy_chat_words.h"
 #include "enums.h"
+#include "geonet_locations.h"
 #include "heap.h"
 #include "message.h"
 #include "pc_boxes.h"
@@ -29,7 +30,6 @@
 #include "string_gf.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
-#include "unk_020996D0.h"
 
 #include "res/text/bank/common_strings.h"
 #include "res/text/bank/menu_entries.h"
@@ -445,7 +445,7 @@ void StringTemplate_SetCountryName(StringTemplate *template, u32 idx, u32 countr
 
 void StringTemplate_SetCityName(StringTemplate *template, u32 idx, u32 country, u32 city)
 {
-    u32 bankID = sub_02099720(country);
+    u32 bankID = GeonetLocations_GetBankIDFromCountry(country);
     if (bankID && city) {
         SetArgFromArchive(template, idx, city, bankID);
     }

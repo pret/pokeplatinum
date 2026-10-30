@@ -1,0 +1,57 @@
+{
+  "key": 49648,
+  "messages": [
+    {
+      "id": "Country_Region_Text_United_Kingdom_None",
+      "en_US": "None"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_East_of_England",
+      "en_US": "East of England"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_East_Midlands",
+      "en_US": "East Midlands"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_Greater_London",
+      "en_US": "Greater London"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_North_East_England",
+      "en_US": "North East England"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_North_West_England",
+      "en_US": "North West England"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_Northern_Ireland",
+      "en_US": "Northern Ireland"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_Scotland",
+      "en_US": "Scotland"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_South_East_England",
+      "en_US": "South East England"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_South_West_England",
+      "en_US": "South West England"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_Wales",
+      "en_US": "Wales"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_West_Midlands",
+      "en_US": "West Midlands"
+    },
+    {
+      "id": "Country_Region_Text_United_Kingdom_Yorkshire and_the_Humber",
+      "en_US": "Yorkshire and the Humber"
+    }
+  ]
+}

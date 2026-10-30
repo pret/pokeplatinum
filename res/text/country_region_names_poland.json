@@ -2,71 +2,71 @@
   "key": 62768,
   "messages": [
     {
-      "id": "pl_msg_00000690_00000",
+      "id": "Country_Region_Text_Poland_None",
       "en_US": "None"
     },
     {
-      "id": "pl_msg_00000690_00001",
+      "id": "Country_Region_Text_Poland_Dolnoslaskie",
       "en_US": "Dolnoslaskie"
     },
     {
-      "id": "pl_msg_00000690_00002",
+      "id": "Country_Region_Text_Poland_Kujawsko_Pomorskie",
       "en_US": "Kujawsko-Pomorskie"
     },
     {
-      "id": "pl_msg_00000690_00003",
+      "id": "Country_Region_Text_Poland_Lubelskie",
       "en_US": "Lubelskie"
     },
     {
-      "id": "pl_msg_00000690_00004",
+      "id": "Country_Region_Text_Poland_Lubuskie",
       "en_US": "Lubuskie"
     },
     {
-      "id": "pl_msg_00000690_00005",
+      "id": "Country_Region_Text_Poland_Lodzkie",
       "en_US": "Lodzkie"
     },
     {
-      "id": "pl_msg_00000690_00006",
+      "id": "Country_Region_Text_Poland_Malopolskie",
       "en_US": "Malopolskie"
     },
     {
-      "id": "pl_msg_00000690_00007",
+      "id": "Country_Region_Text_Poland_Mazowieckie",
       "en_US": "Mazowieckie"
     },
     {
-      "id": "pl_msg_00000690_00008",
+      "id": "Country_Region_Text_Poland_Opolskie",
       "en_US": "Opolskie"
     },
     {
-      "id": "pl_msg_00000690_00009",
+      "id": "Country_Region_Text_Poland_Podkarpackie",
       "en_US": "Podkarpackie"
     },
     {
-      "id": "pl_msg_00000690_00010",
+      "id": "Country_Region_Text_Poland_Podlaskie",
       "en_US": "Podlaskie"
     },
     {
-      "id": "pl_msg_00000690_00011",
+      "id": "Country_Region_Text_Poland_Pomorskie",
       "en_US": "Pomorskie"
     },
     {
-      "id": "pl_msg_00000690_00012",
+      "id": "Country_Region_Text_Poland_Slaskie",
       "en_US": "Slaskie"
     },
     {
-      "id": "pl_msg_00000690_00013",
+      "id": "Country_Region_Text_Poland_Swietokrzyskie",
       "en_US": "Swietokrzyskie"
     },
     {
-      "id": "pl_msg_00000690_00014",
+      "id": "Country_Region_Text_Poland_Warminsko_Mazurskie",
       "en_US": "Warminsko-Mazurskie"
     },
     {
-      "id": "pl_msg_00000690_00015",
+      "id": "Country_Region_Text_Poland_Wielkopolskie",
       "en_US": "Wielkopolskie"
     },
     {
-      "id": "pl_msg_00000690_00016",
+      "id": "Country_Region_Text_Poland_Zachodniopomorskie",
       "en_US": "Zachodniopomorskie"
     }
   ]

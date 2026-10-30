@@ -2,207 +2,207 @@
   "key": 2537,
   "messages": [
     {
-      "id": "pl_msg_00000688_00000",
+      "id": "Country_Region_Text_Japan_None",
       "en_US": "None"
     },
     {
-      "id": "pl_msg_00000688_00001",
+      "id": "Country_Region_Text_Japan_Hokkaido_Sapporo",
       "en_US": "Hokkaido (Sapporo)"
     },
     {
-      "id": "pl_msg_00000688_00002",
+      "id": "Country_Region_Text_Japan_Hokkaido_Hakodate",
       "en_US": "Hokkaido (Hakodate)"
     },
     {
-      "id": "pl_msg_00000688_00003",
+      "id": "Country_Region_Text_Japan_Hokkaido_Wakkanai",
       "en_US": "Hokkaido (Wakkanai)"
     },
     {
-      "id": "pl_msg_00000688_00004",
+      "id": "Country_Region_Text_Japan_Hokkaido_Kushiro",
       "en_US": "Hokkaido (Kushiro)"
     },
     {
-      "id": "pl_msg_00000688_00005",
+      "id": "Country_Region_Text_Japan_Aomori",
       "en_US": "Aomori"
     },
     {
-      "id": "pl_msg_00000688_00006",
+      "id": "Country_Region_Text_Japan_Iwate",
       "en_US": "Iwate"
     },
     {
-      "id": "pl_msg_00000688_00007",
+      "id": "Country_Region_Text_Japan_Miyagi",
       "en_US": "Miyagi"
     },
     {
-      "id": "pl_msg_00000688_00008",
+      "id": "Country_Region_Text_Japan_Akita",
       "en_US": "Akita"
     },
     {
-      "id": "pl_msg_00000688_00009",
+      "id": "Country_Region_Text_Japan_Yamagata",
       "en_US": "Yamagata"
     },
     {
-      "id": "pl_msg_00000688_00010",
+      "id": "Country_Region_Text_Japan_Fukushima",
       "en_US": "Fukushima"
     },
     {
-      "id": "pl_msg_00000688_00011",
+      "id": "Country_Region_Text_Japan_Ibaraki",
       "en_US": "Ibaraki"
     },
     {
-      "id": "pl_msg_00000688_00012",
+      "id": "Country_Region_Text_Japan_Tochigi",
       "en_US": "Tochigi"
     },
     {
-      "id": "pl_msg_00000688_00013",
+      "id": "Country_Region_Text_Japan_Gunma",
       "en_US": "Gunma"
     },
     {
-      "id": "pl_msg_00000688_00014",
+      "id": "Country_Region_Text_Japan_Saitama",
       "en_US": "Saitama"
     },
     {
-      "id": "pl_msg_00000688_00015",
+      "id": "Country_Region_Text_Japan_Chiba",
       "en_US": "Chiba"
     },
     {
-      "id": "pl_msg_00000688_00016",
+      "id": "Country_Region_Text_Japan_Tokyo",
       "en_US": "Tokyo"
     },
     {
-      "id": "pl_msg_00000688_00017",
+      "id": "Country_Region_Text_Japan_Kanagawa",
       "en_US": "Kanagawa"
     },
     {
-      "id": "pl_msg_00000688_00018",
+      "id": "Country_Region_Text_Japan_Niigata",
       "en_US": "Niigata"
     },
     {
-      "id": "pl_msg_00000688_00019",
+      "id": "Country_Region_Text_Japan_Toyama",
       "en_US": "Toyama"
     },
     {
-      "id": "pl_msg_00000688_00020",
+      "id": "Country_Region_Text_Japan_Ishikawa",
       "en_US": "Ishikawa"
     },
     {
-      "id": "pl_msg_00000688_00021",
+      "id": "Country_Region_Text_Japan_Fukui",
       "en_US": "Fukui"
     },
     {
-      "id": "pl_msg_00000688_00022",
+      "id": "Country_Region_Text_Japan_Yamanashi",
       "en_US": "Yamanashi"
     },
     {
-      "id": "pl_msg_00000688_00023",
+      "id": "Country_Region_Text_Japan_Nagano",
       "en_US": "Nagano"
     },
     {
-      "id": "pl_msg_00000688_00024",
+      "id": "Country_Region_Text_Japan_Gifu",
       "en_US": "Gifu"
     },
     {
-      "id": "pl_msg_00000688_00025",
+      "id": "Country_Region_Text_Japan_Shizuoka",
       "en_US": "Shizuoka"
     },
     {
-      "id": "pl_msg_00000688_00026",
+      "id": "Country_Region_Text_Japan_Aichi",
       "en_US": "Aichi"
     },
     {
-      "id": "pl_msg_00000688_00027",
+      "id": "Country_Region_Text_Japan_Mie",
       "en_US": "Mie"
     },
     {
-      "id": "pl_msg_00000688_00028",
+      "id": "Country_Region_Text_Japan_Shiga",
       "en_US": "Shiga"
     },
     {
-      "id": "pl_msg_00000688_00029",
+      "id": "Country_Region_Text_Japan_Kyoto",
       "en_US": "Kyoto"
     },
     {
-      "id": "pl_msg_00000688_00030",
+      "id": "Country_Region_Text_Japan_Osaka",
       "en_US": "Osaka"
     },
     {
-      "id": "pl_msg_00000688_00031",
+      "id": "Country_Region_Text_Japan_Hyogo",
       "en_US": "Hyogo"
     },
     {
-      "id": "pl_msg_00000688_00032",
+      "id": "Country_Region_Text_Japan_Nara",
       "en_US": "Nara"
     },
     {
-      "id": "pl_msg_00000688_00033",
+      "id": "Country_Region_Text_Japan_Wakayama",
       "en_US": "Wakayama"
     },
     {
-      "id": "pl_msg_00000688_00034",
+      "id": "Country_Region_Text_Japan_Tottori",
       "en_US": "Tottori"
     },
     {
-      "id": "pl_msg_00000688_00035",
+      "id": "Country_Region_Text_Japan_Shimane",
       "en_US": "Shimane"
     },
     {
-      "id": "pl_msg_00000688_00036",
+      "id": "Country_Region_Text_Japan_Okayama",
       "en_US": "Okayama"
     },
     {
-      "id": "pl_msg_00000688_00037",
+      "id": "Country_Region_Text_Japan_Hiroshima",
       "en_US": "Hiroshima"
     },
     {
-      "id": "pl_msg_00000688_00038",
+      "id": "Country_Region_Text_Japan_Yamaguchi",
       "en_US": "Yamaguchi"
     },
     {
-      "id": "pl_msg_00000688_00039",
+      "id": "Country_Region_Text_Japan_Tokushima",
       "en_US": "Tokushima"
     },
     {
-      "id": "pl_msg_00000688_00040",
+      "id": "Country_Region_Text_Japan_Kagawa",
       "en_US": "Kagawa"
     },
     {
-      "id": "pl_msg_00000688_00041",
+      "id": "Country_Region_Text_Japan_Ehime",
       "en_US": "Ehime"
     },
     {
-      "id": "pl_msg_00000688_00042",
+      "id": "Country_Region_Text_Japan_Kochi",
       "en_US": "Kochi"
     },
     {
-      "id": "pl_msg_00000688_00043",
+      "id": "Country_Region_Text_Japan_Fukuoka",
       "en_US": "Fukuoka"
     },
     {
-      "id": "pl_msg_00000688_00044",
+      "id": "Country_Region_Text_Japan_Saga",
       "en_US": "Saga"
     },
     {
-      "id": "pl_msg_00000688_00045",
+      "id": "Country_Region_Text_Japan_Nagasaki",
       "en_US": "Nagasaki"
     },
     {
-      "id": "pl_msg_00000688_00046",
+      "id": "Country_Region_Text_Japan_Kumamoto",
       "en_US": "Kumamoto"
     },
     {
-      "id": "pl_msg_00000688_00047",
+      "id": "Country_Region_Text_Japan_Oita",
       "en_US": "Oita"
     },
     {
-      "id": "pl_msg_00000688_00048",
+      "id": "Country_Region_Text_Japan_Miyazaki",
       "en_US": "Miyazaki"
     },
     {
-      "id": "pl_msg_00000688_00049",
+      "id": "Country_Region_Text_Japan_Kagoshima",
       "en_US": "Kagoshima"
     },
     {
-      "id": "pl_msg_00000688_00050",
+      "id": "Country_Region_Text_Japan_Okinawa",
       "en_US": "Okinawa"
     }
   ]

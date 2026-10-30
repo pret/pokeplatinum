@@ -16,6 +16,7 @@
 #include "easy3d.h"
 #include "font.h"
 #include "game_options.h"
+#include "geonet_locations.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -37,7 +38,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_020996D0.h"
 #include "wifi_history_save_data.h"
 
 #include "res/text/bank/country_names.h"
@@ -491,7 +491,7 @@ BOOL WiFiEarth_Main(ApplicationManager *appMan, int *state)
         if (WiFiEarth_ShowMessage(wifiEarth, WiFiEarth_Text_SelectCountry, TRUE) == 1) {
             wifiEarth->country2 = 0;
 
-            WiFiEarth_CreateListMenuFromBank(wifiEarth, &wifiEarth->listMenuWindow, &sSelectionListWindowTemplate, &sSelectionListTemplate, TEXT_BANK_COUNTRY_NAMES, sub_02099780(0), sub_0209979C(0));
+            WiFiEarth_CreateListMenuFromBank(wifiEarth, &wifiEarth->listMenuWindow, &sSelectionListWindowTemplate, &sSelectionListTemplate, TEXT_BANK_COUNTRY_NAMES, GeonetLocations_GetLocationList(0), GeonetLocations_GetLocationCount(0));
             *state = WIFI_EARTH_STATE_COUNTRY_INPUT;
         }
         break;
@@ -506,7 +506,7 @@ BOOL WiFiEarth_Main(ApplicationManager *appMan, int *state)
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (country != MENU_CANCEL) {
-            country = sub_02099780(0)[country];
+            country = GeonetLocations_GetLocationList(0)[country];
         }
 
         switch (country) {
@@ -533,8 +533,8 @@ BOOL WiFiEarth_Main(ApplicationManager *appMan, int *state)
             wifiEarth->region2 = 0;
 
             {
-                u32 countryIndex = GetCountryTableIndex(wifiEarth->country2);
-                WiFiEarth_CreateListMenuFromBank(wifiEarth, &wifiEarth->listMenuWindow, &sSelectionListWindowTemplate, &sSelectionListTemplate, sub_0209972C(countryIndex), sub_02099780(countryIndex), sub_0209979C(countryIndex));
+                u32 countryIndex = GeonetLocations_GetIndexFromCountry(wifiEarth->country2);
+                WiFiEarth_CreateListMenuFromBank(wifiEarth, &wifiEarth->listMenuWindow, &sSelectionListWindowTemplate, &sSelectionListTemplate, GeonetLocations_GetBankID(countryIndex), GeonetLocations_GetLocationList(countryIndex), GeonetLocations_GetLocationCount(countryIndex));
             }
             *state = WIFI_EARTH_STATE_REGION_INPUT;
         }
@@ -550,8 +550,8 @@ BOOL WiFiEarth_Main(ApplicationManager *appMan, int *state)
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (region != MENU_CANCEL) {
-            u32 countryIndex = GetCountryTableIndex(wifiEarth->country2);
-            region = sub_02099780(countryIndex)[region];
+            u32 countryIndex = GeonetLocations_GetIndexFromCountry(wifiEarth->country2);
+            region = GeonetLocations_GetLocationList(countryIndex)[region];
         }
 
         switch (region) {
@@ -792,10 +792,10 @@ static void WiFiEarth_LoadLocationMarkers(WiFiEarthData *wifiEarth)
     int countryCount, regionRecordCount;
 
     int countryIndex = 1;
-    countryCount = sub_020996D0();
+    countryCount = GeonetLocations_GetLocationListCount();
 
     while (countryIndex < countryCount) {
-        narcMemberIndex = sub_02099764(countryIndex);
+        narcMemberIndex = GeonetLocations_GetNarcMemberIndex(countryIndex);
         regionBuffer = LoadMemberFromOpenNARC_OutFileSize(narc, narcMemberIndex, 0, wifiEarth->heapID, 0, &regionByteSize);
         regionRecord = (CoordinatesS16 *)regionBuffer;
         regionRecordCount = regionByteSize / sizeof(CoordinatesS16);
@@ -803,7 +803,7 @@ static void WiFiEarth_LoadLocationMarkers(WiFiEarthData *wifiEarth)
         regionRecord++;
 
         for (int i = 1; i < regionRecordCount; i++) {
-            WiFiEarth_AddLocationMarker(wifiEarth, wifiEarth->markers.count, regionRecord->x, regionRecord->y, sub_02099748(countryIndex), i);
+            WiFiEarth_AddLocationMarker(wifiEarth, wifiEarth->markers.count, regionRecord->x, regionRecord->y, GeonetLocations_GetCountry(countryIndex), i);
             wifiEarth->markers.count++;
             regionRecord++;
         }
@@ -848,7 +848,7 @@ static void WiFiEarth_FocusPlayerLocation(WiFiEarthData *wifiEarth)
 
 static int WiFiEarth_GetCountryIndex(int country)
 {
-    return GetCountryTableIndex(country);
+    return GeonetLocations_GetIndexFromCountry(country);
 }
 
 static void WiFiEarth_UpdateTouchInput(WiFiEarthData *wifiEarth)
@@ -1509,7 +1509,7 @@ BOOL WiFiEarth_GetLocationNames(int country, int region, String *countryName, St
         hasRegion = TRUE;
     }
 
-    loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, sub_0209972C(countryIndex), heapID);
+    loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, GeonetLocations_GetBankID(countryIndex), heapID);
 
     MessageLoader_GetString(loader, region, regionName);
     MessageLoader_Free(loader);

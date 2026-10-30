@@ -2,87 +2,87 @@
   "key": 6605,
   "messages": [
     {
-      "id": "pl_msg_00000687_00000",
+      "id": "Country_Region_Text_Italy_None",
       "en_US": "None"
     },
     {
-      "id": "pl_msg_00000687_00001",
+      "id": "Country_Region_Text_Italy_Abruzzo",
       "en_US": "Abruzzo"
     },
     {
-      "id": "pl_msg_00000687_00002",
+      "id": "Country_Region_Text_Italy_Basilicata",
       "en_US": "Basilicata"
     },
     {
-      "id": "pl_msg_00000687_00003",
+      "id": "Country_Region_Text_Italy_Calabria",
       "en_US": "Calabria"
     },
     {
-      "id": "pl_msg_00000687_00004",
+      "id": "Country_Region_Text_Italy_Campania",
       "en_US": "Campania"
     },
     {
-      "id": "pl_msg_00000687_00005",
+      "id": "Country_Region_Text_Italy_Emilia_Romagna",
       "en_US": "Emilia-Romagna"
     },
     {
-      "id": "pl_msg_00000687_00006",
+      "id": "Country_Region_Text_Italy_Friuli_Venezia_Giulia",
       "en_US": "Friuli-Venezia Giulia"
     },
     {
-      "id": "pl_msg_00000687_00007",
+      "id": "Country_Region_Text_Italy_Lazio",
       "en_US": "Lazio"
     },
     {
-      "id": "pl_msg_00000687_00008",
+      "id": "Country_Region_Text_Italy_Liguria",
       "en_US": "Liguria"
     },
     {
-      "id": "pl_msg_00000687_00009",
+      "id": "Country_Region_Text_Italy_Lombardia",
       "en_US": "Lombardia"
     },
     {
-      "id": "pl_msg_00000687_00010",
+      "id": "Country_Region_Text_Italy_Marche",
       "en_US": "Marche"
     },
     {
-      "id": "pl_msg_00000687_00011",
+      "id": "Country_Region_Text_Italy_Molise",
       "en_US": "Molise"
     },
     {
-      "id": "pl_msg_00000687_00012",
+      "id": "Country_Region_Text_Italy_Piemonte",
       "en_US": "Piemonte"
     },
     {
-      "id": "pl_msg_00000687_00013",
+      "id": "Country_Region_Text_Italy_Puglia",
       "en_US": "Puglia"
     },
     {
-      "id": "pl_msg_00000687_00014",
+      "id": "Country_Region_Text_Italy_Sardegna",
       "en_US": "Sardegna"
     },
     {
-      "id": "pl_msg_00000687_00015",
+      "id": "Country_Region_Text_Italy_Sicilia",
       "en_US": "Sicilia"
     },
     {
-      "id": "pl_msg_00000687_00016",
+      "id": "Country_Region_Text_Italy_Toscana",
       "en_US": "Toscana"
     },
     {
-      "id": "pl_msg_00000687_00017",
+      "id": "Country_Region_Text_Italy_Trentino_Alto_Adige",
       "en_US": "Trentino-Alto Adige"
     },
     {
-      "id": "pl_msg_00000687_00018",
+      "id": "Country_Region_Text_Italy_Umbria",
       "en_US": "Umbria"
     },
     {
-      "id": "pl_msg_00000687_00019",
+      "id": "Country_Region_Text_Italy_Valle_d_Aosta",
       "en_US": "Valle d’Aosta"
     },
     {
-      "id": "pl_msg_00000687_00020",
+      "id": "Country_Region_Text_Italy_Veneto",
       "en_US": "Veneto"
     }
   ]

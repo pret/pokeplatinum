@@ -2,87 +2,87 @@
   "key": 62904,
   "messages": [
     {
-      "id": "pl_msg_00000689_00000",
+      "id": "Country_Region_Text_Norway_None",
       "en_US": "None"
     },
     {
-      "id": "pl_msg_00000689_00001",
+      "id": "Country_Region_Text_Norway_Akershus",
       "en_US": "Akershus"
     },
     {
-      "id": "pl_msg_00000689_00002",
+      "id": "Country_Region_Text_Norway_Aust_Agder",
       "en_US": "Aust-Agder"
     },
     {
-      "id": "pl_msg_00000689_00003",
+      "id": "Country_Region_Text_Norway_Buskerud",
       "en_US": "Buskerud"
     },
     {
-      "id": "pl_msg_00000689_00004",
+      "id": "Country_Region_Text_Norway_Finnmark",
       "en_US": "Finnmark"
     },
     {
-      "id": "pl_msg_00000689_00005",
+      "id": "Country_Region_Text_Norway_Hedmark",
       "en_US": "Hedmark"
     },
     {
-      "id": "pl_msg_00000689_00006",
+      "id": "Country_Region_Text_Norway_Hordaland",
       "en_US": "Hordaland"
     },
     {
-      "id": "pl_msg_00000689_00007",
+      "id": "Country_Region_Text_Norway_Lofoten",
       "en_US": "Lofoten"
     },
     {
-      "id": "pl_msg_00000689_00008",
+      "id": "Country_Region_Text_Norway_More_og_Romsdal",
       "en_US": "More og Romsdal"
     },
     {
-      "id": "pl_msg_00000689_00009",
+      "id": "Country_Region_Text_Norway_Nordland",
       "en_US": "Nordland"
     },
     {
-      "id": "pl_msg_00000689_00010",
+      "id": "Country_Region_Text_Norway_Nord_Trondelag",
       "en_US": "Nord-Trondelag"
     },
     {
-      "id": "pl_msg_00000689_00011",
+      "id": "Country_Region_Text_Norway_Oppland",
       "en_US": "Oppland"
     },
     {
-      "id": "pl_msg_00000689_00012",
+      "id": "Country_Region_Text_Norway_Oslo",
       "en_US": "Oslo"
     },
     {
-      "id": "pl_msg_00000689_00013",
+      "id": "Country_Region_Text_Norway_Rogaland",
       "en_US": "Rogaland"
     },
     {
-      "id": "pl_msg_00000689_00014",
+      "id": "Country_Region_Text_Norway_Sogn_og_Fjordane",
       "en_US": "Sogn og Fjordane"
     },
     {
-      "id": "pl_msg_00000689_00015",
+      "id": "Country_Region_Text_Norway_Sor_Trondelag",
       "en_US": "Sor-Trondelag"
     },
     {
-      "id": "pl_msg_00000689_00016",
+      "id": "Country_Region_Text_Norway_Svalbard",
       "en_US": "Svalbard"
     },
     {
-      "id": "pl_msg_00000689_00017",
+      "id": "Country_Region_Text_Norway_Telemark",
       "en_US": "Telemark"
     },
     {
-      "id": "pl_msg_00000689_00018",
+      "id": "Country_Region_Text_Norway_Troms",
       "en_US": "Troms"
     },
     {
-      "id": "pl_msg_00000689_00019",
+      "id": "Country_Region_Text_Norway_Vest_Agder",
       "en_US": "Vest-Agder"
     },
     {
-      "id": "pl_msg_00000689_00020",
+      "id": "Country_Region_Text_Norway_Ostfold",
       "en_US": "Ostfold"
     }
   ]
