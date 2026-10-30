@@ -365,14 +365,14 @@ static u8 GetPartnerGameCode(void)
 u8 sub_0205E6D8(SaveData *saveData)
 {
     if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(saveData)) == VERSION_NONE) {
-        return 1;
+        return TRUE;
     }
 
     if (GetPartnerGameCode() == VERSION_NONE) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeLatestStreakIndex(u8 challengeType)

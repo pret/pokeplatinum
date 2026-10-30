@@ -3,6 +3,7 @@
 #include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_battle_tower_multi_battle_room.h"
 #include "constants/map_object.h"
+#include "constants/battle_tower_functions.h"
 
 
     ScriptEntry BattleTowerMultiBattleRoom_OnTransition
@@ -151,7 +152,7 @@ BattleTowerMultiBattleRoom_EndChallengeWonRound:
 
 BattleTowerMultiBattleRoom_SaveAndQuit:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
-    CallBattleTowerFunction BT_FUNC_UNK_39, 0, 0
+    CallBattleTowerFunction BT_FUNC_QUICKSAVE, 0, 0
     FreeBattleTower
     Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating
     ShowSavingIcon
@@ -170,7 +171,7 @@ BattleTowerMultiBattleRoom_CancelChallenge:
     End
 
 BattleTowerMultiBattleRoom_HasDefeatedSevenTrainers:
-    CallBattleTowerFunction BT_FUNC_UNK_34, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_INCREMENT_CURRENT_BATTLE, 0, VAR_RESULT
     CallBattleTowerFunction BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_RESULT
     Return
 
@@ -245,7 +246,7 @@ BattleTowerMultiBattleRoom_HandleLinkMultiDecision:
     Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 5
-    ScrCmd_1E1 2, VAR_MAP_LOCAL_0x00, VAR_RESULT
+    BattleTower_SendCommMessage 2, VAR_MAP_LOCAL_0x00, VAR_RESULT
     ScrCmd_1E2 2, VAR_MAP_LOCAL_0x00
     CloseMessage
     SetVar VAR_0x8008, VAR_MAP_LOCAL_0x00

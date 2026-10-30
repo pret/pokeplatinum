@@ -73,6 +73,7 @@
 
 #include "bag.h"
 #include "bag_context.h"
+#include "battle_tower_save.h"
 #include "coins.h"
 #include "comm_manager.h"
 #include "dexmode_checker.h"
@@ -123,7 +124,6 @@
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "vars_flags.h"
-#include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
 
 #include "constdata/const_020EA328.h"

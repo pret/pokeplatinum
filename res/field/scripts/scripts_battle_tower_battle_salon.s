@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_salon.h"
 #include "res/field/events/events_battle_tower_battle_salon.h"
+#include "constants/battle_tower_functions.h"
 #include "constants/map_object.h"
 
 
@@ -98,7 +99,7 @@ BattleTowerBattleSalon_OnFrame_EnterBattleSalon:
     Call BattleTowerBattleSalon_EnterBattleSalon
     Message BattleTowerBattleSalon_Text_PleaseFindAPartner
     CloseMessage
-    CallBattleTowerFunction BT_FUNC_UNK_56, 0, 0
+    CallBattleTowerFunction BT_FUNC_INIT_STAT_TRAINERS, 0, 0
     ReleaseAll
     End
 

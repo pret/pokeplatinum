@@ -95,7 +95,7 @@
 #include "bag.h"
 #include "ball_seal_info.h"
 #include "battle_frontier.h"
-#include "battle_tower.h"
+#include "battle_tower_trainers.h"
 #include "bg_window.h"
 #include "binoculars_vista_lighthouse.h"
 #include "camera.h"
@@ -157,6 +157,7 @@
 #include "scrcmd_battle_castle.h"
 #include "scrcmd_battle_factory.h"
 #include "scrcmd_battle_hall.h"
+#include "scrcmd_battle_tower.h"
 #include "scrcmd_berry.h"
 #include "scrcmd_catching_show.h"
 #include "scrcmd_coins.h"
@@ -202,7 +203,6 @@
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_020494DC.h"
 #include "unk_020528D0.h"
 #include "unk_020559DC.h"
 #include "unk_0205749C.h"
@@ -1254,7 +1254,7 @@ static BOOL ScrCmd_PrintBattleTowerIntroMessage(ScriptContext *ctx)
         return FALSE;
     }
 
-    u16 *introMsg = battleTower->opponentsDataDTO[opponentID].trainer.introMsg;
+    u16 *introMsg = battleTower->opponents[opponentID].trainer.introMsg;
 
     if (introMsg[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);

@@ -6,10 +6,10 @@
 #include "struct_defs/wifi_player_profile.h"
 
 #include "appearance.h"
+#include "battle_tower_save.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
 
 void sub_02073700(SaveData *saveData, int param1, WifiPlayerProfile *profile)

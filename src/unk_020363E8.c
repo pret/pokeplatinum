@@ -190,10 +190,10 @@ BOOL sub_02036614(int param0, const void *param1)
     if (sCommTool) {
         MI_CpuCopy8(param1, sCommTool->unk_18[param0], COMM_TOOL_TEMP_DATA_SIZE);
         CommSys_SendDataFixedSize(20, sCommTool->unk_18[param0]);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 const void *sub_0203664C(int netId)

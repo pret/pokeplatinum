@@ -16,6 +16,7 @@
 #include "battle_castle_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
+#include "battle_tower.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_script_context.h"
@@ -29,7 +30,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
-#include "unk_02049D08.h"
 #include "unk_02099500.h"
 
 #include "constdata/const_020F410C.h"
@@ -82,7 +82,7 @@ BOOL ScrCmd_CallBattleCastleLobbyFunction(ScriptContext *ctx)
 
     switch (action) {
     case BC_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE:
-        *result = sub_02049EC4(arg, ctx->fieldSystem->saveData, FALSE);
+        *result = BattleTower_CheckIfPartyIsEligible(arg, ctx->fieldSystem->saveData, FALSE);
         break;
     case BC_LOBBY_FUNC_CHECK_STREAK_ACTIVE:
         if (arg == FRONTIER_CHALLENGE_MULTI_WFC) {
