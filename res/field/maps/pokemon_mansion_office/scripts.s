@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_mansion_office.h"
-#include "res/field/events/events_pokemon_mansion_office.h"
+#include "res/field/maps/locals/pokemon_mansion_office.h"
 
 
     ScriptEntry PokemonMansionOffice_OnTransition

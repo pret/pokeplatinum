@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_galactic_warehouse.h"
-#include "res/field/events/events_veilstone_city_galactic_warehouse.h"
+#include "res/field/maps/locals/veilstone_city_galactic_warehouse.h"
 
 
     ScriptEntry VeilstoneCityGalacticWarehouse_GalacticHQDoor

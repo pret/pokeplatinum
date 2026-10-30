@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/oreburgh_city_pokecenter_1f.h"
-#include "res/field/events/events_oreburgh_city_pokecenter_1f.h"
+#include "res/field/maps/locals/oreburgh_city_pokecenter_1f.h"
 
 
     ScriptEntry OreburghCityPokecenter1F_Nurse

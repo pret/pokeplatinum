@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_observatory_gate_1f.h"
-#include "res/field/events/events_pastoria_city_observatory_gate_1f.h"
+#include "res/field/maps/locals/pastoria_city_observatory_gate_1f.h"
 
 
     ScriptEntry PastoriaCityObservatoryGate1F_CashierM

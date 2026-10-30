@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_201.h"
-#include "res/field/events/events_route_201.h"
+#include "res/field/maps/locals/route_201.h"
 
     ScriptEntry Route201_OnTransition
     ScriptEntry Route201_CoordEvent_ChooseStarterScene

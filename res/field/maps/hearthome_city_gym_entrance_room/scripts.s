@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_gym_entrance_room.h"
-#include "res/field/events/events_hearthome_city_gym_entrance_room.h"
+#include "res/field/maps/locals/hearthome_city_gym_entrance_room.h"
 
 
     ScriptEntry HearthomeGym_GymGuide

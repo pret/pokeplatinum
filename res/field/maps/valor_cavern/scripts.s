@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valor_cavern.h"
-#include "res/field/events/events_valor_cavern.h"
+#include "res/field/maps/locals/valor_cavern.h"
 
 
     ScriptEntry ValorCavern_OnTransition

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city.h"
-#include "res/field/events/events_oreburgh_city.h"
+#include "res/field/maps/locals/oreburgh_city.h"
 
     ScriptEntry OreburghCity_Rival
     ScriptEntry OreburghCity_Youngster

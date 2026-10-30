@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "generated/hidden_locations.h"
 #include "res/text/bank/newmoon_island.h"
-#include "res/field/events/events_newmoon_island.h"
+#include "res/field/maps/locals/newmoon_island.h"
 
 
     ScriptEntry NewmoonIsland_OnTransition

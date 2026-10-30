@@ -45,6 +45,7 @@ typedef struct Option {
 #define OPTION_SWITCH(f, target, h)      { .flag = (f),                    .help = (h), .kind = OPTION_KIND_SWITCH,  .set     = (target) }
 #define OPTION_HANDLER(f, meta, fn, h)   { .flag = (f), .metavar = (meta), .help = (h), .kind = OPTION_KIND_HANDLER, .handler = (fn)     }
 #define POSITIONAL(meta, target, h)      {              .metavar = (meta), .help = (h), .kind = OPTION_KIND_VALUE,   .value   = (target) }
+#define POSITIONAL_HANDLER(meta, fn, h)  {              .metavar = (meta), .help = (h), .kind = OPTION_KIND_HANDLER, .handler = (fn)     }
 
 // Issue a CLI failure with a formatted message and usage, then abort.
 noreturn void CLI_Fail(const char *fmt, ...) FORMATTER(1, 2);

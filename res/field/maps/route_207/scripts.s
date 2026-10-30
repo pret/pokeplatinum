@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/route_207.h"
-#include "res/field/events/events_route_207.h"
+#include "res/field/maps/locals/route_207.h"
 
 
     ScriptEntry Route207_OnTransition

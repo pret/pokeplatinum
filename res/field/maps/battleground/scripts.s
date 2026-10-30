@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battleground.h"
-#include "res/field/events/events_battleground.h"
+#include "res/field/maps/locals/battleground.h"
 
 #define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1 FLAG_MAP_LOCAL_0x01
 #define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2 FLAG_MAP_LOCAL_0x02

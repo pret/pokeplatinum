@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/trainers_school.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_trainers_school.h"
+#include "res/field/maps/locals/trainers_school.h"
 
 
     ScriptEntry TrainersSchool_Rival

@@ -2,7 +2,7 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
 #include "res/text/bank/menu_entries.h"
-#include "res/field/events/events_canalave_city.h"
+#include "res/field/maps/locals/canalave_city.h"
 
 
     ScriptEntry CanalaveCity_OnTransition

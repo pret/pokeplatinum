@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area.h"
-#include "res/field/events/events_survival_area.h"
+#include "res/field/maps/locals/survival_area.h"
 
 
     ScriptEntry SurvivalArea_Youngster

@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/contest_hall_lobby.h"
-#include "res/field/events/events_contest_hall_lobby.h"
+#include "res/field/maps/locals/contest_hall_lobby.h"
 
 
     ScriptEntry ContestHallLobby_OnFrame_FirstEntry

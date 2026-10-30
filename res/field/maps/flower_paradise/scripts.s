@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/flower_paradise.h"
-#include "res/field/events/events_flower_paradise.h"
+#include "res/field/maps/locals/flower_paradise.h"
 
 
     ScriptEntry FlowerParadise_OnTransition

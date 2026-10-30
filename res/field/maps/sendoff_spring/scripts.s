@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sendoff_spring.h"
-#include "res/field/events/events_sendoff_spring.h"
+#include "res/field/maps/locals/sendoff_spring.h"
 
 
     ScriptEntry SendoffSpring_OnFrame_Cynthia

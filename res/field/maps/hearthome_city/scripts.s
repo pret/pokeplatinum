@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city.h"
-#include "res/field/events/events_hearthome_city.h"
+#include "res/field/maps/locals/hearthome_city.h"
 #include "generated/goods.h"
 
 

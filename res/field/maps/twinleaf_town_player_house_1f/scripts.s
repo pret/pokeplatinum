@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_1f.h"
-#include "res/field/events/events_twinleaf_town_player_house_1f.h"
+#include "res/field/maps/locals/twinleaf_town_player_house_1f.h"
 
 
     ScriptEntry TwinleafTownPlayerHouse1F_OnTransition

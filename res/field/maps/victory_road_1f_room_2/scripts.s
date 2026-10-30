@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/victory_road_1f_room_2.h"
-#include "res/field/events/events_victory_road_1f_room_2.h"
+#include "res/field/maps/locals/victory_road_1f_room_2.h"
 
 
     ScriptEntry VictoryRoad1FRoom2_CoordEvent_MarleyStartFollowing

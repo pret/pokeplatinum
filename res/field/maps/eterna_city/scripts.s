@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city.h"
 #include "res/text/bank/special_met_location_names.h"
-#include "res/field/events/events_eterna_city.h"
+#include "res/field/maps/locals/eterna_city.h"
 
 
     ScriptEntry EternaCity_CoordEvent_CynthiaGiveCut

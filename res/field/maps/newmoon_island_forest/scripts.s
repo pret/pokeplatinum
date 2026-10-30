@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/newmoon_island_forest.h"
-#include "res/field/events/events_newmoon_island_forest.h"
+#include "res/field/maps/locals/newmoon_island_forest.h"
 
 
     ScriptEntry NewmoonIslandForest_OnTransition

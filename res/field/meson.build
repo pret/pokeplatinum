@@ -2,7 +2,6 @@ global_scripts = meson.current_source_dir() / 'scripts'
 scripts_order = files('scripts.order')
 
 subdir('encounters')
-subdir('events')
 subdir('frontier_scripts')
 subdir('lighting')
 subdir('mapmodels')
