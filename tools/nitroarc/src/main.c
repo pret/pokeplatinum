@@ -159,7 +159,7 @@ int parse_opts(const char **argv, options_t *opts) {
     };
 
     int match;
-    while ((match = parseopt(&parser)) >= 0) {
+    while ((match = parseopt(&parser)) != OPT_DONE) {
         switch (match) {
         case metadata: tryset_opmode(opmode_metadata);
         case list:     tryset_opmode(opmode_list);
