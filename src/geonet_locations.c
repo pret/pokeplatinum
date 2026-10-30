@@ -734,7 +734,7 @@ static const GeonetLocationData sCountryStateData[] = {
         .bankID = TEXT_BANK_COUNTRY_REGION_NAMES_UNITED_STATES,
         .locationList = sSelectableUnitedStatesStates,
         .locationCount = NELEMS(sSelectableUnitedStatesStates),
-     },
+    },
 };
 
 u32 GeonetLocations_GetLocationListCount(void)
