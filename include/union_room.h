@@ -14,48 +14,6 @@
 #include "trainer_case.h"
 #include "trainer_info.h"
 
-typedef struct UnionRoomManager UnionRoomManager;
-
-typedef void (*UnionRoomTask)(UnionRoomManager *);
-
-/**
- * @brief The union room's session: the connection state machine, the peer protocol and the
- * data exchanged with the other players in the room.
- */
-struct UnionRoomManager {
-    FieldSystem *fieldSystem;
-    SaveData *saveData;
-    TrainerInfo *trainerInfo;
-    SysTask *sysTask;
-    UnionRoomTask task;
-    int timer;
-    u32 connectionID;
-    u32 connectState;
-    int pendingConnection;
-    int unused_24;
-    int unused_28;
-    int unused_2C;
-    u32 peerActivity;
-    u32 proposedActivity;
-    u32 unused_38;
-    BOOL answerDeclined;
-    u32 activityAnswer;
-    BOOL chatEnded;
-    u16 unused_48[10][2];
-    u16 unused_70[40][2];
-    WMbssDesc *bssDesc[16];
-    MATHRandContext32 rand;
-    int unused_168;
-    int unused_16C;
-    int unused_170;
-    u16 unused_174;
-    u8 partySelectionResults[2];
-    EasyChatSentence pendingSentence;
-    BOOL sentencePending;
-    TrainerCase *trainerCase;
-    TrainerCase *receivedTrainerCases[2];
-};
-
 /**
  * @brief What a player is doing in the union room, as broadcast to the other players.
  *
@@ -157,6 +115,48 @@ enum UnionRoomPartySelectionCancelState {
     UR_PARTY_SELECTION_NOT_CANCELLED = 0,
     UR_PARTY_SELECTION_CANCELLED_BY_LOCAL,
     UR_PARTY_SELECTION_CANCELLED_BY_REMOTE,
+};
+
+typedef struct UnionRoomManager UnionRoomManager;
+
+typedef void (*UnionRoomTask)(UnionRoomManager *);
+
+/**
+ * @brief The union room's session: the connection state machine, the peer protocol and the
+ * data exchanged with the other players in the room.
+ */
+struct UnionRoomManager {
+    FieldSystem *fieldSystem;
+    SaveData *saveData;
+    TrainerInfo *trainerInfo;
+    SysTask *sysTask;
+    UnionRoomTask task;
+    int timer;
+    u32 connectionID;
+    enum UnionRoomConnectState connectState;
+    enum UnionRoomPendingConnection pendingConnection;
+    int unused_24;
+    int unused_28;
+    int unused_2C;
+    u32 peerActivity;
+    u32 proposedActivity;
+    u32 unused_38;
+    BOOL answerDeclined;
+    u32 activityAnswer;
+    BOOL chatEnded;
+    u16 unused_48[10][2];
+    u16 unused_70[40][2];
+    WMbssDesc *bssDesc[16];
+    MATHRandContext32 rand;
+    int unused_168;
+    int unused_16C;
+    int unused_170;
+    u16 unused_174;
+    u8 partySelectionResults[2];
+    EasyChatSentence pendingSentence;
+    BOOL sentencePending;
+    TrainerCase *trainerCase;
+    TrainerCase *receivedTrainerCases[2];
 };
 
 /**
