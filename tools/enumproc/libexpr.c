@@ -106,9 +106,9 @@ struct evalstack {
         assert(stk.n_nums >= 2);                                                        \
         stk.n_nums -= 2;                                                                \
                                                                                         \
-        int64_t a = stk.nums[stk.n_nums];                                                  \
-        int64_t b = stk.nums[stk.n_nums + 1];                                              \
-        int64_t r = 0;                                                                     \
+        int64_t a = stk.nums[stk.n_nums];                                               \
+        int64_t b = stk.nums[stk.n_nums + 1];                                           \
+        int64_t r = 0;                                                                  \
         switch ((o).op) {                                                               \
         case OP_MUL: if (__builtin_mul_overflow(a, b, &r)) fail((o).pos); break;        \
         case OP_ADD: if (__builtin_add_overflow(a, b, &r)) fail((o).pos); break;        \
