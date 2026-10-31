@@ -122,9 +122,9 @@ static const CommCmdTable Unk_020F68A4[] = {
     { FieldCommManager_UpdateBattleRoomMovement, CommPacketSizeOf_NetId, NULL }, // 95
     { SecretBases_ProcessFlagRankUp, CommPacketSizeOf_NetId, NULL },
     { SecretBases_ProcessFlagRankUpEvent, CommPacketSizeOf_FlagRankUpEvent, NULL },
-    { sub_0205B988, TrainerInfo_Size, NULL }, // no sender
+    { Dummy_0205B988, TrainerInfo_Size, NULL }, // no sender
     { UnionRoom_RecvActivityProposal, CommPacketSizeOf_NetId, NULL },
-    { sub_0205B98C, CommPacketSizeOf_NetId, NULL }, // no sender
+    { Dummy_0205B98C, CommPacketSizeOf_NetId, NULL }, // no sender
     { UnionRoom_RecvPartySelectionResult, CommPacketSizeOf_NetId, NULL },
     { UnionRoom_RecvRestart, CommPacketSizeOf_Nothing, NULL },
     { UnionRoom_RecvActivityAnswer, CommPacketSizeOf_NetId, NULL },

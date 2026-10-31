@@ -438,7 +438,7 @@ static BOOL sub_0203D444(FieldTask *taskMan)
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             switch (taskEnv->partyMenu->selectedMonSlot) {
-            case 7:
+            case PARTY_MENU_SLOT_CANCEL:
                 UnionRoom_SendPartySelectionResult(UR_PARTY_SELECTION_CANCELLED);
                 *taskState = 4;
                 break;

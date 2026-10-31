@@ -249,7 +249,7 @@ void TrainerCase_OpenUnionRoomCase(FieldSystem *fieldSystem)
     OpenCaseData *data = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(OpenCaseData));
 
     data->state = 0;
-    data->trainerCase = (TrainerCase *)UnionRoom_GetTrainerCase(fieldSystem->unionRoomMan);
+    data->trainerCase = UnionRoom_GetTrainerCase(fieldSystem->unionRoomMan);
 
     FieldTask_InitCall(fieldSystem->task, FieldTask_OpenUnionRoomCaseTask, data);
 }
