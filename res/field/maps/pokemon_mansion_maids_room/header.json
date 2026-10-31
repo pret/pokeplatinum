@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_035",
+  "mapGroup": "PokemonMansion_LeftRooms",
+  "locationName": "LocationNames_Text_PokemonMansion",
+  "textBank": "TEXT_BANK_POKEMON_MANSION_MAIDS_ROOM",
+  "popupStyle": "MAP_LABEL_WINDOW_ROUTE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_3",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_ROAD_E_D_sseq",
+  "musicNight": "SEQ_ROAD_E_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

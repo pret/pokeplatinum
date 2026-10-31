@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_070",
+  "mapGroup": "MtCoronet_6F",
+  "locationName": "LocationNames_Text_MtCoronet",
+  "textBank": "TEXT_BANK_JUBILIFE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_29",
+  "cameraType": "CAMERA_TYPE_CAVE",
+  "battleBackground": "BACKGROUND_CAVE_2",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_MOUNT1_sseq",
+  "musicNight": "SEQ_D_MOUNT1_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

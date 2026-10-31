@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_062",
+  "mapGroup": "LakeVerity_CavernVisible",
+  "locationName": "LocationNames_Text_LakeVerity",
+  "textBank": "TEXT_BANK_LAKE_VERITY",
+  "popupStyle": "MAP_LABEL_WINDOW_LAKE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_FOREST",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_GINLOBBY_sseq",
+  "musicNight": "SEQ_D_GINLOBBY_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_020",
+  "mapGroup": "RowansLaboratory",
+  "locationName": "LocationNames_Text_SandgemTown",
+  "textBank": "TEXT_BANK_SANDGEM_TOWN_POKEMON_RESEARCH_LAB",
+  "popupStyle": "MAP_LABEL_WINDOW_TOWN",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_KENKYUJO_sseq",
+  "musicNight": "SEQ_KENKYUJO_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

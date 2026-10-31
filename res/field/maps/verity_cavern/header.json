@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_053",
+  "mapGroup": "VerityCavern",
+  "locationName": "LocationNames_Text_VerityCavern",
+  "textBank": "TEXT_BANK_VERITY_CAVERN",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_CAVE",
+  "battleBackground": "BACKGROUND_CAVE_3",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_RYAYHY_sseq",
+  "musicNight": "SEQ_D_RYAYHY_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

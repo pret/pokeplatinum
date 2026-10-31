@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_035",
+  "mapGroup": "ForeignBuilding",
+  "locationName": "LocationNames_Text_ForeignBuilding",
+  "textBank": "TEXT_BANK_FOREIGN_BUILDING",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_3",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_SILENCE_FIELD_sseq",
+  "musicNight": "SEQ_SILENCE_FIELD_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

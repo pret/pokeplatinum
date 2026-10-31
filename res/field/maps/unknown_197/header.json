@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_055",
+  "mapGroup": "OreburghMine_1F",
+  "locationName": "LocationNames_Text_OreburghMine",
+  "textBank": "TEXT_BANK_JUBILIFE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_CAVE_1",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 55,
+  "musicDay": "SEQ_D_01_sseq",
+  "musicNight": "SEQ_D_01_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

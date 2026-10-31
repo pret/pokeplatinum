@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_005",
+  "mapGroup": "PokemonCenter_UnionRoom",
+  "locationName": "LocationNames_Text_MysteryZone",
+  "textBank": "TEXT_BANK_UNION_ROOM",
+  "popupStyle": "MAP_LABEL_WINDOW_TOWN",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 14,
+  "musicDay": "SEQ_PC_01_sseq",
+  "musicNight": "SEQ_PC_02_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}
