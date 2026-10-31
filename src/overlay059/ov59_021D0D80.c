@@ -50,9 +50,9 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
+#include "union_room.h"
 #include "unk_020363E8.h"
 #include "unk_02038ED4.h"
-#include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_020961E8.h"
 #include "vram_transfer.h"
@@ -209,7 +209,7 @@ int ov59_021D0D80(ApplicationManager *appMan, int *param1)
         CommManager_SetMaxNumConnections(3);
 
         if (CommSys_CurNetId() == 0) {
-            sub_0205BEA8(2);
+            UnionRoom_SetStatus(UR_STATUS_MIXING_RECORDS);
         }
 
         NetworkIcon_Init();
@@ -317,7 +317,7 @@ int ov59_021D0FF4(ApplicationManager *appMan, int *unused)
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    sub_0205BEA8(0);
+    UnionRoom_SetStatus(UR_STATUS_NONE);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_51);
 
@@ -1689,7 +1689,7 @@ static int ov59_021D292C(UnkStruct_020961E8 *param0, int param1)
     case 2:
     case 3:
     case 4:
-        sub_0205BEA8(2);
+        UnionRoom_SetStatus(UR_STATUS_MIXING_RECORDS);
 
         if (v0 < param0->unk_4AA8) {
             switch (param0->unk_4AB9) {
@@ -1705,7 +1705,7 @@ static int ov59_021D292C(UnkStruct_020961E8 *param0, int param1)
         }
         break;
     case 5:
-        sub_0205BEA8(9);
+        UnionRoom_SetStatus(UR_STATUS_UNK_09);
         ov59_021D28D8(param0, param1);
         break;
     }

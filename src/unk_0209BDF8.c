@@ -19,8 +19,8 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "union_room.h"
 #include "unk_02032798.h"
-#include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02099500.h"
 #include "wireless_manager.h"
@@ -65,7 +65,7 @@ void sub_0209BE64(UnkStruct_0209BDF8 *param0)
     CommManager_SetMaxNumConnections(2);
     CommManager_UnionRestartSearch();
     sub_0205C2C8(param0->unk_00->unk_14.unk_0C);
-    sub_0205BEA8(0);
+    UnionRoom_SetStatus(UR_STATUS_NONE);
 }
 
 static BOOL sub_0209BE84(UnkStruct_0209BDF8 *param0, u32 param1, const void *param2, u32 param3)

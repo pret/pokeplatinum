@@ -24,9 +24,9 @@
 #include "trainer_case_save_data.h"
 #include "trainer_info.h"
 #include "underground.h"
+#include "union_room.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
-#include "unk_0205B33C.h"
 #include "vars_flags.h"
 
 #define TRAINER_CASE_MAX_TIMES_LINKED        999999
@@ -249,7 +249,7 @@ void TrainerCase_OpenUnionRoomCase(FieldSystem *fieldSystem)
     OpenCaseData *data = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(OpenCaseData));
 
     data->state = 0;
-    data->trainerCase = (TrainerCase *)UnionRoom_GetTrainerCase(fieldSystem->unk_7C);
+    data->trainerCase = UnionRoom_GetTrainerCase(fieldSystem->unionRoomMan);
 
     FieldTask_InitCall(fieldSystem->task, FieldTask_OpenUnionRoomCaseTask, data);
 }
@@ -261,7 +261,7 @@ static BOOL FieldTask_OpenUnionRoomCaseTask(FieldTask *task)
 
     switch (data->state) {
     case 0:
-        UnionRoom_SendTrainerCase(fieldSystem->unk_7C);
+        UnionRoom_SendTrainerCase(fieldSystem->unionRoomMan);
         data->state = 1;
     case 1:
         if (data->trainerCase->unk_66A != 0) {
@@ -274,7 +274,7 @@ static BOOL FieldTask_OpenUnionRoomCaseTask(FieldTask *task)
         break;
     case 11:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            sub_0205C1F0(fieldSystem->unk_7C);
+            UnionRoom_FreeTrainerCases(fieldSystem->unionRoomMan);
             Heap_Free(data);
             return TRUE;
         }

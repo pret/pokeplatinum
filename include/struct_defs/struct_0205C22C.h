@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0205C22C_H
 #define POKEPLATINUM_STRUCT_0205C22C_H
 
-#include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C95C_decl.h"
 #include "struct_defs/struct_0205C680.h"
 
@@ -10,9 +9,10 @@
 #include "pal_pad.h"
 #include "player_avatar.h"
 #include "sys_task_manager.h"
+#include "union_room.h"
 
 typedef struct UnkStruct_0205C22C_t {
-    UnkStruct_0205B43C *unk_00;
+    UnionRoomManager *unionRoomMan;
     SysTask *unk_04;
     PlayerAvatar *playerAvatar;
     UnkStruct_0205C680 unk_0C[50 + 1];

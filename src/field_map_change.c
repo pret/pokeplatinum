@@ -66,9 +66,9 @@
 #include "trainer_info.h"
 #include "underground.h"
 #include "underground_map_transition.h"
+#include "union_room.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
-#include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "vars_flags.h"
 
@@ -575,8 +575,8 @@ static BOOL FieldTask_LoadMapFromError(FieldTask *task)
         (*state)++;
         break;
     case 2:
-        fieldSystem->unk_7C = FieldSystem_InitCommUnionRoom(fieldSystem);
-        fieldSystem->unk_80 = sub_0205C22C(fieldSystem->unk_7C);
+        fieldSystem->unionRoomMan = FieldSystem_InitUnionRoom(fieldSystem);
+        fieldSystem->unk_80 = sub_0205C22C(fieldSystem->unionRoomMan);
         FieldTransition_StartMap(task);
         (*state)++;
         break;
@@ -1431,12 +1431,12 @@ void sub_020545EC(FieldSystem *fieldSystem)
     MI_CpuClear8(mapChangeData, sizeof(MapChangeUnionData));
 
     mapChangeData->location = *location;
-    sub_0205B388(fieldSystem);
+    FieldSystem_ExitUnionRoom(fieldSystem);
     sub_0205C2E0(fieldSystem->unk_80);
     fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
 
     FieldSystem_CreateTask(fieldSystem, sub_02054538, mapChangeData);
-    fieldSystem->unk_7C = NULL;
+    fieldSystem->unionRoomMan = NULL;
 }
 
 static BOOL sub_02054648(FieldTask *task)
@@ -1498,8 +1498,8 @@ void sub_02054708(FieldTask *task)
 
     Location_Set(&mapChangeData->location, MAP_HEADER_UNION_ROOM, -1, 8, 14, 0);
 
-    fieldSystem->unk_7C = FieldSystem_InitCommUnionRoom(fieldSystem);
-    fieldSystem->unk_80 = sub_0205C22C(fieldSystem->unk_7C);
+    fieldSystem->unionRoomMan = FieldSystem_InitUnionRoom(fieldSystem);
+    fieldSystem->unk_80 = sub_0205C22C(fieldSystem->unionRoomMan);
     fieldSystem->mapLoadType = MAP_LOAD_TYPE_UNION;
 
     FieldTask_InitCall(task, sub_02054648, mapChangeData);
