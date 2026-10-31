@@ -3,13 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/union_room.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
-#include "struct_decls/union_room_manager_decl.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C680.h"

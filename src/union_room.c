@@ -2,11 +2,9 @@
 
 #include <nitro.h>
 
-#include "constants/union_room.h"
 #include "constants/union_room_message_types.h"
 #include "constants/versions.h"
 
-#include "struct_decls/union_room_manager_decl.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/union_room_game_info.h"
 
@@ -39,42 +37,6 @@
 #include "res/text/bank/country_names.h"
 #include "res/text/bank/greetings.h"
 #include "res/text/bank/union_room.h"
-
-typedef void (*UnionRoomTask)(UnionRoomManager *);
-
-struct UnionRoomManager {
-    FieldSystem *fieldSystem;
-    SaveData *saveData;
-    TrainerInfo *trainerInfo;
-    SysTask *sysTask;
-    UnionRoomTask task;
-    int timer;
-    u32 connectionID;
-    u32 connectState;
-    int pendingConnection;
-    int unused_24;
-    int unused_28;
-    int unused_2C;
-    u32 peerActivity;
-    u32 proposedActivity;
-    u32 unused_38;
-    BOOL answerDeclined;
-    u32 activityAnswer;
-    BOOL chatEnded;
-    u16 unused_48[10][2];
-    u16 unused_70[40][2];
-    WMbssDesc *bssDesc[16];
-    MATHRandContext32 rand;
-    int unused_168;
-    int unused_16C;
-    int unused_170;
-    u16 unused_174;
-    u8 partySelectionResults[2];
-    EasyChatSentence pendingSentence;
-    BOOL sentencePending;
-    TrainerCase *trainerCase;
-    TrainerCase *receivedTrainerCases[2];
-};
 
 static UnionRoomManager *UnionRoom_New(FieldSystem *fieldSystem);
 static void UnionRoom_RunTask(SysTask *task, void *manager);

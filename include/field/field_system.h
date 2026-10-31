@@ -3,7 +3,6 @@
 
 #include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_0205C22C_decl.h"
-#include "struct_decls/union_room_manager_decl.h"
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/map_load_mode.h"
 
@@ -40,6 +39,7 @@
 #include "savedata.h"
 #include "terrain_attributes.h"
 #include "terrain_collision_manager.h"
+#include "union_room.h"
 
 #define NUM_HONEY_TREES 21
 

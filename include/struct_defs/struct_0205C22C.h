@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_0205C22C_H
 
 #include "struct_decls/struct_0205C95C_decl.h"
-#include "struct_decls/union_room_manager_decl.h"
 #include "struct_defs/struct_0205C680.h"
 
 #include "field/field_system_decl.h"
@@ -10,6 +9,7 @@
 #include "pal_pad.h"
 #include "player_avatar.h"
 #include "sys_task_manager.h"
+#include "union_room.h"
 
 typedef struct UnkStruct_0205C22C_t {
     UnionRoomManager *unionRoomMan;
