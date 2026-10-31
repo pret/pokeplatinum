@@ -50,7 +50,7 @@ struct BoxItemIconGraphics {
     BOOL isMoveItemsMode;
     BoxGraphics *boxGraphics;
     const BoxApplication *boxApp;
-    BgConfig *unread_0C;
+    BgConfig *unusedBgConfig;
     SpriteList *spriteList;
     MonIconHelper *monIconHelper;
     BoxCursorGraphics *cursorGraphics;

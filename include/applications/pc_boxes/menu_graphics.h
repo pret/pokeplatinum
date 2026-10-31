@@ -36,8 +36,8 @@ enum MenuGraphicsWindow {
 typedef struct BoxMenuGraphics {
     BgConfig *bgConfig;
     u8 unused_04[4];
-    const BoxApplication *unread_08;
-    BoxGraphics *unread_0C;
+    const BoxApplication *unusedBoxApp;
+    BoxGraphics *unusedBoxGraphics;
     MessageLoader *boxMessagesLoader;
     MessageLoader *menuItemsLoader;
     Window *windows;

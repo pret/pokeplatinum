@@ -32,7 +32,7 @@
 typedef struct BoxPartyGraphics {
     BoxGraphics *boxGraphics;
     BgConfig *bgConfig;
-    SpriteList *unread_08;
+    SpriteList *unusedSpriteList;
     const BoxApplication *boxApp;
     BoxView *boxView;
     void *panelScreenBuffer;

@@ -14,8 +14,8 @@
 BOOL BoxButtonsGraphics_Init(BoxButtonsGraphics *buttonsGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, SpriteList *spriteList, NARC *narc)
 {
     buttonsGraphics->boxGraphics = boxGraphics;
-    buttonsGraphics->unread_3C = spriteList;
-    buttonsGraphics->unread_40 = boxApp;
+    buttonsGraphics->unusedSpriteList = spriteList;
+    buttonsGraphics->unusedBoxApp = boxApp;
     buttonsGraphics->spriteList = spriteList;
     buttonsGraphics->sprite = NULL;
     buttonsGraphics->cellBankBuffer = Graphics_GetCellBankFromOpenNARC(narc, 10, TRUE, &buttonsGraphics->cellBank, HEAP_ID_BOX_GRAPHICS);

@@ -43,7 +43,7 @@ BOOL BoxPartyGraphics_Init(BoxPartyGraphics *partyGraphics, BoxGraphics *boxGrap
 {
     partyGraphics->boxGraphics = boxGraphics;
     partyGraphics->boxApp = boxApp;
-    partyGraphics->unread_08 = spriteList;
+    partyGraphics->unusedSpriteList = spriteList;
     partyGraphics->bgConfig = bgConfig;
     partyGraphics->monIconHelper = BoxGraphics_GetMonIconHelper(boxGraphics);
     partyGraphics->boxView = BoxGraphics_GetBoxView(boxGraphics);

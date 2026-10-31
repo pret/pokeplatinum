@@ -27,8 +27,8 @@ typedef struct BoxButtonsGraphics {
     NNSG2dCellDataBank *cellBank;
     NNSG2dAnimBankData *animBank;
     NNSG2dImageProxy imageProxy;
-    SpriteList *unread_3C;
-    const BoxApplication *unread_40;
+    SpriteList *unusedSpriteList;
+    const BoxApplication *unusedBoxApp;
     BoxGraphics *boxGraphics;
 } BoxButtonsGraphics;
 

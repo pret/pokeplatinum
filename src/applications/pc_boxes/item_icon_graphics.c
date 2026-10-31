@@ -61,7 +61,7 @@ BOOL BoxItemIconGraphics_Init(BoxItemIconGraphics **outItemIconGraphics, BoxGrap
     if (itemIconGraphics != NULL) {
         itemIconGraphics->boxGraphics = boxGraphics;
         itemIconGraphics->boxApp = boxApp;
-        itemIconGraphics->unread_0C = bgConfig;
+        itemIconGraphics->unusedBgConfig = bgConfig;
         itemIconGraphics->spriteList = spriteList;
         itemIconGraphics->monIconHelper = BoxGraphics_GetMonIconHelper(boxGraphics);
         itemIconGraphics->cursorGraphics = BoxGraphics_GetCursorGraphics(boxGraphics);

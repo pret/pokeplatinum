@@ -29,9 +29,9 @@ static void ClearMessageBoxFromTilemap(BgConfig *bgConfig, Window *window);
 
 BOOL BoxMenuGraphics_Init(BoxMenuGraphics *menuGraphics, BoxGraphics *boxGraphics, const BoxApplication *boxApp, BgConfig *bgConfig, SpriteList *unused, MessageLoader *boxMessagesLoader, const StringTemplate *messageVariableBuffer, int optionsFrame, NARC *narc)
 {
-    menuGraphics->unread_0C = boxGraphics;
+    menuGraphics->unusedBoxGraphics = boxGraphics;
     menuGraphics->bgConfig = bgConfig;
-    menuGraphics->unread_08 = boxApp;
+    menuGraphics->unusedBoxApp = boxApp;
     menuGraphics->messageVariableBuffer = messageVariableBuffer;
     menuGraphics->optionsFrame = optionsFrame;
     menuGraphics->boxMessagesLoader = boxMessagesLoader;
