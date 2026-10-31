@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_013",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_SunyshoreCity",
+  "textBank": "TEXT_BANK_SUNYSHORE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_CITY",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_SLIGHTLY_ZOOMED_OUT",
+  "battleBackground": "BACKGROUND_CITY",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 7,
+  "musicDay": "SEQ_CITY08_D_sseq",
+  "musicNight": "SEQ_CITY08_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

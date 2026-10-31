@@ -3,7 +3,7 @@
 #include "constants/fieldmap.h"
 #include "constants/versions.h"
 
-#include "data/map_headers.h"
+#include "res/field/maps/headers.h"
 
 enum MapHeaderID MapHeader_IDBoundsCheck(enum MapHeaderID mapHeaderID)
 {

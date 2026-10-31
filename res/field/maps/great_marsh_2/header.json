@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_063",
+  "mapGroup": "GreatMarsh",
+  "locationName": "LocationNames_Text_GreatMarsh",
+  "textBank": "TEXT_BANK_GREAT_MARSH_2",
+  "popupStyle": "MAP_LABEL_WINDOW_FOREST",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_FOREST",
+  "mapType": "MAP_TYPE_OUTDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_SAFARI_sseq",
+  "musicNight": "SEQ_D_SAFARI_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_066",
+  "mapGroup": "OldChateau_BackRooms_Center",
+  "locationName": "LocationNames_Text_OldChateau",
+  "textBank": "TEXT_BANK_JUBILIFE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_INDOORS",
+  "weather": "OVERWORLD_WEATHER_27",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_3",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_03_sseq",
+  "musicNight": "SEQ_D_03_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

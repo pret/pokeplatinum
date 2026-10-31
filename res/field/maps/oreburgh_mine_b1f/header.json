@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_055",
+  "mapGroup": "OreburghMine_1F",
+  "locationName": "LocationNames_Text_OreburghMine",
+  "textBank": "TEXT_BANK_OREBURGH_MINE_B1F",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_CAVE",
+  "battleBackground": "BACKGROUND_CAVE_1",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_04_sseq",
+  "musicNight": "SEQ_D_04_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

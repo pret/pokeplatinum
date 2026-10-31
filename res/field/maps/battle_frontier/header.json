@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_073",
+  "mapGroup": "BattleFrontier",
+  "locationName": "LocationNames_Text_BattleFrontier",
+  "textBank": "TEXT_BANK_BATTLE_FRONTIER",
+  "popupStyle": "MAP_LABEL_WINDOW_PARK",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_CITY",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 15,
+  "musicDay": "SEQ_CITY11_D_sseq",
+  "musicNight": "SEQ_CITY11_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

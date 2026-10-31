@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_050",
+  "mapGroup": "ConnectingGate_NorthSouth",
+  "locationName": "LocationNames_Text_Route225",
+  "textBank": "TEXT_BANK_ROUTE_225_GATE_TO_FIGHT_AREA",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_TOWN06_D_sseq",
+  "musicNight": "SEQ_TOWN06_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

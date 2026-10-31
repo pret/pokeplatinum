@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_011",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_VeilstoneCity",
+  "textBank": "TEXT_BANK_VEILSTONE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_CITY",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_CITY",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 5,
+  "musicDay": "SEQ_CITY07_D_sseq",
+  "musicNight": "SEQ_CITY07_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

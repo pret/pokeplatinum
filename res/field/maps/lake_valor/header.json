@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_062",
+  "mapGroup": "LakeValor",
+  "locationName": "LocationNames_Text_LakeValor",
+  "textBank": "TEXT_BANK_LAKE_VALOR",
+  "popupStyle": "MAP_LABEL_WINDOW_LAKE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_FOREST",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_LAKE_sseq",
+  "musicNight": "SEQ_D_LAKE_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

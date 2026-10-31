@@ -215,5 +215,23 @@ char* Paths_Find(const char *file)
 const char* Symbol_Name(dp_node node)
 {
     const char *s = dp_string(node);
-    return s != NULL ? s : "BAD_SYMBOL";
+    s = s != NULL ? s : "BAD_SYMBOL";
+
+    const char *p = s;
+    if ((*p < 'A' || *p > 'Z') && (*p < 'a' || *p > 'z') && *p != '_') {
+        dp_error(node, "expected a C identifier");
+        return "BAD_SYMBOL";
+    }
+
+    for (p++; *p; p++) {
+        if (*p >= 'a' && *p <= 'z') continue;
+        if (*p >= 'A' && *p <= 'Z') continue;
+        if (*p >= '0' && *p <= '9') continue;
+        if (*p == '_') continue;
+
+        dp_error(node, "expected a C identifier");
+        return "BAD_SYMBOL";
+    }
+
+    return s;
 }

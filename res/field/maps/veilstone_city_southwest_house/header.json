@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_020",
+  "mapGroup": "GenericInterior001",
+  "locationName": "LocationNames_Text_VeilstoneCity",
+  "textBank": "TEXT_BANK_VEILSTONE_CITY_SOUTHWEST_HOUSE",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_CITY07_D_sseq",
+  "musicNight": "SEQ_CITY07_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

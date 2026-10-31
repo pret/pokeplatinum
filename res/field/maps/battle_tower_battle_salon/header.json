@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_033",
+  "mapGroup": "BattleTower_BattleSalon",
+  "locationName": "LocationNames_Text_BattleTower",
+  "textBank": "TEXT_BANK_BATTLE_TOWER_BATTLE_SALON",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_INDOORS_2",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_BF_TOWWER_sseq",
+  "musicNight": "SEQ_BF_TOWWER_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

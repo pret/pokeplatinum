@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_048",
+  "mapGroup": "BattleCastle",
+  "locationName": "LocationNames_Text_BattleCastle",
+  "textBank": "TEXT_BANK_BATTLE_CASTLE",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_PL_BF_CASTLE_sseq",
+  "musicNight": "SEQ_PL_BF_CASTLE_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

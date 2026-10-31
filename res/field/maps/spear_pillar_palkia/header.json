@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_060",
+  "mapGroup": "SpearPillar_Palkia",
+  "locationName": "LocationNames_Text_SpearPillar",
+  "textBank": "TEXT_BANK_SPEAR_PILLAR_PALKIA",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_CLEAR_13",
+  "cameraType": "CAMERA_TYPE_SPEAR_PILLAR",
+  "battleBackground": "BACKGROUND_MOUNTAIN",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_MOUNT2_sseq",
+  "musicNight": "SEQ_D_MOUNT2_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}
