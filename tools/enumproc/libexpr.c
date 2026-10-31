@@ -119,7 +119,7 @@ struct evalstack {
             r = (o).op == OP_DIV ? a / b : a % b;                                       \
             break;                                                                      \
         case OP_LSH:                                                                    \
-            if (b < 0 || b >= LONG_BITS || a < 0 || a > (INT64_MAX >> b)) fail((o).pos); \
+            if (b < 0 || b >= LONG_BITS || a < 0 || a > (INT64_MAX >> b)) fail((o).pos);\
             r = a << b;                                                                 \
             break;                                                                      \
         case OP_RSH:                                                                    \
