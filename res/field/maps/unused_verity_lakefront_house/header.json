@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_020",
+  "mapGroup": "GenericInterior001",
+  "locationName": "LocationNames_Text_VerityLakefront",
+  "textBank": "TEXT_BANK_UNUSED_VERITY_LAKEFRONT_HOUSE",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 20,
+  "musicDay": "SEQ_ROAD_A_D_sseq",
+  "musicNight": "SEQ_ROAD_A_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

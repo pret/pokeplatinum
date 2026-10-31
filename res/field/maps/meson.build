@@ -101,6 +101,9 @@ mapbuild = custom_target('mapbuild',
         'pl_enc_data.narc',
         'pl_enc_data.naix',
         'zukan_enc_platinum.narc',
+        'map_matrix.narc',
+        'map_matrix.naix',
+        'headers.h',
     ],
 
     console: true,
@@ -115,6 +118,7 @@ mapbuild = custom_target('mapbuild',
         encounterproc_exe,
         text_banks,
         pl_sound_data_sdat,
+        area_data_narc,
         c_consts_generators,
         py_consts_generators,
         h_headers,
@@ -138,3 +142,6 @@ naix_headers += mapbuild[3]
 nitrofs_files += mapbuild[4]
 naix_headers += mapbuild[5]
 nitrofs_files += mapbuild[6]
+nitrofs_files += mapbuild[7]
+naix_headers += mapbuild[8]
+h_headers += mapbuild[9]

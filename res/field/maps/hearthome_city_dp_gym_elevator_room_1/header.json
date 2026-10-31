@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_027",
+  "mapGroup": "HearthomeGym_Room2",
+  "locationName": "LocationNames_Text_HearthomeCity",
+  "textBank": "TEXT_BANK_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_GYM_sseq",
+  "musicNight": "SEQ_GYM_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

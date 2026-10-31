@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_050",
+  "mapGroup": "ConnectingGate_EastWest",
+  "locationName": "LocationNames_Text_Route218",
+  "textBank": "TEXT_BANK_ROUTE_218_GATE_TO_CANALAVE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_ROUTE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_ROAD_B_D_sseq",
+  "musicNight": "SEQ_ROAD_B_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

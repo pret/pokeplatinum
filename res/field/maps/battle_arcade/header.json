@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_049",
+  "mapGroup": "BattleArcade",
+  "locationName": "LocationNames_Text_BattleArcade",
+  "textBank": "TEXT_BANK_BATTLE_ARCADE",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_30",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_PL_BF_ROULETTE_sseq",
+  "musicNight": "SEQ_PL_BF_ROULETTE_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

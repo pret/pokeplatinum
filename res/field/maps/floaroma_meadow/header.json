@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_008",
+  "mapGroup": "FloaromaMeadow",
+  "locationName": "LocationNames_Text_FloaromaMeadow",
+  "textBank": "TEXT_BANK_FLOAROMA_MEADOW",
+  "popupStyle": "MAP_LABEL_WINDOW_PARK",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_FOREST",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 2,
+  "musicDay": "SEQ_TOWN03_D_sseq",
+  "musicNight": "SEQ_TOWN03_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

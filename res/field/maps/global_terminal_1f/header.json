@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_040",
+  "mapGroup": "GlobalTerminal_1F",
+  "locationName": "LocationNames_Text_GlobalTerminal",
+  "textBank": "TEXT_BANK_GLOBAL_TERMINAL_1F",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_2",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_PL_WIFITOWER_sseq",
+  "musicNight": "SEQ_PL_WIFITOWER_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

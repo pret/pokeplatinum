@@ -95,7 +95,7 @@ static const BuildRule rNARCPacker = {
 static const BuildRule rMapproc = {
     .name        = "mapproc",
     .command     = "$mapproc -M $out.d -o $builddir $enumfile $basedir",
-    .description = "Compiling events $out...",
+    .description = "Compiling map data...",
     .depfile     = "$out.d",
     .deps        = true,
     .restat      = true,
@@ -413,6 +413,9 @@ int main(int argc, char **argv)
     }
 
     Buffer_Push(&eventLocals, char*, String_Format("%s/zone_event.naix", CLI_OutputDir()));
+    Buffer_Push(&eventLocals, char*, String_Format("%s/map_matrix.narc", CLI_OutputDir()));
+    Buffer_Push(&eventLocals, char*, String_Format("%s/map_matrix.naix", CLI_OutputDir()));
+    Buffer_Push(&eventLocals, char*, String_Format("%s/headers.h", CLI_OutputDir()));
     Buffer_Push(&eventLocals, char*, NULL);
 
     BinaryFile_Write(B_ENCOUNTERS_UNKNOWN, &sEncountersUnknown, sizeof(sEncountersUnknown));

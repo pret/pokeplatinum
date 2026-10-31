@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_074",
+  "mapGroup": "DistortionWorld_B1F",
+  "locationName": "LocationNames_Text_DistortionWorld",
+  "textBank": "TEXT_BANK_DISTORTION_WORLD_B1F",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_DISTORTION_WORLD",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_PL_D_GIRATINA_sseq",
+  "musicNight": "SEQ_PL_D_GIRATINA_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

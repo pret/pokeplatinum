@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_059",
+  "mapGroup": "AmitySquare",
+  "locationName": "LocationNames_Text_AmitySquare",
+  "textBank": "TEXT_BANK_AMITY_SQUARE",
+  "popupStyle": "MAP_LABEL_WINDOW_PARK",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_PLAIN",
+  "mapType": "MAP_TYPE_OUTDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_KOUEN_sseq",
+  "musicNight": "SEQ_D_KOUEN_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

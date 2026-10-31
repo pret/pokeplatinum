@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_071",
+  "mapGroup": "VictoryRoad_Backside_Room3",
+  "locationName": "LocationNames_Text_VictoryRoad",
+  "textBank": "TEXT_BANK_JUBILIFE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_CAVE",
+  "battleBackground": "BACKGROUND_CAVE_2",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_01_sseq",
+  "musicNight": "SEQ_D_01_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_054",
+  "mapGroup": "NewmoonIsland",
+  "locationName": "LocationNames_Text_NewmoonIsland",
+  "textBank": "TEXT_BANK_NEWMOON_ISLAND_FOREST",
+  "popupStyle": "MAP_LABEL_WINDOW_FOREST",
+  "weather": "OVERWORLD_WEATHER_23",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_FOREST",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_03_sseq",
+  "musicNight": "SEQ_D_03_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}
