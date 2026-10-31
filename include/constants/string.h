@@ -7,6 +7,9 @@
 #define MOVE_NAME_LEN        16
 #define UNION_GROUP_NAME_LEN 7
 #define BOX_NAME_LEN         8
+#define NATURE_NAME_LEN      12
+#define ABILITY_NAME_LEN     16
+#define ITEM_NAME_LEN        18
 
 // Control codes for how to pad numeric strings.
 enum PaddingMode {
