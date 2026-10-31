@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_053",
+  "mapGroup": "RuinManiacCave_Stage2",
+  "locationName": "LocationNames_Text_RuinManiacCave",
+  "textBank": "TEXT_BANK_RUIN_MANIAC_CAVE_LONG",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_CAVE",
+  "battleBackground": "BACKGROUND_CAVE_2",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_04_sseq",
+  "musicNight": "SEQ_D_04_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

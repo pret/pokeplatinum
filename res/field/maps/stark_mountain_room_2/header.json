@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_057",
+  "mapGroup": "StarkMountain_Room2",
+  "locationName": "LocationNames_Text_StarkMountain",
+  "textBank": "TEXT_BANK_STARK_MOUNTAIN_ROOM_2",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_28",
+  "cameraType": "CAMERA_TYPE_STARK_MOUNTAIN_ROOM_2",
+  "battleBackground": "BACKGROUND_CAVE_2",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_06_sseq",
+  "musicNight": "SEQ_D_06_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

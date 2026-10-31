@@ -159,7 +159,7 @@ static const CameraSettings sCameraTypes[] = {
     },
 };
 
-void FieldCamera_Create(const VecFx32 *_target, FieldSystem *fieldSystem, const enum CameraType configID, const BOOL withHistory)
+void FieldCamera_Create(const VecFx32 *_target, FieldSystem *fieldSystem, enum CameraType configID, BOOL withHistory)
 {
     const VecFx32 *target = _target;
     const CameraSettings *config = &sCameraTypes[configID];

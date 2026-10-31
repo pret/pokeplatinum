@@ -2,6 +2,8 @@
 
 #include <nitro.h>
 
+#include "constants/fieldmap.h"
+
 static const u16 mapPositionsX[] = {
     26,
     32,
@@ -106,7 +108,7 @@ void PoketchMap_GetHiddenLocationPosition(int hiddenLocation, u32 *mapX, u32 *ma
     *mapY = hiddenLocationPositions[hiddenLocation].y;
 }
 
-BOOL PoketchMap_GetPositionFromMapID(enum MapID mapID, u32 *x, u32 *y)
+BOOL PoketchMap_GetPositionFromMapID(enum MapFileID mapID, u32 *x, u32 *y)
 {
     static const struct {
         u16 mapID;

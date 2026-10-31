@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_031",
+  "mapGroup": "MultifloorInterior_2F_No3F",
+  "locationName": "LocationNames_Text_OreburghCity",
+  "textBank": "TEXT_BANK_OREBURGH_CITY_NORTH_HOUSE_2F",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_2",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_CITY03_D_sseq",
+  "musicNight": "SEQ_CITY03_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

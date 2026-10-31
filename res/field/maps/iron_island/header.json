@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_015",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_IronIsland",
+  "textBank": "TEXT_BANK_IRON_ISLAND",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_CLEAR_8",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_PLAIN",
+  "mapType": "MAP_TYPE_OUTDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_ROAD_B_D_sseq",
+  "musicNight": "SEQ_ROAD_B_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/fieldmap.h"
 #include "constants/heap.h"
-#include "generated/map_headers.h"
 #include "generated/signpost_commands.h"
 
 #include "applications/poketch/poketch_system.h"

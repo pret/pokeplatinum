@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_042",
+  "mapGroup": "LostTower_2F",
+  "locationName": "LocationNames_Text_Route209",
+  "textBank": "TEXT_BANK_JUBILIFE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_ROUTE",
+  "weather": "OVERWORLD_WEATHER_27",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_3",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_02_sseq",
+  "musicNight": "SEQ_D_02_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

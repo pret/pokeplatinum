@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_010",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_CelesticTown",
+  "textBank": "TEXT_BANK_CELESTIC_TOWN",
+  "popupStyle": "MAP_LABEL_WINDOW_TOWN",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_CITY",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 4,
+  "musicDay": "SEQ_CITY04_D_sseq",
+  "musicNight": "SEQ_CITY04_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

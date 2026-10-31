@@ -19,7 +19,6 @@ metang_generators = {
     'backdrops': {'type': 'enum', 'tag': 'Backdrop'},
     'badges': { 'type': 'enum', 'tag': 'Badge' },
     'battle_actions': { 'type': 'enum', 'tag': 'BattleAction' },
-    'battle_backgrounds': { 'type': 'enum', 'tag': 'BattleBackground' },
     'battle_boot_states': { 'type': 'enum', 'tag': 'BattleBootState' },
     'battle_context_params': { 'type': 'enum', 'tag': 'BattleContextParam' },
     'battle_message_tags': { 'type': 'enum', 'tag': 'BattleMessageTag' },

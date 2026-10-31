@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/fieldmap.h"
 #include "constants/heap.h"
 #include "constants/versions.h"
-#include "generated/map_headers.h"
 
 #include "field/field_system.h"
 #include "overlay006/wild_encounters.h"

@@ -1,0 +1,148 @@
+#include "macros/scrcmd.inc"
+#include "constants/battle_frontier.h"
+#include "res/field/maps/locals/battle_tower_elevator.h"
+#include "generated/object_events_gfx.h"
+
+
+    ScriptEntry BattleTowerElevator_OnTransition
+    ScriptEntry BattleTowerElevator_OnFrame_EnterBattleRoom
+    ScriptEntry BattleTowerElevator_OnFrame_EnterMultiBattleRoom
+    ScriptEntry BattleTowerElevator_OnFrame_EnterBattleSalon
+    ScriptEntryEnd
+
+BattleTowerElevator_OnTransition:
+    CallIfNe VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 0, BattleTowerElevator_HidePoketch
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_MAP_LOCAL_0x0A
+    Call BattleTowerElevator_SetSingleAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0x0A, BATTLE_TOWER_MODE_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0x0A, BATTLE_TOWER_MODE_LINK_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0x0A, BATTLE_TOWER_MODE_SINGLE, BattleTowerElevator_SetSingleAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0x0A, BATTLE_TOWER_MODE_DOUBLE, BattleTowerElevator_SetSingleAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0x0A, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0x0A, BATTLE_TOWER_MODE_5, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0x0A, BATTLE_TOWER_MODE_6, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
+    End
+
+BattleTowerElevator_HidePoketch:
+    HidePoketch
+    Return
+
+BattleTowerElevator_SetSingleAttendantGraphics:
+    SetVar VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT
+    Return
+
+BattleTowerElevator_SetWiFiPlazaAttendantGraphics:
+    SetVar VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT_F
+    Return
+
+BattleTowerElevator_SetMultiAttendantGraphics:
+    SetVar VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT
+    Return
+
+BattleTowerElevator_BattleRoomCheckWiFi:
+    FadeScreenOut
+    WaitFadeScreen
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_WiFiBattleRoom
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_5, BattleTowerElevator_WiFiBattleRoom
+    WaitForTransition
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_CORRIDOR
+    ReturnToField
+    Warp MAP_HEADER_BATTLE_TOWER, 15, 6, DIR_NORTH
+    End
+
+BattleTowerElevator_MultiBattleRoom:
+    FadeScreenOut
+    WaitFadeScreen
+    WaitForTransition
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_MULTI_CORRIDOR
+    ReturnToField
+    Warp MAP_HEADER_BATTLE_TOWER, 11, 6, DIR_NORTH
+    End
+
+BattleTowerElevator_BattleSalon:
+    FadeScreenOut
+    WaitFadeScreen
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 8, 2, DIR_SOUTH
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+BattleTowerElevator_ElevatorAnimation:
+    Call BattleTowerElevator_PlayerEnter
+    PlayElevatorAnimation VAR_MAP_LOCAL_0x00, 3
+    Call BattleTowerElevator_Exit
+    Return
+
+BattleTowerElevator_OnFrame_EnterBattleRoom:
+    LockAll
+    SetVar VAR_MAP_LOCAL_0x00, ELEVATOR_DIR_UP
+    Call BattleTowerElevator_ElevatorAnimation
+    GoTo BattleTowerElevator_BattleRoomCheckWiFi
+    End
+
+BattleTowerElevator_OnFrame_EnterMultiBattleRoom:
+    LockAll
+    SetVar VAR_MAP_LOCAL_0x00, ELEVATOR_DIR_UP
+    Call BattleTowerElevator_ElevatorAnimation
+    GoTo BattleTowerElevator_MultiBattleRoom
+    End
+
+BattleTowerElevator_OnFrame_EnterBattleSalon:
+    LockAll
+    SetVar VAR_MAP_LOCAL_0x00, ELEVATOR_DIR_DOWN
+    Call BattleTowerElevator_ElevatorAnimation
+    GoTo BattleTowerElevator_BattleSalon
+    End
+
+BattleTowerElevator_PlayerEnter:
+    ApplyMovement LOCALID_PLAYER, BattleTowerElevator_Movement_PlayerEnter
+    WaitMovement
+    Return
+
+BattleTowerElevator_Exit:
+    ApplyMovement LOCALID_ATTENDANT, BattleTowerElevator_Movement_AttendantExit
+    ApplyMovement LOCALID_PLAYER, BattleTowerElevator_Movement_PlayerExit
+    WaitMovement
+    Return
+
+BattleTowerElevator_Movement_Unused:
+    WalkNormalNorth 2
+    FaceEast
+    WalkNormalEast
+    FaceSouth
+    EndMovement
+
+    .balign 4, 0
+BattleTowerElevator_Movement_PlayerEnter:
+    WalkNormalNorth 2
+    FaceSouth
+    EndMovement
+
+    .balign 4, 0
+BattleTowerElevator_Movement_AttendantExit:
+    WalkNormalSouth
+    FaceWest
+    WalkNormalWest
+    FaceSouth
+    WalkNormalSouth
+    SetInvisible
+    EndMovement
+
+    .balign 4, 0
+BattleTowerElevator_Movement_PlayerExit:
+    Delay8 2
+    Delay2
+    WalkNormalSouth 2
+    SetInvisible
+    EndMovement
+
+BattleTowerElevator_WiFiBattleRoom:
+    WaitForTransition
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_CORRIDOR
+    ReturnToField
+    Warp MAP_HEADER_BATTLE_TOWER, 19, 6, DIR_NORTH
+    End
+
+    .balign 4, 0

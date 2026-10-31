@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_031",
+  "mapGroup": "ValleyWindworks",
+  "locationName": "LocationNames_Text_ValleyWindworks",
+  "textBank": "TEXT_BANK_VALLEY_WINDWORKS_BUILDING",
+  "popupStyle": "MAP_LABEL_WINDOW_INDOORS",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_2",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_GINLOBBY_sseq",
+  "musicNight": "SEQ_D_GINLOBBY_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

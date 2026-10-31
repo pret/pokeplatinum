@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/fieldmap.h"
 #include "constants/species.h"
-#include "generated/map_headers.h"
 
 #include "struct_defs/special_encounter.h"
 

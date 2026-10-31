@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_014",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_SnowpointCity",
+  "textBank": "TEXT_BANK_SNOWPOINT_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_CITY",
+  "weather": "OVERWORLD_WEATHER_SNOWPOINT_CITY",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_SNOW",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 8,
+  "musicDay": "SEQ_CITY09_D_sseq",
+  "musicNight": "SEQ_CITY09_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

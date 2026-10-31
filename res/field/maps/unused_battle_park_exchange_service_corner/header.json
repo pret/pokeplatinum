@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_041",
+  "mapGroup": "BattlePark_ExchangeServiceCorner",
+  "locationName": "LocationNames_Text_BattlePark",
+  "textBank": "TEXT_BANK_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_CITY11_D_sseq",
+  "musicNight": "SEQ_CITY11_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_043",
+  "mapGroup": "BerryMastersHouse",
+  "locationName": "LocationNames_Text_Route208",
+  "textBank": "TEXT_BANK_ROUTE_208_HOUSE",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_ROAD_D_D_sseq",
+  "musicNight": "SEQ_ROAD_D_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

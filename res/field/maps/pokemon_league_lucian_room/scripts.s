@@ -1,0 +1,75 @@
+#include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_league_lucian_room.h"
+#include "res/field/maps/locals/pokemon_league_lucian_room.h"
+
+
+    ScriptEntry PokemonLeagueLucianRoom_Lucian
+    ScriptEntry PokemonLeagueLucianRoom_OnFrame_EnterRoom
+    ScriptEntryEnd
+
+PokemonLeagueLucianRoom_Lucian:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_DEFEATED_LUCIAN, PokemonLeagueLucianRoom_LucianPostBattle
+    PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_LUCIAN
+    Message PokemonLeagueLucianRoom_Text_LucianIntro
+    CloseMessage
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_StartLucianBattle
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_StartLucianRematchBattle
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonLeagueLucianRoom_BlackOut
+    SetFlag FLAG_DEFEATED_LUCIAN
+    PlaySE SEQ_SE_DP_KI_GASYAN_sseq
+    RemoveObject LOCALID_EXIT_DOOR
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian
+    Message PokemonLeagueLucianRoom_Text_LucianDefeat
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonLeagueLucianRoom_StartLucianBattle:
+    StartTrainerBattle TRAINER_ELITE_FOUR_LUCIAN
+    Return
+
+PokemonLeagueLucianRoom_StartLucianRematchBattle:
+    StartTrainerBattle TRAINER_ELITE_FOUR_LUCIAN_REMATCH
+    Return
+
+PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian:
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN
+    Return
+
+PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian:
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN_REMATCH
+    Return
+
+PokemonLeagueLucianRoom_BlackOut:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+PokemonLeagueLucianRoom_LucianPostBattle:
+    Message PokemonLeagueLucianRoom_Text_LucianPostBattle
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonLeagueLucianRoom_OnFrame_EnterRoom:
+    LockAll
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueLucianRoom_Movement_PlayerEnterRoom
+    WaitMovement
+    PlaySE SEQ_SE_DP_KI_GASYAN_sseq
+    ClearFlag FLAG_HIDE_POKEMON_LEAGUE_LUCIAN_ROOM_ENTRANCE_DOOR
+    AddObject LOCALID_ENTRANCE_DOOR
+    SetVar VAR_MAP_LOCAL_0x01, 1
+    ReleaseAll
+    End
+
+    .balign 4, 0
+PokemonLeagueLucianRoom_Movement_PlayerEnterRoom:
+    WalkNormalNorth 2
+    EndMovement

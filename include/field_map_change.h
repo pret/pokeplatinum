@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FIELD_MAP_CHANGE_H
 #define POKEPLATINUM_FIELD_MAP_CHANGE_H
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/save_info_window.h"

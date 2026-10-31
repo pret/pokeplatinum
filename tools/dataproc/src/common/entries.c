@@ -109,7 +109,7 @@ bool Entries_Next(Entries *e, Entry *out)
         .stem  = Driver_Keep(String_ToLower(e->names[i] + strlen(e->prefix))),
     };
 
-    if (e->hasDataFn == NULL || e->hasDataFn(out->name)) {
+    if (e->pathFmt && (e->hasDataFn == NULL || e->hasDataFn(out->name))) {
         e->open      = Driver_Load(e->pathFmt, e->baseDir, out->stem);
         out->root    = dp_root(e->open);
         out->hasData = true;

@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_015",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_FullmoonIsland",
+  "textBank": "TEXT_BANK_FULLMOON_ISLAND",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_PLAIN",
+  "mapType": "MAP_TYPE_OUTDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_02_sseq",
+  "musicNight": "SEQ_D_02_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}
