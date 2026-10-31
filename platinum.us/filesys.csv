@@ -259,7 +259,7 @@ res/graphics/battle/particles/battle_particles.narc,/wazaeffect/effectdata/waza_
 res/field/maps/zone_event.narc,/fielddata/eventdata/zone_event.narc
 res/prebuilt/fielddata/encountdata/d_enc_data.narc,/fielddata/encountdata/d_enc_data.narc
 res/prebuilt/fielddata/encountdata/p_enc_data.narc,/fielddata/encountdata/p_enc_data.narc
-res/field/encounters/pl_enc_data.narc,/fielddata/encountdata/pl_enc_data.narc
+res/field/maps/pl_enc_data.narc,/fielddata/encountdata/pl_enc_data.narc
 res/field/props/models/prop_models.narc,/fielddata/build_model/build_model.narc
 res/prebuilt/fielddata/build_model/build_model_matshp.dat,/fielddata/build_model/build_model_matshp.dat
 res/field/matrices/map_matrix.narc,/fielddata/mapmatrix/map_matrix.narc
@@ -289,7 +289,7 @@ res/prebuilt/arc/bm_anime_list.narc,/arc/bm_anime_list.narc
 res/prebuilt/arc/codein_gra.narc,/arc/codein_gra.narc
 res/prebuilt/arc/demo_tengan_gra.narc,/arc/demo_tengan_gra.narc
 res/prebuilt/arc/email_gra.narc,/arc/email_gra.narc
-res/field/encounters/encdata_ex.narc,/arc/encdata_ex.narc
+res/field/maps/encdata_ex.narc,/arc/encdata_ex.narc
 res/prebuilt/arc/manene.narc,/arc/manene.narc
 res/prebuilt/arc/plgym_ghost.narc,/arc/plgym_ghost.narc
 res/pokemon/ppark.narc,/arc/ppark.narc
@@ -310,7 +310,7 @@ res/prebuilt/battle/b_tower/btdpm.narc,/battle/b_tower/btdpm.narc
 res/prebuilt/battle/b_tower/btdtr.narc,/battle/b_tower/btdtr.narc
 res/prebuilt/application/zukanlist/zkn_data/zukan_enc_diamond.narc,/application/zukanlist/zkn_data/zukan_enc_diamond.narc
 res/prebuilt/application/zukanlist/zkn_data/zukan_enc_pearl.narc,/application/zukanlist/zkn_data/zukan_enc_pearl.narc
-res/field/encounters/zukan_enc_platinum.narc,/application/zukanlist/zkn_data/zukan_enc_platinum.narc
+res/field/maps/zukan_enc_platinum.narc,/application/zukanlist/zkn_data/zukan_enc_platinum.narc
 res/pokemon/pl_poke_data.narc,/poketool/poke_edit/pl_poke_data.narc
 res/prebuilt/debug/cb_edit/d_test.narc,/debug/cb_edit/d_test.narc
 res/trainers/trainer_ball_capsules.narc,/application/custom_ball/edit/pl_cb_data.narc
