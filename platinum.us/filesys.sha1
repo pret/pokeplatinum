@@ -258,7 +258,7 @@ bd80949f0ab84fe4b4963a41063088b2e2d6df92 *res/graphics/battle/particles/battle_p
 e484a4ea105e16977b9f39b965aaad014a4ec923 *res/field/maps/zone_event.narc
 bda5c8e66cfa121c2d518d4388bd6f742746cda0 *res/prebuilt/fielddata/encountdata/d_enc_data.narc
 4bcbf53d522ed962160b85af588816f7257fb1c3 *res/prebuilt/fielddata/encountdata/p_enc_data.narc
-d9bf534c175c3c991e77fff985c099723499e1eb *res/field/encounters/pl_enc_data.narc
+d9bf534c175c3c991e77fff985c099723499e1eb *res/field/maps/pl_enc_data.narc
 7eca91aaa5f7ef816f51a884e2f42a26f51f8bbd *res/field/props/models/prop_models.narc
 f49c6992b8caf5fea13831789fe4bfb026beb967 *res/prebuilt/fielddata/build_model/build_model_matshp.dat
 992f33f6450613066830606d28e94b91031caddb *res/field/matrices/map_matrix.narc
@@ -288,7 +288,7 @@ afd2be309c09733b33ec9b73b793518b41153828 *res/prebuilt/arc/bm_anime_list.narc
 6a403c707b8737e4f19644ffe51606838fe43456 *res/prebuilt/arc/codein_gra.narc
 f1ef036922af5a593650d6a52f56fb3ec59d3d83 *res/prebuilt/arc/demo_tengan_gra.narc
 adcb9634923530fd7f217a131a3949f556f4f324 *res/prebuilt/arc/email_gra.narc
-0832d441d7e543e14d68e9df7e9118b472d67833 *res/field/encounters/encdata_ex.narc
+0832d441d7e543e14d68e9df7e9118b472d67833 *res/field/maps/encdata_ex.narc
 d534f791217a311610812b18ef674a326ecdd2ac *res/prebuilt/arc/manene.narc
 ad5fefc4758eba86f6f647e506531d6cfe9c9ce5 *res/prebuilt/arc/plgym_ghost.narc
 89b24d0c67f2cb089800613d5a0254a124d98ba6 *res/pokemon/ppark.narc
@@ -309,7 +309,7 @@ e5b1a6b28919a947ae2d2e73306abdaf91499aff *res/prebuilt/battle/b_tower/btdpm.narc
 b0344401b36411ecad92e706059cc9a0d8fc2365 *res/prebuilt/battle/b_tower/btdtr.narc
 2bc5d3a3f60966591593cc441ab6bd2eb9cfcaa1 *res/prebuilt/application/zukanlist/zkn_data/zukan_enc_diamond.narc
 ebb8d95aa9e03304b587861e9f912b8f2304fd48 *res/prebuilt/application/zukanlist/zkn_data/zukan_enc_pearl.narc
-00d042c278d7a76bff49d4f317dd522604887368 *res/field/encounters/zukan_enc_platinum.narc
+00d042c278d7a76bff49d4f317dd522604887368 *res/field/maps/zukan_enc_platinum.narc
 231228a02a80612dbe2036e2296a59e2c5a8b681 *res/pokemon/pl_poke_data.narc
 fdded15baac71b1bcfc285a6b7d6008336873e12 *res/prebuilt/debug/cb_edit/d_test.narc
 8088363d46d621357a33956f8e03cb4e5c779734 *res/trainers/trainer_ball_capsules.narc

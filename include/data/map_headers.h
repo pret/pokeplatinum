@@ -6,7 +6,7 @@
 #include "map_header.h"
 
 #include "res/field/area_data/area_data.naix"
-#include "res/field/encounters/pl_enc_data.naix"
+#include "res/field/maps/pl_enc_data.naix"
 #include "res/field/maps/scr_seq.naix"
 #include "res/field/maps/zone_event.naix"
 #include "res/field/matrices/map_matrix.naix"
