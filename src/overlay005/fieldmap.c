@@ -426,8 +426,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
-        ov5_021D5F7C(
-            fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
+        ov5_021D5F7C(fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
     }
 
     int oldMapLabelTextID = MapHeader_GetMapLabelTextID(oldMapHeaderID);
