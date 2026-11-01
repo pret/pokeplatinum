@@ -537,20 +537,20 @@ BOOL BattleTower_HasDefeatedSevenTrainers(BattleTower *battleTower)
     return FALSE;
 }
 
-static void sub_0204A5A0(BattleTower *battleTower, SaveData *saveData, u16 param2)
+static void sub_0204A5A0(BattleTower *battleTower, SaveData *saveData, u16 streak)
 {
-    Party *v0;
+    Party *party;
 
     if (battleTower->challengeMode != BATTLE_TOWER_MODE_SINGLE && battleTower->challengeMode != BATTLE_TOWER_MODE_DOUBLE) {
         return;
     }
 
-    v0 = SaveData_GetParty(saveData);
+    party = SaveData_GetParty(saveData);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_SINGLE) {
-        sub_0206DBB0(saveData, param2, Party_GetPokemonBySlotIndex(v0, battleTower->unk_2A[0]), 1);
+        TVSegment_Save_BattleTowerMaster(saveData, streak, Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[0]), TRUE);
     } else {
-        sub_0206DBB0(saveData, param2, Party_GetPokemonBySlotIndex(v0, battleTower->unk_2A[0]), 0);
+        TVSegment_Save_BattleTowerMaster(saveData, streak, Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[0]), FALSE);
     }
 }
 
@@ -586,7 +586,7 @@ void BattleTower_UpdateGameRecords(BattleTower *battleTower, SaveData *saveData)
 {
     u32 v0 = 0;
     int v1;
-    u16 v2, v3, v4;
+    u16 v2, streak, v4;
     GameRecords *v5 = SaveData_GetGameRecords(saveData);
     BattleFrontierSave *frontier = SaveData_GetBattleFrontier(saveData);
 
@@ -601,11 +601,11 @@ void BattleTower_UpdateGameRecords(BattleTower *battleTower, SaveData *saveData)
     }
 
     v2 = BattleFrontierSave_GetStatAutoHostIdx(frontier, v1);
-    v3 = BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, v1, battleTower->unk_1A + battleTower->unk_0D);
+    streak = BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, v1, battleTower->unk_1A + battleTower->unk_0D);
 
-    if (v3 > 1) {
-        if (v2 < v3 || (v2 == v3 && v3 % 7 == 0)) {
-            sub_0204A5A0(battleTower, saveData, v3);
+    if (streak > 1) {
+        if (v2 < streak || (v2 == streak && streak % 7 == 0)) {
+            sub_0204A5A0(battleTower, saveData, streak);
         }
     }
 
@@ -957,7 +957,7 @@ static u16 sub_0204AC54(SaveData *saveData, enum PokemonDataParam param, BattleT
         }
 
         Pokemon_SetValue(v4, param, &v0);
-        sub_0206DDB8(saveData, v4, param);
+        TVSegment_Save_RibbonMaster(saveData, v4, param);
         ++v1;
     }
 

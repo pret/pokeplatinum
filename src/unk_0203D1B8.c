@@ -1513,7 +1513,7 @@ static BOOL sub_0203E35C(FieldTask *taskMan)
             u16 *coins = SaveData_GetCoins(fieldSystem->saveData);
             s64 timeStamp = GetTimestamp();
 
-            sub_0206DD38(fieldSystem, Coins_GetValue(coins), v2->unk_00, TimeElapsed(v2->startTime, timeStamp) / 60);
+            TVSegment_Save_RecordsSlotGameMaster(fieldSystem, Coins_GetValue(coins), v2->unk_00, TimeElapsed(v2->startTime, timeStamp) / 60);
             Coins_SetValue(SaveData_GetCoins(fieldSystem->saveData), v2->unk_00);
 
             int bonusRoundsWins = SystemVars_GetConsecutiveBonusRoundWins(v1);

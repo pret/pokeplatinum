@@ -19,7 +19,7 @@ int TVSegment_LoadMessage(int programTypeID, FieldSystem *fieldSystem, StringTem
 BOOL TVSegment_IsEligible(int programTypeID, FieldSystem *fieldSystem, TVEpisode *episode);
 
 void TVBroadcast_SetContestHallShowInfo(TVBroadcast *broadcast, Pokemon *mon, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int contestPlacement);
-void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, enum HeapID heapID);
+void sub_0206CF48(TVBroadcast *broadcast, Pokemon *mon, enum HeapID heapID);
 void sub_0206CF9C(TVBroadcast *broadcast, int param1);
 void sub_0206CFB4(TVBroadcast *broadcast, int param1);
 void sub_0206CFCC(TVBroadcast *broadcast, int param1);
@@ -28,10 +28,10 @@ void TVBroadcast_ResetSafariGameData(TVBroadcast *broadcast);
 void TVBroadcast_UpdateSafariGameData(TVBroadcast *broadcast, Pokemon *mon);
 void sub_0206D048(TVBroadcast *broadcast, Pokemon *mon);
 void sub_0206D088(TVBroadcast *broadcast, u8 param1, const TrainerInfo *param2);
-void sub_0206D0C8(TVBroadcast *broadcast, u16 param1);
-void sub_0206D0F0(TVBroadcast *broadcast);
-void sub_0206D104(TVBroadcast *broadcast);
-void sub_0206D12C(TVBroadcast *broadcast);
+void TVBroadcast_UpdateBattlePointData(TVBroadcast *broadcast, u16 battlePoints);
+void TVBroadcast_ResetBattlePointData(TVBroadcast *broadcast);
+void TVBroadcast_UpdateGTSData(TVBroadcast *broadcast);
+void TVBroadcast_ResetGTSData(TVBroadcast *broadcast);
 
 CaptureAttempt *CaptureAttempt_New(enum HeapID heapID);
 void CaptureAttempt_Free(CaptureAttempt *captureAttempt);
@@ -56,14 +56,14 @@ void FieldSystem_SaveTVSegment_CaptureTheFlagDigest_TakeFlag(FieldSystem *fieldS
 void FieldSystem_SaveTVSegment_CaptureTheFlagDigest_LoseFlag(FieldSystem *fieldSystem, const TrainerInfo *trainerInfo);
 void FieldSystem_SaveTVSegment_HomeAndManor_NoFurniture(FieldSystem *fieldSystem);
 void FieldSystem_SaveTVSegment_HomeAndManor(FieldSystem *fieldSystem, u8 furniture);
-void sub_0206DBB0(SaveData *saveData, u32 param1, Pokemon *param2, BOOL param3);
-void sub_0206DC6C(FieldSystem *fieldSystem, u32 param1, Pokemon *param2);
-void sub_0206DD38(FieldSystem *fieldSystem, u32 param1, u32 param2, u32 param3);
-void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 monDataParam);
-void sub_0206DEEC(FieldSystem *fieldSystem, u16 param1, u16 param2);
-void sub_0206DF60(FieldSystem *fieldSystem, u16 param1);
-void sub_0206DFE0(SaveData *saveData);
-void sub_0206E060(SaveData *saveData);
+void TVSegment_Save_BattleTowerMaster(SaveData *saveData, u32 record, Pokemon *mon, BOOL singles);
+void TVSegment_Save_RecordsPokemonSize(FieldSystem *fieldSystem, u32 newRecord, Pokemon *mon);
+void TVSegment_Save_RecordsSlotGameMaster(FieldSystem *fieldSystem, u32 startCoins, u32 endCoins, u32 minutes);
+void TVSegment_Save_RibbonMaster(SaveData *saveData, Pokemon *mon, u32 monDataParam);
+void TVSegment_Save_TrapBustingMaster(FieldSystem *fieldSystem, u16 trapID, u16 count);
+void TVSegment_Save_FlagCapturingMaster(FieldSystem *fieldSystem, u16 flagCount);
+void TVSegment_Save_BattlePointScoringMaster(SaveData *saveData);
+void TVSegment_Save_GTSMaster(SaveData *saveData);
 void FieldSystem_SaveTVSegment_BattleTowerCorner(FieldSystem *fieldSystem, u16 customMessageWord);
 void FieldSystem_SaveTVSegment_YourPokemonCorner(FieldSystem *fieldSystem, u16 customMessageWord);
 void FieldSystem_SaveTVSegment_ThePoketchWatch(FieldSystem *fieldSystem, u16 customMessageWord);

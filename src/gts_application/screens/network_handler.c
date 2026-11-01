@@ -638,7 +638,7 @@ static int GTSNetworkHandler_ExchangeResponse(GTSApplicationState *appState)
             GameRecords_IncrementTrainerScore(appState->playerData->records, TRAINER_SCORE_EVENT_GTS_TRADE_COMPLETE);
             GTSNetworkHandler_LogTradeInJournal(appState->playerData->journalEntry, &appState->selectedListing);
             GameRecords_IncrementRecordValue(appState->playerData->records, RECORD_WIFI_TRADES);
-            sub_0206D104(SaveData_GetTVBroadcast(appState->playerData->saveData));
+            TVBroadcast_UpdateGTSData(SaveData_GetTVBroadcast(appState->playerData->saveData));
             break;
         case GTS_RESULT_ALREADY_DEPOSITED:
             appState->commsErrorMessage = errCode;
@@ -909,7 +909,7 @@ static int GTSNetworkHandler_PerformDepositTrade(GTSApplicationState *appState)
     GameRecords_IncrementRecordValue(appState->playerData->records, RECORD_WIFI_TRADES);
 
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(appState->playerData->saveData);
-    sub_0206D104(broadcast);
+    TVBroadcast_UpdateGTSData(broadcast);
 
     GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 0);
     appState->currentScreenInstruction = GTS_NETHANDLER_PREPARE_FULL_SAVE;

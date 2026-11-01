@@ -13,6 +13,8 @@
 #include "struct_defs/struct_0202E834.h"
 #include "struct_defs/tv_segment_contest_hall_showcased_pokemon.h"
 
+#include "charcode.h"
+
 #define TV_BROADCAST_MAX_PLAYED_SEGMENTS 4
 
 typedef struct TVSegmentInstance {
@@ -27,7 +29,7 @@ typedef struct TVEpisode {
     u8 gameVersion;
     u8 language;
     u8 gender;
-    u16 name[8];
+    charcode_t name[8];
     TVSegmentInstance *details;
 } TVEpisode;
 
@@ -57,8 +59,8 @@ typedef struct TVBroadcast {
     UnkStruct_0202E808 safariGame;
     UnkStruct_0202E810 unk_B10;
     UnkStruct_0202E81C unk_B2E;
-    UnkStruct_0202E828 unk_B44;
-    UnkStruct_0202E834 unk_B4C;
+    TVBroadcast_BattlePointData battlePointData;
+    TVBroadcast_GTSData gtsData;
 } TVBroadcast;
 
 #endif // POKEPLATINUM_STRUCT_DEF_TV_H

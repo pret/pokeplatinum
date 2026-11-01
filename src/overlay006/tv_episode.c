@@ -63,7 +63,7 @@ int TVEpisode_GetLanguage(const TVEpisode *episode)
     return episode->language;
 }
 
-const u16 *TVEpisode_GetTrainerName(const TVEpisode *episode)
+const charcode_t *TVEpisode_GetTrainerName(const TVEpisode *episode)
 {
     return episode->name;
 }

@@ -245,21 +245,21 @@ static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
     return isEligibleFn(fieldSystem);
 }
 
-static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int language, int param5)
+static void sub_0204922C(StringTemplate *template, int param1, const u16 *param2, int gender, int language, int param5)
 {
     String *v0 = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(v0, param2);
-    StringTemplate_SetString(param0, param1, v0, param3, param5, language);
+    StringTemplate_SetString(template, param1, v0, gender, param5, language);
     String_Free(v0);
 }
 
-static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1)
+static void TVInterview_GetPartyFirstSpeciesName(FieldSystem *fieldSystem, StringTemplate *template)
 {
-    Party *v0 = SaveData_GetParty(fieldSystem->saveData);
-    Pokemon *v1 = Party_FindFirstHatchedMon(v0);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *mon = Party_FindFirstNonEggMon(party);
 
-    StringTemplate_SetSpeciesName(param1, 0, Pokemon_GetBoxPokemon(v1));
+    StringTemplate_SetSpeciesName(template, 0, Pokemon_GetBoxPokemon(mon));
 }
 
 static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)
@@ -268,27 +268,27 @@ static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)
     StringTemplate_SetPoketchAppName(param1, 0, v0);
 }
 
-static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
+static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *template)
 {
-    u16 v0[10 + 1];
+    charcode_t name[MON_NAME_LEN + 1];
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E7E4 *v2 = sub_0202E7E4(broadcast);
 
-    MessageLoader_GetSpeciesName(v2->unk_02, HEAP_ID_FIELD1, v0);
-    sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
+    MessageLoader_GetSpeciesName(v2->species, HEAP_ID_FIELD1, name);
+    sub_0204922C(template, 0, name, GENDER_MALE, GAME_LANGUAGE, 1);
 }
 
-static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
+static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *template)
 {
-    u16 v0[10 + 1];
+    charcode_t name[MON_NAME_LEN + 1];
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E810 *v2 = sub_0202E810(broadcast);
 
-    MessageLoader_GetSpeciesName(v2->unk_02, HEAP_ID_FIELD1, v0);
-    sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
+    MessageLoader_GetSpeciesName(v2->species, HEAP_ID_FIELD1, name);
+    sub_0204922C(template, 0, name, GENDER_MALE, GAME_LANGUAGE, 1);
 }
 
-static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
+static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *template)
 {
     String *v0;
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
@@ -297,7 +297,7 @@ static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
     v0 = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(v0, v2->unk_06);
-    StringTemplate_SetString(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
+    StringTemplate_SetString(template, 0, v0, v2->gender, 1, GAME_LANGUAGE);
     String_Free(v0);
 }
 
@@ -370,7 +370,7 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = 
     },
     [TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER - 1] = {
         .saveResponseFn = FieldSystem_SaveTVSegment_YourPokemonCorner,
-        .loadMessageFn = sub_02049268,
+        .loadMessageFn = TVInterview_GetPartyFirstSpeciesName,
         .isEligibleFn = NULL,
         .messageID = TVReporterInterviews_Text_YourPokemonCorner,
     },

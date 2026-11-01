@@ -460,12 +460,12 @@ UnkStruct_0202E81C *sub_0202E81C(TVBroadcast *broadcast)
     return &broadcast->unk_B2E;
 }
 
-UnkStruct_0202E828 *sub_0202E828(TVBroadcast *broadcast)
+TVBroadcast_BattlePointData *TVBroadcast_GetBattlePointData(TVBroadcast *broadcast)
 {
-    return &broadcast->unk_B44;
+    return &broadcast->battlePointData;
 }
 
-UnkStruct_0202E834 *sub_0202E834(TVBroadcast *broadcast)
+TVBroadcast_GTSData *TVBroadcast_GetGTSData(TVBroadcast *broadcast)
 {
-    return &broadcast->unk_B4C;
+    return &broadcast->gtsData;
 }
