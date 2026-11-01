@@ -1470,7 +1470,7 @@ void FieldSystem_HatchEgg(FieldSystem *fieldSystem)
     Pokemon *eggMon = Party_GetFirstEgg(party);
 
     GF_ASSERT(eggMon != NULL);
-    FieldSystem_SaveTVSegment_HappyHappyEggClub(fieldSystem, eggMon);
+    TVSegment_Save_HappyHappyEggClub(fieldSystem, eggMon);
 
     EggHatchArgs args;
     args.mon = eggMon;

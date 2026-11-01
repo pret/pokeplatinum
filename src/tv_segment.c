@@ -718,7 +718,7 @@ void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resul
     TVSegment_TryGetPokemonNickname(heapID, mon, &captureAttempt->hasNickname, captureAttempt->nickname);
 }
 
-void FieldSystem_SaveTVSegment_CatchThatPokemonShow(FieldSystem *fieldSystem, const CaptureAttempt *captureAttempt, int resultMask)
+void TVSegment_Save_CatchThatPokemonShow(FieldSystem *fieldSystem, const CaptureAttempt *captureAttempt, int resultMask)
 {
     TVSegmentData segments;
     TVSegment_CatchThatPokemonShow *catchThatPokemonShow = &segments.catchThatPokemonShow;
@@ -790,7 +790,7 @@ static BOOL TVSegment_IsEligible_CatchThatPokemonShow_Success(FieldSystem *field
     return Pokedex_HasSeenSpecies(pokedex, catchThatPokemonShow->species);
 }
 
-void FieldSystem_SaveTVSegment_WhatsFishing(FieldSystem *fieldSystem, BOOL caughtFish, u16 fishingRodItemID, Pokemon *mon)
+void TVSegment_Save_WhatsFishing(FieldSystem *fieldSystem, BOOL caughtFish, u16 fishingRodItemID, Pokemon *mon)
 {
     TVSegmentData segments;
     TVSegment_WhatsFishing *whatsFishing = &segments.whatsFishing;
@@ -831,7 +831,7 @@ static BOOL TVSegment_IsEligible_WhatsFishing(FieldSystem *fieldSystem, TVEpisod
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), whatsFishing->species);
 }
 
-static void FieldSystem_SaveTVSegment_LoveThatGroupCorner(FieldSystem *fieldSystem, int segmentID)
+static void TVSegment_Save_LoveThatGroupCorner(FieldSystem *fieldSystem, int segmentID)
 {
     TVSegmentData segments;
     TVSegment_LoveThatGroupCorner *loveThatGroupCorner = &segments.loveThatGroupCorner;
@@ -844,14 +844,14 @@ static void FieldSystem_SaveTVSegment_LoveThatGroupCorner(FieldSystem *fieldSyst
     FieldSystem_SaveTVSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, segmentID, loveThatGroupCorner);
 }
 
-void FieldSystem_SaveTVSegment_LoveThatGroupCorner_NewGroup(FieldSystem *fieldSystem)
+void TVSegment_Save_LoveThatGroupCorner_NewGroup(FieldSystem *fieldSystem)
 {
-    FieldSystem_SaveTVSegment_LoveThatGroupCorner(fieldSystem, TV_PROGRAM_SEGMENT_LOVE_THAT_GROUP_CORNER_NEW_GROUP);
+    TVSegment_Save_LoveThatGroupCorner(fieldSystem, TV_PROGRAM_SEGMENT_LOVE_THAT_GROUP_CORNER_NEW_GROUP);
 }
 
-void FieldSystem_SaveTVSegment_LoveThatGroupCorner_SwitchGroup(FieldSystem *fieldSystem)
+void TVSegment_Save_LoveThatGroupCorner_SwitchGroup(FieldSystem *fieldSystem)
 {
-    FieldSystem_SaveTVSegment_LoveThatGroupCorner(fieldSystem, TV_PROGRAM_SEGMENT_LOVE_THAT_GROUP_CORNER_SWITCH_GROUP);
+    TVSegment_Save_LoveThatGroupCorner(fieldSystem, TV_PROGRAM_SEGMENT_LOVE_THAT_GROUP_CORNER_SWITCH_GROUP);
 }
 
 static int TVSegment_LoadMessage_LoveThatGroupCorner_SwitchGroup(FieldSystem *fieldSystem, StringTemplate *template, TVEpisode *episode)
@@ -874,7 +874,7 @@ static int TVSegment_LoadMessage_LoveThatGroupCorner_NewGroup(FieldSystem *field
     return TVProgramTrainerSightings_Text_LoveThatGroupCorner_NewGroup;
 }
 
-void FieldSystem_SaveTVSegment_HiddenItemBreakingNews(FieldSystem *fieldSystem, u16 item)
+void TVSegment_Save_HiddenItemBreakingNews(FieldSystem *fieldSystem, u16 item)
 {
     TVSegmentData segments;
     TVSegment_HiddenItemBreakingNews *hiddenItemBreakingNews = &segments.hiddenItemBreakingNews;
@@ -896,7 +896,7 @@ static int TVSegment_LoadMessage_HiddenItemBreakingNews(FieldSystem *fieldSystem
     return TVProgramTrainerSightings_Text_HiddenItemBreakingNews;
 }
 
-void FieldSystem_SaveTVSegment_SinnohShoppingChampCorner(SaveData *saveData, u16 item, u8 amount)
+void TVSegment_Save_SinnohShoppingChampCorner(SaveData *saveData, u16 item, u8 amount)
 {
     TVSegmentData segments;
     TVSegment_SinnohShoppingChampCorner *sinnohShoppingChampCorner = &segments.sinnohShoppingChampCorner;
@@ -925,7 +925,7 @@ static int TVSegment_LoadMessage_SinnohShoppingChampCorner(FieldSystem *fieldSys
     return TVProgramTrainerSightings_Text_SinnohShoppingChampCorner;
 }
 
-void FieldSystem_SaveTVSegment_HappyHappyEggClub(FieldSystem *fieldSystem, Pokemon *mon)
+void TVSegment_Save_HappyHappyEggClub(FieldSystem *fieldSystem, Pokemon *mon)
 {
     TVSegmentData segments;
     TVSegment_HappyHappyEggClub *happyHappyEggClub = &segments.happyHappyEggClub;
@@ -952,7 +952,7 @@ static BOOL TVSegment_IsEligible_HappyHappyEggClub(FieldSystem *fieldSystem, TVE
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), happyHappyEggClub->species);
 }
 
-void FieldSystem_SaveTVSegment_RateThatNameChange(FieldSystem *fieldSystem, Pokemon *mon)
+void TVSegment_Save_RateThatNameChange(FieldSystem *fieldSystem, Pokemon *mon)
 {
     TVSegmentData segments;
     TVSegment_RateThatNameChange *rateThatNameChange = &segments.rateThatNameChange;
@@ -981,7 +981,7 @@ static BOOL TVSegment_IsEligible_RateThatNameChange(FieldSystem *fieldSystem, TV
     return Pokedex_HasSeenSpecies(pokedex, rateThatNameChange->species);
 }
 
-void FieldSystem_SaveTVSegment_UndergroundTreasuresCorner(FieldSystem *fieldSystem, int item, int amount)
+void TVSegment_Save_UndergroundTreasuresCorner(FieldSystem *fieldSystem, int item, int amount)
 {
     TVSegmentData segments;
     TVSegment_UndergroundTreasuresCorner *undergroundTreasuresCorner = &segments.undergroundTreasuresCorner;
@@ -1003,7 +1003,7 @@ static int TVSegment_LoadMessage_UndergroundTreasuresCorner(FieldSystem *fieldSy
     return TVProgramTrainerSightings_Text_UndergroundTreasuresCorner;
 }
 
-void FieldSystem_SaveTVSegment_SafariGameSpecialNewsBulletin(FieldSystem *fieldSystem)
+void TVSegment_Save_SafariGameSpecialNewsBulletin(FieldSystem *fieldSystem)
 {
     TVSegmentData segments;
     TVSegment_SafariGameSpecialNewsBulletin *safariGameSpecialNewsBulletin = &segments.safariGameSpecialNewsBulletin;
@@ -1042,7 +1042,7 @@ static BOOL TVSegment_IsEligible_SafariGameSpecialNewsBulletin(FieldSystem *fiel
     return Pokedex_HasSeenSpecies(pokedex, safariGameSpecialNewsBulletin->species);
 }
 
-void FieldSystem_SaveTVSegment_PokemonStorageSpecialNewsBulletin(FieldSystem *fieldSystem)
+void TVSegment_Save_PokemonStorageSpecialNewsBulletin(FieldSystem *fieldSystem)
 {
     u32 hasMale, hasFemale, hasGenderless, gender;
     u8 partyCount, partyIndex;
@@ -1109,7 +1109,7 @@ static BOOL TVSegment_IsEligible_PokemonStorageSpecialNewsBulletin(FieldSystem *
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), pokemonStorageSpecialNewsBulletin->species);
 }
 
-void FieldSystem_SaveTVSegment_HerbalMedicineTrainerSightingDummy(TVBroadcast *broadcast, Pokemon *mon, u16 item)
+void TVSegment_Save_HerbalMedicineTrainerSightingDummy(TVBroadcast *broadcast, Pokemon *mon, u16 item)
 {
     return;
 }
@@ -1119,7 +1119,7 @@ static BOOL TVSegment_IsEligible_HerbalMedicineTrainerSightingDummy(FieldSystem 
     return FALSE;
 }
 
-void FieldSystem_SaveTVSegment_PlantingAndWateringShow(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount)
+void TVSegment_Save_PlantingAndWateringShow(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount)
 {
     TVSegmentData segments;
     TVSegment_PlantingAndWateringShow *plantingAndWateringShow = &segments.plantingAndWateringShow;
@@ -1158,7 +1158,7 @@ static int TVSegment_LoadMessage_PlantingAndWateringShow_NoBerries(FieldSystem *
     return TVProgramTrainerSightings_Text_PlantingAndWateringShow_NoBerries;
 }
 
-void FieldSystem_SaveTVSegment_SealClubShow(TVBroadcast *broadcast, Pokemon *param1, u8 ballSeal)
+void TVSegment_Save_SealClubShow(TVBroadcast *broadcast, Pokemon *param1, u8 ballSeal)
 {
     TVSegmentData segments;
     TVSegment_SealClubShow *sealClubShow = &segments.sealClubShow;
@@ -1205,7 +1205,7 @@ static void TVSegment_LoadMessage_CaptureTheFlagDigest(FieldSystem *fieldSystem,
     StringTemplate_SetPlayerName(template, 1, trainerInfo);
 }
 
-void FieldSystem_SaveTVSegment_CaptureTheFlagDigest_TakeFlag(FieldSystem *fieldSystem, const TrainerInfo *trainerInfo)
+void TVSegment_Save_CaptureTheFlagDigest_TakeFlag(FieldSystem *fieldSystem, const TrainerInfo *trainerInfo)
 {
     TVSegmentData segments;
     TVSegment_CaptureTheFlagDigest *captureTheFlagDigest = &segments.captureTheFlagDigest;
@@ -1214,7 +1214,7 @@ void FieldSystem_SaveTVSegment_CaptureTheFlagDigest_TakeFlag(FieldSystem *fieldS
     FieldSystem_SaveTVSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_CAPTURE_THE_FLAG_DIGEST_TAKE_FLAG, captureTheFlagDigest);
 }
 
-void FieldSystem_SaveTVSegment_CaptureTheFlagDigest_LoseFlag(FieldSystem *fieldSystem, const TrainerInfo *trainerInfo)
+void TVSegment_Save_CaptureTheFlagDigest_LoseFlag(FieldSystem *fieldSystem, const TrainerInfo *trainerInfo)
 {
     TVSegmentData segments;
     TVSegment_CaptureTheFlagDigest *captureTheFlagDigest = &segments.captureTheFlagDigest;
@@ -1240,7 +1240,7 @@ static BOOL TVSegment_IsEligible_HasExplorerKit(FieldSystem *fieldSystem, TVEpis
     return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD3);
 }
 
-void FieldSystem_SaveTVSegment_HomeAndManor_NoFurniture(FieldSystem *fieldSystem)
+void TVSegment_Save_HomeAndManor_NoFurniture(FieldSystem *fieldSystem)
 {
     TVSegmentData segments;
     TVSegment_HomeAndManor_NoFurniture *homeAndManorNoFurniture = &segments.homeAndManorNoFurniture;
@@ -1261,7 +1261,7 @@ static BOOL TVSegment_IsEligible_HomeAndManor_NoFurniture(FieldSystem *fieldSyst
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_RESORT_AREA);
 }
 
-void FieldSystem_SaveTVSegment_HomeAndManor(FieldSystem *fieldSystem, u8 furniture)
+void TVSegment_Save_HomeAndManor(FieldSystem *fieldSystem, u8 furniture)
 {
     TVSegmentData segments;
     TVSegment_HomeAndManor *homeAndManor = &segments.homeAndManor;
@@ -1623,7 +1623,7 @@ static BOOL TVSegment_IsEligible_GTSMaster(FieldSystem *fieldSystem, TVEpisode *
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
 }
 
-void FieldSystem_SaveTVSegment_BattleTowerCorner(FieldSystem *fieldSystem, u16 customMessageWord)
+void TVSegment_Save_BattleTowerCorner(FieldSystem *fieldSystem, u16 customMessageWord)
 {
     TVSegmentData segments;
     TVSegment_BattleTowerCorner *battleTowerCorner = &segments.battleTowerCorner;
@@ -1657,7 +1657,7 @@ static BOOL TVSegment_IsEligible_BattleTowerCorner(FieldSystem *fieldSystem, TVE
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
-void FieldSystem_SaveTVSegment_YourPokemonCorner(FieldSystem *fieldSystem, u16 customMessageWord)
+void TVSegment_Save_YourPokemonCorner(FieldSystem *fieldSystem, u16 customMessageWord)
 {
     TVSegmentData segments;
     TVSegment_YourPokemonCorner *yourPokemonCorner = &segments.yourPokemonCorner;
@@ -1696,7 +1696,7 @@ static BOOL TVSegment_IsEligible_YourPokemonCorner(FieldSystem *fieldSystem, TVE
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), yourPokemonCorner->species);
 }
 
-void FieldSystem_SaveTVSegment_ThePoketchWatch(FieldSystem *fieldSystem, u16 customMessageWord)
+void TVSegment_Save_ThePoketchWatch(FieldSystem *fieldSystem, u16 customMessageWord)
 {
     TVSegmentData segments;
     TVSegment_ThePoketchWatch *thePoketchWatch = &segments.thePoketchWatch;
@@ -1718,7 +1718,7 @@ static int TVSegment_LoadMessage_ThePoketchWatch(FieldSystem *fieldSystem, Strin
     return TVProgramInterviews_Text_ThePoketchWatch;
 }
 
-void FieldSystem_SaveTVSegment_ContestHall(FieldSystem *fieldSystem, u16 customMessageWord)
+void TVSegment_Save_ContestHall(FieldSystem *fieldSystem, u16 customMessageWord)
 {
     TVSegmentData segments;
     TVSegment_ContestHall *contestHall = &segments.contestHall;
@@ -1756,7 +1756,7 @@ static BOOL TVSegment_IsEligible_ContestHall(FieldSystem *fieldSystem, TVEpisode
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), contestHall->showcasedPokemon.species);
 }
 
-void FieldSystem_SaveTVSegment_RightOnPhotoCorner(FieldSystem *fieldSystem, u16 customMessageWord)
+void TVSegment_Save_RightOnPhotoCorner(FieldSystem *fieldSystem, u16 customMessageWord)
 {
     TVSegmentData segments;
     TVSegment_RightOnPhotoCorner *rightOnPhotoCorner = &segments.rightOnPhotoCorner;
@@ -1788,7 +1788,7 @@ static BOOL TVSegment_IsEligible_RightOnPhotoCorner(FieldSystem *fieldSystem, TV
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), rightOnPhotoCorner->species);
 }
 
-void FieldSystem_SaveTVSegment_StreetCornerPersonalityCheckup(FieldSystem *fieldSystem, u16 pokemonType)
+void TVSegment_Save_StreetCornerPersonalityCheckup(FieldSystem *fieldSystem, u16 pokemonType)
 {
     TVSegmentData segments;
     TVSegment_StreetCornerPersonalityCheckup *streetCornerPersonalityCheckup = &segments.streetCornerPersonalityCheckup;
@@ -1805,7 +1805,7 @@ static int TVSegment_LoadMessage_StreetCornerPersonalityCheckup(FieldSystem *fie
     return TVProgramInterviews_Text_StreetCornerPersonalityCheckup_NormalType + streetCornerPersonalityCheckup->pokemonType - 1;
 }
 
-void FieldSystem_SaveTVSegment_ThreeCheersForPoffinCorner(FieldSystem *fieldSystem, u16 customMessageWord)
+void TVSegment_Save_ThreeCheersForPoffinCorner(FieldSystem *fieldSystem, u16 customMessageWord)
 {
     TVSegmentData segments;
     TVSegment_ThreeCheersForPoffinCorner *threeCheersForPoffinCorner = &segments.threeCheersForPoffinCorner;
@@ -1842,7 +1842,7 @@ static int TVSegment_LoadMessage_ThreeCheersForPoffinCorner(FieldSystem *fieldSy
     }
 }
 
-void FieldSystem_SaveTVSegment_AmitySquareWatch(FieldSystem *fieldSystem, u16 customWordMessage)
+void TVSegment_Save_AmitySquareWatch(FieldSystem *fieldSystem, u16 customWordMessage)
 {
     TVSegmentData segments;
     TVSegment_AmitySquareWatch *amitySquareWatch = &segments.amitySquareWatch;
@@ -1879,7 +1879,7 @@ static int TVSegment_LoadMessage_AmitySquareWatch(FieldSystem *fieldSystem, Stri
     return TVProgramInterviews_Text_AmitySquareWatch;
 }
 
-void FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Single(FieldSystem *fieldSystem, u16 customWordMessage)
+void TVSegment_Save_BattleFrontierFrontlineNews_Single(FieldSystem *fieldSystem, u16 customWordMessage)
 {
     TVSegmentData segments;
     TVSegment_BattleFrontierFrontlineNews_Single *battleFrontierFrontlineNewsSingle = &segments.battleFrontierFrontlineNewsSingle;
@@ -1915,7 +1915,7 @@ static BOOL TVSegment_IsEligible_BattleFrontierFrontlineNews_Single(FieldSystem 
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
-void FieldSystem_SaveTVSegment_InYourFaceInterview_Question1(FieldSystem *fieldSystem, u16 customWordMessage)
+void TVSegment_Save_InYourFaceInterview_Question1(FieldSystem *fieldSystem, u16 customWordMessage)
 {
     TVSegmentData segments;
     TVSegment_InYourFaceInterview_Question *inYourFaceInterviewQuestion = &segments.inYourFaceInterviewQuestion;
@@ -1934,7 +1934,7 @@ static int TVSegment_LoadMessage_InYourFaceInterview_Question1(FieldSystem *fiel
     return TVProgramInterviews_Text_InYourFaceInterview_Question1;
 }
 
-void FieldSystem_SaveTVSegment_InYourFaceInterview_Question2(FieldSystem *fieldSystem, u16 customWordMessage)
+void TVSegment_Save_InYourFaceInterview_Question2(FieldSystem *fieldSystem, u16 customWordMessage)
 {
     TVSegmentData segments;
     TVSegment_InYourFaceInterview_Question *inYourFaceInterviewQuestion = &segments.inYourFaceInterviewQuestion;
@@ -1953,7 +1953,7 @@ static int TVSegment_LoadMessage_InYourFaceInterview_Question2(FieldSystem *fiel
     return TVProgramInterviews_Text_InYourFaceInterview_Question2;
 }
 
-void FieldSystem_SaveTVSegment_InYourFaceInterview_Question3(FieldSystem *fieldSystem, u16 customWordMessage)
+void TVSegment_Save_InYourFaceInterview_Question3(FieldSystem *fieldSystem, u16 customWordMessage)
 {
     TVSegmentData segments;
     TVSegment_InYourFaceInterview_Question *inYourFaceInterviewQuestion = &segments.inYourFaceInterviewQuestion;
@@ -1972,7 +1972,7 @@ static int TVSegment_LoadMessage_InYourFaceInterview_Question3(FieldSystem *fiel
     return TVProgramInterviews_Text_InYourFaceInterview_Question3;
 }
 
-void FieldSystem_SaveTVSegment_InYourFaceInterview_Question4(FieldSystem *fieldSystem, u16 customWordMessage)
+void TVSegment_Save_InYourFaceInterview_Question4(FieldSystem *fieldSystem, u16 customWordMessage)
 {
     TVSegmentData segments;
     TVSegment_InYourFaceInterview_Question *inYourFaceInterviewQuestion = &segments.inYourFaceInterviewQuestion;
@@ -1991,7 +1991,7 @@ static int TVSegment_LoadMessage_InYourFaceInterview_Question4(FieldSystem *fiel
     return TVProgramInterviews_Text_InYourFaceInterview_Question4;
 }
 
-void FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Multi(FieldSystem *fieldSystem, u16 customWordMessage)
+void TVSegment_Save_BattleFrontierFrontlineNews_Multi(FieldSystem *fieldSystem, u16 customWordMessage)
 {
     TVSegmentData segments;
     TVSegment_BattleFrontierFrontlineNews_Multi *battleFrontierFrontlineNewsMulti = &segments.battleFrontierFrontlineNewsMulti;

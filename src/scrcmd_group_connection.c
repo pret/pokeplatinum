@@ -67,7 +67,7 @@ BOOL ScrCmd_DoGroupConnectionAction(ScriptContext *ctx)
         RecordMixedRNG_CopyEntry(rngCollection, entry, RECORD_MIXED_RNG_PLAYER_OVERRIDE);
 
         if (valid) {
-            FieldSystem_SaveTVSegment_LoveThatGroupCorner_SwitchGroup(ctx->fieldSystem);
+            TVSegment_Save_LoveThatGroupCorner_SwitchGroup(ctx->fieldSystem);
         }
         return FALSE;
     }
@@ -82,7 +82,7 @@ BOOL ScrCmd_DoGroupConnectionAction(ScriptContext *ctx)
         RecordMixedRNG_SetEntrySeed(rngCollection, RECORD_MIXED_RNG_PLAYER_ORIGINAL, MTRNG_Next());
         String_Free(string);
         RecordMixedRNG_CopyEntry(rngCollection, RECORD_MIXED_RNG_PLAYER_ORIGINAL, RECORD_MIXED_RNG_PLAYER_OVERRIDE);
-        FieldSystem_SaveTVSegment_LoveThatGroupCorner_NewGroup(ctx->fieldSystem);
+        TVSegment_Save_LoveThatGroupCorner_NewGroup(ctx->fieldSystem);
         break;
     }
     }
