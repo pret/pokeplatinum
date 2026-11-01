@@ -20,6 +20,7 @@
 
 #include <assert.h>
 #include <errno.h>
+#include <stdint.h>
 #include <limits.h>
 #include <stdbool.h>
 #include <stddef.h>
@@ -97,7 +98,7 @@ struct evalstack {
         stk.var[stk.n_##var++] = val;                                      \
     } while (0)
 
-#define LONG_BITS ((long)(sizeof(long) * CHAR_BIT))
+#define LONG_BITS ((int64_t)(sizeof(int64_t) * CHAR_BIT))
 #define fail(at)  do { tok = (at); goto error; } while (0)
 
 #define evalbinary(o)                                                                   \
@@ -105,9 +106,9 @@ struct evalstack {
         assert(stk.n_nums >= 2);                                                        \
         stk.n_nums -= 2;                                                                \
                                                                                         \
-        long a = stk.nums[stk.n_nums];                                                  \
-        long b = stk.nums[stk.n_nums + 1];                                              \
-        long r = 0;                                                                     \
+        int64_t a = stk.nums[stk.n_nums];                                               \
+        int64_t b = stk.nums[stk.n_nums + 1];                                           \
+        int64_t r = 0;                                                                  \
         switch ((o).op) {                                                               \
         case OP_MUL: if (__builtin_mul_overflow(a, b, &r)) fail((o).pos); break;        \
         case OP_ADD: if (__builtin_add_overflow(a, b, &r)) fail((o).pos); break;        \
@@ -118,7 +119,7 @@ struct evalstack {
             r = (o).op == OP_DIV ? a / b : a % b;                                       \
             break;                                                                      \
         case OP_LSH:                                                                    \
-            if (b < 0 || b >= LONG_BITS || a < 0 || a > (LONG_MAX >> b)) fail((o).pos); \
+            if (b < 0 || b >= LONG_BITS || a < 0 || a > (INT64_MAX >> b)) fail((o).pos);\
             r = a << b;                                                                 \
             break;                                                                      \
         case OP_RSH:                                                                    \
