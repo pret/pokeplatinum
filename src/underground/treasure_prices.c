@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/sphere_types.h"
+#include "constants/sphere_types.h"
 
 #include "underground/defs.h"
 #include "underground/mining.h"
