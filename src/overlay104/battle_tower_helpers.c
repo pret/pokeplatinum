@@ -5,9 +5,9 @@
 #include "constants/battle_tower.h"
 #include "constants/charcode.h"
 #include "constants/pokemon.h"
+#include "constants/species_data_params.h"
 #include "generated/ai_flags.h"
 #include "generated/moves.h"
-#include "generated/species_data_params.h"
 
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/frontier_pokemon_base.h"

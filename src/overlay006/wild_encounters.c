@@ -8,11 +8,11 @@
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
+#include "constants/species_data_params.h"
 #include "generated/abilities.h"
 #include "generated/gender_ratios.h"
 #include "generated/genders.h"
 #include "generated/items.h"
-#include "generated/species_data_params.h"
 
 #include "struct_defs/special_encounter.h"
 

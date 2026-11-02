@@ -84,7 +84,6 @@ metang_generators = {
     'size_contest_results': { 'type': 'enum', 'tag': 'SizeContestResult' },
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },
     'species': { 'type': 'enum', 'tag': 'Species' },
-    'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
     'town_map_description_flag_types': { 'type': 'enum', 'tag': 'TownMapDescriptionFlagType' },
     'trainers': { 'type': 'enum', 'tag': 'TrainerID' },
