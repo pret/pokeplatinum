@@ -5,9 +5,9 @@
 
 #include "macros/scrcmd.inc"
 #include "generated/player_transitions.h"
-#include "generated/time_of_day.h"
 #include "generated/tutor_locations.h"
 #include "constants/distribution_events.h"
+#include "constants/time_of_day.h"
 #include "constants/trainer_card_levels.h"
 #include "res/text/bank/common_strings.h"
 #include "res/text/bank/menu_entries.h"
