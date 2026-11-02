@@ -23,7 +23,6 @@
 #include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
-#include "generated/villa_furniture_type.h"
 #include "constants/accessories.h"
 #include "constants/animation_tags.h"
 #include "constants/badges.h"
@@ -56,6 +55,7 @@
 #include "constants/string.h"
 #include "constants/tv_broadcast.h"
 #include "constants/union_room_message_types.h"
+#include "constants/villa_furniture_type.h"
 #include "constants/villa_visitors.h"
 #include "constants/vs_seeker.h"
 
