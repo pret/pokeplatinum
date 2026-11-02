@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_CONSTANTS_POKEMON_H
 #define POKEPLATINUM_CONSTANTS_POKEMON_H
 
+#include "constants/species_data_params.h" // SpeciesDataParam
 #include "generated/pokemon_data_params.h" // PokemonDataParam
 #include "generated/pokemon_stats.h" // PokemonStat
 #include "generated/pokemon_types.h" // PokemonType
-#include "generated/species_data_params.h" // SpeciesDataParam
 
 #define MAX_PARTY_SIZE  6
 #define PARTY_SLOT_NONE 0xFF
