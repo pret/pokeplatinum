@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/traps.h"
 #include "generated/sphere_types.h"
-#include "generated/traps.h"
 
 #include "underground/defs.h"
 

@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_UNDERGROUND_MENU_H
 #define POKEPLATINUM_UNDERGROUND_MENU_H
 
+#include "constants/traps.h"
 #include "generated/goods.h"
 #include "generated/sphere_types.h"
-#include "generated/traps.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/sprite_resource_manager.h"

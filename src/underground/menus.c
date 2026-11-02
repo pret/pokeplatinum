@@ -5,7 +5,7 @@
 
 #include "constants/heap.h"
 #include "constants/start_menu.h"
-#include "generated/traps.h"
+#include "constants/traps.h"
 
 #include "field/field_system.h"
 #include "overlay005/sprite_resource_manager.h"

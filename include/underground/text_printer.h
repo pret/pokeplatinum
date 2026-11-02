@@ -2,8 +2,8 @@
 #define POKEPLATINUM_UNDERGROUND_TEXT_PRINTER_H
 
 #include "constants/field_base_tiles.h"
+#include "constants/traps.h"
 #include "generated/goods.h"
-#include "generated/traps.h"
 
 #include "bg_window.h"
 #include "list_menu.h"

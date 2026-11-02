@@ -6,8 +6,8 @@
 #include "constants/field/map.h"
 #include "constants/field/map_matrix.h"
 #include "constants/field_base_tiles.h"
+#include "constants/traps.h"
 #include "generated/trainer_score_events.h"
-#include "generated/traps.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
