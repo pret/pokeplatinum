@@ -4,9 +4,9 @@
 
 #include "constants/battle_tower.h"
 #include "constants/string.h"
+#include "constants/trainer_score_events.h"
 #include "generated/frontier_trainers.h"
 #include "generated/game_records.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/battle_tower.h"

@@ -2,8 +2,8 @@
 
 #include <nitro.h>
 
+#include "constants/trainer_score_events.h"
 #include "generated/game_records.h"
-#include "generated/trainer_score_events.h"
 
 #include "math_util.h"
 #include "pokedex.h"

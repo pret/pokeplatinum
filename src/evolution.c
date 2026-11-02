@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/trainer_score_events.h"
 #include "generated/evolution_methods.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/moves.h"
 #include "generated/species.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"

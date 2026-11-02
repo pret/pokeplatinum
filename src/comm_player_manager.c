@@ -7,8 +7,8 @@
 
 #include "constants/communication/comm_packets.h"
 #include "constants/heap.h"
+#include "constants/trainer_score_events.h"
 #include "generated/movement_actions.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_defs/comm_player_location.h"

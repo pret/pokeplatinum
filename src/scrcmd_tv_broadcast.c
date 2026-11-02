@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "constants/map_object.h"
+#include "constants/trainer_score_events.h"
 #include "constants/tv_broadcast.h"
 #include "generated/movement_types.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_decls/tv_broadcast.h"
 #include "struct_defs/image_clips.h"

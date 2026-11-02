@@ -1,4 +1,4 @@
-﻿#include "gts_application/screens/network_handler.h"
+#include "gts_application/screens/network_handler.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -6,9 +6,9 @@
 
 #include "constants/net.h"
 #include "constants/savedata/savedata.h"
+#include "constants/trainer_score_events.h"
 #include "generated/game_records.h"
 #include "generated/species.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_decls/tv_broadcast.h"
 #include "struct_defs/chatot_cry.h"
