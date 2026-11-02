@@ -194,7 +194,7 @@ typedef struct {
     u8 gender;
     u8 language;
     u8 metGame;
-    u32 milimeters;
+    u32 millimeters;
 } TVSegment_PokemonSize;
 
 typedef struct {
@@ -204,7 +204,7 @@ typedef struct {
 } TVSegment_SlotGameMaster;
 
 typedef struct {
-    u16 nickname[TEMPLATE_NAME_SIZE];
+    charcode_t nickname[TEMPLATE_NAME_SIZE];
     u8 ribbonNameID;
     u8 ribbonCount;
     u8 hasNickname;
@@ -498,7 +498,7 @@ static void TVSegment_CopyPokemonValues(Pokemon *mon, u16 *species, u8 *gender, 
     *metGame = Pokemon_GetValue(mon, MON_DATA_MET_GAME, NULL);
 }
 
-static void TVSegment_SetTemplatePokemonSpecies(StringTemplate *template, int idx, u16 species, u8 gender, u8 language, u8 unused_metGame)
+static void TVSegment_SetTemplatePokemonSpecies(StringTemplate *template, int idx, u16 species, u8 gender, u8 language, u8 metGameUnused)
 {
     u16 speciesName[TEMPLATE_NAME_SIZE];
 
@@ -1331,7 +1331,7 @@ void TVSegment_Save_RecordsPokemonSize(FieldSystem *fieldSystem, u32 newRecord, 
     TVSegment_PokemonSize *segment = &segments.pokemonSize;
 
     TVSegment_CopyPokemonValues(mon, &segment->species, &segment->gender, &segment->language, &segment->metGame);
-    segment->milimeters = newRecord;
+    segment->millimeters = newRecord;
     FieldSystem_SaveTVSegment(fieldSystem, TV_PROGRAM_TYPE_RECORDS, 3, segment);
 }
 
@@ -1345,7 +1345,7 @@ static int TVSegment_LoadMessage_PokemonSize(FieldSystem *fieldSystem, StringTem
     TVSegment_SetTemplateTrainerName(template, 0, episode);
     TVSegment_SetTemplatePokemonSpecies(template, 1, segment->species, segment->gender, segment->language, segment->metGame);
 
-    inches = MM_TO_TENTH_OF_INCH(segment->milimeters);
+    inches = MM_TO_TENTH_OF_INCH(segment->millimeters);
 
     StringTemplate_SetNumber(template, 2, inches / 10, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_SetNumber(template, 3, inches % 10, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);

@@ -9,7 +9,7 @@ typedef struct {
     u8 language;
     u8 metGame;
     u8 hasNickname;
-    u16 nickname[MON_NAME_LEN + 1];
+    charcode_t nickname[MON_NAME_LEN + 1];
 } UnkStruct_0202E810;
 
 #endif // POKEPLATINUM_STRUCT_0202E810_H

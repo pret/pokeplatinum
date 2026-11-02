@@ -3,6 +3,8 @@
 
 #include "constants/string.h"
 
+#include "charcode.h"
+
 typedef struct {
     u8 unk_00;
     u8 padding_01;
@@ -11,7 +13,7 @@ typedef struct {
     u8 language;
     u8 metGame;
     u8 hasNickname;
-    u16 nickname[MON_NAME_LEN + 1];
+    charcode_t nickname[MON_NAME_LEN + 1];
     u8 nature;
     u8 unk_1F;
     u8 unk_20;
