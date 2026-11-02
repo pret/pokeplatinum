@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNDERGROUND_TRAP_PRICES_H
 #define POKEPLATINUM_UNDERGROUND_TRAP_PRICES_H
 
-#include "generated/traps.h"
+#include "constants/traps.h"
 
 #define RANDOM_SPHERE_TYPE 6
 
