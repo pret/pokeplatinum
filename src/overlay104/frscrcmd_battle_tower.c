@@ -5,7 +5,7 @@
 
 #include "constants/battle_tower.h"
 #include "constants/battle_tower_functions.h"
-#include "generated/game_records.h"
+#include "constants/game_records.h"
 #include "generated/object_events_gfx.h"
 
 #include "struct_decls/tv_broadcast.h"

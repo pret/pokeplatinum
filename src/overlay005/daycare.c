@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "constants/daycare.h"
+#include "constants/game_records.h"
 #include "constants/items.h"
 #include "constants/species.h"
 #include "generated/egg_groups.h"
-#include "generated/game_records.h"
 
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/daycare.h"

@@ -5,10 +5,10 @@
 #include "constants/battle.h"
 #include "constants/field/script_ranges.h"
 #include "constants/fieldmap.h"
+#include "constants/game_records.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
 #include "constants/trainer_score_events.h"
-#include "generated/game_records.h"
 
 #include "struct_decls/tv_broadcast.h"
 

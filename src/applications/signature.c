@@ -2,8 +2,8 @@
 
 #include <nitro.h>
 
+#include "constants/game_records.h"
 #include "constants/trainer_score_events.h"
-#include "generated/game_records.h"
 
 #include "assert.h"
 #include "bg_window.h"

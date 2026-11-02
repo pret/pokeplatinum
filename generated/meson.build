@@ -38,7 +38,6 @@ metang_generators = {
     'first_arrival_to_zones': { 'type': 'enum', 'tag': 'FirstArrivalToZone' },
     'footprint_sizes': { 'type': 'enum', 'tag': 'FootprintSize' },
     'frontier_trainers': { 'type': 'enum', 'tag': 'FrontierTrainerID' },
-    'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
     'goods': { 'type': 'enum', 'tag': 'Good' },
