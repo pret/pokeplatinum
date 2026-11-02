@@ -2,9 +2,9 @@
 #define POKEPLATINUM_UNDERGROUND_H
 
 #include "constants/string.h"
+#include "constants/traps.h"
 #include "generated/goods.h"
 #include "generated/sphere_types.h"
-#include "generated/traps.h"
 
 #include "underground/defs.h"
 
