@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/badges.h"
-#include "generated/game_records.h"
+#include "constants/game_records.h"
 
 #include "struct_defs/battle_frontier.h"
 

@@ -1,4 +1,3 @@
-#include "generated/game_records.h"
 #include "res/sound/pl_sound_data.naix"
 #include "generated/vars_flags.h"
 #include "constants/battle_frontier_movements.h"
@@ -7,6 +6,7 @@
 #include "constants/colors.h"
 #include "constants/fade_types.h"
 #include "constants/fade_screen.h"
+#include "constants/game_records.h"
 #include "constants/scrcmd.h"
 #include "constants/trainer_score_events.h"
 

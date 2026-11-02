@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/game_records.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "generated/game_records.h"
 #include "generated/text_banks.h"
 
 #include "struct_defs/clear_game_player_info.h"
