@@ -2,7 +2,6 @@
 #define POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 
 #include "generated/ai_flags.h"
-#include "generated/ai_weather_types.h"
 
 enum AIActionChoice {
     AI_ENEMY_ATTACK_1 = 0,
@@ -24,6 +23,15 @@ enum AILoadTypeTarget {
     LOAD_ATTACKER_PARTNER_TYPE_1,
     LOAD_DEFENDER_PARTNER_TYPE_2,
     LOAD_ATTACKER_PARTNER_TYPE_2,
+};
+
+enum AIWeatherType {
+    AI_WEATHER_CLEAR = 0,
+    AI_WEATHER_SUNNY,
+    AI_WEATHER_RAINING,
+    AI_WEATHER_SANDSTORM,
+    AI_WEATHER_HAILING,
+    AI_WEATHER_DEEP_FOG,
 };
 
 #define AI_INIT_SCORE_MOVE_1 (1 << 0)
