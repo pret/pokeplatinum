@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/sphere_types.h"
 #include "generated/game_records.h"
-#include "generated/sphere_types.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F575C.h"
