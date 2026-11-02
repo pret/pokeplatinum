@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/sphere_types.h"
 #include "generated/goods.h"
-#include "generated/sphere_types.h"
 
 #include "underground/defs.h"
 

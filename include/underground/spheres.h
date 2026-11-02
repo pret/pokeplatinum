@@ -3,7 +3,7 @@
 
 #include <nitro/math.h>
 
-#include "generated/sphere_types.h"
+#include "constants/sphere_types.h"
 
 #include "field/field_system_decl.h"
 
