@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/trainer_score_events.h"
+#include "constants/trainer_score_events.h"
 
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02029C88.h"

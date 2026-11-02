@@ -6,8 +6,8 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field_poison.h"
 #include "constants/player_avatar.h"
+#include "constants/trainer_score_events.h"
 #include "generated/game_records.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_defs/daycare.h"

@@ -6,10 +6,10 @@
 #include "constants/accessories.h"
 #include "constants/contests.h"
 #include "constants/heap.h"
+#include "constants/trainer_score_events.h"
 #include "generated/game_records.h"
 #include "generated/object_events_gfx.h"
 #include "generated/pokemon_contest_ranks.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_decls/tv_broadcast.h"
 #include "struct_defs/contest_camera_flash_task.h"

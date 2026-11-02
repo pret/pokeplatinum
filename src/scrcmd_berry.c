@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/scrcmd.h"
+#include "constants/trainer_score_events.h"
 #include "generated/game_records.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_decls/map_object.h"
 

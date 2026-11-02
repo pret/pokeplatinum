@@ -6,10 +6,10 @@
 #include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 #include "constants/map_object.h"
+#include "constants/trainer_score_events.h"
 #include "constants/traps.h"
 #include "generated/goods.h"
 #include "generated/movement_actions.h"
-#include "generated/trainer_score_events.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_prop.h"
