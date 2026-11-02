@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/communication/comm_error.h"
+#include "constants/game_records.h"
 #include "constants/species_data_params.h"
-#include "generated/game_records.h"
 #include "generated/species.h"
 
 #include "struct_decls/wi_fi_list.h"

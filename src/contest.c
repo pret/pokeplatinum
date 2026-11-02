@@ -5,9 +5,9 @@
 
 #include "constants/accessories.h"
 #include "constants/contests.h"
+#include "constants/game_records.h"
 #include "constants/heap.h"
 #include "constants/trainer_score_events.h"
-#include "generated/game_records.h"
 #include "generated/object_events_gfx.h"
 #include "generated/pokemon_contest_ranks.h"
 

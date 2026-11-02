@@ -5,8 +5,8 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
+#include "constants/game_records.h"
 #include "constants/map_object.h"
-#include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
 #include "struct_decls/map_object.h"

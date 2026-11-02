@@ -4,11 +4,11 @@
 #include <string.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/game_records.h"
 #include "constants/menu.h"
 #include "constants/regi_ruins.h"
 #include "constants/scrcmd.h"
 #include "constants/villa_furniture_type.h"
-#include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/species.h"
 

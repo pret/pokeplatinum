@@ -8,8 +8,8 @@
 #include "constants/battle.h"
 #include "constants/battle/battle_controller.h"
 #include "constants/communication/comm_error.h"
+#include "constants/game_records.h"
 #include "constants/heap.h"
-#include "generated/game_records.h"
 #include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"

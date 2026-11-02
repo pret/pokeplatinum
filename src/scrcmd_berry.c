@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/game_records.h"
 #include "constants/scrcmd.h"
 #include "constants/trainer_score_events.h"
-#include "generated/game_records.h"
 
 #include "struct_decls/map_object.h"
 

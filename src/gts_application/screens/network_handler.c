@@ -4,10 +4,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/game_records.h"
 #include "constants/net.h"
 #include "constants/savedata/savedata.h"
 #include "constants/trainer_score_events.h"
-#include "generated/game_records.h"
 #include "generated/species.h"
 
 #include "struct_decls/tv_broadcast.h"

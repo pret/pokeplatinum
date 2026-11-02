@@ -1,5 +1,4 @@
 #include "generated/days_of_week.h"
-#include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/items.h"
 #include "generated/journal_location_events.h"
@@ -37,6 +36,7 @@
 #include "constants/fade_screen.h"
 #include "constants/fade_types.h"
 #include "constants/forms.h"
+#include "constants/game_records.h"
 #include "constants/honey_tree.h"
 #include "constants/init_script_types.h"
 #include "constants/items.h"
