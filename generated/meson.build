@@ -13,7 +13,6 @@ metang_exe = find_program('metang', native: true)
 metang_generators = {
     'abilities': { 'type': 'enum', 'tag': 'Ability' },
     'ai_flags': { 'type': 'mask', 'tag': 'AIFlag', 'extra': ['--no-auto'] },
-    'ai_load_type_targets': { 'type': 'enum', 'tag': 'AILoadTypeTarget' },
     'ai_weather_types': { 'type': 'enum', 'tag': 'AIWeatherType' },
     'battle_actions': { 'type': 'enum', 'tag': 'BattleAction' },
     'battle_backgrounds': { 'type': 'enum', 'tag': 'BattleBackground' },

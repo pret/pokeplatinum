@@ -2,7 +2,6 @@
 #define POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 
 #include "generated/ai_flags.h"
-#include "generated/ai_load_type_targets.h"
 #include "generated/ai_weather_types.h"
 
 enum AIActionChoice {
@@ -13,6 +12,18 @@ enum AIActionChoice {
     AI_ENEMY_ESCAPE,
     AI_ENEMY_SAFARI,
     AI_ENEMY_SWITCH,
+};
+
+enum AILoadTypeTarget {
+    LOAD_DEFENDER_TYPE_1 = 0,
+    LOAD_ATTACKER_TYPE_1,
+    LOAD_DEFENDER_TYPE_2,
+    LOAD_ATTACKER_TYPE_2,
+    LOAD_MOVE_TYPE,
+    LOAD_DEFENDER_PARTNER_TYPE_1,
+    LOAD_ATTACKER_PARTNER_TYPE_1,
+    LOAD_DEFENDER_PARTNER_TYPE_2,
+    LOAD_ATTACKER_PARTNER_TYPE_2,
 };
 
 #define AI_INIT_SCORE_MOVE_1 (1 << 0)
