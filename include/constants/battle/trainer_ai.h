@@ -1,10 +1,19 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 
-#include "generated/ai_action_choices.h"
 #include "generated/ai_flags.h"
 #include "generated/ai_load_type_targets.h"
 #include "generated/ai_weather_types.h"
+
+enum AIActionChoice {
+    AI_ENEMY_ATTACK_1 = 0,
+    AI_ENEMY_ATTACK_2,
+    AI_ENEMY_ATTACK_3,
+    AI_ENEMY_ATTACK_4,
+    AI_ENEMY_ESCAPE,
+    AI_ENEMY_SAFARI,
+    AI_ENEMY_SWITCH,
+};
 
 #define AI_INIT_SCORE_MOVE_1 (1 << 0)
 #define AI_INIT_SCORE_MOVE_2 (1 << 1)
