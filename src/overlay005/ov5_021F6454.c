@@ -7,10 +7,10 @@
 #include "constants/menu.h"
 #include "constants/regi_ruins.h"
 #include "constants/scrcmd.h"
+#include "constants/villa_furniture_type.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/species.h"
-#include "generated/villa_furniture_type.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"

@@ -98,7 +98,6 @@ metang_generators = {
     'traps': { 'type': 'enum', 'tag': 'Trap' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
     'vars_flags': {'type': 'enum', 'tag': 'VarFlag'},
-    'villa_furniture_type': {'type': 'enum', 'tag': 'VillaFurnitureType'},
     'mart_specialties_id': {'type': 'enum', 'tag': 'MartSpecialtiesID'},
     'mart_decor_id': {'type': 'enum', 'tag': 'MartDecorID'},
     'mart_seal_id': {'type': 'enum', 'tag': 'MartSealID'},
