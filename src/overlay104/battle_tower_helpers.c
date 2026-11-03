@@ -226,7 +226,7 @@ const FrontierTrainer sDummyFrontierTrainers[] = {
     },
 };
 
-typedef struct {
+typedef struct BattleTowerDummyTrainer {
     u16 objectID;
     u8 mons[4];
 } BattleTowerDummyTrainer;
@@ -241,13 +241,8 @@ static const BattleTowerDummyTrainer sDummyTrainerParties[] = {
     { OBJ_EVENT_GFX_EXPERT_M, { 13, 14, 15, 16 } },
 };
 
-void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto);
-void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierOpponent *dto, const u8 opponentID);
-void BattleTower_SetIsRetiringFlag(BattleTower *battleTower, u16 param1);
-u16 BattleTower_CheckIsRetiring(BattleTower *battleTower, const u16 *param1);
-int BattleTower_GetPokemonDataNarcID(u8 challengeMode);
-int BattleFrontier_GetTrainerDataNarcID(u8 challengeMode);
-int BattleTower_GetTrainerMessagesBankID(u8 challengeMode);
+static int BattleTower_GetPokemonDataNarcID(u8 challengeMode);
+static int BattleFrontier_GetTrainerDataNarcID(u8 challengeMode);
 static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, FrontierTrainerBase *trData, u16 battleTowerTrainerID, FrontierPokemon *mon, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *trainer, enum HeapID heapID);
 static void BattleTower_CreateDummyWiFiTrainer(FrontierOpponent *opponent, const u8 opponentID);
 static u32 BattleTower_InitFrontierPokemon(BattleTower *battleTower, FrontierPokemon *mon, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, enum HeapID heapID);
@@ -601,7 +596,7 @@ u16 BattleTower_CheckIsRetiring(BattleTower *battleTower, const u16 *payload)
     return FALSE;
 }
 
-int BattleTower_GetPokemonDataNarcID(u8 challengeMode)
+static int BattleTower_GetPokemonDataNarcID(u8 challengeMode)
 {
     if (BattleTower_AreAllConnectedGamesPlatinum(challengeMode) == FALSE) {
         return NARC_INDEX_BATTLE__B_TOWER__BTDPM;
@@ -610,7 +605,7 @@ int BattleTower_GetPokemonDataNarcID(u8 challengeMode)
     return NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM;
 }
 
-int BattleFrontier_GetTrainerDataNarcID(u8 challengeMode)
+static int BattleFrontier_GetTrainerDataNarcID(u8 challengeMode)
 {
     if (BattleTower_AreAllConnectedGamesPlatinum(challengeMode) == FALSE) {
         return NARC_INDEX_BATTLE__B_TOWER__BTDTR;

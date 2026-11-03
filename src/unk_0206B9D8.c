@@ -36,7 +36,7 @@
 
 #include "constdata/const_020F410C.h"
 
-typedef struct {
+typedef struct BattleTowerSelectPokemonTask {
     int success;
     int subTask;
     u8 partyMenuMode;
