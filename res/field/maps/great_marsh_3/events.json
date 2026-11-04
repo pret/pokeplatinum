@@ -65,6 +65,7 @@
         },
         {
             "id": "LOCALID_RUIN_MANIAC_GREAT_MARSH_1",
+            "clone_id": 3,
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
