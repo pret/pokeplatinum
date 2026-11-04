@@ -43,7 +43,7 @@
 #include "applications/capsule_menu/main.h"
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
-#include "applications/pc_boxes/pokemon_storage_session.h"
+#include "applications/pc_boxes/defs.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/scratch_off_cards/main.h"
 #include "applications/town_map/main.h"

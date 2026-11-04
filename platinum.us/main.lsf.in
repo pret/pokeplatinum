@@ -741,21 +741,21 @@ Overlay wfc_settings
 Overlay pc_boxes
 {
 	After main
-	Object src/applications/pc_boxes/box_app_manager.c
-	Object src/applications/pc_boxes/touch_dial.c
-	Object src/applications/pc_boxes/ov19_021D61B0.c
-	Object src/applications/pc_boxes/ov19_021D79F8.c
-	Object src/applications/pc_boxes/ov19_021D8B54.c
-	Object src/applications/pc_boxes/ov19_021DA270.c
-	Object src/applications/pc_boxes/ov19_021DA814.c
-	Object src/applications/pc_boxes/ov19_021DA92C.c
-	Object src/applications/pc_boxes/ov19_021DB2FC.c
-	Object src/applications/pc_boxes/ov19_021DB8E4.c
-	Object src/applications/pc_boxes/ov19_021DC5F0.c
-	Object src/applications/pc_boxes/ov19_021DCF88.c
-	Object src/applications/pc_boxes/ov19_021DE3E8.c
-	Object src/applications/pc_boxes/ov19_021DEC04.c
-	Object src/applications/pc_boxes/box_menu.c
+	Object src/applications/pc_boxes/application_manager.c
+	Object src/applications/pc_boxes/dial.c
+	Object src/applications/pc_boxes/graphics.c
+	Object src/applications/pc_boxes/view.c
+	Object src/applications/pc_boxes/cursor_graphics.c
+	Object src/applications/pc_boxes/icon_helper.c
+	Object src/applications/pc_boxes/buttons_graphics.c
+	Object src/applications/pc_boxes/preview_display.c
+	Object src/applications/pc_boxes/menu_graphics.c
+	Object src/applications/pc_boxes/popup_graphics.c
+	Object src/applications/pc_boxes/party_graphics.c
+	Object src/applications/pc_boxes/dial_graphics.c
+	Object src/applications/pc_boxes/item_icon_graphics.c
+	Object src/applications/pc_boxes/compare_graphics.c
+	Object src/applications/pc_boxes/menu.c
 }
 
 Overlay easy_chat
