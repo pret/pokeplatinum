@@ -6,6 +6,7 @@ import re
 import subprocess
 import sys
 from collections.abc import Callable
+from pathlib import Path
 
 
 def parse_deps(deps: bytes) -> set[str]:
@@ -71,6 +72,7 @@ class Arguments(argparse.Namespace):
     manifest: str = ""
     depfile: str = ""
     domain: str = ""
+    stamp: str = ""
 
 
 def main():
@@ -78,15 +80,20 @@ def main():
     _ = argp.add_argument("--manifest", required=True, help="Path to the Ninja manifest.")
     _ = argp.add_argument("--depfile",  required=True, help="Path to the output depfile.")
     _ = argp.add_argument("--domain",   required=True, help="Domain of the sub-Ninja.")
+    _ = argp.add_argument("--stamp",    required=True, help="Path to a file touched on every run.")
 
     args = Arguments()
     _ = argp.parse_args(namespace=args)
 
-    env = {**os.environ, "NINJA_STATUS": f"[{args.domain} %p %f/%t] "}
+    env = {**os.environ, "NINJA_STATUS": f"[{args.domain}] "}
     if not ninja(args.manifest, env, tool="cleandead") \
         or not ninja(args.manifest, env) \
         or not ninja(args.manifest, env, tool="deps", deps_writer=write_deps(args.depfile)):
         sys.exit(1)
+
+    # Always bump the stamp. Consumers must re-run even when re-stat prunes
+    # every other output so that the status line is appropriately updated.
+    Path(args.stamp).touch()
 
 
 if __name__ == '__main__':
