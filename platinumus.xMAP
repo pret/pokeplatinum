@@ -7214,13 +7214,13 @@
         7](Ribbons_Init,func) found in global src_ribbon_save_data.c.o
         7](Ribbons_SaveSize,func) found in global src_ribbon_save_data.c.o
         7](BattleFrontier_Init,func) found in global src_battle_frontier_save.c.o
-         8](WifiBattleTowerRecord_Init,func) found in global src_wifi_battle_tower_save.c.o
-         8](FrontierEasyChatMessages_Init,func) found in global src_wifi_battle_tower_save.c.o
+         8](WifiBattleTowerRecord_Init,func) found in global src_battle_tower_save.c.o
+         8](FrontierEasyChatMessages_Init,func) found in global src_battle_tower_save.c.o
           9](EasyChatSentence_SetDefaultFrontierFields,func) found in global src_easy_chat_sentence.c.o
            10](EasyChatSentence_InitWithType,func) found in global src_easy_chat_sentence.c.o
            10](EasyChatWord_FromBankAndEntry,func) found in global src_easy_chat_words.c.o
            10](defaultFrontierSentenceData$14477,object) found in local src_easy_chat_sentence.c.o
-         8](WifiBattleTowerDownloadData_Init,func) found in global src_wifi_battle_tower_save.c.o
+         8](WifiBattleTowerDownloadData_Init,func) found in global src_battle_tower_save.c.o
          8](BattleFactoryStreakFlags_Init,func) found in global src_battle_factory_save.c.o
          8](BattleHallStreakFlags_Init,func) found in global src_battle_hall_save.c.o
          8](BattleCastlePersistentSave_Init,func) found in global src_battle_castle_save.c.o
@@ -9648,8 +9648,8 @@
                                        38](ScrCmd_GetNumSpeciesWithBattleHallRecords,func) found in global src_scrcmd_battle_hall.c.o
                                        38](ScrCmd_GetBattleHallRecordKeeperStats,func) found in global src_scrcmd_battle_hall.c.o
                                         39](GetNumberDigitCount,func) found in global src_unk_0205DFC4.c.o
-                                        39](SaveData_GetWifiBattleTowerRecord,func) found in global src_wifi_battle_tower_save.c.o
-                                        39](WifiBattleTowerRecord_UpdateBattlePoints,func) found in global src_wifi_battle_tower_save.c.o
+                                        39](SaveData_GetWifiBattleTowerRecord,func) found in global src_battle_tower_save.c.o
+                                        39](WifiBattleTowerRecord_UpdateBattlePoints,func) found in global src_battle_tower_save.c.o
                                         39](sBattleHallRecordMilestones,object) found in local src_scrcmd_battle_hall.c.o
                                        38](ScrCmd_CheckNoWiFiPlazaCooldown,func) found in local src_scrcmd.c.o
                                         39](GetTimestamp,func) found in global src_rtc.c.o
@@ -14623,11 +14623,11 @@
                                                46](ov59_021D30DC,func) found in local src_overlay059_ov59_021D2F88.c.o
                                                46](ov59_021D30B4,func) found in local src_overlay059_ov59_021D2F88.c.o
                                                 47](sub_02073700,func) found in global src_unk_02073700.c.o
-                                                 48](FrontierEasyChatMessages_GetSentence,func) found in global src_wifi_battle_tower_save.c.o
-                                                 48](WifiBattleTowerRecord_UpdateBitFlag,func) found in global src_wifi_battle_tower_save.c.o
-                                                 48](WifiBattleTowerRecord_GetTeam,func) found in global src_wifi_battle_tower_save.c.o
-                                                 48](WifiBattleTowerRecord_GetRatingScore,func) found in global src_wifi_battle_tower_save.c.o
-                                               46](WifiPlayerProfile_Size,func) found in global src_wifi_battle_tower_save.c.o
+                                                 48](FrontierEasyChatMessages_GetSentence,func) found in global src_battle_tower_save.c.o
+                                                 48](WifiBattleTowerRecord_UpdateBitFlag,func) found in global src_battle_tower_save.c.o
+                                                 48](WifiBattleTowerRecord_GetTeam,func) found in global src_battle_tower_save.c.o
+                                                 48](WifiBattleTowerRecord_GetRatingScore,func) found in global src_battle_tower_save.c.o
+                                               46](WifiPlayerProfile_Size,func) found in global src_battle_tower_save.c.o
                                                46](ov59_021D3090,func) found in local src_overlay059_ov59_021D2F88.c.o
                                                 47](SaveData_GetRankings,func) found in global src_rankings.c.o
                                                 47](SaveData_UpdateRankings,func) found in global src_rankings.c.o
@@ -15122,11 +15122,11 @@
                                             43](InitWindows,func) found in local src_applications_frontier_tower_records.c.o
                                             43](PrintRecordsScreen,func) found in local src_applications_frontier_tower_records.c.o
                                              44](PrintLabeledWinStreak,func) found in local src_applications_frontier_tower_records.c.o
-                                             44](WifiBattleTowerRecord_UpdateRank,func) found in global src_wifi_battle_tower_save.c.o
+                                             44](WifiBattleTowerRecord_UpdateRank,func) found in global src_battle_tower_save.c.o
                                             43](LoadWifiTrainersInfo,func) found in local src_applications_frontier_tower_records.c.o
-                                             44](WifiBattleTowerDownloadData_AllocMatchList,func) found in global src_wifi_battle_tower_save.c.o
+                                             44](WifiBattleTowerDownloadData_AllocMatchList,func) found in global src_battle_tower_save.c.o
                                             43](PrintRankingScreen,func) found in local src_applications_frontier_tower_records.c.o
-                                             44](WifiBattleTowerDownloadData_GetMatchIndices,func) found in global src_wifi_battle_tower_save.c.o
+                                             44](WifiBattleTowerDownloadData_GetMatchIndices,func) found in global src_battle_tower_save.c.o
                                              44](PrintWifiTrainersList,func) found in local src_applications_frontier_tower_records.c.o
                                             43](InitSpriteSystem,func) found in local src_applications_frontier_tower_records.c.o
                                             43](LoadSprites,func) found in local src_applications_frontier_tower_records.c.o
@@ -15148,7 +15148,7 @@
                                             43](FreeBackgrounds,func) found in local src_applications_frontier_tower_records.c.o
                                            42](DrawSprites,func) found in local src_applications_frontier_tower_records.c.o
                                           41](BattleTowerRecordsApp_Init,func) found in global src_applications_frontier_tower_records.c.o
-                                           42](SaveData_GetWifiBattleTowerDownloadData,func) found in global src_wifi_battle_tower_save.c.o
+                                           42](SaveData_GetWifiBattleTowerDownloadData,func) found in global src_battle_tower_save.c.o
                                           41](OptionsMenu_Exit,func) found in global src_applications_options_menu.c.o
                                            42](Options_SetTextSpeed,func) found in global src_game_options.c.o
                                            42](Options_SetBattleScene,func) found in global src_game_options.c.o
@@ -17656,8 +17656,8 @@
                                                                       69](FieldSystem_ClearFlag,func) found in global src_script_manager.c.o
                                                                       69](sIronIslandHiddenItemFlags,object) found in local src_script_manager.c.o
                                                                      68](sub_0206C008,func) found in global src_unk_0206B9D8.c.o
-                                                                      69](sub_0206BFFC,func) found in global src_unk_0206B9D8.c.o
-                                                                      69](WifiBattleTowerRecord_SetRngState,func) found in global src_wifi_battle_tower_save.c.o
+                                                                      69](BattleTower_RngNext2,func) found in global src_unk_0206B9D8.c.o
+                                                                      69](WifiBattleTowerRecord_SetRngState,func) found in global src_battle_tower_save.c.o
                                                                      68](WiFiHistory_UpdateGeonetCommunicationMap,func) found in global src_wifi_history_save_data.c.o
                                                                      68](sub_0206F2F0,func) found in global src_tv_segment.c.o
                                                                       69](sub_0206DFE0,func) found in global src_tv_segment.c.o
@@ -21863,7 +21863,7 @@
                                               45](WifiBattleTower_State_WaitMatchList,func) found in local src_wifi_battle_tower_screen.c.o
                                                46](BattleTowerHttp_IsDone,func) found in global src_wifi_battle_tower_http.c.o
                                                46](BattleTowerHttp_GetResult,func) found in global src_wifi_battle_tower_http.c.o
-                                               46](WifiBattleTowerDownloadData_StoreMatchList,func) found in global src_wifi_battle_tower_save.c.o
+                                               46](WifiBattleTowerDownloadData_StoreMatchList,func) found in global src_battle_tower_save.c.o
                                               45](WifiBattleTower_State_RequestMatchList,func) found in local src_wifi_battle_tower_screen.c.o
                                                46](BattleTowerHttp_RequestDownload,func) found in global src_wifi_battle_tower_http.c.o
                                                 47](BattleTowerNetworking_PrepareRequest,func) found in local src_wifi_battle_tower_http.c.o
@@ -21884,8 +21884,8 @@
                                               45](WifiBattleTower_State_UploadCompletePrompt,func) found in local src_wifi_battle_tower_screen.c.o
                                               45](WifiBattleTower_State_WaitUpload,func) found in local src_wifi_battle_tower_screen.c.o
                                               45](WifiBattleTower_State_RequestUpload,func) found in local src_wifi_battle_tower_screen.c.o
-                                               46](WifiBattleTowerRecord_GetRatingTier,func) found in global src_wifi_battle_tower_save.c.o
-                                               46](WifiBattleTowerDownloadData_GetIndices,func) found in global src_wifi_battle_tower_save.c.o
+                                               46](WifiBattleTowerRecord_GetRatingTier,func) found in global src_battle_tower_save.c.o
+                                               46](WifiBattleTowerDownloadData_GetIndices,func) found in global src_battle_tower_save.c.o
                                                46](BattleTowerHttp_RequestUpload,func) found in global src_wifi_battle_tower_http.c.o
                                                 47](@18263,object) found in local src_wifi_battle_tower_http.c.o
                                               45](WifiBattleTower_State_UploadPrompt,func) found in local src_wifi_battle_tower_screen.c.o
@@ -21896,14 +21896,14 @@
                                               45](WifiBattleTower_State_AlreadyChallengedPrompt,func) found in local src_wifi_battle_tower_screen.c.o
                                               45](WifiBattleTower_State_DownloadCompletePrompt,func) found in local src_wifi_battle_tower_screen.c.o
                                               45](WifiBattleTower_State_WaitDownload,func) found in local src_wifi_battle_tower_screen.c.o
-                                               46](WifiBattleTowerDownloadData_StoreOpponentTeams,func) found in global src_wifi_battle_tower_save.c.o
-                                               46](WifiBattleTowerDownloadData_MarkOpponent,func) found in global src_wifi_battle_tower_save.c.o
+                                               46](WifiBattleTowerDownloadData_StoreOpponentTeams,func) found in global src_battle_tower_save.c.o
+                                               46](WifiBattleTowerDownloadData_MarkOpponent,func) found in global src_battle_tower_save.c.o
                                               45](WifiBattleTower_State_RequestDownload,func) found in local src_wifi_battle_tower_screen.c.o
                                               45](WifiBattleTower_State_DownloadPrompt,func) found in local src_wifi_battle_tower_screen.c.o
                                               45](WifiBattleTower_State_SelectOpponent,func) found in local src_wifi_battle_tower_screen.c.o
-                                               46](WifiBattleTowerDownloadData_IsOpponentMarked,func) found in global src_wifi_battle_tower_save.c.o
-                                                47](Date_IsAfter,func) found in local src_wifi_battle_tower_save.c.o
-                                                47](WifiBattleTowerDownloadData_Reset,func) found in global src_wifi_battle_tower_save.c.o
+                                               46](WifiBattleTowerDownloadData_IsOpponentMarked,func) found in global src_battle_tower_save.c.o
+                                                47](Date_IsAfter,func) found in local src_battle_tower_save.c.o
+                                                47](WifiBattleTowerDownloadData_Reset,func) found in global src_battle_tower_save.c.o
                                               45](WifiBattleTower_State_DrawOpponentSelect,func) found in local src_wifi_battle_tower_screen.c.o
                                               45](WifiBattleTower_State_SelectOpponentPrompt,func) found in local src_wifi_battle_tower_screen.c.o
                                               45](WifiBattleTower_State_WaitRoomCount,func) found in local src_wifi_battle_tower_screen.c.o
@@ -28917,10 +28917,10 @@
                                          40](CheckPartnerUsesDifferentSpeciesTask,func) found in local src_scrcmd_battle_arcade.c.o
                                        38](ScrCmd_CallBattleArcadeLobbyFunction,func) found in global src_scrcmd_battle_arcade.c.o
                                         39](BattleArcadeSave_Get,func) found in global src_battle_arcade_save.c.o
-                                        39](sub_02049EC4,func) found in global src_unk_02049D08.c.o
-                                         40](sub_02049D38,func) found in local src_unk_02049D08.c.o
-                                         40](sub_02049DB4,func) found in local src_unk_02049D08.c.o
-                                          41](sub_02049D64,func) found in local src_unk_02049D08.c.o
+                                        39](BattleTower_CheckIfPartyIsEligible,func) found in global src_battle_tower.c.o
+                                         40](CheckIfItemIsAlreadyUsed,func) found in local src_battle_tower.c.o
+                                         40](CheckForValidPartySubset,func) found in local src_battle_tower.c.o
+                                          41](CheckThatMonsAreAllUnique,func) found in local src_battle_tower.c.o
                                         39](SelectBattleArcadeChallengers,func) found in local src_scrcmd_battle_arcade.c.o
                                          40](BattleArcadeSelectChallengersTask,func) found in local src_scrcmd_battle_arcade.c.o
                                           41](SubTask_SetupPartyMenu,func) found in local src_scrcmd_battle_arcade.c.o
@@ -29913,34 +29913,34 @@
                                              44](BattleFrontier_SetFacilityStruct,func) found in global src_battle_frontier.c.o
                                             43](FrontierScrCmd_SetWiFiListHostFriendCurrentDate,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_FreeBattleTower,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
-                                             44](BattleTower_Free,func) found in global src_unk_02049D08.c.o
+                                             44](BattleTower_Free,func) found in global src_battle_tower.c.o
                                             43](FrontierScrCmd_WaitForTowerTrainerIDListResponses,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
                                              44](WaitForTowerCommResponse,func) found in local src_overlay104_frscrcmd_wfc_facility_selector.c.o
                                             43](FrontierScrCmd_SendTowerTrainerIDList,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
                                              44](BattleTower_SendTrainerIDListCmd,func) found in global src_unk_0209BA80.c.o
                                             43](FrontierScrCmd_InitBattleTower,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
                                              44](WFCFacilitySelector_Free,func) found in global src_overlay104_wfc_facility_selector.c.o
-                                             44](BattleTower_Init,func) found in global src_unk_02049D08.c.o
-                                              45](SaveData_GetWifiBattleTowerSave,func) found in global src_wifi_battle_tower_save.c.o
-                                              45](WifiBattleTowerSave_SetIsInProgress,func) found in global src_wifi_battle_tower_save.c.o
-                                              45](BattleTower_GetPartySizeForChallengeMode,func) found in global src_unk_02049D08.c.o
-                                              45](WifiBattleTowerSave_Init,func) found in global src_wifi_battle_tower_save.c.o
-                                              45](WifiBattleTowerSave_SetField,func) found in global src_wifi_battle_tower_save.c.o
-                                              45](WifiBattleTowerSave_GetField,func) found in global src_wifi_battle_tower_save.c.o
-                                              45](BattleTower_RestorePartnerParty,func) found in global src_battle_tower.c.o
-                                               46](BattleTower_GetTrainer,func) found in local src_battle_tower.c.o
-                                                47](BattleTower_GetTrainerBase,func) found in local src_battle_tower.c.o
-                                               46](BattleTower_GetIVsFromTrainerID,func) found in global src_unk_02049D08.c.o
-                                               46](BattleTower_CopySetToPokemonDataDTO,func) found in local src_battle_tower.c.o
-                                                47](BattleTower_GetPokemonBase,func) found in local src_battle_tower.c.o
-                                                47](BattleTower_GetRandom,func) found in global src_unk_02049D08.c.o
-                                                 48](sub_0206BFF0,func) found in global src_unk_0206B9D8.c.o
-                                                47](sBattleTowerReservedItems,object) found in local src_battle_tower.c.o
-                                              45](WifiBattleTowerRecord_UpdateRoomNum,func) found in global src_wifi_battle_tower_save.c.o
-                                              45](WifiBattleTowerRecord_SetRoomNum,func) found in global src_wifi_battle_tower_save.c.o
-                                             44](sub_0204A4C8,func) found in global src_unk_02049D08.c.o
-                                              45](BattleTower_GetTrainerIDForRoomAndOpponentNum,func) found in global src_battle_tower.c.o
-                                              45](BattleTower_IsTrainerAlreadyUsed,func) found in local src_unk_02049D08.c.o
+                                             44](BattleTower_Init,func) found in global src_battle_tower.c.o
+                                              45](SaveData_GetBattleTowerSave,func) found in global src_battle_tower_save.c.o
+                                              45](BattleTowerSave_RecordSave,func) found in global src_battle_tower_save.c.o
+                                              45](BattleTower_GetPartySizeForChallengeMode,func) found in global src_battle_tower.c.o
+                                              45](BattleTowerSave_Init,func) found in global src_battle_tower_save.c.o
+                                              45](BattleTowerSave_SetField,func) found in global src_battle_tower_save.c.o
+                                              45](BattleTowerSave_GetField,func) found in global src_battle_tower_save.c.o
+                                              45](BattleTower_RestoreStatTrainer,func) found in global src_battle_tower_trainers.c.o
+                                               46](BattleTower_GetTrainer,func) found in local src_battle_tower_trainers.c.o
+                                                47](BattleTower_GetTrainerBase,func) found in local src_battle_tower_trainers.c.o
+                                               46](BattleTower_GetIVsFromTrainerID,func) found in global src_battle_tower.c.o
+                                               46](InitFrontierPokemon,func) found in local src_battle_tower_trainers.c.o
+                                                47](BattleTower_GetPokemonBase,func) found in local src_battle_tower_trainers.c.o
+                                                47](BattleTower_GetRandom,func) found in global src_battle_tower.c.o
+                                                 48](BattleTower_RngNext,func) found in global src_unk_0206B9D8.c.o
+                                                47](sBattleTowerReservedItems,object) found in local src_battle_tower_trainers.c.o
+                                              45](WifiBattleTowerRecord_UpdateRoomNum,func) found in global src_battle_tower_save.c.o
+                                              45](WifiBattleTowerRecord_SetRoomNum,func) found in global src_battle_tower_save.c.o
+                                             44](BattleTower_PickOpponentTrainers,func) found in global src_battle_tower.c.o
+                                              45](BattleTower_GetOpponentTrainerID,func) found in global src_battle_tower_trainers.c.o
+                                              45](BattleTower_IsTrainerAlreadyUsed,func) found in local src_battle_tower.c.o
                                             43](FrontierScrCmd_CallWFCFacilitySelectorFunction,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
                                              44](BattleFrontier_GetWFCLatestStreakIndex,func) found in global src_overlay104_wfc_facility_selector_helpers.c.o
                                              44](BattleFrontier_GetWFCStreakActiveIndex,func) found in global src_overlay104_wfc_facility_selector_helpers.c.o
@@ -30431,64 +30431,64 @@
                                               45](BattleHallSave_Init,func) found in global src_battle_hall_save.c.o
                                               45](BattleHallSave_GetMember,func) found in global src_battle_hall_save.c.o
                                               45](.bss,section) found in local src_overlay104_battle_hall.c.o
-                                            43](FrontierScrCmd_8A,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
-                                             44](ov104_0223942C,func) found in local src_overlay104_frscrcmd_battle_tower.c.o
-                                              45](ov104_02239464,func) found in local src_overlay104_frscrcmd_battle_tower.c.o
-                                               46](ov104_0223A750,func) found in global src_overlay104_ov104_0223A0C4.c.o
-                                            43](FrontierScrCmd_89,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
-                                             44](ov104_0223A734,func) found in global src_overlay104_ov104_0223A0C4.c.o
+                                            43](FrontierScrCmd_BattleTower_WaitForRetireMessage,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
+                                             44](WaitForCommResponse,func) found in local src_overlay104_frscrcmd_battle_tower.c.o
+                                              45](CheckPartnerIsRetiring,func) found in local src_overlay104_frscrcmd_battle_tower.c.o
+                                               46](BattleTower_CheckIsRetiring,func) found in global src_overlay104_battle_tower_helpers.c.o
+                                            43](FrontierScrCmd_BattleTower_SendRetireMessage,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
+                                             44](BattleTower_SetIsRetiringFlag,func) found in global src_overlay104_battle_tower_helpers.c.o
                                             43](FrontierScrCmd_BattleTower_CheckWonBattle,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
                                             43](FrontierScrCmd_BattleTower_StartBattle,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
-                                             44](FieldBattleDTO_NewBattleTower,func) found in global src_overlay104_ov104_0223A0C4.c.o
-                                              45](BattleTower_GetBattleTypeFromChallengeMode,func) found in local src_overlay104_ov104_0223A0C4.c.o
-                                              45](FieldBattleDTO_InitBattleTowerTrainer,func) found in local src_overlay104_ov104_0223A0C4.c.o
+                                             44](BattleTower_SetupBattle,func) found in global src_overlay104_battle_tower_helpers.c.o
+                                              45](BattleTower_GetBattleTypeFromChallengeMode,func) found in local src_overlay104_battle_tower_helpers.c.o
+                                              45](FieldBattleDTO_InitBattleTowerTrainer,func) found in local src_overlay104_battle_tower_helpers.c.o
                                             43](FrontierScrCmd_FreeTowerStruct,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
-                                            43](FrontierScrCmd_85,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
-                                             44](BattleTower_GetTrainerMessagesBankID,func) found in global src_overlay104_ov104_0223A0C4.c.o
-                                              45](BattleTower_AreAllConnectedGamesPlatinum,func) found in local src_overlay104_ov104_0223A0C4.c.o
+                                            43](FrontierScrCmd_BattleTower_PrintTrainerIntro,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
+                                             44](BattleTower_GetTrainerMessagesBankID,func) found in global src_overlay104_battle_tower_helpers.c.o
+                                              45](BattleTower_AreAllConnectedGamesPlatinum,func) found in local src_overlay104_battle_tower_helpers.c.o
                                             43](FrontierScrCmd_CallBattleTowerFunction,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
-                                             44](BattleTower_ResetSystem,func) found in global src_unk_02049D08.c.o
-                                             44](BattleTower_GiveBattlePointsReward,func) found in global src_unk_02049D08.c.o
-                                              45](wifiBattlePoints$21589,object) found in local src_unk_02049D08.c.o
-                                              45](linkMultiBattlePoints$21591,object) found in local src_unk_02049D08.c.o
-                                              45](soloBattlePoints$21590,object) found in local src_unk_02049D08.c.o
+                                             44](BattleTower_ResetSystem,func) found in global src_battle_tower.c.o
+                                             44](BattleTower_GiveBattlePointsReward,func) found in global src_battle_tower.c.o
+                                              45](wifiBattlePoints$21039,object) found in local src_battle_tower.c.o
+                                              45](linkMultiBattlePoints$21041,object) found in local src_battle_tower.c.o
+                                              45](soloBattlePoints$21040,object) found in local src_battle_tower.c.o
                                              44](sub_0206D0C8,func) found in global src_tv_segment.c.o
                                              44](BattleTower_GetPartnerParam,func) found in local src_overlay104_frscrcmd_battle_tower.c.o
                                               45](partnerGraphics$16704,object) found in local src_overlay104_frscrcmd_battle_tower.c.o
-                                             44](BattleTower_GetNextOpponentNum,func) found in global src_unk_02049D08.c.o
-                                             44](ov104_022395B4,func) found in global src_overlay104_ov104_022394A4.c.o
-                                             44](BattleTower_HasDefeatedSevenTrainers,func) found in global src_unk_02049D08.c.o
-                                             44](ov104_022395D8,func) found in global src_overlay104_ov104_022394A4.c.o
-                                             44](BattleTower_GetChallengeMode,func) found in global src_unk_02049D08.c.o
-                                             44](BattleTower_CreateOpponentParties,func) found in global src_overlay104_ov104_022394A4.c.o
-                                              45](BattleTower_CreateWiFiTrainerParty,func) found in global src_overlay104_ov104_0223A0C4.c.o
-                                               46](WifiBattleTowerDownloadData_HasOpponentData,func) found in global src_wifi_battle_tower_save.c.o
-                                               46](BattleTower_CreateDummyWiFiTrainer,func) found in local src_overlay104_ov104_0223A0C4.c.o
-                                                47](Unk_ov104_0223FCB4,object) found in local src_overlay104_ov104_0223A0C4.c.o
-                                               46](WifiBattleTowerDownloadData_BuildOpponent,func) found in global src_wifi_battle_tower_save.c.o
-                                              45](BattleTower_CreateTrainerParty,func) found in global src_overlay104_ov104_0223A0C4.c.o
-                                               46](BattleFrontier_GetTrainerDataNarcID,func) found in global src_overlay104_ov104_0223A0C4.c.o
-                                               46](BattleTower_CreateRandomTrainerParty,func) found in local src_overlay104_ov104_0223A0C4.c.o
-                                                47](BattleTower_GetPokemonDataNarcID,func) found in global src_overlay104_ov104_0223A0C4.c.o
-                                                47](BattleTower_CopySetToPokemonDataDTO,func) found in local src_overlay104_ov104_0223A0C4.c.o
-                                             44](BattleTower_GetObjectIDFromOpponentIDInFrontierScript,func) found in global src_overlay104_ov104_022394A4.c.o
-                                             44](BattleTower_SetBeatPalmer,func) found in global src_overlay104_ov104_022394A4.c.o
-                                             44](BattleTower_UpdateGameRecords,func) found in global src_unk_02049D08.c.o
-                                              45](sub_0204A5A0,func) found in local src_unk_02049D08.c.o
+                                             44](BattleTower_GetNextOpponentNum,func) found in global src_battle_tower.c.o
+                                             44](BattleTower_IncrementCurrentBattle,func) found in global src_overlay104_battle_tower.c.o
+                                             44](BattleTower_HasDefeatedSevenTrainers,func) found in global src_battle_tower.c.o
+                                             44](BattleTower_GetCurrentStreak,func) found in global src_overlay104_battle_tower.c.o
+                                             44](BattleTower_GetChallengeMode,func) found in global src_battle_tower.c.o
+                                             44](BattleTower_CreateOpponentParties,func) found in global src_overlay104_battle_tower.c.o
+                                              45](BattleTower_CreateWiFiTrainerParty,func) found in global src_overlay104_battle_tower_helpers.c.o
+                                               46](WifiBattleTowerDownloadData_HasOpponentData,func) found in global src_battle_tower_save.c.o
+                                               46](BattleTower_CreateDummyWiFiTrainer,func) found in local src_overlay104_battle_tower_helpers.c.o
+                                                47](sDummyTrainerParties,object) found in local src_overlay104_battle_tower_helpers.c.o
+                                               46](WifiBattleTowerDownloadData_BuildOpponent,func) found in global src_battle_tower_save.c.o
+                                              45](BattleTower_CreateTrainerParty,func) found in global src_overlay104_battle_tower_helpers.c.o
+                                               46](BattleFrontier_GetTrainerDataNarcID,func) found in local src_overlay104_battle_tower_helpers.c.o
+                                               46](BattleTower_CreateRandomTrainerParty,func) found in local src_overlay104_battle_tower_helpers.c.o
+                                                47](BattleTower_GetPokemonDataNarcID,func) found in local src_overlay104_battle_tower_helpers.c.o
+                                                47](BattleTower_InitFrontierPokemon,func) found in local src_overlay104_battle_tower_helpers.c.o
+                                             44](BattleTower_GetObjectIDFromOpponentIDInFrontierScript,func) found in global src_overlay104_battle_tower.c.o
+                                             44](BattleTower_SetBeatPalmer,func) found in global src_overlay104_battle_tower.c.o
+                                             44](BattleTower_UpdateGameRecords,func) found in global src_battle_tower.c.o
+                                              45](sub_0204A5A0,func) found in local src_battle_tower.c.o
                                                46](sub_0206DBB0,func) found in global src_tv_segment.c.o
                                                 47](sub_0206CD58,func) found in local src_tv_segment.c.o
-                                              45](sub_0204ACC8,func) found in local src_unk_02049D08.c.o
-                                              45](sub_0204A5EC,func) found in local src_unk_02049D08.c.o
-                                               46](sub_0204AE20,func) found in local src_unk_02049D08.c.o
-                                                47](sub_0204ACFC,func) found in local src_unk_02049D08.c.o
-                                                47](WifiBattleTowerRecord_SetTeam,func) found in global src_wifi_battle_tower_save.c.o
+                                              45](CheckIfRibbonsEarned,func) found in local src_battle_tower.c.o
+                                              45](sub_0204A5EC,func) found in local src_battle_tower.c.o
+                                               46](SaveTeamToTowerRecord,func) found in local src_battle_tower.c.o
+                                                47](CopyPokemonToFrontierMon,func) found in local src_battle_tower.c.o
+                                                47](WifiBattleTowerRecord_SetTeam,func) found in global src_battle_tower_save.c.o
                                                46](sub_0206CFE4,func) found in global src_tv_segment.c.o
                                                 47](sub_0202E7FC,func) found in global src_unk_0202E2CC.c.o
-                                               46](WifiBattleTowerSave_AddCounters,func) found in global src_wifi_battle_tower_save.c.o
-                                               46](WifiBattleTowerRecord_CalcRatingScore,func) found in global src_wifi_battle_tower_save.c.o
-                                             44](BattleTower_UpdateGameRecordsAndJournal,func) found in global src_unk_02049D08.c.o
+                                               46](BattleTowerSave_AddCounters,func) found in global src_battle_tower_save.c.o
+                                               46](WifiBattleTowerRecord_CalcRatingScore,func) found in global src_battle_tower_save.c.o
+                                             44](BattleTower_UpdateGameRecordsAndJournal,func) found in global src_battle_tower.c.o
                                               45](JournalEntry_CreateEventBattleRoom,func) found in global src_journal.c.o
-                                             44](sub_0204A8C8,func) found in global src_unk_02049D08.c.o
+                                             44](BattleTower_Save,func) found in global src_battle_tower.c.o
                                             43](FrontierScrCmd_RemoteBattlePoints,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_GiveBattlePoints,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_GetNumBattlePoints,func) found in local src_overlay104_frscrcmd.c.o
@@ -31105,17 +31105,17 @@
                                          40](_FieldMenuManager_AddMenuEntry,func) found in local src_overlay005_field_menu.c.o
                                        38](ScrCmd_CalculateTrainerInfoAppearance,func) found in local src_scrcmd.c.o
                                         39](Appearance_CalculateFromTrainerInfo,func) found in global src_appearance.c.o
-                                       38](ScrCmd_GetExchangeServiceCornerItemAndCost,func) found in global src_unk_020494DC.c.o
-                                        39](prizeList$20784,object) found in local src_unk_020494DC.c.o
-                                       38](ScrCmd_CheckBattlePoints,func) found in global src_unk_020494DC.c.o
-                                       38](ScrCmd_RemoveBattlePoints,func) found in global src_unk_020494DC.c.o
-                                       38](ScrCmd_GiveBattlePoints,func) found in global src_unk_020494DC.c.o
-                                       38](ScrCmd_GetBattlePoints,func) found in global src_unk_020494DC.c.o
-                                       38](ScrCmd_UpdateBPDisplay,func) found in global src_unk_020494DC.c.o
+                                       38](ScrCmd_GetExchangeServiceCornerItemAndCost,func) found in global src_scrcmd_battle_tower.c.o
+                                        39](prizeList$20778,object) found in local src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_CheckBattlePoints,func) found in global src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_RemoveBattlePoints,func) found in global src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_GiveBattlePoints,func) found in global src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_GetBattlePoints,func) found in global src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_UpdateBPDisplay,func) found in global src_scrcmd_battle_tower.c.o
                                         39](FieldMenu_PrintBPToWindow,func) found in global src_overlay005_field_menu.c.o
-                                       38](ScrCmd_HideBattlePoints,func) found in global src_unk_020494DC.c.o
+                                       38](ScrCmd_HideBattlePoints,func) found in global src_scrcmd_battle_tower.c.o
                                         39](FieldMenu_DeleteSpecialCurrencyWindow,func) found in global src_overlay005_field_menu.c.o
-                                       38](ScrCmd_ShowBattlePoints,func) found in global src_unk_020494DC.c.o
+                                       38](ScrCmd_ShowBattlePoints,func) found in global src_scrcmd_battle_tower.c.o
                                         39](FieldMenu_DrawBPWindow,func) found in global src_overlay005_field_menu.c.o
                                        38](ScrCmd_GetUndergroundTalkCounter,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_CheckShouldShowGhost,func) found in local src_scrcmd.c.o
@@ -32062,7 +32062,7 @@
                                        38](ScrCmd_GetCurrentMapID,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_GetPreviousMapID,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_MessageSeenBanlistSpecies,func) found in local src_scrcmd.c.o
-                                        39](BattleFrontier_MakeSeenBanlistSpeciesMsg,func) found in global src_battle_tower.c.o
+                                        39](BattleFrontier_MakeSeenBanlistSpeciesMsg,func) found in global src_battle_tower_trainers.c.o
                                          40](Pokemon_GetBattleFrontierBanlistEntry,func) found in global src_pokemon.c.o
                                         39](ScriptMessage_ShowTemplate,func) found in global src_overlay005_script_message.c.o
                                          40](Init_ScriptMessageTemplate,func) found in local src_overlay005_script_message.c.o
@@ -32103,76 +32103,76 @@
                                         39](GameRecords_SetAndLimitRecordValue,func) found in global src_game_records.c.o
                                        38](ScrCmd_Unused_1E6,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_IncrementGameRecord,func) found in local src_scrcmd.c.o
-                                       38](ScrCmd_1E4,func) found in global src_unk_020494DC.c.o
-                                        39](WifiBattleTowerDownloadData_HasMatchListData,func) found in global src_wifi_battle_tower_save.c.o
-                                       38](ScrCmd_1E3,func) found in global src_unk_020494DC.c.o
-                                       38](ScrCmd_1E2,func) found in global src_unk_020494DC.c.o
+                                       38](ScrCmd_BattleTower_CheckHasMatchListData,func) found in global src_scrcmd_battle_tower.c.o
+                                        39](WifiBattleTowerDownloadData_HasMatchListData,func) found in global src_battle_tower_save.c.o
+                                       38](ScrCmd_GetBattleTowerMatchIndices,func) found in global src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_1E2,func) found in global src_scrcmd_battle_tower.c.o
                                         39](sub_0206BD88,func) found in global src_unk_0206B9D8.c.o
                                          40](sub_0206BD1C,func) found in local src_unk_0206B9D8.c.o
-                                          41](BattleTower_ReceivePlayerData,func) found in global src_battle_tower.c.o
-                                          41](BattleTower_ReceiveTrainers,func) found in global src_battle_tower.c.o
-                                          41](BattleTower_ReceiveShouldRetire,func) found in global src_battle_tower.c.o
-                                        39](sub_02049A20,func) found in local src_unk_020494DC.c.o
-                                       38](ScrCmd_1E1,func) found in global src_unk_020494DC.c.o
-                                        39](BattleTower_SendPlayerData,func) found in global src_battle_tower.c.o
-                                        39](BattleTower_SendTrainers,func) found in global src_battle_tower.c.o
-                                        39](BattleTower_SendShouldRetire,func) found in global src_battle_tower.c.o
-                                       38](ScrCmd_1E0,func) found in global src_unk_020494DC.c.o
+                                          41](BattleTower_ReceivePlayerData,func) found in global src_battle_tower_trainers.c.o
+                                          41](BattleTower_ReceiveTrainers,func) found in global src_battle_tower_trainers.c.o
+                                          41](BattleTower_ReceiveShouldRetire,func) found in global src_battle_tower_trainers.c.o
+                                        39](sub_02049A20,func) found in local src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_BattleTower_SendCommMessage,func) found in global src_scrcmd_battle_tower.c.o
+                                        39](BattleTower_SendPlayerData,func) found in global src_battle_tower_trainers.c.o
+                                        39](BattleTower_SendTrainers,func) found in global src_battle_tower_trainers.c.o
+                                        39](BattleTower_SendShouldRetire,func) found in global src_battle_tower_trainers.c.o
+                                       38](ScrCmd_1E0,func) found in global src_scrcmd_battle_tower.c.o
                                         39](sub_0206BF04,func) found in global src_unk_0206B9D8.c.o
-                                       38](ScrCmd_1DF,func) found in global src_unk_020494DC.c.o
+                                       38](ScrCmd_1DF,func) found in global src_scrcmd_battle_tower.c.o
                                         39](sub_0206BDBC,func) found in global src_unk_0206B9D8.c.o
                                          40](Underground_IsRoomForGoodsInPC,func) found in global src_underground.c.o
-                                       38](ScrCmd_GetBattleTowerPartnerSpeciesAndMove,func) found in global src_unk_020494DC.c.o
-                                       38](ScrCmd_CallBattleTowerFunction,func) found in global src_unk_020494DC.c.o
-                                        39](sub_02049F98,func) found in global src_unk_02049D08.c.o
-                                        39](sub_02049FA0,func) found in global src_unk_02049D08.c.o
-                                         40](WifiBattleTowerSave_GetIsInProgress,func) found in global src_wifi_battle_tower_save.c.o
-                                        39](BattleTower_SetCommunicationClubAccessible,func) found in global src_unk_02049D08.c.o
+                                       38](ScrCmd_GetBattleTowerPartnerSpeciesAndMove,func) found in global src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_CallBattleTowerFunction,func) found in global src_scrcmd_battle_tower.c.o
+                                        39](BattleTower_ClearSave,func) found in global src_battle_tower.c.o
+                                        39](BattleTower_CheckRunInProgress,func) found in global src_battle_tower.c.o
+                                         40](BattleTowerSave_HasSaved,func) found in global src_battle_tower_save.c.o
+                                        39](BattleTower_SetCommunicationClubAccessible,func) found in global src_battle_tower.c.o
                                          40](SystemFlag_SetCommunicationClubAccessible,func) found in global src_system_flags.c.o
-                                        39](BattleTower_ClearCommunicationClubAccessible,func) found in global src_unk_02049D08.c.o
+                                        39](BattleTower_ClearCommunicationClubAccessible,func) found in global src_battle_tower.c.o
                                          40](SystemFlag_ClearCommunicationClubAccessible,func) found in global src_system_flags.c.o
-                                        39](sub_02049FF8,func) found in global src_unk_02049D08.c.o
-                                        39](sub_0204AABC,func) found in global src_unk_02049D08.c.o
-                                         40](WifiBattleTowerRecord_UpdateLossStreak,func) found in global src_wifi_battle_tower_save.c.o
-                                         40](v3$21638,object) found in local src_unk_02049D08.c.o
-                                        39](sub_0204A030,func) found in global src_unk_02049D08.c.o
-                                        39](sub_0204A050,func) found in global src_unk_02049D08.c.o
-                                        39](sub_0204A064,func) found in global src_unk_02049D08.c.o
+                                        39](BattleTower_GetLatestStreak,func) found in global src_battle_tower.c.o
+                                        39](BattleTower_WifiRankOperation,func) found in global src_battle_tower.c.o
+                                         40](WifiBattleTowerRecord_UpdateLossStreak,func) found in global src_battle_tower_save.c.o
+                                         40](lossesForDemotion$21084,object) found in local src_battle_tower.c.o
+                                        39](sub_0204A030,func) found in global src_battle_tower.c.o
+                                        39](sub_0204A050,func) found in global src_battle_tower.c.o
+                                        39](sub_0204A064,func) found in global src_battle_tower.c.o
                                          40](sub_0206C02C,func) found in global src_unk_0206B9D8.c.o
-                                          41](WifiBattleTowerRecord_GetRngState,func) found in global src_wifi_battle_tower_save.c.o
-                                        39](sub_0204A100,func) found in global src_unk_02049D08.c.o
+                                          41](WifiBattleTowerRecord_GetRngState,func) found in global src_battle_tower_save.c.o
+                                        39](BattleTower_CheckHaveWifiDownloadData,func) found in global src_battle_tower.c.o
                                         39](sub_0206BCE4,func) found in global src_unk_0206B9D8.c.o
                                          40](sub_0206BC94,func) found in local src_unk_0206B9D8.c.o
                                           41](sub_0206BC48,func) found in local src_unk_0206B9D8.c.o
                                            42](sub_0203E1AC,func) found in global src_unk_0203D1B8.c.o
                                           41](sub_0206BC70,func) found in local src_unk_0206B9D8.c.o
-                                        39](sub_0204A358,func) found in global src_unk_02049D08.c.o
-                                         40](sub_0206BBFC,func) found in global src_unk_0206B9D8.c.o
-                                          41](sub_0206BB94,func) found in local src_unk_0206B9D8.c.o
-                                           42](sub_0206B9D8,func) found in local src_unk_0206B9D8.c.o
-                                           42](sub_0206BA84,func) found in local src_unk_0206B9D8.c.o
-                                           42](sub_0206BAE0,func) found in local src_unk_0206B9D8.c.o
-                                            43](visiblePages$21001,object) found in local src_unk_0206B9D8.c.o
-                                           42](sub_0206BB6C,func) found in local src_unk_0206B9D8.c.o
-                                        39](sub_0204A378,func) found in global src_unk_02049D08.c.o
-                                        39](BattleTower_CheckDuplicateSpeciesAndHeldItems,func) found in global src_unk_02049D08.c.o
-                                        39](sub_0204A97C,func) found in global src_unk_02049D08.c.o
-                                         40](BattleTower_CreatePartnerTrainerParty,func) found in global src_battle_tower.c.o
-                                          41](BattleTower_CreateRandomTrainerParty,func) found in local src_battle_tower.c.o
-                                        39](BattleTower_GetObjectIDFromOpponentID,func) found in global src_unk_02049D08.c.o
-                                         40](BattleTower_GetObjectIDFromTrainerClass,func) found in global src_battle_tower.c.o
-                                        39](BattleTower_GetBeatPalmer,func) found in global src_unk_02049D08.c.o
-                                        39](sub_0204AA7C,func) found in global src_unk_02049D08.c.o
-                                        39](sub_0204AB68,func) found in global src_unk_02049D08.c.o
-                                         40](sub_0204AC54,func) found in local src_unk_02049D08.c.o
-                                        39](sub_0204ABA0,func) found in global src_unk_02049D08.c.o
-                                        39](BattleTower_GetPartnerParam,func) found in local src_unk_020494DC.c.o
-                                        39](sub_0204ABF4,func) found in global src_unk_02049D08.c.o
+                                        39](BattleTower_SelectPokemonFromPartyMenu,func) found in global src_battle_tower.c.o
+                                         40](BattleTower_SelectPokemon,func) found in global src_unk_0206B9D8.c.o
+                                          41](BattleTowerSelectChallengersTask,func) found in local src_unk_0206B9D8.c.o
+                                           42](SubTask_SetupPartyMenu,func) found in local src_unk_0206B9D8.c.o
+                                           42](SubTask_ProcessPartyMenu,func) found in local src_unk_0206B9D8.c.o
+                                           42](SubTask_SetupMonSummary,func) found in local src_unk_0206B9D8.c.o
+                                            43](visiblePages$21000,object) found in local src_unk_0206B9D8.c.o
+                                           42](SubTask_ProcessMonSummary,func) found in local src_unk_0206B9D8.c.o
+                                        39](BattleTower_StorePartySelectionResults,func) found in global src_battle_tower.c.o
+                                        39](BattleTower_CheckDuplicateSpeciesAndHeldItems,func) found in global src_battle_tower.c.o
+                                        39](BattleTower_InitAllStatTrainers,func) found in global src_battle_tower.c.o
+                                         40](BattleTower_InitStatTrainer,func) found in global src_battle_tower_trainers.c.o
+                                          41](InitStatTrainer,func) found in local src_battle_tower_trainers.c.o
+                                        39](BattleTower_GetObjectIDFromOpponentID,func) found in global src_battle_tower.c.o
+                                         40](BattleTower_GetObjectIDFromTrainerClass,func) found in global src_battle_tower_trainers.c.o
+                                        39](BattleTower_GetBeatPalmer,func) found in global src_battle_tower.c.o
+                                        39](sub_0204AA7C,func) found in global src_battle_tower.c.o
+                                        39](BattleTower_GiveBeatTycoonRibbon,func) found in global src_battle_tower.c.o
+                                         40](GiveRibbonToPartyMembers,func) found in local src_battle_tower.c.o
+                                        39](BattleTower_TryGive50WinsRibbons,func) found in global src_battle_tower.c.o
+                                        39](BattleTower_GetPartnerParam,func) found in local src_scrcmd_battle_tower.c.o
+                                        39](BattleTower_SetRngSeeds,func) found in global src_battle_tower.c.o
                                          40](sub_0206C068,func) found in global src_unk_0206B9D8.c.o
-                                       38](ScrCmd_FreeBattleTower,func) found in global src_unk_020494DC.c.o
-                                       38](ScrCmd_InitBattleTower,func) found in global src_unk_020494DC.c.o
-                                       38](ScrCmd_SetBattleTowerNull,func) found in global src_unk_020494DC.c.o
-                                        39](BattleTower_SetNull,func) found in global src_unk_02049D08.c.o
+                                       38](ScrCmd_FreeBattleTower,func) found in global src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_InitBattleTower,func) found in global src_scrcmd_battle_tower.c.o
+                                       38](ScrCmd_SetBattleTowerNull,func) found in global src_scrcmd_battle_tower.c.o
+                                        39](BattleTower_SetNull,func) found in global src_battle_tower.c.o
                                        38](ScrCmd_OpenBattleTowerRecordsApp,func) found in local src_scrcmd.c.o
                                         39](FieldSystem_OpenBattleTowerRecordsApp,func) found in global src_unk_0203D1B8.c.o
                                        38](ScrCmd_CheckCanCookPoffin,func) found in local src_scrcmd.c.o
@@ -36765,7 +36765,7 @@
                                           41](sub_0209B288,func) found in local src_unk_0209ACF4.c.o
                                           41](sub_0209B1CC,func) found in local src_unk_0209ACF4.c.o
                                           41](sub_0209ADBC,func) found in local src_unk_0209ACF4.c.o
-                                          41](FrontierEasyChatMessages_SetSentence,func) found in global src_wifi_battle_tower_save.c.o
+                                          41](FrontierEasyChatMessages_SetSentence,func) found in global src_battle_tower_save.c.o
                                           41](sub_0209B1D8,func) found in local src_unk_0209ACF4.c.o
                                           41](sub_0209B27C,func) found in local src_unk_0209ACF4.c.o
                                           41](sub_0209B110,func) found in local src_unk_0209ACF4.c.o
@@ -46125,102 +46125,102 @@
   0202D03C 00000000 .text   $d	(src_game_records.c.o)
   0202D040 0000001A .text   GameRecords_IncrementTrainerScoreOnCatch	(src_game_records.c.o)
   0202D040 00000000 .text   $t	(src_game_records.c.o)
-  0202D05C 00000004 .text   WifiPlayerProfile_Size	(src_wifi_battle_tower_save.c.o)
-  0202D05C 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D060 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D060 0000000C .text   WifiBattleTowerSave_Init	(src_wifi_battle_tower_save.c.o)
-  0202D068 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D06C 00000014 .text   WifiBattleTowerRecord_Init	(src_wifi_battle_tower_save.c.o)
-  0202D06C 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D080 0000002A .text   FrontierEasyChatMessages_Init	(src_wifi_battle_tower_save.c.o)
-  0202D080 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D0AC 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D0AC 00000010 .text   WifiBattleTowerDownloadData_Init	(src_wifi_battle_tower_save.c.o)
-  0202D0B4 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D0BC 00000082 .text   WifiBattleTowerSave_GetField	(src_wifi_battle_tower_save.c.o)
-  0202D0BC 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D140 000000A8 .text   WifiBattleTowerSave_SetField	(src_wifi_battle_tower_save.c.o)
-  0202D140 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D1E8 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D1E8 0000002C .text   WifiBattleTowerSave_AddCounters	(src_wifi_battle_tower_save.c.o)
-  0202D210 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D214 00000008 .text   WifiBattleTowerSave_GetIsInProgress	(src_wifi_battle_tower_save.c.o)
-  0202D214 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D21C 00000014 .text   WifiBattleTowerSave_SetIsInProgress	(src_wifi_battle_tower_save.c.o)
-  0202D21C 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D230 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D230 00000058 .text   WifiBattleTowerRecord_UpdateBattlePoints	(src_wifi_battle_tower_save.c.o)
-  0202D284 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D288 00000038 .text   WifiBattleTowerRecord_UpdateLossStreak	(src_wifi_battle_tower_save.c.o)
-  0202D288 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D2C0 0000002E .text   WifiBattleTowerRecord_UpdateRank	(src_wifi_battle_tower_save.c.o)
-  0202D2C0 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D2F0 00000024 .text   WifiBattleTowerRecord_SetTeam	(src_wifi_battle_tower_save.c.o)
-  0202D2F0 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D314 0000001E .text   WifiBattleTowerRecord_GetTeam	(src_wifi_battle_tower_save.c.o)
-  0202D314 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D334 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D334 00000068 .text   WifiBattleTowerRecord_CalcRatingScore	(src_wifi_battle_tower_save.c.o)
-  0202D398 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D39C 00000004 .text   WifiBattleTowerRecord_GetRatingScore	(src_wifi_battle_tower_save.c.o)
-  0202D39C 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D3A0 00000012 .text   WifiBattleTowerRecord_GetRatingTier	(src_wifi_battle_tower_save.c.o)
-  0202D3A0 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D3B4 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D3B4 00000048 .text   WifiBattleTowerRecord_UpdateRoomNum	(src_wifi_battle_tower_save.c.o)
-  0202D3F8 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D3FC 00000018 .text   WifiBattleTowerRecord_SetRoomNum	(src_wifi_battle_tower_save.c.o)
-  0202D3FC 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D414 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D414 0000005C .text   WifiBattleTowerRecord_UpdateBitFlag	(src_wifi_battle_tower_save.c.o)
-  0202D46C 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D470 00000004 .text   WifiBattleTowerRecord_SetRngState	(src_wifi_battle_tower_save.c.o)
-  0202D470 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D474 00000004 .text   WifiBattleTowerRecord_GetRngState	(src_wifi_battle_tower_save.c.o)
-  0202D474 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D478 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D478 00000020 .text   FrontierEasyChatMessages_SetSentence	(src_wifi_battle_tower_save.c.o)
-  0202D494 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D498 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D498 00000018 .text   FrontierEasyChatMessages_GetSentence	(src_wifi_battle_tower_save.c.o)
-  0202D4AC 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D4B0 00000064 .text   WifiBattleTowerDownloadData_MarkOpponent	(src_wifi_battle_tower_save.c.o)
-  0202D4B0 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D514 0000001A .text   WifiBattleTowerDownloadData_Reset	(src_wifi_battle_tower_save.c.o)
-  0202D514 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D530 00000028 .text   Date_IsAfter	(src_wifi_battle_tower_save.c.o)
-  0202D530 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D558 00000090 .text   WifiBattleTowerDownloadData_IsOpponentMarked	(src_wifi_battle_tower_save.c.o)
-  0202D558 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D5E8 00000006 .text   WifiBattleTowerDownloadData_HasOpponentData	(src_wifi_battle_tower_save.c.o)
-  0202D5E8 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D5F0 00000006 .text   WifiBattleTowerDownloadData_HasMatchListData	(src_wifi_battle_tower_save.c.o)
-  0202D5F0 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D5F8 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D5F8 00000030 .text   WifiBattleTowerDownloadData_StoreOpponentTeams	(src_wifi_battle_tower_save.c.o)
-  0202D620 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D628 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D628 00000014 .text   WifiBattleTowerDownloadData_GetIndices	(src_wifi_battle_tower_save.c.o)
-  0202D638 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D63C 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D63C 000000A0 .text   WifiBattleTowerDownloadData_BuildOpponent	(src_wifi_battle_tower_save.c.o)
-  0202D6D8 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D6DC 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D6DC 0000002C .text   WifiBattleTowerDownloadData_StoreMatchList	(src_wifi_battle_tower_save.c.o)
-  0202D704 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D708 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D708 00000014 .text   WifiBattleTowerDownloadData_GetMatchIndices	(src_wifi_battle_tower_save.c.o)
-  0202D718 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D71C 00000024 .text   WifiBattleTowerDownloadData_AllocMatchList	(src_wifi_battle_tower_save.c.o)
-  0202D71C 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D740 00000010 .text   SaveData_GetWifiBattleTowerSave	(src_wifi_battle_tower_save.c.o)
-  0202D740 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D750 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D750 00000014 .text   SaveData_GetWifiBattleTowerRecord	(src_wifi_battle_tower_save.c.o)
-  0202D760 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D764 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
-  0202D764 00000014 .text   SaveData_GetWifiBattleTowerDownloadData	(src_wifi_battle_tower_save.c.o)
-  0202D774 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
+  0202D05C 00000004 .text   WifiPlayerProfile_Size	(src_battle_tower_save.c.o)
+  0202D05C 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D060 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D060 0000000C .text   BattleTowerSave_Init	(src_battle_tower_save.c.o)
+  0202D068 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D06C 00000014 .text   WifiBattleTowerRecord_Init	(src_battle_tower_save.c.o)
+  0202D06C 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D080 0000002A .text   FrontierEasyChatMessages_Init	(src_battle_tower_save.c.o)
+  0202D080 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D0AC 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D0AC 00000010 .text   WifiBattleTowerDownloadData_Init	(src_battle_tower_save.c.o)
+  0202D0B4 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D0BC 00000082 .text   BattleTowerSave_GetField	(src_battle_tower_save.c.o)
+  0202D0BC 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D140 000000A8 .text   BattleTowerSave_SetField	(src_battle_tower_save.c.o)
+  0202D140 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D1E8 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D1E8 0000002C .text   BattleTowerSave_AddCounters	(src_battle_tower_save.c.o)
+  0202D210 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D214 00000008 .text   BattleTowerSave_HasSaved	(src_battle_tower_save.c.o)
+  0202D214 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D21C 00000014 .text   BattleTowerSave_RecordSave	(src_battle_tower_save.c.o)
+  0202D21C 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D230 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D230 00000058 .text   WifiBattleTowerRecord_UpdateBattlePoints	(src_battle_tower_save.c.o)
+  0202D284 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D288 00000038 .text   WifiBattleTowerRecord_UpdateLossStreak	(src_battle_tower_save.c.o)
+  0202D288 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D2C0 0000002E .text   WifiBattleTowerRecord_UpdateRank	(src_battle_tower_save.c.o)
+  0202D2C0 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D2F0 00000024 .text   WifiBattleTowerRecord_SetTeam	(src_battle_tower_save.c.o)
+  0202D2F0 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D314 0000001E .text   WifiBattleTowerRecord_GetTeam	(src_battle_tower_save.c.o)
+  0202D314 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D334 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D334 00000068 .text   WifiBattleTowerRecord_CalcRatingScore	(src_battle_tower_save.c.o)
+  0202D398 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D39C 00000004 .text   WifiBattleTowerRecord_GetRatingScore	(src_battle_tower_save.c.o)
+  0202D39C 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D3A0 00000012 .text   WifiBattleTowerRecord_GetRatingTier	(src_battle_tower_save.c.o)
+  0202D3A0 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D3B4 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D3B4 00000048 .text   WifiBattleTowerRecord_UpdateRoomNum	(src_battle_tower_save.c.o)
+  0202D3F8 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D3FC 00000018 .text   WifiBattleTowerRecord_SetRoomNum	(src_battle_tower_save.c.o)
+  0202D3FC 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D414 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D414 0000005C .text   WifiBattleTowerRecord_UpdateBitFlag	(src_battle_tower_save.c.o)
+  0202D46C 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D470 00000004 .text   WifiBattleTowerRecord_SetRngState	(src_battle_tower_save.c.o)
+  0202D470 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D474 00000004 .text   WifiBattleTowerRecord_GetRngState	(src_battle_tower_save.c.o)
+  0202D474 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D478 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D478 00000020 .text   FrontierEasyChatMessages_SetSentence	(src_battle_tower_save.c.o)
+  0202D494 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D498 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D498 00000018 .text   FrontierEasyChatMessages_GetSentence	(src_battle_tower_save.c.o)
+  0202D4AC 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D4B0 00000064 .text   WifiBattleTowerDownloadData_MarkOpponent	(src_battle_tower_save.c.o)
+  0202D4B0 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D514 0000001A .text   WifiBattleTowerDownloadData_Reset	(src_battle_tower_save.c.o)
+  0202D514 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D530 00000028 .text   Date_IsAfter	(src_battle_tower_save.c.o)
+  0202D530 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D558 00000090 .text   WifiBattleTowerDownloadData_IsOpponentMarked	(src_battle_tower_save.c.o)
+  0202D558 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D5E8 00000006 .text   WifiBattleTowerDownloadData_HasOpponentData	(src_battle_tower_save.c.o)
+  0202D5E8 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D5F0 00000006 .text   WifiBattleTowerDownloadData_HasMatchListData	(src_battle_tower_save.c.o)
+  0202D5F0 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D5F8 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D5F8 00000030 .text   WifiBattleTowerDownloadData_StoreOpponentTeams	(src_battle_tower_save.c.o)
+  0202D620 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D628 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D628 00000014 .text   WifiBattleTowerDownloadData_GetIndices	(src_battle_tower_save.c.o)
+  0202D638 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D63C 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D63C 000000A0 .text   WifiBattleTowerDownloadData_BuildOpponent	(src_battle_tower_save.c.o)
+  0202D6D8 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D6DC 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D6DC 0000002C .text   WifiBattleTowerDownloadData_StoreMatchList	(src_battle_tower_save.c.o)
+  0202D704 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D708 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D708 00000014 .text   WifiBattleTowerDownloadData_GetMatchIndices	(src_battle_tower_save.c.o)
+  0202D718 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D71C 00000024 .text   WifiBattleTowerDownloadData_AllocMatchList	(src_battle_tower_save.c.o)
+  0202D71C 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D740 00000010 .text   SaveData_GetBattleTowerSave	(src_battle_tower_save.c.o)
+  0202D740 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D750 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D750 00000014 .text   SaveData_GetWifiBattleTowerRecord	(src_battle_tower_save.c.o)
+  0202D760 00000000 .text   $d	(src_battle_tower_save.c.o)
+  0202D764 00000000 .text   $t	(src_battle_tower_save.c.o)
+  0202D764 00000014 .text   SaveData_GetWifiBattleTowerDownloadData	(src_battle_tower_save.c.o)
+  0202D774 00000000 .text   $d	(src_battle_tower_save.c.o)
   0202D778 00000004 .text   Ribbons_SaveSize	(src_ribbon_save_data.c.o)
   0202D778 00000000 .text   $t	(src_ribbon_save_data.c.o)
   0202D77C 00000020 .text   Ribbons_Init	(src_ribbon_save_data.c.o)
@@ -50901,201 +50901,201 @@
   020493C8 00000000 .text   $t	(src_scrcmd_tv_broadcast.c.o)
   020493F4 000000E6 .text   ScrCmd_GetBattleFrontierReporterPosition	(src_scrcmd_tv_broadcast.c.o)
   020493F4 00000000 .text   $t	(src_scrcmd_tv_broadcast.c.o)
-  020494DC 00000030 .text   ScrCmd_InitBattleTower	(src_unk_020494DC.c.o)
-  020494DC 00000000 .text   $t	(src_unk_020494DC.c.o)
-  0204950C 00000010 .text   ScrCmd_SetBattleTowerNull	(src_unk_020494DC.c.o)
-  0204950C 00000000 .text   $t	(src_unk_020494DC.c.o)
-  0204951C 0000001C .text   ScrCmd_FreeBattleTower	(src_unk_020494DC.c.o)
-  0204951C 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049538 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049538 000002C8 .text   ScrCmd_CallBattleTowerFunction	(src_unk_020494DC.c.o)
-  020497FC 00000000 .text   $d	(src_unk_020494DC.c.o)
-  02049800 0000007E .text   ScrCmd_GetBattleTowerPartnerSpeciesAndMove	(src_unk_020494DC.c.o)
-  02049800 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049880 00000026 .text   ScrCmd_1DF	(src_unk_020494DC.c.o)
-  02049880 00000000 .text   $t	(src_unk_020494DC.c.o)
-  020498A8 00000026 .text   ScrCmd_1E0	(src_unk_020494DC.c.o)
-  020498A8 00000000 .text   $t	(src_unk_020494DC.c.o)
-  020498D0 00000000 .text   $t	(src_unk_020494DC.c.o)
-  020498D0 000000EC .text   ScrCmd_1E1	(src_unk_020494DC.c.o)
-  020499B8 00000000 .text   $d	(src_unk_020494DC.c.o)
-  020499BC 00000000 .text   $t	(src_unk_020494DC.c.o)
-  020499BC 00000064 .text   ScrCmd_1E2	(src_unk_020494DC.c.o)
-  02049A18 00000000 .text   $d	(src_unk_020494DC.c.o)
-  02049A20 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049A20 00000048 .text   sub_02049A20	(src_unk_020494DC.c.o)
-  02049A5C 00000000 .text   $d	(src_unk_020494DC.c.o)
-  02049A68 0000004C .text   ScrCmd_1E3	(src_unk_020494DC.c.o)
-  02049A68 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049AB4 0000002A .text   ScrCmd_1E4	(src_unk_020494DC.c.o)
-  02049AB4 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049AE0 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049AE0 00000044 .text   BattleTower_GetPartnerParam	(src_unk_020494DC.c.o)
-  02049B20 00000000 .text   $d	(src_unk_020494DC.c.o)
-  02049B24 00000030 .text   ScrCmd_ShowBattlePoints	(src_unk_020494DC.c.o)
-  02049B24 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049B54 00000016 .text   ScrCmd_HideBattlePoints	(src_unk_020494DC.c.o)
-  02049B54 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049B6C 0000001E .text   ScrCmd_UpdateBPDisplay	(src_unk_020494DC.c.o)
-  02049B6C 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049B8C 00000030 .text   ScrCmd_GetBattlePoints	(src_unk_020494DC.c.o)
-  02049B8C 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049BBC 00000042 .text   ScrCmd_GiveBattlePoints	(src_unk_020494DC.c.o)
-  02049BBC 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049C00 00000042 .text   ScrCmd_RemoveBattlePoints	(src_unk_020494DC.c.o)
-  02049C00 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049C44 0000004E .text   ScrCmd_CheckBattlePoints	(src_unk_020494DC.c.o)
-  02049C44 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049C94 00000000 .text   $t	(src_unk_020494DC.c.o)
-  02049C94 00000074 .text   ScrCmd_GetExchangeServiceCornerItemAndCost	(src_unk_020494DC.c.o)
-  02049D00 00000000 .text   $d	(src_unk_020494DC.c.o)
-  02049D08 0000002E .text   BattleTower_GetPartySizeForChallengeMode	(src_unk_02049D08.c.o)
-  02049D08 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049D38 0000002C .text   sub_02049D38	(src_unk_02049D08.c.o)
-  02049D38 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049D64 00000050 .text   sub_02049D64	(src_unk_02049D08.c.o)
-  02049D64 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049DB4 0000010E .text   sub_02049DB4	(src_unk_02049D08.c.o)
-  02049DB4 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049EC4 000000C6 .text   sub_02049EC4	(src_unk_02049D08.c.o)
-  02049EC4 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049F8C 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049F8C 0000000C .text   BattleTower_ResetSystem	(src_unk_02049D08.c.o)
-  02049F94 00000000 .text   $d	(src_unk_02049D08.c.o)
-  02049F98 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049F98 00000008 .text   sub_02049F98	(src_unk_02049D08.c.o)
-  02049F9C 00000000 .text   $d	(src_unk_02049D08.c.o)
-  02049FA0 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049FA0 00000008 .text   sub_02049FA0	(src_unk_02049D08.c.o)
-  02049FA4 00000000 .text   $d	(src_unk_02049D08.c.o)
-  02049FA8 0000003E .text   BattleTower_SetCommunicationClubAccessible	(src_unk_02049D08.c.o)
-  02049FA8 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049FE8 0000000E .text   BattleTower_ClearCommunicationClubAccessible	(src_unk_02049D08.c.o)
-  02049FE8 00000000 .text   $t	(src_unk_02049D08.c.o)
-  02049FF8 00000038 .text   sub_02049FF8	(src_unk_02049D08.c.o)
-  02049FF8 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A030 00000020 .text   sub_0204A030	(src_unk_02049D08.c.o)
-  0204A030 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A050 00000014 .text   sub_0204A050	(src_unk_02049D08.c.o)
-  0204A050 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A064 0000009A .text   sub_0204A064	(src_unk_02049D08.c.o)
-  0204A064 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A100 00000010 .text   sub_0204A100	(src_unk_02049D08.c.o)
-  0204A100 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A110 00000014 .text   BattleTower_SetNull	(src_unk_02049D08.c.o)
-  0204A110 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A124 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A124 00000208 .text   BattleTower_Init	(src_unk_02049D08.c.o)
-  0204A31C 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204A32C 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A32C 0000002C .text   BattleTower_Free	(src_unk_02049D08.c.o)
-  0204A350 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204A358 00000020 .text   sub_0204A358	(src_unk_02049D08.c.o)
-  0204A358 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A378 00000096 .text   sub_0204A378	(src_unk_02049D08.c.o)
-  0204A378 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A410 0000008E .text   BattleTower_CheckDuplicateSpeciesAndHeldItems	(src_unk_02049D08.c.o)
-  0204A410 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A4A0 00000026 .text   BattleTower_IsTrainerAlreadyUsed	(src_unk_02049D08.c.o)
-  0204A4A0 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A4C8 000000AE .text   sub_0204A4C8	(src_unk_02049D08.c.o)
-  0204A4C8 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A578 00000004 .text   BattleTower_GetNextOpponentNum	(src_unk_02049D08.c.o)
-  0204A578 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A57C 00000024 .text   BattleTower_HasDefeatedSevenTrainers	(src_unk_02049D08.c.o)
-  0204A57C 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A5A0 0000004A .text   sub_0204A5A0	(src_unk_02049D08.c.o)
-  0204A5A0 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A5EC 00000074 .text   sub_0204A5EC	(src_unk_02049D08.c.o)
-  0204A5EC 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A660 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A660 00000144 .text   BattleTower_UpdateGameRecords	(src_unk_02049D08.c.o)
-  0204A7A0 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204A7A4 00000124 .text   BattleTower_UpdateGameRecordsAndJournal	(src_unk_02049D08.c.o)
-  0204A7A4 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A8C8 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A8C8 000000B4 .text   sub_0204A8C8	(src_unk_02049D08.c.o)
-  0204A974 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204A97C 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A97C 00000064 .text   sub_0204A97C	(src_unk_02049D08.c.o)
-  0204A9D8 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204A9E0 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A9E0 00000018 .text   BattleTower_GetObjectIDFromOpponentID	(src_unk_02049D08.c.o)
-  0204A9F4 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204A9F8 00000004 .text   BattleTower_GetChallengeMode	(src_unk_02049D08.c.o)
-  0204A9F8 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204A9FC 00000008 .text   BattleTower_GetBeatPalmer	(src_unk_02049D08.c.o)
-  0204A9FC 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204AA04 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204AA04 00000078 .text   BattleTower_GiveBattlePointsReward	(src_unk_02049D08.c.o)
-  0204AA70 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204AA7C 0000003E .text   sub_0204AA7C	(src_unk_02049D08.c.o)
-  0204AA7C 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204AABC 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204AABC 000000AC .text   sub_0204AABC	(src_unk_02049D08.c.o)
-  0204AB64 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204AB68 00000036 .text   sub_0204AB68	(src_unk_02049D08.c.o)
-  0204AB68 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204ABA0 00000054 .text   sub_0204ABA0	(src_unk_02049D08.c.o)
-  0204ABA0 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204ABF4 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204ABF4 00000060 .text   sub_0204ABF4	(src_unk_02049D08.c.o)
-  0204AC50 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204AC54 00000072 .text   sub_0204AC54	(src_unk_02049D08.c.o)
-  0204AC54 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204ACC8 00000034 .text   sub_0204ACC8	(src_unk_02049D08.c.o)
-  0204ACC8 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204ACFC 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204ACFC 00000124 .text   sub_0204ACFC	(src_unk_02049D08.c.o)
-  0204AE18 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204AE20 00000062 .text   sub_0204AE20	(src_unk_02049D08.c.o)
-  0204AE20 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204AE84 0000003C .text   BattleTower_GetIVsFromTrainerID	(src_unk_02049D08.c.o)
-  0204AE84 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204AEC0 00000000 .text   $t	(src_unk_02049D08.c.o)
-  0204AEC0 00000028 .text   BattleTower_GetRandom	(src_unk_02049D08.c.o)
-  0204AEE4 00000000 .text   $d	(src_unk_02049D08.c.o)
-  0204AEE8 000000B2 .text   BattleFrontier_MakeSeenBanlistSpeciesMsg	(src_battle_tower.c.o)
-  0204AEE8 00000000 .text   $t	(src_battle_tower.c.o)
-  0204AF9C 00000000 .text   $t	(src_battle_tower.c.o)
-  0204AF9C 00000028 .text   BattleTower_GetObjectIDFromTrainerClass	(src_battle_tower.c.o)
-  0204AFBC 00000000 .text   $d	(src_battle_tower.c.o)
-  0204AFC4 0000005A .text   BattleTower_ReceivePlayerData	(src_battle_tower.c.o)
-  0204AFC4 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B020 00000024 .text   BattleTower_ReceiveTrainers	(src_battle_tower.c.o)
-  0204B020 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B044 0000001A .text   BattleTower_ReceiveShouldRetire	(src_battle_tower.c.o)
-  0204B044 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B060 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B060 0000005C .text   BattleTower_SendPlayerData	(src_battle_tower.c.o)
-  0204B0B4 00000000 .text   $d	(src_battle_tower.c.o)
-  0204B0BC 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B0BC 00000018 .text   BattleTower_SendTrainers	(src_battle_tower.c.o)
-  0204B0CC 00000000 .text   $d	(src_battle_tower.c.o)
-  0204B0D4 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B0D4 0000001C .text   BattleTower_SendShouldRetire	(src_battle_tower.c.o)
-  0204B0EC 00000000 .text   $d	(src_battle_tower.c.o)
-  0204B0F0 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B0F0 00000094 .text   BattleTower_GetTrainerIDForRoomAndOpponentNum	(src_battle_tower.c.o)
-  0204B16C 00000000 .text   $d	(src_battle_tower.c.o)
-  0204B184 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B184 00000064 .text   BattleTower_GetTrainer	(src_battle_tower.c.o)
-  0204B1E4 00000000 .text   $d	(src_battle_tower.c.o)
-  0204B1E8 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B1E8 000001D0 .text   BattleTower_CopySetToPokemonDataDTO	(src_battle_tower.c.o)
-  0204B390 00000000 .text   $d	(src_battle_tower.c.o)
-  0204B3B8 0000004A .text   BattleTower_CreatePartnerTrainerParty	(src_battle_tower.c.o)
-  0204B3B8 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B404 0000006A .text   BattleTower_RestorePartnerParty	(src_battle_tower.c.o)
-  0204B404 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B470 000001BE .text   BattleTower_CreateRandomTrainerParty	(src_battle_tower.c.o)
-  0204B470 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B630 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B630 00000010 .text   BattleTower_GetTrainerBase	(src_battle_tower.c.o)
-  0204B63C 00000000 .text   $d	(src_battle_tower.c.o)
-  0204B640 00000000 .text   $t	(src_battle_tower.c.o)
-  0204B640 0000000C .text   BattleTower_GetPokemonBase	(src_battle_tower.c.o)
-  0204B648 00000000 .text   $d	(src_battle_tower.c.o)
+  020494DC 00000030 .text   ScrCmd_InitBattleTower	(src_scrcmd_battle_tower.c.o)
+  020494DC 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  0204950C 00000010 .text   ScrCmd_SetBattleTowerNull	(src_scrcmd_battle_tower.c.o)
+  0204950C 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  0204951C 0000001C .text   ScrCmd_FreeBattleTower	(src_scrcmd_battle_tower.c.o)
+  0204951C 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049538 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049538 000002C8 .text   ScrCmd_CallBattleTowerFunction	(src_scrcmd_battle_tower.c.o)
+  020497FC 00000000 .text   $d	(src_scrcmd_battle_tower.c.o)
+  02049800 0000007E .text   ScrCmd_GetBattleTowerPartnerSpeciesAndMove	(src_scrcmd_battle_tower.c.o)
+  02049800 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049880 00000026 .text   ScrCmd_1DF	(src_scrcmd_battle_tower.c.o)
+  02049880 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  020498A8 00000026 .text   ScrCmd_1E0	(src_scrcmd_battle_tower.c.o)
+  020498A8 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  020498D0 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  020498D0 000000EC .text   ScrCmd_BattleTower_SendCommMessage	(src_scrcmd_battle_tower.c.o)
+  020499B8 00000000 .text   $d	(src_scrcmd_battle_tower.c.o)
+  020499BC 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  020499BC 00000064 .text   ScrCmd_1E2	(src_scrcmd_battle_tower.c.o)
+  02049A18 00000000 .text   $d	(src_scrcmd_battle_tower.c.o)
+  02049A20 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049A20 00000048 .text   sub_02049A20	(src_scrcmd_battle_tower.c.o)
+  02049A5C 00000000 .text   $d	(src_scrcmd_battle_tower.c.o)
+  02049A68 0000004C .text   ScrCmd_GetBattleTowerMatchIndices	(src_scrcmd_battle_tower.c.o)
+  02049A68 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049AB4 0000002A .text   ScrCmd_BattleTower_CheckHasMatchListData	(src_scrcmd_battle_tower.c.o)
+  02049AB4 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049AE0 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049AE0 00000044 .text   BattleTower_GetPartnerParam	(src_scrcmd_battle_tower.c.o)
+  02049B20 00000000 .text   $d	(src_scrcmd_battle_tower.c.o)
+  02049B24 00000030 .text   ScrCmd_ShowBattlePoints	(src_scrcmd_battle_tower.c.o)
+  02049B24 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049B54 00000016 .text   ScrCmd_HideBattlePoints	(src_scrcmd_battle_tower.c.o)
+  02049B54 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049B6C 0000001E .text   ScrCmd_UpdateBPDisplay	(src_scrcmd_battle_tower.c.o)
+  02049B6C 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049B8C 00000030 .text   ScrCmd_GetBattlePoints	(src_scrcmd_battle_tower.c.o)
+  02049B8C 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049BBC 00000042 .text   ScrCmd_GiveBattlePoints	(src_scrcmd_battle_tower.c.o)
+  02049BBC 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049C00 00000042 .text   ScrCmd_RemoveBattlePoints	(src_scrcmd_battle_tower.c.o)
+  02049C00 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049C44 0000004E .text   ScrCmd_CheckBattlePoints	(src_scrcmd_battle_tower.c.o)
+  02049C44 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049C94 00000000 .text   $t	(src_scrcmd_battle_tower.c.o)
+  02049C94 00000074 .text   ScrCmd_GetExchangeServiceCornerItemAndCost	(src_scrcmd_battle_tower.c.o)
+  02049D00 00000000 .text   $d	(src_scrcmd_battle_tower.c.o)
+  02049D08 0000002E .text   BattleTower_GetPartySizeForChallengeMode	(src_battle_tower.c.o)
+  02049D08 00000000 .text   $t	(src_battle_tower.c.o)
+  02049D38 0000002C .text   CheckIfItemIsAlreadyUsed	(src_battle_tower.c.o)
+  02049D38 00000000 .text   $t	(src_battle_tower.c.o)
+  02049D64 00000050 .text   CheckThatMonsAreAllUnique	(src_battle_tower.c.o)
+  02049D64 00000000 .text   $t	(src_battle_tower.c.o)
+  02049DB4 0000010E .text   CheckForValidPartySubset	(src_battle_tower.c.o)
+  02049DB4 00000000 .text   $t	(src_battle_tower.c.o)
+  02049EC4 000000C6 .text   BattleTower_CheckIfPartyIsEligible	(src_battle_tower.c.o)
+  02049EC4 00000000 .text   $t	(src_battle_tower.c.o)
+  02049F8C 00000000 .text   $t	(src_battle_tower.c.o)
+  02049F8C 0000000C .text   BattleTower_ResetSystem	(src_battle_tower.c.o)
+  02049F94 00000000 .text   $d	(src_battle_tower.c.o)
+  02049F98 00000000 .text   $t	(src_battle_tower.c.o)
+  02049F98 00000008 .text   BattleTower_ClearSave	(src_battle_tower.c.o)
+  02049F9C 00000000 .text   $d	(src_battle_tower.c.o)
+  02049FA0 00000000 .text   $t	(src_battle_tower.c.o)
+  02049FA0 00000008 .text   BattleTower_CheckRunInProgress	(src_battle_tower.c.o)
+  02049FA4 00000000 .text   $d	(src_battle_tower.c.o)
+  02049FA8 0000003E .text   BattleTower_SetCommunicationClubAccessible	(src_battle_tower.c.o)
+  02049FA8 00000000 .text   $t	(src_battle_tower.c.o)
+  02049FE8 0000000E .text   BattleTower_ClearCommunicationClubAccessible	(src_battle_tower.c.o)
+  02049FE8 00000000 .text   $t	(src_battle_tower.c.o)
+  02049FF8 00000038 .text   BattleTower_GetLatestStreak	(src_battle_tower.c.o)
+  02049FF8 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A030 00000020 .text   sub_0204A030	(src_battle_tower.c.o)
+  0204A030 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A050 00000014 .text   sub_0204A050	(src_battle_tower.c.o)
+  0204A050 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A064 0000009A .text   sub_0204A064	(src_battle_tower.c.o)
+  0204A064 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A100 00000010 .text   BattleTower_CheckHaveWifiDownloadData	(src_battle_tower.c.o)
+  0204A100 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A110 00000014 .text   BattleTower_SetNull	(src_battle_tower.c.o)
+  0204A110 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A124 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A124 00000208 .text   BattleTower_Init	(src_battle_tower.c.o)
+  0204A31C 00000000 .text   $d	(src_battle_tower.c.o)
+  0204A32C 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A32C 0000002C .text   BattleTower_Free	(src_battle_tower.c.o)
+  0204A350 00000000 .text   $d	(src_battle_tower.c.o)
+  0204A358 00000020 .text   BattleTower_SelectPokemonFromPartyMenu	(src_battle_tower.c.o)
+  0204A358 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A378 00000096 .text   BattleTower_StorePartySelectionResults	(src_battle_tower.c.o)
+  0204A378 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A410 0000008E .text   BattleTower_CheckDuplicateSpeciesAndHeldItems	(src_battle_tower.c.o)
+  0204A410 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A4A0 00000026 .text   BattleTower_IsTrainerAlreadyUsed	(src_battle_tower.c.o)
+  0204A4A0 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A4C8 000000AE .text   BattleTower_PickOpponentTrainers	(src_battle_tower.c.o)
+  0204A4C8 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A578 00000004 .text   BattleTower_GetNextOpponentNum	(src_battle_tower.c.o)
+  0204A578 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A57C 00000024 .text   BattleTower_HasDefeatedSevenTrainers	(src_battle_tower.c.o)
+  0204A57C 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A5A0 0000004A .text   sub_0204A5A0	(src_battle_tower.c.o)
+  0204A5A0 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A5EC 00000074 .text   sub_0204A5EC	(src_battle_tower.c.o)
+  0204A5EC 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A660 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A660 00000144 .text   BattleTower_UpdateGameRecords	(src_battle_tower.c.o)
+  0204A7A0 00000000 .text   $d	(src_battle_tower.c.o)
+  0204A7A4 00000124 .text   BattleTower_UpdateGameRecordsAndJournal	(src_battle_tower.c.o)
+  0204A7A4 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A8C8 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A8C8 000000B4 .text   BattleTower_Save	(src_battle_tower.c.o)
+  0204A974 00000000 .text   $d	(src_battle_tower.c.o)
+  0204A97C 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A97C 00000064 .text   BattleTower_InitAllStatTrainers	(src_battle_tower.c.o)
+  0204A9D8 00000000 .text   $d	(src_battle_tower.c.o)
+  0204A9E0 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A9E0 00000018 .text   BattleTower_GetObjectIDFromOpponentID	(src_battle_tower.c.o)
+  0204A9F4 00000000 .text   $d	(src_battle_tower.c.o)
+  0204A9F8 00000004 .text   BattleTower_GetChallengeMode	(src_battle_tower.c.o)
+  0204A9F8 00000000 .text   $t	(src_battle_tower.c.o)
+  0204A9FC 00000008 .text   BattleTower_GetBeatPalmer	(src_battle_tower.c.o)
+  0204A9FC 00000000 .text   $t	(src_battle_tower.c.o)
+  0204AA04 00000000 .text   $t	(src_battle_tower.c.o)
+  0204AA04 00000078 .text   BattleTower_GiveBattlePointsReward	(src_battle_tower.c.o)
+  0204AA70 00000000 .text   $d	(src_battle_tower.c.o)
+  0204AA7C 0000003E .text   sub_0204AA7C	(src_battle_tower.c.o)
+  0204AA7C 00000000 .text   $t	(src_battle_tower.c.o)
+  0204AABC 00000000 .text   $t	(src_battle_tower.c.o)
+  0204AABC 000000AC .text   BattleTower_WifiRankOperation	(src_battle_tower.c.o)
+  0204AB64 00000000 .text   $d	(src_battle_tower.c.o)
+  0204AB68 00000036 .text   BattleTower_GiveBeatTycoonRibbon	(src_battle_tower.c.o)
+  0204AB68 00000000 .text   $t	(src_battle_tower.c.o)
+  0204ABA0 00000054 .text   BattleTower_TryGive50WinsRibbons	(src_battle_tower.c.o)
+  0204ABA0 00000000 .text   $t	(src_battle_tower.c.o)
+  0204ABF4 00000000 .text   $t	(src_battle_tower.c.o)
+  0204ABF4 00000060 .text   BattleTower_SetRngSeeds	(src_battle_tower.c.o)
+  0204AC50 00000000 .text   $d	(src_battle_tower.c.o)
+  0204AC54 00000072 .text   GiveRibbonToPartyMembers	(src_battle_tower.c.o)
+  0204AC54 00000000 .text   $t	(src_battle_tower.c.o)
+  0204ACC8 00000034 .text   CheckIfRibbonsEarned	(src_battle_tower.c.o)
+  0204ACC8 00000000 .text   $t	(src_battle_tower.c.o)
+  0204ACFC 00000000 .text   $t	(src_battle_tower.c.o)
+  0204ACFC 00000124 .text   CopyPokemonToFrontierMon	(src_battle_tower.c.o)
+  0204AE18 00000000 .text   $d	(src_battle_tower.c.o)
+  0204AE20 00000062 .text   SaveTeamToTowerRecord	(src_battle_tower.c.o)
+  0204AE20 00000000 .text   $t	(src_battle_tower.c.o)
+  0204AE84 0000003C .text   BattleTower_GetIVsFromTrainerID	(src_battle_tower.c.o)
+  0204AE84 00000000 .text   $t	(src_battle_tower.c.o)
+  0204AEC0 00000000 .text   $t	(src_battle_tower.c.o)
+  0204AEC0 00000028 .text   BattleTower_GetRandom	(src_battle_tower.c.o)
+  0204AEE4 00000000 .text   $d	(src_battle_tower.c.o)
+  0204AEE8 000000B2 .text   BattleFrontier_MakeSeenBanlistSpeciesMsg	(src_battle_tower_trainers.c.o)
+  0204AEE8 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204AF9C 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204AF9C 00000028 .text   BattleTower_GetObjectIDFromTrainerClass	(src_battle_tower_trainers.c.o)
+  0204AFBC 00000000 .text   $d	(src_battle_tower_trainers.c.o)
+  0204AFC4 0000005A .text   BattleTower_ReceivePlayerData	(src_battle_tower_trainers.c.o)
+  0204AFC4 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B020 00000024 .text   BattleTower_ReceiveTrainers	(src_battle_tower_trainers.c.o)
+  0204B020 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B044 0000001A .text   BattleTower_ReceiveShouldRetire	(src_battle_tower_trainers.c.o)
+  0204B044 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B060 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B060 0000005C .text   BattleTower_SendPlayerData	(src_battle_tower_trainers.c.o)
+  0204B0B4 00000000 .text   $d	(src_battle_tower_trainers.c.o)
+  0204B0BC 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B0BC 00000018 .text   BattleTower_SendTrainers	(src_battle_tower_trainers.c.o)
+  0204B0CC 00000000 .text   $d	(src_battle_tower_trainers.c.o)
+  0204B0D4 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B0D4 0000001C .text   BattleTower_SendShouldRetire	(src_battle_tower_trainers.c.o)
+  0204B0EC 00000000 .text   $d	(src_battle_tower_trainers.c.o)
+  0204B0F0 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B0F0 00000094 .text   BattleTower_GetOpponentTrainerID	(src_battle_tower_trainers.c.o)
+  0204B16C 00000000 .text   $d	(src_battle_tower_trainers.c.o)
+  0204B184 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B184 00000064 .text   BattleTower_GetTrainer	(src_battle_tower_trainers.c.o)
+  0204B1E4 00000000 .text   $d	(src_battle_tower_trainers.c.o)
+  0204B1E8 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B1E8 000001D0 .text   InitFrontierPokemon	(src_battle_tower_trainers.c.o)
+  0204B390 00000000 .text   $d	(src_battle_tower_trainers.c.o)
+  0204B3B8 0000004A .text   BattleTower_InitStatTrainer	(src_battle_tower_trainers.c.o)
+  0204B3B8 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B404 0000006A .text   BattleTower_RestoreStatTrainer	(src_battle_tower_trainers.c.o)
+  0204B404 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B470 000001BE .text   InitStatTrainer	(src_battle_tower_trainers.c.o)
+  0204B470 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B630 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B630 00000010 .text   BattleTower_GetTrainerBase	(src_battle_tower_trainers.c.o)
+  0204B63C 00000000 .text   $d	(src_battle_tower_trainers.c.o)
+  0204B640 00000000 .text   $t	(src_battle_tower_trainers.c.o)
+  0204B640 0000000C .text   BattleTower_GetPokemonBase	(src_battle_tower_trainers.c.o)
+  0204B648 00000000 .text   $d	(src_battle_tower_trainers.c.o)
   0204B64C 00000034 .text   ScrCmd_GetBerryGrowthStage	(src_scrcmd_berry.c.o)
   0204B64C 00000000 .text   $t	(src_scrcmd_berry.c.o)
   0204B680 00000034 .text   ScrCmd_GetBerryItemID	(src_scrcmd_berry.c.o)
@@ -56392,19 +56392,19 @@
   0206B878 00000160 .text   PerformTownMapDescriptionsChecks	(src_applications_town_map_context.c.o)
   0206B9D4 00000000 .text   $d	(src_applications_town_map_context.c.o)
   0206B9D8 00000000 .text   $t	(src_unk_0206B9D8.c.o)
-  0206B9D8 000000AC .text   sub_0206B9D8	(src_unk_0206B9D8.c.o)
+  0206B9D8 000000AC .text   SubTask_SetupPartyMenu	(src_unk_0206B9D8.c.o)
   0206BA80 00000000 .text   $d	(src_unk_0206B9D8.c.o)
-  0206BA84 0000005A .text   sub_0206BA84	(src_unk_0206B9D8.c.o)
+  0206BA84 0000005A .text   SubTask_ProcessPartyMenu	(src_unk_0206B9D8.c.o)
   0206BA84 00000000 .text   $t	(src_unk_0206B9D8.c.o)
   0206BAE0 00000000 .text   $t	(src_unk_0206B9D8.c.o)
-  0206BAE0 0000008C .text   sub_0206BAE0	(src_unk_0206B9D8.c.o)
+  0206BAE0 0000008C .text   SubTask_SetupMonSummary	(src_unk_0206B9D8.c.o)
   0206BB64 00000000 .text   $d	(src_unk_0206B9D8.c.o)
-  0206BB6C 00000026 .text   sub_0206BB6C	(src_unk_0206B9D8.c.o)
+  0206BB6C 00000026 .text   SubTask_ProcessMonSummary	(src_unk_0206B9D8.c.o)
   0206BB6C 00000000 .text   $t	(src_unk_0206B9D8.c.o)
-  0206BB94 00000066 .text   sub_0206BB94	(src_unk_0206B9D8.c.o)
+  0206BB94 00000066 .text   BattleTowerSelectChallengersTask	(src_unk_0206B9D8.c.o)
   0206BB94 00000000 .text   $t	(src_unk_0206B9D8.c.o)
   0206BBFC 00000000 .text   $t	(src_unk_0206B9D8.c.o)
-  0206BBFC 0000004C .text   sub_0206BBFC	(src_unk_0206B9D8.c.o)
+  0206BBFC 0000004C .text   BattleTower_SelectPokemon	(src_unk_0206B9D8.c.o)
   0206BC44 00000000 .text   $d	(src_unk_0206B9D8.c.o)
   0206BC48 00000028 .text   sub_0206BC48	(src_unk_0206B9D8.c.o)
   0206BC48 00000000 .text   $t	(src_unk_0206B9D8.c.o)
@@ -56425,10 +56425,10 @@
   0206BF04 000000EA .text   sub_0206BF04	(src_unk_0206B9D8.c.o)
   0206BF04 00000000 .text   $t	(src_unk_0206B9D8.c.o)
   0206BFF0 00000000 .text   $t	(src_unk_0206B9D8.c.o)
-  0206BFF0 0000000C .text   sub_0206BFF0	(src_unk_0206B9D8.c.o)
+  0206BFF0 0000000C .text   BattleTower_RngNext	(src_unk_0206B9D8.c.o)
   0206BFF8 00000000 .text   $d	(src_unk_0206B9D8.c.o)
   0206BFFC 00000000 .text   $t	(src_unk_0206B9D8.c.o)
-  0206BFFC 0000000C .text   sub_0206BFFC	(src_unk_0206B9D8.c.o)
+  0206BFFC 0000000C .text   BattleTower_RngNext2	(src_unk_0206B9D8.c.o)
   0206C004 00000000 .text   $d	(src_unk_0206B9D8.c.o)
   0206C008 00000022 .text   sub_0206C008	(src_unk_0206B9D8.c.o)
   0206C008 00000000 .text   $t	(src_unk_0206B9D8.c.o)
@@ -66612,18 +66612,18 @@
   020EBAFC 0000004C .rodata PokeMartCommonItems	(src_scrcmd_shop.c.o)
   020EBB48 00000000 .rodata .rodata	(src_scrcmd_tv_broadcast.c.o)
   020EBB48 00000130 .rodata sInterviews	(src_scrcmd_tv_broadcast.c.o)
-  020EBC78 00000000 .rodata .rodata	(src_unk_020494DC.c.o)
-  020EBC78 0000000A .rodata partnerGraphics$20708	(src_unk_020494DC.c.o)
-  020EBC82 000000A4 .rodata prizeList$20784	(src_unk_020494DC.c.o)
-  020EBD28 00000008 .rodata linkMultiBattlePoints$21591	(src_unk_02049D08.c.o)
-  020EBD30 00000008 .rodata soloBattlePoints$21590	(src_unk_02049D08.c.o)
-  020EBD38 0000000A .rodata v3$21638	(src_unk_02049D08.c.o)
-  020EBD44 0000000B .rodata wifiBattlePoints$21589	(src_unk_02049D08.c.o)
-  020EBD50 00000000 .rodata .rodata	(src_battle_tower.c.o)
-  020EBD50 00000008 .rodata sBattleTowerReservedItems	(src_battle_tower.c.o)
-  020EBD58 00000020 .rodata sBattleTowerTrainerRangesPerRoom	(src_battle_tower.c.o)
-  020EBD78 00000020 .rodata sBattleTowerBossTrainerRangesPerRoom	(src_battle_tower.c.o)
-  020EBD98 000000FC .rodata sTrainerClassToObjectID	(src_battle_tower.c.o)
+  020EBC78 00000000 .rodata .rodata	(src_scrcmd_battle_tower.c.o)
+  020EBC78 0000000A .rodata partnerGraphics$20702	(src_scrcmd_battle_tower.c.o)
+  020EBC82 000000A4 .rodata prizeList$20778	(src_scrcmd_battle_tower.c.o)
+  020EBD28 00000008 .rodata linkMultiBattlePoints$21041	(src_battle_tower.c.o)
+  020EBD30 00000008 .rodata soloBattlePoints$21040	(src_battle_tower.c.o)
+  020EBD38 0000000A .rodata lossesForDemotion$21084	(src_battle_tower.c.o)
+  020EBD44 0000000B .rodata wifiBattlePoints$21039	(src_battle_tower.c.o)
+  020EBD50 00000000 .rodata .rodata	(src_battle_tower_trainers.c.o)
+  020EBD50 00000008 .rodata sBattleTowerReservedItems	(src_battle_tower_trainers.c.o)
+  020EBD58 00000020 .rodata sBattleTowerOpponentPools	(src_battle_tower_trainers.c.o)
+  020EBD78 00000020 .rodata sBattleTowerBossOpponentPools	(src_battle_tower_trainers.c.o)
+  020EBD98 000000FC .rodata sTrainerClassToObjectID	(src_battle_tower_trainers.c.o)
   020EBE94 00000000 .rodata .rodata	(src_scrcmd_mystery_gift.c.o)
   020EBE94 000000D0 .rodata giftHandlers	(src_scrcmd_mystery_gift.c.o)
   020EBF64 00000000 .rodata .rodata	(src_scrcmd_amity_square.c.o)
@@ -67148,7 +67148,7 @@
   020EFA84 00000014 .rodata sTownMapFlyLocationUnlockFlags	(src_applications_town_map_context.c.o)
   020EFA98 00000000 .rodata .rodata	(src_applications_town_map_context.c.o)
   020EFA98 000000A0 .rodata sDistWorldMapOffsets	(src_applications_town_map_context.c.o)
-  020EFB38 00000009 .rodata visiblePages$21001	(src_unk_0206B9D8.c.o)
+  020EFB38 00000009 .rodata visiblePages$21000	(src_unk_0206B9D8.c.o)
   020EFB44 00000000 .rodata .rodata	(src_roaming_pokemon.c.o)
   020EFB44 00000074 .rodata RoamingPokemonRoutes	(src_roaming_pokemon.c.o)
   020EFBB8 0000015C .rodata sNearbyRoutes	(src_roaming_pokemon.c.o)
@@ -133228,7 +133228,7 @@
   0223927C 00000000 .text   $t	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223927C 00000044 .text   BattleTower_GetPartnerParam	(src_overlay104_frscrcmd_battle_tower.c.o)
   022392BC 00000000 .text   $d	(src_overlay104_frscrcmd_battle_tower.c.o)
-  022392C0 00000040 .text   FrontierScrCmd_85	(src_overlay104_frscrcmd_battle_tower.c.o)
+  022392C0 00000040 .text   FrontierScrCmd_BattleTower_PrintTrainerIntro	(src_overlay104_frscrcmd_battle_tower.c.o)
   022392C0 00000000 .text   $t	(src_overlay104_frscrcmd_battle_tower.c.o)
   02239300 00000012 .text   FrontierScrCmd_FreeTowerStruct	(src_overlay104_frscrcmd_battle_tower.c.o)
   02239300 00000000 .text   $t	(src_overlay104_frscrcmd_battle_tower.c.o)
@@ -133239,27 +133239,27 @@
   02239364 00000038 .text   FrontierScrCmd_BattleTower_CheckWonBattle	(src_overlay104_frscrcmd_battle_tower.c.o)
   02239398 00000000 .text   $d	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223939C 00000000 .text   $t	(src_overlay104_frscrcmd_battle_tower.c.o)
-  0223939C 00000064 .text   FrontierScrCmd_89	(src_overlay104_frscrcmd_battle_tower.c.o)
+  0223939C 00000064 .text   FrontierScrCmd_BattleTower_SendRetireMessage	(src_overlay104_frscrcmd_battle_tower.c.o)
   022393FC 00000000 .text   $d	(src_overlay104_frscrcmd_battle_tower.c.o)
   02239400 00000000 .text   $t	(src_overlay104_frscrcmd_battle_tower.c.o)
-  02239400 0000002C .text   FrontierScrCmd_8A	(src_overlay104_frscrcmd_battle_tower.c.o)
+  02239400 0000002C .text   FrontierScrCmd_BattleTower_WaitForRetireMessage	(src_overlay104_frscrcmd_battle_tower.c.o)
   02239428 00000000 .text   $d	(src_overlay104_frscrcmd_battle_tower.c.o)
-  0223942C 00000038 .text   ov104_0223942C	(src_overlay104_frscrcmd_battle_tower.c.o)
+  0223942C 00000038 .text   WaitForCommResponse	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223942C 00000000 .text   $t	(src_overlay104_frscrcmd_battle_tower.c.o)
-  02239464 00000040 .text   ov104_02239464	(src_overlay104_frscrcmd_battle_tower.c.o)
+  02239464 00000040 .text   CheckPartnerIsRetiring	(src_overlay104_frscrcmd_battle_tower.c.o)
   02239464 00000000 .text   $t	(src_overlay104_frscrcmd_battle_tower.c.o)
-  022394A4 000000E2 .text   BattleTower_CreateOpponentParties	(src_overlay104_ov104_022394A4.c.o)
-  022394A4 00000000 .text   $t	(src_overlay104_ov104_022394A4.c.o)
-  02239588 00000000 .text   $t	(src_overlay104_ov104_022394A4.c.o)
-  02239588 00000018 .text   BattleTower_GetObjectIDFromOpponentIDInFrontierScript	(src_overlay104_ov104_022394A4.c.o)
-  0223959C 00000000 .text   $d	(src_overlay104_ov104_022394A4.c.o)
-  022395A0 00000014 .text   BattleTower_SetBeatPalmer	(src_overlay104_ov104_022394A4.c.o)
-  022395A0 00000000 .text   $t	(src_overlay104_ov104_022394A4.c.o)
-  022395B4 00000022 .text   ov104_022395B4	(src_overlay104_ov104_022394A4.c.o)
-  022395B4 00000000 .text   $t	(src_overlay104_ov104_022394A4.c.o)
-  022395D8 00000000 .text   $t	(src_overlay104_ov104_022394A4.c.o)
-  022395D8 00000018 .text   ov104_022395D8	(src_overlay104_ov104_022394A4.c.o)
-  022395EC 00000000 .text   $d	(src_overlay104_ov104_022394A4.c.o)
+  022394A4 000000E2 .text   BattleTower_CreateOpponentParties	(src_overlay104_battle_tower.c.o)
+  022394A4 00000000 .text   $t	(src_overlay104_battle_tower.c.o)
+  02239588 00000000 .text   $t	(src_overlay104_battle_tower.c.o)
+  02239588 00000018 .text   BattleTower_GetObjectIDFromOpponentIDInFrontierScript	(src_overlay104_battle_tower.c.o)
+  0223959C 00000000 .text   $d	(src_overlay104_battle_tower.c.o)
+  022395A0 00000014 .text   BattleTower_SetBeatPalmer	(src_overlay104_battle_tower.c.o)
+  022395A0 00000000 .text   $t	(src_overlay104_battle_tower.c.o)
+  022395B4 00000022 .text   BattleTower_IncrementCurrentBattle	(src_overlay104_battle_tower.c.o)
+  022395B4 00000000 .text   $t	(src_overlay104_battle_tower.c.o)
+  022395D8 00000000 .text   $t	(src_overlay104_battle_tower.c.o)
+  022395D8 00000018 .text   BattleTower_GetCurrentStreak	(src_overlay104_battle_tower.c.o)
+  022395EC 00000000 .text   $d	(src_overlay104_battle_tower.c.o)
   022395F0 00000020 .text   FrontierScrCmd_InitWFCFacilitySelector	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
   022395F0 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
   02239610 00000012 .text   FrontierScrCmd_FreeWFCFacilitySelector	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
@@ -133313,38 +133313,38 @@
   0223A088 00000000 .text   $d	(src_overlay104_wfc_facility_selector.c.o)
   0223A090 00000032 .text   ProcessSummaryAppResults	(src_overlay104_wfc_facility_selector.c.o)
   0223A090 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
-  0223A0C4 00000052 .text   BattleTower_CreateTrainerParty	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A0C4 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A118 000001F2 .text   BattleTower_CreateRandomTrainerParty	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A118 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A30C 0000003A .text   BattleTower_CreateWiFiTrainerParty	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A30C 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A348 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A348 00000060 .text   BattleTower_CreateDummyWiFiTrainer	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A39C 00000000 .text   $d	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A3A8 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A3A8 000001D8 .text   BattleTower_CopySetToPokemonDataDTO	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A558 00000000 .text   $d	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A580 0000012A .text   FieldBattleDTO_NewBattleTower	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A580 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A6AC 00000054 .text   FieldBattleDTO_InitBattleTowerTrainer	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A6AC 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A700 00000032 .text   BattleTower_GetBattleTypeFromChallengeMode	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A700 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A734 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A734 0000001C .text   ov104_0223A734	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A74C 00000000 .text   $d	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A750 00000016 .text   ov104_0223A750	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A750 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A768 00000012 .text   BattleTower_GetPokemonDataNarcID	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A768 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A77C 00000012 .text   BattleFrontier_GetTrainerDataNarcID	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A77C 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A790 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A790 0000001C .text   BattleTower_GetTrainerMessagesBankID	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A7A4 00000000 .text   $d	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A7AC 00000048 .text   BattleTower_AreAllConnectedGamesPlatinum	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A7AC 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
+  0223A0C4 00000052 .text   BattleTower_CreateTrainerParty	(src_overlay104_battle_tower_helpers.c.o)
+  0223A0C4 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A118 000001F2 .text   BattleTower_CreateRandomTrainerParty	(src_overlay104_battle_tower_helpers.c.o)
+  0223A118 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A30C 0000003A .text   BattleTower_CreateWiFiTrainerParty	(src_overlay104_battle_tower_helpers.c.o)
+  0223A30C 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A348 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A348 00000060 .text   BattleTower_CreateDummyWiFiTrainer	(src_overlay104_battle_tower_helpers.c.o)
+  0223A39C 00000000 .text   $d	(src_overlay104_battle_tower_helpers.c.o)
+  0223A3A8 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A3A8 000001D8 .text   BattleTower_InitFrontierPokemon	(src_overlay104_battle_tower_helpers.c.o)
+  0223A558 00000000 .text   $d	(src_overlay104_battle_tower_helpers.c.o)
+  0223A580 0000012A .text   BattleTower_SetupBattle	(src_overlay104_battle_tower_helpers.c.o)
+  0223A580 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A6AC 00000054 .text   FieldBattleDTO_InitBattleTowerTrainer	(src_overlay104_battle_tower_helpers.c.o)
+  0223A6AC 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A700 00000032 .text   BattleTower_GetBattleTypeFromChallengeMode	(src_overlay104_battle_tower_helpers.c.o)
+  0223A700 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A734 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A734 0000001C .text   BattleTower_SetIsRetiringFlag	(src_overlay104_battle_tower_helpers.c.o)
+  0223A74C 00000000 .text   $d	(src_overlay104_battle_tower_helpers.c.o)
+  0223A750 00000016 .text   BattleTower_CheckIsRetiring	(src_overlay104_battle_tower_helpers.c.o)
+  0223A750 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A768 00000012 .text   BattleTower_GetPokemonDataNarcID	(src_overlay104_battle_tower_helpers.c.o)
+  0223A768 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A77C 00000012 .text   BattleFrontier_GetTrainerDataNarcID	(src_overlay104_battle_tower_helpers.c.o)
+  0223A77C 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A790 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
+  0223A790 0000001C .text   BattleTower_GetTrainerMessagesBankID	(src_overlay104_battle_tower_helpers.c.o)
+  0223A7A4 00000000 .text   $d	(src_overlay104_battle_tower_helpers.c.o)
+  0223A7AC 00000048 .text   BattleTower_AreAllConnectedGamesPlatinum	(src_overlay104_battle_tower_helpers.c.o)
+  0223A7AC 00000000 .text   $t	(src_overlay104_battle_tower_helpers.c.o)
   0223A7F4 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
   0223A7F4 0000006C .text   BattleFactory_GetOpponentTrainerID	(src_overlay104_battle_factory_helpers.c.o)
   0223A848 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
@@ -133869,11 +133869,11 @@
   0223FC94 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FC94 0000000A .rodata partnerGraphics$16704	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FCA0 00000009 .rodata visiblePages$19524	(src_overlay104_wfc_facility_selector.c.o)
-  0223FCAC 00000000 .rodata .rodata	(src_overlay104_ov104_0223A0C4.c.o)
-  0223FCAC 00000008 .rodata sBattleTowerReservedItems	(src_overlay104_ov104_0223A0C4.c.o)
-  0223FCB4 0000002A .rodata Unk_ov104_0223FCB4	(src_overlay104_ov104_0223A0C4.c.o)
-  0223FCE0 00000150 .rodata sDummyFrontierTrainers	(src_overlay104_ov104_0223A0C4.c.o)
-  0223FE30 000003B8 .rodata sDummyFrontierPokemon	(src_overlay104_ov104_0223A0C4.c.o)
+  0223FCAC 00000000 .rodata .rodata	(src_overlay104_battle_tower_helpers.c.o)
+  0223FCAC 00000008 .rodata sBattleTowerReservedItems	(src_overlay104_battle_tower_helpers.c.o)
+  0223FCB4 0000002A .rodata sDummyTrainerParties	(src_overlay104_battle_tower_helpers.c.o)
+  0223FCE0 00000150 .rodata sDummyFrontierTrainers	(src_overlay104_battle_tower_helpers.c.o)
+  0223FE30 000003B8 .rodata sDummyFrontierPokemon	(src_overlay104_battle_tower_helpers.c.o)
   022401E8 00000000 .rodata .rodata	(src_overlay104_battle_factory_helpers.c.o)
   022401E8 00000014 .rodata sTradeCountsNeededForUpgrades	(src_overlay104_battle_factory_helpers.c.o)
   022401FC 00000040 .rodata sBattleFactoryOpponentPools	(src_overlay104_battle_factory_helpers.c.o)
