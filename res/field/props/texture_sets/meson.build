@@ -78,6 +78,7 @@ prop_texture_set_narc = custom_target('prop_texture_sets.narc',
     command: [
         nitroarc_exe,
         '--create',
+        '--index',
         '--files-from', files('prop_texture_sets.order'),
         '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
