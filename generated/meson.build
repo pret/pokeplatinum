@@ -81,7 +81,6 @@ metang_generators = {
     'seals': { 'type': 'enum', 'tag': 'Seal' },
     'signpost_commands': { 'type': 'enum', 'tag': 'SignpostCommand' },
     'signpost_types': { 'type': 'enum', 'tag': 'SignpostType' },
-    'size_contest_results': { 'type': 'enum', 'tag': 'SizeContestResult' },
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },
     'species': { 'type': 'enum', 'tag': 'Species' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
