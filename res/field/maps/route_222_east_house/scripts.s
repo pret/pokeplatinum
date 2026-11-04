@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_222_east_house.h"
-#include "generated/size_contest_results.h"
+#include "constants/size_contest_results.h"
 
 
     ScriptEntry Route222EastHouse_OnTransition
