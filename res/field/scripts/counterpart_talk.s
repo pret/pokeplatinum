@@ -118,34 +118,34 @@ CounterpartTalk_StartPokeRadarTutorial:
     End
 
 CounterpartTalk_CounterpartLeaveNorth:
-    ApplyMovement LOCALID_SANDGEM_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
+    ApplyMovement LOCALID_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
     ApplyMovement LOCALID_PLAYER, CounterpartTalk_Movement_PlayerWatchCounterpartLeaveNorthSouth
     WaitMovement
     GoTo CounterpartTalk_RemoveCounterpart
     End
 
 CounterpartTalk_CounterpartLeaveSouth:
-    ApplyMovement LOCALID_SANDGEM_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
+    ApplyMovement LOCALID_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
     ApplyMovement LOCALID_PLAYER, CounterpartTalk_Movement_PlayerWatchCounterpartLeaveNorthSouth
     WaitMovement
     GoTo CounterpartTalk_RemoveCounterpart
     End
 
 CounterpartTalk_CounterpartLeaveWest:
-    ApplyMovement LOCALID_SANDGEM_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveWest
+    ApplyMovement LOCALID_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveWest
     ApplyMovement LOCALID_PLAYER, CounterpartTalk_Movement_PlayerWatchCounterpartLeaveWest
     WaitMovement
     GoTo CounterpartTalk_RemoveCounterpart
     End
 
 CounterpartTalk_CounterpartLeaveEast:
-    ApplyMovement LOCALID_SANDGEM_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
+    ApplyMovement LOCALID_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
     WaitMovement
     GoTo CounterpartTalk_RemoveCounterpart
     End
 
 CounterpartTalk_RemoveCounterpart:
-    RemoveObject LOCALID_SANDGEM_COUNTERPART
+    RemoveObject LOCALID_COUNTERPART
     ClearFlag FLAG_HIDE_ROUTE_202_COUNTERPART
     SetVar VAR_ROUTE_202_STATE, 2
     ReleaseAll
