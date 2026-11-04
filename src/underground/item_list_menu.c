@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "bg_window.h"
-#include "colored_arrow.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "menu.h"
+#include "menu_cursor.h"
 #include "sound_playback.h"
 #include "string_list.h"
 #include "system.h"
@@ -24,9 +24,9 @@ UndergroundItemListMenu *UndergroundItemListMenu_New(ListMenuTemplate *template,
     if (menu->moveItemCallback) {
         menu->underground = underground;
         menu->isDecorationMenu = isDecorationMenu;
-        menu->arrow = ColoredArrow_New(heapID);
+        menu->cursor = MenuCursor_New(heapID);
 
-        ColoredArrow_SetColor(menu->arrow, TEXT_COLOR(8, 9, 15));
+        MenuCursor_SetColor(menu->cursor, TEXT_COLOR(8, 9, 15));
 
         menu->heapID = heapID;
 
@@ -46,7 +46,7 @@ UndergroundItemListMenu *UndergroundItemListMenu_New(ListMenuTemplate *template,
     return menu;
 }
 
-static void UndergroundItemListMenu_DrawColoredArrow(u16 listPos, u16 cursorPos, UndergroundItemListMenu *menu)
+static void UndergroundItemListMenu_DrawCursor(u16 listPos, u16 cursorPos, UndergroundItemListMenu *menu)
 {
     u16 arrowPos = menu->initialListPos + menu->initialCursorPos;
     u16 maxDisplay = ListMenu_GetAttribute(menu->listMenu, LIST_MENU_MAX_DISPLAY);
@@ -67,7 +67,7 @@ static void UndergroundItemListMenu_DrawColoredArrow(u16 listPos, u16 cursorPos,
     int yOffset = (arrowPos - listPos) * lineHeight + ListMenu_GetAttribute(menu->listMenu, LIST_MENU_Y_OFFSET);
     Window *window = (Window *)ListMenu_GetAttribute(menu->listMenu, LIST_MENU_WINDOW);
 
-    ColoredArrow_Print(menu->arrow, window, xOffset, yOffset);
+    MenuCursor_Print(menu->cursor, window, xOffset, yOffset);
 }
 
 u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
@@ -82,7 +82,7 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
         ListMenu_GetListAndCursorPos(listMenu, &listPos, &cursorPos);
 
         if (menu->movingItems) {
-            UndergroundItemListMenu_DrawColoredArrow(listPos, cursorPos, menu);
+            UndergroundItemListMenu_DrawCursor(listPos, cursorPos, menu);
 
             if (JOY_NEW(PAD_BUTTON_A) || JOY_NEW(PAD_BUTTON_SELECT)) {
                 Sound_PlayEffect(SE_CONFIRM_sseq_3);
@@ -182,7 +182,7 @@ void UndergroundItemListMenu_Free(UndergroundItemListMenu *menu, u16 *outListPos
     ListMenu_Free(menu->listMenu, outListPos, outCursorPos);
 
     if (menu->moveItemCallback) {
-        ColoredArrow_Free(menu->arrow);
+        MenuCursor_Free(menu->cursor);
         Heap_Free(menu->choices);
     }
 
