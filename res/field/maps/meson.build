@@ -91,9 +91,11 @@ mapbuild = custom_target('mapbuild',
         '--manifest', mapgen,
         '--depfile', '@DEPFILE@',
         '--domain', 'maps',
+        '--stamp', '@OUTPUT0@',
     ],
 
     output: [
+        'mapbuild.stamp',
         'scr_seq.narc',
         'scr_seq.naix',
         'zone_event.narc',
@@ -135,13 +137,14 @@ mapbuild = custom_target('mapbuild',
     ],
 )
 
-nitrofs_files += mapbuild[0]
-naix_headers += mapbuild[1]
-nitrofs_files += mapbuild[2]
-naix_headers += mapbuild[3]
-nitrofs_files += mapbuild[4]
-naix_headers += mapbuild[5]
-nitrofs_files += mapbuild[6]
+map_data_stamp = mapbuild[0]
+nitrofs_files += mapbuild[1]
+naix_headers += mapbuild[2]
+nitrofs_files += mapbuild[3]
+naix_headers += mapbuild[4]
+nitrofs_files += mapbuild[5]
+naix_headers += mapbuild[6]
 nitrofs_files += mapbuild[7]
-naix_headers += mapbuild[8]
-h_headers += mapbuild[9]
+nitrofs_files += mapbuild[8]
+naix_headers += mapbuild[9]
+h_headers += mapbuild[10]
