@@ -239,7 +239,7 @@ Static main
 	Object src/comm_player_manager.c
 	Object src/field_comm_manager.c
 	Object src/unk_0205A0D8.c
-	Object src/unk_0205B33C.c
+	Object src/union_room.c
 	Object src/unk_0205C22C.c
 	Object src/appearance.c
 	Object src/underground_map_transition.c

@@ -117,11 +117,11 @@
 #include "trainer_case_save_data.h"
 #include "trainer_info.h"
 #include "tv_segment.h"
+#include "union_room.h"
 #include "unk_02017498.h"
 #include "unk_020298BC.h"
 #include "unk_02038FFC.h"
 #include "unk_020559DC.h"
-#include "unk_0205B33C.h"
 #include "vars_flags.h"
 #include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
@@ -438,12 +438,12 @@ static BOOL sub_0203D444(FieldTask *taskMan)
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             switch (taskEnv->partyMenu->selectedMonSlot) {
-            case 7:
-                sub_0205BAAC(2);
+            case PARTY_MENU_SLOT_CANCEL:
+                UnionRoom_SendPartySelectionResult(UR_PARTY_SELECTION_CANCELLED);
                 *taskState = 4;
                 break;
             case 6:
-                sub_0205BAAC(1);
+                UnionRoom_SendPartySelectionResult(UR_PARTY_SELECTION_CONFIRMED);
                 *taskState = 4;
                 break;
             default:

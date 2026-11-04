@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
@@ -37,8 +36,8 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
+#include "union_room.h"
 #include "unk_02033200.h"
-#include "unk_0205B33C.h"
 
 FS_EXTERN_OVERLAY(overlay56);
 
@@ -60,7 +59,7 @@ typedef struct {
 struct UnkStruct_ov56_02256468_t {
     int unk_00;
     UnkStruct_0205C22C *unk_04;
-    UnkStruct_0205B43C *unk_08;
+    UnionRoomManager *unk_08;
     FieldSystem *fieldSystem;
     TrainerInfo *unk_10;
     BgConfig *unk_14;
@@ -223,7 +222,7 @@ UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->unk_14 = fieldSystem->bgConfig;
     v0->unk_04 = fieldSystem->unk_80;
-    v0->unk_08 = fieldSystem->unk_7C;
+    v0->unk_08 = fieldSystem->unionRoomMan;
     v0->unk_10 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_00 = 0;
     v0->unk_2F8 = v1;
@@ -884,7 +883,7 @@ static void ov56_02257098(UnkStruct_ov56_02256468 *param0)
         }
     }
 
-    if ((v4 = sub_0205C028(param0->unk_08)) != NULL) {
+    if ((v4 = UnionRoom_TakePendingSentence(param0->unk_08)) != NULL) {
         u32 v7 = TrainerInfo_ID(param0->unk_10);
         ov56_02257048(param0, param0->unk_10, v4, v7);
     }
