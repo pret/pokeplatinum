@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "constants/field/window.h"
+#include "constants/game_records.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
-#include "generated/game_records.h"
 
 #include "applications/capsule_menu/main.h"
 #include "field/field_system.h"

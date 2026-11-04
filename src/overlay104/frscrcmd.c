@@ -3,8 +3,8 @@
 #include <nitro.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/game_records.h"
 #include "constants/string.h"
-#include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/object_events_gfx.h"
 #include "generated/vars_flags.h"

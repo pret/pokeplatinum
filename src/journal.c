@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/badges.h"
+#include "constants/badges.h"
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
 #include "generated/map_headers.h"

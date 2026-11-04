@@ -2,7 +2,7 @@
 
 #include <nitro.h>
 
-#include "generated/game_records.h"
+#include "constants/game_records.h"
 
 #include "struct_defs/battle_frontier.h"
 

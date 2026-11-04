@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/sphere_types.h"
+#include "constants/traps.h"
 #include "generated/goods.h"
-#include "generated/sphere_types.h"
-#include "generated/traps.h"
 
 #include "struct_decls/map_object.h"
 

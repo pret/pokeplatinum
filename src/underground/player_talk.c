@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/field_base_tiles.h"
-#include "generated/trainer_score_events.h"
+#include "constants/trainer_score_events.h"
 
 #include "field/field_system.h"
 #include "underground/manager.h"

@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/badges.h"
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_load.h"
-#include "generated/badges.h"
 #include "generated/journal_location_events.h"
 #include "generated/object_events_gfx.h"
 

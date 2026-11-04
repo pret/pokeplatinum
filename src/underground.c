@@ -6,9 +6,9 @@
 #include "constants/charcode.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
+#include "constants/sphere_types.h"
+#include "constants/traps.h"
 #include "generated/goods.h"
-#include "generated/sphere_types.h"
-#include "generated/traps.h"
 
 #include "underground/mining.h"
 #include "underground/secret_bases.h"

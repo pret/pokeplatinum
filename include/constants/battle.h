@@ -8,7 +8,6 @@
 #include "constants/battle/system_control.h"
 #include "constants/battle/terrain.h"
 #include "constants/battle/turn_flags.h"
-#include "generated/battle_actions.h"
 #include "generated/battle_backgrounds.h"
 #include "generated/battle_boot_states.h"
 #include "generated/battle_context_params.h"
@@ -20,6 +19,14 @@
 #include "generated/battle_sub_animations.h"
 #include "generated/battle_terrains.h"
 #include "generated/move_battle_effects.h"
+
+enum BattleAction {
+    BATTLE_ACTION_PICK_COMMAND = 0,
+    BATTLE_ACTION_CHOOSE_TARGET,
+    BATTLE_ACTION_TEMP_VALUE,
+    BATTLE_ACTION_SELECTED_COMMAND,
+    MAX_BATTLE_ACTIONS,
+};
 
 #define BATTLE_TYPE_SINGLES        (0 << 0)
 #define BATTLE_TYPE_WILD_MON       (0 << 0)

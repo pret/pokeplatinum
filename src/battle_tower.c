@@ -4,11 +4,10 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
+#include "constants/species_data_params.h"
 #include "constants/string.h"
-#include "generated/battle_tower_modes.h"
 #include "generated/frontier_trainers.h"
 #include "generated/object_events_gfx.h"
-#include "generated/species_data_params.h"
 #include "generated/trainer_classes.h"
 
 #include "struct_defs/battle_tower.h"

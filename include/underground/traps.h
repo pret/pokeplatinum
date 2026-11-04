@@ -3,7 +3,7 @@
 
 #include <nitro/math.h>
 
-#include "generated/traps.h"
+#include "constants/traps.h"
 
 #include "field/field_system_decl.h"
 #include "underground/defs.h"

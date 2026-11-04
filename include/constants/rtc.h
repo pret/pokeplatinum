@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_RTC_H
 #define POKEPLATINUM_CONSTANTS_RTC_H
 
-#include "generated/time_of_day.h"
+#include "constants/time_of_day.h"
 
 #define HOURS_PER_DAY 24
 

@@ -5,7 +5,7 @@
 
 #include "constants/battle_frontier.h"
 #include "constants/battle_hall_functions.h"
-#include "generated/game_records.h"
+#include "constants/game_records.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
