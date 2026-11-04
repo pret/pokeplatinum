@@ -288,7 +288,7 @@ _0374:
     Return
 
 _0382:
-    CallBattleTowerFunction BT_FUNC_UNK_34, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_INCREMENT_CURRENT_BATTLE, 0, VAR_0x8008
     CallBattleTowerFunction BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_0x8008
     Return
 
@@ -344,12 +344,12 @@ _0459:
 _046D:
     CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, VAR_0x8008
     Call _04A8
-    FrontierScrCmd_85 0
+    BattleTower_PrintTrainerIntro 0
     WaitABPress
     CloseMessage
     Call _04C8
     FrontierScrCmd_3F 0
-    CallBattleTowerFunction BT_FUNC_UNK_59, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_SET_UNUSED_FLAG, 0, VAR_0x8008
     BattleTower_StartBattle
     BattleTower_CheckWonBattle VAR_0x800C
     FadeScreenIn
@@ -375,7 +375,7 @@ _04DC:
     Message BattleTowerBattleRoom_Text_AreYouReady
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     GoToIfNe VAR_0x8008, BATTLE_TOWER_MODE_SINGLE, _052C
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 20, _078C
     GoToIfEq VAR_0x8008, 48, _078C
     GoTo _052C
@@ -444,7 +444,7 @@ _0641:
     End
 
 _0655:
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8005
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_0x8005
     Return
 
 _065F:
@@ -486,7 +486,7 @@ _06B3:
 
 _06D3:
     SetSystemVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
-    CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_QUICKSAVE, 0, VAR_0x8008
     FreeTowerStruct
     Message BattleTowerBattleRoom_Text_Saving
     ShowSavingIcon
@@ -516,7 +516,7 @@ _0731:
 _0741:
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     GoToIfNe VAR_0x8008, BATTLE_TOWER_MODE_SINGLE, _04DC
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 20, _0780
     GoToIfEq VAR_0x8008, 48, _0780
     GoTo _04DC
@@ -561,7 +561,7 @@ _082D:
     SetVar VAR_0x8003, 0
     CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, VAR_0x8008
     Call _092C
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 48, _08F1
     BufferPlayerName 0
     BufferRivalName 1
@@ -578,7 +578,7 @@ _086E:
     BattleTower_CheckWonBattle VAR_0x800C
     FadeScreenIn
     GoToIfEq VAR_0x800C, 0, _020F
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 48, _08FD
     GetSystemVar VAR_BATTLE_TOWER_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _08D9

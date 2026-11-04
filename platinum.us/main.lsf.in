@@ -131,7 +131,7 @@ Static main
 	Object src/play_time.c
 	Object src/chatot_cry.c
 	Object src/game_records.c
-	Object src/wifi_battle_tower_save.c
+	Object src/battle_tower_save.c
 	Object src/ribbon_save_data.c
 	Object src/special_encounter.c
 	Object src/global_trade.c
@@ -192,9 +192,9 @@ Static main
 	Object src/scrcmd_trainer.c
 	Object src/scrcmd_group_connection.c
 	Object src/scrcmd_tv_broadcast.c
-	Object src/unk_020494DC.c
-	Object src/unk_02049D08.c
+	Object src/scrcmd_battle_tower.c
 	Object src/battle_tower.c
+	Object src/battle_tower_trainers.c
 	Object src/scrcmd_berry.c
 	Object src/scrcmd_mystery_gift.c
 	Object src/scrcmd_catching_show.c
@@ -1549,10 +1549,10 @@ Overlay overlay104
 	Object src/overlay104/battle_arcade.c
 	Object src/overlay104/frscrcmd_sound.c
 	Object src/overlay104/frscrcmd_battle_tower.c
-	Object src/overlay104/ov104_022394A4.c
+	Object src/overlay104/battle_tower.c
 	Object src/overlay104/frscrcmd_wfc_facility_selector.c
 	Object src/overlay104/wfc_facility_selector.c
-	Object src/overlay104/ov104_0223A0C4.c
+	Object src/overlay104/battle_tower_helpers.c
 	Object src/overlay104/battle_factory_helpers.c
 	Object src/overlay104/battle_hall_helpers.c
 	Object src/overlay104/battle_castle_helpers.c

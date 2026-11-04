@@ -2,6 +2,7 @@
 #include "res/text/bank/battle_tower.h"
 #include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_battle_tower.h"
+#include "constants/battle_tower_functions.h"
 #include "generated/goods.h"
 
 
@@ -268,8 +269,8 @@ BattleTower_HealAndSaveBeforeEnteringBattleRoom:
     HealParty
     Call BattleTower_SaveGame
     GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndEnd
-    CallBattleTowerFunction BT_FUNC_UNK_57, 0, VAR_RESULT
-    CallBattleTowerFunction BT_FUNC_UNK_52, 0, 0
+    CallBattleTowerFunction BT_FUNC_SET_RNG_SEEDS, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_PICK_OPPONENT_TRAINERS, 0, 0
     Message BattleTower_Text_ShowYouToBattleRoom
     WaitABPress
     GoTo BattleTower_EnterBattleRoom
@@ -294,9 +295,9 @@ BattleTower_SelectPokemon:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    CallBattleTowerFunction BT_FUNC_UNK_30, 0, 0
+    CallBattleTowerFunction BT_FUNC_SELECT_POKEMON, 0, 0
     ReturnToField
-    CallBattleTowerFunction BT_FUNC_UNK_31, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_STORE_SELECTION_RESULT, 0, VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
     Return
@@ -304,7 +305,7 @@ BattleTower_SelectPokemon:
 BattleTower_OnFrame_ResumeChallenge:
     LockAll
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 0
-    CallBattleTowerFunction BT_FUNC_UNK_04, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_CHECK_RUN_IN_PROGRESS, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleTower_OnFrame_DidntSaveBeforeQuit
     Message BattleTower_Text_SaveBeforeEntering
     InitBattleTower 1, 0xFFFF
@@ -346,9 +347,9 @@ BattleTower_OnFrame_DidntSaveBeforeQuit:
     End
 
 BattleTower_DidntSaveCheckDemoted:
-    CallBattleTowerFunction BT_FUNC_UNK_09, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_INCREMENT_WIFI_LOSS_STREAK, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndEnd
-    CallBattleTowerFunction BT_FUNC_UNK_10, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_WIFI_RANK, 0, VAR_RESULT
     SetVar VAR_0x8000, VAR_RESULT
     BufferNumber 0, VAR_0x8000
     Message BattleTower_Text_DemotedToRank
@@ -467,11 +468,11 @@ BattleTower_End:
 
 BattleTower_ClearCommunication:
     CallBattleTowerFunction BT_FUNC_CLEAR_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
-    Call _07AB
+    Call BattleTower_ClearSave
     Return
 
-_07AB:
-    CallBattleTowerFunction BT_FUNC_UNK_03, 0, 0
+BattleTower_ClearSave:
+    CallBattleTowerFunction BT_FUNC_CLEAR_SAVE, 0, 0
     Return
 
 BattleTower_FreeBattleTower:
@@ -503,7 +504,7 @@ BattleTower_GoToWiFiChallengeMenu:
     End
 
 BattleTower_CheckWhichWiFiChallengeMenu:
-    CallBattleTowerFunction BT_FUNC_UNK_15, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_CHECK_HAVE_WIFI_DATA, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, BattleTower_AskTakeWiFiOrEarlierChallenge
     GoTo BattleTower_AskTakeWiFiChallenge
     End
@@ -613,7 +614,7 @@ _09FB:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _09FB
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
-    CallBattleTowerFunction BT_FUNC_UNK_39, 0, 0
+    CallBattleTowerFunction BT_FUNC_QUICKSAVE, 0, 0
     FreeBattleTower
     Message BattleTower_Text_SavingDontTurnOffPower2
     Call BattleTower_TrySaveGame
@@ -632,7 +633,7 @@ BattleTower_CheckLeaders:
     SetVar VAR_MAP_LOCAL_0x01, 2
     Call BattleTower_TrySendPreviousResults
     GoToIfNe VAR_RESULT, 0, BattleTower_HopeToSeeYouAgain
-    ScrCmd_1E3 VAR_0x8004, VAR_0x8005
+    GetBattleTowerMatchIndices VAR_0x8004, VAR_0x8005
     BufferNumber 0, VAR_0x8004
     BufferVarPaddingDigits 1, VAR_0x8005, PADDING_MODE_ZEROES, 3
     Message BattleTower_Text_ConfirmPastLeaderHistory
@@ -724,8 +725,8 @@ BattleTower_SelectAndValidatePokemonMultiChallenge:
     HealParty
     Call BattleTower_SaveGame
     GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndEnd
-    CallBattleTowerFunction BT_FUNC_UNK_57, 0, VAR_RESULT
-    CallBattleTowerFunction BT_FUNC_UNK_52, 0, 0
+    CallBattleTowerFunction BT_FUNC_SET_RNG_SEEDS, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_PICK_OPPONENT_TRAINERS, 0, 0
     Message BattleTower_Text_ShowYouToBattleSalon
     GoTo BattleTower_EnterBattleRoom
     End
@@ -794,12 +795,12 @@ BattleTower_ErrorBecomingLeader:
 _0D5C:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 1
-    CallBattleTowerFunction BT_FUNC_UNK_58, 0, 0
+    CallBattleTowerFunction BT_FUNC_CLEAR_BUFFER, 0, 0
     GoTo _0D72
     End
 
 _0D72:
-    ScrCmd_1E1 0, 0, VAR_RESULT
+    BattleTower_SendCommMessage 0, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0D72
     ScrCmd_1E2 0, VAR_MAP_LOCAL_0x00
     SetVar VAR_0x8008, VAR_MAP_LOCAL_0x00
@@ -808,7 +809,7 @@ _0D72:
     GoToIfEq VAR_0x8008, 3, BattleTower_BothTrainerChosePokemon1And2
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 2
-    CallBattleTowerFunction BT_FUNC_UNK_57, 0, VAR_0x8004
+    CallBattleTowerFunction BT_FUNC_SET_RNG_SEEDS, 0, VAR_0x8004
     GetCurNetID VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0E8A
     ScrCmd_1E2 1, VAR_MAP_LOCAL_0x00
@@ -862,13 +863,13 @@ _0E58:
     End
 
 _0E8A:
-    CallBattleTowerFunction BT_FUNC_UNK_52, 0, 0
-    CallBattleTowerFunction BT_FUNC_UNK_58, 0, 0
+    CallBattleTowerFunction BT_FUNC_PICK_OPPONENT_TRAINERS, 0, 0
+    CallBattleTowerFunction BT_FUNC_CLEAR_BUFFER, 0, 0
     GoTo _0EA2
     End
 
 _0EA2:
-    ScrCmd_1E1 1, 0, VAR_RESULT
+    BattleTower_SendCommMessage 1, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0EA2
     GoTo _0E58
     End
@@ -892,7 +893,7 @@ BattleTower_ThanksForPlaying:
     SetVar VAR_0x8008, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, BattleTower_SaveAndEnd
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_WIFI, _11BA
-    CallBattleTowerFunction BT_FUNC_UNK_49, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_TRY_GIVE_ABILITY_RIBBONS, 0, VAR_RESULT
     CallIfEq VAR_RESULT, 1, BattleTower_RibbonsFor50WinStreak
     GoTo BattleTower_SaveAndEnd
     End
@@ -917,7 +918,7 @@ _0F7E:
     GoToIfEq VAR_MAP_LOCAL_0x00, BATTLE_TOWER_MODE_5, BattleTower_BeatenAllSevenTrainersSave
     GoToIfEq VAR_MAP_LOCAL_0x00, BATTLE_TOWER_MODE_SINGLE, _1091
     GoToIfEq VAR_MAP_LOCAL_0x00, BATTLE_TOWER_MODE_WIFI, _0FEA
-    CallBattleTowerFunction BT_FUNC_UNK_49, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_TRY_GIVE_ABILITY_RIBBONS, 0, VAR_RESULT
     GoToIfNe VAR_RESULT, 0, _0FD6
     Call BattleTower_BeatenAllSevenTrainers
     GoTo BattleTower_SaveGameClearCommunication
@@ -933,13 +934,13 @@ _0FD6:
 
 _0FEA:
     Message BattleTower_Text_BeatenAllSevenTrainers
-    CallBattleTowerFunction BT_FUNC_UNK_54, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_INCREMENT_WIFI_RANK, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _105E
     GoTo _100A
     End
 
 _100A:
-    CallBattleTowerFunction BT_FUNC_UNK_10, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_WIFI_RANK, 0, VAR_RESULT
     SetVar VAR_MAP_LOCAL_0x00, VAR_RESULT
     BufferPlayerName 0
     BufferNumber 1, VAR_MAP_LOCAL_0x00
@@ -948,7 +949,7 @@ _100A:
     End
 
 _102B:
-    CallBattleTowerFunction BT_FUNC_UNK_49, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_TRY_GIVE_ABILITY_RIBBONS, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _11F5
     GoTo _1048
     End
@@ -962,7 +963,7 @@ _1048:
     End
 
 _105E:
-    CallBattleTowerFunction BT_FUNC_UNK_49, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_TRY_GIVE_ABILITY_RIBBONS, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _11F5
     GoTo _107B
     End
@@ -1002,7 +1003,7 @@ _10BC:
 _10F5:
     CallIfEq VAR_BATTLE_TOWER_PRINT_STATE, 1, _1135
     CallIfEq VAR_BATTLE_TOWER_PRINT_STATE, 3, _114C
-    CallBattleTowerFunction BT_FUNC_UNK_48, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GIVE_SINGLES_RIBBON, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _10BC
     Message BattleTower_Text_RibbonsForDefeatingTycoon
     PlayFanfare SEQ_FANFA1_sseq
@@ -1057,13 +1058,13 @@ _118A:
     End
 
 _11BA:
-    CallBattleTowerFunction BT_FUNC_UNK_09, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_INCREMENT_WIFI_LOSS_STREAK, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _11D7
     GoTo _11F5
     End
 
 _11D7:
-    CallBattleTowerFunction BT_FUNC_UNK_10, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_WIFI_RANK, 0, VAR_RESULT
     SetVar VAR_0x8000, VAR_RESULT
     BufferNumber 0, VAR_0x8000
     Message BattleTower_Text_DemotedToRank
@@ -1144,7 +1145,7 @@ BattleTower_MachineWiFiResults:
 BattleTower_MachineWiFiLeaders:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    ScrCmd_1E4 VAR_RESULT
+    BattleTower_CheckHasMatchListData VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleTower_NoDataYet
     SetVar VAR_0x8000, TRUE
     SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_SOLO

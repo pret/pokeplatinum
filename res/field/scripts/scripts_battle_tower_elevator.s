@@ -2,6 +2,7 @@
 #include "constants/battle_frontier.h"
 #include "res/field/events/events_battle_tower_elevator.h"
 #include "generated/object_events_gfx.h"
+#include "constants/battle_tower_functions.h"
 
 
     ScriptEntry BattleTowerElevator_OnTransition

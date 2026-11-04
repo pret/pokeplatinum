@@ -2,6 +2,7 @@
 #include "res/text/bank/battle_tower_battle_room.h"
 #include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_battle_tower_battle_room.h"
+#include "constants/battle_tower_functions.h"
 #include "constants/map_object.h"
 
 
@@ -112,7 +113,7 @@ BattleTowerBattleRoom_EndChallengeWonRound:
 
 BattleTowerBattleRoom_SaveAndQuit:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
-    CallBattleTowerFunction BT_FUNC_UNK_39, 0, 0
+    CallBattleTowerFunction BT_FUNC_QUICKSAVE, 0, 0
     FreeBattleTower
     Message BattleTowerBattleRoom_Text_Saving
     ShowSavingIcon
@@ -131,7 +132,7 @@ BattleTowerBattleRoom_CancelChallenge:
     End
 
 BattleTowerBattleRoom_CheckDefeatedSevenTrainers:
-    CallBattleTowerFunction BT_FUNC_UNK_34, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_INCREMENT_CURRENT_BATTLE, 0, VAR_RESULT
     CallBattleTowerFunction BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_RESULT
     Return
 
@@ -188,7 +189,7 @@ BattleTowerBattleRoom_AskCancelChallenge:
 BattleTowerBattleRoom_NextOpponent:
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
     GoToIfNe VAR_RESULT, BATTLE_TOWER_MODE_SINGLE, BattleTowerBattleRoom_NextOpponentMenu
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 20, BattleTowerBattleRoom_TowerTycoonMenu
     GoToIfEq VAR_RESULT, 48, BattleTowerBattleRoom_TowerTycoonMenu
     GoTo BattleTowerBattleRoom_NextOpponentMenu
@@ -214,7 +215,7 @@ BattleTowerBattleRoom_TowerTycoonKeepGoing:
     Call BattleTowerBattleRoom_FaceNextOpponent
     CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, 0
     Call BattleTowerBattleRoom_PalmerEnter
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 48, BattleTowerBattleRoom_PalmerIntroGold
     BufferPlayerName 0
     BufferRivalName 1
@@ -226,7 +227,7 @@ BattleTowerBattleRoom_BattlePalmer:
     CheckWonBattle VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_0x8004, FALSE, BattleTowerBattleRoom_EndChallenge
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 48, BattleTowerBattleRoom_BeatPalmerGold
     Message BattleTowerBattleRoom_Text_BeatPalmer
     CallBattleTowerFunction BT_FUNC_SET_BEAT_PALMER, 1, 0

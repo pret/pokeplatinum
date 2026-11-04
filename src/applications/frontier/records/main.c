@@ -18,6 +18,7 @@
 #include "battle_frontier_stats.h"
 #include "battle_hall_win_records.h"
 #include "battle_tower_modes.h"
+#include "battle_tower_save.h"
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
@@ -35,7 +36,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 #include "res/graphics/poketch/poketch.naix"
