@@ -7,7 +7,7 @@
     ScriptEntry HallOfOrigin_OnLoad
     ScriptEntry HallOfOrigin_CoordEvent_Arceus
     ScriptEntry HallOfOrigin_OnTransition
-    ScriptEntry HallOfOrigin_CoordEvent_Arceus
+    ScriptEntry HallOfOrigin_CoordEvent_Arceus_2
     ScriptEntryEnd
 
 HallOfOrigin_OnTransition:
@@ -32,6 +32,7 @@ HallOfOrigin_RemoveArceus:
     End
 
 HallOfOrigin_CoordEvent_Arceus:
+HallOfOrigin_CoordEvent_Arceus_2:
     LockAll
     SetVar VAR_HALL_OF_ORIGIN_STATE, 0
     Call HallOfOrigin_PlayerNoticeArceus

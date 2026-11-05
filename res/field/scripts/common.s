@@ -26,64 +26,64 @@
 #include "res/field/maps/locals/survival_area_pokecenter_1f.h"
 #include "res/field/maps/locals/veilstone_city_pokecenter_1f.h"
 
-    ScriptEntry CommonScript_HandleSignpostInput @ 0x7D0
-    ScriptEntry CommonScript_CheckBagPocketForItem @ 0x7D1
-    ScriptEntry CommonScript_PokecenterNurse @ 0x7D2
-    ScriptEntry CommonScript_FieldEffectPoisonFainted @ 0x7D3
-    ScriptEntry CommonScript_2004 @ 0x7D4
-    ScriptEntry CommonScript_SaveAndStoreResult @ 0x7D5
-    ScriptEntry CommonScript_SaveGame  @ 0x7D6
-    ScriptEntry CommonScript_Dummy2007 @ 0x7D7
-    ScriptEntry CommonScript_HoneyTree @ 0x7D8
-    ScriptEntry CommonScript_ObtainPoketchApp @ 0x7D9
-    ScriptEntry CommonScript_Dummy2010 @ 0x7DA
-    ScriptEntry CommonScript_Dummy2011 @ 0x7DB
-    ScriptEntry CommonScript_SendToUndergroundPC @ 0x7DC
-    ScriptEntry CommonScript_ObtainUndergroundTrap @ 0x7DD
-    ScriptEntry CommonScript_ObtainUndergroundSphere @ 0x7DE
-    ScriptEntry CommonScript_ObtainAccessoryWaitForConfirm @ 0x7DF
-    ScriptEntry CommonScript_AddItemQuantityNoLineFeed @ 0x7E0
-    ScriptEntry CommonScript_BagIsFull @ 0x7E1
-    ScriptEntry CommonScript_PC @ 0x7E2
-    ScriptEntry CommonScript_VendorGreetingGeneric @ 0x7E3
-    ScriptEntry CommonScript_PlayerHouseBlackOutRecover @ 0x7E4
-    ScriptEntry CommonScript_PokecenterBlackOutRecover @ 0x7E5
-    ScriptEntry CommonScript_Dummy2022 @ 0x7E6
-    ScriptEntry CommonScript_2023 @ 0x7E7
-    ScriptEntry CommonScript_Dummy2024 @ 0x7E8
-    ScriptEntry CommonScript_Geonet @ 0x7E9
-    ScriptEntry CommonScript_2026 @ 0x7EA
-    ScriptEntry CommonScript_Vent @ 0x7EB
-    ScriptEntry CommonScript_SweetScentNothingHere @ 0x7EC
-    ScriptEntry CommonScript_SweetScentFaded @ 0x7ED
-    ScriptEntry CommonScript_BikeParking @ 0x7EE
-    ScriptEntry CommonScript_HatchEgg @ 0x7EF
-    ScriptEntry CommonScript_RepelsEffectWoreOff @ 0x7F0
-    ScriptEntry _139D @ 0x7F1
-    ScriptEntry CommonScript_ImpossibleToSave @ 0x7F2
-    ScriptEntry CommonScript_BlockPokecenterBasement @ 0x7F3
-    ScriptEntry CommonScript_ObtainContestBackdropWaitForConfirm @ 0x7F4
-    ScriptEntry CommonScript_Dummy2037 @ 0x7F5
-    ScriptEntry CommonScript_PlateObtainedEngraving @ 0x7F6
-    ScriptEntry CommonScript_TryUseAzureFlute @ 0x7F7
-    ScriptEntry CommonScript_SetCounterpartBGM @ 0x7F8
-    ScriptEntry CommonScript_FadeToDefaultMusic @ 0x7F9
-    ScriptEntry CommonScript_SetRivalBGM @ 0x7FA
-    ScriptEntry CommonScript_FadeToDefaultMusic @ 0x7FB
-    ScriptEntry CommonScript_AddItemQuantity @ 0x7FC
-    ScriptEntry CommonScript_ObtainContestBackdrop @ 0x7FD
-    ScriptEntry CommonScript_SendToUndergroundPCWithLinefeed @ 0x7FE
-    ScriptEntry CommonScript_ObtainAccessory @ 0x7FF
-    ScriptEntry CommonScript_SetFollowMeBGM @ 0x800
-    ScriptEntry CommonScript_FadeToDefaultMusic @ 0x801
-    ScriptEntry CommonScript_GlobalTerminalMachine @ 0x802
-    ScriptEntry CommonScript_ShardCostWindowRoute212 @ 0x803
-    ScriptEntry CommonScript_ShardCostWindowSurvivalArea @ 0x804
-    ScriptEntry CommonScript_ShardCostWindowSnowpointCity @ 0x805
-    ScriptEntry CommonScript_CheckObtainedAllGoldPrints @ 0x806
-    ScriptEntry CommonScript_SetLookerBGM @ 0x807
-    ScriptEntry CommonScript_FadeToDefaultMusic @ 0x808
-    ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
+    ScriptEntry CommonScript_HandleSignpostInput
+    ScriptEntry CommonScript_CheckBagPocketForItem
+    ScriptEntry CommonScript_PokecenterNurse
+    ScriptEntry CommonScript_FieldEffectPoisonFainted
+    ScriptEntry CommonScript_2004
+    ScriptEntry CommonScript_SaveAndStoreResult
+    ScriptEntry CommonScript_SaveGame
+    ScriptEntry CommonScript_Dummy2007
+    ScriptEntry CommonScript_HoneyTree
+    ScriptEntry CommonScript_ObtainPoketchApp
+    ScriptEntry CommonScript_Dummy2010
+    ScriptEntry CommonScript_Dummy2011
+    ScriptEntry CommonScript_SendToUndergroundPC
+    ScriptEntry CommonScript_ObtainUndergroundTrap
+    ScriptEntry CommonScript_ObtainUndergroundSphere
+    ScriptEntry CommonScript_ObtainAccessoryWaitForConfirm
+    ScriptEntry CommonScript_AddItemQuantityNoLineFeed
+    ScriptEntry CommonScript_BagIsFull
+    ScriptEntry CommonScript_PC
+    ScriptEntry CommonScript_VendorGreetingGeneric
+    ScriptEntry CommonScript_PlayerHouseBlackOutRecover
+    ScriptEntry CommonScript_PokecenterBlackOutRecover
+    ScriptEntry CommonScript_Dummy2022
+    ScriptEntry CommonScript_2023
+    ScriptEntry CommonScript_Dummy2024
+    ScriptEntry CommonScript_Geonet
+    ScriptEntry CommonScript_2026
+    ScriptEntry CommonScript_Vent
+    ScriptEntry CommonScript_SweetScentNothingHere
+    ScriptEntry CommonScript_SweetScentFaded
+    ScriptEntry CommonScript_BikeParking
+    ScriptEntry CommonScript_HatchEgg
+    ScriptEntry CommonScript_RepelsEffectWoreOff
+    ScriptEntry CommonScript_2033
+    ScriptEntry CommonScript_ImpossibleToSave
+    ScriptEntry CommonScript_BlockPokecenterBasement
+    ScriptEntry CommonScript_ObtainContestBackdropWaitForConfirm
+    ScriptEntry CommonScript_Dummy2037
+    ScriptEntry CommonScript_PlateObtainedEngraving
+    ScriptEntry CommonScript_TryUseAzureFlute
+    ScriptEntry CommonScript_SetCounterpartBGM
+    ScriptEntry CommonScript_FadeToDefaultMusic
+    ScriptEntry CommonScript_SetRivalBGM
+    ScriptEntry CommonScript_FadeToDefaultMusic_2
+    ScriptEntry CommonScript_AddItemQuantity
+    ScriptEntry CommonScript_ObtainContestBackdrop
+    ScriptEntry CommonScript_SendToUndergroundPCWithLinefeed
+    ScriptEntry CommonScript_ObtainAccessory
+    ScriptEntry CommonScript_SetFollowMeBGM
+    ScriptEntry CommonScript_FadeToDefaultMusic_3
+    ScriptEntry CommonScript_GlobalTerminalMachine
+    ScriptEntry CommonScript_ShardCostWindowRoute212
+    ScriptEntry CommonScript_ShardCostWindowSurvivalArea
+    ScriptEntry CommonScript_ShardCostWindowSnowpointCity
+    ScriptEntry CommonScript_CheckObtainedAllGoldPrints
+    ScriptEntry CommonScript_SetLookerBGM
+    ScriptEntry CommonScript_FadeToDefaultMusic_4
+    ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved
     ScriptEntryEnd
 
 CommonScript_Dummy2010:
@@ -1449,7 +1449,7 @@ CommonScript_RepelsEffectWoreOff:
     ReleaseAll
     End
 
-_139D:
+CommonScript_2033:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
@@ -1607,6 +1607,9 @@ CommonScript_SetLookerBGM:
     End
 
 CommonScript_FadeToDefaultMusic:
+CommonScript_FadeToDefaultMusic_2:
+CommonScript_FadeToDefaultMusic_3:
+CommonScript_FadeToDefaultMusic_4:
     FadeOutBGM 0, 30
     StopMusic
     PlayDefaultMusic

@@ -13,9 +13,9 @@
 
     ScriptEntry AmitySquare_OnTransition
     ScriptEntry AmitySquare_CoordEvent_WestGate
-    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare
+    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare_West
     ScriptEntry AmitySquare_CoordEvent_EastGate
-    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare
+    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare_East
     ScriptEntry AmitySquare_FollowerMon
     ScriptEntry AmitySquare_WestReceptionist
     ScriptEntry AmitySquare_EastReceptionist
@@ -230,7 +230,8 @@ AmitySquare_Unused:
     ReleaseAll
     End
 
-AmitySquare_CoordEvent_ExitAmitySquare:
+AmitySquare_CoordEvent_ExitAmitySquare_West:
+AmitySquare_CoordEvent_ExitAmitySquare_East:
     LockAll
     FadeScreenOut
     WaitFadeScreen

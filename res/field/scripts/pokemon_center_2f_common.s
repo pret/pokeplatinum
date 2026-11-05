@@ -6,7 +6,7 @@
 
     ScriptEntry PokemonCenter2FCommon_OnResume
     ScriptEntry PokemonCenter2FCommon_AttendantColosseum
-    ScriptEntry _051E
+    ScriptEntry PokemonCenter2FCommon_051E
     ScriptEntry PokemonCenter2FCommon_AttendantUnionRoom
     ScriptEntry PokemonCenter2FCommon_Dummy9004
     ScriptEntry PokemonCenter2FCommon_Dummy9005
@@ -14,13 +14,13 @@
     ScriptEntry PokemonCenter2FCommon_Dummy9007
     ScriptEntry PokemonCenter2FCommon_Dummy9008
     ScriptEntry PokemonCenter2FCommon_Dummy9009
-    ScriptEntry _06A0
+    ScriptEntry PokemonCenter2FCommon_06A0
     ScriptEntry PokemonCenter2FCommon_AttendantSignTrainerCard
     ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum
     ScriptEntry PokemonCenter2FCommon_OnFrame_ExitUnionRoom
-    ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum
-    ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum
-    ScriptEntry PokemonCenter2FCommon_HasBadEggReturnCommon @ 0x2338
+    ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum_2
+    ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum_3
+    ScriptEntry PokemonCenter2FCommon_HasBadEggReturnCommon
     ScriptEntryEnd
 
 PokemonCenter2FCommon_OnResume:
@@ -32,6 +32,8 @@ PokemonCenter2FCommon_HidePlayer:
     Return
 
 PokemonCenter2FCommon_OnFrame_ExitColosseum:
+PokemonCenter2FCommon_OnFrame_ExitColosseum_2:
+PokemonCenter2FCommon_OnFrame_ExitColosseum_3:
     SetVar VAR_MAP_LOCAL_0x00, 13
     SetVar VAR_MAP_LOCAL_0x01, 5
     SetVar VAR_MAP_LOCAL_0x02, 2
@@ -348,7 +350,7 @@ PokemonCenter2FCommon_DoorCloseAnimation:
     UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
-_051E:
+PokemonCenter2FCommon_051E:
     StartLinkBattle
     FieldCommEnterBattleRoom
     End
@@ -460,7 +462,7 @@ PokemonCenter2FCommon_Dummy9008:
 PokemonCenter2FCommon_Dummy9009:
     End
 
-_06A0:
+PokemonCenter2FCommon_06A0:
     WaitForTransition
     ScrCmd_0A3
     ReturnToField

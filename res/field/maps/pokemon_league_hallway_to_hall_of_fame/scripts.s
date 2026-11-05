@@ -4,10 +4,11 @@
 
 
     ScriptEntry PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame
-    ScriptEntry PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame
+    ScriptEntry PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame_2
     ScriptEntryEnd
 
 PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame:
+PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame_2:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallwayToHallOfFame_Movement_PlayerEnterHallway
     WaitMovement

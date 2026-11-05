@@ -10,8 +10,8 @@
     ScriptEntry BattleParkExchangeServiceCorner_Roughneck
     ScriptEntry BattleParkExchangeServiceCorner_Cowgirl
     ScriptEntry BattleParkExchangeServiceCorner_Clown
-    ScriptEntry BattleParkExchangeServiceCorner_TwinAndExpertF
-    ScriptEntry BattleParkExchangeServiceCorner_TwinAndExpertF
+    ScriptEntry BattleParkExchangeServiceCorner_Twin
+    ScriptEntry BattleParkExchangeServiceCorner_ExpertF
 
 BattleParkExchangeServiceCorner_MaidNorth:
     GoTo BattleParkExchangeServiceCorner_PokeMartFrontierLeft
@@ -129,7 +129,8 @@ BattleParkExchangeServiceCorner_Clown:
     NPCMessage BattleParkExchangeServiceCorner_Text_BuildingIsSoGrand
     End
 
-BattleParkExchangeServiceCorner_TwinAndExpertF:
+BattleParkExchangeServiceCorner_Twin:
+BattleParkExchangeServiceCorner_ExpertF:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message BattleParkExchangeServiceCorner_Text_HaveThisGrandma

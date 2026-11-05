@@ -5,8 +5,8 @@
 
     ScriptEntry FloaromaMeadow_OnTransition
     ScriptEntry FloaromaMeadow_CoordEvent_Grunts
-    ScriptEntry FloaromaMeadow_Grunt_Unused
-    ScriptEntry FloaromaMeadow_Grunt_Unused
+    ScriptEntry FloaromaMeadow_Grunt_Unused_West
+    ScriptEntry FloaromaMeadow_Grunt_Unused_East
     ScriptEntry FloaromaMeadow_PokefanM
     ScriptEntry FloaromaMeadow_Dummy6
     ScriptEntry FloaromaMeadow_ItemWorksKey
@@ -151,7 +151,8 @@ FloaromaMeadow_Unused:
     ReleaseAll
     End
 
-FloaromaMeadow_Grunt_Unused:
+FloaromaMeadow_Grunt_Unused_West:
+FloaromaMeadow_Grunt_Unused_East:
     End
 
 FloaromaMeadow_PokefanM:
