@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8276,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 11,
             "z": 4,
             "y": 0,
@@ -17,7 +17,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_228_ROCK_PEAK_RUINS_HARD_STONE",
             "script": 7324,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

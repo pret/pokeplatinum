@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 2,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 4,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 4,
             "y": 0,
@@ -25,7 +25,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_RIVAL_HOUSE_2F_RIVAL",
             "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

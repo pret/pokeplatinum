@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8135,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 715,
             "z": 345,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 8132,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 719,
             "z": 333,
             "y": 0,
@@ -18,7 +18,7 @@
         },
         {
             "script": 8134,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 724,
             "z": 334,
             "y": 0,
@@ -26,7 +26,7 @@
         },
         {
             "script": 8133,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 723,
             "z": 331,
             "y": 0,
@@ -34,7 +34,7 @@
         },
         {
             "script": 8159,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 744,
             "z": 326,
             "y": 0,
@@ -49,7 +49,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 2
             ],
@@ -66,7 +66,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_226_TM53",
             "script": 7205,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -81,7 +81,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_226_CARBOS",
             "script": 7207,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -96,7 +96,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_226_LAGGING_TAIL",
             "script": 7206,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -111,7 +111,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2800,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 98
             ],
@@ -128,7 +128,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2800,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 99
             ],
@@ -145,7 +145,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2800,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 100
             ],
@@ -162,7 +162,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2800,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 101
             ],
@@ -179,7 +179,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_SWIMMER_LYDIA",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 2
             ],
@@ -197,7 +197,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_ROUTE_227",
             "script": 65535,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 3
             ],
@@ -214,7 +214,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_GRAHAM",
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [
                 1
             ],
@@ -231,7 +231,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BIRD_KEEPER_GENEVA",
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [
                 2
             ],
@@ -248,7 +248,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_DRAGON_TAMER_STANLEY",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 1
             ],
@@ -266,7 +266,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_SURVIVAL_AREA",
             "script": 65535,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -281,7 +281,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 18
             ],
@@ -298,7 +298,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_SWIMMER_WADE",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 2
             ],

@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8160,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 86,
             "z": 849,
             "y": 0,
@@ -17,7 +17,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 4,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 3
             ],

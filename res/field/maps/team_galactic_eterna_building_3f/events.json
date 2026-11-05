@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 2,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 16,
             "z": 2,
             "y": 0,
@@ -17,7 +17,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
             "script": 1,
-            "initial_dir": 3,
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -32,7 +32,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
             "script": "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_3F",
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 3
             ],
@@ -49,7 +49,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
             "script": "TRAINER_SCIENTIST_TRAVON",
-            "initial_dir": 3,
+            "initial_dir": "DIR_EAST",
             "data": [
                 3
             ],
@@ -66,7 +66,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_3F_X_SPECIAL",
             "script": 7263,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

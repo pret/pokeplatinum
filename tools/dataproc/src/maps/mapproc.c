@@ -18,10 +18,12 @@ enum { A_EVENTS, A_GROUPS };
 enum { F_EVENTS_NAIX, F_GROUPS_NAIX, F_HEADERS_H, F_LOCALS_BASE };
 
 #define L_BG_EVENT_DIR      "enum BgEventDir"
+#define L_BG_EVENT_TYPE     "enum BgEventType"
 #define L_OBJECT_EVENT_GFX  "enum ObjectEventGfx"
 #define L_MOVEMENT_TYPE     "enum MovementType"
 #define L_TRAINER_TYPE      "enum TrainerType"
 #define L_VAR_FLAG          "enum VarFlag"
+#define L_MAP_OBJECT_DIR    "DIR_"
 #define L_MAP_HEADER        "enum MapHeaderID"
 #define L_MAP_FILE          "enum MapFileID"
 #define L_TRAINER_ID        "enum TrainerID"
@@ -51,6 +53,7 @@ static Driver driver = {
 
     .lookups = (Lookup[]) {
         LOOKUP_ENUM("generated/bg_event_dirs.h",      L_BG_EVENT_DIR),
+        LOOKUP_ENUM("generated/bg_event_types.h",     L_BG_EVENT_TYPE),
         LOOKUP_ENUM("generated/object_events_gfx.h",  L_OBJECT_EVENT_GFX),
         LOOKUP_ENUM("generated/movement_types.h",     L_MOVEMENT_TYPE),
         LOOKUP_ENUM("generated/trainer_types.h",      L_TRAINER_TYPE),
@@ -65,6 +68,7 @@ static Driver driver = {
         LOOKUP_ENUM("constants/overworld_weather.h",  L_WEATHER),
         LOOKUP_ENUM("constants/battle/backgrounds.h", L_BATTLE_BACKGROUND),
 
+        LOOKUP_DEFINES("constants/map_object.h",             L_MAP_OBJECT_DIR),
         LOOKUP_DEFINES("res/field/area_data/area_data.naix", L_AREA_DATA),
         LOOKUP_DEFINES("res/text/bank/location_names.h",     L_LOCATION_NAME),
         LOOKUP_DEFINES("res/sound/pl_sound_data.naix",       L_SOUND_SEQ),
@@ -193,7 +197,7 @@ static EventBuffer ProcBGEvents(dp_node array)
         dp_node  entry = dp_arr_at(array, i);
         BgEvent *event = &events[i];
         event->script  = dp_u16_at(entry, ".script");
-        event->type    = dp_u16_at(entry, ".type");
+        event->type    = dp_u16(dp_lookup_at(entry, ".type", L_BG_EVENT_TYPE));
         event->x       = dp_u32_at(entry, ".x");
         event->z       = dp_u32_at(entry, ".z");
         event->y       = dp_u32_at(entry, ".y");
@@ -218,7 +222,7 @@ static EventBuffer ProcObjectEvents(dp_node array)
         event->trainerType    = dp_u16(dp_lookup_at(entry, ".trainer_type", L_TRAINER_TYPE));
         event->script         = ProcScriptOrTrainer(entry);
         event->hiddenFlag     = ProcHiddenFlag(entry);
-        event->dir            = dp_s16_at(entry, ".initial_dir");
+        event->dir            = dp_s16(dp_lookup_at(entry, ".initial_dir", L_MAP_OBJECT_DIR));
         event->movementRangeX = dp_u16_at(entry, ".movement_range_x");
         event->movementRangeZ = dp_u16_at(entry, ".movement_range_z");
         event->x              = dp_u16_at(entry, ".x");

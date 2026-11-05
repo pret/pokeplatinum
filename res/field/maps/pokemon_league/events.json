@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8120,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 842,
             "z": 580,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 842,
             "z": 577,
             "y": 0,
@@ -18,7 +18,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 843,
             "z": 577,
             "y": 0,
@@ -26,7 +26,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 851,
             "z": 577,
             "y": 0,
@@ -34,7 +34,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 852,
             "z": 577,
             "y": 0,
@@ -42,7 +42,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 837,
             "z": 561,
             "y": 0,
@@ -50,7 +50,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 838,
             "z": 561,
             "y": 0,
@@ -58,7 +58,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 856,
             "z": 561,
             "y": 0,
@@ -66,7 +66,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 857,
             "z": 561,
             "y": 0,
@@ -81,7 +81,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -96,7 +96,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 3
             ],

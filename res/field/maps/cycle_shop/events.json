@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 4,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 3,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 4,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 11,
             "z": 3,
             "y": 0,
@@ -18,7 +18,7 @@
         },
         {
             "script": 5,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 12,
             "z": 3,
             "y": 0,
@@ -26,7 +26,7 @@
         },
         {
             "script": 5,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 13,
             "z": 3,
             "y": 0,
@@ -41,7 +41,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CYCLE_SHOP_POKEFAN_M",
             "script": 1,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -56,7 +56,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 3,
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -71,7 +71,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CYCLE_SHOP_CLEFAIRY",
             "script": 2,
-            "initial_dir": 3,
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

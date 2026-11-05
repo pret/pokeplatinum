@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 4,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 25,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 4,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 25,
             "y": 0,
@@ -25,7 +25,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_DAVID",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 1
             ],
@@ -42,7 +42,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 3,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -57,7 +57,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_WORKER_JACKSON",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 2
             ],
@@ -74,7 +74,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_WORKER_GARY",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 4
             ],
@@ -91,7 +91,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -106,7 +106,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_RICKY",
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [
                 3
             ],
@@ -123,7 +123,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_CESAR",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 2
             ],
@@ -140,7 +140,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_WORKER_GERARDO",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 1
             ],
@@ -157,7 +157,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_BREANNA",
-            "initial_dir": 3,
+            "initial_dir": "DIR_EAST",
             "data": [
                 3
             ],

@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8163,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 23,
             "z": 9,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 4,
             "y": 0,
@@ -18,7 +18,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 5,
             "y": 0,
@@ -26,7 +26,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 4,
             "y": 0,
@@ -34,7 +34,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 5,
             "y": 0,
@@ -42,7 +42,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 22,
             "z": 4,
             "y": 0,
@@ -50,7 +50,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 22,
             "z": 5,
             "y": 0,
@@ -65,7 +65,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_POKEMON_MANSION_MAIDS_ROOM_LUXURY_BALL",
             "script": 7058,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -80,7 +80,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 2,
             "movement_range_z": 2,
@@ -95,7 +95,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2,
-            "initial_dir": 3,
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,

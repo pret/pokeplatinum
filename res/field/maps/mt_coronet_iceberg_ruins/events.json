@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8275,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 6,
             "z": 5,
             "y": 0,
@@ -17,7 +17,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_MT_CORONET_ICEBERG_RUINS_NEVERMELTICE",
             "script": 7323,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

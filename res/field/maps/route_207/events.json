@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8012,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 313,
             "z": 719,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 8008,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 349,
             "z": 725,
             "y": 0,
@@ -18,7 +18,7 @@
         },
         {
             "script": 8091,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 299,
             "z": 711,
             "y": 0,
@@ -26,7 +26,7 @@
         },
         {
             "script": 8151,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 337,
             "z": 712,
             "y": 0,
@@ -34,7 +34,7 @@
         },
         {
             "script": 8256,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 338,
             "z": 718,
             "y": 0,
@@ -49,7 +49,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_CAMPER_ANTHONY",
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 5
             ],
@@ -66,7 +66,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PICNICKER_LAUREN",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 5
             ],
@@ -83,7 +83,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNGSTER_AUSTIN",
-            "initial_dir": 3,
+            "initial_dir": "DIR_EAST",
             "data": [
                 2
             ],
@@ -100,7 +100,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_HIKER_JUSTIN",
-            "initial_dir": 3,
+            "initial_dir": "DIR_EAST",
             "data": [
                 6
             ],
@@ -117,7 +117,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_HIKER_KEVIN",
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 2
             ],
@@ -134,7 +134,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BATTLE_GIRL_HELEN",
-            "initial_dir": 3,
+            "initial_dir": "DIR_EAST",
             "data": [
                 2
             ],
@@ -151,7 +151,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 6,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 4
             ],
@@ -168,7 +168,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 5,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 1
             ],
@@ -185,7 +185,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 7,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -200,7 +200,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_207_POKE_BALL",
             "script": 7043,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -215,7 +215,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_207_REVIVE",
             "script": 7044,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -230,7 +230,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_207_IRON",
             "script": 7045,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -245,7 +245,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2800,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 23
             ],
@@ -262,7 +262,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2800,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 22
             ],
@@ -279,7 +279,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2800,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 25
             ],
@@ -296,7 +296,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2800,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 24
             ],
@@ -314,7 +314,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_ROUTE_206",
             "script": 65535,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 4
             ],
@@ -332,7 +332,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_OREBURGH_CITY",
             "script": 65535,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 10
             ],
@@ -349,7 +349,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_207_COUNTERPART",
             "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -364,7 +364,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2027,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -379,7 +379,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2027,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -394,7 +394,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2027,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -409,7 +409,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2027,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -424,7 +424,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2027,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -439,7 +439,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 4,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -454,7 +454,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_207_SUPER_POTION",
             "script": 7145,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -469,7 +469,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_207_TIMER_BALL",
             "script": 7320,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

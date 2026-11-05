@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 2,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 4,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 3,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 2,
             "y": 0,
@@ -18,7 +18,7 @@
         },
         {
             "script": 4,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 11,
             "z": 2,
             "y": 0,
@@ -26,7 +26,7 @@
         },
         {
             "script": 5,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 13,
             "z": 2,
             "y": 0,
@@ -34,7 +34,7 @@
         },
         {
             "script": 6,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 15,
             "z": 2,
             "y": 0,
@@ -42,7 +42,7 @@
         },
         {
             "script": 7,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 17,
             "z": 2,
             "y": 0,
@@ -50,7 +50,7 @@
         },
         {
             "script": 8,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 8,
             "y": 0,
@@ -58,7 +58,7 @@
         },
         {
             "script": 9,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 12,
             "z": 8,
             "y": 0,
@@ -66,7 +66,7 @@
         },
         {
             "script": 10,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 8,
             "y": 0,
@@ -74,7 +74,7 @@
         },
         {
             "script": 11,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 16,
             "z": 8,
             "y": 0,
@@ -82,7 +82,7 @@
         },
         {
             "script": 12,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 8,
             "y": 0,
@@ -97,7 +97,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -112,7 +112,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 13,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -127,7 +127,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 14,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 10,
             "movement_range_z": 0,

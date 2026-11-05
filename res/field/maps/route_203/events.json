@@ -8,7 +8,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNGSTER_SEBASTIAN",
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [
                 5
             ],
@@ -25,7 +25,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNGSTER_MICHAEL",
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [
                 2
             ],
@@ -42,7 +42,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_LASS_KAITLIN",
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 1
             ],
@@ -59,7 +59,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNGSTER_DALLAS",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 4
             ],
@@ -76,7 +76,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_LASS_MADELINE",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 5
             ],
@@ -93,7 +93,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_203_RIVAL",
             "script": 0,
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -108,7 +108,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 2,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 2
             ],
@@ -125,7 +125,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 3,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 1
             ],
@@ -142,7 +142,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 4,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -157,7 +157,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 5,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -172,7 +172,7 @@
             "trainer_type": "TRAINER_TYPE_UNK_003",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_203_REPEL",
             "script": 7001,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -187,7 +187,7 @@
             "trainer_type": "TRAINER_TYPE_UNK_003",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_203_POKE_BALL",
             "script": 7002,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -202,7 +202,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -218,7 +218,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_JUBILIFE_CITY",
             "script": 65535,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 8
             ],
@@ -235,7 +235,7 @@
             "trainer_type": "TRAINER_TYPE_UNK_003",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_203_X_DEFENSE",
             "script": 7255,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

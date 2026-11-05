@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 1,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 3,
             "y": 0,

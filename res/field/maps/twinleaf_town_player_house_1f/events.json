@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 7,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 5,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 7,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 7,
             "z": 5,
             "y": 0,
@@ -18,7 +18,7 @@
         },
         {
             "script": 8,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 3,
             "y": 0,
@@ -26,7 +26,7 @@
         },
         {
             "script": 9,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 3,
             "y": 0,
@@ -34,7 +34,7 @@
         },
         {
             "script": 9,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 3,
             "y": 0,
@@ -42,7 +42,7 @@
         },
         {
             "script": 10,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 5,
             "y": 0,
@@ -50,7 +50,7 @@
         },
         {
             "script": 10,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 5,
             "y": 0,
@@ -58,7 +58,7 @@
         },
         {
             "script": 10,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 3,
             "z": 5,
             "y": 0,
@@ -73,7 +73,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 4,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -88,7 +88,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_1F_RIVAL_MOM",
             "script": 6,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,

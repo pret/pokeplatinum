@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8102,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 27,
             "z": 16,
             "y": 0,
@@ -10,7 +10,7 @@
         },
         {
             "script": 8101,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 27,
             "z": 23,
             "y": 0,
@@ -25,7 +25,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
             "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_2",
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [
                 5
             ],
@@ -42,7 +42,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
             "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_1",
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 3
             ],

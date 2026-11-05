@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 1,
-            "type": 0,
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 30,
             "z": 8,
             "y": 0,
@@ -17,7 +17,7 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_OLD_CHATEAU_SIDE_ROOMS_OLD_GATEAU",
             "script": 7022,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

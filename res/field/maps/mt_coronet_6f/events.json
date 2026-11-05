@@ -8,7 +8,7 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
             "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_6F",
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [
                 6
             ],

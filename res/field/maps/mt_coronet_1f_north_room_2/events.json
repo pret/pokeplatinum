@@ -2,7 +2,7 @@
     "bg_events": [
         {
             "script": 8061,
-            "type": 2,
+            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
             "x": 14,
             "z": 17,
             "y": 0,
