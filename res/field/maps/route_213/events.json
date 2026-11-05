@@ -104,11 +104,11 @@
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SWIMMER_SHELTIN",
+            "trainer": {
+                "id": "TRAINER_SWIMMER_SHELTIN",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                2
-            ],
             "movement_range_x": 8,
             "movement_range_z": 1,
             "x": 691,
@@ -121,11 +121,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SWIMMER_EVAN",
+            "trainer": {
+                "id": "TRAINER_SWIMMER_EVAN",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 725,
@@ -138,11 +138,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SWIMMER_MARY",
+            "trainer": {
+                "id": "TRAINER_SWIMMER_MARY",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 730,
@@ -155,12 +155,12 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_SPIN_COUNTERCLOCKWISE",
             "hidden_flag": "0",
-            "script": "TRAINER_SWIMMER_HALEY",
+            "trainer": {
+                "id": "TRAINER_SWIMMER_HALEY",
+                "sight_range": 2,
+                "interval_steps": 1
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                2,
-                1
-            ],
             "movement_range_x": 5,
             "movement_range_z": 0,
             "x": 702,
@@ -173,11 +173,11 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_TUBER_JARED",
+            "trainer": {
+                "id": "TRAINER_TUBER_JARED",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                3
-            ],
             "movement_range_x": 9,
             "movement_range_z": 0,
             "x": 703,
@@ -190,11 +190,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_TUBER_CHELSEA",
+            "trainer": {
+                "id": "TRAINER_TUBER_CHELSEA",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 704,
@@ -207,11 +207,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BEAUTY_CYNDY",
+            "trainer": {
+                "id": "TRAINER_BEAUTY_CYNDY",
+                "sight_range": 5
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                5
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 668,
@@ -224,9 +224,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_KENNETH",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_KENNETH",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 665,
@@ -239,11 +241,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SAILOR_PAUL",
+            "trainer": {
+                "id": "TRAINER_SAILOR_PAUL",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 717,

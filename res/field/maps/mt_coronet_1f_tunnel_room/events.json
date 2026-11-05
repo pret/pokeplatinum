@@ -251,11 +251,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
-            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_1",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_1",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 20,
@@ -268,11 +268,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
-            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_2",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_2",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 3,
@@ -285,12 +285,12 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
-            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_3",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_3",
+                "sight_range": 1,
+                "interval_steps": 2
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1,
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 10,
             "x": 25,

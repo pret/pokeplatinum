@@ -12,6 +12,7 @@
 
 #include "constants/field/script_ranges.h"
 #include "constants/fieldmap.h"
+#include "generated/trainer_types.h"
 #include "struct_defs/events.h"
 #include "location.h"
 
@@ -231,23 +232,148 @@ static u16 ProcScript(dp_node parent)
     return 0;
 }
 
-static inline u16 ProcScriptOrTrainer(dp_node parent)
+typedef struct KindContext {
+    dp_node     objects;
+    const char *stem;
+} KindContext;
+
+typedef struct ObjectKind {
+    const char *key;
+    bool        ownsScript; // if `true`, a `script` child is forbidden
+    void      (*proc)(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx);
+} ObjectKind;
+
+static void ProcTrainer(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
 {
-    dp_node     node  = dp_try(parent, ".script");
-    const char *label = dp_type_of(node) == DP_STRING ? dp_string(node) : NULL;
-    if (label == NULL || strncmp(label, "TRAINER_", strlen("TRAINER_")) != 0) {
-        return ProcScript(parent);
+    if (event->trainerType == TRAINER_TYPE_NONE) {
+        dp_error(dp_at(entry, ".trainer_type"), "overworld trainers must not have TRAINER_TYPE_NONE");
     }
 
-    u16 value = dp_u16(dp_lookup(node, L_TRAINER_ID)) - 1;
-    value    += SCRIPT_ID_OFFSET_SINGLE_BATTLES;
+    u16 script = dp_u16(dp_lookup_at(kind, ".id", L_TRAINER_ID)) - 1;
+    script    += SCRIPT_ID_OFFSET_SINGLE_BATTLES;
 
-    dp_node double_id = dp_try(parent, ".double_battle_id");
-    if (!dp_missing(double_id) && dp_u16(double_id) == 2) {
-        value += SCRIPT_ID_OFFSET_DOUBLE_BATTLES - SCRIPT_ID_OFFSET_SINGLE_BATTLES;
+    dp_node dependsOn = dp_try(kind, ".depends_on");
+    if (!dp_missing(dependsOn)) {
+        const char  *dependsID = Symbol_Name(dependsOn);
+        const size_t count     = dp_arr_len(ctx->objects);
+        dp_node      match     = { 0 };
+
+        for (size_t i = 0; i < count; i++) {
+            dp_node     other     = dp_arr_at(ctx->objects, i);
+            const char *candidate = dp_string(dp_try(other, ".id"));
+            if (candidate == NULL) continue;
+
+            if (strcmp(candidate, dependsID) == 0) {
+                match = other;
+                break;
+            }
+        }
+
+        dp_node     lead     = dp_try(match, ".trainer");
+        const char *idOurs   = dp_string(dp_try(kind, ".id"));
+        const char *idTheirs = dp_string(dp_try(lead, ".id"));
+        bool        chained  = !dp_missing(dp_try(lead, ".depends_on"));
+
+        if (dp_type_of(match) == DP_ERROR) {
+            dp_error(dependsOn, "trainer depends on another object that does not exist");
+        } else if (dp_missing(lead)) {
+            dp_error(dependsOn, "trainer depends on another object that is not a trainer");
+            dp_note(match, "ID '%s' points to this object", dp_string(dp_at(match, ".id")));
+        } else if (idOurs && idTheirs && strcmp(idOurs, idTheirs) != 0) {
+            dp_error(dependsOn, "trainer depends on another trainer with a different ID");
+            dp_note(dp_at(lead, ".id"), "different trainer ID defined here");
+        } else if (chained) {
+            dp_error(dependsOn, "trainer depends on another dependent trainer");
+            dp_note(dp_at(lead, ".depends_on"), "trainer declared as dependent here");
+        } else {
+            script += SCRIPT_ID_OFFSET_DOUBLE_BATTLES - SCRIPT_ID_OFFSET_SINGLE_BATTLES;
+        }
     }
 
-    return value;
+    u16 sight    = dp_u16_at(kind, ".sight_range");
+    u16 interval = dp_u16(dp_try(kind, ".interval_steps"));
+
+    event->script  = script;
+    event->data[0] = sight;
+    event->data[1] = interval;
+}
+
+static void ProcEventGeneric(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
+{
+    (void)kind;
+    (void)ctx;
+
+    event->script = ProcScript(entry);
+
+    // data is (often) a sparse array and not fully populated
+    dp_node data = dp_at(entry, ".data");
+    for (size_t j = 0; j < ClampCount(data, NELEMS(event->data)); j++) {
+        event->data[j] = dp_u16(dp_arr_at(data, j));
+    }
+}
+
+enum { K_TRAINER };
+
+static const ObjectKind sObjectKinds[] = {
+    [K_TRAINER] = { ".trainer", true, ProcTrainer },
+};
+
+static const ObjectKind sGenericObjectKind = { .key = NULL, .ownsScript = false, .proc = ProcEventGeneric };
+
+static const ObjectKind* PickObjectKind(dp_node entry)
+{
+    const ObjectKind *kind = NULL;
+    dp_node node = { 0 };
+
+    for (size_t i = 0; i < NELEMS(sObjectKinds); i++) {
+        const ObjectKind *candidate = &sObjectKinds[i];
+        dp_node curr = dp_try(entry, candidate->key);
+
+        if (!dp_missing(curr)) {
+            if (kind) {
+                dp_error(curr, "multiple kind-class nodes are not allowed");
+                dp_note(node, "previous kind-class node defined here");
+                return NULL;
+            }
+
+            node = curr;
+            kind = candidate;
+        }
+    }
+
+    return kind ? kind : &sGenericObjectKind;
+}
+
+static void ProcEventBase(dp_node entry, ObjectEvent *event, size_t i)
+{
+    event->localID        = ProcCloneID(entry, i);
+    event->graphicsID     = dp_u16(dp_lookup_at(entry, ".graphics_id", L_OBJECT_EVENT_GFX));
+    event->movementType   = dp_u16(dp_lookup_at(entry, ".movement_type", L_MOVEMENT_TYPE));
+    event->trainerType    = dp_u16(dp_lookup_at(entry, ".trainer_type", L_TRAINER_TYPE));
+    event->hiddenFlag     = ProcHiddenFlag(entry);
+    event->dir            = dp_s16(dp_lookup_at(entry, ".initial_dir", L_MAP_OBJECT_DIR));
+    event->movementRangeX = dp_u16_at(entry, ".movement_range_x");
+    event->movementRangeZ = dp_u16_at(entry, ".movement_range_z");
+    event->x              = dp_u16_at(entry, ".x");
+    event->z              = dp_u16_at(entry, ".z");
+    event->y              = (u32)dp_u16_at(entry, ".y") << 16;
+}
+
+static void CheckKindConflicts(dp_node entry, dp_node kindNode, const ObjectKind *kind)
+{
+    if (kind == &sGenericObjectKind) return;
+
+    dp_node script = dp_try(entry, ".script");
+    if (kind->ownsScript && !dp_missing(script)) {
+        dp_error(script, "object declares a special kind with a deduced script");
+        dp_note(kindNode, "special kind declared here");
+    }
+
+    dp_node data = dp_try(entry, ".data");
+    if (!dp_missing(data)) {
+        dp_error(data, "object declares a special kind with deduced data values");
+        dp_note(kindNode, "special kind declared here");
+    }
 }
 
 static EventBuffer ProcBGEvents(dp_node array)
@@ -270,31 +396,22 @@ static EventBuffer ProcBGEvents(dp_node array)
     return (EventBuffer) { .count = count, .buffer = events };
 }
 
-static EventBuffer ProcObjectEvents(dp_node array)
+static EventBuffer ProcObjectEvents(dp_node array, const char *stem)
 {
-    const u32    count  = ClampCount(array, UINT32_MAX);
-    ObjectEvent *events = Zalloc(count, sizeof(*events));
+    const u32         count  = ClampCount(array, UINT32_MAX);
+    ObjectEvent      *events = Zalloc(count, sizeof(*events));
+    const KindContext ctx    = { .objects = array, .stem = stem };
 
     for (size_t i = 0; i < count; i++) {
-        dp_node      entry    = dp_arr_at(array, i);
-        ObjectEvent *event    = &events[i];
-        event->localID        = ProcCloneID(entry, i);
-        event->graphicsID     = dp_u16(dp_lookup_at(entry, ".graphics_id", L_OBJECT_EVENT_GFX));
-        event->movementType   = dp_u16(dp_lookup_at(entry, ".movement_type", L_MOVEMENT_TYPE));
-        event->trainerType    = dp_u16(dp_lookup_at(entry, ".trainer_type", L_TRAINER_TYPE));
-        event->script         = ProcScriptOrTrainer(entry);
-        event->hiddenFlag     = ProcHiddenFlag(entry);
-        event->dir            = dp_s16(dp_lookup_at(entry, ".initial_dir", L_MAP_OBJECT_DIR));
-        event->movementRangeX = dp_u16_at(entry, ".movement_range_x");
-        event->movementRangeZ = dp_u16_at(entry, ".movement_range_z");
-        event->x              = dp_u16_at(entry, ".x");
-        event->z              = dp_u16_at(entry, ".z");
-        event->y              = (u32)dp_u16_at(entry, ".y") << 16;
+        dp_node           entry = dp_arr_at(array, i);
+        const ObjectKind *kind  = PickObjectKind(entry);
+        ObjectEvent      *event = &events[i];
 
-        // data is (often) a sparse array and not fully populated
-        dp_node data = dp_at(entry, ".data");
-        for (size_t j = 0; j < ClampCount(data, NELEMS(event->data)); j++) {
-            event->data[j] = dp_u16(dp_arr_at(data, j));
+        ProcEventBase(entry, event, i);
+        if (kind) {
+            dp_node kindNode = kind->key ? dp_at(entry, kind->key) : entry;
+            CheckKindConflicts(entry, kindNode, kind);
+            kind->proc(kindNode, entry, event, &ctx);
         }
 
         TextFile_Printf(F_LOCALS_BASE + eventIndex, "#define %s %zu\n",
@@ -365,7 +482,7 @@ static EventBuffer ProcCoordEvents(dp_node array)
 static void ProcEvents(dp_node root, const char *stem)
 {
     EventBuffer bgEvents = ProcBGEvents(dp_at(root, ".bg_events"));
-    EventBuffer objectEvents = ProcObjectEvents(dp_at(root, ".object_events"));
+    EventBuffer objectEvents = ProcObjectEvents(dp_at(root, ".object_events"), stem);
     EventBuffer warpEvents = ProcWarpEvents(dp_at(root, ".warp_events"));
     EventBuffer coordEvents = ProcCoordEvents(dp_at(root, ".coord_events"));
 

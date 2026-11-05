@@ -24,11 +24,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
-            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_2",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_2",
+                "sight_range": 5
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                5
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 26,
@@ -41,11 +41,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
-            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_1",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_1",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 20,

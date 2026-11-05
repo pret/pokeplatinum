@@ -107,11 +107,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_SAUL",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_SAUL",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 756,
@@ -124,11 +124,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_RANGER_FELICIA",
+            "trainer": {
+                "id": "TRAINER_RANGER_FELICIA",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 747,
@@ -141,11 +141,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BLACK_BELT_GRIFFIN",
+            "trainer": {
+                "id": "TRAINER_BLACK_BELT_GRIFFIN",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 764,
@@ -158,11 +158,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_MIKAYLA",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_MIKAYLA",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 752,

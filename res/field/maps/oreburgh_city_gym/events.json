@@ -54,11 +54,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_JONATHON",
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_JONATHON",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 4,
@@ -71,11 +71,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_DARIUS",
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_DARIUS",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 7,

@@ -119,11 +119,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 10,
@@ -136,11 +136,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 21,
@@ -153,11 +153,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 26,
@@ -170,11 +170,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": "TRAINER_SCIENTIST_DARRIUS",
+            "trainer": {
+                "id": "TRAINER_SCIENTIST_DARRIUS",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 32,

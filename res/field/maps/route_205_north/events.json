@@ -16,9 +16,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_ANDREW",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_ANDREW",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_EAST",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 274,
@@ -31,9 +33,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_JOSEPH",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_JOSEPH",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 270,
@@ -46,9 +50,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_ZACHARY",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_ZACHARY",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 277,

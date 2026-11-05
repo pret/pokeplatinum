@@ -88,11 +88,11 @@
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_SOUTH_EAST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SKIER_SHAWN",
+            "trainer": {
+                "id": "TRAINER_SKIER_SHAWN",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                3
-            ],
             "movement_range_x": 2,
             "movement_range_z": 8,
             "x": 318,
@@ -105,11 +105,11 @@
             "movement_type": "MOVEMENT_TYPE_WALK_NORTH_WEST_SOUTH_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SKIER_LEXIE",
+            "trainer": {
+                "id": "TRAINER_SKIER_LEXIE",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                4
-            ],
             "movement_range_x": 4,
             "movement_range_z": 6,
             "x": 294,
@@ -122,11 +122,11 @@
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_SPIN_COUNTERCLOCKWISE",
             "hidden_flag": "0",
-            "script": "TRAINER_SKIER_BJORN",
+            "trainer": {
+                "id": "TRAINER_SKIER_BJORN",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                2
-            ],
             "movement_range_x": 4,
             "movement_range_z": 6,
             "x": 314,
@@ -139,11 +139,11 @@
             "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SKIER_MADISON",
+            "trainer": {
+                "id": "TRAINER_SKIER_MADISON",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 291,
@@ -156,11 +156,11 @@
             "movement_type": "MOVEMENT_TYPE_DISGUISE_SNOW",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "hidden_flag": "0",
-            "script": "TRAINER_NINJA_BOY_MATTHEW",
+            "trainer": {
+                "id": "TRAINER_NINJA_BOY_MATTHEW",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 310,
@@ -173,11 +173,11 @@
             "movement_type": "MOVEMENT_TYPE_DISGUISE_SNOW",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "hidden_flag": "0",
-            "script": "TRAINER_NINJA_BOY_ETHAN",
+            "trainer": {
+                "id": "TRAINER_NINJA_BOY_ETHAN",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 290,
@@ -190,11 +190,11 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_COUNTERCLOCKWISE",
             "hidden_flag": "0",
-            "script": "TRAINER_BLACK_BELT_LUKE",
+            "trainer": {
+                "id": "TRAINER_BLACK_BELT_LUKE",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 8,
             "x": 291,
@@ -207,11 +207,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_DALTON",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_DALTON",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 307,
@@ -224,11 +224,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_OLIVIA",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_OLIVIA",
+                "sight_range": 5
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                5
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 302,

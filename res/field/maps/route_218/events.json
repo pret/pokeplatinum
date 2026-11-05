@@ -7,11 +7,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_GUITARIST_TONY",
+            "trainer": {
+                "id": "TRAINER_GUITARIST_TONY",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 80,
@@ -24,11 +24,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SAILOR_SKYLER",
+            "trainer": {
+                "id": "TRAINER_SAILOR_SKYLER",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 76,
@@ -41,9 +41,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_MIGUEL",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_MIGUEL",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_EAST",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 93,
@@ -56,9 +58,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_LUC",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_LUC",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_EAST",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 93,

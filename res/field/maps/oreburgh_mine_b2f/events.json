@@ -82,9 +82,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_WORKER_COLIN",
+            "trainer": {
+                "id": "TRAINER_WORKER_COLIN",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 8,
@@ -97,9 +99,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_WORKER_MASON",
+            "trainer": {
+                "id": "TRAINER_WORKER_MASON",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_WEST",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 26,

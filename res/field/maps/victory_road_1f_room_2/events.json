@@ -108,11 +108,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_MICAH",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_MICAH",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 10,
@@ -125,11 +125,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_BRANDI",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_BRANDI",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 6,
@@ -142,11 +142,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_DESIREE",
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_DESIREE",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 7,
@@ -159,11 +159,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_LANDON",
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_LANDON",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 6,
@@ -176,11 +176,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BLACK_BELT_EDDIE",
+            "trainer": {
+                "id": "TRAINER_BLACK_BELT_EDDIE",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 16,
@@ -193,11 +193,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_VETERAN_TERRELL",
+            "trainer": {
+                "id": "TRAINER_VETERAN_TERRELL",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 16,
@@ -210,11 +210,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_ARTHUR",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_ARTHUR",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 44,
@@ -227,11 +227,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_CLARICE",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_CLARICE",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 42,
@@ -244,11 +244,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_DEANDRE",
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_DEANDRE",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 38,
@@ -261,11 +261,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_KENDRA",
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_KENDRA",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 36,
@@ -278,11 +278,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BIRD_KEEPER_AUTUMN",
+            "trainer": {
+                "id": "TRAINER_BIRD_KEEPER_AUTUMN",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 28,
@@ -295,11 +295,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_DRAGON_TAMER_JOE",
+            "trainer": {
+                "id": "TRAINER_DRAGON_TAMER_JOE",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 28,
@@ -312,11 +312,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BLACK_BELT_WILLIE",
+            "trainer": {
+                "id": "TRAINER_BLACK_BELT_WILLIE",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 46,
@@ -329,11 +329,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_VETERAN_BRENDEN",
+            "trainer": {
+                "id": "TRAINER_VETERAN_BRENDEN",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 46,

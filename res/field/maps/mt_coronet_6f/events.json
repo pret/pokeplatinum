@@ -7,11 +7,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
-            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_6F",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_MT_CORONET_6F",
+                "sight_range": 6
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                6
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 10,

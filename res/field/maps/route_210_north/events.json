@@ -24,11 +24,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_ERNEST",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_ERNEST",
+                "sight_range": 4
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 534,
@@ -41,11 +41,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_ALYSSA",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_ALYSSA",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 547,
@@ -58,11 +58,11 @@
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "hidden_flag": "0",
-            "script": "TRAINER_NINJA_BOY_JOEL",
+            "trainer": {
+                "id": "TRAINER_NINJA_BOY_JOEL",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 564,
@@ -75,11 +75,11 @@
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "hidden_flag": "0",
-            "script": "TRAINER_NINJA_BOY_NATHAN",
+            "trainer": {
+                "id": "TRAINER_NINJA_BOY_NATHAN",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 525,
@@ -92,11 +92,11 @@
             "movement_type": "MOVEMENT_TYPE_DISGUISE_ROCK",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
             "hidden_flag": "0",
-            "script": "TRAINER_NINJA_BOY_DAVIDO",
+            "trainer": {
+                "id": "TRAINER_NINJA_BOY_DAVIDO",
+                "sight_range": 1
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 499,
@@ -109,11 +109,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_DRAGON_TAMER_PATRICK",
+            "trainer": {
+                "id": "TRAINER_DRAGON_TAMER_PATRICK",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_WEST",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 560,
@@ -126,11 +126,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BIRD_KEEPER_BRIANNA",
+            "trainer": {
+                "id": "TRAINER_BIRD_KEEPER_BRIANNA",
+                "sight_range": 2
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 511,
@@ -143,10 +143,11 @@
             "movement_type": "MOVEMENT_TYPE_FOLLOW_PARTNER_TRAINER",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_DOUBLE_TEAM_ZAC_AND_JEN",
-            "double_battle_id": 1,
+            "trainer": {
+                "id": "TRAINER_DOUBLE_TEAM_ZAC_AND_JEN",
+                "sight_range": 0
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 537,
@@ -159,12 +160,12 @@
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_NORTH_WEST_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_DOUBLE_TEAM_ZAC_AND_JEN",
-            "double_battle_id": 2,
+            "trainer": {
+                "id": "TRAINER_DOUBLE_TEAM_ZAC_AND_JEN",
+                "sight_range": 2,
+                "depends_on": "LOCALID_DOUBLE_TEAM_TRAINER_ZAC"
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                2
-            ],
             "movement_range_x": 3,
             "movement_range_z": 1,
             "x": 537,
@@ -177,11 +178,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_VETERAN_BRIAN",
+            "trainer": {
+                "id": "TRAINER_VETERAN_BRIAN",
+                "sight_range": 3
+            },
             "initial_dir": "DIR_SOUTH",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 494,
@@ -194,12 +195,12 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "hidden_flag": "0",
-            "script": "TRAINER_BLACK_BELT_ADAM",
+            "trainer": {
+                "id": "TRAINER_BLACK_BELT_ADAM",
+                "sight_range": 4,
+                "interval_steps": 2
+            },
             "initial_dir": "DIR_EAST",
-            "data": [
-                4,
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 518,
