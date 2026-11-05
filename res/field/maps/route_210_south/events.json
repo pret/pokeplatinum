@@ -297,11 +297,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": "BerryTree_Main",
+            "berry_tree": 38,
             "initial_dir": "DIR_NORTH",
-            "data": [
-                38
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 570,
@@ -314,11 +311,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": "BerryTree_Main",
+            "berry_tree": 39,
             "initial_dir": "DIR_NORTH",
-            "data": [
-                39
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 571,
@@ -331,11 +325,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": "BerryTree_Main",
+            "berry_tree": 40,
             "initial_dir": "DIR_NORTH",
-            "data": [
-                40
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 572,
@@ -348,11 +339,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": "BerryTree_Main",
+            "berry_tree": 41,
             "initial_dir": "DIR_NORTH",
-            "data": [
-                41
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 573,

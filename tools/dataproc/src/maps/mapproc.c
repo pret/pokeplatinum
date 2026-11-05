@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <errno.h>
 #include <regex.h>
 #include <stddef.h>
@@ -14,6 +15,7 @@
 #include "constants/fieldmap.h"
 #include "generated/trainer_types.h"
 #include "struct_defs/events.h"
+#include "berry_patches.h"
 #include "location.h"
 
 static const char *enumFile = NULL;
@@ -235,13 +237,36 @@ static u16 ProcScript(dp_node parent)
 typedef struct KindContext {
     dp_node     objects;
     const char *stem;
+    size_t      index;
 } KindContext;
 
 typedef struct ObjectKind {
     const char *key;
     bool        ownsScript; // if `true`, a `script` child is forbidden
     void      (*proc)(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx);
+    void      (*preproc)(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx);
 } ObjectKind;
+
+typedef struct ObjectData {
+    const ObjectKind *kind;
+    u16               index;
+    u16               data[3];
+} ObjectData;
+
+static Buffer sObjects;     // T = ObjectData, every object in first-pass order
+static Buffer sObjectsBase; // T = size_t, indexed by eventIndex
+
+static void PreprocTrainer(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
+{
+    (void)entry;
+    (void)ctx;
+
+    u16 sight    = dp_u16_at(kind, ".sight_range");
+    u16 interval = dp_u16(dp_try(kind, ".interval_steps"));
+
+    data[0] = sight;
+    data[1] = interval;
+}
 
 static void ProcTrainer(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
 {
@@ -290,12 +315,53 @@ static void ProcTrainer(dp_node kind, dp_node entry, ObjectEvent *event, const K
         }
     }
 
-    u16 sight    = dp_u16_at(kind, ".sight_range");
-    u16 interval = dp_u16(dp_try(kind, ".interval_steps"));
-
     event->script  = script;
-    event->data[0] = sight;
-    event->data[1] = interval;
+}
+
+typedef struct BerryPatchLocation { u16 event; const char *stem; } BerryPatchLocation;
+static BerryPatchLocation sPatchLocations[MAX_BERRY_PATCHES] = { 0 };
+
+static void PreprocBerryTree(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
+{
+    (void)entry;
+
+    u16 patch = dp_u16(kind);
+    if (patch >= MAX_BERRY_PATCHES) {
+        dp_error(kind, "berry tree's patch index must be less than %u", MAX_BERRY_PATCHES);
+        return;
+    }
+
+    BerryPatchLocation *location = &sPatchLocations[patch];
+    if (location->stem) {
+        dp_error(kind, "berry tree's patch index is already used by '%s', event %u", location->stem, location->event);
+        return;
+    }
+
+    data[0]         = patch;
+    location->event = ctx->index;
+    location->stem  = ctx->stem;
+}
+
+static void ProcBerryTree(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
+{
+    (void)kind;
+    (void)entry;
+    (void)ctx;
+
+    event->script = SCRIPT_ID_OFFSET_BERRY_TREE_INTERACTIONS;
+}
+
+static void PreprocEventGeneric(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
+{
+    (void)kind;
+    (void)ctx;
+
+    // data is (often) a sparse array and not fully populated
+    dp_node   array = dp_at(entry, ".data");
+    const u32 count = ClampCount(array, 3);
+    for (size_t j = 0; j < count; j++) {
+        data[j] = dp_u16(dp_arr_at(array, j));
+    }
 }
 
 static void ProcEventGeneric(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
@@ -304,21 +370,21 @@ static void ProcEventGeneric(dp_node kind, dp_node entry, ObjectEvent *event, co
     (void)ctx;
 
     event->script = ProcScript(entry);
-
-    // data is (often) a sparse array and not fully populated
-    dp_node data = dp_at(entry, ".data");
-    for (size_t j = 0; j < ClampCount(data, NELEMS(event->data)); j++) {
-        event->data[j] = dp_u16(dp_arr_at(data, j));
-    }
 }
 
-enum { K_TRAINER };
+enum { K_TRAINER, K_BERRY_TREE };
 
 static const ObjectKind sObjectKinds[] = {
-    [K_TRAINER] = { ".trainer", true, ProcTrainer },
+    [K_TRAINER]    = { .key = ".trainer",    .ownsScript = true, .proc = ProcTrainer, .preproc = PreprocTrainer },
+    [K_BERRY_TREE] = { .key = ".berry_tree", .ownsScript = true, .proc = ProcBerryTree, .preproc = PreprocBerryTree },
 };
 
-static const ObjectKind sGenericObjectKind = { .key = NULL, .ownsScript = false, .proc = ProcEventGeneric };
+static const ObjectKind sGenericObjectKind = {
+    .key        = NULL,
+    .ownsScript = false,
+    .proc       = ProcEventGeneric,
+    .preproc    = PreprocEventGeneric,
+};
 
 static const ObjectKind* PickObjectKind(dp_node entry)
 {
@@ -398,22 +464,26 @@ static EventBuffer ProcBGEvents(dp_node array)
 
 static EventBuffer ProcObjectEvents(dp_node array, const char *stem)
 {
-    const u32         count  = ClampCount(array, UINT32_MAX);
-    ObjectEvent      *events = Zalloc(count, sizeof(*events));
-    const KindContext ctx    = { .objects = array, .stem = stem };
+    const size_t  base   = Buffer_At(&sObjectsBase, size_t, eventIndex);
+    const u32     count  = ClampCount(array, UINT32_MAX);
+    ObjectEvent  *events = Zalloc(count, sizeof(*events));
+    KindContext   ctx    = { .objects = array, .stem = stem };
+
+    const size_t next = eventIndex + 1 < Buffer_Count(&sObjectsBase, size_t)
+        ? Buffer_At(&sObjectsBase, size_t, eventIndex + 1)
+        : Buffer_Count(&sObjects, ObjectData);
+    assert(next - base == count && "object count differs between passes");
 
     for (size_t i = 0; i < count; i++) {
-        dp_node           entry = dp_arr_at(array, i);
-        const ObjectKind *kind  = PickObjectKind(entry);
-        ObjectEvent      *event = &events[i];
+        dp_node           entry  = dp_arr_at(array, i);
+        const ObjectData *object = &Buffer_At(&sObjects, ObjectData, base + i);
+        const ObjectKind *kind   = object->kind;
+        ObjectEvent      *event  = &events[i];
 
+        ctx.index = i;
+        memcpy(event->data, object->data, sizeof(event->data));
         ProcEventBase(entry, event, i);
-        if (kind) {
-            dp_node kindNode = kind->key ? dp_at(entry, kind->key) : entry;
-            CheckKindConflicts(entry, kindNode, kind);
-            kind->proc(kindNode, entry, event, &ctx);
-        }
-
+        if (kind) kind->proc(kind->key ? dp_at(entry, kind->key) : entry, entry, event, &ctx);
         TextFile_Printf(F_LOCALS_BASE + eventIndex, "#define %s %zu\n",
                         Symbol_Name(dp_at(entry, ".id")), i);
     }
@@ -690,6 +760,30 @@ static void ProcEntry(Entry *entry)
     free(initScriptsFilename);
 }
 
+static void PreprocObjects(dp_node root, const char *stem)
+{
+    dp_node     objects = dp_at(root, ".object_events");
+    const u32   count   = ClampCount(objects, UINT32_MAX);
+    KindContext ctx     = { .objects = objects, .stem = stem };
+
+    assert(Buffer_Count(&sObjectsBase, size_t) == eventIndex);
+    Buffer_Push(&sObjectsBase, size_t, Buffer_Count(&sObjects, ObjectData));
+
+    for (size_t i = 0; i < count; i++) {
+        dp_node    entry  = dp_arr_at(objects, i);
+        ObjectData object = { .kind = PickObjectKind(entry), .index = i };
+
+        ctx.index = i;
+        if (object.kind) {
+            dp_node kindNode = object.kind->key ? dp_at(entry, object.kind->key) : entry;
+            CheckKindConflicts(entry, kindNode, object.kind);
+            if (object.kind->preproc) object.kind->preproc(kindNode, entry, object.data, &ctx);
+        }
+
+        Buffer_Append(&sObjects, &object, sizeof(object));
+    }
+}
+
 static void PreprocWarps(dp_node root, const char *name)
 {
     dp_node warps = dp_at(root, ".warp_events");
@@ -740,7 +834,10 @@ static void PreprocEntry(Entry *entry)
     bool hasEvents = stat(eventsFilename, &stbuf) == 0;
     if (hasEvents) {
         dp_file *file = Driver_Load("%s", eventsFilename);
-        PreprocWarps(dp_root(file), entry->name);
+        dp_node  root = dp_root(file);
+
+        PreprocObjects(root, entry->stem);
+        PreprocWarps(root, entry->name);
         Driver_Close(file);
         eventIndex++;
     }
@@ -899,6 +996,8 @@ int main(int argc, char **argv)
         ProcEntry(&entry);
     }
 
+    free(sObjects.data);
+    free(sObjectsBase.data);
     free(localsDir);
     Driver_Close(groups);
     TextFile_Printf(F_HEADERS_H, "};\n");
