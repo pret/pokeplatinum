@@ -20,10 +20,11 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_6F",
             "x": 31,
             "z": 53,
             "dest_header_id": "MAP_HEADER_MT_CORONET_6F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_SPEAR_PILLAR_DIALGA"
         }
     ],
     "coord_events": [

@@ -94,16 +94,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_RESORT_AREA",
             "x": 15,
             "z": 15,
             "dest_header_id": "MAP_HEADER_RESORT_AREA",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_RESORT_AREA_RIBBON_SYNDICATE_1F"
         },
         {
+            "id": "WARP_RESORT_AREA_RIBBON_SYNDICATE_ELEVATOR",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_ELEVATOR",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_DYNAMIC"
         }
     ],
     "coord_events": []

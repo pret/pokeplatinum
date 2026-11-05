@@ -308,70 +308,81 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_CANALAVE_CITY_GYM",
             "x": 39,
             "z": 731,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY_GYM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_CANALAVE_CITY_POKECENTER_1F",
             "x": 58,
             "z": 722,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_CANALAVE_CITY_MART",
             "x": 53,
             "z": 740,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_CANALAVE_LIBRARY_1F",
             "x": 37,
             "z": 718,
             "dest_header_id": "MAP_HEADER_CANALAVE_LIBRARY_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_CANALAVE_CITY_SOUTHEAST_HOUSE",
             "x": 54,
             "z": 748,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_CANALAVE_CITY_HARBOR_INN",
             "x": 58,
             "z": 713,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY_HARBOR_INN",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE",
             "x": 39,
             "z": 748,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_CANALAVE_CITY_1",
             "x": 63,
             "z": 754,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_CANALAVE_CITY_2",
             "x": 63,
             "z": 755,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_CANALAVE_CITY_EAST_HOUSE",
             "x": 53,
             "z": 732,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY_EAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         },
         {
+            "id": "WARP_CANALAVE_CITY_WEST_HOUSE",
             "x": 38,
             "z": 740,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY_WEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY"
         }
     ],
     "coord_events": [

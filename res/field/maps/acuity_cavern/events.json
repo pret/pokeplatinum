@@ -19,10 +19,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_LAKE_ACUITY",
             "x": 14,
             "z": 29,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ACUITY_CAVERN"
         }
     ],
     "coord_events": []

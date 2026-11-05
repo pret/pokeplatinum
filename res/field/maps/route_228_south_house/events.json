@@ -52,10 +52,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_228",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ROUTE_228",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_ROUTE_228_SOUTH_HOUSE"
         }
     ],
     "coord_events": []

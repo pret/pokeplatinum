@@ -615,100 +615,116 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_BATTLE_TOWER_1",
             "x": 48,
             "z": 17,
             "dest_header_id": "MAP_HEADER_BATTLE_TOWER",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_TOWER_2",
             "x": 49,
             "z": 17,
             "dest_header_id": "MAP_HEADER_BATTLE_TOWER",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_FACTORY_1",
             "x": 77,
             "z": 34,
             "dest_header_id": "MAP_HEADER_BATTLE_FACTORY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_FACTORY_2",
             "x": 77,
             "z": 35,
             "dest_header_id": "MAP_HEADER_BATTLE_FACTORY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_HALL_1",
             "x": 19,
             "z": 34,
             "dest_header_id": "MAP_HEADER_BATTLE_HALL",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_HALL_2",
             "x": 19,
             "z": 35,
             "dest_header_id": "MAP_HEADER_BATTLE_HALL",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_CASTLE_1",
             "x": 33,
             "z": 62,
             "dest_header_id": "MAP_HEADER_BATTLE_CASTLE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_CASTLE_2",
             "x": 33,
             "z": 63,
             "dest_header_id": "MAP_HEADER_BATTLE_CASTLE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_ARCADE_1",
             "x": 64,
             "z": 62,
             "dest_header_id": "MAP_HEADER_BATTLE_ARCADE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_ARCADE_2",
             "x": 64,
             "z": 63,
             "dest_header_id": "MAP_HEADER_BATTLE_ARCADE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_1",
             "x": 48,
             "z": 52,
             "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_2",
             "x": 49,
             "z": 52,
             "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_FACTORY_3",
             "x": 73,
             "z": 34,
             "dest_header_id": "MAP_HEADER_BATTLE_FACTORY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_HALL_3",
             "x": 23,
             "z": 34,
             "dest_header_id": "MAP_HEADER_BATTLE_HALL",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_ARCADE_3",
             "x": 60,
             "z": 62,
             "dest_header_id": "MAP_HEADER_BATTLE_ARCADE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         },
         {
+            "id": "WARP_BATTLE_CASTLE_3",
             "x": 36,
             "z": 62,
             "dest_header_id": "MAP_HEADER_BATTLE_CASTLE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_1"
         }
     ],
     "coord_events": [

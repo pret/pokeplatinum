@@ -214,28 +214,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER_1",
             "x": 20,
             "z": 33,
             "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_UNUSED_BATTLE_PARK_1"
         },
         {
+            "id": "WARP_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER_2",
             "x": 29,
             "z": 33,
             "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_UNUSED_BATTLE_PARK_2"
         },
         {
+            "id": "WARP_UNUSED_BATTLE_PARK_GATE_TO_FIGHT_AREA_1",
             "x": 24,
             "z": 53,
             "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK_GATE_TO_FIGHT_AREA",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_UNUSED_BATTLE_PARK"
         },
         {
+            "id": "WARP_UNUSED_BATTLE_PARK_GATE_TO_FIGHT_AREA_2",
             "x": 25,
             "z": 53,
             "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK_GATE_TO_FIGHT_AREA",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_UNUSED_BATTLE_PARK"
         }
     ],
     "coord_events": [

@@ -47,22 +47,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_2F_1",
             "x": 14,
             "z": 26,
             "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_MT_CORONET_3F_1"
         },
         {
+            "id": "WARP_MT_CORONET_2F_2",
             "x": 18,
             "z": 26,
             "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_MT_CORONET_3F_2"
         },
         {
+            "id": "WARP_MT_CORONET_OUTSIDE_SOUTH",
             "x": 3,
             "z": 29,
             "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_3F"
         }
     ],
     "coord_events": []

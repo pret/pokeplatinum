@@ -423,10 +423,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VICTORY_ROAD_1F_ROOM_3",
             "x": 878,
             "z": 560,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_3",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_224"
         }
     ],
     "coord_events": [

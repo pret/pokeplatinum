@@ -19,16 +19,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_GALACTIC_HQ_1F",
             "x": 11,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_GALACTIC_HQ_B1F"
         },
         {
+            "id": "WARP_GALACTIC_HQ_B2F",
             "x": 3,
             "z": 7,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_B2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_GALACTIC_HQ_B1F"
         }
     ],
     "coord_events": []

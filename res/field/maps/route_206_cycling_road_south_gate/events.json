@@ -49,40 +49,46 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_206_1",
             "x": 6,
             "z": 2,
             "dest_header_id": "MAP_HEADER_ROUTE_206",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_6"
         },
         {
+            "id": "WARP_ROUTE_206_2",
             "x": 6,
             "z": 12,
             "dest_header_id": "MAP_HEADER_ROUTE_206",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_1"
         },
         {
+            "id": "WARP_ROUTE_206_3",
             "x": 7,
             "z": 2,
             "dest_header_id": "MAP_HEADER_ROUTE_206",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_3"
         },
         {
+            "id": "WARP_ROUTE_206_4",
             "x": 8,
             "z": 2,
             "dest_header_id": "MAP_HEADER_ROUTE_206",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_7"
         },
         {
+            "id": "WARP_ROUTE_206_5",
             "x": 7,
             "z": 12,
             "dest_header_id": "MAP_HEADER_ROUTE_206",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_1"
         },
         {
+            "id": "WARP_ROUTE_206_6",
             "x": 8,
             "z": 12,
             "dest_header_id": "MAP_HEADER_ROUTE_206",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_2"
         }
     ],
     "coord_events": [

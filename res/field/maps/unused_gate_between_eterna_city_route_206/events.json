@@ -3,16 +3,18 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_CITY",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_ROUTE_206_CYCLING_ROAD_NORTH_GATE_1"
         },
         {
+            "id": "WARP_ROUTE_206",
             "x": 5,
             "z": 12,
             "dest_header_id": "MAP_HEADER_ROUTE_206",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_ROUTE_206_CYCLING_ROAD_NORTH_GATE_1"
         }
     ],
     "coord_events": []

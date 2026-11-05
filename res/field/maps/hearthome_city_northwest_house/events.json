@@ -19,10 +19,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY",
             "x": 5,
             "z": 8,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
-            "dest_warp_id": 6
+            "dest_warp_id": "WARP_HEARTHOME_CITY_NORTHWEST_HOUSE"
         }
     ],
     "coord_events": []

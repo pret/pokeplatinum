@@ -64,16 +64,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_FULLMOON_ISLAND_FOREST_1",
             "x": 53,
             "z": 268,
             "dest_header_id": "MAP_HEADER_FULLMOON_ISLAND_FOREST",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FULLMOON_ISLAND_1"
         },
         {
+            "id": "WARP_FULLMOON_ISLAND_FOREST_2",
             "x": 54,
             "z": 268,
             "dest_header_id": "MAP_HEADER_FULLMOON_ISLAND_FOREST",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_FULLMOON_ISLAND_2"
         }
     ],
     "coord_events": []

@@ -79,22 +79,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_PASTORIA_CITY",
             "x": 8,
             "z": 12,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY",
-            "dest_warp_id": 9
+            "dest_warp_id": "WARP_PASTORIA_CITY_POKECENTER_1F"
         },
         {
+            "id": "WARP_PASTORIA_CITY_POKECENTER_2F",
             "x": 2,
             "z": 10,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_POKECENTER_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY_POKECENTER_1F"
         },
         {
+            "id": "WARP_PASTORIA_CITY_POKECENTER_B1F",
             "x": 14,
             "z": 10,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_POKECENTER_B1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY_POKECENTER_1F"
         }
     ],
     "coord_events": []

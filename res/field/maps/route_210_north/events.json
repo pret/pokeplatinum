@@ -444,10 +444,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_210_GRANDMA_WILMA_HOUSE",
             "x": 564,
             "z": 516,
             "dest_header_id": "MAP_HEADER_ROUTE_210_GRANDMA_WILMA_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_210_NORTH"
         }
     ],
     "coord_events": []

@@ -139,16 +139,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_UNUSED_BATTLE_PARK_1",
             "x": 5,
             "z": 17,
             "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER_1"
         },
         {
+            "id": "WARP_UNUSED_BATTLE_PARK_2",
             "x": 21,
             "z": 17,
             "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER_2"
         }
     ],
     "coord_events": []

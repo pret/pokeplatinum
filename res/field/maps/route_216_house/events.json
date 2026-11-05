@@ -51,10 +51,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_216",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ROUTE_216",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_216_HOUSE"
         }
     ],
     "coord_events": []

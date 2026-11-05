@@ -134,22 +134,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_207",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ROUTE_207",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_1F_SOUTH"
         },
         {
+            "id": "WARP_ROUTE_208",
             "x": 27,
             "z": 20,
             "dest_header_id": "MAP_HEADER_ROUTE_208",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_MT_CORONET_1F_SOUTH"
         },
         {
+            "id": "WARP_MT_CORONET_2F",
             "x": 25,
             "z": 3,
             "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_1F_SOUTH"
         }
     ],
     "coord_events": [

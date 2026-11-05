@@ -508,16 +508,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VICTORY_ROAD_1F_ROOM_1",
             "x": 3,
             "z": 58,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_1",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_ROOM_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_ROOM_3",
             "x": 56,
             "z": 13,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_3",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_ROOM_2"
         }
     ],
     "coord_events": [

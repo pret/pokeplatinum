@@ -522,88 +522,102 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_JUBILIFE_CITY_CONDOMINIUMS_1F",
             "x": 180,
             "z": 755,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_GLOBAL_TERMINAL_1F",
             "x": 149,
             "z": 778,
             "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_JUBILIFE_CITY_POKECENTER_1F",
             "x": 180,
             "z": 776,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_JUBILIFE_TV_1F",
             "x": 164,
             "z": 751,
             "dest_header_id": "MAP_HEADER_JUBILIFE_TV_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_JUBILIFE_CITY_SOUTH_HOUSE_1F",
             "x": 167,
             "z": 788,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_POKETCH_CO_1F_1",
             "x": 145,
             "z": 751,
             "dest_header_id": "MAP_HEADER_POKETCH_CO_1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_JUBILIFE_CITY_2"
         },
         {
+            "id": "WARP_JUBILIFE_CITY_MART",
             "x": 179,
             "z": 766,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_TRAINERS_SCHOOL",
             "x": 168,
             "z": 776,
             "dest_header_id": "MAP_HEADER_TRAINERS_SCHOOL",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_POKETCH_CO_1F_2",
             "x": 141,
             "z": 751,
             "dest_header_id": "MAP_HEADER_POKETCH_CO_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY_1"
         },
         {
+            "id": "WARP_JUBILIFE_CITY_SOUTHWEST_HOUSE_1F",
             "x": 140,
             "z": 788,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_UNUSED_JUBILIFE_CITY_HOUSE_3",
             "x": 129,
             "z": 736,
             "dest_header_id": "MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_3",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_UNUSED_JUBILIFE_CITY_HOUSE_4",
             "x": 128,
             "z": 736,
             "dest_header_id": "MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_4",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_JUBILIFE_CITY_1",
             "x": 128,
             "z": 758,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_JUBILIFE_CITY_2",
             "x": 128,
             "z": 759,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_JUBILIFE_CITY"
         }
     ],
     "coord_events": [

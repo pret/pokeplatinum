@@ -147,22 +147,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VERITY_CAVERN",
             "x": 32,
             "z": 32,
             "dest_header_id": "MAP_HEADER_VERITY_CAVERN",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_LAKE_VERITY"
         },
         {
+            "id": "WARP_VERITY_LAKEFRONT_1",
             "x": 46,
             "z": 54,
             "dest_header_id": "MAP_HEADER_VERITY_LAKEFRONT",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_LAKE_VERITY_1"
         },
         {
+            "id": "WARP_VERITY_LAKEFRONT_2",
             "x": 47,
             "z": 54,
             "dest_header_id": "MAP_HEADER_VERITY_LAKEFRONT",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_LAKE_VERITY_2"
         }
     ],
     "coord_events": []

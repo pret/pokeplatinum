@@ -149,10 +149,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_PASTORIA_CITY",
             "x": 13,
             "z": 42,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY_GYM"
         }
     ],
     "coord_events": [

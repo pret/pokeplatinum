@@ -51,10 +51,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SURVIVAL_AREA",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_SURVIVAL_AREA_NORTH_HOUSE"
         }
     ],
     "coord_events": []

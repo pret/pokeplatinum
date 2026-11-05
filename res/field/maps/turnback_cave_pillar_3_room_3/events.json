@@ -454,28 +454,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_TURNBACK_CAVE_ENTRANCE_1",
             "x": 11,
             "z": 1,
             "dest_header_id": "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_TURNBACK_CAVE_ENTRANCE_3"
         },
         {
+            "id": "WARP_TURNBACK_CAVE_ENTRANCE_2",
             "x": 20,
             "z": 11,
             "dest_header_id": "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_TURNBACK_CAVE_ENTRANCE_4"
         },
         {
+            "id": "WARP_TURNBACK_CAVE_ENTRANCE_3",
             "x": 11,
             "z": 20,
             "dest_header_id": "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_TURNBACK_CAVE_ENTRANCE_1"
         },
         {
+            "id": "WARP_TURNBACK_CAVE_ENTRANCE_4",
             "x": 2,
             "z": 11,
             "dest_header_id": "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_TURNBACK_CAVE_ENTRANCE_2"
         }
     ],
     "coord_events": []

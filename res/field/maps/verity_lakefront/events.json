@@ -30,28 +30,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_LAKE_VERITY_LOW_WATER_1",
             "x": 81,
             "z": 843,
             "dest_header_id": "MAP_HEADER_LAKE_VERITY_LOW_WATER",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VERITY_LAKEFRONT_2"
         },
         {
+            "id": "WARP_LAKE_VERITY_LOW_WATER_2",
             "x": 80,
             "z": 843,
             "dest_header_id": "MAP_HEADER_LAKE_VERITY_LOW_WATER",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VERITY_LAKEFRONT_1"
         },
         {
+            "id": "WARP_LAKE_VERITY_1",
             "x": 80,
             "z": 843,
             "dest_header_id": "MAP_HEADER_LAKE_VERITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VERITY_LAKEFRONT_1"
         },
         {
+            "id": "WARP_LAKE_VERITY_2",
             "x": 81,
             "z": 843,
             "dest_header_id": "MAP_HEADER_LAKE_VERITY",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VERITY_LAKEFRONT_2"
         }
     ],
     "coord_events": [

@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SANDGEM_TOWN",
             "x": 6,
             "z": 10,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_SANDGEM_TOWN_COUNTERPART_HOUSE_1F"
         },
         {
+            "id": "WARP_SANDGEM_TOWN_COUNTERPART_HOUSE_2F",
             "x": 9,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SANDGEM_TOWN_COUNTERPART_HOUSE_1F"
         }
     ],
     "coord_events": []

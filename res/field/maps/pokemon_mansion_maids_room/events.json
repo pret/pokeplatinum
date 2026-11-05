@@ -106,22 +106,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKEMON_MANSION_1",
             "x": 20,
             "z": 9,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_POKEMON_MANSION_MAIDS_ROOM_3"
         },
         {
+            "id": "WARP_POKEMON_MANSION_2",
             "x": 4,
             "z": 9,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_POKEMON_MANSION_MAIDS_ROOM_1"
         },
         {
+            "id": "WARP_POKEMON_MANSION_3",
             "x": 12,
             "z": 9,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_POKEMON_MANSION_MAIDS_ROOM_2"
         }
     ],
     "coord_events": []

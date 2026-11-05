@@ -109,40 +109,46 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_212_NORTH",
             "x": 33,
             "z": 16,
             "dest_header_id": "MAP_HEADER_ROUTE_212_NORTH",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_POKEMON_MANSION"
         },
         {
+            "id": "WARP_POKEMON_MANSION_MAIDS_ROOM_1",
             "x": 5,
             "z": 5,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_POKEMON_MANSION_2"
         },
         {
+            "id": "WARP_POKEMON_MANSION_MAIDS_ROOM_2",
             "x": 13,
             "z": 5,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_POKEMON_MANSION_3"
         },
         {
+            "id": "WARP_POKEMON_MANSION_MAIDS_ROOM_3",
             "x": 21,
             "z": 5,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_POKEMON_MANSION_1"
         },
         {
+            "id": "WARP_POKEMON_MANSION_OFFICE",
             "x": 48,
             "z": 5,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION_OFFICE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_POKEMON_MANSION"
         },
         {
+            "id": "WARP_TROPHY_GARDEN",
             "x": 33,
             "z": 2,
             "dest_header_id": "MAP_HEADER_TROPHY_GARDEN",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_POKEMON_MANSION_1"
         }
     ],
     "coord_events": []

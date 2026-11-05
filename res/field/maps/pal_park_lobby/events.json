@@ -139,16 +139,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_221",
             "x": 7,
             "z": 19,
             "dest_header_id": "MAP_HEADER_ROUTE_221",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_PAL_PARK_LOBBY_1"
         },
         {
+            "id": "WARP_PAL_PARK",
             "x": 7,
             "z": 7,
             "dest_header_id": "MAP_HEADER_PAL_PARK",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PAL_PARK_LOBBY_1"
         }
     ],
     "coord_events": []

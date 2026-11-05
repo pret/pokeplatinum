@@ -579,28 +579,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_222_GATE_TO_SUNYSHORE_CITY_1",
             "x": 825,
             "z": 790,
             "dest_header_id": "MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_222"
         },
         {
+            "id": "WARP_ROUTE_222_GATE_TO_SUNYSHORE_CITY_2",
             "x": 825,
             "z": 791,
             "dest_header_id": "MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_222"
         },
         {
+            "id": "WARP_ROUTE_222_EAST_HOUSE",
             "x": 801,
             "z": 784,
             "dest_header_id": "MAP_HEADER_ROUTE_222_EAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_222"
         },
         {
+            "id": "WARP_ROUTE_222_WEST_HOUSE",
             "x": 795,
             "z": 784,
             "dest_header_id": "MAP_HEADER_ROUTE_222_WEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_222"
         }
     ],
     "coord_events": []

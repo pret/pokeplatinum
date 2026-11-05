@@ -21,10 +21,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1",
             "x": 7,
             "z": 10,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_4"
         }
     ],
     "coord_events": []

@@ -162,10 +162,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_RAVAGED_PATH",
             "x": 171,
             "z": 705,
             "dest_header_id": "MAP_HEADER_RAVAGED_PATH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_204_SOUTH"
         }
     ],
     "coord_events": []

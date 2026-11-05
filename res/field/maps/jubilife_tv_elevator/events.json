@@ -28,10 +28,10 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_DYNAMIC",
             "x": 3,
             "z": 6,
-            "dest_header_id": "MAP_HEADER_DYNAMIC",
-            "dest_warp_id": 256
+            "dest_header_id": "MAP_HEADER_DYNAMIC"
         }
     ],
     "coord_events": []

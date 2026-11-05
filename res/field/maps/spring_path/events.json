@@ -3,16 +3,18 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_SENDOFF_SPRING_1",
             "x": 762,
             "z": 713,
             "dest_header_id": "MAP_HEADER_SENDOFF_SPRING",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SPRING_PATH_1"
         },
         {
+            "id": "WARP_SENDOFF_SPRING_2",
             "x": 763,
             "z": 713,
             "dest_header_id": "MAP_HEADER_SENDOFF_SPRING",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SPRING_PATH_2"
         }
     ],
     "coord_events": []

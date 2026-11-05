@@ -114,16 +114,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_PASTORIA_CITY_OBSERVATORY_GATE_1F_1",
             "x": 68,
             "z": 118,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_GREAT_MARSH_6"
         },
         {
+            "id": "WARP_PASTORIA_CITY_OBSERVATORY_GATE_1F_2",
             "x": 69,
             "z": 118,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_GREAT_MARSH_6"
         }
     ],
     "coord_events": []

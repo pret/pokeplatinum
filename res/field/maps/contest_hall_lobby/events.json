@@ -218,16 +218,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY",
             "x": 16,
             "z": 13,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_CONTEST_HALL_LOBBY"
         },
         {
+            "id": "WARP_CONTEST_HALL_STAGE_NO_CONTEST",
             "x": 23,
             "z": 2,
             "dest_header_id": "MAP_HEADER_CONTEST_HALL_STAGE_NO_CONTEST",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CONTEST_HALL_LOBBY"
         }
     ],
     "coord_events": []

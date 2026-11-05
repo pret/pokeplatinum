@@ -33,13 +33,13 @@ ValorLakefront_OnLoad:
     End
 
 ValorLakefront_RemoveWarpsLakeValorNormal:
-    SetWarpEventPos 5, 713, 760
-    SetWarpEventPos 6, 713, 761
+    SetWarpEventPos WARP_LAKE_VALOR_1, 713, 760
+    SetWarpEventPos WARP_LAKE_VALOR_2, 713, 761
     End
 
 ValorLakefront_RemoveWarpsLakeValorDrained:
-    SetWarpEventPos 3, 713, 760
-    SetWarpEventPos 4, 713, 761
+    SetWarpEventPos WARP_LAKE_VALOR_DRAINED_1, 713, 760
+    SetWarpEventPos WARP_LAKE_VALOR_DRAINED_2, 713, 761
     End
 
 ValorLakefront_GruntM:

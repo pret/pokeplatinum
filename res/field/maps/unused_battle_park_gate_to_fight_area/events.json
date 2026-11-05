@@ -94,10 +94,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_UNUSED_BATTLE_PARK",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_UNUSED_BATTLE_PARK_GATE_TO_FIGHT_AREA_1"
         }
     ],
     "coord_events": []

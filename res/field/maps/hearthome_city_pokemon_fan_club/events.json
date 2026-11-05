@@ -94,10 +94,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY",
             "x": 6,
             "z": 17,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
-            "dest_warp_id": 12
+            "dest_warp_id": "WARP_HEARTHOME_CITY_POKEMON_FAN_CLUB"
         }
     ],
     "coord_events": []

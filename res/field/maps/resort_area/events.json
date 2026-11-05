@@ -316,28 +316,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VILLA",
             "x": 822,
             "z": 469,
             "dest_header_id": "MAP_HEADER_VILLA",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_RESORT_AREA"
         },
         {
+            "id": "WARP_RESORT_AREA_HOUSE",
             "x": 810,
             "z": 455,
             "dest_header_id": "MAP_HEADER_RESORT_AREA_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_RESORT_AREA"
         },
         {
+            "id": "WARP_RESORT_AREA_RIBBON_SYNDICATE_1F",
             "x": 824,
             "z": 453,
             "dest_header_id": "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_RESORT_AREA"
         },
         {
+            "id": "WARP_RESORT_AREA_POKECENTER_1F",
             "x": 802,
             "z": 472,
             "dest_header_id": "MAP_HEADER_RESORT_AREA_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_RESORT_AREA"
         }
     ],
     "coord_events": [

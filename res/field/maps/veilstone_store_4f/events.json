@@ -103,22 +103,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VEILSTONE_STORE_3F",
             "x": 7,
             "z": 8,
             "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_3F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VEILSTONE_STORE_4F"
         },
         {
+            "id": "WARP_VEILSTONE_STORE_5F",
             "x": 12,
             "z": 8,
             "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_5F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VEILSTONE_STORE_4F"
         },
         {
+            "id": "WARP_VEILSTONE_STORE_ELEVATOR",
             "x": 15,
             "z": 2,
             "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_DYNAMIC"
         }
     ],
     "coord_events": []

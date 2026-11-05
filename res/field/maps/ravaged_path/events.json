@@ -469,16 +469,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_204_SOUTH",
             "x": 19,
             "z": 50,
             "dest_header_id": "MAP_HEADER_ROUTE_204_SOUTH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_RAVAGED_PATH"
         },
         {
+            "id": "WARP_ROUTE_204_NORTH",
             "x": 28,
             "z": 44,
             "dest_header_id": "MAP_HEADER_ROUTE_204_NORTH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_RAVAGED_PATH"
         }
     ],
     "coord_events": []

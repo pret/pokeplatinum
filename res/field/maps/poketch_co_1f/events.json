@@ -79,22 +79,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_JUBILIFE_CITY_1",
             "x": 3,
             "z": 12,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_POKETCH_CO_1F_2"
         },
         {
+            "id": "WARP_JUBILIFE_CITY_2",
             "x": 16,
             "z": 12,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_POKETCH_CO_1F_1"
         },
         {
+            "id": "WARP_POKETCH_CO_2F",
             "x": 6,
             "z": 3,
             "dest_header_id": "MAP_HEADER_POKETCH_CO_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_POKETCH_CO_1F"
         }
     ],
     "coord_events": []

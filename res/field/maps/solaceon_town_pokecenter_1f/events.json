@@ -94,22 +94,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SOLACEON_TOWN",
             "x": 8,
             "z": 12,
             "dest_header_id": "MAP_HEADER_SOLACEON_TOWN",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_SOLACEON_TOWN_POKECENTER_1F"
         },
         {
+            "id": "WARP_SOLACEON_TOWN_POKECENTER_2F",
             "x": 2,
             "z": 10,
             "dest_header_id": "MAP_HEADER_SOLACEON_TOWN_POKECENTER_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SOLACEON_TOWN_POKECENTER_1F"
         },
         {
+            "id": "WARP_SOLACEON_TOWN_POKECENTER_B1F",
             "x": 14,
             "z": 10,
             "dest_header_id": "MAP_HEADER_SOLACEON_TOWN_POKECENTER_B1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SOLACEON_TOWN_POKECENTER_1F"
         }
     ],
     "coord_events": []

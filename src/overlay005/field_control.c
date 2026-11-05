@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field_poison.h"
+#include "constants/map_object.h"
 #include "constants/player_avatar.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
@@ -1006,11 +1007,11 @@ static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int
         return FALSE;
     }
 
-    if (warpEvent->destWarpID == 0x100) {
-        GF_ASSERT(warpEvent->destHeaderID == 0xfff);
+    if (warpEvent->destWarpID == WARP_ID_DYNAMIC) {
+        GF_ASSERT(warpEvent->destHeaderID == MAP_HEADER_DYNAMIC);
         *nextMap = *(FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
     } else {
-        Location_Set(nextMap, warpEvent->destHeaderID, warpEvent->destWarpID, warpEvent->x, warpEvent->z, 1);
+        Location_Set(nextMap, warpEvent->destHeaderID, warpEvent->destWarpID, warpEvent->x, warpEvent->z, DIR_SOUTH);
     }
 
     Location *entrance = FieldOverworldState_GetEntranceLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));

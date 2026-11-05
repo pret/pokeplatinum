@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ACUITY_LAKEFRONT_1",
             "x": 14,
             "z": 50,
             "dest_header_id": "MAP_HEADER_ACUITY_LAKEFRONT",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_LAKE_ACUITY_LOW_WATER_1"
         },
         {
+            "id": "WARP_ACUITY_LAKEFRONT_2",
             "x": 15,
             "z": 50,
             "dest_header_id": "MAP_HEADER_ACUITY_LAKEFRONT",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_LAKE_ACUITY_LOW_WATER_2"
         }
     ],
     "coord_events": []

@@ -405,28 +405,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_208_GATE_TO_HEARTHOME_CITY_1",
             "x": 447,
             "z": 726,
             "dest_header_id": "MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_208"
         },
         {
+            "id": "WARP_ROUTE_208_GATE_TO_HEARTHOME_CITY_2",
             "x": 447,
             "z": 727,
             "dest_header_id": "MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_208"
         },
         {
+            "id": "WARP_ROUTE_208_HOUSE",
             "x": 441,
             "z": 716,
             "dest_header_id": "MAP_HEADER_ROUTE_208_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_208"
         },
         {
+            "id": "WARP_MT_CORONET_1F_SOUTH",
             "x": 392,
             "z": 724,
             "dest_header_id": "MAP_HEADER_MT_CORONET_1F_SOUTH",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_208"
         }
     ],
     "coord_events": []

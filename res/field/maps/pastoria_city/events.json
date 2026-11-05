@@ -462,76 +462,88 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_PASTORIA_CITY_GYM",
             "x": 589,
             "z": 827,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_GYM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_MIDDLE_HOUSE",
             "x": 601,
             "z": 835,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_MIDDLE_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_MART",
             "x": 601,
             "z": 844,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_NORTH_HOUSE",
             "x": 600,
             "z": 824,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_NORTH_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_EAST_HOUSE",
             "x": 611,
             "z": 835,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_EAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_NORTHEAST_HOUSE",
             "x": 624,
             "z": 819,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_SOUTHWEST_HOUSE",
             "x": 589,
             "z": 844,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_SOUTHWEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_OBSERVATORY_GATE_1F_1",
             "x": 610,
             "z": 809,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_OBSERVATORY_GATE_1F_2",
             "x": 611,
             "z": 809,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_PASTORIA_CITY_POKECENTER_1F",
             "x": 600,
             "z": 815,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_ROUTE_213_GATE_TO_PASTORIA_CITY_1",
             "x": 639,
             "z": 812,
             "dest_header_id": "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         },
         {
+            "id": "WARP_ROUTE_213_GATE_TO_PASTORIA_CITY_2",
             "x": 639,
             "z": 813,
             "dest_header_id": "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_PASTORIA_CITY"
         }
     ],
     "coord_events": [

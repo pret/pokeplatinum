@@ -524,22 +524,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_FOREST_1",
             "x": 206,
             "z": 581,
             "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_205_SOUTH_1"
         },
         {
+            "id": "WARP_ETERNA_FOREST_2",
             "x": 207,
             "z": 581,
             "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_205_SOUTH_2"
         },
         {
+            "id": "WARP_ROUTE_205_HOUSE",
             "x": 214,
             "z": 594,
             "dest_header_id": "MAP_HEADER_ROUTE_205_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_205_SOUTH"
         }
     ],
     "coord_events": [

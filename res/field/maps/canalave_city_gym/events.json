@@ -170,10 +170,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_CANALAVE_CITY",
             "x": 16,
             "z": 27,
             "dest_header_id": "MAP_HEADER_CANALAVE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CANALAVE_CITY_GYM"
         }
     ],
     "coord_events": []

@@ -318,22 +318,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_221_HOUSE",
             "x": 261,
             "z": 900,
             "dest_header_id": "MAP_HEADER_ROUTE_221_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_221"
         },
         {
+            "id": "WARP_PAL_PARK_LOBBY_1",
             "x": 306,
             "z": 909,
             "dest_header_id": "MAP_HEADER_PAL_PARK_LOBBY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_221"
         },
         {
+            "id": "WARP_PAL_PARK_LOBBY_2",
             "x": 307,
             "z": 909,
             "dest_header_id": "MAP_HEADER_PAL_PARK_LOBBY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_221"
         }
     ],
     "coord_events": []

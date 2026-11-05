@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_FIGHT_AREA",
             "x": 5,
             "z": 12,
             "dest_header_id": "MAP_HEADER_FIGHT_AREA",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_225_GATE_TO_FIGHT_AREA_1"
         },
         {
+            "id": "WARP_ROUTE_225",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_ROUTE_225",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_225_GATE_TO_FIGHT_AREA_1"
         }
     ],
     "coord_events": []

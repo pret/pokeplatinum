@@ -156,40 +156,46 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_1F_SOUTH",
             "x": 27,
             "z": 48,
             "dest_header_id": "MAP_HEADER_MT_CORONET_1F_SOUTH",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_MT_CORONET_2F"
         },
         {
+            "id": "WARP_ROUTE_207",
             "x": 2,
             "z": 59,
             "dest_header_id": "MAP_HEADER_ROUTE_207",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_MT_CORONET_2F"
         },
         {
+            "id": "WARP_MT_CORONET_2F_1",
             "x": 7,
             "z": 23,
             "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_MT_CORONET_2F_2"
         },
         {
+            "id": "WARP_MT_CORONET_2F_2",
             "x": 7,
             "z": 12,
             "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_MT_CORONET_2F_1"
         },
         {
+            "id": "WARP_MT_CORONET_3F_1",
             "x": 11,
             "z": 4,
             "dest_header_id": "MAP_HEADER_MT_CORONET_3F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_2F_1"
         },
         {
+            "id": "WARP_MT_CORONET_3F_2",
             "x": 21,
             "z": 4,
             "dest_header_id": "MAP_HEADER_MT_CORONET_3F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_MT_CORONET_2F_2"
         }
     ],
     "coord_events": [

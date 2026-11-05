@@ -256,10 +256,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_CANALAVE_LIBRARY_2F",
             "x": 4,
             "z": 3,
             "dest_header_id": "MAP_HEADER_CANALAVE_LIBRARY_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_CANALAVE_LIBRARY_3F"
         }
     ],
     "coord_events": []

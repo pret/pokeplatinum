@@ -762,10 +762,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_212_HOUSE",
             "x": 517,
             "z": 846,
             "dest_header_id": "MAP_HEADER_ROUTE_212_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_212_SOUTH"
         }
     ],
     "coord_events": []

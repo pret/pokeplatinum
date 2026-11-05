@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_JUBILIFE_CITY_CONDOMINIUMS_2F",
             "x": 8,
             "z": 3,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_3F"
         },
         {
+            "id": "WARP_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_4F",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_4F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_3F"
         }
     ],
     "coord_events": []

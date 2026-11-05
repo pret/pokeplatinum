@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_214",
             "x": 92,
             "z": 7,
             "dest_header_id": "MAP_HEADER_ROUTE_214",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_MANIAC_TUNNEL"
         },
         {
+            "id": "WARP_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
             "x": 2,
             "z": 7,
             "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_MANIAC_TUNNEL"
         }
     ],
     "coord_events": []

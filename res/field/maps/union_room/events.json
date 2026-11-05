@@ -769,10 +769,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SANDGEM_TOWN_POKECENTER_2F",
             "x": 8,
             "z": 14,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_UNION_ROOM"
         }
     ],
     "coord_events": []

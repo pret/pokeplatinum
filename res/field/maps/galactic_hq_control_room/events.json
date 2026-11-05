@@ -112,10 +112,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_GALACTIC_HQ_LABORATORY",
             "x": 8,
             "z": 13,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_LABORATORY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_GALACTIC_HQ_CONTROL_ROOM"
         }
     ],
     "coord_events": [

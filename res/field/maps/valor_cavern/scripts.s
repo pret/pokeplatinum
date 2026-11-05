@@ -16,11 +16,11 @@ ValorCavern_OnTransition:
     End
 
 ValorCavern_RemoveWarpLakeValorNormal:
-    SetWarpEventPos 1, 10, 29
+    SetWarpEventPos WARP_LAKE_VALOR, 10, 29
     End
 
 ValorCavern_RemoveWarpLakeValorDrained:
-    SetWarpEventPos 0, 10, 29
+    SetWarpEventPos WARP_LAKE_VALOR_DRAINED, 10, 29
     End
 
 ValorCavern_OnLoad:

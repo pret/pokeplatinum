@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SUNYSHORE_CITY",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_SUNYSHORE_CITY_NORTHWEST_HOUSE"
         }
     ],
     "coord_events": []

@@ -3,40 +3,46 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_OLD_CHATEAU",
             "x": 19,
             "z": 5,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_OLD_CHATEAU_CORRIDOR"
         },
         {
+            "id": "WARP_OLD_CHATEAU_BACK_WEST_ROOM",
             "x": 4,
             "z": 2,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OLD_CHATEAU_CORRIDOR"
         },
         {
+            "id": "WARP_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
             "x": 11,
             "z": 2,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OLD_CHATEAU_CORRIDOR"
         },
         {
+            "id": "WARP_OLD_CHATEAU_BACK_MIDDLE_ROOM",
             "x": 19,
             "z": 2,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OLD_CHATEAU_CORRIDOR"
         },
         {
+            "id": "WARP_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
             "x": 27,
             "z": 2,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OLD_CHATEAU_CORRIDOR"
         },
         {
+            "id": "WARP_OLD_CHATEAU_BACK_EAST_ROOM",
             "x": 34,
             "z": 2,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OLD_CHATEAU_CORRIDOR"
         }
     ],
     "coord_events": []

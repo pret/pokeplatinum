@@ -43,22 +43,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_IRON_ISLAND_HOUSE",
             "x": 111,
             "z": 499,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_IRON_ISLAND"
         },
         {
+            "id": "WARP_IRON_ISLAND_1F",
             "x": 117,
             "z": 489,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_IRON_ISLAND"
         },
         {
+            "id": "WARP_IRON_ISLAND_B3F",
             "x": 103,
             "z": 489,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_B3F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_IRON_ISLAND"
         }
     ],
     "coord_events": []

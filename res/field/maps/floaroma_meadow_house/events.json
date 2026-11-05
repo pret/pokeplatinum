@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_FLOAROMA_MEADOW",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_FLOAROMA_MEADOW_HOUSE"
         }
     ],
     "coord_events": []

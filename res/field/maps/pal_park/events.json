@@ -19,16 +19,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_PAL_PARK_LOBBY_1",
             "x": 24,
             "z": 52,
             "dest_header_id": "MAP_HEADER_PAL_PARK_LOBBY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_PAL_PARK"
         },
         {
+            "id": "WARP_PAL_PARK_LOBBY_2",
             "x": 25,
             "z": 52,
             "dest_header_id": "MAP_HEADER_PAL_PARK_LOBBY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_PAL_PARK"
         }
     ],
     "coord_events": [

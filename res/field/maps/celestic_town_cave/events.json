@@ -66,10 +66,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_CELESTIC_TOWN",
             "x": 10,
             "z": 20,
             "dest_header_id": "MAP_HEADER_CELESTIC_TOWN",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_CELESTIC_TOWN_CAVE"
         }
     ],
     "coord_events": []

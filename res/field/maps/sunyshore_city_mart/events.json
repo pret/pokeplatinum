@@ -79,10 +79,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SUNYSHORE_CITY",
             "x": 3,
             "z": 11,
             "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_SUNYSHORE_CITY_MART"
         }
     ],
     "coord_events": []

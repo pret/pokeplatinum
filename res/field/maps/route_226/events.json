@@ -311,22 +311,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_226_HOUSE",
             "x": 739,
             "z": 339,
             "dest_header_id": "MAP_HEADER_ROUTE_226_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_226"
         },
         {
+            "id": "WARP_ROUTE_228_GATE_TO_ROUTE_226_1",
             "x": 767,
             "z": 330,
             "dest_header_id": "MAP_HEADER_ROUTE_228_GATE_TO_ROUTE_226",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_226"
         },
         {
+            "id": "WARP_ROUTE_228_GATE_TO_ROUTE_226_2",
             "x": 767,
             "z": 331,
             "dest_header_id": "MAP_HEADER_ROUTE_228_GATE_TO_ROUTE_226",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_226"
         }
     ],
     "coord_events": []

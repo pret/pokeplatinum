@@ -82,10 +82,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKETCH_CO_2F",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_POKETCH_CO_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_POKETCH_CO_3F"
         }
     ],
     "coord_events": []

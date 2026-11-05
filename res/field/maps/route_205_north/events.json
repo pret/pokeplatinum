@@ -208,16 +208,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_FOREST_1",
             "x": 259,
             "z": 525,
             "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_ROUTE_205_NORTH_2"
         },
         {
+            "id": "WARP_ETERNA_FOREST_2",
             "x": 259,
             "z": 524,
             "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_ROUTE_205_NORTH_1"
         }
     ],
     "coord_events": []

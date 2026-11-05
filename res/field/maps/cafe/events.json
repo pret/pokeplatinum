@@ -94,10 +94,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_210_SOUTH",
             "x": 5,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ROUTE_210_SOUTH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CAFE"
         }
     ],
     "coord_events": []

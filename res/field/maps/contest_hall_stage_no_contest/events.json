@@ -64,10 +64,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_CONTEST_HALL_LOBBY",
             "x": 29,
             "z": 14,
             "dest_header_id": "MAP_HEADER_CONTEST_HALL_LOBBY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_CONTEST_HALL_STAGE_NO_CONTEST"
         }
     ],
     "coord_events": []

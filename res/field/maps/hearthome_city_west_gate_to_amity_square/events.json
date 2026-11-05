@@ -64,16 +64,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY",
             "x": 5,
             "z": 12,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_1"
         },
         {
+            "id": "WARP_AMITY_SQUARE",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_AMITY_SQUARE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_1"
         }
     ],
     "coord_events": []

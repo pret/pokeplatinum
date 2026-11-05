@@ -289,10 +289,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VALOR_LAKEFRONT",
             "x": 9,
             "z": 12,
             "dest_header_id": "MAP_HEADER_VALOR_LAKEFRONT",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_RESTAURANT"
         }
     ],
     "coord_events": []

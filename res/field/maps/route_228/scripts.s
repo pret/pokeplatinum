@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_228.h"
+#include "res/field/maps/locals/route_228.h"
 
 
     ScriptEntry Route228_ArrowSignpostRt226
@@ -26,11 +27,11 @@ Route228_OnLoad:
     End
 
 Route228_RemoveWarpRockPeakRuinsWithRegirock:
-    SetWarpEventPos 5, 783, 339
+    SetWarpEventPos WARP_ROCK_PEAK_RUINS, 783, 339
     End
 
 Route228_RemoveWarpRockPeakRuinsWithoutRegirock:
-    SetWarpEventPos 4, 783, 339
+    SetWarpEventPos WARP_ROUTE_228_ROCK_PEAK_RUINS, 783, 339
     End
 
 Route228_ArrowSignpostRt226:

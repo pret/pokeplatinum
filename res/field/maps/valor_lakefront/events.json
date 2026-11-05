@@ -218,46 +218,53 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_RESTAURANT",
             "x": 706,
             "z": 790,
             "dest_header_id": "MAP_HEADER_RESTAURANT",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT"
         },
         {
+            "id": "WARP_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE",
             "x": 715,
             "z": 781,
             "dest_header_id": "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT"
         },
         {
+            "id": "WARP_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE",
             "x": 690,
             "z": 791,
             "dest_header_id": "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT"
         },
         {
+            "id": "WARP_LAKE_VALOR_DRAINED_1",
             "x": 717,
             "z": 760,
             "dest_header_id": "MAP_HEADER_LAKE_VALOR_DRAINED",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT_1"
         },
         {
+            "id": "WARP_LAKE_VALOR_DRAINED_2",
             "x": 717,
             "z": 761,
             "dest_header_id": "MAP_HEADER_LAKE_VALOR_DRAINED",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT_2"
         },
         {
+            "id": "WARP_LAKE_VALOR_1",
             "x": 717,
             "z": 760,
             "dest_header_id": "MAP_HEADER_LAKE_VALOR",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT_3"
         },
         {
+            "id": "WARP_LAKE_VALOR_2",
             "x": 717,
             "z": 761,
             "dest_header_id": "MAP_HEADER_LAKE_VALOR",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT_4"
         }
     ],
     "coord_events": [

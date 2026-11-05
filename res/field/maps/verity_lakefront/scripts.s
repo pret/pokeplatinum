@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/verity_lakefront.h"
+#include "res/field/maps/locals/verity_lakefront.h"
 
 
     ScriptEntry VerityLakefront_OnLoad
@@ -14,13 +15,13 @@ VerityLakefront_OnLoad:
     End
 
 VerityLakefront_RemoveWarpsLakeVerityNormal:
-    SetWarpEventPos 2, 80, 840
-    SetWarpEventPos 3, 81, 840
+    SetWarpEventPos WARP_LAKE_VERITY_1, 80, 840
+    SetWarpEventPos WARP_LAKE_VERITY_2, 81, 840
     End
 
 VerityLakefront_RemoveWarpsLakeVerityLowWater:
-    SetWarpEventPos 1, 80, 840
-    SetWarpEventPos 0, 81, 840
+    SetWarpEventPos WARP_LAKE_VERITY_LOW_WATER_2, 80, 840
+    SetWarpEventPos WARP_LAKE_VERITY_LOW_WATER_1, 81, 840
     End
 
 VerityLakefront_OnTransition:

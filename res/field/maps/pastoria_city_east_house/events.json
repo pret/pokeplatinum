@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_PASTORIA_CITY",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_PASTORIA_CITY_EAST_HOUSE"
         }
     ],
     "coord_events": []

@@ -66,16 +66,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_WAYWARD_CAVE_1F_1",
             "x": 43,
             "z": 38,
             "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_WAYWARD_CAVE_B1F_2"
         },
         {
+            "id": "WARP_WAYWARD_CAVE_1F_2",
             "x": 16,
             "z": 40,
             "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_WAYWARD_CAVE_B1F_1"
         }
     ],
     "coord_events": []

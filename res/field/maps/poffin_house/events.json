@@ -94,10 +94,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY",
             "x": 8,
             "z": 13,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
-            "dest_warp_id": 10
+            "dest_warp_id": "WARP_POFFIN_HOUSE"
         }
     ],
     "coord_events": []

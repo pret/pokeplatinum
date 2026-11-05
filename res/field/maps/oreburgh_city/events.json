@@ -461,100 +461,116 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_CITY_GYM",
             "x": 282,
             "z": 756,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_GYM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_CITY_POKECENTER_1F",
             "x": 303,
             "z": 756,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_CITY_MART",
             "x": 285,
             "z": 746,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_CITY_NORTHWEST_HOUSE_1F",
             "x": 271,
             "z": 746,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_CITY_WEST_HOUSE",
             "x": 273,
             "z": 756,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_WEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_CITY_MIDDLE_HOUSE",
             "x": 293,
             "z": 752,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_MIDDLE_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_MINING_MUSEUM",
             "x": 305,
             "z": 747,
             "dest_header_id": "MAP_HEADER_MINING_MUSEUM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_CITY_EAST_HOUSE_1F",
             "x": 312,
             "z": 764,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_CITY_NORTH_HOUSE_1F",
             "x": 278,
             "z": 746,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_CITY_SOUTH_HOUSE",
             "x": 307,
             "z": 772,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_GATE_1F",
             "x": 258,
             "z": 749,
             "dest_header_id": "MAP_HEADER_OREBURGH_GATE_1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_OREBURGH_CITY"
         },
         {
+            "id": "WARP_OREBURGH_MINE_B1F_1",
             "x": 300,
             "z": 795,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY_1"
         },
         {
+            "id": "WARP_OREBURGH_MINE_B1F_2",
             "x": 301,
             "z": 795,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY_1"
         },
         {
+            "id": "WARP_OREBURGH_MINE_B1F_3",
             "x": 302,
             "z": 795,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_OREBURGH_CITY_2"
         },
         {
+            "id": "WARP_OREBURGH_MINE_B1F_4",
             "x": 303,
             "z": 795,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_OREBURGH_CITY_3"
         },
         {
+            "id": "WARP_OREBURGH_MINE_B1F_5",
             "x": 304,
             "z": 795,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_OREBURGH_CITY_3"
         }
     ],
     "coord_events": [

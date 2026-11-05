@@ -238,22 +238,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_BATTLE_FRONTIER_1",
             "x": 25,
             "z": 9,
             "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
-            "dest_warp_id": 13
+            "dest_warp_id": "WARP_BATTLE_HALL_3"
         },
         {
+            "id": "WARP_BATTLE_FRONTIER_2",
             "x": 25,
             "z": 8,
             "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
-            "dest_warp_id": 13
+            "dest_warp_id": "WARP_BATTLE_HALL_3"
         },
         {
+            "id": "WARP_BATTLE_FRONTIER_3",
             "x": 25,
             "z": 10,
             "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
-            "dest_warp_id": 13
+            "dest_warp_id": "WARP_BATTLE_HALL_3"
         }
     ],
     "coord_events": []

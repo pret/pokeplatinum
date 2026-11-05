@@ -559,124 +559,144 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_1",
             "x": 458,
             "z": 683,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_2",
             "x": 459,
             "z": 683,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_CONTEST_HALL_LOBBY",
             "x": 479,
             "z": 691,
             "dest_header_id": "MAP_HEADER_CONTEST_HALL_LOBBY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_EAST_GATE_TO_AMITY_SQUARE_1",
             "x": 500,
             "z": 683,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_EAST_GATE_TO_AMITY_SQUARE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_EAST_GATE_TO_AMITY_SQUARE_2",
             "x": 501,
             "z": 683,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_EAST_GATE_TO_AMITY_SQUARE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_POKECENTER_1F",
             "x": 465,
             "z": 697,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_NORTHWEST_HOUSE",
             "x": 470,
             "z": 697,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F",
             "x": 494,
             "z": 710,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM",
             "x": 499,
             "z": 697,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_FOREIGN_BUILDING",
             "x": 460,
             "z": 709,
             "dest_header_id": "MAP_HEADER_FOREIGN_BUILDING",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_POFFIN_HOUSE",
             "x": 472,
             "z": 710,
             "dest_header_id": "MAP_HEADER_POFFIN_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_MART",
             "x": 477,
             "z": 710,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_POKEMON_FAN_CLUB",
             "x": 488,
             "z": 710,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_POKEMON_FAN_CLUB",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_NORTHEAST_HOUSE_1F",
             "x": 486,
             "z": 697,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_ROUTE_208_GATE_TO_HEARTHOME_CITY_1",
             "x": 454,
             "z": 726,
             "dest_header_id": "MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_ROUTE_212_GATE_TO_HEARTHOME_CITY_1",
             "x": 458,
             "z": 729,
             "dest_header_id": "MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_ROUTE_212_GATE_TO_HEARTHOME_CITY_2",
             "x": 459,
             "z": 729,
             "dest_header_id": "MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_ROUTE_209_GATE_TO_HEARTHOME_CITY_1",
             "x": 505,
             "z": 727,
             "dest_header_id": "MAP_HEADER_ROUTE_209_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_ROUTE_208_GATE_TO_HEARTHOME_CITY_2",
             "x": 454,
             "z": 727,
             "dest_header_id": "MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         },
         {
+            "id": "WARP_ROUTE_209_GATE_TO_HEARTHOME_CITY_2",
             "x": 505,
             "z": 726,
             "dest_header_id": "MAP_HEADER_ROUTE_209_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY"
         }
     ],
     "coord_events": [

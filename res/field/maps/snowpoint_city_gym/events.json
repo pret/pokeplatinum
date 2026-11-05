@@ -438,10 +438,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SNOWPOINT_CITY",
             "x": 11,
             "z": 28,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_SNOWPOINT_CITY_GYM"
         }
     ],
     "coord_events": []

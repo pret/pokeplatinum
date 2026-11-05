@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_214",
             "x": 6,
             "z": 7,
             "dest_header_id": "MAP_HEADER_ROUTE_214",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_RUIN_MANIAC_CAVE_SHORT"
         }
     ],
     "coord_events": []

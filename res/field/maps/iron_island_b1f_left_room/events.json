@@ -51,10 +51,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_IRON_ISLAND_1F",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_IRON_ISLAND_B1F_LEFT_ROOM"
         }
     ],
     "coord_events": []

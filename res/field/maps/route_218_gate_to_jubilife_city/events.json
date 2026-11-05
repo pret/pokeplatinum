@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_218",
             "x": 1,
             "z": 7,
             "dest_header_id": "MAP_HEADER_ROUTE_218",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_ROUTE_218_GATE_TO_JUBILIFE_CITY_1"
         },
         {
+            "id": "WARP_JUBILIFE_CITY",
             "x": 10,
             "z": 7,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
-            "dest_warp_id": 12
+            "dest_warp_id": "WARP_ROUTE_218_GATE_TO_JUBILIFE_CITY_1"
         }
     ],
     "coord_events": []

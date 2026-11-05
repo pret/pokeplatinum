@@ -207,10 +207,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_FUEGO_IRONWORKS_OUTSIDE",
             "x": 26,
             "z": 26,
             "dest_header_id": "MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FUEGO_IRONWORKS_BUILDING_1"
         }
     ],
     "coord_events": []

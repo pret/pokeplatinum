@@ -196,58 +196,67 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_GALACTIC_HQ_2F_1",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_1"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_2",
             "x": 47,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_2"
         },
         {
+            "id": "WARP_GALACTIC_HQ_4F",
             "x": 10,
             "z": 11,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F"
         },
         {
+            "id": "WARP_GALACTIC_HQ_3F_1",
             "x": 6,
             "z": 14,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_2"
         },
         {
+            "id": "WARP_GALACTIC_HQ_3F_2",
             "x": 15,
             "z": 13,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_1"
         },
         {
+            "id": "WARP_GALACTIC_HQ_3F_3",
             "x": 17,
             "z": 11,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
-            "dest_warp_id": 6
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_4"
         },
         {
+            "id": "WARP_GALACTIC_HQ_3F_4",
             "x": 52,
             "z": 12,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_3"
         },
         {
+            "id": "WARP_GALACTIC_HQ_3F_5",
             "x": 19,
             "z": 11,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_6"
         },
         {
+            "id": "WARP_GALACTIC_HQ_3F_6",
             "x": 32,
             "z": 22,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_5"
         }
     ],
     "coord_events": []

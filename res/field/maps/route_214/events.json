@@ -481,34 +481,39 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_214_GATE_TO_VEILSTONE_CITY_1",
             "x": 718,
             "z": 645,
             "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_214"
         },
         {
+            "id": "WARP_ROUTE_214_GATE_TO_VEILSTONE_CITY_2",
             "x": 719,
             "z": 645,
             "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_214"
         },
         {
+            "id": "WARP_RUIN_MANIAC_CAVE_SHORT",
             "x": 713,
             "z": 670,
             "dest_header_id": "MAP_HEADER_RUIN_MANIAC_CAVE_SHORT",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_214"
         },
         {
+            "id": "WARP_RUIN_MANIAC_CAVE_LONG",
             "x": 713,
             "z": 670,
             "dest_header_id": "MAP_HEADER_RUIN_MANIAC_CAVE_LONG",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_214"
         },
         {
+            "id": "WARP_MANIAC_TUNNEL",
             "x": 713,
             "z": 670,
             "dest_header_id": "MAP_HEADER_MANIAC_TUNNEL",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_214"
         }
     ],
     "coord_events": []

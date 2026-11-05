@@ -244,10 +244,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VEILSTONE_CITY",
             "x": 5,
             "z": 11,
             "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_GAME_CORNER"
         }
     ],
     "coord_events": []

@@ -124,16 +124,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY",
             "x": 10,
             "z": 12,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
-            "dest_warp_id": 13
+            "dest_warp_id": "WARP_HEARTHOME_CITY_NORTHEAST_HOUSE_1F"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR",
             "x": 18,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_DYNAMIC"
         }
     ],
     "coord_events": []

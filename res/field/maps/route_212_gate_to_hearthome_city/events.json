@@ -64,16 +64,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
-            "dest_warp_id": 15
+            "dest_warp_id": "WARP_ROUTE_212_GATE_TO_HEARTHOME_CITY_1"
         },
         {
+            "id": "WARP_ROUTE_212_NORTH",
             "x": 5,
             "z": 12,
             "dest_header_id": "MAP_HEADER_ROUTE_212_NORTH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_212_GATE_TO_HEARTHOME_CITY_1"
         }
     ],
     "coord_events": []

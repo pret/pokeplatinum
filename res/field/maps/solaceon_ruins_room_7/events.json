@@ -89,10 +89,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SOLACEON_RUINS_ROOM_6",
             "x": 8,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_7"
         }
     ],
     "coord_events": []

@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_205_SOUTH",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ROUTE_205_SOUTH",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_ROUTE_205_HOUSE"
         }
     ],
     "coord_events": []

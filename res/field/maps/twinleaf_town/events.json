@@ -138,28 +138,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
             "x": 105,
             "z": 875,
             "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_TWINLEAF_TOWN"
         },
         {
+            "id": "WARP_TWINLEAF_TOWN_PLAYER_HOUSE_1F",
             "x": 116,
             "z": 885,
             "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_TWINLEAF_TOWN"
         },
         {
+            "id": "WARP_TWINLEAF_TOWN_NORTHEAST_HOUSE",
             "x": 116,
             "z": 875,
             "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_NORTHEAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_TWINLEAF_TOWN"
         },
         {
+            "id": "WARP_TWINLEAF_TOWN_SOUTHWEST_HOUSE",
             "x": 106,
             "z": 885,
             "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_TWINLEAF_TOWN"
         }
     ],
     "coord_events": [

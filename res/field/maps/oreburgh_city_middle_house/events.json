@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_CITY",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_OREBURGH_CITY_MIDDLE_HOUSE"
         }
     ],
     "coord_events": []

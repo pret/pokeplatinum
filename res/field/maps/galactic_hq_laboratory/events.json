@@ -130,16 +130,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_GALACTIC_HQ_4F",
             "x": 1,
             "z": 11,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_GALACTIC_HQ_LABORATORY"
         },
         {
+            "id": "WARP_GALACTIC_HQ_CONTROL_ROOM",
             "x": 36,
             "z": 2,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_CONTROL_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_GALACTIC_HQ_LABORATORY"
         }
     ],
     "coord_events": []

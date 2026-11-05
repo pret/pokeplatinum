@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_222",
             "x": 1,
             "z": 7,
             "dest_header_id": "MAP_HEADER_ROUTE_222",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_222_GATE_TO_SUNYSHORE_CITY_1"
         },
         {
+            "id": "WARP_SUNYSHORE_CITY",
             "x": 10,
             "z": 7,
             "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_ROUTE_222_GATE_TO_SUNYSHORE_CITY_1"
         }
     ],
     "coord_events": []

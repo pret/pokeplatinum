@@ -81,10 +81,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKEMON_MANSION",
             "x": 16,
             "z": 10,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_POKEMON_MANSION_OFFICE"
         }
     ],
     "coord_events": [

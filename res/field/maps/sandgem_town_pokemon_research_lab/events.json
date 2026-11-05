@@ -128,10 +128,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SANDGEM_TOWN",
             "x": 7,
             "z": 15,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKEMON_RESEARCH_LAB"
         }
     ],
     "coord_events": []

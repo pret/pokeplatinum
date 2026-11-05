@@ -66,28 +66,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_LAKE_ACUITY_LOW_WATER_1",
             "x": 308,
             "z": 229,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY_LOW_WATER",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ACUITY_LAKEFRONT_1"
         },
         {
+            "id": "WARP_LAKE_ACUITY_LOW_WATER_2",
             "x": 309,
             "z": 229,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY_LOW_WATER",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ACUITY_LAKEFRONT_2"
         },
         {
+            "id": "WARP_LAKE_ACUITY_1",
             "x": 308,
             "z": 229,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_ACUITY_LAKEFRONT_3"
         },
         {
+            "id": "WARP_LAKE_ACUITY_2",
             "x": 309,
             "z": 229,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_ACUITY_LAKEFRONT_4"
         }
     ],
     "coord_events": [

@@ -64,40 +64,46 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_CITY_1",
             "x": 11,
             "z": 1,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
-            "dest_warp_id": 12
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F_2"
         },
         {
+            "id": "WARP_OREBURGH_CITY_2",
             "x": 12,
             "z": 1,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
-            "dest_warp_id": 13
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F_3"
         },
         {
+            "id": "WARP_OREBURGH_CITY_3",
             "x": 13,
             "z": 1,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
-            "dest_warp_id": 14
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F_4"
         },
         {
+            "id": "WARP_OREBURGH_MINE_B2F_1",
             "x": 12,
             "z": 21,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F"
         },
         {
+            "id": "WARP_OREBURGH_MINE_B2F_2",
             "x": 11,
             "z": 21,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F"
         },
         {
+            "id": "WARP_OREBURGH_MINE_B2F_3",
             "x": 13,
             "z": 21,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F"
         }
     ],
     "coord_events": []

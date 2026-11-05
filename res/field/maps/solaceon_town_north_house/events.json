@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SOLACEON_TOWN",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_SOLACEON_TOWN",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_SOLACEON_TOWN_NORTH_HOUSE"
         }
     ],
     "coord_events": []

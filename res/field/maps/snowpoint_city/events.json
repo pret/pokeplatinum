@@ -195,46 +195,53 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SNOWPOINT_CITY_WEST_HOUSE",
             "x": 353,
             "z": 208,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
         },
         {
+            "id": "WARP_SNOWPOINT_CITY_EAST_HOUSE",
             "x": 379,
             "z": 208,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
         },
         {
+            "id": "WARP_SNOWPOINT_TEMPLE_1F_1",
             "x": 366,
             "z": 197,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
         },
         {
+            "id": "WARP_SNOWPOINT_CITY_MART",
             "x": 353,
             "z": 232,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
         },
         {
+            "id": "WARP_SNOWPOINT_CITY_POKECENTER_1F",
             "x": 379,
             "z": 233,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
         },
         {
+            "id": "WARP_SNOWPOINT_CITY_GYM",
             "x": 367,
             "z": 222,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_GYM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
         },
         {
+            "id": "WARP_SNOWPOINT_TEMPLE_1F_2",
             "x": 367,
             "z": 197,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
         }
     ],
     "coord_events": [

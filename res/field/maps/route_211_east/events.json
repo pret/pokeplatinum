@@ -363,10 +363,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_1F_NORTH_ROOM_1",
             "x": 419,
             "z": 527,
             "dest_header_id": "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_ROUTE_211_EAST"
         }
     ],
     "coord_events": []

@@ -28,10 +28,11 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_IRON_ISLAND_B3F",
             "x": 7,
             "z": 12,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_B3F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_IRON_RUINS"
         }
     ],
     "coord_events": [

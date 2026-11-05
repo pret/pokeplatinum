@@ -19,22 +19,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SPRING_PATH_1",
             "x": 12,
             "z": 56,
             "dest_header_id": "MAP_HEADER_SPRING_PATH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SENDOFF_SPRING_1"
         },
         {
+            "id": "WARP_SPRING_PATH_2",
             "x": 13,
             "z": 56,
             "dest_header_id": "MAP_HEADER_SPRING_PATH",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SENDOFF_SPRING_2"
         },
         {
+            "id": "WARP_TURNBACK_CAVE_ENTRANCE",
             "x": 31,
             "z": 16,
             "dest_header_id": "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_SENDOFF_SPRING"
         }
     ],
     "coord_events": []

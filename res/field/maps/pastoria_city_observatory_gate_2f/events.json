@@ -89,10 +89,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_PASTORIA_CITY_OBSERVATORY_GATE_1F",
             "x": 7,
             "z": 8,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_PASTORIA_CITY_OBSERVATORY_GATE_2F"
         }
     ],
     "coord_events": []

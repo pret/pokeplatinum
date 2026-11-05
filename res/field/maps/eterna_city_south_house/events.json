@@ -19,10 +19,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_CITY",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_ETERNA_CITY_SOUTH_HOUSE"
         }
     ],
     "coord_events": []

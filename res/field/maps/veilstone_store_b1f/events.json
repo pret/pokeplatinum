@@ -163,16 +163,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VEILSTONE_STORE_1F",
             "x": 11,
             "z": 8,
             "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_1F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VEILSTONE_STORE_B1F"
         },
         {
+            "id": "WARP_VEILSTONE_STORE_ELEVATOR",
             "x": 14,
             "z": 2,
             "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_DYNAMIC"
         }
     ],
     "coord_events": []

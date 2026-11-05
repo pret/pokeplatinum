@@ -19,10 +19,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SNOWPOINT_TEMPLE_B4F",
             "x": 8,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_B4F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SNOWPOINT_TEMPLE_B5F"
         }
     ],
     "coord_events": []

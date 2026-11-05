@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY_SOUTHEAST_HOUSE_ELEVATOR",
             "x": 18,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_ELEVATOR",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_DYNAMIC"
         }
     ],
     "coord_events": []

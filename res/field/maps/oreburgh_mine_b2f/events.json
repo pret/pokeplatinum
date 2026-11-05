@@ -169,10 +169,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_MINE_B1F",
             "x": 15,
             "z": 1,
             "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_OREBURGH_MINE_B2F_1"
         }
     ],
     "coord_events": []

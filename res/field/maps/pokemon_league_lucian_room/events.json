@@ -49,16 +49,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM",
             "x": 8,
             "z": 2,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_LUCIAN_ROOM"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM",
             "x": 8,
             "z": 11,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_LUCIAN_ROOM"
         }
     ],
     "coord_events": []

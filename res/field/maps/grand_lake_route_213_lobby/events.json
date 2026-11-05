@@ -49,16 +49,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_213_1",
             "x": 8,
             "z": 2,
             "dest_header_id": "MAP_HEADER_ROUTE_213",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_GRAND_LAKE_ROUTE_213_LOBBY_2"
         },
         {
+            "id": "WARP_ROUTE_213_2",
             "x": 8,
             "z": 11,
             "dest_header_id": "MAP_HEADER_ROUTE_213",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_GRAND_LAKE_ROUTE_213_LOBBY_1"
         }
     ],
     "coord_events": []

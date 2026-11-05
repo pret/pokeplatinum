@@ -638,52 +638,60 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_213_GATE_TO_PASTORIA_CITY_1",
             "x": 646,
             "z": 812,
             "dest_header_id": "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_213"
         },
         {
+            "id": "WARP_ROUTE_213_GATE_TO_PASTORIA_CITY_2",
             "x": 646,
             "z": 813,
             "dest_header_id": "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_213"
         },
         {
+            "id": "WARP_FOOTSTEP_HOUSE",
             "x": 663,
             "z": 834,
             "dest_header_id": "MAP_HEADER_FOOTSTEP_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_213"
         },
         {
+            "id": "WARP_GRAND_LAKE_ROUTE_213_LOBBY_1",
             "x": 706,
             "z": 818,
             "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_LOBBY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_213_2"
         },
         {
+            "id": "WARP_GRAND_LAKE_ROUTE_213_LOBBY_2",
             "x": 706,
             "z": 813,
             "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_LOBBY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_213_1"
         },
         {
+            "id": "WARP_GRAND_LAKE_ROUTE_213_EAST_HOUSE",
             "x": 710,
             "z": 810,
             "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_EAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_213"
         },
         {
+            "id": "WARP_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE",
             "x": 701,
             "z": 805,
             "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_213"
         },
         {
+            "id": "WARP_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE",
             "x": 712,
             "z": 805,
             "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_213"
         }
     ],
     "coord_events": []

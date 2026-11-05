@@ -43,10 +43,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_213",
             "x": 6,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ROUTE_213",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE"
         }
     ],
     "coord_events": []

@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_209",
             "x": 7,
             "z": 14,
             "dest_header_id": "MAP_HEADER_ROUTE_209",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_ROUTE_209_LOST_TOWER_1F"
         },
         {
+            "id": "WARP_ROUTE_209_LOST_TOWER_2F",
             "x": 4,
             "z": 3,
             "dest_header_id": "MAP_HEADER_ROUTE_209_LOST_TOWER_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_209_LOST_TOWER_1F"
         }
     ],
     "coord_events": []

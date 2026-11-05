@@ -109,52 +109,60 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
             "x": 842,
             "z": 598,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_LEAGUE_SOUTH_EXIT"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
             "x": 847,
             "z": 559,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_LEAGUE_NORTH_EXIT"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_1",
             "x": 851,
             "z": 597,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_2",
             "x": 853,
             "z": 582,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_3",
             "x": 850,
             "z": 597,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_4",
             "x": 852,
             "z": 597,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_5",
             "x": 853,
             "z": 581,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_6",
             "x": 853,
             "z": 583,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_2"
         }
     ],
     "coord_events": []

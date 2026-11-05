@@ -221,82 +221,95 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VICTORY_ROAD_2F_1",
             "x": 4,
             "z": 37,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_2F_2",
             "x": 7,
             "z": 47,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_B1F_1",
             "x": 42,
             "z": 41,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_B1F_2",
             "x": 44,
             "z": 48,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_B1F_3",
             "x": 41,
             "z": 24,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_3"
         },
         {
+            "id": "WARP_VICTORY_ROAD_2F_3",
             "x": 4,
             "z": 25,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_3"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_ROOM_1",
             "x": 45,
             "z": 33,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_1",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_1",
             "x": 15,
             "z": 78,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_2",
             "x": 34,
             "z": 5,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_3",
             "x": 14,
             "z": 78,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_4",
             "x": 16,
             "z": 78,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_5",
             "x": 34,
             "z": 4,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_6",
             "x": 34,
             "z": 6,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         }
     ],
     "coord_events": []

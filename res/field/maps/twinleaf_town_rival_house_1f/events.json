@@ -19,16 +19,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_TWINLEAF_TOWN",
             "x": 6,
             "z": 10,
             "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_TWINLEAF_TOWN_RIVAL_HOUSE_1F"
         },
         {
+            "id": "WARP_TWINLEAF_TOWN_RIVAL_HOUSE_2F",
             "x": 2,
             "z": 3,
             "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_TWINLEAF_TOWN_RIVAL_HOUSE_1F"
         }
     ],
     "coord_events": []

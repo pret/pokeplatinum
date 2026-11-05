@@ -300,16 +300,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_IRON_ISLAND_B1F_RIGHT_ROOM",
             "x": 38,
             "z": 3,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_IRON_ISLAND_B2F_LEFT_ROOM"
         },
         {
+            "id": "WARP_IRON_ISLAND_B3F",
             "x": 14,
             "z": 48,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_B3F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_IRON_ISLAND_B2F_LEFT_ROOM"
         }
     ],
     "coord_events": [

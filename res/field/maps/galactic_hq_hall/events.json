@@ -544,22 +544,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_GALACTIC_HQ_2F_1",
             "x": 24,
             "z": 6,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 10
+            "dest_warp_id": "WARP_GALACTIC_HQ_HALL_2"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_2",
             "x": 1,
             "z": 12,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 9
+            "dest_warp_id": "WARP_GALACTIC_HQ_HALL_1"
         },
         {
+            "id": "WARP_GALACTIC_HQ_4F",
             "x": 17,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_GALACTIC_HQ_HALL"
         }
     ],
     "coord_events": [

@@ -109,16 +109,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VERITY_LAKEFRONT_1",
             "x": 46,
             "z": 54,
             "dest_header_id": "MAP_HEADER_VERITY_LAKEFRONT",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_LAKE_VERITY_LOW_WATER_2"
         },
         {
+            "id": "WARP_VERITY_LAKEFRONT_2",
             "x": 47,
             "z": 54,
             "dest_header_id": "MAP_HEADER_VERITY_LAKEFRONT",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_LAKE_VERITY_LOW_WATER_1"
         }
     ],
     "coord_events": []

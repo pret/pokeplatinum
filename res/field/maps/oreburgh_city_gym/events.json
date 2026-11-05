@@ -85,10 +85,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_CITY",
             "x": 5,
             "z": 24,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY_GYM"
         }
     ],
     "coord_events": []

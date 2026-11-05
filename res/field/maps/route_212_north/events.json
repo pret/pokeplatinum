@@ -507,22 +507,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_212_GATE_TO_HEARTHOME_CITY_1",
             "x": 458,
             "z": 736,
             "dest_header_id": "MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_212_NORTH"
         },
         {
+            "id": "WARP_ROUTE_212_GATE_TO_HEARTHOME_CITY_2",
             "x": 459,
             "z": 736,
             "dest_header_id": "MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_212_NORTH"
         },
         {
+            "id": "WARP_POKEMON_MANSION",
             "x": 470,
             "z": 772,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_212_NORTH"
         }
     ],
     "coord_events": []

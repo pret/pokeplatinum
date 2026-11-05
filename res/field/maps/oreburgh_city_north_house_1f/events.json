@@ -49,16 +49,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_CITY",
             "x": 11,
             "z": 12,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_OREBURGH_CITY_NORTH_HOUSE_1F"
         },
         {
+            "id": "WARP_OREBURGH_CITY_NORTH_HOUSE_2F",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY_NORTH_HOUSE_1F"
         }
     ],
     "coord_events": []

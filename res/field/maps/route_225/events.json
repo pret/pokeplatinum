@@ -534,22 +534,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_225_GATE_TO_FIGHT_AREA_1",
             "x": 630,
             "z": 413,
             "dest_header_id": "MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_225"
         },
         {
+            "id": "WARP_ROUTE_225_GATE_TO_FIGHT_AREA_2",
             "x": 631,
             "z": 413,
             "dest_header_id": "MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_225"
         },
         {
+            "id": "WARP_ROUTE_225_HOUSE",
             "x": 617,
             "z": 368,
             "dest_header_id": "MAP_HEADER_ROUTE_225_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_225"
         }
     ],
     "coord_events": []

@@ -220,16 +220,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_GLOBAL_TERMINAL_1F",
             "x": 16,
             "z": 5,
             "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_GLOBAL_TERMINAL_2F"
         },
         {
+            "id": "WARP_GLOBAL_TERMINAL_3F",
             "x": 16,
             "z": 15,
             "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_3F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_GLOBAL_TERMINAL_2F"
         }
     ],
     "coord_events": []

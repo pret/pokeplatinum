@@ -205,58 +205,67 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_FLOAROMA_TOWN_MART",
             "x": 184,
             "z": 657,
             "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FLOAROMA_TOWN"
         },
         {
+            "id": "WARP_FLOAROMA_TOWN_POKECENTER_1F",
             "x": 176,
             "z": 666,
             "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FLOAROMA_TOWN"
         },
         {
+            "id": "WARP_FLOWER_SHOP",
             "x": 180,
             "z": 651,
             "dest_header_id": "MAP_HEADER_FLOWER_SHOP",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FLOAROMA_TOWN"
         },
         {
+            "id": "WARP_FLOAROMA_TOWN_SOUTHEAST_HOUSE",
             "x": 184,
             "z": 666,
             "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_SOUTHEAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FLOAROMA_TOWN"
         },
         {
+            "id": "WARP_FLOAROMA_TOWN_MIDDLE_HOUSE",
             "x": 171,
             "z": 654,
             "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FLOAROMA_TOWN"
         },
         {
+            "id": "WARP_FLOAROMA_MEADOW_1",
             "x": 180,
             "z": 612,
             "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FLOAROMA_TOWN_1"
         },
         {
+            "id": "WARP_FLOAROMA_MEADOW_2",
             "x": 181,
             "z": 612,
             "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_FLOAROMA_TOWN_2"
         },
         {
+            "id": "WARP_FLOAROMA_MEADOW_3",
             "x": 162,
             "z": 641,
             "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_FLOAROMA_TOWN_3"
         },
         {
+            "id": "WARP_FLOAROMA_MEADOW_4",
             "x": 163,
             "z": 641,
             "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_FLOAROMA_TOWN_4"
         }
     ],
     "coord_events": []

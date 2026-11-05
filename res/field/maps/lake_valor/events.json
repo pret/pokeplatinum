@@ -19,34 +19,39 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VALOR_LAKEFRONT_1",
             "x": 51,
             "z": 8,
             "dest_header_id": "MAP_HEADER_VALOR_LAKEFRONT",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_LAKE_VALOR_DRAINED_1"
         },
         {
+            "id": "WARP_VALOR_CAVERN",
             "x": 32,
             "z": 32,
             "dest_header_id": "MAP_HEADER_VALOR_CAVERN",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_LAKE_VALOR"
         },
         {
+            "id": "WARP_VALOR_LAKEFRONT_2",
             "x": 51,
             "z": 7,
             "dest_header_id": "MAP_HEADER_VALOR_LAKEFRONT",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_LAKE_VALOR_DRAINED_2"
         },
         {
+            "id": "WARP_VALOR_LAKEFRONT_3",
             "x": 52,
             "z": 10,
             "dest_header_id": "MAP_HEADER_VALOR_LAKEFRONT",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_LAKE_VALOR_1"
         },
         {
+            "id": "WARP_VALOR_LAKEFRONT_4",
             "x": 52,
             "z": 11,
             "dest_header_id": "MAP_HEADER_VALOR_LAKEFRONT",
-            "dest_warp_id": 6
+            "dest_warp_id": "WARP_LAKE_VALOR_2"
         }
     ],
     "coord_events": []

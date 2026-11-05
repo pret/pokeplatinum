@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VEILSTONE_CITY",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
-            "dest_warp_id": 11
+            "dest_warp_id": "WARP_ROUTE_214_GATE_TO_VEILSTONE_CITY_1"
         },
         {
+            "id": "WARP_ROUTE_214",
             "x": 5,
             "z": 12,
             "dest_header_id": "MAP_HEADER_ROUTE_214",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_214_GATE_TO_VEILSTONE_CITY_1"
         }
     ],
     "coord_events": []

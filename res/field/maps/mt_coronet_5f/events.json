@@ -55,16 +55,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_4F_ROOM_3",
             "x": 21,
             "z": 7,
             "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOM_3",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_MT_CORONET_5F"
         },
         {
+            "id": "WARP_MT_CORONET_6F",
             "x": 13,
             "z": 24,
             "dest_header_id": "MAP_HEADER_MT_CORONET_6F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_5F"
         }
     ],
     "coord_events": []

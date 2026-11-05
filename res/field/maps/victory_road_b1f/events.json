@@ -153,22 +153,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VICTORY_ROAD_1F_1",
             "x": 4,
             "z": 39,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_B1F_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_2",
             "x": 6,
             "z": 46,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VICTORY_ROAD_B1F_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_3",
             "x": 3,
             "z": 22,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_VICTORY_ROAD_B1F_3"
         }
     ],
     "coord_events": []

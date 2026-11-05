@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/field/maps/locals/mt_coronet_1f_north_room_2.h"
 
 
     ScriptEntry MtCoronet1FNorthRoom2_Dummy1
@@ -24,11 +25,11 @@ MtCoronet1FNorthRoom2_OnLoad:
     End
 
 MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice:
-    SetWarpEventPos 3, 17, 16
+    SetWarpEventPos WARP_ICEBERG_RUINS, 17, 16
     End
 
 MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice:
-    SetWarpEventPos 2, 17, 16
+    SetWarpEventPos WARP_MT_CORONET_ICEBERG_RUINS, 17, 16
     End
 
 MtCoronet1FNorthRoom2_Dummy1:

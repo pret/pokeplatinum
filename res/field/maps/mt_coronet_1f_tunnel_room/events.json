@@ -315,16 +315,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_OUTSIDE_NORTH",
             "x": 2,
             "z": 58,
             "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_NORTH",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_MT_CORONET_1F_TUNNEL_ROOM"
         },
         {
+            "id": "WARP_MT_CORONET_1F_NORTH_ROOM_1",
             "x": 16,
             "z": 13,
             "dest_header_id": "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_1F_TUNNEL_ROOM"
         }
     ],
     "coord_events": []

@@ -4,12 +4,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include "constants/fieldmap.h"
 
 #include "common.h"
 #include "dataproc.h"
 #include "game_types.h"
 
 #include "struct_defs/events.h"
+#include "location.h"
 
 static const char *enumFile = NULL;
 static const char *baseDir  = NULL;
@@ -244,16 +246,31 @@ static EventBuffer ProcObjectEvents(dp_node array)
 
 static EventBuffer ProcWarpEvents(dp_node array)
 {
-    const u32  count  = ClampCount(array, UINT32_MAX);
+    const u32  count  = ClampCount(array, WARP_ID_DYNAMIC);
     WarpEvent *events = Zalloc(count, sizeof(*events));
 
     for (size_t i = 0; i < count; i++) {
-        dp_node    entry    = dp_arr_at(array, i);
-        WarpEvent *event    = &events[i];
-        event->x            = dp_u16_at(entry, ".x");
-        event->z            = dp_u16_at(entry, ".z");
-        event->destHeaderID = dp_u16(dp_lookup_at(entry, ".dest_header_id", L_MAP_HEADER));
-        event->destWarpID   = dp_u16_at(entry, ".dest_warp_id");
+        dp_node    entry = dp_arr_at(array, i);
+        WarpEvent *event = &events[i];
+        event->x         = dp_u16_at(entry, ".x");
+        event->z         = dp_u16_at(entry, ".z");
+
+        dp_node destHeader = dp_lookup_at(entry, ".dest_header_id", L_MAP_HEADER);
+        event->destHeaderID = dp_u16(destHeader);
+
+        dp_node destWarp = dp_try(entry, ".dest_warp_id");
+        if (event->destHeaderID == MAP_HEADER_DYNAMIC) {
+            if (dp_type_of(destWarp) != DP_MISSING) {
+                dp_warn(destWarp, "ignoring destination warp ID on dynamic header");
+                dp_note(destHeader, "set to dynamic destination here");
+            }
+
+            event->destWarpID = WARP_ID_DYNAMIC;
+        } else if (dp_type_of(destHeader) != DP_ERROR) {
+            char *headerWarps = String_Format("warps:%s", dp_string(destHeader));
+            event->destWarpID = dp_u16(dp_lookup_at(entry, ".dest_warp_id", headerWarps));
+            free(headerWarps);
+        }
     }
 
     return (EventBuffer) { .count = count, .buffer = events };
@@ -416,7 +433,7 @@ static void ProcEntry(Entry *entry)
     bool hasEvents     = stat(eventsFilename, &stbuf) == 0;
 
     if (hasEvents) {
-        dp_file *file = Driver_Load("%s", eventsFilename); // TODO: kinda gross?
+        dp_file *file = Driver_Load("%s", eventsFilename);
         ProcEvents(dp_root(file), entry->stem);
         Driver_Close(file);
         eventIndex++;
@@ -427,6 +444,64 @@ static void ProcEntry(Entry *entry)
     free(encountersFilename);
     free(scriptsFilename);
     free(initScriptsFilename);
+}
+
+static void PreprocWarps(dp_node root, const char *name)
+{
+    dp_node warps = dp_at(root, ".warp_events");
+    size_t  count = dp_arr_len(warps);
+    Buffer  table = { 0 }; // T = dp_symbol
+
+    // NOTE: Don't use ClampCount here, so there's only one warning
+    if (count > WARP_ID_DYNAMIC) count = WARP_ID_DYNAMIC;
+
+    bool ok = true;
+    for (size_t i = 0; i < count; i++) {
+        dp_node     node   = dp_arr_at(warps, i);
+        dp_node     nodeID = dp_at(node, ".id");
+        const char *id     = Symbol_Name(nodeID);
+        if (strcmp(id, "BAD_SYMBOL") == 0) {
+            ok = false;
+            continue;
+        }
+
+        bool duplicate = false;
+        for (size_t j = 0; j < Buffer_Count(&table, dp_symbol); j++) {
+            dp_symbol existing = Buffer_At(&table, dp_symbol, j);
+            if (strcmp(existing.name, id) == 0) {
+                dp_error(nodeID, "duplicate warp event IDs are ambiguous");
+                duplicate = true;
+                ok        = false;
+                break;
+            }
+        }
+
+        if (duplicate) continue;
+        Buffer_Push(&table, dp_symbol, .value = i, .name = id);
+        TextFile_Printf(F_LOCALS_BASE + eventIndex, "#define %s %zu\n", id, i);
+    }
+
+    char *key = String_Format("warps:%s", name);
+    if (ok) Lookups_Register(key, table.data, Buffer_Count(&table, dp_symbol));
+
+    free(key);
+    free(table.data);
+}
+
+static void PreprocEntry(Entry *entry)
+{
+    char *eventsFilename = String_Format("%s/%s/events.json", baseDir, entry->stem);
+
+    struct stat stbuf;
+    bool hasEvents = stat(eventsFilename, &stbuf) == 0;
+    if (hasEvents) {
+        dp_file *file = Driver_Load("%s", eventsFilename);
+        PreprocWarps(dp_root(file), entry->name);
+        Driver_Close(file);
+        eventIndex++;
+    }
+
+    free(eventsFilename);
 }
 
 static void PackGrid(Buffer *out, dp_node grid, u8 height, u8 width, size_t cellSize, const char *lookupType)
@@ -541,6 +616,13 @@ int main(int argc, char **argv)
     SetupHeaderTable();
 
     dp_file *groups = ProcGroups();
+
+    for (EachEntry(entry, Entries_Filter(Entries_FromEnum(enumFile, "MapHeaderID", "MAP_HEADER_", "%s/%s/header.json", baseDir), HasHeader))) {
+        if (!entry.hasData) continue;
+        PreprocEntry(&entry);
+    }
+
+    eventIndex = 0; // reset for processing loop
     for (EachEntry(entry, Entries_Filter(Entries_FromEnum(enumFile, "MapHeaderID", "MAP_HEADER_", "%s/%s/header.json", baseDir), HasHeader))) {
         if (!entry.hasData) continue;
         ProcEntry(&entry);

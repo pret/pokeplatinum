@@ -72,40 +72,46 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM",
             "x": 14,
             "z": 22,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_TRAINER_ROOM_1"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_GYM_LEADER_ROOM_1",
             "x": 4,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM_1"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_GYM_LEADER_ROOM_2",
             "x": 9,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM_1"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_GYM_LEADER_ROOM_3",
             "x": 14,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM_1"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_GYM_LEADER_ROOM_4",
             "x": 19,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM_1"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_GYM_LEADER_ROOM_5",
             "x": 24,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM_1"
         }
     ],
     "coord_events": []

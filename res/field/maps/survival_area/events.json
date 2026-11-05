@@ -206,34 +206,39 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_BATTLEGROUND",
             "x": 652,
             "z": 338,
             "dest_header_id": "MAP_HEADER_BATTLEGROUND",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         },
         {
+            "id": "WARP_SURVIVAL_AREA_SOUTH_HOUSE",
             "x": 655,
             "z": 348,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         },
         {
+            "id": "WARP_SURVIVAL_AREA_NORTH_HOUSE",
             "x": 656,
             "z": 325,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_NORTH_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         },
         {
+            "id": "WARP_SURVIVAL_AREA_POKECENTER_1F",
             "x": 659,
             "z": 338,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         },
         {
+            "id": "WARP_SURVIVAL_AREA_MART",
             "x": 663,
             "z": 338,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         }
     ],
     "coord_events": []

@@ -390,16 +390,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_217_WEST_HOUSE",
             "x": 293,
             "z": 311,
             "dest_header_id": "MAP_HEADER_ROUTE_217_WEST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_217"
         },
         {
+            "id": "WARP_ROUTE_217_NORTHEAST_HOUSE",
             "x": 316,
             "z": 285,
             "dest_header_id": "MAP_HEADER_ROUTE_217_NORTHEAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_217"
         }
     ],
     "coord_events": [

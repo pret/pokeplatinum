@@ -49,10 +49,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
             "x": 14,
             "z": 10,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F"
         }
     ],
     "coord_events": []

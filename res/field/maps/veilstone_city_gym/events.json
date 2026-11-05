@@ -143,10 +143,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VEILSTONE_CITY",
             "x": 12,
             "z": 30,
             "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
-            "dest_warp_id": 13
+            "dest_warp_id": "WARP_VEILSTONE_CITY_GYM"
         }
     ],
     "coord_events": []

@@ -335,28 +335,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_218_GATE_TO_CANALAVE_CITY_1",
             "x": 70,
             "z": 754,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_218"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_CANALAVE_CITY_2",
             "x": 70,
             "z": 755,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_218"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_JUBILIFE_CITY_1",
             "x": 121,
             "z": 758,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_218"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_JUBILIFE_CITY_2",
             "x": 121,
             "z": 759,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_218"
         }
     ],
     "coord_events": []

@@ -49,10 +49,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VEILSTONE_CITY",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_VEILSTONE_CITY_NORTHWEST_HOUSE"
         }
     ],
     "coord_events": []

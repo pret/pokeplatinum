@@ -150,10 +150,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VALLEY_WINDWORKS_BUILDING",
             "x": 243,
             "z": 654,
             "dest_header_id": "MAP_HEADER_VALLEY_WINDWORKS_BUILDING",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VALLEY_WINDWORKS_OUTSIDE"
         }
     ],
     "coord_events": []

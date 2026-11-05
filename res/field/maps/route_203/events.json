@@ -246,10 +246,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_GATE_1F",
             "x": 246,
             "z": 749,
             "dest_header_id": "MAP_HEADER_OREBURGH_GATE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_203"
         }
     ],
     "coord_events": [
