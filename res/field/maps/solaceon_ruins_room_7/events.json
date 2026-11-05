@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 1,
+            "script": "SolaceonRuinsRoom7_Inscription",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 1,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 1,
+            "script": "SolaceonRuinsRoom7_Inscription",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 1,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 1,
+            "script": "SolaceonRuinsRoom7_Inscription",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 1,
@@ -32,7 +32,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_MIND_PLATE",
-            "script": 7095,
+            "script": "VisibleItems_SolaceonRuinsRoom7_MindPlate",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -47,7 +47,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_ODD_INCENSE",
-            "script": 7096,
+            "script": "VisibleItems_SolaceonRuinsRoom7_OddIncense",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -62,7 +62,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_NUGGET",
-            "script": 7097,
+            "script": "VisibleItems_SolaceonRuinsRoom7_Nugget",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -77,7 +77,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_HM05",
-            "script": 7098,
+            "script": "VisibleItems_SolaceonRuinsRoom7_HM05",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

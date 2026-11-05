@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B3F_SHINY_STONE",
-            "script": 7144,
+            "script": "VisibleItems_IronIslandB3F_ShinyStone",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -49,7 +49,7 @@
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "IronIslandB3F_CoordEvent_PlatformLift",
             "x": 9,
             "z": 11,
             "y": 0,

@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "SunyshoreGymRoom3_Volkner",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -96,7 +96,7 @@
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "SunyshoreGymRoom3_TopButtons",
             "x": 6,
             "z": 8,
             "y": 0,
@@ -106,7 +106,7 @@
             "value": 0
         },
         {
-            "script": 2,
+            "script": "SunyshoreGymRoom3_TopButtons",
             "x": 16,
             "z": 13,
             "y": 0,
@@ -116,7 +116,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "SunyshoreGymRoom3_BottomButtons",
             "x": 6,
             "z": 18,
             "y": 0,
@@ -126,7 +126,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "SunyshoreGymRoom3_BottomButtons",
             "x": 16,
             "z": 18,
             "y": 0,

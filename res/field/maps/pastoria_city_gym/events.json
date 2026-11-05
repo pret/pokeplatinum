@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 7,
+            "script": "PastoriaGym_GymStatue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 11,
             "z": 38,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 7,
+            "script": "PastoriaGym_GymStatue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 15,
             "z": 38,
@@ -24,7 +24,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE",
-            "script": 5,
+            "script": "PastoriaGym_Wake",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -39,7 +39,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "PastoriaGym_GymGuide",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -158,7 +158,7 @@
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "PastoriaGym_BlueButton",
             "x": 3,
             "z": 6,
             "y": 0,
@@ -168,7 +168,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "PastoriaGym_GreenButton",
             "x": 19,
             "z": 24,
             "y": 0,
@@ -178,7 +178,7 @@
             "value": 0
         },
         {
-            "script": 2,
+            "script": "PastoriaGym_BlueButton",
             "x": 9,
             "z": 24,
             "y": 0,
@@ -188,7 +188,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "PastoriaGym_GreenButton",
             "x": 17,
             "z": 9,
             "y": 0,
@@ -198,7 +198,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "PastoriaGym_GreenButton",
             "x": 10,
             "z": 30,
             "y": 0,
@@ -208,7 +208,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "PastoriaGym_GreenButton",
             "x": 19,
             "z": 13,
             "y": 0,
@@ -218,7 +218,7 @@
             "value": 0
         },
         {
-            "script": 4,
+            "script": "PastoriaGym_YellowButton",
             "x": 9,
             "z": 14,
             "y": 0,
@@ -228,7 +228,7 @@
             "value": 0
         },
         {
-            "script": 4,
+            "script": "PastoriaGym_YellowButton",
             "x": 23,
             "z": 31,
             "y": 0,
@@ -238,7 +238,7 @@
             "value": 0
         },
         {
-            "script": 4,
+            "script": "PastoriaGym_YellowButton",
             "x": 19,
             "z": 22,
             "y": 0,
@@ -248,7 +248,7 @@
             "value": 0
         },
         {
-            "script": 4,
+            "script": "PastoriaGym_YellowButton",
             "x": 3,
             "z": 34,
             "y": 0,

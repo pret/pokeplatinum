@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 1,
+            "script": "OldChateauSideRooms_Notebook",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 30,
             "z": 8,
@@ -16,7 +16,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_OLD_CHATEAU_SIDE_ROOMS_OLD_GATEAU",
-            "script": 7022,
+            "script": "VisibleItems_OldChateauSideRooms_OldGateau",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

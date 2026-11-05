@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9,
+            "script": "Route201_BreederM",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
@@ -22,7 +22,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
+            "script": "Route201_Cashier",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -37,7 +37,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_201_RIVAL",
-            "script": 9700,
+            "script": "FollowerPartners_Rival",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -52,7 +52,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "Route201_ArrowSignpostTwinleafTown",
             "initial_dir": "DIR_NORTH",
             "data": [
                 4
@@ -69,7 +69,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 7,
+            "script": "Route201_ArrowSignpostSandgemTown",
             "initial_dir": "DIR_NORTH",
             "data": [
                 1
@@ -86,7 +86,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_201_PROF_ROWAN",
-            "script": 15,
+            "script": "Route201_ProfRowan",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -101,7 +101,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_201_COUNTERPART",
-            "script": 0,
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -148,7 +147,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 11,
+            "script": "Route201_SchoolKidM",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -163,7 +162,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
+            "script": "Route201_TrainerTipsSignpost",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -178,7 +177,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 12,
+            "script": "Route201_Lass",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 2,
@@ -193,7 +192,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_201_BRIEFCASE",
-            "script": 13,
+            "script": "Route201_Briefcase",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -206,7 +205,7 @@
     "warp_events": [],
     "coord_events": [
         {
-            "script": 2,
+            "script": "Route201_CoordEvent_ChooseStarterScene",
             "x": 110,
             "z": 857,
             "y": 0,
@@ -216,7 +215,7 @@
             "value": 0
         },
         {
-            "script": 4,
+            "script": "Route201_CoordEvent_PickAPokemon",
             "x": 113,
             "z": 855,
             "y": 0,
@@ -226,7 +225,7 @@
             "value": 1
         },
         {
-            "script": 3,
+            "script": "Route201_CoordEvent_FollowingRivalStopPlayerSouth",
             "x": 110,
             "z": 858,
             "y": 0,
@@ -236,7 +235,7 @@
             "value": 3
         },
         {
-            "script": 4,
+            "script": "Route201_CoordEvent_PickAPokemon",
             "x": 115,
             "z": 854,
             "y": 0,
@@ -246,7 +245,7 @@
             "value": 1
         },
         {
-            "script": 14,
+            "script": "Route201_CoordEvent_FollowingRivalStopPlayerEast",
             "x": 115,
             "z": 852,
             "y": 0,
@@ -256,7 +255,7 @@
             "value": 3
         },
         {
-            "script": 16,
+            "script": "Route201_CoordEvent_RivalStartFollowing",
             "x": 109,
             "z": 857,
             "y": 0,

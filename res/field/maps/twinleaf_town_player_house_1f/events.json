@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 7,
+            "script": "TwinleafTownPlayerHouse1F_TV",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 5,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 7,
+            "script": "TwinleafTownPlayerHouse1F_TV",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 7,
             "z": 5,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 8,
+            "script": "TwinleafTownPlayerHouse1F_Refrigerator",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 3,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 9,
+            "script": "TwinleafTownPlayerHouse1F_KitchenSink",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 3,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 9,
+            "script": "TwinleafTownPlayerHouse1F_KitchenSink",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 3,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 10,
+            "script": "TwinleafTownPlayerHouse1F_KitchenCounter",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 5,
@@ -49,7 +49,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 10,
+            "script": "TwinleafTownPlayerHouse1F_KitchenCounter",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 5,
@@ -57,7 +57,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 10,
+            "script": "TwinleafTownPlayerHouse1F_KitchenCounter",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 3,
             "z": 5,
@@ -72,7 +72,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "TwinleafTownPlayerHouse1F_Mom",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
@@ -87,7 +87,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_1F_RIVAL_MOM",
-            "script": 6,
+            "script": "TwinleafTownPlayerHouse1F_RivalsMom",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
@@ -115,7 +115,7 @@
     ],
     "coord_events": [
         {
-            "script": 5,
+            "script": "TwinleafTownPlayerHouse1F_CoordEvent_DontGoIntoTallGrass",
             "x": 6,
             "z": 10,
             "y": 0,

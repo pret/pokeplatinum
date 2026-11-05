@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ACUITY_LAKEFRONT_ULTRA_BALL",
-            "script": 7163,
+            "script": "VisibleItems_AcuityLakefront_UltraBall",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -22,7 +22,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
+            "script": "AcuityLakefront_ArrowSignpostLakeAcuity",
             "initial_dir": "DIR_NORTH",
             "data": [
                 3
@@ -39,7 +39,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ACUITY_LAKEFRONT_RIVAL",
-            "script": 0,
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -54,7 +53,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ACUITY_LAKEFRONT_REAPER_CLOTH",
-            "script": 7309,
+            "script": "VisibleItems_AcuityLakefront_ReaperCloth",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -96,7 +95,7 @@
     ],
     "coord_events": [
         {
-            "script": 4,
+            "script": "AcuityLakefront_CoordEvent_Rival",
             "x": 310,
             "z": 244,
             "y": 0,

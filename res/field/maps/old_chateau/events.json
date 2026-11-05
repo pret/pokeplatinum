@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 2,
+            "script": "OldChateau_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 7,
             "z": 6,

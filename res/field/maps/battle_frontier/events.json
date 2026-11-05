@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 31,
+            "script": "BattleFrontier_StatueWest",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 46,
             "z": 49,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 32,
+            "script": "BattleFrontier_StatueEast",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 50,
             "z": 49,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 31,
+            "script": "BattleFrontier_StatueWest",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 46,
             "z": 48,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 31,
+            "script": "BattleFrontier_StatueWest",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 47,
             "z": 48,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 31,
+            "script": "BattleFrontier_StatueWest",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 47,
             "z": 49,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 32,
+            "script": "BattleFrontier_StatueEast",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 50,
             "z": 48,
@@ -49,7 +49,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 32,
+            "script": "BattleFrontier_StatueEast",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 51,
             "z": 49,
@@ -57,7 +57,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 32,
+            "script": "BattleFrontier_StatueEast",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 51,
             "z": 48,
@@ -65,7 +65,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 50,
             "z": 39,
@@ -73,7 +73,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 51,
             "z": 39,
@@ -81,7 +81,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 50,
             "z": 38,
@@ -89,7 +89,7 @@
             "player_facing_dir": "BG_EVENT_DIR_EAST"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 50,
             "z": 37,
@@ -97,7 +97,7 @@
             "player_facing_dir": "BG_EVENT_DIR_EAST"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 50,
             "z": 36,
@@ -105,7 +105,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 51,
             "z": 36,
@@ -113,7 +113,7 @@
             "player_facing_dir": "BG_EVENT_DIR_SOUTH"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 52,
             "z": 39,
@@ -121,7 +121,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 52,
             "z": 36,
@@ -129,7 +129,7 @@
             "player_facing_dir": "BG_EVENT_DIR_SOUTH"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 53,
             "z": 36,
@@ -137,7 +137,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 53,
             "z": 37,
@@ -145,7 +145,7 @@
             "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 53,
             "z": 38,
@@ -153,7 +153,7 @@
             "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
-            "script": 33,
+            "script": "BattleFrontier_ScaleModel",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 53,
             "z": 39,
@@ -168,7 +168,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 27,
+            "script": "BattleFrontier_TrainerTipsSignpostBattleHall",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -183,7 +183,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 26,
+            "script": "BattleFrontier_TrainerTipsSignpostBattleTower",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -198,7 +198,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 18,
+            "script": "BattleFrontier_PokemonBreederF",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
@@ -213,7 +213,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9,
+            "script": "BattleFrontier_ExpertF",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -228,7 +228,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
+            "script": "BattleFrontier_ExpertM",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -243,7 +243,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "BattleFrontier_Twin",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 3,
@@ -258,7 +258,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 20,
+            "script": "BattleFrontier_SchoolKidM",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -273,7 +273,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "BattleFrontier_NinjaBoy",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -288,7 +288,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "BattleFrontier_Idol",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -303,7 +303,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 12,
+            "script": "BattleFrontier_Roughneck",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -318,7 +318,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
+            "script": "BattleFrontier_BlackBelt",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 3,
@@ -333,7 +333,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 23,
+            "script": "BattleFrontier_AttendantSouthwest",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -348,7 +348,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10490,
+            "script": "ScratchOffCards_BattleFrontierAttendant",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -363,7 +363,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 25,
+            "script": "BattleFrontier_AttendantSoutheast",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -378,7 +378,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 13,
+            "script": "BattleFrontier_PokefanM",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 2,
@@ -393,7 +393,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 14,
+            "script": "BattleFrontier_Collector",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -408,7 +408,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 15,
+            "script": "BattleFrontier_Gentleman",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -423,7 +423,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 22,
+            "script": "BattleFrontier_TuberM",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -438,7 +438,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 19,
+            "script": "BattleFrontier_AceTrainerM1",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
@@ -453,7 +453,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 11,
+            "script": "BattleFrontier_Cowgirl",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 2,
@@ -468,7 +468,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 21,
+            "script": "BattleFrontier_Fisherman",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 2,
@@ -483,7 +483,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 17,
+            "script": "BattleFrontier_Picnicker",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 2,
@@ -498,7 +498,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 7,
+            "script": "BattleFrontier_ParasolLady",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 2,
@@ -513,7 +513,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
+            "script": "BattleFrontier_Waitress",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -528,7 +528,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 28,
+            "script": "BattleFrontier_TrainerTipsSignpostBattleCastle",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -543,7 +543,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 29,
+            "script": "BattleFrontier_TrainerTipsSignpostBattleArcade",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -558,7 +558,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 30,
+            "script": "BattleFrontier_TrainerTipsSignpostBattleFactory",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -573,7 +573,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 16,
+            "script": "BattleFrontier_AceTrainerM2",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -588,7 +588,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
+            "script": "BattleFrontier_AceTrainerSnowF",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -603,7 +603,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_BATTLE_FRONTIER_REPORTER",
-            "script": 10168,
+            "script": "TVReporterInterviews_BattleFrontier",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -729,7 +729,7 @@
     ],
     "coord_events": [
         {
-            "script": 34,
+            "script": "BattleFrontier_CoordEvent_EnterBattleHall",
             "x": 22,
             "z": 34,
             "y": 0,
@@ -739,7 +739,7 @@
             "value": 0
         },
         {
-            "script": 35,
+            "script": "BattleFrontier_CoordEvent_EnterBattleCastle",
             "x": 35,
             "z": 62,
             "y": 0,
@@ -749,7 +749,7 @@
             "value": 0
         },
         {
-            "script": 36,
+            "script": "BattleFrontier_CoordEvent_EnterBattleArcade",
             "x": 61,
             "z": 62,
             "y": 0,
@@ -759,7 +759,7 @@
             "value": 0
         },
         {
-            "script": 37,
+            "script": "BattleFrontier_CoordEvent_EnterBattleFactory",
             "x": 74,
             "z": 34,
             "y": 0,

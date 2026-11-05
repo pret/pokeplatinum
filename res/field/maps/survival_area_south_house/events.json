@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "SurvivalAreaSouthHouse_BlackBelt",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,

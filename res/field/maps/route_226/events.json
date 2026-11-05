@@ -48,7 +48,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "Route226_ArrowSignpostSurvivalArea",
             "initial_dir": "DIR_NORTH",
             "data": [
                 2
@@ -65,7 +65,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_226_TM53",
-            "script": 7205,
+            "script": "VisibleItems_Route226_TM53",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -80,7 +80,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_226_CARBOS",
-            "script": 7207,
+            "script": "VisibleItems_Route226_Carbos",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -95,7 +95,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_226_LAGGING_TAIL",
-            "script": 7206,
+            "script": "VisibleItems_Route226_LaggingTail",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -110,7 +110,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 98
@@ -127,7 +127,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 99
@@ -144,7 +144,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 100
@@ -161,7 +161,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 101
@@ -280,7 +280,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "Route226_ArrowSignpostRt227Rt228",
             "initial_dir": "DIR_NORTH",
             "data": [
                 18

@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 4,
+            "script": "Route228SouthHouse_BooksMind",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 3,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 5,
+            "script": "Route228SouthHouse_BooksMachines",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 7,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "Route228SouthHouse_BooksTime",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 7,
             "z": 5,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 2,
+            "script": "Route228SouthHouse_BooksSpace",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 7,
@@ -40,7 +40,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "Route228SouthHouse_Gentleman",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,

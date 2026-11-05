@@ -57,7 +57,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "Route224_Tablet",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 908,
             "z": 491,
@@ -72,7 +72,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_RAZOR_CLAW",
-            "script": 7194,
+            "script": "VisibleItems_Route224_RazorClaw",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -87,7 +87,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_RARE_CANDY",
-            "script": 7195,
+            "script": "VisibleItems_Route224_RareCandy",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -102,7 +102,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_DESTINY_KNOT",
-            "script": 7196,
+            "script": "VisibleItems_Route224_DestinyKnot",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -117,7 +117,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_224_PROF_OAK",
-            "script": 4,
+            "script": "Route224_ProfOak",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -132,7 +132,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 86
@@ -149,7 +149,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 87
@@ -166,7 +166,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 88
@@ -183,7 +183,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 89
@@ -336,7 +336,6 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_224_SHAYMIN",
-            "script": 0,
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -351,7 +350,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_REPEAT_BALL",
-            "script": 7303,
+            "script": "VisibleItems_Route224_RepeatBall",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -366,7 +365,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_PP_MAX",
-            "script": 7304,
+            "script": "VisibleItems_Route224_PPMax",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -381,7 +380,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_ULTRA_BALL",
-            "script": 7305,
+            "script": "VisibleItems_Route224_UltraBall",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -396,7 +395,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_UPGRADE",
-            "script": 7302,
+            "script": "VisibleItems_Route224_Upgrade",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -411,7 +410,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_224_MARLEY",
-            "script": 6,
+            "script": "Route224_Marley",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -432,7 +431,7 @@
     ],
     "coord_events": [
         {
-            "script": 5,
+            "script": "Route224_CoordEvent_Marley",
             "x": 903,
             "z": 496,
             "y": 0,

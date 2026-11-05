@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 9,
+            "script": "RotomsRoom_ApplianceSpot",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 6,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 9,
+            "script": "RotomsRoom_ApplianceSpot",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 6,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 9,
+            "script": "RotomsRoom_ApplianceSpot",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 6,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 9,
+            "script": "RotomsRoom_ApplianceSpot",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 6,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 9,
+            "script": "RotomsRoom_ApplianceSpot",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 12,
             "z": 6,
@@ -48,7 +48,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROTOMS_ROOM_MICROWAVE",
-            "script": 1,
+            "script": "RotomsRoom_Microwave",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -63,7 +63,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROTOMS_ROOM_FAN",
-            "script": 4,
+            "script": "RotomsRoom_Fan",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -78,7 +78,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROTOMS_ROOM_REFRIGERATOR",
-            "script": 2,
+            "script": "RotomsRoom_Refrigerator",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -93,7 +93,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROTOMS_ROOM_WASHING_MACHINE",
-            "script": 3,
+            "script": "RotomsRoom_WashingMachine",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -108,7 +108,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROTOMS_ROOM_LAWN_MOWER",
-            "script": 5,
+            "script": "RotomsRoom_LawnMower",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -123,7 +123,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "RotomsRoom_MysteriousNotebook",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -138,7 +138,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROTOMS_ROOM_PROF_ROWAN",
-            "script": 0,
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -153,7 +152,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
+            "script": "RotomsRoom_OldNotebook",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

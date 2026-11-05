@@ -16,7 +16,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_209_LOST_TOWER_2F_OVAL_STONE",
-            "script": 7091,
+            "script": "VisibleItems_Route209LostTower2F_OvalStone",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SNOWPOINT_TEMPLE_B5F_REGIGIGAS",
-            "script": 2,
+            "script": "SnowpointTempleB5F_Regigigas",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

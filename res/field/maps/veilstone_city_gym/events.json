@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 4,
+            "script": "VeilstoneGym_GymStatue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 29,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
+            "script": "VeilstoneGym_GymStatue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 29,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 7,
+            "script": "VeilstoneGym_MiddlePoster",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 12,
             "z": 2,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
+            "script": "VeilstoneGym_LeftPoster",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 2,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 6,
+            "script": "VeilstoneGym_RightPoster",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 2,
@@ -48,7 +48,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VEILSTONE_CITY_GYM_MAYLENE",
-            "script": 2,
+            "script": "VeilstoneGym_Maylene",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -63,7 +63,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
+            "script": "VeilstoneGym_GymGuide",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 1,
+            "script": "GalacticHQ2F_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 40,
             "z": 4,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 2,
+            "script": "GalacticHQ2F_BgSignNapRoom",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 42,
             "z": 2,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "GalacticHQ2F_BgSignTVRoom",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 31,
             "z": 18,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
+            "script": "GalacticHQ2F_BgSignCredo",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 19,
@@ -49,7 +49,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 7,
+            "script": "GalacticHQ2F_Refrigerator",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 39,
             "z": 14,
@@ -57,7 +57,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
+            "script": "GalacticHQ2F_KitchenSink",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 41,
             "z": 12,
@@ -65,7 +65,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
+            "script": "GalacticHQ2F_KitchenSink",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 42,
             "z": 12,
@@ -73,7 +73,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 1,
+            "script": "GalacticHQ2F_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 40,
             "z": 5,
@@ -81,7 +81,7 @@
             "player_facing_dir": "BG_EVENT_DIR_SOUTH"
         },
         {
-            "script": 1,
+            "script": "GalacticHQ2F_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 44,
             "z": 5,
@@ -89,7 +89,7 @@
             "player_facing_dir": "BG_EVENT_DIR_SOUTH"
         },
         {
-            "script": 1,
+            "script": "GalacticHQ2F_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 44,
             "z": 4,
@@ -104,7 +104,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_2F_REVIVE",
-            "script": 7167,
+            "script": "VisibleItems_GalacticHQ2F_Revive",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -187,7 +187,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_2F_GREEN_SHARD",
-            "script": 7298,
+            "script": "VisibleItems_GalacticHQ2F_GreenShard",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -202,7 +202,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "GalacticHQ2F_Report",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

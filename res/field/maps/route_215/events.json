@@ -168,7 +168,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
+            "script": "Route215_ArrowSignpostWest",
             "initial_dir": "DIR_NORTH",
             "data": [
                 6
@@ -185,7 +185,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "Route215_ArrowSignpostVeilstoneCity",
             "initial_dir": "DIR_NORTH",
             "data": [
                 1
@@ -202,7 +202,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
-            "script": 10000,
+            "script": "FieldMoves_CutTree",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -217,7 +217,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
-            "script": 10000,
+            "script": "FieldMoves_CutTree",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -232,7 +232,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
-            "script": 10000,
+            "script": "FieldMoves_CutTree",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -247,7 +247,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
-            "script": 10000,
+            "script": "FieldMoves_CutTree",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -262,7 +262,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_5",
-            "script": 10000,
+            "script": "FieldMoves_CutTree",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -277,7 +277,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 70
@@ -294,7 +294,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 71
@@ -311,7 +311,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 72
@@ -328,7 +328,7 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
+            "script": "BerryTree_Main",
             "initial_dir": "DIR_NORTH",
             "data": [
                 73
@@ -345,7 +345,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_HYPER_POTION",
-            "script": 7105,
+            "script": "VisibleItems_Route215_HyperPotion",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -360,7 +360,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_FULL_HEAL",
-            "script": 7107,
+            "script": "VisibleItems_Route215_FullHeal",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -375,7 +375,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_MAX_ETHER",
-            "script": 7106,
+            "script": "VisibleItems_Route215_MaxEther",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -390,7 +390,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_TM34",
-            "script": 7108,
+            "script": "VisibleItems_Route215_TM34",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -405,7 +405,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "Route215_BlackBelt",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -420,7 +420,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_FIST_PLATE",
-            "script": 7104,
+            "script": "VisibleItems_Route215_FistPlate",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -435,7 +435,7 @@
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_WEST_EAST_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_215_JOGGER_SCOTT_NO_BATTLE",
-            "script": 5,
+            "script": "Route215_JoggerScott",
             "initial_dir": "DIR_SOUTH",
             "data": [
                 3
@@ -452,7 +452,7 @@
             "movement_type": "MOVEMENT_TYPE_WALK_NORTH_WEST_SOUTH_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_215_JOGGER_CRAIG_NO_BATTLE",
-            "script": 6,
+            "script": "Route215_JoggerCraig",
             "initial_dir": "DIR_NORTH",
             "data": [
                 3
@@ -469,7 +469,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
+            "script": "Route215_TrainerTipsSignpost",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -484,7 +484,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_HP_UP",
-            "script": 7270,
+            "script": "VisibleItems_Route215_HPUp",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

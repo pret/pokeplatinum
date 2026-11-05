@@ -1,4 +1,5 @@
 #include <errno.h>
+#include <regex.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -44,6 +45,18 @@ enum { F_EVENTS_NAIX, F_GROUPS_NAIX, F_HEADERS_H, F_LOCALS_BASE };
 #define HEADER_ZERO_STEM "everywhere"
 
 static void HandleBaseDirArg(const char *arg);
+
+typedef struct ScriptLabels { const char *stem; Buffer lookup; } ScriptLabels;
+
+static ScriptLabels sGlobalScriptLabels[] = {
+#define SCRIPT_HEADER(_, file, __) { .stem = #file },
+    SCRIPT_RANGE_TABLE(SCRIPT_HEADER)
+#undef SCRIPT_HEADER
+};
+
+// Labels of the map being processed; empty while processing a map without a
+// scripts.s file.
+static ScriptLabels sLocalScriptLabels;
 
 static Driver driver = {
     .depfile = "maps_processor.d",
@@ -117,6 +130,13 @@ static void HandleBaseDirArg(const char *arg)
     driver.outputs.textFiles = Driver_Keep(outTextFiles.data);
 }
 
+static int CompareSymbolNames(const void *a, const void *b)
+{
+    const dp_symbol *lhs = a;
+    const dp_symbol *rhs = b;
+    return strcmp(lhs->name, rhs->name);
+}
+
 static void EnsureDir(const char *path)
 {
     if (mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) && errno != EEXIST) {
@@ -175,10 +195,49 @@ static inline u16 ProcHiddenFlag(dp_node parent)
     return dp_u16(dp_lookup(node, L_VAR_FLAG));
 }
 
+static inline dp_symbol* MatchScriptLabel(const dp_symbol *key, const ScriptLabels *labels)
+{
+    return bsearch(key, labels->lookup.data,
+                   Buffer_Count(&labels->lookup, dp_symbol),
+                   sizeof(dp_symbol), CompareSymbolNames);
+}
+
+static bool FindScriptLabel(const char *label, u16 *outID)
+{
+    const dp_symbol key   = { .name = label };
+    dp_symbol      *match = MatchScriptLabel(&key, &sLocalScriptLabels);
+
+    for (size_t i = 0; !match && i < NELEMS(sGlobalScriptLabels); i++) {
+        match = MatchScriptLabel(&key, &sGlobalScriptLabels[i]);
+    }
+
+    if (match) *outID = match->value;
+    return match != NULL;
+}
+
+static u16 ProcScript(dp_node parent)
+{
+    dp_node node = dp_try(parent, ".script");
+    if (dp_missing(node)) return 0;
+    if (dp_type_of(node) == DP_INT) return dp_u16(node);
+
+    const char *label = dp_string(node);
+    if (label == NULL) return 0;
+
+    u16 id;
+    if (FindScriptLabel(label, &id)) return id;
+
+    dp_error(node, "unrecognized script-label '%s'", label);
+    return 0;
+}
+
 static inline u16 ProcScriptOrTrainer(dp_node parent)
 {
-    dp_node node = dp_at(parent, ".script");
-    if (dp_type_of(node) == DP_INT) return dp_u16(node);
+    dp_node     node  = dp_try(parent, ".script");
+    const char *label = dp_type_of(node) == DP_STRING ? dp_string(node) : NULL;
+    if (label == NULL || strncmp(label, "TRAINER_", strlen("TRAINER_")) != 0) {
+        return ProcScript(parent);
+    }
 
     u16 value = dp_u16(dp_lookup(node, L_TRAINER_ID)) - 1;
     value    += SCRIPT_ID_OFFSET_SINGLE_BATTLES;
@@ -199,7 +258,7 @@ static EventBuffer ProcBGEvents(dp_node array)
     for (size_t i = 0; i < count; i++) {
         dp_node  entry = dp_arr_at(array, i);
         BgEvent *event = &events[i];
-        event->script  = dp_u16_at(entry, ".script");
+        event->script  = ProcScript(entry);
         event->type    = dp_u16(dp_lookup_at(entry, ".type", L_BG_EVENT_TYPE));
         event->x       = dp_u32_at(entry, ".x");
         event->z       = dp_u32_at(entry, ".z");
@@ -285,7 +344,7 @@ static EventBuffer ProcCoordEvents(dp_node array)
     for (size_t i = 0; i < count; i++) {
         dp_node     entry   = dp_arr_at(array, i);
         CoordEvent *event   = &events[i];
-        event->script       = dp_u16_at(entry, ".script");
+        event->script       = ProcScript(entry);
         event->x            = dp_u16_at(entry, ".x");
         event->z            = dp_u16_at(entry, ".z");
         event->width        = dp_u16_at(entry, ".width");
@@ -420,6 +479,69 @@ static void ProcHeader(Entry *entry, bool hasEncounters, bool hasScripts, bool h
     free(encounters);
 }
 
+static regex_t sScriptEntry, sScriptEntryEnd, sScriptEntryAny;
+
+static void CompileRegex(regex_t *re, const char *pattern)
+{
+    int errc = regcomp(re, pattern, REG_EXTENDED);
+    if (errc != 0) {
+        char msg[256];
+        regerror(errc, re, msg, sizeof(msg));
+        Driver_Fail("cannot compile regex '%s': %s", pattern, msg);
+    }
+}
+
+static void SetupScriptEntryPatterns(void)
+{
+    CompileRegex(&sScriptEntry,    "^[[:space:]]*ScriptEntry[[:space:]]+([A-Za-z_][A-Za-z0-9_]*)");
+    CompileRegex(&sScriptEntryEnd, "^[[:space:]]*ScriptEntryEnd([^A-Za-z0-9_]|$)");
+    CompileRegex(&sScriptEntryAny, "^[[:space:]]*ScriptEntry");
+}
+
+static void ScanLocalScriptLabels(const char *stem, const char *filename)
+{
+    FILE *f = fopen(filename, "r");
+    if (!f) Driver_Fail("cannot open '%s': %s", filename, strerror(errno));
+
+    char  *line    = NULL;
+    size_t cap     = 0;
+    size_t lineNum = 0;
+    long   id      = 1;
+
+    while (getline(&line, &cap, f) != -1) {
+        lineNum++;
+        line[strcspn(line, "\r\n")] = '\0';
+
+        regmatch_t match[2];
+        if (regexec(&sScriptEntryEnd, line, 0, NULL, 0) == 0) break;
+        if (regexec(&sScriptEntry, line, NELEMS(match), match, 0) == 0) {
+            char *name = String_Format("%.*s", (int)(match[1].rm_eo - match[1].rm_so), line + match[1].rm_so);
+            Buffer_Push(&sLocalScriptLabels.lookup, dp_symbol, .value = id++, .name = name);
+        } else if (regexec(&sScriptEntryAny, line, 0, NULL, 0) == 0) {
+            Driver_Fail("%s:%zu: cannot parse ScriptEntry line: %s", filename, lineNum, line);
+        }
+    }
+
+    free(line);
+    fclose(f);
+
+    qsort(sLocalScriptLabels.lookup.data, Buffer_Count(&sLocalScriptLabels.lookup, dp_symbol),
+          sizeof(dp_symbol), CompareSymbolNames);
+
+    sLocalScriptLabels.stem = stem;
+    Deps_Add(filename);
+}
+
+static void ClearLocalScriptLabels(void)
+{
+    for (size_t i = 0; i < Buffer_Count(&sLocalScriptLabels.lookup, dp_symbol); i++) {
+        free((char *)Buffer_At(&sLocalScriptLabels.lookup, dp_symbol, i).name);
+    }
+
+    free(sLocalScriptLabels.lookup.data);
+    sLocalScriptLabels = (ScriptLabels){ 0 };
+}
+
 static void ProcEntry(Entry *entry)
 {
     char *eventsFilename      = String_Format("%s/%s/events.json", baseDir, entry->stem);
@@ -433,6 +555,8 @@ static void ProcEntry(Entry *entry)
     bool hasInit       = stat(initScriptsFilename, &stbuf) == 0;
     bool hasEvents     = stat(eventsFilename, &stbuf) == 0;
 
+    if (hasScripts) ScanLocalScriptLabels(entry->stem, scriptsFilename);
+
     if (hasEvents) {
         dp_file *file = Driver_Load("%s", eventsFilename);
         ProcEvents(dp_root(file), entry->stem);
@@ -441,6 +565,8 @@ static void ProcEntry(Entry *entry)
     }
 
     ProcHeader(entry, hasEncounters, hasScripts, hasInit, hasEvents);
+
+    ClearLocalScriptLabels();
     free(eventsFilename);
     free(encountersFilename);
     free(scriptsFilename);
@@ -608,6 +734,31 @@ static bool HasHeader(const char *name)
         && strcmp(name, "MAP_HEADER_DYNAMIC") != 0;
 }
 
+static void SetupGlobalScriptLabels(void)
+{
+    for (size_t i = 0; i < NELEMS(sGlobalScriptLabels); i++) {
+        ScriptLabels *entry = &sGlobalScriptLabels[i];
+
+        char *filepath = String_Format("%s/%s.h", CLI_OutputDir(), entry->stem);
+        FILE *f        = fopen(filepath, "r");
+        if (!f) Driver_Fail("cannot open '%s': %s", filepath, strerror(errno));
+
+        // `#define <label> <script ID>`
+        char line[512], name[512];
+        long value;
+        while (fgets(line, sizeof(line), f)) {
+            if (sscanf(line, "#define %511s %ld", name, &value) == 2) {
+                Buffer_Push(&entry->lookup, dp_symbol, .value = value, .name = Driver_Keep(String_Dupe(name)));
+            }
+        }
+
+        fclose(f);
+        qsort(entry->lookup.data, Buffer_Count(&entry->lookup, dp_symbol), sizeof(dp_symbol), CompareSymbolNames);
+        Deps_Add(filepath);
+        free(filepath);
+    }
+}
+
 int main(int argc, char **argv)
 {
     Driver_Init(&driver, argc, argv);
@@ -615,6 +766,8 @@ int main(int argc, char **argv)
     char *localsDir = String_Format("%s/locals", CLI_OutputDir());
     EnsureDir(localsDir);
     SetupHeaderTable();
+    SetupGlobalScriptLabels();
+    SetupScriptEntryPatterns();
 
     dp_file *groups = ProcGroups();
 

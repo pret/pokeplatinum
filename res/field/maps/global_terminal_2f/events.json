@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 11,
+            "script": "GlobalTerminal2F_BgSignWarp1F",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 15,
             "z": 3,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 12,
+            "script": "GlobalTerminal2F_BgSignWarp3F",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 15,
             "z": 13,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 13,
+            "script": "GlobalTerminal2F_BoxDataMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 7,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 13,
+            "script": "GlobalTerminal2F_BoxDataMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 8,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 14,
+            "script": "GlobalTerminal2F_DressUpDataMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 14,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 14,
+            "script": "GlobalTerminal2F_DressUpDataMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 13,
@@ -49,7 +49,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 14,
+            "script": "GlobalTerminal2F_DressUpDataMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 13,
@@ -57,7 +57,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 14,
+            "script": "GlobalTerminal2F_DressUpDataMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 14,
@@ -65,7 +65,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 13,
+            "script": "GlobalTerminal2F_BoxDataMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 8,
@@ -73,7 +73,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 13,
+            "script": "GlobalTerminal2F_BoxDataMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 7,
@@ -88,7 +88,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "GlobalTerminal2F_BattleGirl",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -103,7 +103,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
+            "script": "GlobalTerminal2F_Twin",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -118,7 +118,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 7,
+            "script": "GlobalTerminal2F_PokefanF",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -133,7 +133,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
+            "script": "GlobalTerminal2F_Beauty",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -148,7 +148,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9,
+            "script": "GlobalTerminal2F_Lass",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -163,7 +163,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "GlobalTerminal2F_ExpertF",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -178,7 +178,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
+            "script": "GlobalTerminal2F_Hiker",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -193,7 +193,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
+            "script": "GlobalTerminal2F_Idol",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 2,
@@ -208,7 +208,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "GlobalTerminal2F_Artist",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 2,

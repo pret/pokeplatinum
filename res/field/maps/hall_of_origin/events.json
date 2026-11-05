@@ -7,7 +7,6 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS",
-            "script": 0,
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -28,7 +27,7 @@
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "HallOfOrigin_CoordEvent_Arceus",
             "x": 30,
             "z": 35,
             "y": 0,

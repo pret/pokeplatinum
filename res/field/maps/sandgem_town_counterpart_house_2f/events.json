@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 1,
+            "script": "SandgemTownCounterpartHouse2F_PC",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 3,

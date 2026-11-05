@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "PokemonLeague_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 842,
             "z": 577,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "PokemonLeague_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 843,
             "z": 577,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "PokemonLeague_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 851,
             "z": 577,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "PokemonLeague_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 852,
             "z": 577,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "PokemonLeague_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 837,
             "z": 561,
@@ -49,7 +49,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "PokemonLeague_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 838,
             "z": 561,
@@ -57,7 +57,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "PokemonLeague_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 856,
             "z": 561,
@@ -65,7 +65,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "PokemonLeague_Statue",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 857,
             "z": 561,
@@ -80,7 +80,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "PokemonLeague_SignboardVictoryRoad",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -95,7 +95,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "PokemonLeague_ArrowSignpostPokemonleague",
             "initial_dir": "DIR_NORTH",
             "data": [
                 3

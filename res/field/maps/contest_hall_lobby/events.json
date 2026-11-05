@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 9812,
+            "script": "Contests_LinkContestRecordsDisplay",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 5,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 2,
+            "script": "ContestHallLobby_Frame0",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 11,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "ContestHallLobby_Frame1",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 11,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
+            "script": "ContestHallLobby_Frame2",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 11,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
+            "script": "ContestHallLobby_Frame3",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 11,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 6,
+            "script": "ContestHallLobby_Frame4",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 11,
@@ -56,7 +56,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9806,
+            "script": "Contests_ReceptionistOfficialContest",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -71,7 +71,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9807,
+            "script": "Contests_ReceptionistLinkContest",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -86,7 +86,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9808,
+            "script": "Contests_ReceptionistPracticeContest",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -101,7 +101,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 7,
+            "script": "ContestHallLobby_AceTrainerF",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
@@ -116,7 +116,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
+            "script": "ContestHallLobby_Clown",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -131,7 +131,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_MOM",
-            "script": 0,
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -146,7 +145,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_KEIRA",
-            "script": 0,
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -161,7 +159,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_REPORTER",
-            "script": 10156,
+            "script": "TVReporterInterviews_ContestHallLobby",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -176,7 +174,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9,
+            "script": "ContestHallLobby_SchoolKidF",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 2,
@@ -191,7 +189,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
+            "script": "ContestHallLobby_RichBoy",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -206,7 +204,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_FANTINA",
-            "script": 11,
+            "script": "ContestHallLobby_Fantina",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,

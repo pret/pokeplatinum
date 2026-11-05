@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SENDOFF_SPRING_CYNTHIA",
-            "script": 2,
+            "script": "SendoffSpring_Cynthia",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

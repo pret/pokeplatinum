@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 2025,
+            "script": "CommonScript_Geonet",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 10,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 2025,
+            "script": "CommonScript_Geonet",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 10,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 14,
+            "script": "GlobalTerminal1F_BattleVideoRankingsMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 9,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 14,
+            "script": "GlobalTerminal1F_BattleVideoRankingsMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 10,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 15,
+            "script": "GlobalTerminal1F_TrainerRankingsMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 14,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 15,
+            "script": "GlobalTerminal1F_TrainerRankingsMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 15,
@@ -49,7 +49,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 14,
+            "script": "GlobalTerminal1F_BattleVideoRankingsMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 21,
             "z": 9,
@@ -57,7 +57,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 14,
+            "script": "GlobalTerminal1F_BattleVideoRankingsMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 21,
             "z": 10,
@@ -65,7 +65,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 15,
+            "script": "GlobalTerminal1F_TrainerRankingsMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 21,
             "z": 15,
@@ -73,7 +73,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 15,
+            "script": "GlobalTerminal1F_TrainerRankingsMachine",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 21,
             "z": 14,
@@ -81,7 +81,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 21,
+            "script": "GlobalTerminal1F_BgSign",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 2,
@@ -96,7 +96,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
+            "script": "GlobalTerminal1F_ReceptionistGTS",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -111,7 +111,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "GlobalTerminal1F_Collector",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
@@ -126,7 +126,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
+            "script": "GlobalTerminal1F_BugCatcher",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -141,7 +141,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "GlobalTerminal1F_Guitarist",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 2,
@@ -156,7 +156,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 7,
+            "script": "GlobalTerminal1F_ExpertM",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -171,7 +171,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
+            "script": "GlobalTerminal1F_AceTrainerM",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
@@ -186,7 +186,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9,
+            "script": "GlobalTerminal1F_Beauty1",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -201,7 +201,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 16,
+            "script": "GlobalTerminal1F_RepectionistEntryNorth",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -216,7 +216,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 17,
+            "script": "GlobalTerminal1F_RepectionistEntrySouth",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -231,7 +231,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
+            "script": "GlobalTerminal1F_Picnicker",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -246,7 +246,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 11,
+            "script": "GlobalTerminal1F_Youngster",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -261,7 +261,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 18,
+            "script": "GlobalTerminal1F_PokemonBreederF",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -276,7 +276,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 19,
+            "script": "GlobalTerminal1F_PokemonBreederM",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -291,7 +291,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 20,
+            "script": "GlobalTerminal1F_Beauty2",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

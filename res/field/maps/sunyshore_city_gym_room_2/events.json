@@ -71,7 +71,7 @@
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "SunyshoreGymRoom2_BottomButton",
             "x": 6,
             "z": 13,
             "y": 0,
@@ -81,7 +81,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "SunyshoreGymRoom2_TopButtons",
             "x": 6,
             "z": 8,
             "y": 0,
@@ -91,7 +91,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "SunyshoreGymRoom2_TopButtons",
             "x": 11,
             "z": 8,
             "y": 0,

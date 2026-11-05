@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 3,
+            "script": "Route216House_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 6,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_WEST_EAST"
         },
         {
-            "script": 3,
+            "script": "Route216House_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 7,
@@ -24,7 +24,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "Route216House_Hiker",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -39,7 +39,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "Route216House_SnowpointNPCF",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,

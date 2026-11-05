@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "PalPark_Worker",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -35,7 +35,7 @@
     ],
     "coord_events": [
         {
-            "script": 5,
+            "script": "PalPark_CoordEvent_RetireFromGate",
             "x": 22,
             "z": 48,
             "y": 0,

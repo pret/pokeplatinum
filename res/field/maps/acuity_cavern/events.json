@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ACUITY_CAVERN_UXIE",
-            "script": 3,
+            "script": "AcuityCavern_Uxie",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

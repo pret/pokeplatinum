@@ -67,7 +67,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_202_COUNTERPART",
-            "script": 7,
+            "script": "Route202_Counterpart",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -82,7 +82,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
+            "script": "Route202_ArrowSignpostSandgemTown",
             "initial_dir": "DIR_NORTH",
             "data": [
                 4
@@ -99,7 +99,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "Route202_ArrowSignpostJubilifeCity",
             "initial_dir": "DIR_NORTH",
             "data": [
                 3
@@ -116,7 +116,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
+            "script": "Route202_TrainerTipsSignpost",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -131,7 +131,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "Route202_Youngster",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
@@ -146,7 +146,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_202_POTION",
-            "script": 7000,
+            "script": "VisibleItems_Route202_Potion",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -159,7 +159,7 @@
     "warp_events": [],
     "coord_events": [
         {
-            "script": 6,
+            "script": "Route202_CoordEvent_CatchingTutorial",
             "x": 180,
             "z": 825,
             "y": 0,

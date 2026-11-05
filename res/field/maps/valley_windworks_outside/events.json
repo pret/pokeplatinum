@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 4,
+            "script": "ValleyWindworksOutside_Door",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 243,
             "z": 654,
@@ -24,7 +24,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_GRUNT_M",
-            "script": 3,
+            "script": "ValleyWindworksOutside_GruntM",
             "initial_dir": "DIR_SOUTH",
             "data": [
                 3
@@ -41,7 +41,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
+            "script": "ValleyWindworksOutside_SignboardValleyWindworks",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -74,7 +74,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_TM24",
-            "script": 7015,
+            "script": "VisibleItems_ValleyWindworksOutside_TM24",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -89,7 +89,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON",
-            "script": 6,
+            "script": "ValleyWindworksOutside_Drifloon",
             "initial_dir": "DIR_SOUTH",
             "data": [
                 3
@@ -106,7 +106,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_POTION",
-            "script": 7252,
+            "script": "VisibleItems_ValleyWindworksOutside_Potion",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -121,7 +121,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_LOOKER",
-            "script": 0,
             "initial_dir": "DIR_NORTH",
             "data": [
                 3
@@ -138,7 +137,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_ELECTIRIZER",
-            "script": 7318,
+            "script": "VisibleItems_ValleyWindworksOutside_Electirizer",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

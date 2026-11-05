@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_217_NORTHEAST_HOUSE_POKEMON_BREEDER_F",
-            "script": 1,
+            "script": "Route217NortheastHouse_PokemonBreederF",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

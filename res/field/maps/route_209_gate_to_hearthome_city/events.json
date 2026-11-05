@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "Route209GateToHearthomeCity_BattleGirl",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -22,7 +22,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_HEARTHOME_CITY_ROUTE_209_GATE_RIVAL",
-            "script": 0,
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -50,7 +49,7 @@
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "Route209GateToHearthomeCity_CoordEvent_Rival",
             "x": 5,
             "z": 5,
             "y": 0,

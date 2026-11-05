@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_SNOWPOINT_TEMPLE_B1F_CALCIUM",
-            "script": 7242,
+            "script": "VisibleItems_SnowpointTempleB1F_Calcium",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

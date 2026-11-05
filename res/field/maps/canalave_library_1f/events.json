@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 4,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 3,
             "z": 9,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 4,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 3,
             "z": 4,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 4,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 4,
@@ -49,7 +49,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 4,
@@ -57,7 +57,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 9,
@@ -65,7 +65,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 9,
@@ -73,7 +73,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 9,
@@ -81,7 +81,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 15,
             "z": 4,
@@ -89,7 +89,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 16,
             "z": 4,
@@ -97,7 +97,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 17,
             "z": 4,
@@ -105,7 +105,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 4,
@@ -113,7 +113,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 19,
             "z": 4,
@@ -121,7 +121,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
+            "script": "CanalaveLibrary1F_Bookshelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 20,
             "z": 4,
@@ -129,7 +129,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 8,
@@ -137,7 +137,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 7,
@@ -145,7 +145,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 7,
@@ -153,7 +153,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 7,
@@ -161,7 +161,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 4,
+            "script": "CanalaveLibrary1F_Shelves",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 3,
             "z": 7,
@@ -176,7 +176,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "CanalaveLibrary1F_Receptionist",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -191,7 +191,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "CanalaveLibrary1F_Lass",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
@@ -206,7 +206,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CANALAVE_LIBRARY_1F_LUCIAN",
-            "script": 5,
+            "script": "CanalaveLibrary1F_Lucian",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

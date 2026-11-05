@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 1,
+            "script": "JubilifeTVElevator_Receptionist",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 5,
@@ -16,7 +16,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "JubilifeTVElevator_Receptionist",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,

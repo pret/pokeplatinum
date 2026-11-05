@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CANALAVE_CITY_WEST_HOUSE_REPORTER",
-            "script": 10159,
+            "script": "TVReporterInterviews_CanalaveCityWestHouse",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

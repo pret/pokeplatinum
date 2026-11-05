@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 1,
+            "script": "TwinleafTownPlayerHouse2F_Wii",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 4,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 2,
+            "script": "TwinleafTownPlayerHouse2F_PC",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 4,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
+            "script": "TwinleafTownPlayerHouse2F_ScrollingSignpost",
             "type": "BG_EVENT_TYPE_WALL_SIGN",
             "x": 7,
             "z": 3,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 6,
+            "script": "TwinleafTownPlayerHouse2F_TV",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 4,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 6,
+            "script": "TwinleafTownPlayerHouse2F_TV",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 3,
             "z": 4,
@@ -48,7 +48,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL",
-            "script": 0,
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
@@ -69,7 +68,7 @@
     ],
     "coord_events": [
         {
-            "script": 7,
+            "script": "TwinleafTownPlayerHouse2F_CoordEvent_RivalNorth",
             "x": 4,
             "z": 5,
             "y": 0,
@@ -79,7 +78,7 @@
             "value": 0
         },
         {
-            "script": 8,
+            "script": "TwinleafTownPlayerHouse2F_CoordEvent_RivalWest",
             "x": 3,
             "z": 6,
             "y": 0,
@@ -89,7 +88,7 @@
             "value": 0
         },
         {
-            "script": 9,
+            "script": "TwinleafTownPlayerHouse2F_CoordEvent_RivalEast",
             "x": 5,
             "z": 6,
             "y": 0,
@@ -99,7 +98,7 @@
             "value": 0
         },
         {
-            "script": 10,
+            "script": "TwinleafTownPlayerHouse2F_CoordEvent_RivalSouth",
             "x": 4,
             "z": 7,
             "y": 0,

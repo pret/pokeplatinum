@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": 1,
+            "script": "GalacticHQB1F_GruntM",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

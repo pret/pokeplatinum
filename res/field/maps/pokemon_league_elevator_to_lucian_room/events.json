@@ -19,7 +19,7 @@
     ],
     "coord_events": [
         {
-            "script": 3,
+            "script": "PokemonLeagueElevatorToLucianRoom_CoordEvent_PlatformLift",
             "x": 4,
             "z": 11,
             "y": 0,

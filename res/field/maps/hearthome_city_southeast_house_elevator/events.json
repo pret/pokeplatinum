@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 1,
+            "script": "HearthomeCitySoutheastHouseElevator_OnFrame_Init",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 5,

@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8,
+            "script": "SandgemTownLab_BookshelfAdventureRuleNo1",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 3,
             "z": 2,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 9,
+            "script": "SandgemTownLab_BookshelfAdventureRuleNo2",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 2,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 10,
+            "script": "SandgemTownLab_BookshelfBooks",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 2,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 11,
+            "script": "SandgemTownLab_BookshelfReferenceMaterial",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 2,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 12,
+            "script": "SandgemTownLab_PC",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 11,
             "z": 2,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 14,
+            "script": "SandgemTownLab_Refrigerator",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 20,
             "z": 2,
@@ -56,7 +56,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN",
-            "script": 3,
+            "script": "SandgemTownLab_ProfRowan",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -71,7 +71,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
+            "script": "SandgemTownLab_ScientistM",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 2,
@@ -86,7 +86,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
+            "script": "SandgemTownLab_ScientistF",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 2,
@@ -101,7 +101,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_COUNTERPART",
-            "script": 10300,
+            "script": "CounterpartTalk_Counterpart",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -116,7 +116,6 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_OAK",
-            "script": 0,
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

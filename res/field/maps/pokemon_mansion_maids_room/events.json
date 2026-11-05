@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "PokemonMansionMaidsRoom_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 4,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "PokemonMansionMaidsRoom_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 5,
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "PokemonMansionMaidsRoom_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 4,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "PokemonMansionMaidsRoom_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 5,
@@ -41,7 +41,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "PokemonMansionMaidsRoom_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 22,
             "z": 4,
@@ -49,7 +49,7 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
+            "script": "PokemonMansionMaidsRoom_Bed",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 22,
             "z": 5,
@@ -64,7 +64,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_POKEMON_MANSION_MAIDS_ROOM_LUXURY_BALL",
-            "script": 7058,
+            "script": "VisibleItems_PokemonMansionMaidsRoom_LuxuryBall",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -79,7 +79,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
+            "script": "PokemonMansionMaidsRoom_MaidMiddle",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 2,
@@ -94,7 +94,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "PokemonMansionMaidsRoom_MaidEast",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,

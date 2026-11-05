@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_OLD_CHATEAU_BACK_WEST_ROOM_DREAD_PLATE",
-            "script": 7247,
+            "script": "VisibleItems_OldChateauBackWestRoom_DreadPlate",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

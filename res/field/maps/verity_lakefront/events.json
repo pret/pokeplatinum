@@ -16,7 +16,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "VerityLakefront_TrainerTipsSignpost",
             "initial_dir": "DIR_NORTH",
             "data": [
                 3
@@ -60,7 +60,7 @@
     ],
     "coord_events": [
         {
-            "script": 3,
+            "script": "VerityLakefront_CoordEvent_WereAtTheLake",
             "x": 80,
             "z": 844,
             "y": 0,

@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 1,
+            "script": "PastoriaCityObservatoryGate2F_Binocular",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 3,
@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 1,
+            "script": "PastoriaCityObservatoryGate2F_Binocular",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 3,
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 1,
+            "script": "PastoriaCityObservatoryGate2F_Binocular",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 3,
@@ -32,7 +32,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
+            "script": "PastoriaCityObservatoryGate2F_AceTrainerF",
             "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
@@ -47,7 +47,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
+            "script": "PastoriaCityObservatoryGate2F_BugCatcher",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
@@ -62,7 +62,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": "PastoriaCityObservatoryGate2F_PokefanM",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
@@ -77,7 +77,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
+            "script": "PastoriaCityObservatoryGate2F_Picnicker",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

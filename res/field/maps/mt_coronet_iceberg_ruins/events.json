@@ -16,7 +16,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_MT_CORONET_ICEBERG_RUINS_NEVERMELTICE",
-            "script": 7323,
+            "script": "VisibleItems_MtCoronetIcebergRuins_Nevermeltice",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

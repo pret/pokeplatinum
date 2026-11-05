@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE_BEAUTY",
-            "script": 1,
+            "script": "GrandLakeValorLakefrontEastHouse_Beauty",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,

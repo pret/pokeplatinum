@@ -1,7 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 2,
+            "script": "TeamGalacticEternaBuilding3F_BgSign",
             "type": "BG_EVENT_TYPE_FACING",
             "x": 16,
             "z": 2,
@@ -16,7 +16,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
-            "script": 1,
+            "script": "TeamGalacticEternaBuilding3F_GruntM",
             "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
@@ -65,7 +65,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_3F_X_SPECIAL",
-            "script": 7263,
+            "script": "VisibleItems_TeamGalacticEternaBuilding3F_XSpecial",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

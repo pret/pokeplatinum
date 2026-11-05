@@ -16,7 +16,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_228_ROCK_PEAK_RUINS_HARD_STONE",
-            "script": 7324,
+            "script": "VisibleItems_Route228RockPeakRuins_HardStone",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,

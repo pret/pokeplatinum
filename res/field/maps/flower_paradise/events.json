@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_FLOWER_PARADISE_SHAYMIN",
-            "script": 3,
+            "script": "FlowerParadise_Shaymin",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

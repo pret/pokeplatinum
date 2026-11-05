@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI",
-            "script": 3,
+            "script": "NewmoonIslandForest_Darkrai",
             "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,

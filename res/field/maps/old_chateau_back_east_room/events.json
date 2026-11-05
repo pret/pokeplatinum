@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90",
-            "script": 7248,
+            "script": "VisibleItems_OldChateauBackEastRoom_TM90",
             "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
