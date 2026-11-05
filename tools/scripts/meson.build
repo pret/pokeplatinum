@@ -9,3 +9,4 @@ make_trainer_ball_capsules_py = find_program('make_trainer_ball_capsules.py', na
 nclr_concat_py = find_program('nclr_concat.py', native: true)
 
 subninja_py = find_program('subninja.py', native: true)
+labelscan_py = find_program('labelscan.py', native: true)

@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valley_windworks_outside.h"
 #include "res/field/maps/locals/valley_windworks_outside.h"

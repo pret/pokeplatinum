@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town.h"
 #include "res/field/maps/locals/floaroma_town.h"
@@ -111,7 +112,7 @@ FloaromaTown_Beauty:
     Message FloaromaTown_Text_HaveGracideaFlowers
     SetVar VAR_0x8004, ITEM_GRACIDEA
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

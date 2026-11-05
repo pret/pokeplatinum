@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_arcade.h"
 #include "res/text/bank/menu_entries.h"
@@ -160,7 +161,7 @@ BattleArcade_HealAndSaveBeforeChallenge:
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_SetChallengeInProgress
     SetVar VAR_MAP_LOCAL_0x00, 0
     HealParty
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, BattleArcade_EndChallenge
     GoToIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_BecomeLeaderOrJoinGroup
@@ -353,7 +354,7 @@ BattleArcade_WalkBackInvisiblyMultiChallenge:
 
 BattleArcade_GriseousOrbCouldNotBeRemoved:
     SetVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 0
-    Common_GriseousOrbCouldNotBeRemoved
+    CallCommonScript CommonScript_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0
@@ -497,7 +498,7 @@ BattleArcade_EarnedGoldPrint:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 4
-    Common_CheckAllFrontierGoldPrintsObtained
+    CallCommonScript CommonScript_CheckObtainedAllGoldPrints
     Return
 
 BattleArcade_OnFrame_ChallengeEnded:

@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_1f.h"
 
@@ -55,7 +56,7 @@ VeilstoneStore1F_Socialite:
     BufferAccessoryNameWithArticle 0, LOCAL_VAR_ACCESSORY_ID
     Message VeilstoneStore1F_Text_IMadeAnAccessory
     SetVar LOCAL_VAR_COUNT, 1
-    Common_GiveAccessoryWaitForConfirm
+    CallCommonScript CommonScript_ObtainAccessoryWaitForConfirm
     SetFlag FLAG_RECEIVED_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK
     CloseMessage
     ReleaseAll

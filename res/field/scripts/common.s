@@ -25,6 +25,7 @@
 #include "res/field/maps/locals/sunyshore_city_pokecenter_1f.h"
 #include "res/field/maps/locals/survival_area_pokecenter_1f.h"
 #include "res/field/maps/locals/veilstone_city_pokecenter_1f.h"
+#include "res/field/maps/scripts_pokedex_ratings.h"
 
     ScriptEntry CommonScript_HandleSignpostInput
     ScriptEntry CommonScript_CheckBagPocketForItem
@@ -1126,7 +1127,7 @@ CommonScript_HallOfFameDataCorrupted:
 
 CommonScript_ProfsPC:
     PlaySE SEQ_SE_DP_PC_LOGIN_sseq
-    CallCommonScript 0x26DF
+    CallCommonScript PokedexRatings_CheckPC
     GoTo CommonScript_AccessWhichPC
 
 CommonScript_PCSwitchOff:

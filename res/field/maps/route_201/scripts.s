@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_201.h"
 #include "res/field/maps/locals/route_201.h"
@@ -208,7 +209,7 @@ Route201_WeStillLovePokemon:
     ClearFlag FLAG_HIDE_ROUTE_201_COUNTERPART
     AddObject LOCALID_COUNTERPART
     LockObject LOCALID_COUNTERPART
-    Common_SetCounterpartBGM
+    CallCommonScript CommonScript_SetCounterpartBGM
     ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartEnter
     WaitMovement
     GetPlayerGender VAR_RESULT
@@ -265,7 +266,7 @@ Route201_GoOnChoosePokemon:
     Message Route201_Text_YouCanChooseFirst
     WaitButton
     CloseMessage
-    Common_FadeToDefaultMusic
+    CallCommonScript CommonScript_FadeToDefaultMusic
     SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_WEST
     SetVar VAR_FOLLOWER_RIVAL_STATE, 1
     ReleaseAll
@@ -1167,7 +1168,7 @@ Route201_Cashier:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route201_BagIsFull
     SetFlag FLAG_RECEIVED_ROUTE_201_POTION
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1180,7 +1181,7 @@ Route201_FindMartsInCitiesAndTowns:
     End
 
 Route201_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

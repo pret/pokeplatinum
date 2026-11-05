@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209.h"
 
@@ -176,7 +177,7 @@ Route209_AcceptGoodRod:
     BufferItemName 0, VAR_0x8004
     Message Route209_Text_TakeThisGoodRod
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_GOOD_ROD
     GoTo Route209_AskExplainHowToFish
 

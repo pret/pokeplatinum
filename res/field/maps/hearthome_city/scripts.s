@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city.h"
 #include "res/field/maps/locals/hearthome_city.h"
@@ -249,7 +250,7 @@ HearthomeCity_TryGiveGlobe:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_GLOBE
     CloseMessage
     ReleaseAll
@@ -264,7 +265,7 @@ HearthomeCity_TryGiveGymStatue:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_GYM_STATUE
     CloseMessage
     ReleaseAll
@@ -278,7 +279,7 @@ HearthomeCity_TryGiveCuteCup:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_CUTE_CUP
     CloseMessage
     ReleaseAll
@@ -292,7 +293,7 @@ HearthomeCity_TryGiveCoolCup:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_COOL_CUP
     CloseMessage
     ReleaseAll
@@ -306,7 +307,7 @@ HearthomeCity_TryGiveBeautyCup:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_BEAUTY_CUP
     CloseMessage
     ReleaseAll
@@ -320,7 +321,7 @@ HearthomeCity_TryGiveToughCup:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_TOUGH_CUP
     CloseMessage
     ReleaseAll
@@ -334,7 +335,7 @@ HearthomeCity_TryGiveSmartCup:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_CLEVER_CUP
     CloseMessage
     ReleaseAll
@@ -349,7 +350,7 @@ HearthomeCity_TryGiveBlueCrystal:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_BLUE_CRYSTAL
     CloseMessage
     ReleaseAll
@@ -364,7 +365,7 @@ HearthomeCity_TryGivePinkCrystal:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_PINK_CRYSTAL
     CloseMessage
     ReleaseAll
@@ -379,7 +380,7 @@ HearthomeCity_TryGiveRedCrystal:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_RED_CRYSTAL
     CloseMessage
     ReleaseAll
@@ -394,7 +395,7 @@ HearthomeCity_TryGiveYellowCrystal:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeCity_YourUndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_YELLOW_CRYSTAL
     CloseMessage
     ReleaseAll

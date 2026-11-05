@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_2f.h"
 #include "res/field/maps/locals/mt_coronet_2f.h"
@@ -28,7 +29,7 @@ MtCoronet2F_CoordEvent_Looker:
     AddObject LOCALID_LOOKER
     ApplyMovement LOCALID_LOOKER, MtCoronet2F_Movement_LookerNoticePlayer
     WaitMovement
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     CallIfEq VAR_0x8005, 24, MtCoronet2F_LookerWalkToPlayerZ24
     CallIfEq VAR_0x8005, 25, MtCoronet2F_LookerWalkToPlayerZ25
     CallIfEq VAR_0x8005, 26, MtCoronet2F_LookerWalkToPlayerZ26
@@ -42,9 +43,9 @@ MtCoronet2F_CoordEvent_Looker:
     SetVar VAR_0x8004, ITEM_BLACK_FLUTE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, MtCoronet2F_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Call MtCoronet2F_YouMustStopTeamGalactic
-    Common_FadeToDefaultMusic4
+    CallCommonScript CommonScript_FadeToDefaultMusic_4
     ReleaseAll
     End
 
@@ -57,7 +58,7 @@ MtCoronet2F_YouMustStopTeamGalactic:
 
 MtCoronet2F_BagIsFull:
     Call MtCoronet2F_YourBagItIsFull
-    Common_FadeToDefaultMusic4
+    CallCommonScript CommonScript_FadeToDefaultMusic_4
     ReleaseAll
     End
 
@@ -144,7 +145,7 @@ MtCoronet2F_TryAgainGiveBlackFlute:
     SetVar VAR_0x8004, ITEM_BLACK_FLUTE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, MtCoronet2F_BagIsFullAgain
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Call MtCoronet2F_YouMustStopTeamGalactic
     ReleaseAll
     End

@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_factory.h"
 #include "res/text/bank/menu_entries.h"
@@ -133,7 +134,7 @@ BattleFactory_HealAndSaveBeforeChallenge:
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_SetChallengeInProgress
     SetVar VAR_MAP_LOCAL_0x00, 0
     HealParty
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, BattleFactory_EndChallenge
     GoToIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_BecomeLeaderOrJoinGroup
@@ -448,7 +449,7 @@ BattleFactory_EarnedGoldPrint:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_FACTORY_PRINT_STATE, 4
-    Common_CheckAllFrontierGoldPrintsObtained
+    CallCommonScript CommonScript_CheckObtainedAllGoldPrints
     Return
 
 BattleFactory_OnFrame_ChallengeEnded:

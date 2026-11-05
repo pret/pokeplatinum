@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_room_3.h"
 #include "res/field/maps/locals/stark_mountain_room_3.h"
@@ -170,7 +171,7 @@ StarkMountainRoom3_OnFrame_Charon:
     RemoveObject LOCALID_ROCK_SMASH_LOOKER
     ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_LOOKER
     AddObject LOCALID_LOOKER
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     Message StarkMountainRoom3_Text_DisguisingWasNotEasy
     CloseMessage
     ApplyMovement LOCALID_LOOKER, StarkMountainRoom3_Movement_LookerWalkToCharon

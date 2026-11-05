@@ -1,7 +1,9 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/global_terminal_1f.h"
 #include "res/text/bank/menu_entries.h"
 #include "constants/map_object.h"
+#include "res/field/maps/scripts_pokemon_center_2f_common.h"
 
 
     ScriptEntry GlobalTerminal1F_Dummy1
@@ -159,7 +161,7 @@ GlobalTerminal1F_MustHaveTwoPokemon:
     End
 
 GlobalTerminal1F_BeginTrade:
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_ReceptionistGTSEnd
     HealParty
@@ -257,7 +259,7 @@ GlobalTerminal1F_Movement_PlayerFaceSouth:
     EndMovement
 
 GlobalTerminal1F_HasBadEgg:
-    CallCommonScript 0x2338 @ PokemonCenter2FCommon_HasBadEggReturnCommon
+    CallCommonScript PokemonCenter2FCommon_HasBadEggReturnCommon
     WaitButton
     CloseMessage
     ReleaseAll
@@ -322,11 +324,11 @@ GlobalTerminal1F_BattleVideoRankingsMachineEnd:
     End
 
 GlobalTerminal1F_UseBattleVideoRankingsMachine:
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_BattleVideoRankingsMachineEnd
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript CommonScript_GlobalTerminalMachine
     ReleaseAll
     End
 
@@ -362,11 +364,11 @@ GlobalTerminal1F_TrainerRankingsMachineEnd:
     End
 
 GlobalTerminal1F_UseTrainerRankingsMachine:
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_TrainerRankingsMachineEnd
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript CommonScript_GlobalTerminalMachine
     ReleaseAll
     End
 
@@ -490,7 +492,7 @@ GlobalTerminal1F_TryGiveBackDrop:
 
 GlobalTerminal1F_GiveBackdrop:
     SetVar VAR_0x8005, BACKDROP_RANCH
-    Common_ObtainContestBackdrop
+    CallCommonScript CommonScript_ObtainContestBackdrop
     Message GlobalTerminal1F_Text_ObtainedBackdrop
     Call GlobalTerminal1F_CheckReceivedAllBackdrops
     SetFlag FLAG_DAILY_RECEIVED_GLOBAL_TERMINAL_1F_BACKDROP

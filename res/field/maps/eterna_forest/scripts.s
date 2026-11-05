@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_forest.h"
 #include "res/field/maps/locals/eterna_forest.h"
@@ -147,7 +148,7 @@ EternaForest_CoordEvent_CherylLeavePlayer:
 
 EternaForest_GiveSootheBell:
     Message EternaForest_Text_TokenOfAppreciation
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     GoTo EternaForest_CherylWalkToExit
     End
 

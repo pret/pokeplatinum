@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town_pokecenter_1f.h"
 #include "res/field/maps/locals/floaroma_town_pokecenter_1f.h"
@@ -10,7 +11,8 @@
     ScriptEntryEnd
 
 FloaromaTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_FLOAROMA_NURSE
+    SetVar VAR_0x8007, LOCALID_FLOAROMA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 FloaromaTownPokecenter1F_PokefanM:

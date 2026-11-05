@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_pokecenter_1f.h"
 #include "res/field/maps/locals/veilstone_city_pokecenter_1f.h"
@@ -9,7 +10,8 @@
     ScriptEntryEnd
 
 VeilstoneCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_VEILSTONE_NURSE
+    SetVar VAR_0x8007, LOCALID_VEILSTONE_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 VeilstoneCityPokecenter1F_Socialite:

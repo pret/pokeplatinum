@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town.h"
 #include "res/field/maps/locals/twinleaf_town.h"
@@ -399,7 +400,7 @@ TwinleafTown_CoordEvent_RivalThud:
     PlaySE SEQ_SE_DP_WALL_HIT2_sseq
     Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalNoticePlayer
     WaitMovement
     BufferRivalName 0
@@ -419,7 +420,7 @@ TwinleafTown_CoordEvent_RivalThud:
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject LOCALID_RIVAL
-    Common_FadeToDefaultMusic2
+    CallCommonScript CommonScript_FadeToDefaultMusic_2
     SetVar VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE, 1
     SetVar VAR_TWINLEAF_TOWN_RIVAL_TRIGGER_STATE, 1
     ReleaseAll

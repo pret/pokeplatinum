@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city_pokecenter_1f.h"
 #include "res/field/maps/locals/snowpoint_city_pokecenter_1f.h"
@@ -11,7 +12,8 @@
     ScriptEntryEnd
 
 SnowpointCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_SNOWPOINT_NURSE
+    SetVar VAR_0x8007, LOCALID_SNOWPOINT_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 SnowpointCityPokecenter1F_Lass:

@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_northeast_house.h"
 #include "generated/pokemon_contest_types.h"
@@ -57,7 +58,7 @@ PastoriaCityNortheastHouse_TryGiveRedScarf:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_RED_SCARF
     Message PastoriaCityNortheastHouse_Text_PokemonsLookingGood
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTHEAST_HOUSE_RED_SCARF
     Message PastoriaCityNortheastHouse_Text_RedScarfCool
     WaitButton
@@ -72,7 +73,7 @@ PastoriaCityNortheastHouse_TryGiveBlueScarf:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_BLUE_SCARF
     Message PastoriaCityNortheastHouse_Text_PokemonsLookingGood
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTHEAST_HOUSE_BLUE_SCARF
     Message PastoriaCityNortheastHouse_Text_BlueScarfBeauty
     WaitButton
@@ -87,7 +88,7 @@ PastoriaCityNortheastHouse_TryGivePinkScarf:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_PINK_SCARF
     Message PastoriaCityNortheastHouse_Text_PokemonsLookingGood
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTHEAST_HOUSE_PINK_SCARF
     Message PastoriaCityNortheastHouse_Text_PinkScarfCute
     WaitButton
@@ -102,7 +103,7 @@ PastoriaCityNortheastHouse_TryGiveGreenScarf:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_GREEN_SCARF
     Message PastoriaCityNortheastHouse_Text_PokemonsLookingGood
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTHEAST_HOUSE_GREEN_SCARF
     Message PastoriaCityNortheastHouse_Text_GreenScarfSmart
     WaitButton
@@ -117,7 +118,7 @@ PastoriaCityNortheastHouse_TryGiveYellowScarf:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_YELLOW_SCARF
     Message PastoriaCityNortheastHouse_Text_PokemonsLookingGood
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTHEAST_HOUSE_YELLOW_SCARF
     Message PastoriaCityNortheastHouse_Text_YellowScarfTough
     WaitButton

@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_middle_house.h"
 
@@ -30,7 +31,7 @@ PastoriaCityMiddleHouse_HandlePartyCombeeGenderCount:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaCityMiddleHouse_BagIsFull
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_MIDDLE_HOUSE_MACHO_BRACE
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     GoTo PastoriaCityMiddleHouse_YoureGood
     End
 

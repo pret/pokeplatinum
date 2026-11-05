@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_southeast_house.h"
 
@@ -15,7 +16,7 @@ CanalaveCitySoutheastHouse_AceTrainerF:
     SetVar VAR_0x8004, ITEM_TM48
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CanalaveCitySoutheastHouse_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_CANALAVE_CITY_SOUTHEAST_HOUSE_TM48
     GoTo CanalaveCitySoutheastHouse_ExplainSkillSwap
     End
@@ -28,7 +29,7 @@ CanalaveCitySoutheastHouse_ExplainSkillSwap:
     End
 
 CanalaveCitySoutheastHouse_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

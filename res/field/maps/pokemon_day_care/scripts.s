@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_day_care.h"
 
@@ -23,7 +24,7 @@ PokemonDayCare_GymGuide:
     GoToIfEq VAR_RESULT, TRUE, PokemonDayCare_CheckOnDayCarePokemon
     Message PokemonDayCare_Text_SharePoketchApp
     SetVar VAR_0x8004, POKETCH_APPID_DAYCARECHECKER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll

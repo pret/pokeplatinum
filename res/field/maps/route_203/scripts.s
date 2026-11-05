@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_203.h"
 #include "res/field/maps/locals/route_203.h"
@@ -35,7 +36,7 @@ Route203_CoordEvent_Rival:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route203_Movement_RivalNoticePlayer
     WaitMovement
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 757, Route203_RivalWalkToPlayerZ757
     GoToIfEq VAR_0x8005, 758, Route203_RivalWalkToPlayerZ758

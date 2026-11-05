@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_gate_1f.h"
 #include "res/field/maps/locals/oreburgh_gate_1f.h"
@@ -29,7 +30,7 @@ OreburghGate1F_HikerGiveHM:
     Message OreburghGate1F_Text_MakeAGiftOfThisHM
     SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Call OreburghGate1F_SetFlagReceivedHM06
     GoTo OreburghGate1F_ThatHMContainsRockSmash
 
@@ -53,7 +54,7 @@ OreburghGate1F_CoordEvent_Hiker:
     Message OreburghGate1F_Text_MakeAGiftOfThisHM
     SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Call OreburghGate1F_SetFlagReceivedHM06
     Message OreburghGate1F_Text_ThatHMContainsRockSmash
     WaitButton

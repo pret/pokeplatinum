@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/oreburgh_city_pokecenter_1f.h"
@@ -14,7 +15,8 @@
     ScriptEntryEnd
 
 OreburghCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_OREBURGH_NURSE
+    SetVar VAR_0x8007, LOCALID_OREBURGH_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 OreburghCityPokecenter1F_NinjaBoy:

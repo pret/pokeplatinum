@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/day_care_common.h"
 #include "res/text/bank/menu_entries.h"
@@ -358,7 +359,7 @@ DayCareCommon_Unused:
 
 DayCareCommon_GriseousOrbCouldNotBeRemoved:
     HideMoney
-    Common_GriseousOrbCouldNotBeRemoved
+    CallCommonScript CommonScript_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0

@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_pokecenter_1f.h"
 #include "res/field/maps/locals/celestic_town_pokecenter_1f.h"
@@ -10,7 +11,8 @@
     ScriptEntryEnd
 
 CelesticTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_CELESTIC_NURSE
+    SetVar VAR_0x8007, LOCALID_CELESTIC_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 CelesticTownPokecenter1F_ExpertF:
@@ -38,12 +40,12 @@ CelesticTownPokecenter1F_GiveGreatBall:
     SetVar VAR_0x8004, ITEM_GREAT_BALL
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownPokecenter1F_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_DAILY_RECEIVED_CELESTIC_TOWN_POKECENTER_1F_GREAT_BALL
     GoTo CelesticTownPokecenter1F_ItsAboutTrust
 
 CelesticTownPokecenter1F_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

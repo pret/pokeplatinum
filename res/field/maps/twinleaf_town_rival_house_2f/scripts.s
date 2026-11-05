@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_rival_house_2f.h"
 #include "res/field/maps/locals/twinleaf_town_rival_house_2f.h"
@@ -15,7 +16,7 @@ TwinleafTownRivalHouse2F_OnFrame_Rival:
     CloseMessage
     ApplyMovement LOCALID_RIVAL, TwinleafTownRivalHouse2F_Movement_RivalNoticePlayer
     WaitMovement
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     BufferPlayerName 0
     Message TwinleafTownRivalHouse2F_Text_WaitingOnTheRoad
     CloseMessage
@@ -24,7 +25,7 @@ TwinleafTownRivalHouse2F_OnFrame_Rival:
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_RIVAL
-    Common_FadeToDefaultMusic2
+    CallCommonScript CommonScript_FadeToDefaultMusic_2
     SetFlag FLAG_RIVAL_LEFT_HOME
     SetVar VAR_RIVAL_HOUSE_STATE, 1
     SetVar VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE, 2

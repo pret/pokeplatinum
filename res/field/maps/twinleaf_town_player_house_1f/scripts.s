@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_1f.h"
 #include "res/field/maps/locals/twinleaf_town_player_house_1f.h"
@@ -260,7 +261,7 @@ TwinleafTownPlayerHouse1F_MomGiveJournal:
     Message TwinleafTownPlayerHouse1F_Text_YourMomsGotYourBack
     SetVar VAR_0x8004, ITEM_JOURNAL
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     GiveJournal
     Message TwinleafTownPlayerHouse1F_Text_ThatsAJournal
     GetPlayerDir VAR_0x8007
@@ -402,7 +403,7 @@ TwinleafTownPlayerHouse1F_TakeThisToRivalFemale:
 TwinleafTownPlayerHouse1F_ReceiveParcel:
     SetVar VAR_0x8004, ITEM_PARCEL
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_PARCEL
     Message TwinleafTownPlayerHouse1F_Text_EnjoyYourAdventure
     BufferRivalName 1

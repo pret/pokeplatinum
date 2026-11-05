@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_market.h"
 #include "generated/ribbons.h"
@@ -64,7 +65,7 @@ SunyshoreMarket_SealShop:
     CheckItem ITEM_SEAL_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SunyshoreMarket_NoSealCase
     Message SunyshoreMarket_Text_ALittleTimeIfYouWill
-    Common_VendorGreeting
+    CallCommonScript CommonScript_VendorGreetingGeneric
     CloseMessageWithoutErasing
     Call SunyshoreMarket_OpenSealShopMenu
     ReleaseAll

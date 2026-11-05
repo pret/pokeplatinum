@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_222_east_house.h"
 #include "generated/size_contest_results.h"
@@ -37,7 +38,7 @@ Route222EastHouse_Fisherman:
     SetVar VAR_0x8004, ITEM_NET_BALL
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route222EastHouse_BagFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     UpdateSizeContestRecord VAR_0x8002
     Message Route222EastHouse_Text_WillDreamOfBiggerRemoraid
     WaitButton

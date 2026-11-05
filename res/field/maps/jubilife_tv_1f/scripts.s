@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_1f.h"
 
@@ -151,7 +152,7 @@ JubilifeTV1F_GiveLotteryPrize:
     SetVar VAR_0x8004, VAR_0x8003
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, JubilifeTV1F_NoRoomForThis
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     GoTo JubilifeTV1F_PleaseDoVisitAgain
 
 JubilifeTV1F_NoRoomForThis:

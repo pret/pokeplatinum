@@ -2,10 +2,10 @@
 #include "res/text/bank/pokedex_ratings.h"
 
 
-    ScriptEntry PokedexRatings_CheckRowan @ 0x26DE
-    ScriptEntry PokedexRatings_CheckPC @ 0x26DF
-    ScriptEntry PokedexRatings_CheckOak @ 0x26E0
-    ScriptEntry PokedexRatings_CheckNationalDex @ 0x26E1
+    ScriptEntry PokedexRatings_CheckRowan
+    ScriptEntry PokedexRatings_CheckPC
+    ScriptEntry PokedexRatings_CheckOak
+    ScriptEntry PokedexRatings_CheckNationalDex
     ScriptEntryEnd
 
 PokedexRatings_CheckRowan:

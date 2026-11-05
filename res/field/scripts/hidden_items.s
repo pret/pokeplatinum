@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hidden_items.h"
 #include "res/items/hidden_item_scripts.h"
@@ -18,7 +19,7 @@ HiddenItems_End:
     End
 
 HiddenItems_AddItem:
-    Common_CheckBagPocketForItem
+    CallCommonScript CommonScript_CheckBagPocketForItem
     SaveTVSegmentHiddenItem VAR_0x8004
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     IsItemTMHM VAR_0x8004, VAR_RESULT
@@ -124,7 +125,7 @@ HiddenItems_BagIsFull:
     End
 
 HiddenItems_PrintPlateObtainedMessage:
-    Common_PrintPlateObtainedMessage
+    CallCommonScript CommonScript_PlateObtainedEngraving
     Return
 
     .balign 4, 0

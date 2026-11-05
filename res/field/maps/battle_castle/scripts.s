@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_castle.h"
 #include "res/text/bank/menu_entries.h"
@@ -157,7 +158,7 @@ BattleCastle_HealAndSaveBeforeChallenge:
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleCastle_SetChallengeInProgress
     SetVar VAR_MAP_LOCAL_0x00, 0
     HealParty
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, BattleCastle_EndChallenge
     GoToIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleCastle_BecomeLeaderOrJoinGroup
@@ -350,7 +351,7 @@ BattleCastle_WalkBackInvisiblyMultiChallenge:
 
 BattleCastle_GriseousOrbCouldNotBeRemoved:
     SetVar VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 0
-    Common_GriseousOrbCouldNotBeRemoved
+    CallCommonScript CommonScript_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0
@@ -492,7 +493,7 @@ BattleCastle_EarnedGoldPrint:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_CASTLE_PRINT_STATE, 4
-    Common_CheckAllFrontierGoldPrintsObtained
+    CallCommonScript CommonScript_CheckObtainedAllGoldPrints
     Return
 
 BattleCastle_OnFrame_ChallengeEnded:

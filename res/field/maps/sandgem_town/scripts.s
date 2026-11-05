@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town.h"
 #include "res/field/maps/locals/sandgem_town.h"
@@ -176,7 +177,7 @@ SandgemTown_RivalExitLab:
     Message SandgemTown_Text_BigThud
     ApplyMovement LOCALID_RIVAL, SandgemTown_Movement_RivalNoticePlayer
     WaitMovement
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
     Message SandgemTown_Text_OhItsYouPlayer
@@ -186,7 +187,7 @@ SandgemTown_RivalExitLab:
     ApplyMovement LOCALID_RIVAL, SandgemTown_Movement_RivalLeave
     WaitMovement
     RemoveObject LOCALID_RIVAL
-    Common_FadeToDefaultMusic2
+    CallCommonScript CommonScript_FadeToDefaultMusic_2
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTown_DawnLetsGoInside
     GoToIfEq VAR_RESULT, GENDER_FEMALE, SandgemTown_LucasLetsGoIn
@@ -451,7 +452,7 @@ SandgemTown_OnFrame_ExitLab:
     Message SandgemTown_Text_TakeThisAsWell
     SetVar VAR_0x8004, ITEM_TM27
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Message SandgemTown_Text_ContainsTheMoveReturn
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, SandgemTown_Movement_ProfRowanEnterLab
@@ -501,7 +502,7 @@ SandgemTown_LucasShowYouAFewThings:
 
 SandgemTown_WalkToPokemonCenter:
     CloseMessage
-    Common_SetFollowMeBGM
+    CallCommonScript CommonScript_SetFollowMeBGM
     ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonCenter
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokemonCenter
     WaitMovement
@@ -569,7 +570,7 @@ SandgemTown_CounterpartLeave:
     ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartLeave
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWatchCounterpartLeave
     WaitMovement
-    Common_FadeToDefaultMusic3
+    CallCommonScript CommonScript_FadeToDefaultMusic_3
     RemoveObject LOCALID_COUNTERPART
     SetVar VAR_SANDGEM_TOWN_STATE, 2
     ReleaseAll

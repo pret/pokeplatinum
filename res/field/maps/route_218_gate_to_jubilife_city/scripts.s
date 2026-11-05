@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_218_gate_to_jubilife_city.h"
 
@@ -56,7 +57,7 @@ Route218GateToJubilifeCity_AcceptOldRod:
     BufferItemName 0, VAR_0x8004
     Message Route218GateToJubilifeCity_Text_HereYouGo
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_OLD_ROD
     GoTo Route218GateToJubilifeCity_DidYouNeedTips
 

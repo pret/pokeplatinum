@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/contest_hall_lobby.h"
 #include "res/field/maps/locals/contest_hall_lobby.h"
@@ -37,7 +38,7 @@ ContestHallLobby_OnFrame_FirstEntry:
     Message ContestHallLobby_Text_ThankYouForEarlier
     SetVar VAR_0x8004, ACCESSORY_GLITTER_POWDER
     SetVar VAR_0x8005, 1
-    Common_GiveAccessory
+    CallCommonScript CommonScript_ObtainAccessory
     Message ContestHallLobby_Text_PutAccessoryOnPokemon
     ApplyMovement LOCALID_KEIRA, ContestHallLobby_Movement_KeiraFaceMom
     ApplyMovement LOCALID_MOM, ContestHallLobby_Movement_MomFaceKeira

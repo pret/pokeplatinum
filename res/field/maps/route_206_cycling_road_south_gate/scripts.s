@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_206_cycling_road_south_gate.h"
 #include "res/field/maps/locals/route_206_cycling_road_south_gate.h"
@@ -73,7 +74,7 @@ Route206CyclingRoadSouthGate_BattleGirl:
     BufferAccessoryName 0, VAR_0x8004
     Message Route206CyclingRoadSouthGate_Text_HaveAFlag
     SetVar VAR_0x8005, 1
-    Common_GiveAccessoryWaitForConfirm
+    CallCommonScript CommonScript_ObtainAccessoryWaitForConfirm
     SetFlag FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG
     CloseMessage
     ReleaseAll

@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_mine_b1f.h"
 #include "res/field/maps/locals/oreburgh_mine_b1f.h"
@@ -40,7 +41,7 @@ OreburghMineB1F_TryGiveFlamePlate:
     SetVar VAR_0x8004, ITEM_FLAME_PLATE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghMineB1F_YouHaveAnOverabundance
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Message OreburghMineB1F_Text_CreatedAtSameTimeAsSinnoh
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

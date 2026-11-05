@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city.h"
 #include "res/text/bank/special_met_location_names.h"
@@ -180,7 +181,7 @@ EternaCity_CynthiaGiveCut:
     Message EternaCity_Text_TryUsingThis
     SetVar VAR_0x8004, ITEM_HM01
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Message EternaCity_Text_CutCanBeUsedInField
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -741,7 +742,7 @@ EternaCity_YouCameToSeeStatue:
     PlaySE SEQ_SE_DP_WALL_HIT2_sseq
     Message EternaCity_Text_BigThud
     CloseMessage
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
     Message EternaCity_Text_YouCameToSeeStatue
@@ -786,7 +787,7 @@ EternaCity_Cyrus:
     BufferRivalName 0
     Message EternaCity_Text_WhatThe
     CloseMessage
-    Common_FadeToDefaultMusic2
+    CallCommonScript CommonScript_FadeToDefaultMusic_2
     ScrCmd_32E
     ScrCmd_332
     AddFreeCamera 323, 524

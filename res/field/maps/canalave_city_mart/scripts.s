@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "generated/items.h"
 #include "res/text/bank/canalave_city_mart.h"

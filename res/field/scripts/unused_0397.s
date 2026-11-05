@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/common_strings.h"
 
@@ -135,7 +136,7 @@ Unused397_Unused9:
 
 Unused397_Unused10:
     SetVar VAR_MAP_LOCAL_0x00, 0
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, Unused397_Unused4
     GoTo Unused397_Unused11

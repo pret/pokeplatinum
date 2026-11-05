@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_south_pokecenter_1f.h"
 #include "res/field/maps/locals/pokemon_league_south_pokecenter_1f.h"
@@ -16,7 +17,8 @@ PokemonLeagueSouthPokecenter1F_OnTransition:
     End
 
 PokemonLeagueSouthPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_LEAGUE_SOUTH_NURSE
+    SetVar VAR_0x8007, LOCALID_LEAGUE_SOUTH_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 PokemonLeagueSouthPokecenter1F_VendorCommon_Unused:

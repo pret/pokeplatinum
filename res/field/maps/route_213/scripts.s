@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_213.h"
 #include "res/field/maps/locals/route_213.h"
@@ -118,7 +119,7 @@ Route213_Looker:
     SetFlag FLAG_ROUTE_213_GRUNT_M_LEFT
     ClearFlag FLAG_HIDE_ROUTE_213_LOOKER
     AddObject LOCALID_LOOKER
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     GetOverworldWeather VAR_RESULT
     CallIfEq VAR_RESULT, OVERWORLD_WEATHER_RAINING, _0261
     CallIfEq VAR_0x8004, DIR_WEST, Route213_LookerEnterWest
@@ -136,7 +137,7 @@ Route213_Looker:
     CallIfEq VAR_0x8004, DIR_NORTH, Route213_LookerLeaveNorth
     CallIfEq VAR_0x8004, DIR_SOUTH, Route213_LookerLeaveSouth
     RemoveObject LOCALID_LOOKER
-    Common_FadeToDefaultMusic4
+    CallCommonScript CommonScript_FadeToDefaultMusic_4
     GetOverworldWeather VAR_RESULT
     CallIfEq VAR_RESULT, OVERWORLD_WEATHER_RAINING, _0261
     ClearFlag FLAG_HIDE_GRAND_LAKE_ROUTE_213_LOBBY_LOOKER

@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/flower_shop.h"
 
@@ -18,7 +19,7 @@ FlowerShop_PokemonBreederF:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FlowerShop_BagIsFull
     SetFlag FLAG_DAILY_RECEIVED_FLOWER_SHOP_BERRY
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -31,7 +32,7 @@ FlowerShop_PlantBerryInSoil:
     End
 
 FlowerShop_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -45,7 +46,7 @@ FlowerShop_Lass:
     SetVar VAR_0x8004, ITEM_SPRAYDUCK
     SetVar VAR_0x8005, 1
     SetFlag FLAG_RECEIVED_FLOWER_SHOP_SPRAYDUCK
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

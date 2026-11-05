@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_center_2f_common.h"
 #include "res/text/bank/menu_entries.h"
@@ -211,7 +212,7 @@ PokemonCenter2FCommon_Unused6:
 
 PokemonCenter2FCommon_HealPartySaveBeforeBattle:
     HealParty
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 1, PokemonCenter2FCommon_DecideLeader
     GoTo PokemonCenter2FCommon_Exit
@@ -412,7 +413,7 @@ PokemonCenter2FCommon_TryEnterUnionRoom:
     GoToIfEq VAR_RESULT, 0xFF, PokemonCenter2FCommon_GriseousOrbCouldNotBeRemoved
     SetVar VAR_COMMUNICATION_LOAD_ACTION, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 1, PokemonCenter2FCommon_EnterUnionRoom
     SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
@@ -441,7 +442,7 @@ PokemonCenter2FCommon_EnterUnionRoom:
     End
 
 PokemonCenter2FCommon_GriseousOrbCouldNotBeRemoved:
-    Common_GriseousOrbCouldNotBeRemoved
+    CallCommonScript CommonScript_GriseousOrbCouldNotBeRemoved
     End
 
 PokemonCenter2FCommon_Dummy9004:

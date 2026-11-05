@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_mansion_maids_room.h"
 
@@ -17,13 +18,13 @@ PokemonMansionMaidsRoom_MaidMiddle:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PokemonMansionMaidsRoom_BagIsFull
     SetFlag FLAG_RECEIVED_POKEMON_MANSION_MAIDS_ROOM_SOOTHE_BELL
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
 PokemonMansionMaidsRoom_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

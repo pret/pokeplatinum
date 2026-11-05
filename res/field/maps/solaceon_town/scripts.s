@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town.h"
 #include "res/field/maps/locals/solaceon_town.h"
@@ -73,7 +74,7 @@ SolaceonTown_RuinManiac:
     GoToIfLt VAR_RESULT, 50, SolaceonTown_IfCompetentMetFiftyPokemon
     Message SolaceonTown_Text_PoketchAppPokemonHistory
     SetVar VAR_0x8004, POKETCH_APPID_POKEMONHISTORY
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll
@@ -109,7 +110,7 @@ SolaceonTown_CoordEvent_Rival:
     LockAll
     ApplyMovement LOCALID_PLAYER, SolaceonTown_Movement_PlayerNoticeRival
     WaitMovement
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos LOCALID_RIVAL, VAR_0x8004, 661
     ClearFlag FLAG_HIDE_SOLACEON_TOWN_RIVAL
@@ -132,7 +133,7 @@ SolaceonTown_CoordEvent_Rival:
     ApplyMovement LOCALID_RIVAL, SolaceonTown_Movement_RivalLeave
     WaitMovement
     RemoveObject LOCALID_RIVAL
-    Common_FadeToDefaultMusic2
+    CallCommonScript CommonScript_FadeToDefaultMusic_2
     SetVar VAR_SOLACEON_TOWN_STATE, 1
     ReleaseAll
     End

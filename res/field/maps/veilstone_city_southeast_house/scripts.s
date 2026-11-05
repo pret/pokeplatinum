@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_southeast_house.h"
 #include "res/text/bank/menu_entries.h"
@@ -55,7 +56,7 @@ VeilstoneCitySoutheastHouse_ChooseHand:
     SetVar VAR_0x8004, ITEM_COIN_CASE
     SetVar VAR_0x8005, 1
     SetFlag FLAG_RECEIVED_VEILSTONE_CITY_SOUTHEAST_HOUSE_COIN_CASE
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

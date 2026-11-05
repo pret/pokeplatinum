@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower.h"
 #include "res/text/bank/menu_entries.h"
@@ -169,7 +170,7 @@ BattleTower_GiveGoldTrophy:
 BattleTower_GiveTrophy:
     Message BattleTower_Text_TrophyForWinStreak
     SetVar VAR_0x8005, 1
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     Message BattleTower_Text_HopeToSeeYouAgain2
     GoTo BattleTower_TealaEnd
     End
@@ -277,7 +278,7 @@ BattleTower_HealAndSaveBeforeEnteringBattleRoom:
     End
 
 BattleTower_SaveGame:
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     Return
 
@@ -1027,7 +1028,7 @@ _114C:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
-    Common_CheckAllFrontierGoldPrintsObtained
+    CallCommonScript CommonScript_CheckObtainedAllGoldPrints
     Return
 
 BattleTower_BeatenAllSevenTrainers:
@@ -1207,7 +1208,7 @@ BattleTower_Pikachu2:
 BattleTower_GriseousOrbCouldNotBeRemoved:
     Call BattleTower_FreeBattleTower
     Call BattleTower_ResetBattleTowerVars
-    Common_GriseousOrbCouldNotBeRemoved
+    CallCommonScript CommonScript_GriseousOrbCouldNotBeRemoved
     End
 
 BattleTower_StatsJudge:

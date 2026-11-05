@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_southwest_house.h"
 
@@ -14,7 +15,7 @@ CelesticTownPokecenter1F_BlackBelt:
     GoToIfEq VAR_RESULT, TRUE, CelesticTownSoutheastHouse_AnalogOrDigital
     Message CelesticTownSoutheastHouse_Text_TakeThisFromMe
     SetVar VAR_0x8004, POKETCH_APPID_ANALOGWATCH
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll

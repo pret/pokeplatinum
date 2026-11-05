@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town_middle_house.h"
 
@@ -35,7 +36,7 @@ FloaromaTownMiddleHouse_HeresTMForPluck:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FloaromaTownMiddleHouse_BagIsFull
     SetFlag FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -48,7 +49,7 @@ FloaromaTownMiddleHouse_UsingPluckEatsBerry:
     End
 
 FloaromaTownMiddleHouse_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

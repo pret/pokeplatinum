@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area.h"
 #include "res/field/maps/locals/fight_area.h"
@@ -69,11 +70,11 @@ FightArea_OnFrame_Rival:
     BufferPlayerName 1
     Message FightArea_Text_ComeWithMe
     CloseMessage
-    Common_SetFollowMeBGM
+    CallCommonScript CommonScript_SetFollowMeBGM
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_PlayerWalkToVolknerFlint
     ApplyMovement LOCALID_RIVAL, FightArea_Movement_RivalWalkToVolknerFlint
     WaitMovement
-    Common_FadeToDefaultMusic3
+    CallCommonScript CommonScript_FadeToDefaultMusic_3
     SetVar VAR_FIGHT_AREA_STATE, 1
     ScrCmd_32E
     Message FightArea_Text_LetsTeamUp
@@ -431,7 +432,7 @@ FightArea_Fisherman:
     Message FightArea_Text_TakeThisSuperRod
     SetVar VAR_0x8004, ITEM_SUPER_ROD
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_SUPER_ROD
     Message FightArea_Text_TryLuckAtFishing
     WaitButton

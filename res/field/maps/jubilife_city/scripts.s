@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city.h"
 #include "res/text/bank/menu_entries.h"
@@ -93,7 +94,7 @@ JubilifeCity_CounterpartWalkToPlayerFirstArrival:
     WaitMovement
     ApplyMovement LOCALID_COUNTERPART, JubilifeCity_Movement_CounterpartWalkToPlayerFirstArrival
     WaitMovement
-    Common_SetCounterpartBGM
+    CallCommonScript CommonScript_SetCounterpartBGM
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, JubilifeCity_MeetLookerWithDawn
     GoToIfEq VAR_RESULT, GENDER_FEMALE, JubilifeCity_MeetLookerWithLucas
@@ -230,7 +231,7 @@ JubilifeCity_LookerWalkAround:
 JubilifeCity_LookerNoticePlayerAndCounterpart:
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerNoticePlayerAndCounterpart
     WaitMovement
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     Message JubilifeCity_Text_WHAAAT
     Message JubilifeCity_Text_HowDidYouUnmaskMe
     CloseMessage
@@ -258,7 +259,7 @@ JubilifeCity_LookerGiveVSRecorderAndLeave:
     Message JubilifeCity_Text_PerhapsYouCanUseThis
     SetVar VAR_0x8004, ITEM_VS_RECORDER
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Message JubilifeCity_Text_DeviceForRecordingAMatch
     CloseMessage
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerWalkWestEastSouth
@@ -271,7 +272,7 @@ JubilifeCity_LookerGiveVSRecorderAndLeave:
     WaitMovement
     SetPosition LOCALID_LOOKER, 186, 0, 756, DIR_SOUTH
     SetObjectEventPos LOCALID_LOOKER, 186, 756
-    Common_FadeToDefaultMusic4
+    CallCommonScript CommonScript_FadeToDefaultMusic_4
     Return
 
 JubilifeCity_CounterpartWalkToTrainersSchool:
@@ -981,7 +982,7 @@ JubilifeCity_CollectorJubilifeTV:
 JubilifeCity_GiveFashionCaseAndAccessories:
     SetVar VAR_0x8004, ITEM_FASHION_CASE
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_FASHION_CASE
     Call JubilifeCity_GiveRandomAccessoryFluff
     Call JubilifeCity_GiveRandomAccessoryFluff
@@ -1512,7 +1513,7 @@ JubilifeCity_Clown1CorrectAnswer:
     SetVar VAR_0x8004, ITEM_COUPON_1
     SetVar VAR_0x8005, 1
     SetFlag FLAG_RECEIVED_COUPON_1
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1551,7 +1552,7 @@ JubilifeCity_Clown2CorrectAnswer:
     SetVar VAR_0x8004, ITEM_COUPON_2
     SetVar VAR_0x8005, 1
     SetFlag FLAG_RECEIVED_COUPON_2
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1592,7 +1593,7 @@ JubilifeCity_Clown3CorrectAnswer:
     SetVar VAR_0x8004, ITEM_COUPON_3
     SetVar VAR_0x8005, 1
     SetFlag FLAG_RECEIVED_COUPON_3
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1637,7 +1638,7 @@ JubilifeCity_CoordEvent_LookerPalPad:
     AddObject LOCALID_LOOKER
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerNoticePlayer
     WaitMovement
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerWalkToPlayer
     ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerFaceWest
     WaitMovement
@@ -1646,7 +1647,7 @@ JubilifeCity_CoordEvent_LookerPalPad:
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerLeavePalPad
     WaitMovement
     RemoveObject LOCALID_LOOKER
-    Common_FadeToDefaultMusic4
+    CallCommonScript CommonScript_FadeToDefaultMusic_4
     SetVar VAR_JUBILIFE_LOOKER_PAL_PAD_STATE, 2
     ReleaseAll
     End

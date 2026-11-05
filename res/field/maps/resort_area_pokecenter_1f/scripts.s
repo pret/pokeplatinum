@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_pokecenter_1f.h"
 #include "res/field/maps/locals/resort_area_pokecenter_1f.h"
@@ -9,7 +10,8 @@
     ScriptEntryEnd
 
 ResortAreaPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_RESORT_AREA_NURSE
+    SetVar VAR_0x8007, LOCALID_RESORT_AREA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 ResortAreaPokecenter1F_RichBoy:

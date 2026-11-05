@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_hall.h"
 #include "res/text/bank/menu_entries.h"
@@ -304,7 +305,7 @@ BattleHall_HealAndSaveBeforeChallenge:
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_SetChallengeInProgress
     SetVar VAR_MAP_LOCAL_0x00, 0
     HealParty
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, BattleHall_EndChallenge
     GoToIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_BecomeLeaderOrJoinGroup
@@ -470,7 +471,7 @@ BattleHall_WalkBackInvisiblyMultiChallenge:
 
 BattleHall_ShowGriseousOrbErrorAndExit:
     SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0
-    Common_GriseousOrbCouldNotBeRemoved
+    CallCommonScript CommonScript_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0
@@ -620,7 +621,7 @@ BattleHall_EarnedGoldPrint:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_HALL_PRINT_STATE, 4
-    Common_CheckAllFrontierGoldPrintsObtained
+    CallCommonScript CommonScript_CheckObtainedAllGoldPrints
     Return
 
 BattleHall_OnFrame_ChallengeEnded:

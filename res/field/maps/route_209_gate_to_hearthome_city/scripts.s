@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209_gate_to_hearthome_city.h"
 #include "res/field/maps/locals/route_209_gate_to_hearthome_city.h"
@@ -15,7 +16,7 @@ Route209GateToHearthomeCity_CoordEvent_Rival:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route209GateToHearthomeCity_Movement_RivalNoticePlayer
     WaitMovement
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 5, Route209GateToHearthomeCity_RivalWalkToPlayerZ5
     CallIfEq VAR_0x8005, 6, Route209GateToHearthomeCity_RivalWalkToPlayerZ6

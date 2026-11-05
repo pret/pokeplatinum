@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area_pokecenter_1f.h"
 #include "res/field/maps/locals/fight_area_pokecenter_1f.h"
@@ -10,7 +11,8 @@
     ScriptEntryEnd
 
 FightAreaPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_FIGHT_AREA_NURSE
+    SetVar VAR_0x8007, LOCALID_FIGHT_AREA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 FightAreaPokecenter1F_Guitarist:

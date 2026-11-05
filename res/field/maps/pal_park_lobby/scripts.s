@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/pal_park_lobby.h"
@@ -368,7 +369,7 @@ PalParkLobby_PokemonFromAroundTheCountry:
     WaitMovement
     Message PalParkLobby_Text_Oak_GiftTrainerCounterApp
     SetVar VAR_0x8004, POKETCH_APPID_TRAINERCOUNTER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     Message PalParkLobby_Text_Oak_InEternaForSomeTime
     CloseMessage
     WaitTime 15, VAR_RESULT
@@ -425,7 +426,7 @@ PalParkLobby_PoketchAppLady:
     GoToIfEq VAR_RESULT, 0, PalParkLobby_PoketchAppLady_DoesntHaveSpecies
     Message PalParkLobby_Text_ShowSnorlaxForApp
     SetVar VAR_0x8004, POKETCH_APPID_KITCHENTIMER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     SetVar VAR_MAP_LOCAL_0x0A, 1
     CloseMessage
@@ -438,7 +439,7 @@ PalParkLobby_PoketchAppLady_CheckKecleon:
     GoToIfEq VAR_RESULT, 0, PalParkLobby_PoketchAppLady_DoesntHaveSpecies
     Message PalParkLobby_Text_ShowKecleonForApp
     SetVar VAR_0x8004, POKETCH_APPID_COLORCHANGER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     SetVar VAR_MAP_LOCAL_0x0A, 2
     CloseMessage
@@ -546,14 +547,14 @@ PalParkLobby_GBASlotGiftLady_Emerald:
     End
 
 PalParkLobby_GBASlotGiftLady_GiveAccessory:
-    Common_GiveAccessoryWaitForConfirm
+    CallCommonScript CommonScript_ObtainAccessoryWaitForConfirm
     SetVar VAR_MAP_LOCAL_0x09, 1
     CloseMessage
     ReleaseAll
     End
 
 PalParkLobby_GBASlotGiftLady_GiveBackdrop:
-    Common_ObtainContestBackdropWaitForConfirm
+    CallCommonScript CommonScript_ObtainContestBackdropWaitForConfirm
     SetVar VAR_MAP_LOCAL_0x09, 1
     CloseMessage
     ReleaseAll
@@ -623,7 +624,7 @@ PalParkLobby_Worker_GivePrize:
     Message PalParkLobby_Text_TimeForPrize
     SetVar VAR_0x8004, VAR_0x8006
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Return
 
 PalParkLobby_SetPrize_CheriBerry:

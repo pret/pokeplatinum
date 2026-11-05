@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city.h"
 #include "res/field/maps/locals/oreburgh_city.h"
@@ -126,7 +127,7 @@ OreburghCity_NextStopTheEternaGymBadge:
     PlaySE SEQ_SE_DP_WALL_HIT2_sseq
     Message OreburghCity_Text_BigThud
     CloseMessage
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
     Message OreburghCity_Text_EternaCityNextPlaceWithAGym
@@ -176,7 +177,7 @@ OreburghCity_RivalLeaveZ751:
 OreburghCity_RemoveRival:
     PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_RIVAL
-    Common_FadeToDefaultMusic2
+    CallCommonScript CommonScript_FadeToDefaultMusic_2
     SetVar VAR_OREBURGH_CITY_STATE, 3
     ReleaseAll
     End
@@ -278,7 +279,7 @@ OreburghCity_Worker2:
     SetVar VAR_0x8004, ITEM_SUPER_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghCity_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_OREBURGH_CITY_SUPER_POTION
     GoTo OreburghCity_PutsASmileOnMyFace
     End
@@ -291,7 +292,7 @@ OreburghCity_PutsASmileOnMyFace:
     End
 
 OreburghCity_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -344,7 +345,7 @@ OreburghCity_YoungsterWalkToPlayerZ751:
 OreburghCity_IllTakeYouToTheGym:
     Message OreburghCity_Text_IllTakeYouToTheGym
     CloseMessage
-    Common_SetFollowMeBGM
+    CallCommonScript CommonScript_SetFollowMeBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 748, OreburghCity_WalkWithYoungsterToTheGymZ748
     GoToIfEq VAR_0x8005, 749, OreburghCity_WalkWithYoungsterToTheGymZ749
@@ -384,7 +385,7 @@ OreburghCity_HuhTheresSomeoneThere:
     Message OreburghCity_Text_HuhTheresSomeoneThere
     WaitButton
     CloseMessage
-    Common_FadeToDefaultMusic3
+    CallCommonScript CommonScript_FadeToDefaultMusic_3
     SetVar VAR_OREBURGH_CITY_STATE, 1
     ReleaseAll
     End

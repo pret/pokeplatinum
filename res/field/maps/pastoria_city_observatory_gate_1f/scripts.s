@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_observatory_gate_1f.h"
 #include "res/field/maps/locals/pastoria_city_observatory_gate_1f.h"
@@ -163,7 +164,7 @@ PastoriaCityObservatoryGate1F_TryGiveMatchupchecker:
     WaitMovement
     Message PastoriaCityObservatoryGate1F_Text_HereAppMatchupChecker
     SetVar VAR_0x8004, POKETCH_APPID_MATCHUPCHECKER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_OBSERVATORY_GATE_1F_MATCHUPCHECKER
     CloseMessage
     ReleaseAll

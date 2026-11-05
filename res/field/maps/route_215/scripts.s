@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_215.h"
 
@@ -45,7 +46,7 @@ Route215_BlackBelt:
     SetVar VAR_0x8004, ITEM_TM66
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route215_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_ROUTE_215_TM66
     GoTo Route215_PaybackIsHarsh
 
@@ -57,7 +58,7 @@ Route215_PaybackIsHarsh:
     End
 
 Route215_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

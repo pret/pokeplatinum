@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_4f.h"
 #include "res/text/bank/menu_entries.h"
@@ -58,7 +59,7 @@ GalacticHQ4F_Cyrus:
     End
 
 GalacticHQ4F_GiveMasterBall:
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Return
 
 GalacticHQ4F_BlackOut:

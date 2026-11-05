@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
 #include "res/text/bank/menu_entries.h"
@@ -25,7 +26,7 @@ EternaCityUndergroundManHouse_UndergroundMan:
     Message EternaCityUndergroundManHouse_Text_CallMeUndergroundMan
     SetVar VAR_0x8004, ITEM_EXPLORER_KIT
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_EXPLORER_KIT
     ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     Message EternaCityUndergroundManHouse_Text_MentorYouBecomingSpelunker
@@ -175,13 +176,13 @@ EternaCityUndergroundManHouse_MissionGoUnderground:
     Message EternaCityUndergroundManHouse_Text_YouveGoneDownToUnderground
     SetVar VAR_0x8004, TRAP_MOVE_UP
     SetVar VAR_0x8005, 1
-    Common_ObtainUndergroundTrap
+    CallCommonScript CommonScript_ObtainUndergroundTrap
     SetVar VAR_0x8004, TRAP_BUBBLE
     SetVar VAR_0x8005, 1
-    Common_ObtainUndergroundTrap
+    CallCommonScript CommonScript_ObtainUndergroundTrap
     SetVar VAR_0x8004, TRAP_LEAF
     SetVar VAR_0x8005, 1
-    Common_ObtainUndergroundTrap
+    CallCommonScript CommonScript_ObtainUndergroundTrap
     Message EternaCityUndergroundManHouse_Text_ThoseAreCalledTraps
     WaitButton
     CloseMessage
@@ -196,13 +197,13 @@ EternaCityUndergroundManHouse_MissionDigUpTreasureOrSpheres:
     Message EternaCityUndergroundManHouse_Text_YouDugUpWhatIWasLookingFor
     SetVar VAR_0x8004, SPHERE_PRISM
     SetVar VAR_0x8005, 1
-    Common_ObtainUndergroundSphere
+    CallCommonScript CommonScript_ObtainUndergroundSphere
     SetVar VAR_0x8004, SPHERE_RED
     SetVar VAR_0x8005, 1
-    Common_ObtainUndergroundSphere
+    CallCommonScript CommonScript_ObtainUndergroundSphere
     SetVar VAR_0x8004, SPHERE_BLUE
     SetVar VAR_0x8005, 1
-    Common_ObtainUndergroundSphere
+    CallCommonScript CommonScript_ObtainUndergroundSphere
     Message EternaCityUndergroundManHouse_Text_DigInWalls
     WaitButton
     CloseMessage
@@ -217,7 +218,7 @@ EternaCityUndergroundManHouse_MissionBurySpheres:
     Message EternaCityUndergroundManHouse_Text_YouveBuriedSpheres
     SetVar VAR_0x8004, TRAP_DIGGER_DRILL
     SetVar VAR_0x8005, 1
-    Common_ObtainUndergroundTrap
+    CallCommonScript CommonScript_ObtainUndergroundTrap
     Message EternaCityUndergroundManHouse_Text_TheseAreSphereCollectors
     WaitButton
     CloseMessage
@@ -232,16 +233,16 @@ EternaCityUndergroundManHouse_MissionMakeASecretBase:
     Message EternaCityUndergroundManHouse_Text_YouveMadeSecretBase
     SetVar VAR_0x8004, UG_GOOD_PLAIN_TABLE
     SetVar VAR_0x8005, 1
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     SetVar VAR_0x8004, UG_GOOD_WOODEN_CHAIR
     SetVar VAR_0x8005, 1
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     SetVar VAR_0x8004, UG_GOOD_SMALL_BOOKSHELF
     SetVar VAR_0x8005, 1
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     SetVar VAR_0x8004, UG_GOOD_BUNEARY_DOLL
     SetVar VAR_0x8005, 1
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     Message EternaCityUndergroundManHouse_Text_DiggerDrillUsedOnlyOnce
     WaitButton
     CloseMessage
@@ -271,19 +272,19 @@ EternaCityUndergroundManHouse_SendStarterDollToUndergroundPC:
 EternaCityUndergroundManHouse_SendChimcharDollToUndergroundPC:
     SetVar VAR_0x8004, UG_GOOD_CHIMCHAR_DOLL
     SetVar VAR_0x8005, 1
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     Return
 
 EternaCityUndergroundManHouse_SendTurtwigDollToUndergroundPC:
     SetVar VAR_0x8004, UG_GOOD_TURTWIG_DOLL
     SetVar VAR_0x8005, 1
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     Return
 
 EternaCityUndergroundManHouse_SendPiplupDollToUndergroundPC:
     SetVar VAR_0x8004, UG_GOOD_PIPLUP_DOLL
     SetVar VAR_0x8005, 1
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     Return
 
 EternaCityUndergroundManHouse_MissionStealAFlag:
@@ -295,7 +296,7 @@ EternaCityUndergroundManHouse_MissionStealAFlag:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
-    Common_SendToUndergroundPCWithLinefeed
+    CallCommonScript CommonScript_SendToUndergroundPCWithLinefeed
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 6
     ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
@@ -318,7 +319,7 @@ EternaCityUndergroundManHouse_MissionStealThreeFlags:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 7
     ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     CloseMessage
@@ -338,7 +339,7 @@ EternaCityUndergroundManHouse_MissionStealTenFlags:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 8
     ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     CloseMessage
@@ -358,7 +359,7 @@ EternaCityUndergroundManHouse_MissionStealFiftyFlags:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
-    Common_SendToUndergroundPC
+    CallCommonScript CommonScript_SendToUndergroundPC
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 9
     ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     CloseMessage

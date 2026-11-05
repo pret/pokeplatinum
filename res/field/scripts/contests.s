@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/field/maps/locals/contest_hall_stage_ongoing_contest.h"
 #include "res/field/maps/locals/contest_hall_lobby.h"
@@ -237,8 +238,8 @@ Contests_EnterContest:
 Contests_EnterLinkContest:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00  @ VAR_MAP_LOCAL_0x00 is set in CommonScript_SaveGame
+    CallCommonScript CommonScript_SaveGame
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00  // VAR_MAP_LOCAL_0x00 is set in CommonScript_SaveGame
     GoToIfEq VAR_RESULT, TRUE, Contests_SetLinkContestSavedGame
     GoTo Contests_ContestMenuExit
     End
@@ -831,7 +832,7 @@ Contests_OfficialContestReturnToReceptionist:
     BufferAccessoryName 1, VAR_0x8004
     Message ContestCommon_Text_HeresYourPrize
     SetVar VAR_0x8005, 1
-    Common_GiveAccessory
+    CallCommonScript CommonScript_ObtainAccessory
 Contests_ThankYouForParticipating:
     Message ContestCommon_Text_ThankYouForParticipating
     WaitButton

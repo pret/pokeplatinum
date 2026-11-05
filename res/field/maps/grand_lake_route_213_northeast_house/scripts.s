@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/grand_lake_route_213_northeast_house.h"
 
@@ -14,7 +15,7 @@ GrandLakeRoute213NortheastHouse_RichBoy:
     GoToIfNe VAR_RESULT, FALSE, GrandLakeRoute213NortheastHouse_CoinTossForDecisions
     Message GrandLakeRoute213NortheastHouse_Text_ReservationsWereFull
     SetVar VAR_0x8004, POKETCH_APPID_COINTOSS
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll

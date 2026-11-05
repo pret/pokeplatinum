@@ -1,6 +1,8 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_south_house.h"
 #include "res/field/maps/locals/eterna_city_south_house.h"
+#include "res/field/maps/scripts_pokedex_ratings.h"
 
 
     ScriptEntry EternaCitySouthHouse_ProfOak
@@ -24,18 +26,18 @@ EternaCitySouthHouse_ProfOak:
     SetVar VAR_0x8004, ITEM_UPGRADE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCitySouthHouse_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE
     Message EternaCitySouthHouse_Text_PokemonThatEvolvesTradingWithUpgrade
     GoTo EternaCitySouthHouse_ActivateRoamingLegendaryBirds
     End
 
 EternaCitySouthHouse_PokedexRatingsCheckOak:
-    CallCommonScript 0x26E0
+    CallCommonScript PokedexRatings_CheckOak
     End
 
 EternaCitySouthHouse_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -75,11 +77,11 @@ EternaCitySouthHouse_ReactivateRoamingArticuno:
 EternaCitySouthHouse_CaughtAllRoamingLegendaryBirds:
     Message EternaCitySouthHouse_Text_YouveCaughtLegendaryBirds
     SetFlag FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS
-    CallCommonScript 0x26E1
+    CallCommonScript PokedexRatings_CheckNationalDex
     End
 
 EternaCitySouthHouse_PokedexRatingsCheckOak2:
-    CallCommonScript 0x26E0
+    CallCommonScript PokedexRatings_CheckOak
     End
 
 EternaCitySouthHouse_CheckCaughtAllRoamingLegendaryBirds:

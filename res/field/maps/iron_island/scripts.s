@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island.h"
 #include "res/field/maps/locals/iron_island.h"
@@ -97,7 +98,7 @@ IronIsland_Riley:
     Message IronIsland_Text_ImRileyHeresAGift
     SetVar VAR_0x8004, ITEM_HM04
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, IronIsland_YouNeedMineBadge
     GoTo IronIsland_YouCanJoinMeInside

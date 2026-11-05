@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_217_northeast_house.h"
 
@@ -16,13 +17,13 @@ Route217NortheastHouse_PokemonBreederF:
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route217NortheastHouse_BagIsFull
     SetFlag FLAG_RECEIVED_ROUTE_217_NORTHEAST_HOUSE_SPELL_TAG
     SetFlag FLAG_HIDE_ROUTE_217_NORTHEAST_HOUSE_POKEMON_BREEDER_F
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
 Route217NortheastHouse_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

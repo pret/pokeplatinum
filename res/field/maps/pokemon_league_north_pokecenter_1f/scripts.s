@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_north_pokecenter_1f.h"
 #include "res/field/maps/locals/pokemon_league_north_pokecenter_1f.h"
@@ -109,7 +110,7 @@ PokemonLeagueNorthPokecenter1F_CoordEvent_Rival:
     LockAll
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL
     AddObject LOCALID_LEAGUE_NORTH_RIVAL
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 10, PokemonLeagueNorthPokecenter1F_RivalEnterWest
     GoToIfEq VAR_0x8004, 11, PokemonLeagueNorthPokecenter1F_RivalEnterNorth
@@ -248,7 +249,8 @@ PokemonLeagueNorthPokecenter1F_Guitarist:
     End
 
 PokemonLeagueNorthPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_LEAGUE_NORTH_NURSE
+    SetVar VAR_0x8007, LOCALID_LEAGUE_NORTH_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
     .balign 4, 0

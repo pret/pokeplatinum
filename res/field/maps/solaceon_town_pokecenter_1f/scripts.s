@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town_pokecenter_1f.h"
 #include "res/field/maps/locals/solaceon_town_pokecenter_1f.h"
@@ -10,7 +11,8 @@
     ScriptEntryEnd
 
 SolaceonTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_SOLACEON_NURSE
+    SetVar VAR_0x8007, LOCALID_SOLACEON_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 SolaceonTownPokecenter1F_OldMan:

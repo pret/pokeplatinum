@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_204_north.h"
 
@@ -20,7 +21,7 @@ Route204North_AceTrainerF:
     SetVar VAR_0x8004, ITEM_TM78
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route204North_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_ROUTE_204_NORTH_TM78
     GoTo Route204North_CaptivateOppositeGender
 
@@ -32,7 +33,7 @@ Route204North_CaptivateOppositeGender:
     End
 
 Route204North_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

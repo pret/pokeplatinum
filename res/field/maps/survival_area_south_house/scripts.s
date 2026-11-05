@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area_south_house.h"
 
@@ -14,7 +15,7 @@ SurvivalAreaSouthHouse_BlackBelt:
     SetVar VAR_0x8004, ITEM_TM42
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SurvivalAreaSouthHouse_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42
     GoTo SurvivalAreaSouthHouse_ExplainFacade
 
@@ -26,7 +27,7 @@ SurvivalAreaSouthHouse_ExplainFacade:
     End
 
 SurvivalAreaSouthHouse_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

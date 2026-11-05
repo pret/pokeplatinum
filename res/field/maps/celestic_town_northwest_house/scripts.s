@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_northwest_house.h"
 
@@ -13,7 +14,7 @@ CelesticTownNorthwestHouse_Vendor_Unused:
     LockAll
     FacePlayer
     Message CelesticTownNorthwestHouse_Text_AWhileSinceCustomer
-    Common_VendorGreeting
+    CallCommonScript CommonScript_VendorGreetingGeneric
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -44,7 +45,7 @@ CelesticTownNorthwestHouse_TryGiveChoiceSpecs:
     SetVar VAR_0x8004, ITEM_CHOICE_SPECS
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownNorthwestHouse_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_CHOICE_SPECS
     Message CelesticTownNorthwestHouse_Text_MorningChoiceSpecs
     GoTo CelesticTownNorthwestHouse_ExplainChoiceSpecs
@@ -55,7 +56,7 @@ CelesticTownNorthwestHouse_TryGiveBlackGlasses:
     SetVar VAR_0x8004, ITEM_BLACKGLASSES
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownNorthwestHouse_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_BLACKGLASSES
     Message CelesticTownNorthwestHouse_Text_DayBlackGlasses
     GoTo CelesticTownNorthwestHouse_ExplainBlackGlasses
@@ -66,7 +67,7 @@ CelesticTownNorthwestHouse_TryGiveWiseGlasses:
     SetVar VAR_0x8004, ITEM_WISE_GLASSES
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownNorthwestHouse_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_WISE_GLASSES
     Message CelesticTownNorthwestHouse_Text_NightWiseGlasses
     GoTo CelesticTownNorthwestHouse_ExplainWiseGlasses

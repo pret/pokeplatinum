@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_pokecenter_1f.h"
 #include "res/field/maps/locals/sandgem_town_pokecenter_1f.h"
@@ -10,7 +11,8 @@
     ScriptEntryEnd
 
 SandgemTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_SANDGEM_NURSE
+    SetVar VAR_0x8007, LOCALID_SANDGEM_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 SandgemTownPokecenter1F_BreederM:

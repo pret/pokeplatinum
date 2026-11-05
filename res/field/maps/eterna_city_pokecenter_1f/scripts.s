@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_pokecenter_1f.h"
 #include "res/field/maps/locals/eterna_city_pokecenter_1f.h"
@@ -11,7 +12,8 @@
     ScriptEntryEnd
 
 EternaCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_ETERNA_NURSE
+    SetVar VAR_0x8007, LOCALID_ETERNA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 EternaCityPokecenter1F_BattleGirl:
@@ -60,7 +62,7 @@ EternaCityPokecenter1F_GivePoketchAppFriendshipChecker:
     Message EternaCityPokecenter1F_Text_ShowHowClosePokemonFeel
     SetVar VAR_MAP_LOCAL_0x02, 1
     SetVar VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll

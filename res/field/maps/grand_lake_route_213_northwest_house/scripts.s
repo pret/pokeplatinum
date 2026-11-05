@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/grand_lake_route_213_northwest_house.h"
 
@@ -16,7 +17,7 @@ GrandLakeRoute213NorthwestHouse_Clown:
     SetVar VAR_0x8004, ITEM_TM92
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, GrandLakeRoute213NorthwestHouse_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE_TM92
     GoTo GrandLakeRoute213NorthwestHouse_ExplainTrickRoom
 
@@ -28,7 +29,7 @@ GrandLakeRoute213NorthwestHouse_ExplainTrickRoom:
     End
 
 GrandLakeRoute213NorthwestHouse_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

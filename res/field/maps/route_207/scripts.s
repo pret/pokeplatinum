@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/route_207.h"
@@ -34,7 +35,7 @@ Route207_CoordEvent_Counterpart:
     Call Route207_ShowCounterpart
     ApplyMovement LOCALID_COUNTERPART, Route207_Movement_CounterpartNoticePlayer
     WaitMovement
-    Common_SetCounterpartBGM
+    CallCommonScript CommonScript_SetCounterpartBGM
     ApplyMovement LOCALID_COUNTERPART, Route207_Movement_CounterpartWalkToPlayer
     WaitMovement
     ApplyMovement LOCALID_PLAYER, Route207_Movement_PlayerFaceCounterpart
@@ -87,12 +88,12 @@ Route207_GiveVsSeeker:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1
     SetVar VAR_0x8004, ITEM_VS_SEEKER
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Return
 
 Route207_GivePoketchAppDowsingMachine:
     SetVar VAR_0x8004, POKETCH_APPID_DOWSINGMACHINE
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     BufferPoketchAppName 1, POKETCH_APPID_DOWSINGMACHINE
     Return
 
@@ -101,7 +102,7 @@ Route207_CounterpartLeave:
     ApplyMovement LOCALID_COUNTERPART, Route207_Movement_CounterpartLeave
     WaitMovement
     RemoveObject LOCALID_COUNTERPART
-    Common_FadeToDefaultMusic
+    CallCommonScript CommonScript_FadeToDefaultMusic
     SetVar VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1
     ReleaseAll
     End

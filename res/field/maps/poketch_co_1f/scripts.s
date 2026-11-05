@@ -1,3 +1,4 @@
+#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poketch_co_1f.h"
 #include "res/field/maps/locals/poketch_co_1f.h"
@@ -63,7 +64,7 @@ PoketchCo1F_CheckBadgesForMoveTesterApp:
 PoketchCo1F_GiveMemoPadApp:
     Message PoketchCo1F_Text_IveDevelopedANewApp
     SetVar VAR_0x8004, POKETCH_APPID_MEMOPAD
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     Message PoketchCo1F_Text_ThatsTheMemoPad
     WaitButton
     CloseMessage
@@ -73,7 +74,7 @@ PoketchCo1F_GiveMemoPadApp:
 PoketchCo1F_GiveMarkingMapApp:
     Message PoketchCo1F_Text_IveDevelopedAnotherApp
     SetVar VAR_0x8004, POKETCH_APPID_MARKINGMAP
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     Message PoketchCo1F_Text_MapDisplayedIsConvenient
     WaitButton
     CloseMessage
@@ -83,7 +84,7 @@ PoketchCo1F_GiveMarkingMapApp:
 PoketchCo1F_GiveLinkSearcherApp:
     Message PoketchCo1F_Text_IveDevelopedYetAnotherApp
     SetVar VAR_0x8004, POKETCH_APPID_LINKSEARCHER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     Message PoketchCo1F_Text_KnowHowManyPeopleAreCommunicating
     WaitButton
     CloseMessage
@@ -93,7 +94,7 @@ PoketchCo1F_GiveLinkSearcherApp:
 PoketchCo1F_GiveMoveTesterApp:
     Message PoketchCo1F_Text_IveDevelopedStillYetAnotherApp
     SetVar VAR_0x8004, POKETCH_APPID_MOVETESTER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     Message PoketchCo1F_Text_CheckTypeMatchups
     WaitButton
     CloseMessage
