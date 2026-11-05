@@ -426,17 +426,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_MAP_SIGNPOST",
-            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_SOLACEON_TOWN",
-            "script": 65535,
+            "clone": {
+                "map": "MAP_HEADER_SOLACEON_TOWN",
+                "id": "LOCALID_MAP_SIGNPOST"
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                4
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 564,

@@ -404,15 +404,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_SIGNBOARD_POKEMON_DAY_CARE",
-            "clone_id": 5,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_SOLACEON_TOWN",
-            "script": 65535,
+            "clone": {
+                "map": "MAP_HEADER_SOLACEON_TOWN",
+                "id": "LOCALID_SIGNBOARD_POKEMON_DAY_CARE"
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 556,
@@ -437,17 +436,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_215",
-            "clone_id": 8,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_215",
-            "script": 65535,
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_215",
+                "id": "LOCALID_ARROW_SIGNPOST_WEST"
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                6
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 580,
@@ -506,15 +502,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_BLACK_BELT",
-            "clone_id": 23,
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_210_NORTH",
-            "script": 65535,
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_210_NORTH",
+                "id": "LOCALID_BLACK_BELT"
+            },
             "initial_dir": "DIR_WEST",
-            "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 570,

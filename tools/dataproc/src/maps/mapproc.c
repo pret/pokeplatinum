@@ -183,24 +183,19 @@ static inline u32 ClampLength(dp_node string, size_t max)
     return len;
 }
 
-static inline u16 ProcCloneID(dp_node parent, u16 fallback)
+static inline bool IsClone(dp_node entry)
 {
-    dp_node cloneID = dp_try(parent, ".clone_id");
-    return dp_missing(cloneID) ? fallback : dp_u16(cloneID);
+    return !dp_missing(dp_try(entry, ".clone"));
 }
 
 static inline u16 ProcHiddenFlag(dp_node parent)
 {
-    // This could be a var-flag, or a map header (for clones), or just 0 as a string
+    // This could be a var-flag, or just 0 as a string
     dp_node     node  = dp_at(parent, ".hidden_flag");
     const char *value = dp_string(node);
     if (!value) return 0;
 
     if (strcmp(value, "0") == 0) return 0;
-
-    if (strncmp(value, "MAP_HEADER_", sizeof("MAP_HEADER_") - 1) == 0) {
-        return dp_u16(dp_lookup(node, L_MAP_HEADER));
-    }
 
     return dp_u16(dp_lookup(node, L_VAR_FLAG));
 }
@@ -391,6 +386,31 @@ static void ProcSignpost(dp_node kind, dp_node entry, ObjectEvent *event, const 
     event->script = ProcScript(entry);
 }
 
+static void ProcClone(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
+{
+    (void)ctx;
+
+    dp_node hiddenFlag = dp_try(entry, ".hidden_flag");
+    if (!dp_missing(hiddenFlag)) {
+        dp_error(hiddenFlag, "clones must not declare a hidden flag");
+        dp_note(kind, "declared as a clone here");
+    }
+
+    dp_node map       = dp_lookup_at(kind, ".map", L_MAP_HEADER);
+    event->hiddenFlag = dp_u16(map);
+    event->script     = 0xFFFF;
+    if (dp_type_of(map) == DP_ERROR) return;
+
+    char   *type  = String_Format("objects:%s", dp_string(map));
+    dp_node owner = dp_lookup_at(kind, ".id", type);
+    free(type);
+    if (dp_type_of(owner) == DP_ERROR) return;
+
+    const ObjectData *object = &Buffer_At(&sObjects, ObjectData, dp_u32(owner));
+    event->localID = object->index;
+    memcpy(event->data, object->data, sizeof(event->data));
+}
+
 static void PreprocEventGeneric(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
 {
     (void)kind;
@@ -412,12 +432,13 @@ static void ProcEventGeneric(dp_node kind, dp_node entry, ObjectEvent *event, co
     event->script = ProcScript(entry);
 }
 
-enum { K_TRAINER, K_BERRY_TREE, K_SIGNPOST };
+enum { K_TRAINER, K_BERRY_TREE, K_SIGNPOST, K_CLONE };
 
 static const ObjectKind sObjectKinds[] = {
     [K_TRAINER]    = { .key = ".trainer",    .ownsScript = true,  .proc = ProcTrainer,   .preproc = PreprocTrainer   },
     [K_BERRY_TREE] = { .key = ".berry_tree", .ownsScript = true,  .proc = ProcBerryTree, .preproc = PreprocBerryTree },
     [K_SIGNPOST]   = { .key = ".signpost",   .ownsScript = false, .proc = ProcSignpost,  .preproc = PreprocSignpost  },
+    [K_CLONE]      = { .key = ".clone",      .ownsScript = true,  .proc = ProcClone,     .preproc = NULL             },
 };
 
 static const ObjectKind sGenericObjectKind = {
@@ -453,11 +474,12 @@ static const ObjectKind* PickObjectKind(dp_node entry)
 
 static void ProcEventBase(dp_node entry, ObjectEvent *event, size_t i)
 {
-    event->localID        = ProcCloneID(entry, i);
+    if (!IsClone(entry)) event->hiddenFlag = ProcHiddenFlag(entry);
+
+    event->localID        = i;
     event->graphicsID     = dp_u16(dp_lookup_at(entry, ".graphics_id", L_OBJECT_EVENT_GFX));
     event->movementType   = dp_u16(dp_lookup_at(entry, ".movement_type", L_MOVEMENT_TYPE));
     event->trainerType    = dp_u16(dp_lookup_at(entry, ".trainer_type", L_TRAINER_TYPE));
-    event->hiddenFlag     = ProcHiddenFlag(entry);
     event->dir            = dp_s16(dp_lookup_at(entry, ".initial_dir", L_MAP_OBJECT_DIR));
     event->movementRangeX = dp_u16_at(entry, ".movement_range_x");
     event->movementRangeZ = dp_u16_at(entry, ".movement_range_z");
@@ -559,8 +581,6 @@ static EventBuffer ProcObjectEvents(dp_node array, const char *stem)
         memcpy(event->data, object->data, sizeof(event->data));
         ProcEventBase(entry, event, i);
         if (kind) kind->proc(kind->key ? dp_at(entry, kind->key) : entry, entry, event, &ctx);
-        TextFile_Printf(F_LOCALS_BASE + eventIndex, "#define %s %zu\n",
-                        Symbol_Name(dp_at(entry, ".id")), i);
     }
 
     return (EventBuffer) { .count = count, .buffer = events };
@@ -835,11 +855,40 @@ static void ProcEntry(Entry *entry)
     free(initScriptsFilename);
 }
 
-static void PreprocObjects(dp_node root, const char *stem)
+static bool DefineLocalID(Buffer *table, dp_node entry, size_t index, long value)
+{
+    dp_node     nodeID = dp_at(entry, ".id");
+    const char *id     = Symbol_Name(nodeID);
+    if (strcmp(id, "BAD_SYMBOL") == 0) return false;
+
+    for (size_t i = 0; i < Buffer_Count(table, dp_symbol); i++) {
+        if (strcmp(Buffer_At(table, dp_symbol, i).name, id) == 0) {
+            dp_error(nodeID, "duplicate event IDs are ambiguous");
+            return false;
+        }
+    }
+
+    Buffer_Push(table, dp_symbol, .value = value, .name = id);
+    TextFile_Printf(F_LOCALS_BASE + eventIndex, "#define %s %zu\n", id, index);
+    return true;
+}
+
+static void RegisterLocalIDs(const char *group, const char *name, Buffer *table, bool ok)
+{
+    char *type = String_Format("%s:%s", group, name);
+    if (ok) Lookups_Register(type, table->data, Buffer_Count(table, dp_symbol));
+
+    free(type);
+    free(table->data);
+}
+
+static void PreprocObjects(dp_node root, const char *stem, const char *name)
 {
     dp_node     objects = dp_at(root, ".object_events");
     const u32   count   = ClampCount(objects, UINT32_MAX);
     KindContext ctx     = { .objects = objects, .stem = stem };
+    Buffer      table   = { 0 }; // T = dp_symbol
+    bool        ok      = true;
 
     assert(Buffer_Count(&sObjectsBase, size_t) == eventIndex);
     Buffer_Push(&sObjectsBase, size_t, Buffer_Count(&sObjects, ObjectData));
@@ -855,8 +904,22 @@ static void PreprocObjects(dp_node root, const char *stem)
             if (object.kind->preproc) object.kind->preproc(kindNode, entry, object.data, &ctx);
         }
 
+        size_t position = Buffer_Count(&sObjects, ObjectData);
         Buffer_Append(&sObjects, &object, sizeof(object));
+
+        if (IsClone(entry)) {
+            // Clones are never registered, so they cannot themselves be cloned.
+            dp_node id = dp_try(entry, ".id");
+            if (!dp_missing(id)) {
+                dp_error(id, "clones must not declare their own ID");
+                dp_note(dp_at(entry, ".clone"), "declared as a clone here");
+            }
+        } else {
+            ok &= DefineLocalID(&table, entry, i, position);
+        }
     }
+
+    RegisterLocalIDs("objects", name, &table, ok);
 }
 
 static void PreprocWarps(dp_node root, const char *name)
@@ -870,35 +933,10 @@ static void PreprocWarps(dp_node root, const char *name)
 
     bool ok = true;
     for (size_t i = 0; i < count; i++) {
-        dp_node     node   = dp_arr_at(warps, i);
-        dp_node     nodeID = dp_at(node, ".id");
-        const char *id     = Symbol_Name(nodeID);
-        if (strcmp(id, "BAD_SYMBOL") == 0) {
-            ok = false;
-            continue;
-        }
-
-        bool duplicate = false;
-        for (size_t j = 0; j < Buffer_Count(&table, dp_symbol); j++) {
-            dp_symbol existing = Buffer_At(&table, dp_symbol, j);
-            if (strcmp(existing.name, id) == 0) {
-                dp_error(nodeID, "duplicate warp event IDs are ambiguous");
-                duplicate = true;
-                ok        = false;
-                break;
-            }
-        }
-
-        if (duplicate) continue;
-        Buffer_Push(&table, dp_symbol, .value = i, .name = id);
-        TextFile_Printf(F_LOCALS_BASE + eventIndex, "#define %s %zu\n", id, i);
+        ok &= DefineLocalID(&table, dp_arr_at(warps, i), i, i);
     }
 
-    char *key = String_Format("warps:%s", name);
-    if (ok) Lookups_Register(key, table.data, Buffer_Count(&table, dp_symbol));
-
-    free(key);
-    free(table.data);
+    RegisterLocalIDs("warps", name, &table, ok);
 }
 
 static void PreprocEntry(Entry *entry)
@@ -911,8 +949,8 @@ static void PreprocEntry(Entry *entry)
         dp_file *file = Driver_Load("%s", eventsFilename);
         dp_node  root = dp_root(file);
 
-        PreprocObjects(root, entry->stem);
         PreprocWarps(root, entry->name);
+        PreprocObjects(root, entry->stem, entry->name);
         Driver_Close(file);
         eventIndex++;
     }

@@ -50,17 +50,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST",
-            "clone_id": 6,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_205_SOUTH",
-            "script": 65535,
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_205_SOUTH",
+                "id": "LOCALID_ARROW_SIGNPOST_FLOAROMA_TOWN"
+            },
             "initial_dir": "DIR_NORTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 215,
