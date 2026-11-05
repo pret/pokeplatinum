@@ -136,10 +136,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "JubilifeCity_MapSignpost",
+            "signpost": "city_map_jubilife_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                8
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 176,
@@ -153,10 +151,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "JubilifeCity_MapSignpost",
+            "signpost": "city_map_jubilife_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                8
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 187,
@@ -170,10 +166,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "JubilifeCity_MapSignpost",
+            "signpost": "city_map_jubilife_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                8
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 132,
@@ -187,10 +181,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "JubilifeCity_MapSignpost",
+            "signpost": "city_map_jubilife_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                8
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 170,

@@ -182,10 +182,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "HearthomeCity_ArrowSignpostWest",
+            "signpost": "route_map_16_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                16
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 461,
@@ -199,10 +197,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "HearthomeCity_ArrowSignpostEast",
+            "signpost": "route_map_10_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                10
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 498,
@@ -291,10 +287,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "HearthomeCity_MapSignpost",
+            "signpost": "city_map_hearthome_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                12
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 481,

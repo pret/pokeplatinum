@@ -158,10 +158,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "EternaCity_MapSignpost",
+            "signpost": "city_map_eterna_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                11
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 293,
@@ -192,10 +190,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "EternaCity_MapSignpost",
+            "signpost": "city_map_eterna_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                11
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 344,

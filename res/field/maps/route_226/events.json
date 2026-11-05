@@ -49,10 +49,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "Route226_ArrowSignpostSurvivalArea",
+            "signpost": "route_map_02_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 679,
@@ -269,10 +267,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "Route226_ArrowSignpostRt227Rt228",
+            "signpost": "route_map_18_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                18
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 760,

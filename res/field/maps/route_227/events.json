@@ -33,10 +33,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "Route227_ArrowSignpostStarkMountain",
+            "signpost": "route_map_03_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                3
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 755,

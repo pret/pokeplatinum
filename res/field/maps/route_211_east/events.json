@@ -188,10 +188,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "Route211East_ArrowSignpostMtCoronet",
+            "signpost": "route_map_02_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                2
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 420,
@@ -323,10 +321,8 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": "Route211East_ArrowSignpostCelesticTown",
+            "signpost": "route_map_01_NCGR",
             "initial_dir": "DIR_NORTH",
-            "data": [
-                1
-            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 440,

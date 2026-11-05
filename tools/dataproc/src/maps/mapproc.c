@@ -44,6 +44,8 @@ enum { F_EVENTS_NAIX, F_GROUPS_NAIX, F_HEADERS_H, F_LOCALS_BASE };
 #define L_AREA_DATA         "area_data_"
 #define L_LOCATION_NAME     "LocationNames_Text_"
 #define L_SOUND_SEQ         "SEQ_"
+#define L_CITY_MAP          "city_map_"
+#define L_ROUTE_MAP         "route_map_"
 
 #define HEADER_ZERO_STEM "everywhere"
 
@@ -87,10 +89,12 @@ static Driver driver = {
         LOOKUP_ENUM("constants/overworld_weather.h",  L_WEATHER),
         LOOKUP_ENUM("constants/battle/backgrounds.h", L_BATTLE_BACKGROUND),
 
-        LOOKUP_DEFINES("constants/map_object.h",             L_MAP_OBJECT_DIR),
-        LOOKUP_DEFINES("res/field/area_data/area_data.naix", L_AREA_DATA),
-        LOOKUP_DEFINES("res/text/bank/location_names.h",     L_LOCATION_NAME),
-        LOOKUP_DEFINES("res/sound/pl_sound_data.naix",       L_SOUND_SEQ),
+        LOOKUP_DEFINES("constants/map_object.h",                  L_MAP_OBJECT_DIR),
+        LOOKUP_DEFINES("res/field/area_data/area_data.naix",      L_AREA_DATA),
+        LOOKUP_DEFINES("res/graphics/signposts/field_board.naix", L_CITY_MAP),
+        LOOKUP_DEFINES("res/graphics/signposts/field_board.naix", L_ROUTE_MAP),
+        LOOKUP_DEFINES("res/sound/pl_sound_data.naix",            L_SOUND_SEQ),
+        LOOKUP_DEFINES("res/text/bank/location_names.h",          L_LOCATION_NAME),
         { 0 },
     },
 
@@ -351,6 +355,39 @@ static void ProcBerryTree(dp_node kind, dp_node entry, ObjectEvent *event, const
     event->script = SCRIPT_ID_OFFSET_BERRY_TREE_INTERACTIONS;
 }
 
+static void PreprocSignpost(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
+{
+    (void)entry;
+    (void)ctx;
+
+    const char *signpost = dp_string(kind);
+    if (signpost == NULL) return;
+
+    const char *type = NULL;
+    const char *base = NULL;
+    if (strncmp(signpost, L_ROUTE_MAP, strlen(L_ROUTE_MAP)) == 0) {
+        type = L_ROUTE_MAP;
+        base = "route_map_00_NCGR";
+    } else if (strncmp(signpost, L_CITY_MAP, strlen(L_CITY_MAP)) == 0) {
+        type = L_CITY_MAP;
+        base = "city_map_empty_NCGR";
+    } else {
+        dp_error(kind, "signpost graphics index is neither a city-map nor a route-map");
+        return;
+    }
+
+    data[0] = dp_u16(dp_lookup(kind, type)) - Lookups_ValueOf(type, base);
+}
+
+static void ProcSignpost(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
+{
+    (void)kind;
+    (void)ctx;
+
+    dp_at(entry, ".script"); // report any missing script-node
+    event->script = ProcScript(entry);
+}
+
 static void PreprocEventGeneric(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
 {
     (void)kind;
@@ -372,11 +409,12 @@ static void ProcEventGeneric(dp_node kind, dp_node entry, ObjectEvent *event, co
     event->script = ProcScript(entry);
 }
 
-enum { K_TRAINER, K_BERRY_TREE };
+enum { K_TRAINER, K_BERRY_TREE, K_SIGNPOST };
 
 static const ObjectKind sObjectKinds[] = {
-    [K_TRAINER]    = { .key = ".trainer",    .ownsScript = true, .proc = ProcTrainer, .preproc = PreprocTrainer },
-    [K_BERRY_TREE] = { .key = ".berry_tree", .ownsScript = true, .proc = ProcBerryTree, .preproc = PreprocBerryTree },
+    [K_TRAINER]    = { .key = ".trainer",    .ownsScript = true,  .proc = ProcTrainer,   .preproc = PreprocTrainer   },
+    [K_BERRY_TREE] = { .key = ".berry_tree", .ownsScript = true,  .proc = ProcBerryTree, .preproc = PreprocBerryTree },
+    [K_SIGNPOST]   = { .key = ".signpost",   .ownsScript = false, .proc = ProcSignpost,  .preproc = PreprocSignpost  },
 };
 
 static const ObjectKind sGenericObjectKind = {
