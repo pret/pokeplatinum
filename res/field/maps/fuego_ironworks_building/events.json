@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8047,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FUEGO_IRONWORKS_BUILDING_STAR_PIECE",
             "x": 44,
             "z": 15,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8046,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FUEGO_IRONWORKS_BUILDING_PROTEIN",
             "x": 22,
             "z": 3,
             "y": 0,

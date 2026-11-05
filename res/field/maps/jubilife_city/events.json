@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8161,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_JUBILIFE_CITY_STARDUST",
             "x": 168,
             "z": 795,
             "y": 0,

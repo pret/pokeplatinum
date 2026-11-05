@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8169,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_219_ZINC",
             "x": 175,
             "z": 889,
             "y": 0,

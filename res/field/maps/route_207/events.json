@@ -1,40 +1,35 @@
 {
     "bg_events": [
         {
-            "script": 8012,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_207_RARE_CANDY",
             "x": 313,
             "z": 719,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8008,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_207_OR_WAYWARD_CAVE_1F_RED_SHARD",
             "x": 349,
             "z": 725,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8091,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_207_POKE_BALL",
             "x": 299,
             "z": 711,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8151,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_207_GREAT_BALL",
             "x": 337,
             "z": 712,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8256,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_207_REVIVE",
             "x": 338,
             "z": 718,
             "y": 0,

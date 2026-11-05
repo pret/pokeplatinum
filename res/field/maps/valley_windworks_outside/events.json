@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8000,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VALLEY_WINDWORKS_OUTSIDE_MAX_ELIXIR",
             "x": 236,
             "z": 651,
             "y": 0,

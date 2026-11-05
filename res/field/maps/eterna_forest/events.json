@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8001,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ETERNA_FOREST_INSECT_PLATE",
             "x": 80,
             "z": 9,
             "y": 0,

@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8150,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_205_NORTH_SUPER_POTION",
             "x": 285,
             "z": 520,
             "y": 0,

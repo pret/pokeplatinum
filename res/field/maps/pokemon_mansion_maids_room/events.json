@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8163,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_POKEMON_MANSION_MAIDS_ROOM_PROTEIN",
             "x": 23,
             "z": 9,
             "y": 0,

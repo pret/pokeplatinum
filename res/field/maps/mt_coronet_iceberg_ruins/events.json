@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8275,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_ICEBERG_RUINS_NUGGET",
             "x": 6,
             "z": 5,
             "y": 0,

@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8060,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_211_EAST_CALCIUM",
             "x": 431,
             "z": 514,
             "y": 0,

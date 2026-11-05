@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8178,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SNOWPOINT_CITY_RARE_CANDY",
             "x": 381,
             "z": 220,
             "y": 0,

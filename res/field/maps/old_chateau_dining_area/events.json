@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8167,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_OLD_CHATEAU_DINING_AREA_HONEY",
             "x": 2,
             "z": 11,
             "y": 0,

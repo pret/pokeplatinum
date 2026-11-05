@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8138,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_STARK_MOUNTAIN_ROOM_1_STAR_PIECE",
             "x": 25,
             "z": 4,
             "y": 0,

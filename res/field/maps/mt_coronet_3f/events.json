@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8083,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_3F_MAX_REPEL",
             "x": 3,
             "z": 15,
             "y": 0,

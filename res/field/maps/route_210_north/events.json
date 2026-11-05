@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8045,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_210_NORTH_SHINY_STONE",
             "x": 547,
             "z": 525,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8044,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_210_NORTH_MEADOW_PLATE",
             "x": 526,
             "z": 519,
             "y": 0,

@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8217,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_205_SOUTH_STARDUST",
             "x": 212,
             "z": 627,
             "y": 0,

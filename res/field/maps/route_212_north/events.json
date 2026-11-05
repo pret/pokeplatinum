@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8018,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_212_NORTH_ULTRA_BALL",
             "x": 475,
             "z": 803,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8017,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_212_NORTH_PEARL",
             "x": 467,
             "z": 779,
             "y": 0,

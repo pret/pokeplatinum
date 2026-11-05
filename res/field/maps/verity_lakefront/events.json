@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8160,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VERITY_LAKEFRONT_TINYMUSHROOM",
             "x": 86,
             "z": 849,
             "y": 0,

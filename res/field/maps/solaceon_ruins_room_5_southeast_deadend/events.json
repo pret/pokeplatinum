@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8038,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEAD_END_THUNDERSTONE",
             "x": 4,
             "z": 3,
             "y": 0,

@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8188,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_209_LOST_TOWER_4F_GREAT_BALL",
             "x": 2,
             "z": 11,
             "y": 0,

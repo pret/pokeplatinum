@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8112,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_223_HEART_SCALE_1",
             "x": 849,
             "z": 727,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8267,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_223_HEART_SCALE_2",
             "x": 842,
             "z": 656,
             "y": 0,

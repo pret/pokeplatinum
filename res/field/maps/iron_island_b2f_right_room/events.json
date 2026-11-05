@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8053,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_RIGHT_ROOM_STAR_PIECE",
             "x": 12,
             "z": 17,
             "y": 0,

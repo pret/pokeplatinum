@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8116,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VICTORY_ROAD_2F_FULL_RESTORE",
             "x": 45,
             "z": 34,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8117,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VICTORY_ROAD_2F_RARE_CANDY",
             "x": 11,
             "z": 23,
             "y": 0,

@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8187,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_209_LOST_TOWER_2F_HONEY",
             "x": 10,
             "z": 13,
             "y": 0,

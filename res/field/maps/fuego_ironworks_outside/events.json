@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8156,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FUEGO_IRONWORKS_OUTSIDE_ULTRA_BALL",
             "x": 179,
             "z": 594,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8155,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FUEGO_IRONWORKS_OUTSIDE_BIG_MUSHROOM",
             "x": 177,
             "z": 578,
             "y": 0,

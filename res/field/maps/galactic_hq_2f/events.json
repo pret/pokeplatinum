@@ -9,16 +9,14 @@
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8075,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_2F_POKE_DOLL",
             "x": 44,
             "z": 5,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8076,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_2F_MAX_POTION",
             "x": 1,
             "z": 12,
             "y": 0,

@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8102,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_5F_FULL_RESTORE",
             "x": 27,
             "z": 16,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8101,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_5F_RARE_CANDY",
             "x": 27,
             "z": 23,
             "y": 0,

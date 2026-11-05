@@ -1,40 +1,35 @@
 {
     "bg_events": [
         {
-            "script": 8065,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_1F_NORTH_ROOM_1_RED_SHARD",
             "x": 14,
             "z": 9,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8066,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_1F_NORTH_ROOM_1_STAR_PIECE",
             "x": 23,
             "z": 35,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8064,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_1F_NORTH_ROOM_1_STARDUST",
             "x": 15,
             "z": 38,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8062,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_1F_NORTH_ROOM_1_ENERGYPOWDER",
             "x": 4,
             "z": 41,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8063,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_1F_NORTH_ROOM_1_NUGGET",
             "x": 12,
             "z": 59,
             "y": 0,

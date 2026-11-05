@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8061,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_1F_NORTH_ROOM_2_YELLOW_SHARD",
             "x": 14,
             "z": 17,
             "y": 0,

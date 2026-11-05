@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8100,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOM_3_MAX_ELIXIR",
             "x": 11,
             "z": 8,
             "y": 0,

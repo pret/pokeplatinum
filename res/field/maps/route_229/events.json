@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8145,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_229_THUNDERSTONE",
             "x": 822,
             "z": 445,
             "y": 0,

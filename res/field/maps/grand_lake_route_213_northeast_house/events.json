@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8174,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE_MAX_REVIVE",
             "x": 9,
             "z": 6,
             "y": 0,

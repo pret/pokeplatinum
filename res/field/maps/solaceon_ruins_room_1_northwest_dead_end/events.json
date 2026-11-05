@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8036,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END_FIRE_STONE",
             "x": 3,
             "z": 3,
             "y": 0,

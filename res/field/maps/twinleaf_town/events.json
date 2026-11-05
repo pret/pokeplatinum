@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8201,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_TWINLEAF_TOWN_ODD_KEYSTONE",
             "x": 107,
             "z": 893,
             "y": 0,

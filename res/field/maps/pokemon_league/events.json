@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8120,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_POKEMON_LEAGUE_SKY_PLATE",
             "x": 842,
             "z": 580,
             "y": 0,

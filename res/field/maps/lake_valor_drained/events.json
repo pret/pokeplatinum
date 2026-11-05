@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8057,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_LAKE_VALOR_DRAINED_HP_UP",
             "x": 12,
             "z": 15,
             "y": 0,

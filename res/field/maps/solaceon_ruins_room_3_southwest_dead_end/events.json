@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8037,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END_WATER_STONE",
             "x": 3,
             "z": 3,
             "y": 0,

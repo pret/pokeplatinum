@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8276,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_228_ROCK_PEAK_RUINS_NUGGET",
             "x": 11,
             "z": 4,
             "y": 0,

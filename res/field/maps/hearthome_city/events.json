@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8016,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_HEARTHOME_CITY_BIG_MUSHROOM",
             "x": 470,
             "z": 681,
             "y": 0,

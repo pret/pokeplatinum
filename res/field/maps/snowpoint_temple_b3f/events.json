@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8179,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SNOWPOINT_TEMPLE_B3F_FULL_RESTORE",
             "x": 10,
             "z": 8,
             "y": 0,

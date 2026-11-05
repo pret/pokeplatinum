@@ -13,8 +13,11 @@
 
 #include "constants/field/script_ranges.h"
 #include "constants/fieldmap.h"
+#include "generated/bg_event_types.h"
 #include "generated/trainer_types.h"
+#include "generated/vars_flags.h"
 #include "struct_defs/events.h"
+#include "data/field/hidden_items.h"
 #include "berry_patches.h"
 #include "location.h"
 
@@ -488,11 +491,45 @@ static EventBuffer ProcBGEvents(dp_node array)
     for (size_t i = 0; i < count; i++) {
         dp_node  entry = dp_arr_at(array, i);
         BgEvent *event = &events[i];
-        event->script  = ProcScript(entry);
-        event->type    = dp_u16(dp_lookup_at(entry, ".type", L_BG_EVENT_TYPE));
-        event->x       = dp_u32_at(entry, ".x");
-        event->z       = dp_u32_at(entry, ".z");
-        event->y       = dp_u32_at(entry, ".y");
+
+        dp_node hiddenItem = dp_try(entry, ".hidden_item");
+        if (!dp_missing(hiddenItem)) {
+            dp_node flagNode = dp_lookup(hiddenItem, L_VAR_FLAG);
+            u16     flag     = dp_u16(flagNode);
+            event->type      = BG_EVENT_TYPE_HIDDEN_ITEM;
+            event->script    = SCRIPT_ID_OFFSET_HIDDEN_ITEMS + flag - HIDDEN_ITEM_FLAGS_START;
+
+            if (dp_type_of(flagNode) != DP_ERROR) {
+                bool found = false;
+                for (size_t j = 0; !found && j < NELEMS(gHiddenItems); j++) {
+                    found = gHiddenItems[j].script == flag - HIDDEN_ITEM_FLAGS_START;
+                }
+
+                if (!found) {
+                    dp_error(hiddenItem, "hidden item declares a flag with no entry in gHiddenItems");
+                    event->script = 0;
+                }
+            }
+
+            dp_node type = dp_try(entry, ".type");
+            if (!dp_missing(type)) {
+                dp_error(type, "hidden item declares a type");
+                dp_note(hiddenItem, "declared as a hidden item here");
+            }
+
+            dp_node script = dp_try(entry, ".script");
+            if (!dp_missing(script)) {
+                dp_error(script, "hidden item declares a script");
+                dp_note(hiddenItem, "declared as a hidden item here");
+            }
+        } else {
+            event->script = ProcScript(entry);
+            event->type   = dp_u16(dp_lookup_at(entry, ".type", L_BG_EVENT_TYPE));
+        }
+
+        event->x = dp_u32_at(entry, ".x");
+        event->z = dp_u32_at(entry, ".z");
+        event->y = dp_u32_at(entry, ".y");
 
         event->playerFacingDir = dp_u16(dp_lookup_at(entry, ".player_facing_dir", L_BG_EVENT_DIR));
     }

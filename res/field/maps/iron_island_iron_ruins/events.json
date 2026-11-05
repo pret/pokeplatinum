@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8274,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_IRON_ISLAND_IRON_RUINS_NUGGET",
             "x": 3,
             "z": 6,
             "y": 0,

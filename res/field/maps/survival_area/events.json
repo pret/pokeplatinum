@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8131,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SURVIVAL_AREA_PP_UP",
             "x": 649,
             "z": 346,
             "y": 0,

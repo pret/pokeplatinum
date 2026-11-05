@@ -118,7 +118,7 @@ mapgen_exe = executable(
 
 mapproc_exe = executable(
     'mapproc',
-    sources: files('src/maps/mapproc.c'),
+    sources: [ files('src/maps/mapproc.c'), c_consts_generators ],
     c_args: dataproc_cflags,
     include_directories: [ public_includes, toplevel_includes ],
     dependencies: [ common_dep ],

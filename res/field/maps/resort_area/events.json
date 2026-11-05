@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8146,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_RESORT_AREA_NUGGET",
             "x": 822,
             "z": 473,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8145,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_229_THUNDERSTONE",
             "x": 822,
             "z": 445,
             "y": 0,

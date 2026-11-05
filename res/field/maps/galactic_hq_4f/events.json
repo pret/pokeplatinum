@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8080,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_4F_RAZOR_CLAW",
             "x": 20,
             "z": 7,
             "y": 0,

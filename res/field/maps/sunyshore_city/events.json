@@ -1,16 +1,14 @@
 {
     "bg_events": [
         {
-            "script": 8111,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SUNYSHORE_CITY_CARBOS",
             "x": 855,
             "z": 759,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8110,
-            "type": "BG_EVENT_TYPE_HIDDEN_ITEM",
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SUNYSHORE_CITY_ZAP_PLATE",
             "x": 889,
             "z": 792,
             "y": 0,
