@@ -15,6 +15,7 @@
 #include "constants/fieldmap.h"
 #include "generated/bg_event_types.h"
 #include "generated/trainer_types.h"
+#include "generated/trainers.h"
 #include "generated/vars_flags.h"
 #include "struct_defs/events.h"
 #include "data/field/hidden_items.h"
@@ -54,17 +55,17 @@ enum { F_EVENTS_NAIX, F_GROUPS_NAIX, F_HEADERS_H, F_LOCALS_BASE };
 
 static void HandleBaseDirArg(const char *arg);
 
-typedef struct ScriptLabels { const char *stem; Buffer lookup; } ScriptLabels;
-
-static ScriptLabels sGlobalScriptLabels[] = {
-#define SCRIPT_HEADER(_, file, __) { .stem = #file },
+static const char *const sGlobalScriptHeaders[] = {
+#define SCRIPT_HEADER(_, file, __) #file,
     SCRIPT_RANGE_TABLE(SCRIPT_HEADER)
 #undef SCRIPT_HEADER
 };
 
+static Buffer sGlobalScriptLabels; // T = dp_symbol, from every global script header
+
 // Labels of the map being processed; empty while processing a map without a
 // scripts.s file.
-static ScriptLabels sLocalScriptLabels;
+static Buffer sLocalScriptLabels; // T = dp_symbol
 
 static Driver driver = {
     .depfile = "maps_processor.d",
@@ -147,6 +148,20 @@ static int CompareSymbolNames(const void *a, const void *b)
     return strcmp(lhs->name, rhs->name);
 }
 
+static void SortScriptLabels(Buffer *labels, const char *source)
+{
+    const size_t count = Buffer_Count(labels, dp_symbol);
+    if (count == 0) return;
+
+    qsort(labels->data, count, sizeof(dp_symbol), CompareSymbolNames);
+    for (size_t i = 1; i < count; i++) {
+        const char *name = Buffer_At(labels, dp_symbol, i).name;
+        if (strcmp(Buffer_At(labels, dp_symbol, i - 1).name, name) == 0) {
+            Driver_Fail("%s: duplicate script-label '%s'", source, name);
+        }
+    }
+}
+
 static void EnsureDir(const char *path)
 {
     if (mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) && errno != EEXIST) {
@@ -185,7 +200,8 @@ static inline u32 ClampLength(dp_node string, size_t max)
 
 static inline bool IsClone(dp_node entry)
 {
-    return !dp_missing(dp_try(entry, ".clone"));
+    dp_node node = dp_try(entry, ".clone");
+    return !dp_missing(node) && dp_type_of(node) != DP_ERROR;
 }
 
 static inline u16 ProcHiddenFlag(dp_node parent)
@@ -200,21 +216,17 @@ static inline u16 ProcHiddenFlag(dp_node parent)
     return dp_u16(dp_lookup(node, L_VAR_FLAG));
 }
 
-static inline dp_symbol* MatchScriptLabel(const dp_symbol *key, const ScriptLabels *labels)
+static inline dp_symbol* MatchScriptLabel(const dp_symbol *key, const Buffer *labels)
 {
-    return bsearch(key, labels->lookup.data,
-                   Buffer_Count(&labels->lookup, dp_symbol),
-                   sizeof(dp_symbol), CompareSymbolNames);
+    if (labels->size == 0) return NULL;
+    return bsearch(key, labels->data, Buffer_Count(labels, dp_symbol), sizeof(dp_symbol), CompareSymbolNames);
 }
 
 static bool FindScriptLabel(const char *label, u16 *outID)
 {
     const dp_symbol key   = { .name = label };
     dp_symbol      *match = MatchScriptLabel(&key, &sLocalScriptLabels);
-
-    for (size_t i = 0; !match && i < NELEMS(sGlobalScriptLabels); i++) {
-        match = MatchScriptLabel(&key, &sGlobalScriptLabels[i]);
-    }
+    if (!match) match = MatchScriptLabel(&key, &sGlobalScriptLabels);
 
     if (match) *outID = match->value;
     return match != NULL;
@@ -237,16 +249,16 @@ static u16 ProcScript(dp_node parent)
 }
 
 typedef struct KindContext {
-    dp_node     objects;
-    const char *stem;
-    size_t      index;
+    dp_node     objects; // second pass only
+    const char *stem;    // first pass only
+    size_t      index;   // first pass only
 } KindContext;
 
 typedef struct ObjectKind {
     const char *key;
-    bool        ownsScript; // if `true`, a `script` child is forbidden
+    bool        ownsScript; // `true`: a `script` child is forbidden; `false`: required, unless the kind is generic
     void      (*proc)(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx);
-    void      (*preproc)(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx);
+    void      (*preproc)(dp_node kind, u16 data[3], const KindContext *ctx);
 } ObjectKind;
 
 typedef struct ObjectData {
@@ -258,9 +270,8 @@ typedef struct ObjectData {
 static Buffer sObjects;     // T = ObjectData, every object in first-pass order
 static Buffer sObjectsBase; // T = size_t, indexed by eventIndex
 
-static void PreprocTrainer(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
+static void PreprocTrainer(dp_node kind, u16 data[3], const KindContext *ctx)
 {
-    (void)entry;
     (void)ctx;
 
     u16 sight    = dp_u16_at(kind, ".sight_range");
@@ -272,18 +283,26 @@ static void PreprocTrainer(dp_node kind, dp_node entry, u16 data[3], const KindC
 
 static void ProcTrainer(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
 {
-    if (event->trainerType == TRAINER_TYPE_NONE) {
-        dp_error(dp_at(entry, ".trainer_type"), "overworld trainers must not have TRAINER_TYPE_NONE");
+    dp_node trainerType = dp_try(entry, ".trainer_type");
+    if (dp_type_of(trainerType) == DP_STRING && strcmp(dp_string(trainerType), "TRAINER_TYPE_NONE") == 0) {
+        dp_error(trainerType, "overworld trainers must not have TRAINER_TYPE_NONE");
     }
 
-    u16 script = dp_u16(dp_lookup_at(kind, ".id", L_TRAINER_ID)) - 1;
-    script    += SCRIPT_ID_OFFSET_SINGLE_BATTLES;
+    dp_node id = dp_lookup_at(kind, ".id", L_TRAINER_ID);
+    if (dp_type_of(id) == DP_ERROR) return;
+    if (dp_u16(id) == TRAINER_NONE) {
+        dp_error(id, "trainer declares its ID as TRAINER_NONE");
+        return;
+    }
 
+    u16     script    = dp_u16(id) - 1 + SCRIPT_ID_OFFSET_SINGLE_BATTLES;
     dp_node dependsOn = dp_try(kind, ".depends_on");
     if (!dp_missing(dependsOn)) {
-        const char  *dependsID = Symbol_Name(dependsOn);
-        const size_t count     = dp_arr_len(ctx->objects);
-        dp_node      match     = { 0 };
+        const char *dependsID = dp_string(dependsOn);
+        if (dependsID == NULL) return;
+
+        const size_t count = dp_arr_len(ctx->objects);
+        dp_node      match = { 0 };
 
         for (size_t i = 0; i < count; i++) {
             dp_node     other     = dp_arr_at(ctx->objects, i);
@@ -317,19 +336,18 @@ static void ProcTrainer(dp_node kind, dp_node entry, ObjectEvent *event, const K
         }
     }
 
-    event->script  = script;
+    event->script = script;
 }
 
 typedef struct BerryPatchLocation { u16 event; const char *stem; } BerryPatchLocation;
 static BerryPatchLocation sPatchLocations[MAX_BERRY_PATCHES] = { 0 };
 
-static void PreprocBerryTree(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
+static void PreprocBerryTree(dp_node kind, u16 data[3], const KindContext *ctx)
 {
-    (void)entry;
-
-    u16 patch = dp_u16(kind);
-    if (patch >= MAX_BERRY_PATCHES) {
-        dp_error(kind, "berry tree's patch index must be less than %u", MAX_BERRY_PATCHES);
+    int64_t patch = dp_int(kind);
+    if (dp_type_of(kind) != DP_INT) return; // already reported
+    if (patch < 0 || patch >= MAX_BERRY_PATCHES) {
+        dp_error(kind, "berry tree's patch index must be in the range [0,%u)", MAX_BERRY_PATCHES);
         return;
     }
 
@@ -353,9 +371,8 @@ static void ProcBerryTree(dp_node kind, dp_node entry, ObjectEvent *event, const
     event->script = SCRIPT_ID_OFFSET_BERRY_TREE_INTERACTIONS;
 }
 
-static void PreprocSignpost(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
+static void PreprocSignpost(dp_node kind, u16 data[3], const KindContext *ctx)
 {
-    (void)entry;
     (void)ctx;
 
     const char *signpost = dp_string(kind);
@@ -375,15 +392,6 @@ static void PreprocSignpost(dp_node kind, dp_node entry, u16 data[3], const Kind
     }
 
     data[0] = dp_u16(dp_lookup(kind, type)) - Lookups_ValueOf(type, base);
-}
-
-static void ProcSignpost(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
-{
-    (void)kind;
-    (void)ctx;
-
-    dp_at(entry, ".script"); // report any missing script-node
-    event->script = ProcScript(entry);
 }
 
 static void ProcClone(dp_node kind, dp_node entry, ObjectEvent *event, const KindContext *ctx)
@@ -411,13 +419,12 @@ static void ProcClone(dp_node kind, dp_node entry, ObjectEvent *event, const Kin
     memcpy(event->data, object->data, sizeof(event->data));
 }
 
-static void PreprocEventGeneric(dp_node kind, dp_node entry, u16 data[3], const KindContext *ctx)
+static void PreprocEventGeneric(dp_node kind, u16 data[3], const KindContext *ctx)
 {
-    (void)kind;
     (void)ctx;
 
     // data is (often) a sparse array and not fully populated
-    dp_node   array = dp_at(entry, ".data");
+    dp_node   array = dp_at(kind, ".data");
     const u32 count = ClampCount(array, 3);
     for (size_t j = 0; j < count; j++) {
         data[j] = dp_u16(dp_arr_at(array, j));
@@ -432,13 +439,11 @@ static void ProcEventGeneric(dp_node kind, dp_node entry, ObjectEvent *event, co
     event->script = ProcScript(entry);
 }
 
-enum { K_TRAINER, K_BERRY_TREE, K_SIGNPOST, K_CLONE };
-
 static const ObjectKind sObjectKinds[] = {
-    [K_TRAINER]    = { .key = ".trainer",    .ownsScript = true,  .proc = ProcTrainer,   .preproc = PreprocTrainer   },
-    [K_BERRY_TREE] = { .key = ".berry_tree", .ownsScript = true,  .proc = ProcBerryTree, .preproc = PreprocBerryTree },
-    [K_SIGNPOST]   = { .key = ".signpost",   .ownsScript = false, .proc = ProcSignpost,  .preproc = PreprocSignpost  },
-    [K_CLONE]      = { .key = ".clone",      .ownsScript = true,  .proc = ProcClone,     .preproc = NULL             },
+    { .key = ".trainer",    .ownsScript = true,  .proc = ProcTrainer,      .preproc = PreprocTrainer   },
+    { .key = ".berry_tree", .ownsScript = true,  .proc = ProcBerryTree,    .preproc = PreprocBerryTree },
+    { .key = ".signpost",   .ownsScript = false, .proc = ProcEventGeneric, .preproc = PreprocSignpost  },
+    { .key = ".clone",      .ownsScript = true,  .proc = ProcClone,        .preproc = NULL             },
 };
 
 static const ObjectKind sGenericObjectKind = {
@@ -496,6 +501,8 @@ static void CheckKindConflicts(dp_node entry, dp_node kindNode, const ObjectKind
     if (kind->ownsScript && !dp_missing(script)) {
         dp_error(script, "object declares a special kind with a deduced script");
         dp_note(kindNode, "special kind declared here");
+    } else if (!kind->ownsScript && dp_missing(script)) {
+        dp_error(kindNode, "object declares a special kind that requires a script");
     }
 
     dp_node data = dp_try(entry, ".data");
@@ -547,6 +554,9 @@ static EventBuffer ProcBGEvents(dp_node array)
         } else {
             event->script = ProcScript(entry);
             event->type   = dp_u16(dp_lookup_at(entry, ".type", L_BG_EVENT_TYPE));
+            if (event->type == BG_EVENT_TYPE_HIDDEN_ITEM) {
+                dp_error(dp_at(entry, ".type"), "hidden items must declare their flag with a hidden_item key");
+            }
         }
 
         event->x = dp_u32_at(entry, ".x");
@@ -559,17 +569,12 @@ static EventBuffer ProcBGEvents(dp_node array)
     return (EventBuffer) { .count = count, .buffer = events };
 }
 
-static EventBuffer ProcObjectEvents(dp_node array, const char *stem)
+static EventBuffer ProcObjectEvents(dp_node array)
 {
     const size_t  base   = Buffer_At(&sObjectsBase, size_t, eventIndex);
     const u32     count  = ClampCount(array, UINT32_MAX);
     ObjectEvent  *events = Zalloc(count, sizeof(*events));
-    KindContext   ctx    = { .objects = array, .stem = stem };
-
-    const size_t next = eventIndex + 1 < Buffer_Count(&sObjectsBase, size_t)
-        ? Buffer_At(&sObjectsBase, size_t, eventIndex + 1)
-        : Buffer_Count(&sObjects, ObjectData);
-    assert(next - base == count && "object count differs between passes");
+    KindContext   ctx    = { .objects = array };
 
     for (size_t i = 0; i < count; i++) {
         dp_node           entry  = dp_arr_at(array, i);
@@ -577,7 +582,6 @@ static EventBuffer ProcObjectEvents(dp_node array, const char *stem)
         const ObjectKind *kind   = object->kind;
         ObjectEvent      *event  = &events[i];
 
-        ctx.index = i;
         memcpy(event->data, object->data, sizeof(event->data));
         ProcEventBase(entry, event, i);
         if (kind) kind->proc(kind->key ? dp_at(entry, kind->key) : entry, entry, event, &ctx);
@@ -602,7 +606,7 @@ static EventBuffer ProcWarpEvents(dp_node array)
 
         dp_node destWarp = dp_try(entry, ".dest_warp_id");
         if (event->destHeaderID == MAP_HEADER_DYNAMIC) {
-            if (dp_type_of(destWarp) != DP_MISSING) {
+            if (!dp_missing(destWarp)) {
                 dp_warn(destWarp, "ignoring destination warp ID on dynamic header");
                 dp_note(destHeader, "set to dynamic destination here");
             }
@@ -647,7 +651,7 @@ static EventBuffer ProcCoordEvents(dp_node array)
 static void ProcEvents(dp_node root, const char *stem)
 {
     EventBuffer bgEvents = ProcBGEvents(dp_at(root, ".bg_events"));
-    EventBuffer objectEvents = ProcObjectEvents(dp_at(root, ".object_events"), stem);
+    EventBuffer objectEvents = ProcObjectEvents(dp_at(root, ".object_events"));
     EventBuffer warpEvents = ProcWarpEvents(dp_at(root, ".warp_events"));
     EventBuffer coordEvents = ProcCoordEvents(dp_at(root, ".coord_events"));
 
@@ -780,7 +784,7 @@ static void SetupScriptEntryPatterns(void)
     CompileRegex(&sScriptEntryAny, "^[[:space:]]*ScriptEntry");
 }
 
-static void ScanLocalScriptLabels(const char *stem, const char *filename)
+static void ScanLocalScriptLabels(const char *filename)
 {
     FILE *f = fopen(filename, "r");
     if (!f) Driver_Fail("cannot open '%s': %s", filename, strerror(errno));
@@ -798,7 +802,7 @@ static void ScanLocalScriptLabels(const char *stem, const char *filename)
         if (regexec(&sScriptEntryEnd, line, 0, NULL, 0) == 0) break;
         if (regexec(&sScriptEntry, line, NELEMS(match), match, 0) == 0) {
             char *name = String_Format("%.*s", (int)(match[1].rm_eo - match[1].rm_so), line + match[1].rm_so);
-            Buffer_Push(&sLocalScriptLabels.lookup, dp_symbol, .value = id++, .name = name);
+            Buffer_Push(&sLocalScriptLabels, dp_symbol, .value = id++, .name = name);
         } else if (regexec(&sScriptEntryAny, line, 0, NULL, 0) == 0) {
             Driver_Fail("%s:%zu: cannot parse ScriptEntry line: %s", filename, lineNum, line);
         }
@@ -807,21 +811,18 @@ static void ScanLocalScriptLabels(const char *stem, const char *filename)
     free(line);
     fclose(f);
 
-    qsort(sLocalScriptLabels.lookup.data, Buffer_Count(&sLocalScriptLabels.lookup, dp_symbol),
-          sizeof(dp_symbol), CompareSymbolNames);
-
-    sLocalScriptLabels.stem = stem;
+    SortScriptLabels(&sLocalScriptLabels, filename);
     Deps_Add(filename);
 }
 
 static void ClearLocalScriptLabels(void)
 {
-    for (size_t i = 0; i < Buffer_Count(&sLocalScriptLabels.lookup, dp_symbol); i++) {
-        free((char *)Buffer_At(&sLocalScriptLabels.lookup, dp_symbol, i).name);
+    for (size_t i = 0; i < Buffer_Count(&sLocalScriptLabels, dp_symbol); i++) {
+        free((char *)Buffer_At(&sLocalScriptLabels, dp_symbol, i).name);
     }
 
-    free(sLocalScriptLabels.lookup.data);
-    sLocalScriptLabels = (ScriptLabels){ 0 };
+    free(sLocalScriptLabels.data);
+    sLocalScriptLabels = (Buffer){ 0 };
 }
 
 static void ProcEntry(Entry *entry)
@@ -837,9 +838,9 @@ static void ProcEntry(Entry *entry)
     bool hasInit       = stat(initScriptsFilename, &stbuf) == 0;
     bool hasEvents     = stat(eventsFilename, &stbuf) == 0;
 
-    if (hasScripts) ScanLocalScriptLabels(entry->stem, scriptsFilename);
-
     if (hasEvents) {
+        if (hasScripts) ScanLocalScriptLabels(scriptsFilename);
+
         dp_file *file = Driver_Load("%s", eventsFilename);
         ProcEvents(dp_root(file), entry->stem);
         Driver_Close(file);
@@ -855,28 +856,32 @@ static void ProcEntry(Entry *entry)
     free(initScriptsFilename);
 }
 
-static bool DefineLocalID(Buffer *table, dp_node entry, size_t index, long value)
+static Buffer sLocalIDs; // T = const char*, every ID defined by the current map
+
+static void DefineLocalID(Buffer *table, dp_node entry, size_t index, long value)
 {
     dp_node     nodeID = dp_at(entry, ".id");
     const char *id     = Symbol_Name(nodeID);
-    if (strcmp(id, "BAD_SYMBOL") == 0) return false;
+    if (strcmp(id, "BAD_SYMBOL") == 0) return;
 
-    for (size_t i = 0; i < Buffer_Count(table, dp_symbol); i++) {
-        if (strcmp(Buffer_At(table, dp_symbol, i).name, id) == 0) {
+    // Compare against all local IDs; warps and objects may not share IDs with
+    // one another.
+    for (size_t i = 0; i < Buffer_Count(&sLocalIDs, const char*); i++) {
+        if (strcmp(Buffer_At(&sLocalIDs, const char*, i), id) == 0) {
             dp_error(nodeID, "duplicate event IDs are ambiguous");
-            return false;
+            return;
         }
     }
 
+    Buffer_Push(&sLocalIDs, const char*, id);
     Buffer_Push(table, dp_symbol, .value = value, .name = id);
     TextFile_Printf(F_LOCALS_BASE + eventIndex, "#define %s %zu\n", id, index);
-    return true;
 }
 
-static void RegisterLocalIDs(const char *group, const char *name, Buffer *table, bool ok)
+static void RegisterLocalIDs(const char *group, const char *name, Buffer *table)
 {
     char *type = String_Format("%s:%s", group, name);
-    if (ok) Lookups_Register(type, table->data, Buffer_Count(table, dp_symbol));
+    Lookups_Register(type, table->data, Buffer_Count(table, dp_symbol));
 
     free(type);
     free(table->data);
@@ -884,11 +889,10 @@ static void RegisterLocalIDs(const char *group, const char *name, Buffer *table,
 
 static void PreprocObjects(dp_node root, const char *stem, const char *name)
 {
-    dp_node     objects = dp_at(root, ".object_events");
+    dp_node     objects = dp_try(root, ".object_events");
     const u32   count   = ClampCount(objects, UINT32_MAX);
-    KindContext ctx     = { .objects = objects, .stem = stem };
+    KindContext ctx     = { .stem = stem };
     Buffer      table   = { 0 }; // T = dp_symbol
-    bool        ok      = true;
 
     assert(Buffer_Count(&sObjectsBase, size_t) == eventIndex);
     Buffer_Push(&sObjectsBase, size_t, Buffer_Count(&sObjects, ObjectData));
@@ -901,42 +905,40 @@ static void PreprocObjects(dp_node root, const char *stem, const char *name)
         if (object.kind) {
             dp_node kindNode = object.kind->key ? dp_at(entry, object.kind->key) : entry;
             CheckKindConflicts(entry, kindNode, object.kind);
-            if (object.kind->preproc) object.kind->preproc(kindNode, entry, object.data, &ctx);
+            if (object.kind->preproc) object.kind->preproc(kindNode, object.data, &ctx);
         }
 
         size_t position = Buffer_Count(&sObjects, ObjectData);
         Buffer_Append(&sObjects, &object, sizeof(object));
 
-        if (IsClone(entry)) {
-            // Clones are never registered, so they cannot themselves be cloned.
+        if (IsClone(entry)) { // Clones are never registered, so they cannot themselves be cloned.
             dp_node id = dp_try(entry, ".id");
             if (!dp_missing(id)) {
                 dp_error(id, "clones must not declare their own ID");
                 dp_note(dp_at(entry, ".clone"), "declared as a clone here");
             }
         } else {
-            ok &= DefineLocalID(&table, entry, i, position);
+            DefineLocalID(&table, entry, i, position);
         }
     }
 
-    RegisterLocalIDs("objects", name, &table, ok);
+    RegisterLocalIDs("objects", name, &table);
 }
 
 static void PreprocWarps(dp_node root, const char *name)
 {
-    dp_node warps = dp_at(root, ".warp_events");
+    dp_node warps = dp_try(root, ".warp_events");
     size_t  count = dp_arr_len(warps);
     Buffer  table = { 0 }; // T = dp_symbol
 
     // NOTE: Don't use ClampCount here, so there's only one warning
     if (count > WARP_ID_DYNAMIC) count = WARP_ID_DYNAMIC;
 
-    bool ok = true;
     for (size_t i = 0; i < count; i++) {
-        ok &= DefineLocalID(&table, dp_arr_at(warps, i), i, i);
+        DefineLocalID(&table, dp_arr_at(warps, i), i, i);
     }
 
-    RegisterLocalIDs("warps", name, &table, ok);
+    RegisterLocalIDs("warps", name, &table);
 }
 
 static void PreprocEntry(Entry *entry)
@@ -952,6 +954,7 @@ static void PreprocEntry(Entry *entry)
         PreprocWarps(root, entry->name);
         PreprocObjects(root, entry->stem, entry->name);
         Driver_Close(file);
+        sLocalIDs.size = 0;
         eventIndex++;
     }
 
@@ -1061,12 +1064,21 @@ static bool HasHeader(const char *name)
         && strcmp(name, "MAP_HEADER_DYNAMIC") != 0;
 }
 
+static inline bool MatchesAnyPreviousHeader(size_t i)
+{
+    for (size_t j = 0; j < i; j++) {
+        if (strcmp(sGlobalScriptHeaders[i], sGlobalScriptHeaders[j]) == 0) return true;
+    }
+
+    return false;
+}
+
 static void SetupGlobalScriptLabels(void)
 {
-    for (size_t i = 0; i < NELEMS(sGlobalScriptLabels); i++) {
-        ScriptLabels *entry = &sGlobalScriptLabels[i];
+    for (size_t i = 0; i < NELEMS(sGlobalScriptHeaders); i++) {
+        if (MatchesAnyPreviousHeader(i)) continue; // a file may span multiple script ranges
 
-        char *filepath = String_Format("%s/%s.h", CLI_OutputDir(), entry->stem);
+        char *filepath = String_Format("%s/%s.h", CLI_OutputDir(), sGlobalScriptHeaders[i]);
         FILE *f        = fopen(filepath, "r");
         if (!f) Driver_Fail("cannot open '%s': %s", filepath, strerror(errno));
 
@@ -1075,15 +1087,16 @@ static void SetupGlobalScriptLabels(void)
         long value;
         while (fgets(line, sizeof(line), f)) {
             if (sscanf(line, "#define %511s %ld", name, &value) == 2) {
-                Buffer_Push(&entry->lookup, dp_symbol, .value = value, .name = Driver_Keep(String_Dupe(name)));
+                Buffer_Push(&sGlobalScriptLabels, dp_symbol, .value = value, .name = Driver_Keep(String_Dupe(name)));
             }
         }
 
         fclose(f);
-        qsort(entry->lookup.data, Buffer_Count(&entry->lookup, dp_symbol), sizeof(dp_symbol), CompareSymbolNames);
         Deps_Add(filepath);
         free(filepath);
     }
+
+    SortScriptLabels(&sGlobalScriptLabels, "global script headers");
 }
 
 int main(int argc, char **argv)
@@ -1098,8 +1111,8 @@ int main(int argc, char **argv)
 
     dp_file *groups = ProcGroups();
 
-    for (EachEntry(entry, Entries_Filter(Entries_FromEnum(enumFile, "MapHeaderID", "MAP_HEADER_", "%s/%s/header.json", baseDir), HasHeader))) {
-        if (!entry.hasData) continue;
+    for (EachEntry(entry, Entries_FromEnum(enumFile, "MapHeaderID", "MAP_HEADER_", NULL, NULL))) {
+        if (!HasHeader(entry.name)) continue;
         PreprocEntry(&entry);
     }
 
@@ -1109,8 +1122,13 @@ int main(int argc, char **argv)
         ProcEntry(&entry);
     }
 
+    regfree(&sScriptEntry);
+    regfree(&sScriptEntryEnd);
+    regfree(&sScriptEntryAny);
+    free(sGlobalScriptLabels.data);
     free(sObjects.data);
     free(sObjectsBase.data);
+    free(sLocalIDs.data);
     free(localsDir);
     Driver_Close(groups);
     TextFile_Printf(F_HEADERS_H, "};\n");
