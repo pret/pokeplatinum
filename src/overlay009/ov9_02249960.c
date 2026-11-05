@@ -7,6 +7,7 @@
 #include "constants/distortion_world.h"
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
+#include "constants/field/script_ranges.h"
 #include "constants/fieldmap.h"
 #include "constants/graphics.h"
 #include "constants/heap.h"

@@ -3,6 +3,7 @@
 #include <nitro.h>
 
 #include "constants/field/map_load.h"
+#include "constants/field/script_ranges.h"
 #include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 #include "constants/start_menu.h"

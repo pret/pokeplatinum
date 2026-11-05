@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map_load.h"
+#include "constants/field/script_ranges.h"
 #include "generated/badges.h"
 #include "generated/journal_location_events.h"
 #include "generated/object_events_gfx.h"

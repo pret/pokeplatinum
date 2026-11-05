@@ -4,12 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-#include "constants/fieldmap.h"
 
 #include "common.h"
 #include "dataproc.h"
 #include "game_types.h"
 
+#include "constants/field/script_ranges.h"
+#include "constants/fieldmap.h"
 #include "struct_defs/events.h"
 #include "location.h"
 
@@ -180,11 +181,11 @@ static inline u16 ProcScriptOrTrainer(dp_node parent)
     if (dp_type_of(node) == DP_INT) return dp_u16(node);
 
     u16 value = dp_u16(dp_lookup(node, L_TRAINER_ID)) - 1;
-    value    += 3000; // SCRIPT_ID_OFFSET_SINGLE_BATTLES
+    value    += SCRIPT_ID_OFFSET_SINGLE_BATTLES;
 
     dp_node double_id = dp_try(parent, ".double_battle_id");
     if (!dp_missing(double_id) && dp_u16(double_id) == 2) {
-        value += 2000; // SCRIPT_ID_OFFSET_DOUBLE_BATTLES - SINGLE
+        value += SCRIPT_ID_OFFSET_DOUBLE_BATTLES - SCRIPT_ID_OFFSET_SINGLE_BATTLES;
     }
 
     return value;

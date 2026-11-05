@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 
+#include "constants/field/script_ranges.h"
 #include "constants/fieldmap.h"
 #include "constants/map_object.h"
 #include "constants/versions.h"

@@ -5,6 +5,7 @@
 
 #include "constants/communication/comm_sync.h"
 #include "constants/communication/comm_type.h"
+#include "constants/field/script_ranges.h"
 #include "constants/graphics.h"
 #include "constants/heap.h"
 

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/field/script_ranges.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/script_ranges.h"
 #include "generated/text_banks.h"
 
 #include "field/field_system.h"

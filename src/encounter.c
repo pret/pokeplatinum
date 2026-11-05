@@ -3,6 +3,7 @@
 #include <nitro.h>
 
 #include "constants/battle.h"
+#include "constants/field/script_ranges.h"
 #include "constants/fieldmap.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
