@@ -180,7 +180,7 @@ typedef struct TVSegment_HomeAndManor {
     u8 furniture;
 } TVSegment_HomeAndManor;
 
-typedef struct {
+typedef struct TVSegment_BattleTowerMaster {
     u16 record;
     u16 species;
     u8 gender;
@@ -189,7 +189,7 @@ typedef struct {
     u8 singles;
 } TVSegment_BattleTowerMaster;
 
-typedef struct {
+typedef struct TVSegment_PokemonSize {
     u16 species;
     u8 gender;
     u8 language;
@@ -197,13 +197,13 @@ typedef struct {
     u32 millimeters;
 } TVSegment_PokemonSize;
 
-typedef struct {
+typedef struct TVSegment_SlotGameMaster {
     u32 startCoins;
     u32 endCoins;
     u32 minutes;
 } TVSegment_SlotGameMaster;
 
-typedef struct {
+typedef struct TVSegment_RibbonMaster {
     charcode_t nickname[TEMPLATE_NAME_SIZE];
     u8 ribbonNameID;
     u8 ribbonCount;
@@ -214,20 +214,20 @@ typedef struct {
     u16 species;
 } TVSegment_RibbonMaster;
 
-typedef struct {
+typedef struct TVSegment_TrapBustingMaster {
     u16 trapID;
     u16 count;
 } TVSegment_TrapBustingMaster;
 
-typedef struct {
+typedef struct TVSegment_FlagCapturingMaster {
     u16 count;
 } TVSegment_FlagCapturingMaster;
 
-typedef struct {
+typedef struct TVSegment_BattlePointScoringMaster {
     TVBroadcast_BattlePointData data;
 } TVSegment_BattlePointScoringMaster;
 
-typedef struct {
+typedef struct TVSegment_GTSMaster {
     TVBroadcast_GTSData data;
 } TVSegment_GTSMaster;
 
