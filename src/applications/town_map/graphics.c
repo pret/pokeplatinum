@@ -4,9 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/fieldmap.h"
 #include "generated/genders.h"
 #include "generated/hidden_locations.h"
-#include "generated/map_headers.h"
 #include "generated/signpost_types.h"
 
 #include "applications/town_map/defs.h"

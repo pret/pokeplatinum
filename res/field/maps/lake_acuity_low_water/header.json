@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_014",
+  "mapGroup": "LakeAcuity",
+  "locationName": "LocationNames_Text_LakeAcuity",
+  "textBank": "TEXT_BANK_LAKE_ACUITY_LOW_WATER",
+  "popupStyle": "MAP_LABEL_WINDOW_LAKE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_LAKE_ACUITY",
+  "battleBackground": "BACKGROUND_SNOW",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_LAKE_sseq",
+  "musicNight": "SEQ_D_LAKE_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

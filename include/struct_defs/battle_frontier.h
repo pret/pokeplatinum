@@ -20,7 +20,7 @@ typedef struct BattleFrontierStats {
 typedef struct BattleFrontierSave {
     BattleFrontierStats stats;
     union {
-        WifiBattleTowerSave wifiBattleTowerSave;
+        BattleTowerSave towerSave;
         BattleFactorySave factorySave;
         BattleHallSave hallSave;
         BattleCastleSave castleSave;

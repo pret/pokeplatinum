@@ -291,27 +291,6 @@ nitroarc_c_commands = [
     for file in (homedir / "tools" / "nitroarc").rglob("*.c")
 ]
 
-datagen_cpp_commands = [
-    {
-        "directory": builddir,
-        "arguments": [
-            "g++",
-            f"-I{homedir}/subprojects/rapidjson-1.1.0/include",  # JSON parser
-            f"-I{homedir}/tools/nitroarc/lib/include",  # NARC packing
-            f"-I{homedir}/tools/datagen",  # base header file
-            f"-I{homedir}/include",  # source includes
-            f"-I{builddir}",  # metang-generated headers (constants)
-            "-std=c++17",
-            "-Wno-deprecated-declarations",
-            "-o",
-            file.with_suffix(".o"),
-            file.resolve(),
-        ],
-        "file": file.resolve(),
-    }
-    for file in (homedir / "tools" / "datagen").rglob("*.cpp")
-]
-
 enumproc_c_commands = [
     {
         "directory": builddir,
@@ -391,7 +370,6 @@ with open("compile_commands.json", "w") as ofp:
         + libvct_c_commands
         + ppwlobby_c_commands
         + c_commands
-        + datagen_cpp_commands
         + nitroarc_c_commands
         + dataproc_c_commands
         + msgenc_cpp_commands,

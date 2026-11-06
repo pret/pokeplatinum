@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_020",
+  "mapGroup": "TwinleafTown_RivalHouse_2F",
+  "locationName": "LocationNames_Text_TwinleafTown",
+  "textBank": "TEXT_BANK_TWINLEAF_TOWN_RIVAL_HOUSE_2F",
+  "popupStyle": "MAP_LABEL_WINDOW_TOWN",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_TOWN01_D_sseq",
+  "musicNight": "SEQ_TOWN01_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

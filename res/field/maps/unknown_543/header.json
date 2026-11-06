@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_056",
+  "mapGroup": "TurnbackCave_RandomRoom3",
+  "locationName": "LocationNames_Text_TurnbackCave",
+  "textBank": "TEXT_BANK_JUBILIFE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_FOG",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_CAVE_3",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_03_sseq",
+  "musicNight": "SEQ_D_03_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

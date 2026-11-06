@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_064",
+  "mapGroup": "BattlePark",
+  "locationName": "LocationNames_Text_BattlePark",
+  "textBank": "TEXT_BANK_UNUSED_BATTLE_PARK",
+  "popupStyle": "MAP_LABEL_WINDOW_PARK",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_CITY",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 15,
+  "musicDay": "SEQ_CITY11_D_sseq",
+  "musicNight": "SEQ_CITY11_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

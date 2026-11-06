@@ -3,10 +3,10 @@
 #include <nitro.h>
 
 #include "constants/battle.h"
+#include "constants/fieldmap.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
 #include "generated/game_records.h"
-#include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/tv_broadcast.h"

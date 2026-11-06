@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_006",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_JubilifeCity",
+  "textBank": "TEXT_BANK_JUBILIFE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_CITY",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_CITY",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 0,
+  "musicDay": "SEQ_CITY01_D_sseq",
+  "musicNight": "SEQ_CITY01_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

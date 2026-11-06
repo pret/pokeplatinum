@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_H
 
+#include "constants/battle/backgrounds.h"
 #include "constants/battle/condition.h"
 #include "constants/battle/message_tags.h"
 #include "constants/battle/moves.h"
@@ -9,7 +10,6 @@
 #include "constants/battle/terrain.h"
 #include "constants/battle/turn_flags.h"
 #include "generated/battle_actions.h"
-#include "generated/battle_backgrounds.h"
 #include "generated/battle_boot_states.h"
 #include "generated/battle_context_params.h"
 #include "generated/battle_message_tags.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_GREAT_MARSH_BINOCULARS_H
 #define POKEPLATINUM_GREAT_MARSH_BINOCULARS_H
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "field/field_system_decl.h"
 

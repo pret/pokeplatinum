@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_010",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_Route215",
+  "textBank": "TEXT_BANK_ROUTE_215",
+  "popupStyle": "MAP_LABEL_WINDOW_ROUTE",
+  "weather": "OVERWORLD_WEATHER_RAINING",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_FOREST",
+  "mapType": "MAP_TYPE_OUTDOORS",
+  "preloaded": 4,
+  "musicDay": "SEQ_ROAD_F_D_sseq",
+  "musicNight": "SEQ_ROAD_F_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

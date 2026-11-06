@@ -43,7 +43,7 @@
 #include "applications/capsule_menu/main.h"
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
-#include "applications/pc_boxes/pokemon_storage_session.h"
+#include "applications/pc_boxes/defs.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/scratch_off_cards/main.h"
 #include "applications/town_map/main.h"
@@ -95,7 +95,7 @@
 #include "bag.h"
 #include "ball_seal_info.h"
 #include "battle_frontier.h"
-#include "battle_tower.h"
+#include "battle_tower_trainers.h"
 #include "bg_window.h"
 #include "binoculars_vista_lighthouse.h"
 #include "camera.h"
@@ -157,6 +157,7 @@
 #include "scrcmd_battle_castle.h"
 #include "scrcmd_battle_factory.h"
 #include "scrcmd_battle_hall.h"
+#include "scrcmd_battle_tower.h"
 #include "scrcmd_berry.h"
 #include "scrcmd_catching_show.h"
 #include "scrcmd_coins.h"
@@ -197,16 +198,15 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
+#include "union_room.h"
 #include "unk_020298BC.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_020494DC.h"
 #include "unk_020528D0.h"
 #include "unk_020559DC.h"
 #include "unk_0205749C.h"
-#include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205DFC4.h"
 #include "unk_020655F4.h"
@@ -1254,7 +1254,7 @@ static BOOL ScrCmd_PrintBattleTowerIntroMessage(ScriptContext *ctx)
         return FALSE;
     }
 
-    u16 *introMsg = battleTower->opponentsDataDTO[opponentID].trainer.introMsg;
+    u16 *introMsg = battleTower->opponents[opponentID].trainer.introMsg;
 
     if (introMsg[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
@@ -1901,7 +1901,7 @@ static BOOL ResumeOnSelectionOrDisconnect(ScriptContext *ctx)
     FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
     if (*selectedOptionPtr == LIST_MENU_NO_SELECTION_YET) {
-        if (sub_0205B9E8(fieldSystem->unk_7C)) {
+        if (UnionRoom_HasChatEnded(fieldSystem->unionRoomMan)) {
             *selectedOptionPtr = 8;
             FieldMenuManager_DeleteWithMenu(*fieldMenuMan);
             return TRUE;
@@ -4213,7 +4213,7 @@ static BOOL ScrCmd_GetUnionRoomTealaMessage(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *destVar = UnionRoom_GetTealaMessage(ctx->fieldSystem->unk_7C, *strTemplate);
+    *destVar = UnionRoom_GetTealaMessage(ctx->fieldSystem->unionRoomMan, *strTemplate);
     return FALSE;
 }
 
@@ -4228,7 +4228,7 @@ static BOOL ScrCmd_139(ScriptContext *ctx)
     }
 
     if (CommSys_CurNetId() == 0) {
-        sub_0205BEA8(v0);
+        UnionRoom_SetStatus(v0);
     }
 
     return FALSE;
@@ -4282,7 +4282,7 @@ static BOOL ScrCmd_GetUnionRoomMessage(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *destVar = UnionRoom_GetMessage(ctx->fieldSystem->unk_7C, MapObject_GetLocalID(*mapObj), msgType, *strTemplate);
+    *destVar = UnionRoom_GetMessage(ctx->fieldSystem->unionRoomMan, MapObject_GetLocalID(*mapObj), msgType, *strTemplate);
     return FALSE;
 }
 
@@ -4290,7 +4290,7 @@ static BOOL ScrCmd_2BA(ScriptContext *ctx)
 {
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0205BA7C(ctx->fieldSystem->unk_7C);
+    *v2 = UnionRoom_GetPartySelectionCancelState(ctx->fieldSystem->unionRoomMan);
 
     if (*v2 != 0) {
         void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
@@ -4307,7 +4307,7 @@ static BOOL ScrCmd_140(ScriptContext *ctx)
     MapObject **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0205B780(fieldSystem->unk_7C, MapObject_GetLocalID(*v1));
+    *v2 = UnionRoom_GetInteractionType(fieldSystem->unionRoomMan, MapObject_GetLocalID(*v1));
     return FALSE;
 }
 
@@ -4318,7 +4318,7 @@ static BOOL ScrCmd_146(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
 
-    *v3 = sub_0205B804(fieldSystem->unk_7C, MapObject_GetLocalID(*v1), v2);
+    *v3 = UnionRoom_StartInteraction(fieldSystem->unionRoomMan, MapObject_GetLocalID(*v1), v2);
     return FALSE;
 }
 
@@ -4335,7 +4335,7 @@ static BOOL ScrCmd_141(ScriptContext *ctx)
 static BOOL sub_02043938(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u32 v1 = sub_0205B8D8(fieldSystem->unk_7C);
+    u32 v1 = UnionRoom_GetConnectState(fieldSystem->unionRoomMan);
     u16 *v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     if (v1 == 0) {
@@ -4357,7 +4357,7 @@ static BOOL ScrCmd_142(ScriptContext *ctx)
 
 static BOOL ScrCmd_13A(ScriptContext *ctx)
 {
-    sub_0205BEA8(4);
+    UnionRoom_SetStatus(UR_STATUS_BUSY);
     CommManager_PauseUnionServer();
     return FALSE;
 }
@@ -4366,7 +4366,7 @@ static BOOL ScrCmd_13B(ScriptContext *ctx)
 {
     CommManager_SetState_Union();
     CommManager_UnionRestartSearch();
-    sub_0205BEA8(0);
+    UnionRoom_SetStatus(UR_STATUS_NONE);
     return FALSE;
 }
 
@@ -4376,7 +4376,7 @@ static BOOL ScrCmd_143(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    sub_0205B930(fieldSystem->unk_7C, v1, v2);
+    UnionRoom_SendActivity(fieldSystem->unionRoomMan, v1, v2);
     return FALSE;
 }
 
@@ -4393,12 +4393,12 @@ static BOOL ScrCmd_144(ScriptContext *ctx)
 static BOOL sub_020439F4(ScriptContext *ctx)
 {
     u16 *v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
-    u32 v1 = sub_0205B8DC(ctx->fieldSystem->unk_7C);
+    u32 v1 = UnionRoom_GetActivityAnswer(ctx->fieldSystem->unionRoomMan);
 
     if (v1 >= 1) {
         *v0 = v1;
 
-        sub_0205C154(ctx->fieldSystem->unk_7C);
+        UnionRoom_ResetActivity(ctx->fieldSystem->unionRoomMan);
         return TRUE;
     }
 
@@ -4419,10 +4419,10 @@ static BOOL ScrCmd_145(ScriptContext *ctx)
 static BOOL sub_02043A4C(ScriptContext *ctx)
 {
     u16 *v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
-    u32 v1 = sub_0205B91C(ctx->fieldSystem->unk_7C);
+    u32 v1 = UnionRoom_GetActivityProposal(ctx->fieldSystem->unionRoomMan);
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        v1 = sub_0205B9EC(ctx->fieldSystem->unk_7C, 8);
+        v1 = UnionRoom_SendChatEnded(ctx->fieldSystem->unionRoomMan, 8);
     }
 
     if (v1 != 0) {

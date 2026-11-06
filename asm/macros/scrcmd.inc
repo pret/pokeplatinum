@@ -34,7 +34,6 @@
 #include "constants/animation_tags.h"
 #include "constants/battle.h"
 #include "constants/battle_tower.h"
-#include "constants/battle_tower_functions.h"
 #include "constants/battle/battle_script.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
@@ -2752,9 +2751,9 @@
     .short SCRCMD_SETBATTLETOWERNULL
     .endm
 
-    .macro InitBattleTower arg0, challengeMode
+    .macro InitBattleTower resumingFromSave, challengeMode
     .short SCRCMD_INITBATTLETOWER
-    .short \arg0
+    .short \resumingFromSave
     .short \challengeMode
     .endm
 
@@ -2787,11 +2786,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1E1 arg0, arg1, arg2
-    .short SCRCMD_1E1
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleTower_SendCommMessage command, arg, success
+    .short SCRCMD_BATTLE_TOWER_SEND_COMM_MESSAGE
+    .short \command
+    .short \arg
+    .short \success
     .endm
 
     .macro ScrCmd_1E2 arg0, arg1
@@ -2800,15 +2799,15 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1E3 arg0, arg1
-    .short SCRCMD_1E3
-    .short \arg0
-    .short \arg1
+    .macro GetBattleTowerMatchIndices rank, opponentIdx
+    .short SCRCMD_GETBATTLETOWERMATCHINDICES
+    .short \rank
+    .short \opponentIdx
     .endm
 
-    .macro ScrCmd_1E4 arg0
-    .short SCRCMD_1E4
-    .short \arg0
+    .macro BattleTower_CheckHasMatchListData result
+    .short SCRCMD_BATTLETOWER_CHECKHASMATCHLISTDATA
+    .short \result
     .endm
 
     .macro IncrementGameRecord recordID

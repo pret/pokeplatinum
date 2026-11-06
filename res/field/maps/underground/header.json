@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_002",
+  "mapGroup": "Underground",
+  "locationName": "LocationNames_Text_MysteryZone",
+  "textBank": "TEXT_BANK_UNDERGROUND",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_FOREST",
+  "mapType": "MAP_TYPE_UNDERGROUND",
+  "preloaded": 2,
+  "musicDay": "SEQ_TANKOU_sseq",
+  "musicNight": "SEQ_TANKOU_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

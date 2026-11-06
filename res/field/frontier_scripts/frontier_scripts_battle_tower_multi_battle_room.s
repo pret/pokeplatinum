@@ -327,14 +327,14 @@ _037F:
     Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 5
-    CallBattleTowerFunction BT_FUNC_UNK_58, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_CLEAR_BUFFER, 0, VAR_0x8008
     GoTo _039F
     End
 
 _039F:
-    FrontierScrCmd_89 2, VAR_0x8000, VAR_0x8008
+    BattleTower_SendRetireMessage 2, VAR_0x8000, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _039F
-    FrontierScrCmd_8A 2, VAR_0x8000
+    BattleTower_WaitForRetireMessage 2, VAR_0x8000
     CloseMessage
     SetVar FR_VAR_0x8010, VAR_0x8000
     GoToIfEq FR_VAR_0x8010, 1, _0B4B
@@ -495,7 +495,7 @@ _0675:
     End
 
 _0689:
-    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8005
+    CallBattleTowerFunction BT_FUNC_GET_CURRENT_STREAK, 0, VAR_0x8005
     Return
 
 _0693:
@@ -537,7 +537,7 @@ _06E7:
 
 _0707:
     SetSystemVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
-    CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_QUICKSAVE, 0, VAR_0x8008
     FreeTowerStruct
     Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating
     ShowSavingIcon
@@ -676,7 +676,7 @@ _0965:
     End
 
 _09A5:
-    CallBattleTowerFunction BT_FUNC_UNK_34, 0, VAR_0x8008
+    CallBattleTowerFunction BT_FUNC_INCREMENT_CURRENT_BATTLE, 0, VAR_0x8008
     CallBattleTowerFunction BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_0x8008
     Return
 
@@ -714,11 +714,11 @@ _0A1B:
     CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, VAR_0x8008
     Call _0A61
     Call _0AB5
-    FrontierScrCmd_85 0
+    BattleTower_PrintTrainerIntro 0
     WaitABPress
     CloseMessage
     Call _0AC1
-    FrontierScrCmd_85 1
+    BattleTower_PrintTrainerIntro 1
     WaitABPress
     CloseMessage
     Call _0A91
@@ -760,11 +760,11 @@ _0ACD:
     CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, VAR_0x8008
     Call _0A61
     Call _0AB5
-    FrontierScrCmd_85 0
+    BattleTower_PrintTrainerIntro 0
     WaitTime 30, VAR_0x8008
     CloseMessage
     Call _0AC1
-    FrontierScrCmd_85 1
+    BattleTower_PrintTrainerIntro 1
     WaitTime 30, VAR_0x8008
     CloseMessage
     Call _0A91

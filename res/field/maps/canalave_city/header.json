@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_015",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_CanalaveCity",
+  "textBank": "TEXT_BANK_CANALAVE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_CITY",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_CITY",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 9,
+  "musicDay": "SEQ_CITY02_D_sseq",
+  "musicNight": "SEQ_CITY02_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

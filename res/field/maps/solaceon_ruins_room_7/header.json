@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_056",
+  "mapGroup": "SolaceonRuins_B4F_ItemRoom",
+  "locationName": "LocationNames_Text_SolaceonRuins",
+  "textBank": "TEXT_BANK_SOLACEON_RUINS_ROOM_7",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_29",
+  "cameraType": "CAMERA_TYPE_CAVE",
+  "battleBackground": "BACKGROUND_CAVE_2",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_02_sseq",
+  "musicNight": "SEQ_D_02_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

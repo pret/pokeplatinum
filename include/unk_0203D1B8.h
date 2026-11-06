@@ -14,7 +14,7 @@
 #include "applications/mail.h"
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
-#include "applications/pc_boxes/pokemon_storage_session.h"
+#include "applications/pc_boxes/defs.h"
 #include "applications/poffin_case/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"

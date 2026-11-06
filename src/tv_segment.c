@@ -2,12 +2,12 @@
 
 #include <nitro.h>
 
+#include "constants/fieldmap.h"
 #include "constants/flavor.h"
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/tv_broadcast.h"
 #include "generated/first_arrival_to_zones.h"
-#include "generated/map_headers.h"
 #include "generated/natures.h"
 #include "generated/pokemon_stats.h"
 
@@ -585,13 +585,13 @@ void sub_0206CFCC(TVBroadcast *broadcast, int param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CFE4(TVBroadcast *broadcast, BOOL param1, u16 param2)
+void sub_0206CFE4(TVBroadcast *broadcast, BOOL didWin, u16 streak)
 {
     UnkStruct_0202E7FC *v0 = sub_0202E7FC(broadcast);
 
     v0->unk_00 = 1;
-    v0->win = param1;
-    v0->winStreak = param2;
+    v0->win = didWin;
+    v0->winStreak = streak;
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
@@ -1286,14 +1286,14 @@ static BOOL TVSegment_IsEligible_HomeAndManor(FieldSystem *fieldSystem, TVEpisod
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_RESORT_AREA);
 }
 
-void TVSegment_Save_BattleTowerMaster(SaveData *saveData, u32 record, Pokemon *mon, BOOL singles)
+void TVSegment_Save_BattleTowerMaster(SaveData *saveData, u32 streak, Pokemon *mon, BOOL singles)
 {
     TVSegmentData segments;
     TVSegment_BattleTowerMaster *segment = &segments.battleTowerMaster;
 
     TVSegment_CopyPokemonValues(mon, &segment->species, &segment->gender, &segment->language, &segment->metGame);
 
-    segment->record = record;
+    segment->record = streak;
     segment->singles = singles;
 
     sub_0206CD58(saveData, 3, 1, segment);

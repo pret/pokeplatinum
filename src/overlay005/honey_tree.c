@@ -2,9 +2,9 @@
 
 #include <nitro.h>
 
+#include "constants/fieldmap.h"
 #include "constants/map_object.h"
 #include "constants/versions.h"
-#include "generated/map_headers.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data.h"

@@ -11,6 +11,7 @@
 
 #include "bag.h"
 #include "ball_seal_info.h"
+#include "battle_tower_save.h"
 #include "coins.h"
 #include "heap.h"
 #include "message.h"
@@ -20,7 +21,6 @@
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_020298BC.h"
-#include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/bag.h"
 #include "res/text/bank/common_strings.h"

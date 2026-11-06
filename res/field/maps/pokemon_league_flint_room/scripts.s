@@ -1,0 +1,115 @@
+#include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_league_flint_room.h"
+#include "res/field/maps/locals/pokemon_league_flint_room.h"
+
+
+    ScriptEntry PokemonLeagueFlintRoom_Flint
+    ScriptEntry PokemonLeagueFlintRoom_OnFrame_EnterRoom
+    ScriptEntryEnd
+
+PokemonLeagueFlintRoom_Flint:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_DEFEATED_FLINT, PokemonLeagueFlintRoom_PostBattle
+    PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_FLINT
+    CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintIntro
+    CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintGameCompletedIntro
+    CloseMessage
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_StartFlintBattle
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_StartFlintRematchBattle
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonLeagueFlintRoom_BlackOut
+    SetFlag FLAG_DEFEATED_FLINT
+    PlaySE SEQ_SE_DP_KI_GASYAN_sseq
+    RemoveObject LOCALID_EXIT_DOOR
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_CreateJournalEventDefeatedFlint
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_CreateJournalEventDefeatedRematchFlint
+    CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintDefeat
+    CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintGameCompletedDefeat
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonLeagueFlintRoom_StartFlintBattle:
+    StartTrainerBattle TRAINER_ELITE_FOUR_FLINT
+    Return
+
+PokemonLeagueFlintRoom_StartFlintRematchBattle:
+    StartTrainerBattle TRAINER_ELITE_FOUR_FLINT_REMATCH
+    Return
+
+PokemonLeagueFlintRoom_CreateJournalEventDefeatedFlint:
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT
+    Return
+
+PokemonLeagueFlintRoom_CreateJournalEventDefeatedRematchFlint:
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT_REMATCH
+    Return
+
+PokemonLeagueFlintRoom_BlackOut:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+PokemonLeagueFlintRoom_PostBattle:
+    CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintPostBattle
+    CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintGameCompletedPostBattle
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonLeagueFlintRoom_FlintIntro:
+    Message PokemonLeagueFlintRoom_Text_FlintIntroPart1
+    CloseMessage
+    ApplyMovement LOCALID_FLINT, PokemonLeagueFlintRoom_Movement_WalkFastInPlace
+    WaitMovement
+    Message PokemonLeagueFlintRoom_Text_FlintIntroPart2
+    Return
+
+PokemonLeagueFlintRoom_FlintGameCompletedIntro:
+    Message PokemonLeagueFlintRoom_Text_FlintGameCompletedIntro
+    Return
+
+PokemonLeagueFlintRoom_FlintDefeat:
+    Message PokemonLeagueFlintRoom_Text_FlintDefeat
+    Return
+
+PokemonLeagueFlintRoom_FlintGameCompletedDefeat:
+    Message PokemonLeagueFlintRoom_Text_FlintGameCompletedDefeat
+    Return
+
+PokemonLeagueFlintRoom_FlintPostBattle:
+    Message PokemonLeagueFlintRoom_Text_FlintPostBattle
+    Return
+
+PokemonLeagueFlintRoom_FlintGameCompletedPostBattle:
+    Message PokemonLeagueFlintRoom_Text_FlintGameCompletedPostBattle
+    Return
+
+    .balign 4, 0
+PokemonLeagueFlintRoom_Movement_WalkFastInPlace:
+    LockDir
+    WalkOnSpotNormalSouth 3
+    WalkOnSpotFastSouth 4
+    WalkOnSpotFasterSouth 2
+    UnlockDir
+    EndMovement
+
+PokemonLeagueFlintRoom_OnFrame_EnterRoom:
+    LockAll
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueFlintRoom_Movement_PlayerEnterRoom
+    WaitMovement
+    PlaySE SEQ_SE_DP_KI_GASYAN_sseq
+    ClearFlag FLAG_HIDE_POKEMON_LEAGUE_FLINT_ROOM_ENTRANCE_DOOR
+    AddObject LOCALID_ENTRANCE_DOOR
+    SetVar VAR_MAP_LOCAL_0x01, 1
+    ReleaseAll
+    End
+
+    .balign 4, 0
+PokemonLeagueFlintRoom_Movement_PlayerEnterRoom:
+    WalkNormalNorth 2
+    EndMovement

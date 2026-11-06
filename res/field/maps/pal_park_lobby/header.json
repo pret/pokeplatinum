@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_039",
+  "mapGroup": "PalPark_Entrance",
+  "locationName": "LocationNames_Text_PalPark",
+  "textBank": "TEXT_BANK_PAL_PARK_LOBBY",
+  "popupStyle": "MAP_LABEL_WINDOW_ROUTE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_3",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_ROAD_D_D_sseq",
+  "musicNight": "SEQ_ROAD_D_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

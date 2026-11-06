@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_054",
+  "mapGroup": "EternaForest",
+  "locationName": "LocationNames_Text_EternaForest",
+  "textBank": "TEXT_BANK_ETERNA_FOREST",
+  "popupStyle": "MAP_LABEL_WINDOW_FOREST",
+  "weather": "OVERWORLD_WEATHER_23",
+  "cameraType": "CAMERA_TYPE_ZOOMED_IN",
+  "battleBackground": "BACKGROUND_FOREST",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_02_sseq",
+  "musicNight": "SEQ_D_02_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}
