@@ -53,7 +53,7 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
     case BT_FUNC_UNK_46:
         *destVar = BattleTower_GiveBattlePointsReward(battleTower);
         TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldData->saveData);
-        sub_0206D0C8(broadcast, *destVar);
+        TVBroadcast_UpdateBattlePointData(broadcast, *destVar);
         GameRecords_AddToRecordValue(SaveData_GetGameRecords(fieldData->saveData), RECORD_BATTLE_POINTS_RECEIVED, *destVar);
         break;
     case BT_FUNC_GET_PARTNER_PARAM:

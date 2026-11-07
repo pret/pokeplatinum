@@ -2710,7 +2710,7 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
 
         if (Item_IsHerbalMedicine(app->partyMenu->usedItemID) == TRUE && app->partyMenu->broadcast != NULL) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
-            FieldSystem_SaveTVSegment_HerbalMedicineTrainerSightingDummy(app->partyMenu->broadcast, mon, app->partyMenu->usedItemID);
+            TVSegment_Save_HerbalMedicineTrainerSightingDummy(app->partyMenu->broadcast, mon, app->partyMenu->usedItemID);
         }
 
         PartyMenu_SetItemUseCallback(app);

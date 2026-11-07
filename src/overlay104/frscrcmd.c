@@ -1573,7 +1573,7 @@ static BOOL FrontierScrCmd_GiveBattlePoints(FrontierScriptContext *ctx)
 
     broadcast = SaveData_GetTVBroadcast(fieldData->saveData);
 
-    sub_0206D0C8(broadcast, battlePoints);
+    TVBroadcast_UpdateBattlePointData(broadcast, battlePoints);
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(fieldData->saveData), RECORD_BATTLE_POINTS_RECEIVED, battlePoints);
     WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(fieldData->saveData), battlePoints, BATTLE_POINTS_FUNC_ADD);
 

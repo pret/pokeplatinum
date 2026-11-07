@@ -109,7 +109,7 @@ BOOL ScrCmd_CallTVBroadcast(ScriptContext *ctx)
 
 BOOL ScrCmd_SaveTVSegmentHiddenItem(ScriptContext *ctx)
 {
-    FieldSystem_SaveTVSegment_HiddenItemBreakingNews(ctx->fieldSystem, ScriptContext_GetVar(ctx));
+    TVSegment_Save_HiddenItemBreakingNews(ctx->fieldSystem, ScriptContext_GetVar(ctx));
     return FALSE;
 }
 
@@ -118,19 +118,19 @@ BOOL ScrCmd_2B8(ScriptContext *param0)
     Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
 
-    FieldSystem_SaveTVSegment_RateThatNameChange(param0->fieldSystem, v1);
+    TVSegment_Save_RateThatNameChange(param0->fieldSystem, v1);
     return FALSE;
 }
 
 BOOL ScrCmd_SaveTVSegmentPokemonStorageBulletin(ScriptContext *param0)
 {
-    FieldSystem_SaveTVSegment_PokemonStorageSpecialNewsBulletin(param0->fieldSystem);
+    TVSegment_Save_PokemonStorageSpecialNewsBulletin(param0->fieldSystem);
     return FALSE;
 }
 
 BOOL ScrCmd_SaveTVSegmentHomeAndManorNoFurniture(ScriptContext *ctx)
 {
-    FieldSystem_SaveTVSegment_HomeAndManor_NoFurniture(ctx->fieldSystem);
+    TVSegment_Save_HomeAndManor_NoFurniture(ctx->fieldSystem);
     return FALSE;
 }
 
@@ -138,7 +138,7 @@ BOOL ScrCmd_SaveTVSegmentHomeAndManor(ScriptContext *ctx)
 {
     u16 furniture = ScriptContext_GetVar(ctx);
 
-    FieldSystem_SaveTVSegment_HomeAndManor(ctx->fieldSystem, furniture);
+    TVSegment_Save_HomeAndManor(ctx->fieldSystem, furniture);
     return FALSE;
 }
 
@@ -245,21 +245,21 @@ static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
     return isEligibleFn(fieldSystem);
 }
 
-static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int language, int param5)
+static void sub_0204922C(StringTemplate *template, int param1, const u16 *param2, int gender, int language, int param5)
 {
     String *v0 = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(v0, param2);
-    StringTemplate_SetString(param0, param1, v0, param3, param5, language);
+    StringTemplate_SetString(template, param1, v0, gender, param5, language);
     String_Free(v0);
 }
 
-static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1)
+static void TVInterview_GetPartyFirstSpeciesName(FieldSystem *fieldSystem, StringTemplate *template)
 {
-    Party *v0 = SaveData_GetParty(fieldSystem->saveData);
-    Pokemon *v1 = Party_FindFirstHatchedMon(v0);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *mon = Party_FindFirstNonEggMon(party);
 
-    StringTemplate_SetSpeciesName(param1, 0, Pokemon_GetBoxPokemon(v1));
+    StringTemplate_SetSpeciesName(template, 0, Pokemon_GetBoxPokemon(mon));
 }
 
 static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)
@@ -268,27 +268,27 @@ static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)
     StringTemplate_SetPoketchAppName(param1, 0, v0);
 }
 
-static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
+static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *template)
 {
-    u16 v0[10 + 1];
+    charcode_t name[MON_NAME_LEN + 1];
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E7E4 *v2 = sub_0202E7E4(broadcast);
 
-    MessageLoader_GetSpeciesName(v2->unk_02, HEAP_ID_FIELD1, v0);
-    sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
+    MessageLoader_GetSpeciesName(v2->species, HEAP_ID_FIELD1, name);
+    sub_0204922C(template, 0, name, GENDER_MALE, GAME_LANGUAGE, 1);
 }
 
-static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
+static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *template)
 {
-    u16 v0[10 + 1];
+    charcode_t name[MON_NAME_LEN + 1];
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E810 *v2 = sub_0202E810(broadcast);
 
-    MessageLoader_GetSpeciesName(v2->unk_02, HEAP_ID_FIELD1, v0);
-    sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
+    MessageLoader_GetSpeciesName(v2->species, HEAP_ID_FIELD1, name);
+    sub_0204922C(template, 0, name, GENDER_MALE, GAME_LANGUAGE, 1);
 }
 
-static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
+static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *template)
 {
     String *v0;
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
@@ -297,7 +297,7 @@ static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
     v0 = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(v0, v2->unk_06);
-    StringTemplate_SetString(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
+    StringTemplate_SetString(template, 0, v0, v2->gender, 1, GAME_LANGUAGE);
     String_Free(v0);
 }
 
@@ -357,7 +357,7 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = 
         .messageID = TVReporterInterviews_Text_Dummy3,
     },
     [TV_PROGRAM_SEGMENT_BATTLE_TOWER_CORNER - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_BattleTowerCorner,
+        .saveResponseFn = TVSegment_Save_BattleTowerCorner,
         .loadMessageFn = NULL,
         .isEligibleFn = sub_02049348,
         .messageID = TVReporterInterviews_Text_BattleTowerCorner,
@@ -369,8 +369,8 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = 
         .messageID = TVReporterInterviews_Text_Dummy5,
     },
     [TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_YourPokemonCorner,
-        .loadMessageFn = sub_02049268,
+        .saveResponseFn = TVSegment_Save_YourPokemonCorner,
+        .loadMessageFn = TVInterview_GetPartyFirstSpeciesName,
         .isEligibleFn = NULL,
         .messageID = TVReporterInterviews_Text_YourPokemonCorner,
     },
@@ -381,13 +381,13 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = 
         .messageID = TVReporterInterviews_Text_Dummy7,
     },
     [TV_PROGRAM_SEGMENT_THE_POKETCH_WATCH - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_ThePoketchWatch,
+        .saveResponseFn = TVSegment_Save_ThePoketchWatch,
         .loadMessageFn = sub_02049288,
         .isEligibleFn = sub_02049358,
         .messageID = TVReporterInterviews_Text_ThePoketchWatch,
     },
     [TV_PROGRAM_SEGMENT_CONTEST_HALL - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_ContestHall,
+        .saveResponseFn = TVSegment_Save_ContestHall,
         .loadMessageFn = NULL,
         .isEligibleFn = sub_02049368,
         .messageID = TVReporterInterviews_Text_ContestHall,
@@ -399,19 +399,19 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = 
         .messageID = TVReporterInterviews_Text_Dummy10,
     },
     [TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_RightOnPhotoCorner,
+        .saveResponseFn = TVSegment_Save_RightOnPhotoCorner,
         .loadMessageFn = NULL,
         .isEligibleFn = sub_02049378,
         .messageID = TVReporterInterviews_Text_RightOnPhotoCorner,
     },
     [TV_PROGRAM_SEGMENT_STREET_CORNER_PERSONALITY_CHECKUP - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_StreetCornerPersonalityCheckup,
+        .saveResponseFn = TVSegment_Save_StreetCornerPersonalityCheckup,
         .loadMessageFn = NULL,
         .isEligibleFn = NULL,
         .messageID = TVReporterInterviews_Text_StreetCornerPersonalityCheckup,
     },
     [TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_ThreeCheersForPoffinCorner,
+        .saveResponseFn = TVSegment_Save_ThreeCheersForPoffinCorner,
         .loadMessageFn = NULL,
         .isEligibleFn = sub_02049388,
         .messageID = TVReporterInterviews_Text_ThreeCheersForPoffinCorner,
@@ -423,43 +423,43 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = 
         .messageID = TVReporterInterviews_Text_Dummy14,
     },
     [TV_PROGRAM_SEGMENT_AMITY_SQUARE_WATCH - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_AmitySquareWatch,
+        .saveResponseFn = TVSegment_Save_AmitySquareWatch,
         .loadMessageFn = sub_020492A0,
         .isEligibleFn = sub_02049398,
         .messageID = TVReporterInterviews_Text_AmitySquareWatch,
     },
     [TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Single,
+        .saveResponseFn = TVSegment_Save_BattleFrontierFrontlineNews_Single,
         .loadMessageFn = sub_020492D4,
         .isEligibleFn = sub_020493A8,
         .messageID = TVReporterInterviews_Text_BattleFrontierFrontlineNews_Single,
     },
     [TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_1 - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_InYourFaceInterview_Question1,
+        .saveResponseFn = TVSegment_Save_InYourFaceInterview_Question1,
         .loadMessageFn = NULL,
         .isEligibleFn = NULL,
         .messageID = TVReporterInterviews_Text_InYourFaceInterview_Question1,
     },
     [TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_2 - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_InYourFaceInterview_Question2,
+        .saveResponseFn = TVSegment_Save_InYourFaceInterview_Question2,
         .loadMessageFn = NULL,
         .isEligibleFn = NULL,
         .messageID = TVReporterInterviews_Text_InYourFaceInterview_Question2,
     },
     [TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_3 - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_InYourFaceInterview_Question3,
+        .saveResponseFn = TVSegment_Save_InYourFaceInterview_Question3,
         .loadMessageFn = NULL,
         .isEligibleFn = NULL,
         .messageID = TVReporterInterviews_Text_InYourFaceInterview_Question3,
     },
     [TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_4 - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_InYourFaceInterview_Question4,
+        .saveResponseFn = TVSegment_Save_InYourFaceInterview_Question4,
         .loadMessageFn = NULL,
         .isEligibleFn = NULL,
         .messageID = TVReporterInterviews_Text_InYourFaceInterview_Question4,
     },
     [TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI - 1] = {
-        .saveResponseFn = FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Multi,
+        .saveResponseFn = TVSegment_Save_BattleFrontierFrontlineNews_Multi,
         .loadMessageFn = sub_02049308,
         .isEligibleFn = sub_020493B8,
         .messageID = TVReporterInterviews_Text_BattleFrontierFrontlineNews_Multi,

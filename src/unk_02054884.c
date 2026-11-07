@@ -138,7 +138,7 @@ Pokemon *Party_FindFirstEligibleBattler(const Party *party)
     return NULL;
 }
 
-Pokemon *Party_FindFirstHatchedMon(const Party *party)
+Pokemon *Party_FindFirstNonEggMon(const Party *party)
 {
     u16 i;
     u16 partyCount = Party_GetCurrentCount(party);

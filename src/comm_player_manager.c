@@ -154,7 +154,7 @@ void CommPlayerMan_Delete(BOOL deletePlayerData)
         }
 
         if (sCommPlayerManager->flagsRegisteredInCurrentSession >= 5) {
-            sub_0206DF60(sCommPlayerManager->fieldSystem, sCommPlayerManager->flagsRegisteredInCurrentSession);
+            TVSegment_Save_FlagCapturingMaster(sCommPlayerManager->fieldSystem, sCommPlayerManager->flagsRegisteredInCurrentSession);
         }
 
         for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {

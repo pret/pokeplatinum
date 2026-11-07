@@ -45,7 +45,7 @@ UnkStruct_0202E7FC *sub_0202E7FC(TVBroadcast *broadcast);
 UnkStruct_0202E808 *TVBroadcast_GetSafariGameData(TVBroadcast *broadcast);
 UnkStruct_0202E810 *sub_0202E810(TVBroadcast *broadcast);
 UnkStruct_0202E81C *sub_0202E81C(TVBroadcast *broadcast);
-UnkStruct_0202E828 *sub_0202E828(TVBroadcast *broadcast);
-UnkStruct_0202E834 *sub_0202E834(TVBroadcast *broadcast);
+TVBroadcast_BattlePointData *TVBroadcast_GetBattlePointData(TVBroadcast *broadcast);
+TVBroadcast_GTSData *TVBroadcast_GetGTSData(TVBroadcast *broadcast);
 
 #endif // POKEPLATINUM_UNK_0202E2CC_H

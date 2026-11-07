@@ -124,7 +124,7 @@ u8 SizeContest_CalcResultForPartyMon(FieldSystem *fieldSystem, u16 partySlot)
         return SIZE_CONTEST_SAME_SIZE;
     } else {
         if (newSizeInches > recordSizeInches) {
-            sub_0206DC6C(fieldSystem, newSize, mon);
+            TVSegment_Save_RecordsPokemonSize(fieldSystem, newSize, mon);
             return SIZE_CONTEST_LARGER;
         } else {
             return SIZE_CONTEST_SMALLER;

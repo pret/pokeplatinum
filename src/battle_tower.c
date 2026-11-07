@@ -514,9 +514,9 @@ static void sub_0204A5A0(BattleTower *battleTower, SaveData *saveData, u16 strea
     Party *party = SaveData_GetParty(saveData);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_SINGLE) {
-        sub_0206DBB0(saveData, streak, Party_GetPokemonBySlotIndex(party, battleTower->partySlots[0]), 1);
+        TVSegment_Save_BattleTowerMaster(saveData, streak, Party_GetPokemonBySlotIndex(party, battleTower->partySlots[0]), TRUE);
     } else {
-        sub_0206DBB0(saveData, streak, Party_GetPokemonBySlotIndex(party, battleTower->partySlots[0]), 0);
+        TVSegment_Save_BattleTowerMaster(saveData, streak, Party_GetPokemonBySlotIndex(party, battleTower->partySlots[0]), FALSE);
     }
 }
 
@@ -895,7 +895,7 @@ static u16 GiveRibbonToPartyMembers(SaveData *saveData, enum PokemonDataParam ri
         }
 
         Pokemon_SetValue(mon, ribbon, &hasRibbon);
-        sub_0206DDB8(saveData, mon, ribbon);
+        TVSegment_Save_RibbonMaster(saveData, mon, ribbon);
         ++ribbonsGiven;
     }
 

@@ -4,7 +4,7 @@
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    u8 unk_02;
+    u8 gender;
     u8 language;
     u8 unk_04;
     u8 padding_05;
