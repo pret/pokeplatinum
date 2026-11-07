@@ -13,7 +13,6 @@
 #include "bag.h"
 #include "battle_regulation.h"
 #include "bg_window.h"
-#include "colored_arrow.h"
 #include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -25,6 +24,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
+#include "menu_cursor.h"
 #include "message.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -70,7 +70,7 @@ typedef struct {
     Window unk_54;
     Window unk_64;
     TrainerInfo *unk_74;
-    ColoredArrow *unk_78;
+    MenuCursor *unk_78;
     Window *unk_7C;
     u8 unk_80;
     s8 unk_81;
@@ -672,7 +672,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     Window_Init(&v0->unk_54);
     Window_Init(&v0->unk_64);
 
-    v0->unk_78 = ColoredArrow_New(HEAP_ID_FIELD2);
+    v0->unk_78 = MenuCursor_New(HEAP_ID_FIELD2);
     v0->unk_88 = CommManager_GetCommType();
     v0->unk_4C = NULL;
     v0->unk_48 = NULL;
@@ -727,7 +727,7 @@ static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
     StringTemplate_Free(param0->unk_28);
     String_Free(param0->unk_0C);
     String_Free(param0->unk_10);
-    ColoredArrow_Free(param0->unk_78);
+    MenuCursor_Free(param0->unk_78);
 
     sub_0205AAA0(param0, 1);
 }
@@ -885,7 +885,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
     }
 
     Window_FillRectWithColor(v0, 15, 0, 0, 16, v0->height * 8);
-    ColoredArrow_Print(param0->unk_78, &param0->unk_54, 0, param1 * 16);
+    MenuCursor_Print(param0->unk_78, &param0->unk_54, 0, param1 * 16);
     Window_DrawStandardFrame(&param0->unk_54, 0, 1, 11);
 
     param0->unk_81 = param1;
@@ -915,7 +915,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
     param0->unk_81 = param1;
 
     Window_FillRectWithColor(v0, 15, 0, 0, 16, v0->height * 8);
-    ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param1 * 16);
+    MenuCursor_Print(param0->unk_78, param0->unk_7C, 0, param1 * 16);
     Window_DrawStandardFrame(param0->unk_7C, 0, 1, 11);
 }
 
@@ -952,7 +952,7 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
 
     Sound_PlayEffect(SE_CONFIRM_sseq_3);
     Window_FillRectWithColor(param0->unk_7C, 15, 0, 0, 16, param0->unk_7C->height * 8);
-    ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param0->unk_81 * 16);
+    MenuCursor_Print(param0->unk_78, param0->unk_7C, 0, param0->unk_81 * 16);
     Window_LoadTiles(param0->unk_7C);
 
     return 0;
