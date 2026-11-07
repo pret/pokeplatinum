@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city.h"
 #include "res/field/maps/locals/snowpoint_city.h"

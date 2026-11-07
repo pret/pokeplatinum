@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_pokecenter_1f.h"
 #include "res/field/maps/locals/eterna_city_pokecenter_1f.h"

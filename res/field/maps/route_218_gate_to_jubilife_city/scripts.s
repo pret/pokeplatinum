@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_218_gate_to_jubilife_city.h"
 

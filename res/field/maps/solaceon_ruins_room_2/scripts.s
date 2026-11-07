@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_ruins_room_2.h"
 #include "res/field/maps/locals/solaceon_ruins_room_2.h"

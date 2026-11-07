@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/field/maps/locals/contest_hall_stage_ongoing_contest.h"
 #include "res/field/maps/locals/contest_hall_lobby.h"

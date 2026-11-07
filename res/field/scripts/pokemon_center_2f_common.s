@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_center_2f_common.h"
 #include "res/text/bank/menu_entries.h"

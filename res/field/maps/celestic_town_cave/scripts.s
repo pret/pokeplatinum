@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_cave.h"
 #include "res/field/maps/locals/celestic_town_cave.h"

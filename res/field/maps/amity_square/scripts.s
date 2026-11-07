@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/amity_square.h"
 #include "res/field/maps/locals/amity_square.h"

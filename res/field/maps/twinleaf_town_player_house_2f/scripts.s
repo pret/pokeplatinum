@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_2f.h"
 #include "res/field/maps/locals/twinleaf_town_player_house_2f.h"

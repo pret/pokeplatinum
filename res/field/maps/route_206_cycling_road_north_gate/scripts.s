@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_206_cycling_road_north_gate.h"
 #include "res/field/maps/locals/route_206_cycling_road_north_gate.h"

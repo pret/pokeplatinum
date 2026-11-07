@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city_pokecenter_1f.h"
 #include "res/field/maps/locals/jubilife_city_pokecenter_1f.h"

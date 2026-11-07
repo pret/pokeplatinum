@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/verity_lakefront.h"
 #include "res/field/maps/locals/verity_lakefront.h"

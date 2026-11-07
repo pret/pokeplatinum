@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poketch_co_1f.h"
 #include "res/field/maps/locals/poketch_co_1f.h"

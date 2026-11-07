@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_2f.h"
 #include "res/field/maps/locals/mt_coronet_2f.h"

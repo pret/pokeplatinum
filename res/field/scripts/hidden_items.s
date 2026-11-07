@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hidden_items.h"
 #include "res/items/hidden_item_scripts.h"

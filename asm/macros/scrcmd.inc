@@ -60,6 +60,8 @@
 #include "constants/villa_visitors.h"
 #include "constants/vs_seeker.h"
 
+#include "res/field/maps/scripts_common.h"
+
 #include "data/scripts/scrcmd.h"
 #include "macros/movement.inc"
 

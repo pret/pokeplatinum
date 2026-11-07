@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unused_battle_park.h"
 #include "res/field/maps/locals/unused_battle_park.h"

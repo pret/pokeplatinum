@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_4f.h"
 #include "res/text/bank/menu_entries.h"

@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_outside.h"
 #include "res/field/maps/locals/stark_mountain_outside.h"

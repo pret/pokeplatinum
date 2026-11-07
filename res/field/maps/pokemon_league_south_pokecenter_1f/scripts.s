@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_south_pokecenter_1f.h"
 #include "res/field/maps/locals/pokemon_league_south_pokecenter_1f.h"

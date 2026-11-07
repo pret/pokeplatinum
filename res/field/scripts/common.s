@@ -1,3 +1,8 @@
+// This definition must come first; it allows skipping the scripts_common.h
+// include in this file specifically, which would otherwise break the
+// ScriptEntry table below.
+#define POKEPLATINUM_GLOBAL_SCRIPT_LABELS_COMMON_H
+
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "generated/player_transitions.h"

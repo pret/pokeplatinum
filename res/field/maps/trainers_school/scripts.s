@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/trainers_school.h"
 #include "res/text/bank/menu_entries.h"

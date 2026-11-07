@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town_pokemon_news_press.h"
 #include "res/text/bank/menu_entries.h"

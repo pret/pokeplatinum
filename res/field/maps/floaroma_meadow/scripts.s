@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_meadow.h"
 #include "res/field/maps/locals/floaroma_meadow.h"

@@ -1,4 +1,3 @@
-#include "res/field/maps/scripts_common.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/turnback_cave_giratina_room.h"
 #include "res/field/maps/locals/turnback_cave_giratina_room.h"
