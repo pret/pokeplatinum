@@ -12,7 +12,6 @@
 
 #include "overlay104/frontier_opponents.h"
 
-#include "battle_tower_modes.h"
 #include "easy_chat_sentence.h"
 #include "heap.h"
 #include "inlines.h"

@@ -2,9 +2,9 @@
 
 #include <nitro.h>
 
+#include "constants/game_records.h"
 #include "constants/heap.h"
 #include "constants/moves.h"
-#include "generated/game_records.h"
 
 #include "struct_defs/battle_frontier.h"
 

@@ -6,10 +6,10 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/script_ranges.h"
 #include "constants/field_poison.h"
+#include "constants/game_records.h"
 #include "constants/map_object.h"
 #include "constants/player_avatar.h"
-#include "generated/game_records.h"
-#include "generated/trainer_score_events.h"
+#include "constants/trainer_score_events.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_defs/daycare.h"

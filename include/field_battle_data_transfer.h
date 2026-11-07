@@ -3,6 +3,7 @@
 
 #include "constants/battle.h"
 #include "constants/fieldmap.h"
+#include "constants/time_of_day.h"
 #include "generated/evolution_methods.h"
 
 #include "struct_defs/chatot_cry.h"
@@ -21,7 +22,6 @@
 #include "pokedex.h"
 #include "poketch.h"
 #include "savedata.h"
-#include "time_of_day.h"
 #include "trainer_info.h"
 
 typedef struct BattleRecords {

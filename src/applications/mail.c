@@ -2,9 +2,9 @@
 
 #include <nitro.h>
 
+#include "constants/game_records.h"
 #include "constants/items.h"
-#include "generated/game_records.h"
-#include "generated/trainer_score_events.h"
+#include "constants/trainer_score_events.h"
 
 #include "applications/easy_chat/main.h"
 #include "applications/mail_viewer.h"

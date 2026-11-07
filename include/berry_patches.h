@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_BERRY_PATCHES_H
 #define POKEPLATINUM_BERRY_PATCHES_H
 
+#include "constants/berry_growth_stages.h"
 #include "constants/heap.h"
-#include "generated/berry_growth_stages.h"
 
 #define MAX_BERRY_PATCHES 128
 

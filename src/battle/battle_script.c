@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
+#include "constants/game_records.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/narc.h"
@@ -13,7 +14,6 @@
 #include "constants/species.h"
 #include "constants/string.h"
 #include "generated/abilities.h"
-#include "generated/game_records.h"
 #include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"

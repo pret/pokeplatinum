@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/accessories.h"
-#include "generated/backdrops.h"
 
 #include "overlay022/struct_ov22_0225899C.h"
 
