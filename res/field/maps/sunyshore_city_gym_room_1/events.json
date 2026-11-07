@@ -1,16 +1,16 @@
 {
     "bg_events": [
         {
-            "script": 4,
-            "type": 0,
+            "script": "SunyshoreGymRoom1_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 6,
             "z": 12,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
-            "type": 0,
+            "script": "SunyshoreGymRoom1_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 12,
             "y": 0,
@@ -24,8 +24,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 2,
+            "script": "SunyshoreGymRoom1_GymGuide",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -39,11 +39,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SCHOOL_KID_TIERA",
-            "initial_dir": 3,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_SCHOOL_KID_TIERA",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 6,
@@ -53,21 +53,23 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SUNYSHORE_CITY",
             "x": 8,
             "z": 14,
             "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY",
-            "dest_warp_id": 12
+            "dest_warp_id": "WARP_SUNYSHORE_CITY_GYM_ROOM_1"
         },
         {
+            "id": "WARP_SUNYSHORE_CITY_GYM_ROOM_2",
             "x": 8,
             "z": 2,
             "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_2",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SUNYSHORE_CITY_GYM_ROOM_1"
         }
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "SunyshoreGymRoom1_Button",
             "x": 3,
             "z": 8,
             "y": 0,
@@ -77,7 +79,7 @@
             "value": 0
         },
         {
-            "script": 2,
+            "script": "SunyshoreGymRoom1_Button",
             "x": 13,
             "z": 8,
             "y": 0,

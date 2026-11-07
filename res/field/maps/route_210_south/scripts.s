@@ -113,7 +113,7 @@ Route210South_RefuseOldCharm:
 Route210South_AcceptOldCharm:
     SetVar VAR_0x8004, ITEM_OLD_CHARM
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Message Route210South_Text_ImCountingOnYou
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -229,7 +229,7 @@ Route210South_AceTrainerF:
     SetVar VAR_0x8004, ITEM_TM51
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route210South_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_ROUTE_210_SOUTH_TM51
     GoTo Route210South_BirdPokemonWouldCrash
 
@@ -241,7 +241,7 @@ Route210South_BirdPokemonWouldCrash:
     End
 
 Route210South_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

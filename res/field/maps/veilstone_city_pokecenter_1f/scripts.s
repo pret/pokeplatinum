@@ -9,7 +9,8 @@
     ScriptEntryEnd
 
 VeilstoneCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_VEILSTONE_NURSE
+    SetVar VAR_0x8007, LOCALID_VEILSTONE_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 VeilstoneCityPokecenter1F_Socialite:

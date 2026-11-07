@@ -16,7 +16,8 @@ PokemonLeagueSouthPokecenter1F_OnTransition:
     End
 
 PokemonLeagueSouthPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_LEAGUE_SOUTH_NURSE
+    SetVar VAR_0x8007, LOCALID_LEAGUE_SOUTH_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 PokemonLeagueSouthPokecenter1F_VendorCommon_Unused:

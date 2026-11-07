@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 3,
+            "script": "SandgemTownPokecenter1F_BreederM",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 3,
+            "script": "SandgemTownPokecenter1F_ExpertM",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -37,8 +37,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 2,
+            "script": "SandgemTownPokecenter1F_Lass",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -52,8 +52,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "SandgemTownPokecenter1F_Nurse",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -67,8 +67,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_POKECENTER_BASEMENT_BLOCKADE",
-            "script": 2035,
-            "initial_dir": 2,
+            "script": "CommonScript_BlockPokecenterBasement",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -79,22 +79,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SANDGEM_TOWN",
             "x": 8,
             "z": 12,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKECENTER_1F"
         },
         {
+            "id": "WARP_SANDGEM_TOWN_POKECENTER_2F",
             "x": 2,
             "z": 10,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKECENTER_1F"
         },
         {
+            "id": "WARP_SANDGEM_TOWN_POKECENTER_B1F",
             "x": 14,
             "z": 10,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKECENTER_B1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKECENTER_1F"
         }
     ],
     "coord_events": []

@@ -15,13 +15,13 @@ AcuityLakefront_OnLoad:
     End
 
 AcuityLakefront_RemoveWarpsLakeAcuityNormal:
-    SetWarpEventPos 2, 305, 229
-    SetWarpEventPos 3, 306, 229
+    SetWarpEventPos WARP_LAKE_ACUITY_1, 305, 229
+    SetWarpEventPos WARP_LAKE_ACUITY_2, 306, 229
     End
 
 AcuityLakefront_RemoveWarpsLakeAcuityLowWater:
-    SetWarpEventPos 0, 305, 229
-    SetWarpEventPos 1, 306, 229
+    SetWarpEventPos WARP_LAKE_ACUITY_LOW_WATER_1, 305, 229
+    SetWarpEventPos WARP_LAKE_ACUITY_LOW_WATER_2, 306, 229
     End
 
 AcuityLakefront_OnTransition:

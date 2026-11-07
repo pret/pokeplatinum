@@ -3,10 +3,11 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_SOLACEON_RUINS_ROOM_6",
             "x": 5,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END"
         }
     ],
     "coord_events": []

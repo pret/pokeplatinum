@@ -35,7 +35,7 @@ TrainersSchool_Rival:
     Message TrainersSchool_Text_TakeTownMap
     SetVar VAR_0x8004, ITEM_TOWN_MAP
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     BufferRivalName 1
     Message TrainersSchool_Text_OreburghCityNext
     CloseMessage
@@ -187,7 +187,7 @@ TrainersSchool_GivePotion:
     SetVar VAR_0x8004, ITEM_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, TrainersSchool_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_TRAINERS_SCHOOL_POTION
     GoTo TrainersSchool_PotionRestoresHP
     End
@@ -200,7 +200,7 @@ TrainersSchool_PotionRestoresHP:
     End
 
 TrainersSchool_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

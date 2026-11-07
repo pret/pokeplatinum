@@ -1,40 +1,36 @@
 {
     "bg_events": [
         {
-            "script": 8002,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ETERNA_CITY_DRACO_PLATE",
             "x": 327,
             "z": 521,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8150,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_205_NORTH_SUPER_POTION",
             "x": 285,
             "z": 520,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 18,
-            "type": 0,
+            "script": "EternaCity_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 327,
             "z": 525,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 8003,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_211_WEST_GREAT_BALL",
             "x": 355,
             "z": 521,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8228,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ETERNA_CITY_MOON_STONE",
             "x": 347,
             "z": 517,
             "y": 0,
@@ -48,8 +44,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 0,
+            "script": "EternaCity_PokemonBreederM",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -63,8 +59,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
-            "initial_dir": 2,
+            "script": "EternaCity_ExpertM",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -78,8 +74,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 11,
-            "initial_dir": 0,
+            "script": "EternaCity_NinjaBoy",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -93,8 +89,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "EternaCity_GruntM1",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -108,8 +104,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
-            "script": 3,
-            "initial_dir": 3,
+            "script": "EternaCity_GruntM2",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -123,8 +119,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 13,
-            "initial_dir": 0,
+            "script": "EternaCity_GymSignpost",
+            "initial_dir": "DIR_NORTH",
             "data": [
                 1
             ],
@@ -140,8 +136,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 14,
-            "initial_dir": 0,
+            "script": "EternaCity_SignboardRadRickshawsCycleShop",
+            "initial_dir": "DIR_NORTH",
             "data": [
                 1
             ],
@@ -157,11 +153,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 12,
-            "initial_dir": 0,
-            "data": [
-                11
-            ],
+            "script": "EternaCity_MapSignpost",
+            "signpost": "city_map_eterna_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 293,
@@ -174,8 +168,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 15,
-            "initial_dir": 0,
+            "script": "EternaCity_SignboardTeamGalacticEternaBuilding",
+            "initial_dir": "DIR_NORTH",
             "data": [
                 3
             ],
@@ -191,11 +185,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 12,
-            "initial_dir": 0,
-            "data": [
-                11
-            ],
+            "script": "EternaCity_MapSignpost",
+            "signpost": "city_map_eterna_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 344,
@@ -208,8 +200,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
-            "initial_dir": 2,
+            "script": "EternaCity_PokemonBreederF1",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -223,8 +215,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9,
-            "initial_dir": 0,
+            "script": "EternaCity_AceTrainerF",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 1,
@@ -238,8 +230,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_CYNTHIA",
-            "script": 28,
-            "initial_dir": 2,
+            "script": "EternaCity_Cynthia",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -248,17 +240,14 @@
             "y": 7
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST_13",
-            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_205_NORTH",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_205_NORTH",
+                "id": "LOCALID_ARROW_SIGNPOST_ETERNA_CITY"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 281,
@@ -271,8 +260,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -286,8 +275,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -301,8 +290,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -316,8 +305,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -331,8 +320,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -346,8 +335,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -361,8 +350,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -376,8 +365,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ETERNA_CITY_TM46",
-            "script": 7024,
-            "initial_dir": 0,
+            "script": "VisibleItems_EternaCity_TM46",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -391,8 +380,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ETERNA_CITY_SUPER_POTION",
-            "script": 7026,
-            "initial_dir": 0,
+            "script": "VisibleItems_EternaCity_SuperPotion",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -406,8 +395,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
-            "script": 4,
-            "initial_dir": 3,
+            "script": "EternaCity_GruntM3",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -421,8 +410,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
-            "initial_dir": 3,
+            "script": "EternaCity_BugCatcher1",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 1,
@@ -431,17 +420,14 @@
             "y": 7
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST_25",
-            "clone_id": 7,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_211_WEST",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_211_WEST",
+                "id": "LOCALID_ARROW_SIGNPOST_ETERNA_CITY"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 353,
@@ -454,8 +440,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 16,
-            "initial_dir": 0,
+            "script": "EternaCity_SignboardUndergroundMansHouse",
+            "initial_dir": "DIR_NORTH",
             "data": [
                 3
             ],
@@ -471,8 +457,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 17,
-            "initial_dir": 0,
+            "script": "EternaCity_SignboardEternaCondominiums",
+            "initial_dir": "DIR_NORTH",
             "data": [
                 3
             ],
@@ -488,8 +474,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 19,
-            "initial_dir": 0,
+            "script": "EternaCity_PokemonBreederF2",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -503,8 +489,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -518,8 +504,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 22,
-            "initial_dir": 1,
+            "script": "EternaCity_BugCatcher2",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -533,8 +519,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GARDENIA",
-            "script": 24,
-            "initial_dir": 1,
+            "script": "EternaCity_Gardenia",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -548,8 +534,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_CYRUS",
-            "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -563,8 +548,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_RIVAL",
-            "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -575,81 +559,93 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_CITY_POKECENTER_1F",
             "x": 305,
             "z": 530,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_ETERNA_CITY_MART",
             "x": 309,
             "z": 548,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_CYCLE_SHOP",
             "x": 310,
             "z": 539,
             "dest_header_id": "MAP_HEADER_CYCLE_SHOP",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_TEAM_GALACTIC_ETERNA_BUILDING_1F",
             "x": 305,
             "z": 519,
             "dest_header_id": "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_ETERNA_CITY_CONDOMINIUMS_1F",
             "x": 315,
             "z": 548,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_ETERNA_CITY_SOUTH_HOUSE",
             "x": 298,
             "z": 562,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_SOUTH_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_ETERNA_CITY_EAST_HOUSE",
             "x": 327,
             "z": 537,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_EAST_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_ETERNA_CITY_HERB_SHOP",
             "x": 316,
             "z": 521,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_HERB_SHOP",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_NORTH_GATE_1",
             "x": 304,
             "z": 569,
             "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY_1"
         },
         {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_NORTH_GATE_2",
             "x": 305,
             "z": 569,
             "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY_1"
         },
         {
+            "id": "WARP_ETERNA_CITY_GYM",
             "x": 312,
             "z": 562,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_GYM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         },
         {
+            "id": "WARP_ETERNA_CITY_UNDERGROUND_MAN_HOUSE",
             "x": 310,
             "z": 530,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_UNDERGROUND_MAN_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY"
         }
     ],
     "coord_events": [
         {
-            "script": 25,
+            "script": "EternaCity_CoordEvent_Rival",
             "x": 303,
             "z": 523,
             "y": 0,
@@ -659,7 +655,7 @@
             "value": 0
         },
         {
-            "script": 20,
+            "script": "EternaCity_CoordEvent_BlockExitSouth",
             "x": 303,
             "z": 565,
             "y": 0,
@@ -669,7 +665,7 @@
             "value": 1
         },
         {
-            "script": 23,
+            "script": "EternaCity_CoordEvent_BlockExitWest",
             "x": 297,
             "z": 532,
             "y": 0,
@@ -679,7 +675,7 @@
             "value": 1
         },
         {
-            "script": 1,
+            "script": "EternaCity_CoordEvent_CynthiaGiveCut",
             "x": 304,
             "z": 522,
             "y": 0,
@@ -689,7 +685,7 @@
             "value": 1
         },
         {
-            "script": 26,
+            "script": "EternaCity_CoordEvent_CynthiaTryGiveEgg",
             "x": 308,
             "z": 541,
             "y": 0,
@@ -699,7 +695,7 @@
             "value": 3
         },
         {
-            "script": 27,
+            "script": "EternaCity_CoordEvent_CynthiaBlockBikeShop",
             "x": 309,
             "z": 540,
             "y": 0,
@@ -709,7 +705,7 @@
             "value": 4
         },
         {
-            "script": 1,
+            "script": "EternaCity_CoordEvent_CynthiaGiveCut",
             "x": 304,
             "z": 523,
             "y": 0,

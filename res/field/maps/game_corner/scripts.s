@@ -213,7 +213,7 @@ GameCorner_CoinsClerk_TenStraightBonusRounds_SavedTM:
     End
 
 GameCorner_CoinsClerk_GiveTM64:
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_GAME_CORNER_TM64
     Message GameCorner_Text_PleaseKeepPlayingSlots
     WaitButton

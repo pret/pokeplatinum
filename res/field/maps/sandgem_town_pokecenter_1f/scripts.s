@@ -10,7 +10,8 @@
     ScriptEntryEnd
 
 SandgemTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_SANDGEM_NURSE
+    SetVar VAR_0x8007, LOCALID_SANDGEM_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 SandgemTownPokecenter1F_BreederM:

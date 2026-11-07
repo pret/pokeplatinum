@@ -3,10 +3,11 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_CITY_GYM",
             "x": 16,
             "z": 29,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_GYM",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ETERNA_CITY_DP_GYM"
         }
     ],
     "coord_events": []

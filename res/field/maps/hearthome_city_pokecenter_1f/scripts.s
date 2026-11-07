@@ -10,7 +10,8 @@
     ScriptEntryEnd
 
 HearthomeCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_HEARTHOME_NURSE
+    SetVar VAR_0x8007, LOCALID_HEARTHOME_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 HearthomeCityPokecenter1F_Youngster:

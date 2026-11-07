@@ -11,7 +11,8 @@
     ScriptEntryEnd
 
 CanalaveCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_CANALAVE_NURSE
+    SetVar VAR_0x8007, LOCALID_CANALAVE_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 CanalaveCityPokecenter1F_PokemonBreederF:

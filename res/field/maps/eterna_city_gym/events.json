@@ -1,16 +1,16 @@
 {
     "bg_events": [
         {
-            "script": 3,
-            "type": 0,
+            "script": "EternaGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 25,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "EternaGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 25,
             "y": 0,
@@ -24,8 +24,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "EternaGym_GymGuide",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -39,8 +39,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GYM_GARDENIA",
-            "script": 4,
-            "initial_dir": 1,
+            "script": "EternaGym_Gardenia",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -54,8 +54,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 2,
+            "script": "EternaGym_LassCaroline",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -69,8 +69,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
-            "initial_dir": 0,
+            "script": "EternaGym_AromaLadyJenna",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -84,8 +84,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 7,
-            "initial_dir": 1,
+            "script": "EternaGym_AromaLadyAngela",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -96,16 +96,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_CITY",
             "x": 11,
             "z": 27,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY",
-            "dest_warp_id": 10
+            "dest_warp_id": "WARP_ETERNA_CITY_GYM"
         },
         {
+            "id": "WARP_ETERNA_CITY_DP_GYM",
             "x": 11,
             "z": 0,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_DP_GYM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY_GYM"
         }
     ],
     "coord_events": []

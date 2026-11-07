@@ -7,11 +7,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_GUITARIST_TONY",
-            "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_GUITARIST_TONY",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 80,
@@ -24,11 +24,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_SAILOR_SKYLER",
-            "initial_dir": 3,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_SAILOR_SKYLER",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 76,
@@ -41,9 +41,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_MIGUEL",
-            "initial_dir": 3,
-            "data": [],
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_MIGUEL",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 93,
@@ -56,9 +58,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_LUC",
-            "initial_dir": 3,
-            "data": [],
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_LUC",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 93,
@@ -71,11 +75,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "script": "Route218_ArrowSignpostJubilifeCity",
+            "signpost": "route_map_01_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 119,
@@ -88,11 +90,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "script": "Route218_ArrowSignpostCanalaveCity",
+            "signpost": "route_map_02_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 72,
@@ -105,8 +105,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_218_RARE_CANDY",
-            "script": 7132,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route218_RareCandy",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -120,8 +120,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_218_HYPER_POTION",
-            "script": 7133,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route218_HyperPotion",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -135,11 +135,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                74
-            ],
+            "berry_tree": 74,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 87,
@@ -152,11 +149,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                75
-            ],
+            "berry_tree": 75,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 88,
@@ -169,11 +163,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                76
-            ],
+            "berry_tree": 76,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 89,
@@ -186,11 +177,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                77
-            ],
+            "berry_tree": 77,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 90,
@@ -203,8 +191,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -218,8 +206,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -233,8 +221,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_218_BLOCKADE",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "Route218_Guitarist",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -248,8 +236,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_218_BLOCKADE",
-            "script": 5,
-            "initial_dir": 1,
+            "script": "Route218_ClefairySouth",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -263,8 +251,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_218_BLOCKADE",
-            "script": 6,
-            "initial_dir": 1,
+            "script": "Route218_ClefairyNorth",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -278,8 +266,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_218_BLOCKADE",
-            "script": 7,
-            "initial_dir": 0,
+            "script": "Route218_Pikachu",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -293,8 +281,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_218_BLOCKADE",
-            "script": 7,
-            "initial_dir": 0,
+            "script": "Route218_Pikachu",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -308,8 +296,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_218_BLOCKADE",
-            "script": 4,
-            "initial_dir": 0,
+            "script": "Route218_Fisherman",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -323,8 +311,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_218_X_ACCURACY",
-            "script": 7256,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route218_XAccuracy",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -335,28 +323,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_218_GATE_TO_CANALAVE_CITY_1",
             "x": 70,
             "z": 754,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_218"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_CANALAVE_CITY_2",
             "x": 70,
             "z": 755,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_218"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_JUBILIFE_CITY_1",
             "x": 121,
             "z": 758,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_218"
         },
         {
+            "id": "WARP_ROUTE_218_GATE_TO_JUBILIFE_CITY_2",
             "x": 121,
             "z": 759,
             "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_218"
         }
     ],
     "coord_events": []

@@ -1,64 +1,56 @@
 {
     "bg_events": [
         {
-            "script": 8093,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOMS_1_AND_2_SUN_STONE",
             "x": 5,
             "z": 6,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8094,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOMS_1_AND_2_FULL_HEAL",
             "x": 19,
             "z": 3,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8095,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOMS_1_AND_2_MAX_REVIVE",
             "x": 29,
             "z": 12,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8098,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOMS_1_AND_2_HEAL_POWDER",
             "x": 26,
             "z": 18,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8097,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOMS_1_AND_2_YELLOW_SHARD",
             "x": 29,
             "z": 24,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8096,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOMS_1_AND_2_STARDUST",
             "x": 38,
             "z": 14,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8099,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOMS_1_AND_2_STONE_PLATE",
             "x": 59,
             "z": 3,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8261,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_4F_ROOMS_1_AND_2_ULTRA_BALL",
             "x": 37,
             "z": 9,
             "y": 0,
@@ -72,8 +64,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -87,8 +79,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -102,8 +94,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -117,8 +109,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -132,8 +124,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_5",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -147,8 +139,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_6",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -162,12 +154,12 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
-            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_2",
-            "initial_dir": 0,
-            "data": [
-                2,
-                5
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_2",
+                "sight_range": 2,
+                "interval_steps": 5
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 23,
@@ -180,11 +172,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "hidden_flag": "FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS",
-            "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_1",
-            "initial_dir": 2,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_1",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 10,
@@ -197,8 +189,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_MT_CORONET_4F_ROOMS_1_AND_2_ADAMANT_ORB",
-            "script": 7037,
-            "initial_dir": 0,
+            "script": "VisibleItems_MtCoronet4FRooms1And2_AdamantOrb",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -212,8 +204,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_MT_CORONET_4F_ROOMS_1_AND_2_LUSTROUS_ORB",
-            "script": 7039,
-            "initial_dir": 0,
+            "script": "VisibleItems_MtCoronet4FRooms1And2_LustrousOrb",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -224,34 +216,39 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_OUTSIDE_SOUTH_1",
             "x": 7,
             "z": 25,
             "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_1"
         },
         {
+            "id": "WARP_MT_CORONET_OUTSIDE_SOUTH_2",
             "x": 35,
             "z": 24,
             "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_2"
         },
         {
+            "id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_1",
             "x": 17,
             "z": 6,
             "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_2"
         },
         {
+            "id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_2",
             "x": 59,
             "z": 6,
             "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_1"
         },
         {
+            "id": "WARP_MT_CORONET_OUTSIDE_NORTH",
             "x": 40,
             "z": 10,
             "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_NORTH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2"
         }
     ],
     "coord_events": []

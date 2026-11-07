@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ACUITY_LAKEFRONT_ULTRA_BALL",
-            "script": 7163,
-            "initial_dir": 0,
+            "script": "VisibleItems_AcuityLakefront_UltraBall",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,11 +22,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "script": "AcuityLakefront_ArrowSignpostLakeAcuity",
+            "signpost": "route_map_03_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 309,
@@ -39,8 +37,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ACUITY_LAKEFRONT_RIVAL",
-            "script": 0,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -54,8 +51,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ACUITY_LAKEFRONT_REAPER_CLOTH",
-            "script": 7309,
-            "initial_dir": 0,
+            "script": "VisibleItems_AcuityLakefront_ReaperCloth",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -66,33 +63,37 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_LAKE_ACUITY_LOW_WATER_1",
             "x": 308,
             "z": 229,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY_LOW_WATER",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ACUITY_LAKEFRONT_1"
         },
         {
+            "id": "WARP_LAKE_ACUITY_LOW_WATER_2",
             "x": 309,
             "z": 229,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY_LOW_WATER",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ACUITY_LAKEFRONT_2"
         },
         {
+            "id": "WARP_LAKE_ACUITY_1",
             "x": 308,
             "z": 229,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_ACUITY_LAKEFRONT_3"
         },
         {
+            "id": "WARP_LAKE_ACUITY_2",
             "x": 309,
             "z": 229,
             "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_ACUITY_LAKEFRONT_4"
         }
     ],
     "coord_events": [
         {
-            "script": 4,
+            "script": "AcuityLakefront_CoordEvent_Rival",
             "x": 310,
             "z": 244,
             "y": 0,

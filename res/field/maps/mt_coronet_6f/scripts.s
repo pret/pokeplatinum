@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/field/maps/locals/mt_coronet_6f.h"
 
 
     ScriptEntry MtCoronet6F_OnTransition
@@ -17,7 +18,7 @@ MtCoronet6F_OnLoad:
     End
 
 MtCoronet6F_SetWarpSpearPillarDistorted:
-    SetWarpEventPos 2, 7, 5
+    SetWarpEventPos WARP_SPEAR_PILLAR_DISTORTED, 7, 5
     End
 
 MtCoronet6F_TrySetWarpSpearPillarDialgaPalkia:
@@ -26,7 +27,7 @@ MtCoronet6F_TrySetWarpSpearPillarDialgaPalkia:
     End
 
 MtCoronet6F_SetWarpSpearPillarNormal:
-    SetWarpEventPos 1, 7, 5
+    SetWarpEventPos WARP_SPEAR_PILLAR, 7, 5
     End
 
 MtCoronet6F_TrySetWarpSpearPillarDialga:
@@ -51,18 +52,18 @@ MtCoronet6F_TrySetWarpSpearPillarPalkia:
     End
 
 MtCoronet6F_SetWarpSpearPillarDialga:
-    SetWarpEventPos 3, 7, 5
+    SetWarpEventPos WARP_SPEAR_PILLAR_DIALGA, 7, 5
     End
 
 MtCoronet6F_SetWarpSpearPillarPalkia:
-    SetWarpEventPos 4, 7, 5
+    SetWarpEventPos WARP_SPEAR_PILLAR_PALKIA, 7, 5
     End
 
 MtCoronet6F_RemoveSpearPillarWarps:
-    SetWarpEventPos 1, 1, 5
-    SetWarpEventPos 2, 1, 5
-    SetWarpEventPos 3, 1, 5
-    SetWarpEventPos 4, 1, 5
+    SetWarpEventPos WARP_SPEAR_PILLAR, 1, 5
+    SetWarpEventPos WARP_SPEAR_PILLAR_DISTORTED, 1, 5
+    SetWarpEventPos WARP_SPEAR_PILLAR_DIALGA, 1, 5
+    SetWarpEventPos WARP_SPEAR_PILLAR_PALKIA, 1, 5
     Return
 
     .balign 4, 0

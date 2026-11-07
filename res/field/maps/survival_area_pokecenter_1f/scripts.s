@@ -10,7 +10,8 @@
     ScriptEntryEnd
 
 SurvivalAreaPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_SURVIVAL_AREA_NURSE
+    SetVar VAR_0x8007, LOCALID_SURVIVAL_AREA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 SurvivalAreaPokecenter1F_AceTrainerM:

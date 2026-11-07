@@ -21,7 +21,7 @@ Route211East_AceTrainerM:
     SetVar VAR_0x8004, ITEM_TM77
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route211East_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_ROUTE_211_EAST_TM77
     GoTo Route211East_ExplainPsychUp
 
@@ -34,7 +34,7 @@ Route211East_ExplainPsychUp:
     End
 
 Route211East_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

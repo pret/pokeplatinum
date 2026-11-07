@@ -92,11 +92,11 @@ GlobalTerminal2F_BoxDataMachineEnd:
     End
 
 GlobalTerminal2F_UseBoxDataMachine:
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal2F_BoxDataMachineEnd
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript CommonScript_GlobalTerminalMachine
     ReleaseAll
     End
 
@@ -132,11 +132,11 @@ GlobalTerminal2F_DressUpDataMachineEnd:
     End
 
 GlobalTerminal2F_UseDressUpDataMachine:
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal2F_DressUpDataMachineEnd
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript CommonScript_GlobalTerminalMachine
     ReleaseAll
     End
 

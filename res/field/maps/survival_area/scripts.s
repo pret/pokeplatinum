@@ -29,7 +29,7 @@ SurvivalArea_OnLoad:
     End
 
 SurvivalArea_RemoveWarpBattleground:
-    SetWarpEventPos 0, 652, 336
+    SetWarpEventPos WARP_BATTLEGROUND, 652, 336
     End
 
 SurvivalArea_Youngster:

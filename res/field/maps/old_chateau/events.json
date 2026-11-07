@@ -1,8 +1,8 @@
 {
     "bg_events": [
         {
-            "script": 2,
-            "type": 0,
+            "script": "OldChateau_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 7,
             "z": 6,
             "y": 0,
@@ -12,34 +12,39 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_OLD_CHATEAU_SIDE_ROOMS_1",
             "x": 1,
             "z": 6,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OLD_CHATEAU_1"
         },
         {
+            "id": "WARP_OLD_CHATEAU_SIDE_ROOMS_2",
             "x": 17,
             "z": 6,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_OLD_CHATEAU_2"
         },
         {
+            "id": "WARP_OLD_CHATEAU_DINING_AREA",
             "x": 9,
             "z": 5,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OLD_CHATEAU"
         },
         {
+            "id": "WARP_OLD_CHATEAU_CORRIDOR",
             "x": 9,
             "z": 2,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OLD_CHATEAU"
         },
         {
+            "id": "WARP_ETERNA_FOREST",
             "x": 9,
             "z": 15,
             "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_OLD_CHATEAU"
         }
     ],
     "coord_events": []

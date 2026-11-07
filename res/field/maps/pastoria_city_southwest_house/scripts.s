@@ -17,7 +17,7 @@ PastoriaCitySouthwestHouse_PokemonBreederF:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaCitySouthwestHouse_BagIsFull
     SetFlag FLAG_DAILY_RECEIVED_PASTORIA_CITY_SOUTHWEST_HOUSE_RANDOM_BERRY
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ PastoriaCitySouthwestHouse_PlantingIsGood:
     End
 
 PastoriaCitySouthwestHouse_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

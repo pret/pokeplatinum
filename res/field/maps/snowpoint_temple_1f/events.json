@@ -1,24 +1,24 @@
 {
     "bg_events": [
         {
-            "script": 2,
-            "type": 0,
+            "script": "SnowpointTemple1F_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 7,
             "z": 6,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 2,
-            "type": 0,
+            "script": "SnowpointTemple1F_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 6,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 2,
-            "type": 0,
+            "script": "SnowpointTemple1F_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 6,
             "y": 0,
@@ -28,16 +28,18 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_SNOWPOINT_CITY",
             "x": 8,
             "z": 13,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_SNOWPOINT_TEMPLE_1F_1"
         },
         {
+            "id": "WARP_SNOWPOINT_TEMPLE_B1F",
             "x": 14,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_B1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_TEMPLE_1F"
         }
     ],
     "coord_events": []

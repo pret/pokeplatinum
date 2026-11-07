@@ -17,7 +17,7 @@ HearthomeCitySoutheastHouse2F_AceTrainerF:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, HearthomeCitySoutheastHouse2F_BagIsFull
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F_SHELL_BELL
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -31,7 +31,7 @@ HearthomeCitySoutheastHouse2F_ExplainShellBell:
     End
 
 HearthomeCitySoutheastHouse2F_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

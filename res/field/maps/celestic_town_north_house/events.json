@@ -1,8 +1,8 @@
 {
     "bg_events": [
         {
-            "script": 4,
-            "type": 0,
+            "script": "CelesticTownNorthHouse_Scroll",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 3,
             "y": 0,
@@ -16,8 +16,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "CelesticTownNorthHouse_ExpertM",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -31,8 +31,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CELESTIC_TOWN_NORTH_HOUSE_ELDER",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "CelesticTownNorthHouse_Elder",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -46,8 +46,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "CelesticTownNorthHouse_Lass",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -61,8 +61,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
-            "initial_dir": 0,
+            "script": "CelesticTownNorthHouse_Book",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -73,10 +73,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_CELESTIC_TOWN",
             "x": 5,
             "z": 8,
             "dest_header_id": "MAP_HEADER_CELESTIC_TOWN",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_CELESTIC_TOWN_NORTH_HOUSE"
         }
     ],
     "coord_events": []

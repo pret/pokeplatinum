@@ -3,21 +3,23 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_POKEMON_LEAGUE_LUCIAN_ROOM",
             "x": 4,
             "z": 2,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_LUCIAN_ROOM",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_FLINT_ROOM",
             "x": 4,
             "z": 15,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM"
         }
     ],
     "coord_events": [
         {
-            "script": 3,
+            "script": "PokemonLeagueElevatorToLucianRoom_CoordEvent_PlatformLift",
             "x": 4,
             "z": 11,
             "y": 0,

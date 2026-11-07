@@ -9,7 +9,8 @@
     ScriptEntryEnd
 
 PastoriaCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_PASTORIA_NURSE
+    SetVar VAR_0x8007, LOCALID_PASTORIA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 PastoriaCityPokecenter1F_BlackBelt:

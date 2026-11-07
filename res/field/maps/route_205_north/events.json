@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8150,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_205_NORTH_SUPER_POTION",
             "x": 285,
             "z": 520,
             "y": 0,
@@ -16,9 +15,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_ANDREW",
-            "initial_dir": 3,
-            "data": [],
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_ANDREW",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 274,
@@ -31,9 +32,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_JOSEPH",
-            "initial_dir": 1,
-            "data": [],
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_JOSEPH",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 270,
@@ -46,9 +49,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_ZACHARY",
-            "initial_dir": 1,
-            "data": [],
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_ZACHARY",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 277,
@@ -61,11 +66,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "script": "Route205North_ArrowSignpostEternaForest",
+            "signpost": "route_map_02_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 262,
@@ -78,11 +81,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "script": "Route205North_ArrowSignpostEternaCity",
+            "signpost": "route_map_01_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 281,
@@ -95,8 +96,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "Route205North_Fisherman",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -110,8 +111,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC",
-            "script": 7023,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route205North_GuardSpec",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -125,11 +126,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                14
-            ],
+            "berry_tree": 14,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 277,
@@ -142,11 +140,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                15
-            ],
+            "berry_tree": 15,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 278,
@@ -159,11 +154,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                16
-            ],
+            "berry_tree": 16,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 279,
@@ -176,11 +168,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                17
-            ],
+            "berry_tree": 17,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 280,
@@ -188,17 +177,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_MAP_SIGNPOST",
-            "clone_id": 7,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ETERNA_CITY",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                11
-            ],
+            "clone": {
+                "map": "MAP_HEADER_ETERNA_CITY",
+                "id": "LOCALID_MAP_SIGNPOST_WEST"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 293,
@@ -208,16 +194,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_FOREST_1",
             "x": 259,
             "z": 525,
             "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_ROUTE_205_NORTH_2"
         },
         {
+            "id": "WARP_ETERNA_FOREST_2",
             "x": 259,
             "z": 524,
             "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_ROUTE_205_NORTH_1"
         }
     ],
     "coord_events": []

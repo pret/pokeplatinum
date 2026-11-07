@@ -1,96 +1,94 @@
 {
     "bg_events": [
         {
-            "script": 1,
-            "type": 0,
+            "script": "GalacticHQ2F_Bed",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 40,
             "z": 4,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8075,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_2F_POKE_DOLL",
             "x": 44,
             "z": 5,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8076,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_2F_MAX_POTION",
             "x": 1,
             "z": 12,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 2,
-            "type": 0,
+            "script": "GalacticHQ2F_BgSignNapRoom",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 42,
             "z": 2,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "GalacticHQ2F_BgSignTVRoom",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 31,
             "z": 18,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
-            "type": 0,
+            "script": "GalacticHQ2F_BgSignCredo",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 19,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 7,
-            "type": 0,
+            "script": "GalacticHQ2F_Refrigerator",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 39,
             "z": 14,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
-            "type": 0,
+            "script": "GalacticHQ2F_KitchenSink",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 41,
             "z": 12,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
-            "type": 0,
+            "script": "GalacticHQ2F_KitchenSink",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 42,
             "z": 12,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 1,
-            "type": 0,
+            "script": "GalacticHQ2F_Bed",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 40,
             "z": 5,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_SOUTH"
         },
         {
-            "script": 1,
-            "type": 0,
+            "script": "GalacticHQ2F_Bed",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 44,
             "z": 5,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_SOUTH"
         },
         {
-            "script": 1,
-            "type": 0,
+            "script": "GalacticHQ2F_Bed",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 44,
             "z": 4,
             "y": 0,
@@ -104,8 +102,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_2F_REVIVE",
-            "script": 7167,
-            "initial_dir": 0,
+            "script": "VisibleItems_GalacticHQ2F_Revive",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -119,11 +117,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1",
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 10,
@@ -136,11 +134,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2",
-            "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 21,
@@ -153,11 +151,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3",
-            "initial_dir": 2,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 26,
@@ -170,11 +168,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": "TRAINER_SCIENTIST_DARRIUS",
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_SCIENTIST_DARRIUS",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 32,
@@ -187,8 +185,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_2F_GREEN_SHARD",
-            "script": 7298,
-            "initial_dir": 0,
+            "script": "VisibleItems_GalacticHQ2F_GreenShard",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -202,8 +200,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
-            "initial_dir": 0,
+            "script": "GalacticHQ2F_Report",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -214,94 +212,109 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_GALACTIC_HQ_1F_1",
             "x": 7,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_1"
         },
         {
+            "id": "WARP_GALACTIC_HQ_1F_2",
             "x": 24,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_3"
         },
         {
+            "id": "WARP_GALACTIC_HQ_1F_3",
             "x": 10,
             "z": 11,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_2"
         },
         {
+            "id": "WARP_GALACTIC_HQ_3F_1",
             "x": 12,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_1"
         },
         {
+            "id": "WARP_GALACTIC_HQ_3F_2",
             "x": 50,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_2"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_1",
             "x": 1,
             "z": 3,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 6
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_2"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_2",
             "x": 17,
             "z": 5,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_1"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_3",
             "x": 1,
             "z": 14,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_4"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_4",
             "x": 45,
             "z": 12,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_3"
         },
         {
+            "id": "WARP_GALACTIC_HQ_HALL_1",
             "x": 52,
             "z": 6,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_HALL",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_2"
         },
         {
+            "id": "WARP_GALACTIC_HQ_HALL_2",
             "x": 29,
             "z": 13,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_HALL",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_1"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_5",
             "x": 52,
             "z": 12,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 12
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_6"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_6",
             "x": 18,
             "z": 20,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 11
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_5"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_7",
             "x": 1,
             "z": 22,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 14
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_8"
         },
         {
+            "id": "WARP_GALACTIC_HQ_2F_8",
             "x": 45,
             "z": 22,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
-            "dest_warp_id": 13
+            "dest_warp_id": "WARP_GALACTIC_HQ_2F_7"
         }
     ],
     "coord_events": []

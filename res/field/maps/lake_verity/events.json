@@ -7,11 +7,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_1",
-            "initial_dir": 3,
-            "data": [
-                6
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_1",
+                "sight_range": 6
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 43,
@@ -24,11 +24,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3",
-            "initial_dir": 3,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 48,
@@ -41,11 +41,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_2",
-            "initial_dir": 2,
-            "data": [
-                6
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_2",
+                "sight_range": 6
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 50,
@@ -58,11 +58,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
-            "script": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4",
-            "initial_dir": 2,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 53,
@@ -75,8 +75,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_LAKE_VERITY_TM38",
-            "script": 7239,
-            "initial_dir": 0,
+            "script": "VisibleItems_LakeVerity_TM38",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -90,8 +90,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_PROF_ROWAN",
-            "script": 3,
-            "initial_dir": 3,
+            "script": "LakeVerity_ProfRowan",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -105,8 +105,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_COUNTERPART",
-            "script": 4,
-            "initial_dir": 3,
+            "script": "LakeVerity_Counterpart",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -120,8 +120,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
-            "script": 6,
-            "initial_dir": 2,
+            "script": "LakeVerity_Mars",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -135,8 +135,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
-            "script": 7,
-            "initial_dir": 2,
+            "script": "LakeVerity_GruntM",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -147,22 +147,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VERITY_CAVERN",
             "x": 32,
             "z": 32,
             "dest_header_id": "MAP_HEADER_VERITY_CAVERN",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_LAKE_VERITY"
         },
         {
+            "id": "WARP_VERITY_LAKEFRONT_1",
             "x": 46,
             "z": 54,
             "dest_header_id": "MAP_HEADER_VERITY_LAKEFRONT",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_LAKE_VERITY_1"
         },
         {
+            "id": "WARP_VERITY_LAKEFRONT_2",
             "x": 47,
             "z": 54,
             "dest_header_id": "MAP_HEADER_VERITY_LAKEFRONT",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_LAKE_VERITY_2"
         }
     ],
     "coord_events": []

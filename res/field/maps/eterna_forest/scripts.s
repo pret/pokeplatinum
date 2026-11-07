@@ -147,7 +147,7 @@ EternaForest_CoordEvent_CherylLeavePlayer:
 
 EternaForest_GiveSootheBell:
     Message EternaForest_Text_TokenOfAppreciation
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     GoTo EternaForest_CherylWalkToExit
     End
 

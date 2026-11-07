@@ -55,7 +55,7 @@ ValleyWindworksOutside_RemoveBgEventDoor:
     Return
 
 ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding:
-    SetWarpEventPos 0, 243, 650
+    SetWarpEventPos WARP_VALLEY_WINDWORKS_BUILDING, 243, 650
     Return
 
 ValleyWindworksOutside_GruntM:
@@ -118,7 +118,7 @@ ValleyWindworksOutside_AskOpenDoor:
     GoToIfEq VAR_RESULT, MENU_NO, ValleyWindworksOutside_AskOpenDoorEnd
     SetFlag FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR
     Call ValleyWindworksOutside_RemoveBgEventDoor
-    SetWarpEventPos 0, 243, 654
+    SetWarpEventPos WARP_VALLEY_WINDWORKS_BUILDING, 243, 654
     Message ValleyWindworksOutside_Text_KerchunkTheDoorOpened
     WaitButton
     CloseMessage

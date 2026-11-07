@@ -10,7 +10,8 @@
     ScriptEntryEnd
 
 SolaceonTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_SOLACEON_NURSE
+    SetVar VAR_0x8007, LOCALID_SOLACEON_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 SolaceonTownPokecenter1F_OldMan:

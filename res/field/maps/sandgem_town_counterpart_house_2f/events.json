@@ -1,8 +1,8 @@
 {
     "bg_events": [
         {
-            "script": 1,
-            "type": 0,
+            "script": "SandgemTownCounterpartHouse2F_PC",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 3,
             "y": 0,
@@ -12,10 +12,11 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_SANDGEM_TOWN_COUNTERPART_HOUSE_1F",
             "x": 6,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SANDGEM_TOWN_COUNTERPART_HOUSE_2F"
         }
     ],
     "coord_events": []

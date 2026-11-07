@@ -111,7 +111,7 @@ FloaromaTown_Beauty:
     Message FloaromaTown_Text_HaveGracideaFlowers
     SetVar VAR_0x8004, ITEM_GRACIDEA
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 3,
+            "script": "ResortAreaRibbonSyndicateElevator_Receptionist",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -19,10 +19,10 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_DYNAMIC",
             "x": 3,
             "z": 6,
-            "dest_header_id": "MAP_HEADER_DYNAMIC",
-            "dest_warp_id": 256
+            "dest_header_id": "MAP_HEADER_DYNAMIC"
         }
     ],
     "coord_events": []

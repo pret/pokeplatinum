@@ -33,13 +33,13 @@ ValorLakefront_OnLoad:
     End
 
 ValorLakefront_RemoveWarpsLakeValorNormal:
-    SetWarpEventPos 5, 713, 760
-    SetWarpEventPos 6, 713, 761
+    SetWarpEventPos WARP_LAKE_VALOR_1, 713, 760
+    SetWarpEventPos WARP_LAKE_VALOR_2, 713, 761
     End
 
 ValorLakefront_RemoveWarpsLakeValorDrained:
-    SetWarpEventPos 3, 713, 760
-    SetWarpEventPos 4, 713, 761
+    SetWarpEventPos WARP_LAKE_VALOR_DRAINED_1, 713, 760
+    SetWarpEventPos WARP_LAKE_VALOR_DRAINED_2, 713, 761
     End
 
 ValorLakefront_GruntM:
@@ -198,7 +198,7 @@ ValorLakefront_Cynthia:
     SetObjectEventDir LOCALID_RIVAL, DIR_NORTH
     SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_NORTH
     AddObject LOCALID_RIVAL
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     CallIfEq VAR_0x8000, DIR_NORTH, ValorLakefront_RivalEnterNorth
     CallIfEq VAR_0x8000, DIR_SOUTH, ValorLakefront_RivalEnterSouth
     CallIfEq VAR_0x8000, DIR_WEST, ValorLakefront_RivalEnterWest
@@ -220,7 +220,7 @@ ValorLakefront_Cynthia:
     ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalLeave
     WaitMovement
     RemoveObject LOCALID_RIVAL
-    Common_FadeToDefaultMusic2
+    CallCommonScript CommonScript_FadeToDefaultMusic_2
     Message ValorLakefront_Text_HesYourFriend
     CloseMessage
     CallIfEq VAR_0x8000, DIR_NORTH, ValorLakefront_CynthiaFacePlayerNorth
@@ -343,7 +343,7 @@ ValorLakefront_UseMedicineOnPsyduck:
     Message ValorLakefront_Text_UseMedicineOnPsyduck
     SetVar VAR_0x8004, ITEM_SECRETPOTION
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Message ValorLakefront_Text_SeeYouLater
     CloseMessage
     GoTo ValorLakefront_CynthiaLeave

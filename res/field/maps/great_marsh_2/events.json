@@ -1,16 +1,15 @@
 {
     "bg_events": [
         {
-            "script": 8804,
-            "type": 0,
+            "script": "SafariGame_QuickTramStationArea2",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 69,
             "z": 38,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 8211,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GREAT_MARSH_2_TOXIC_PLATE",
             "x": 90,
             "z": 39,
             "y": 0,
@@ -24,8 +23,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_GREAT_MARSH_2_BLUE_SHARD",
-            "script": 7068,
-            "initial_dir": 0,
+            "script": "VisibleItems_GreatMarsh2_BlueShard",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -39,8 +38,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 0,
+            "script": "GreatMarsh2_SignboardArea2",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -54,8 +53,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 2,
+            "script": "GreatMarsh2_ParasolLady",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -64,15 +63,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_SIGNBOARD_GREAT_MARSH_1",
-            "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_GREAT_MARSH_1",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [],
+            "clone": {
+                "map": "MAP_HEADER_GREAT_MARSH_1",
+                "id": "LOCALID_SIGNBOARD"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 61,

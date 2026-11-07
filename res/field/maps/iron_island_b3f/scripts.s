@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/field/maps/locals/iron_island_b3f.h"
 
 
     ScriptEntry IronIslandB3F_OnTransition
@@ -22,11 +23,11 @@ IronIslandB3F_OnTransition:
     End
 
 IronIslandB3F_RemoveWarpIronRuinsWithRegisteel:
-    SetWarpEventPos 3, 17, 1
+    SetWarpEventPos WARP_IRON_RUINS, 17, 1
     End
 
 IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel:
-    SetWarpEventPos 2, 17, 1
+    SetWarpEventPos WARP_IRON_ISLAND_IRON_RUINS, 17, 1
     End
 
 IronIslandB3F_CoordEvent_PlatformLift:

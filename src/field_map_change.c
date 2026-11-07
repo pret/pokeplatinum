@@ -4,10 +4,12 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/field/script_ranges.h"
 #include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 
+#include "struct_defs/events.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/player_data.h"
 
@@ -229,7 +231,7 @@ static void FieldMapChange_SetNewLocation(FieldSystem *fieldSystem, const Locati
         fieldSystem->location->x = warpEvent->x;
         fieldSystem->location->z = warpEvent->z;
 
-        if (warpEvent->destWarpID == 0x100) {
+        if (warpEvent->destWarpID == WARP_ID_DYNAMIC) {
             Location *v3, *entrance;
 
             v3 = FieldOverworldState_GetSpecialLocation(fieldState);

@@ -1,24 +1,21 @@
 {
     "bg_events": [
         {
-            "script": 8043,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_214_CARBOS",
             "x": 724,
             "z": 695,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8042,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_214_BIG_MUSHROOM",
             "x": 734,
             "z": 681,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8168,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_214_RAZOR_FANG",
             "x": 722,
             "z": 704,
             "y": 0,
@@ -32,11 +29,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PI_CARLOS",
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_PI_CARLOS",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 726,
@@ -49,11 +46,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_COLLECTOR_DOUGLAS",
-            "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "trainer": {
+                "id": "TRAINER_COLLECTOR_DOUGLAS",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 731,
@@ -66,12 +63,12 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "hidden_flag": "0",
-            "script": "TRAINER_COLLECTOR_BRADY",
-            "initial_dir": 0,
-            "data": [
-                2,
-                6
-            ],
+            "trainer": {
+                "id": "TRAINER_COLLECTOR_BRADY",
+                "sight_range": 2,
+                "interval_steps": 6
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 6,
             "x": 729,
@@ -84,11 +81,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_RUIN_MANIAC_BRYAN",
-            "initial_dir": 3,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_RUIN_MANIAC_BRYAN",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 714,
@@ -101,11 +98,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_RUIN_MANIAC_RONALD",
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_RUIN_MANIAC_RONALD",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 721,
@@ -118,11 +115,11 @@
             "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_COLLECTOR_JAMAL",
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_COLLECTOR_JAMAL",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 719,
@@ -135,11 +132,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BEAUTY_DEVON",
-            "initial_dir": 3,
-            "data": [
-                1
-            ],
+            "trainer": {
+                "id": "TRAINER_BEAUTY_DEVON",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 731,
@@ -152,12 +149,12 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_COUNTERCLOCKWISE",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_MITCHELL",
-            "initial_dir": 1,
-            "data": [
-                1,
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_MITCHELL",
+                "sight_range": 1,
+                "interval_steps": 2
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 4,
             "x": 731,
@@ -170,11 +167,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_ABIGAIL",
-            "initial_dir": 2,
-            "data": [
-                5
-            ],
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_ABIGAIL",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 721,
@@ -187,8 +184,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -202,8 +199,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -217,11 +214,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "script": "Route214_ArrowSignpostVeilstoneCity",
+            "signpost": "route_map_03_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 716,
@@ -234,11 +229,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "script": "Route214_ArrowSignpostLakeValor",
+            "signpost": "route_map_04_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 726,
@@ -251,11 +244,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                66
-            ],
+            "berry_tree": 66,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 728,
@@ -268,11 +258,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                67
-            ],
+            "berry_tree": 67,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 729,
@@ -285,11 +272,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                68
-            ],
+            "berry_tree": 68,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 730,
@@ -302,11 +286,8 @@
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2800,
-            "initial_dir": 0,
-            "data": [
-                69
-            ],
+            "berry_tree": 69,
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 731,
@@ -319,8 +300,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_RARE_CANDY",
-            "script": 7115,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route214_RareCandy",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -334,8 +315,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_MAX_REPEL",
-            "script": 7114,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route214_MaxRepel",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -349,8 +330,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_RED_SHARD",
-            "script": 7113,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route214_RedShard",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -364,8 +345,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_BIG_ROOT",
-            "script": 7112,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route214_BigRoot",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -379,8 +360,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -394,8 +375,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -409,8 +390,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -424,8 +405,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -439,8 +420,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -454,8 +435,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -469,8 +450,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_MAGMARIZER",
-            "script": 7317,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route214_Magmarizer",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -481,34 +462,39 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_214_GATE_TO_VEILSTONE_CITY_1",
             "x": 718,
             "z": 645,
             "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_214"
         },
         {
+            "id": "WARP_ROUTE_214_GATE_TO_VEILSTONE_CITY_2",
             "x": 719,
             "z": 645,
             "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_214"
         },
         {
+            "id": "WARP_RUIN_MANIAC_CAVE_SHORT",
             "x": 713,
             "z": 670,
             "dest_header_id": "MAP_HEADER_RUIN_MANIAC_CAVE_SHORT",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_214"
         },
         {
+            "id": "WARP_RUIN_MANIAC_CAVE_LONG",
             "x": 713,
             "z": 670,
             "dest_header_id": "MAP_HEADER_RUIN_MANIAC_CAVE_LONG",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_214"
         },
         {
+            "id": "WARP_MANIAC_TUNNEL",
             "x": 713,
             "z": 670,
             "dest_header_id": "MAP_HEADER_MANIAC_TUNNEL",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_214"
         }
     ],
     "coord_events": []

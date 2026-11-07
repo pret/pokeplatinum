@@ -3,22 +3,25 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_IRON_ISLAND",
             "x": 6,
             "z": 8,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_IRON_ISLAND_1F"
         },
         {
+            "id": "WARP_IRON_ISLAND_B1F_LEFT_ROOM",
             "x": 4,
             "z": 3,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_B1F_LEFT_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_IRON_ISLAND_1F"
         },
         {
+            "id": "WARP_IRON_ISLAND_B1F_RIGHT_ROOM",
             "x": 8,
             "z": 3,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_IRON_ISLAND_1F"
         }
     ],
     "coord_events": []

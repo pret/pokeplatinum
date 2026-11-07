@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/field/script_ranges.h"
 
 #include "struct_defs/radar_chain_records.h"
 

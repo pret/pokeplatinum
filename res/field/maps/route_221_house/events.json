@@ -1,8 +1,8 @@
 {
     "bg_events": [
         {
-            "script": 2,
-            "type": 0,
+            "script": "Route221House_BgSign",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 4,
             "z": 2,
             "y": 0,
@@ -16,8 +16,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 3,
+            "script": "Route221House_ExpertM",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -28,10 +28,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_221",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ROUTE_221",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_221_HOUSE"
         }
     ],
     "coord_events": []

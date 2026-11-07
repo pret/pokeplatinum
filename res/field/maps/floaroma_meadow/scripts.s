@@ -5,8 +5,8 @@
 
     ScriptEntry FloaromaMeadow_OnTransition
     ScriptEntry FloaromaMeadow_CoordEvent_Grunts
-    ScriptEntry FloaromaMeadow_Grunt_Unused
-    ScriptEntry FloaromaMeadow_Grunt_Unused
+    ScriptEntry FloaromaMeadow_Grunt_Unused_West
+    ScriptEntry FloaromaMeadow_Grunt_Unused_East
     ScriptEntry FloaromaMeadow_PokefanM
     ScriptEntry FloaromaMeadow_Dummy6
     ScriptEntry FloaromaMeadow_ItemWorksKey
@@ -118,13 +118,13 @@ FloaromaMeadow_DefeatedGrunts:
     Message FloaromaMeadow_Text_KeyMustBeForWindworks
     SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_OBTAINED_FLOAROMA_MEADOW_WORKS_KEY
     Message FloaromaMeadow_Text_ThankYouTakeALot
     SetVar VAR_0x8004, ITEM_HONEY
     SetVar VAR_0x8005, 10
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FloaromaMeadow_CantGiveHoneyBagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Message FloaromaMeadow_Text_SlatherHoneyOnATree
     GoTo FloaromaMeadow_DefeatedGruntsReturn
 
@@ -151,7 +151,8 @@ FloaromaMeadow_Unused:
     ReleaseAll
     End
 
-FloaromaMeadow_Grunt_Unused:
+FloaromaMeadow_Grunt_Unused_West:
+FloaromaMeadow_Grunt_Unused_East:
     End
 
 FloaromaMeadow_PokefanM:
@@ -198,7 +199,7 @@ FloaromaMeadow_TryGiveHoney:
     UpdateMoneyDisplay
     PlaySE SEQ_SE_DP_REGI_sseq
     WaitSE SEQ_SE_DP_REGI_sseq
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     HideMoney
     CloseMessage
     ReleaseAll
@@ -238,7 +239,7 @@ FloaromaMeadow_ItemWorksKey:
     FacePlayer
     SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     CloseMessage
     SetFlag FLAG_OBTAINED_FLOAROMA_MEADOW_WORKS_KEY
     RemoveObject LOCALID_ITEM_WORKS_KEY

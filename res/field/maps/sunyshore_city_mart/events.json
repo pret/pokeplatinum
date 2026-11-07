@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "SunyshoreCityMart_CommonVendor",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "SunyshoreCityMart_RuinManiac",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -37,8 +37,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 0,
+            "script": "SunyshoreCityMart_Sailor",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -52,8 +52,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_MART_MYSTERY_GIFT_DELIVERYMAN",
-            "script": 10201,
-            "initial_dir": 1,
+            "script": "MysteryGiftDeliveryman_Deliveryman",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -62,13 +62,13 @@
             "y": 0
         },
         {
-            "id": "LOCALID_CASHIER_F",
+            "id": "LOCALID_CASHIER_F_SPECIALTY",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "SunyshoreCityMart_SpecialtyVendor",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -79,10 +79,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SUNYSHORE_CITY",
             "x": 3,
             "z": 11,
             "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_SUNYSHORE_CITY_MART"
         }
     ],
     "coord_events": []

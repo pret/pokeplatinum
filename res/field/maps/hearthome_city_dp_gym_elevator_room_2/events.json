@@ -1,16 +1,16 @@
 {
     "bg_events": [
         {
-            "script": 4,
-            "type": 0,
+            "script": "HearthomeCityDPGymElevatorRoom2_BgSignQuestion",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 7,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "HearthomeCityDPGymElevatorRoom2_BgSignCorrect",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 18,
             "y": 0,
@@ -20,33 +20,37 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_6",
             "x": 9,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_6",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_5",
             "x": 4,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_5",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_DP_GYM_LEADER_ROOM",
             "x": 14,
             "z": 2,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_DP_GYM_LEADER_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2"
         },
         {
+            "id": "WARP_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1",
             "x": 9,
             "z": 22,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2"
         }
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "HearthomeCityDPGymElevatorRoom2_CoordEvent_MoveLift",
             "x": 9,
             "z": 13,
             "y": 0,

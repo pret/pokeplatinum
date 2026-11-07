@@ -7,11 +7,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_SEBASTIAN",
-            "initial_dir": 2,
-            "data": [
-                5
-            ],
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_SEBASTIAN",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 234,
@@ -24,11 +24,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_MICHAEL",
-            "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_MICHAEL",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 204,
@@ -41,11 +41,11 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_LASS_KAITLIN",
-            "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "trainer": {
+                "id": "TRAINER_LASS_KAITLIN",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 1,
             "movement_range_z": 1,
             "x": 243,
@@ -58,11 +58,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_DALLAS",
-            "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_DALLAS",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 222,
@@ -75,11 +75,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_LASS_MADELINE",
-            "initial_dir": 1,
-            "data": [
-                5
-            ],
+            "trainer": {
+                "id": "TRAINER_LASS_MADELINE",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 240,
@@ -92,8 +92,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_203_RIVAL",
-            "script": 0,
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -107,11 +106,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "script": "Route203_ArrowSignpostJubilifeCity",
+            "signpost": "route_map_02_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 200,
@@ -124,11 +121,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "script": "Route203_ArrowSignpostOreburghCity",
+            "signpost": "route_map_01_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 244,
@@ -141,8 +136,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 0,
+            "script": "Route203_TrainerTipsSignpostEast",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -156,8 +151,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 0,
+            "script": "Route203_TrainerTipsSignpostWest",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -171,8 +166,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_203_REPEL",
-            "script": 7001,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route203_Repel",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -186,8 +181,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_203_POKE_BALL",
-            "script": 7002,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route203_PokeBall",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -201,8 +196,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "Route203_Lass",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -211,17 +206,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_MAP_SIGNPOST",
-            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_JUBILIFE_CITY",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                8
-            ],
+            "clone": {
+                "map": "MAP_HEADER_JUBILIFE_CITY",
+                "id": "LOCALID_MAP_SIGNPOST_2"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 187,
@@ -234,8 +226,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_203_X_DEFENSE",
-            "script": 7255,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route203_XDefense",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -246,15 +238,16 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_GATE_1F",
             "x": 246,
             "z": 749,
             "dest_header_id": "MAP_HEADER_OREBURGH_GATE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ROUTE_203"
         }
     ],
     "coord_events": [
         {
-            "script": 6,
+            "script": "Route203_CoordEvent_Rival",
             "x": 196,
             "z": 757,
             "y": 0,

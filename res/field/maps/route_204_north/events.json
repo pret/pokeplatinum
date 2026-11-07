@@ -7,11 +7,11 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BUG_CATCHER_BRANDON",
-            "initial_dir": 2,
-            "data": [
-                1
-            ],
+            "trainer": {
+                "id": "TRAINER_BUG_CATCHER_BRANDON",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 4,
             "movement_range_z": 0,
             "x": 182,
@@ -24,11 +24,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_AROMA_LADY_TAYLOR",
-            "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_AROMA_LADY_TAYLOR",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 177,
@@ -41,12 +41,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_TWINS_LIV_AND_LIZ",
-            "double_battle_id": 1,
-            "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_TWINS_LIV_AND_LIZ",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 175,
@@ -59,12 +58,12 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_TWINS_LIV_AND_LIZ",
-            "double_battle_id": 2,
-            "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_TWINS_LIV_AND_LIZ",
+                "sight_range": 4,
+                "depends_on": "LOCALID_TWIN_LIV"
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 176,
@@ -77,8 +76,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 3,
+            "script": "Route204North_Youngster",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -92,11 +91,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 0,
-            "data": [
-                13
-            ],
+            "script": "Route204North_ArrowSignpostFloaromaTown",
+            "signpost": "route_map_13_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 177,
@@ -109,8 +106,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -124,8 +120,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 0,
-            "initial_dir": 2,
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -139,8 +134,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -154,8 +149,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_204_NORTH_TM09",
-            "script": 7014,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route204North_TM09",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -169,8 +164,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "Route204North_AceTrainerF",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -184,8 +179,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_204_NORTH_AWAKENING",
-            "script": 7254,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route204North_Awakening",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -196,10 +191,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_RAVAGED_PATH",
             "x": 180,
             "z": 698,
             "dest_header_id": "MAP_HEADER_RAVAGED_PATH",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_204_NORTH"
         }
     ],
     "coord_events": []

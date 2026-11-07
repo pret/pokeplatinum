@@ -69,7 +69,7 @@ VeilstoneCity_CoordEvent_CrasherWake:
     LockAll
     ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartNoticePlayerBeforeGym
     WaitMovement
-    Common_SetCounterpartBGM
+    CallCommonScript CommonScript_SetCounterpartBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 681, VeilstoneCity_CounterpartWalkToPlayerX681
     CallIfEq VAR_0x8004, 682, VeilstoneCity_CounterpartWalkToPlayerX682
@@ -79,7 +79,7 @@ VeilstoneCity_CoordEvent_CrasherWake:
     CallIfEq VAR_0x8004, GENDER_MALE, VeilstoneCity_DawnWillYouTakeTheGymChallenge
     CallIfEq VAR_0x8004, GENDER_FEMALE, VeilstoneCity_LucasWillYouTakeOnTheGymLeader
     CloseMessage
-    Common_FadeToDefaultMusic
+    CallCommonScript CommonScript_FadeToDefaultMusic
     LoadDoorAnimation 21, 19, 12, 3, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
@@ -537,7 +537,7 @@ VeilstoneCity_WarehouseScene:
     ClearFlag FLAG_HIDE_VEILSTONE_CITY_LOOKER
     SetObjectEventPos LOCALID_LOOKER, 692, 606
     AddObject LOCALID_LOOKER
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterAfterBattle
     WaitMovement
     Message VeilstoneCity_Text_HaveNoFear
@@ -966,7 +966,7 @@ VeilstoneCity_Roughneck2:
     SetVar VAR_0x8004, ITEM_TM63
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, VeilstoneCity_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_VEILSTONE_CITY_TM63
     GoTo VeilstoneCity_EmbargoMakesItemsUnusable
 
@@ -978,7 +978,7 @@ VeilstoneCity_EmbargoMakesItemsUnusable:
     End
 
 VeilstoneCity_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -1092,7 +1092,7 @@ VeilstoneCity_GruntMStorageKeyLeaveNorth:
     ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveNorth
     ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyLeaveNorthSouthEast
     WaitMovement
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterNorth
     WaitMovement
     GoTo VeilstoneCity_RemoveGruntMStorageKey
@@ -1101,7 +1101,7 @@ VeilstoneCity_GruntMStorageKeyLeaveNorth:
 VeilstoneCity_GruntMStorageKeyLeaveSouth:
     ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyLeaveNorthSouthEast
     WaitMovement
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterSouth
     WaitMovement
     GoTo VeilstoneCity_RemoveGruntMStorageKey
@@ -1111,7 +1111,7 @@ VeilstoneCity_GruntMStorageKeyLeaveEast:
     ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveEast
     ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyLeaveNorthSouthEast
     WaitMovement
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterEast
     WaitMovement
     GoTo VeilstoneCity_RemoveGruntMStorageKey
@@ -1121,7 +1121,7 @@ VeilstoneCity_GruntMStorageKeyLeaveWest:
     ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveWest
     ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyLeaveWest
     WaitMovement
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterWest
     WaitMovement
     GoTo VeilstoneCity_RemoveGruntMStorageKey
@@ -1144,7 +1144,7 @@ VeilstoneCity_WeWillMeetInside:
     SetFlag FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT
     Message VeilstoneCity_Text_WeWillMeetInside
     CloseMessage
-    Common_FadeToDefaultMusic4
+    CallCommonScript CommonScript_FadeToDefaultMusic_4
     ReleaseAll
     End
 
@@ -1152,7 +1152,7 @@ VeilstoneCity_SneakingInIsDaunting:
     Message VeilstoneCity_Text_SneakingInIsDaunting
     WaitButton
     CloseMessage
-    Common_FadeToDefaultMusic4
+    CallCommonScript CommonScript_FadeToDefaultMusic_4
     ReleaseAll
     End
 
@@ -1231,7 +1231,7 @@ VeilstoneCity_Looker:
     WaitMovement
     BufferPlayerName 0
     Message VeilstoneCity_Text_Player
-    Common_SetLookerBGM
+    CallCommonScript CommonScript_SetLookerBGM
     GoToIfSet FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT, VeilstoneCity_WeWillMeetInside
     GoTo VeilstoneCity_AskWillYouEnterTheHideout
     End

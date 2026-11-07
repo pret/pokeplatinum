@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8061,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_1F_NORTH_ROOM_2_YELLOW_SHARD",
             "x": 14,
             "z": 17,
             "y": 0,
@@ -12,28 +11,32 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_B1F",
             "x": 10,
             "z": 27,
             "dest_header_id": "MAP_HEADER_MT_CORONET_B1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_MT_CORONET_1F_NORTH_ROOM_2"
         },
         {
+            "id": "WARP_ROUTE_216",
             "x": 2,
             "z": 18,
             "dest_header_id": "MAP_HEADER_ROUTE_216",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_1F_NORTH_ROOM_2"
         },
         {
+            "id": "WARP_MT_CORONET_ICEBERG_RUINS",
             "x": 15,
             "z": 16,
             "dest_header_id": "MAP_HEADER_MT_CORONET_ICEBERG_RUINS",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_1F_NORTH_ROOM_2"
         },
         {
+            "id": "WARP_ICEBERG_RUINS",
             "x": 15,
             "z": 16,
             "dest_header_id": "MAP_HEADER_ICEBERG_RUINS",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_1F_NORTH_ROOM_2"
         }
     ],
     "coord_events": []

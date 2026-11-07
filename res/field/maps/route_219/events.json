@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8169,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_219_ZINC",
             "x": 175,
             "z": 889,
             "y": 0,
@@ -16,11 +15,11 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_TUBER_TRENTON",
-            "initial_dir": 3,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_TUBER_TRENTON",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 4,
             "movement_range_z": 0,
             "x": 171,
@@ -33,11 +32,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_TUBER_MARIEL",
-            "initial_dir": 2,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_TUBER_MARIEL",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 176,
@@ -50,11 +49,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "script": "Route219_ArrowSignpostSandgemBeach",
+            "signpost": "route_map_04_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 179,
@@ -67,8 +64,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_219_ANTIDOTE",
-            "script": 7124,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route219_Antidote",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,

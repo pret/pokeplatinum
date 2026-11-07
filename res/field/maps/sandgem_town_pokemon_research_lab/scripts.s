@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_pokemon_research_lab.h"
 #include "res/field/maps/locals/sandgem_town_pokemon_research_lab.h"
+#include "res/field/maps/scripts_pokedex_ratings.h"
 
 
     ScriptEntry SandgemTownLab_OnTransition
@@ -65,7 +66,7 @@ SandgemTownLab_CheckShouldRatePokedex:
     End
 
 SandgemTownLab_CheckPokedexRatings:
-    CallCommonScript 0x26DE
+    CallCommonScript PokedexRatings_CheckRowan
     End
 
 SandgemTownLab_GiveCynthiaMyBestRegards:
@@ -561,7 +562,7 @@ SandgemTownLab_EnableNationalDex:
     Message SandgemTownLab_Text_GiftForCompletingSinnohPokedex
     SetVar VAR_0x8004, ITEM_POKE_RADAR
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Message SandgemTownLab_Text_ThatsThePokemonRadar
     WaitButton
     CloseMessage

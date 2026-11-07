@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 2,
+            "script": "JubilifeCityCondominiums1F_ExpertF",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "JubilifeCityCondominiums1F_Pachirisu",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -37,8 +37,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "JubilifeCityCondominiums1F_Pikachu",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -52,8 +52,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 1,
+            "script": "JubilifeCityCondominiums1F_Beauty",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -64,16 +64,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_JUBILIFE_CITY",
             "x": 11,
             "z": 12,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY_CONDOMINIUMS_1F"
         },
         {
+            "id": "WARP_JUBILIFE_CITY_CONDOMINIUMS_2F",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_CITY_CONDOMINIUMS_1F"
         }
     ],
     "coord_events": []

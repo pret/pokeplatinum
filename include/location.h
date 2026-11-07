@@ -5,7 +5,8 @@
 
 #include "savedata.h"
 
-#define WARP_ID_NONE -1
+#define WARP_ID_NONE    -1
+#define WARP_ID_DYNAMIC 256
 
 enum FaceDirection {
     FACE_NONE = -1,

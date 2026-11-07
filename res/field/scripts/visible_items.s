@@ -2312,7 +2312,7 @@ VisibleItems_End:
     End
 
 VisibleItems_GiveItem:
-    Common_CheckBagPocketForItem
+    CallCommonScript CommonScript_CheckBagPocketForItem
     RemoveObject VAR_LAST_TALKED
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     TrySetUnusedCollectedOrbFlag VAR_0x8004
@@ -2424,5 +2424,5 @@ VisibleItems_SetAltMusicGalacticHQ1F:
     Return
 
 VisibleItems_MessageObtainedPlate:
-    Common_PrintPlateObtainedMessage
+    CallCommonScript CommonScript_PlateObtainedEngraving
     Return

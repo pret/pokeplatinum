@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 3,
+            "script": "SolaceonRuinsRoom2_Hiker",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -19,28 +19,32 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SOLACEON_RUINS_ROOM_1",
             "x": 4,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_1",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_2"
         },
         {
+            "id": "WARP_SOLACEON_RUINS_ROOM_3",
             "x": 4,
             "z": 10,
             "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_2"
         },
         {
+            "id": "WARP_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
             "x": 6,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_2"
         },
         {
+            "id": "WARP_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
             "x": 6,
             "z": 10,
             "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_2"
         }
     ],
     "coord_events": []

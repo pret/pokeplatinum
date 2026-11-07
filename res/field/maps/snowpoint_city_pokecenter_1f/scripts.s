@@ -11,7 +11,8 @@
     ScriptEntryEnd
 
 SnowpointCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_SNOWPOINT_NURSE
+    SetVar VAR_0x8007, LOCALID_SNOWPOINT_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 SnowpointCityPokecenter1F_Lass:

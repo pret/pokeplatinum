@@ -75,6 +75,9 @@ typedef struct Lookup {
 // already registered or a name appears twice, then the run terminates.
 void Lookups_Register(const char *type, const dp_symbol *symbols, size_t count);
 
+// Perform a one-time lookup of `name` against `type`, without an existing data-file.
+long Lookups_ValueOf(const char *type, const char *name);
+
 // ================================== OUTPUTS ==================================
 
 enum TextFileWrap {

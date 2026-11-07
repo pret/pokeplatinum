@@ -1,32 +1,32 @@
 {
     "bg_events": [
         {
-            "script": 4,
-            "type": 0,
+            "script": "GalacticHQControlRoom_MachineUxie",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 10,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
-            "type": 0,
+            "script": "GalacticHQControlRoom_MachineMesprit",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 2,
             "z": 4,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 6,
-            "type": 0,
+            "script": "GalacticHQControlRoom_MachineAzelf",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 4,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 10,
-            "type": 0,
+            "script": "GalacticHQControlRoom_Button",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 5,
             "y": 0,
@@ -40,8 +40,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
-            "script": 3,
-            "initial_dir": 0,
+            "script": "GalacticHQControlRoom_Saturn",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -55,8 +55,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_LAKE_GUARDIANS",
-            "script": 13,
-            "initial_dir": 1,
+            "script": "GalacticHQControlRoom_Azelf",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -70,8 +70,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_LAKE_GUARDIANS",
-            "script": 12,
-            "initial_dir": 1,
+            "script": "GalacticHQControlRoom_Mesprit",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -85,8 +85,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_LAKE_GUARDIANS",
-            "script": 11,
-            "initial_dir": 1,
+            "script": "GalacticHQControlRoom_Uxie",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -100,8 +100,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_CHARON",
-            "script": 15,
-            "initial_dir": 0,
+            "script": "GalacticHQControlRoom_Charon",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -112,15 +112,16 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_GALACTIC_HQ_LABORATORY",
             "x": 8,
             "z": 13,
             "dest_header_id": "MAP_HEADER_GALACTIC_HQ_LABORATORY",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_GALACTIC_HQ_CONTROL_ROOM"
         }
     ],
     "coord_events": [
         {
-            "script": 14,
+            "script": "GalacticHQControlRoom_CoordEvent_Saturn",
             "x": 8,
             "z": 13,
             "y": 0,

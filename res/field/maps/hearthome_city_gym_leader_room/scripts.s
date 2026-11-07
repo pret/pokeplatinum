@@ -89,7 +89,7 @@ HearthomeGym_FantinaTryGiveTM65:
     SetVar VAR_0x8004, ITEM_TM65
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, HearthomeGym_FantinaCannotGiveTM65
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_FANTINA_TM65
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
@@ -100,7 +100,7 @@ HearthomeGym_FantinaTryGiveTM65:
     End
 
 HearthomeGym_FantinaCannotGiveTM65:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

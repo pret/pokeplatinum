@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_center_b1f_common.h"
 #include "res/text/bank/menu_entries.h"
+#include "res/field/maps/scripts_pokemon_center_2f_common.h"
 
 
     ScriptEntry PokemonCenterB1FCommon_OnFrame_ReceivePalPad
@@ -20,7 +21,7 @@ PokemonCenterB1FCommon_OnFrame_ReceivePalPad:
     Message PokemonCenterB1FCommon_Text_GuideToWiFiClub
     SetVar VAR_0x8004, ITEM_PAL_PAD
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     GoTo PokemonCenterB1FCommon_ExplainPalPad
     End
 
@@ -176,14 +177,14 @@ PokemonCenterB1FCommon_TryEnterWiFiClub:
     TryRevertPartyPokemonForms VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, PokemonCenterB1FCommon_GriseousOrbCouldNotBeRemoved
     HealParty
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 1, PokemonCenterB1FCommon_EnterWiFiClub
     GoTo PokemonCenterB1FCommon_PleaseComeAgain
     End
 
 PokemonCenterB1FCommon_GriseousOrbCouldNotBeRemoved:
-    Common_GriseousOrbCouldNotBeRemoved
+    CallCommonScript CommonScript_GriseousOrbCouldNotBeRemoved
     End
 
 PokemonCenterB1FCommon_EnterWiFiClub:
@@ -315,7 +316,7 @@ PokemonCenterB1FCommon_Movement_AttendantEnterWiFiPlaza:
     EndMovement
 
 PokemonCenterB1FCommon_HasBadEgg:
-    CallCommonScript 0x2338
+    CallCommonScript PokemonCenter2FCommon_HasBadEggReturnCommon
     WaitButton
     CloseMessage
     ReleaseAll
@@ -386,7 +387,7 @@ PokemonCenterB1FCommon_WiFiPlazaInfo:
 
 PokemonCenterB1FCommon_GoToWiFiPlaza:
     HealParty
-    Common_SaveGame
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, PokemonCenterB1FCommon_WiFiPlazaExit
     Message PokemonCenterB1FCommon_Text_PleaseEnterThisWay

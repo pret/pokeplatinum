@@ -89,7 +89,7 @@ EternaGym_GardeniaTryGiveTM86Again:
     SetVar VAR_0x8004, ITEM_TM86
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaGym_GardeniaGiveTM86BagFullAgain
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_GARDENIA_TM86
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
@@ -100,7 +100,7 @@ EternaGym_GardeniaTryGiveTM86Again:
     End
 
 EternaGym_GardeniaGiveTM86BagFullAgain:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -117,7 +117,7 @@ EternaGym_GardeniaGiveTM86:
     SetVar VAR_0x8004, ITEM_TM86
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaGym_GardeniaGiveTM86BagFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_GARDENIA_TM86
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
@@ -129,7 +129,7 @@ EternaGym_GardeniaGiveTM86:
     End
 
 EternaGym_GardeniaGiveTM86BagFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     AdvanceEternaGymClock

@@ -69,7 +69,7 @@ TurnbackCaveGiratinaRoom_Item:
 TurnbackCaveGiratinaRoom_GiveItem:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, TurnbackCaveGiratinaRoom_BagIsFull
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     RemoveObject LOCALID_ITEM
     ReleaseAll
@@ -84,7 +84,7 @@ TurnbackCaveGiratinaRoom_SetItemRareBone:
     GoTo TurnbackCaveGiratinaRoom_GiveItem
 
 TurnbackCaveGiratinaRoom_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

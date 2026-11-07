@@ -1,16 +1,15 @@
 {
     "bg_events": [
         {
-            "script": 8000,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VALLEY_WINDWORKS_OUTSIDE_MAX_ELIXIR",
             "x": 236,
             "z": 651,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 4,
-            "type": 0,
+            "script": "ValleyWindworksOutside_Door",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 243,
             "z": 654,
             "y": 0,
@@ -24,8 +23,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_GRUNT_M",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "ValleyWindworksOutside_GruntM",
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 3
             ],
@@ -41,8 +40,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 0,
+            "script": "ValleyWindworksOutside_SignboardValleyWindworks",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -51,17 +50,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST",
-            "clone_id": 6,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_205_SOUTH",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_205_SOUTH",
+                "id": "LOCALID_ARROW_SIGNPOST_FLOAROMA_TOWN"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 215,
@@ -74,8 +70,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_TM24",
-            "script": 7015,
-            "initial_dir": 0,
+            "script": "VisibleItems_ValleyWindworksOutside_TM24",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -89,8 +85,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON",
-            "script": 6,
-            "initial_dir": 1,
+            "script": "ValleyWindworksOutside_Drifloon",
+            "initial_dir": "DIR_SOUTH",
             "data": [
                 3
             ],
@@ -106,8 +102,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_POTION",
-            "script": 7252,
-            "initial_dir": 0,
+            "script": "VisibleItems_ValleyWindworksOutside_Potion",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -121,8 +117,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_LOOKER",
-            "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [
                 3
             ],
@@ -138,8 +133,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_ELECTIRIZER",
-            "script": 7318,
-            "initial_dir": 0,
+            "script": "VisibleItems_ValleyWindworksOutside_Electirizer",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -150,10 +145,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VALLEY_WINDWORKS_BUILDING",
             "x": 243,
             "z": 654,
             "dest_header_id": "MAP_HEADER_VALLEY_WINDWORKS_BUILDING",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VALLEY_WINDWORKS_OUTSIDE"
         }
     ],
     "coord_events": []

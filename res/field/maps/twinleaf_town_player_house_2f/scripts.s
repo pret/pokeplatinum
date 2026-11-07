@@ -83,7 +83,7 @@ TwinleafTownPlayerHouse2F_Rival:
     AddObject LOCALID_RIVAL
     ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalEnterRoom
     WaitMovement
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     BufferRivalName 0
     Message TwinleafTownPlayerHouse2F_Text_ThereYouAre
     CloseMessage
@@ -122,7 +122,7 @@ TwinleafTownPlayerHouse2F_Rival:
     CallIfEq VAR_MAP_LOCAL_0x00, 3, TwinleafTownPlayerHouse2F_RivalLeaveSouth
     PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_RIVAL
-    Common_FadeToDefaultMusic2
+    CallCommonScript CommonScript_FadeToDefaultMusic_2
     WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
     SetVar VAR_PLAYER_HOUSE_RIVAL_STATE, 1

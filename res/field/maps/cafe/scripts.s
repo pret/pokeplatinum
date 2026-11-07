@@ -63,7 +63,7 @@ Cafe_GiveMoomooMilk:
     WaitSE SEQ_SE_DP_REGI_sseq
     CallIfEq VAR_0x8006, 500, Cafe_HeresYourMoomooMilk
     CallIfEq VAR_0x8006, 6000, Cafe_GetMoomooMilkByDozen
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     HideMoney
     ReleaseAll

@@ -82,7 +82,7 @@ SolaceonTownEastHouse_PokefanF:
     Message SolaceonTownEastHouse_Text_YouDontHaveASealCase
     SetVar VAR_0x8004, ITEM_SEAL_CASE
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_SOLACEON_TOWN_EAST_HOUSE_SEAL_CASE
     Call SolaceonTownEastHouse_GiveRandomSeals
     Message SolaceonTownEastHouse_Text_IllExplainHowSealsWork

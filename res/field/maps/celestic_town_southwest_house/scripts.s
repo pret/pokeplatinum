@@ -14,7 +14,7 @@ CelesticTownPokecenter1F_BlackBelt:
     GoToIfEq VAR_RESULT, TRUE, CelesticTownSoutheastHouse_AnalogOrDigital
     Message CelesticTownSoutheastHouse_Text_TakeThisFromMe
     SetVar VAR_0x8004, POKETCH_APPID_ANALOGWATCH
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll

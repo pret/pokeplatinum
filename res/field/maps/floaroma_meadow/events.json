@@ -1,88 +1,77 @@
 {
     "bg_events": [
         {
-            "script": 8058,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_1",
             "x": 39,
             "z": 38,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8059,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_2",
             "x": 33,
             "z": 18,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8220,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_4",
             "x": 13,
             "z": 36,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8227,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_MAX_REVIVE",
             "x": 29,
             "z": 30,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8226,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_PP_UP",
             "x": 39,
             "z": 23,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8219,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_3",
             "x": 48,
             "z": 24,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8222,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_6",
             "x": 25,
             "z": 23,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8223,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HYPER_POTION",
             "x": 52,
             "z": 31,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8224,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_REVIVE",
             "x": 17,
             "z": 18,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8225,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_FULL_HEAL",
             "x": 19,
             "z": 35,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8221,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_5",
             "x": 21,
             "z": 14,
             "y": 0,
@@ -96,8 +85,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_FLOAROMA_MEADOW_GRUNT_M_WEST",
-            "script": 3,
-            "initial_dir": 0,
+            "script": "FloaromaMeadow_Grunt_Unused_West",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -111,8 +100,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_FLOAROMA_MEADOW_GRUNT_M_EAST",
-            "script": 4,
-            "initial_dir": 0,
+            "script": "FloaromaMeadow_Grunt_Unused_East",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -126,8 +115,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 1,
+            "script": "FloaromaMeadow_PokefanM",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -141,8 +130,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_FLOAROMA_MEADOW_WORKS_KEY",
-            "script": 7,
-            "initial_dir": 1,
+            "script": "FloaromaMeadow_ItemWorksKey",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -156,8 +145,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_FLOAROMA_MEADOW_MIRACLE_SEED",
-            "script": 7146,
-            "initial_dir": 0,
+            "script": "VisibleItems_FloaromaMeadow_MiracleSeed",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -171,8 +160,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_FLOAROMA_MEADOW_LEAF_STONE",
-            "script": 7234,
-            "initial_dir": 0,
+            "script": "VisibleItems_FloaromaMeadow_LeafStone",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -186,8 +175,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_FLOAROMA_MEADOW_ULTRA_BALL",
-            "script": 7284,
-            "initial_dir": 0,
+            "script": "VisibleItems_FloaromaMeadow_UltraBall",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -201,8 +190,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_FLOAROMA_MEADOW_RARE_CANDY",
-            "script": 7285,
-            "initial_dir": 0,
+            "script": "VisibleItems_FloaromaMeadow_RareCandy",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -213,39 +202,44 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_FLOAROMA_TOWN_1",
             "x": 50,
             "z": 9,
             "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN",
-            "dest_warp_id": 5
+            "dest_warp_id": "WARP_FLOAROMA_MEADOW_1"
         },
         {
+            "id": "WARP_FLOAROMA_TOWN_2",
             "x": 51,
             "z": 9,
             "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN",
-            "dest_warp_id": 6
+            "dest_warp_id": "WARP_FLOAROMA_MEADOW_2"
         },
         {
+            "id": "WARP_FLOAROMA_MEADOW_HOUSE",
             "x": 39,
             "z": 45,
             "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FLOAROMA_MEADOW"
         },
         {
+            "id": "WARP_FLOAROMA_TOWN_3",
             "x": 12,
             "z": 54,
             "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_FLOAROMA_MEADOW_3"
         },
         {
+            "id": "WARP_FLOAROMA_TOWN_4",
             "x": 13,
             "z": 54,
             "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_FLOAROMA_MEADOW_4"
         }
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "FloaromaMeadow_CoordEvent_Grunts",
             "x": 12,
             "z": 48,
             "y": 0,

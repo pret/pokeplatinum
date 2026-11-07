@@ -1,88 +1,88 @@
 {
     "bg_events": [
         {
-            "script": 2,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame0",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 5,
             "z": 4,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame1",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 2,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 4,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame2",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 11,
             "z": 2,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame3",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 13,
             "z": 2,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 6,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame4",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 15,
             "z": 2,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 7,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame5",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 17,
             "z": 2,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 8,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame6",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 10,
             "z": 8,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 9,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame7",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 12,
             "z": 8,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 10,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame8",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 14,
             "z": 8,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 11,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame9",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 16,
             "z": 8,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 12,
-            "type": 0,
+            "script": "JubilifeTV2FGallery_Frame10",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 18,
             "z": 8,
             "y": 0,
@@ -96,8 +96,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "JubilifeTV2FGallery_Hiker",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -111,8 +111,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 13,
-            "initial_dir": 0,
+            "script": "JubilifeTV2FGallery_PokemonBreederM",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -126,8 +126,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 14,
-            "initial_dir": 0,
+            "script": "JubilifeTV2FGallery_Twin",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 10,
             "movement_range_z": 0,
@@ -138,10 +138,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_JUBILIFE_TV_2F",
             "x": 3,
             "z": 13,
             "dest_header_id": "MAP_HEADER_JUBILIFE_TV_2F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_JUBILIFE_TV_2F_GALLERY"
         }
     ],
     "coord_events": []

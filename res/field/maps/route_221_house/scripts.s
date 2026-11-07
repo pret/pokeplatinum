@@ -36,7 +36,7 @@ Route221House_CorrectPartyMonLevel:
     GoTo Route221House_GiveReward
 
 Route221House_GiveReward:
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     ClearFlag FLAG_COULD_NOT_RECEIVE_ROUTE_221_HOUSE_REWARD
     SetFlag FLAG_DAILY_RECEIVED_ROUTE_221_HOUSE_REWARD
     AddVar VAR_ROUTE_221_HOUSE_REWARD_INDEX, 1

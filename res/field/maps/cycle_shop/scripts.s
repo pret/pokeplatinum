@@ -17,7 +17,7 @@ CycleShop_PokefanM:
     Message CycleShop_Text_ThanksForRescuingMe
     SetVar VAR_0x8004, ITEM_BICYCLE
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_BICYCLE
     SetVar VAR_ETERNA_CITY_BLOCK_EXITS_STATE, 1
     SetBlackOutWarpId 9

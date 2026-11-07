@@ -24,7 +24,7 @@ FightAreaMart_Socialite:
     SetVar VAR_0x8004, ITEM_SCOPE_LENS
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FightAreaMart_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_FIGHT_AREA_MART_SCOPE_LENS
     GoTo FightAreaMart_DilemmaEveryTime
     End
@@ -37,7 +37,7 @@ FightAreaMart_DilemmaEveryTime:
     End
 
 FightAreaMart_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

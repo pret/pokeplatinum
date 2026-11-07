@@ -118,10 +118,10 @@ SolaceonTownPokemonNewsPress_SetRewardQuickBall:
     Return
 
 SolaceonTownPokemonNewsPress_GiveRewardHelpAgainTomorrow:
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetVar VAR_0x8004, ITEM_HEART_SCALE
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     ClearFlag FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD
     SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
     SetFlag FLAG_DAILY_RECEIVED_POKEMON_NEWS_PRESS_REWARD
@@ -155,10 +155,10 @@ SolaceonTownPokemonNewsPress_GiveReward:
     Message SolaceonTownPokemonNewsPress_Text_HeresYourReward
     ClearFlag FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD
     SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetVar VAR_0x8004, ITEM_HEART_SCALE
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

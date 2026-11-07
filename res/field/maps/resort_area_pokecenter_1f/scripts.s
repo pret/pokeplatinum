@@ -9,7 +9,8 @@
     ScriptEntryEnd
 
 ResortAreaPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_RESORT_AREA_NURSE
+    SetVar VAR_0x8007, LOCALID_RESORT_AREA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 ResortAreaPokecenter1F_RichBoy:

@@ -10,7 +10,8 @@
     ScriptEntryEnd
 
 SunyshoreCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_SUNYSHORE_NURSE
+    SetVar VAR_0x8007, LOCALID_SUNYSHORE_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 SunyshoreCityPokecenter1F_OldMan:

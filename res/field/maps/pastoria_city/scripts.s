@@ -89,7 +89,7 @@ PastoriaCity_ParasolLady:
     BufferAccessoryName 0, VAR_0x8004
     Message PastoriaCity_Text_TryDressingUpPokemon
     SetVar VAR_0x8005, 1
-    Common_GiveAccessoryWaitForConfirm
+    CallCommonScript CommonScript_ObtainAccessoryWaitForConfirm
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK
     CloseMessage
     ReleaseAll
@@ -377,7 +377,7 @@ PastoriaCity_CoordEvent_RivalBattle:
     AddObject LOCALID_RIVAL
     ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalEnterForBattle
     WaitMovement
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkToPlayerForBattle
     ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerFaceRivalForBattle
     WaitMovement

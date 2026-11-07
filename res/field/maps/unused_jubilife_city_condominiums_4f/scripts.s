@@ -15,7 +15,7 @@ JubilifeCityCondominiums4F_Beauty:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, JubilifeCityCondominiums4F_BagIsFull
     SetFlag FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_4F_FOCUS_BAND
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -28,7 +28,7 @@ JubilifeCityCondominiums4F_ObtainedFocusBand:
     End
 
 JubilifeCityCondominiums4F_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

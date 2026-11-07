@@ -1,16 +1,15 @@
 {
     "bg_events": [
         {
-            "script": 8131,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SURVIVAL_AREA_PP_UP",
             "x": 649,
             "z": 346,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 7,
-            "type": 0,
+            "script": "SurvivalArea_Door",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 652,
             "z": 338,
             "y": 0,
@@ -24,11 +23,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 0,
-            "data": [
-                6
-            ],
+            "script": "SurvivalArea_MapSignpost",
+            "signpost": "city_map_survival_area_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 646,
@@ -41,8 +38,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -56,8 +53,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2027,
-            "initial_dir": 0,
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -71,8 +68,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 3,
+            "script": "SurvivalArea_RuinManiac",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -86,8 +83,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "SurvivalArea_BattleGirl",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -101,8 +98,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "SurvivalArea_Youngster",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -111,17 +108,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST",
-            "clone_id": 0,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_226",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_226",
+                "id": "LOCALID_ARROW_SIGNPOST_SURVIVAL_AREA"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 679,
@@ -134,8 +128,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 2,
+            "script": "SurvivalArea_Cameraman",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -149,8 +143,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SURVIVAL_AREA_BUCK",
-            "script": 6,
-            "initial_dir": 1,
+            "script": "SurvivalArea_Buck",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -164,8 +158,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_SURVIVAL_AREA_RARE_CANDY",
-            "script": 7314,
-            "initial_dir": 0,
+            "script": "VisibleItems_SurvivalArea_RareCandy",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -179,8 +173,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_SURVIVAL_AREA_RED_SHARD",
-            "script": 7311,
-            "initial_dir": 0,
+            "script": "VisibleItems_SurvivalArea_RedShard",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -194,8 +188,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SURVIVAL_AREA_RIVAL",
-            "script": 10,
-            "initial_dir": 1,
+            "script": "SurvivalArea_Rival",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -206,34 +200,39 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_BATTLEGROUND",
             "x": 652,
             "z": 338,
             "dest_header_id": "MAP_HEADER_BATTLEGROUND",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         },
         {
+            "id": "WARP_SURVIVAL_AREA_SOUTH_HOUSE",
             "x": 655,
             "z": 348,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         },
         {
+            "id": "WARP_SURVIVAL_AREA_NORTH_HOUSE",
             "x": 656,
             "z": 325,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_NORTH_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         },
         {
+            "id": "WARP_SURVIVAL_AREA_POKECENTER_1F",
             "x": 659,
             "z": 338,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         },
         {
+            "id": "WARP_SURVIVAL_AREA_MART",
             "x": 663,
             "z": 338,
             "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SURVIVAL_AREA"
         }
     ],
     "coord_events": []

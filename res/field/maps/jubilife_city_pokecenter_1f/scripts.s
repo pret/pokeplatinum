@@ -10,7 +10,8 @@
     ScriptEntryEnd
 
 JubilifeCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_JUBILIFE_NURSE
+    SetVar VAR_0x8007, LOCALID_JUBILIFE_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 JubilifeCityPokecenter1F_Twin:

@@ -7,11 +7,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_CATHERINE",
-            "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_CATHERINE",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 7,
@@ -21,10 +21,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2",
             "x": 7,
             "z": 10,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_6"
         }
     ],
     "coord_events": []

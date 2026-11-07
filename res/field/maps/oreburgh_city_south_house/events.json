@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 3,
+            "script": "OreburghCitySouthHouse_Worker",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 2,
@@ -19,10 +19,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_CITY",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
-            "dest_warp_id": 9
+            "dest_warp_id": "WARP_OREBURGH_CITY_SOUTH_HOUSE"
         }
     ],
     "coord_events": []

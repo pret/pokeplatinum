@@ -128,7 +128,7 @@ CelesticTownCave_DefeatedCyrus:
     Message CelesticTownCave_Text_YouShouldTakeThis
     SetVar VAR_0x8004, ITEM_HM03
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_HIDE_CELESTIC_TOWN_ELDER
     ClearFlag FLAG_HIDE_CELESTIC_TOWN_NORTH_HOUSE_ELDER
     SetFlag FLAG_DUMMY_0x098D

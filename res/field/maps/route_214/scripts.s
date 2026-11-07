@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_214.h"
+#include "res/field/maps/locals/route_214.h"
 
 
     ScriptEntry Route214_ArrowSignpostVeilstoneCity
@@ -16,18 +17,18 @@ Route214_OnLoad:
     End
 
 Route214_RemoveWarpsManiacCaveShortAndLong:
-    SetWarpEventPos 2, 710, 670
-    SetWarpEventPos 3, 710, 670
+    SetWarpEventPos WARP_RUIN_MANIAC_CAVE_SHORT, 710, 670
+    SetWarpEventPos WARP_RUIN_MANIAC_CAVE_LONG, 710, 670
     End
 
 Route214_RemoveWarpsManiacCaveShortAndTunnel:
-    SetWarpEventPos 2, 710, 670
-    SetWarpEventPos 4, 710, 670
+    SetWarpEventPos WARP_RUIN_MANIAC_CAVE_SHORT, 710, 670
+    SetWarpEventPos WARP_MANIAC_TUNNEL, 710, 670
     End
 
 Route214_RemoveWarpsManiacCaveLongAndTunnel:
-    SetWarpEventPos 3, 710, 670
-    SetWarpEventPos 4, 710, 670
+    SetWarpEventPos WARP_RUIN_MANIAC_CAVE_LONG, 710, 670
+    SetWarpEventPos WARP_MANIAC_TUNNEL, 710, 670
     End
 
 Route214_OnTransition:

@@ -10,7 +10,8 @@
     ScriptEntryEnd
 
 FloaromaTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_FLOAROMA_NURSE
+    SetVar VAR_0x8007, LOCALID_FLOAROMA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 FloaromaTownPokecenter1F_PokefanM:

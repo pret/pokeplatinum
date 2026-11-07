@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL",
-            "script": 1,
-            "initial_dir": 0,
+            "script": "LakeAcuityLowWater_Rival",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_LAKE_ACUITY_TM14",
-            "script": 7241,
-            "initial_dir": 0,
+            "script": "VisibleItems_LakeAcuity_TM14",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ACUITY_LAKEFRONT_1",
             "x": 14,
             "z": 50,
             "dest_header_id": "MAP_HEADER_ACUITY_LAKEFRONT",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_LAKE_ACUITY_LOW_WATER_1"
         },
         {
+            "id": "WARP_ACUITY_LAKEFRONT_2",
             "x": 15,
             "z": 50,
             "dest_header_id": "MAP_HEADER_ACUITY_LAKEFRONT",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_LAKE_ACUITY_LOW_WATER_2"
         }
     ],
     "coord_events": []

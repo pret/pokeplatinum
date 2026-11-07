@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B3F_SHINY_STONE",
-            "script": 7144,
-            "initial_dir": 0,
+            "script": "VisibleItems_IronIslandB3F_ShinyStone",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -19,33 +19,37 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_IRON_ISLAND",
             "x": 2,
             "z": 5,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_IRON_ISLAND_B3F"
         },
         {
+            "id": "WARP_IRON_ISLAND_B2F_LEFT_ROOM",
             "x": 14,
             "z": 15,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_IRON_ISLAND_B3F"
         },
         {
+            "id": "WARP_IRON_ISLAND_IRON_RUINS",
             "x": 14,
             "z": 1,
             "dest_header_id": "MAP_HEADER_IRON_ISLAND_IRON_RUINS",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_IRON_ISLAND_B3F"
         },
         {
+            "id": "WARP_IRON_RUINS",
             "x": 14,
             "z": 1,
             "dest_header_id": "MAP_HEADER_IRON_RUINS",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_IRON_ISLAND_B3F"
         }
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "IronIslandB3F_CoordEvent_PlatformLift",
             "x": 9,
             "z": 11,
             "y": 0,

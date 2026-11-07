@@ -29,7 +29,7 @@ HearthomeCityPokemonFanClub_Gentleman:
     SetVar VAR_0x8004, ITEM_POFFIN_CASE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, HearthomeCityPokemonFanClub_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_POFFIN_CASE
     Message HearthomeCityPokemonFanClub_Text_FillItWithPoffins
     WaitButton
@@ -45,7 +45,7 @@ HearthomeCityPokemonFanClub_WeAreNumberOneFanClub:
     End
 
 HearthomeCityPokemonFanClub_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

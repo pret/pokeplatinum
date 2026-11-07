@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 2,
+            "script": "SandgemTown_Youngster",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 1,
+            "script": "SandgemTown_PokemonBreederM",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 2,
             "movement_range_z": 0,
@@ -37,8 +37,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
-            "initial_dir": 1,
+            "script": "SandgemTown_PokemonBreederF",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -52,8 +52,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_RIVAL",
-            "script": 0,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -67,8 +66,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_COUNTERPART",
-            "script": 10300,
-            "initial_dir": 2,
+            "script": "CounterpartTalk_Counterpart",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -82,8 +81,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9,
-            "initial_dir": 0,
+            "script": "SandgemTown_SignboardPokemonResearchLab",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -97,8 +96,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
-            "initial_dir": 0,
+            "script": "SandgemTown_SignboardCounterpartsHouse",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -112,11 +111,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "script": "SandgemTown_MapSignpost",
+            "signpost": "city_map_sandgem_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 182,
@@ -124,17 +121,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_219",
-            "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_219",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_219",
+                "id": "LOCALID_ARROW_SIGNPOST_SANDGEM_BEACH"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 179,
@@ -142,17 +136,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_202",
-            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_202",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_202",
+                "id": "LOCALID_ARROW_SIGNPOST_SANDGEM_TOWN"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 183,
@@ -160,17 +151,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_201",
-            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_201",
-            "script": 65535,
-            "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_201",
+                "id": "LOCALID_ARROW_SIGNPOST_SANDGEM_TOWN"
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 151,
@@ -178,15 +166,14 @@
             "y": 0
         },
         {
-            "id": "LOCALID_SCHOOL_KID_M",
-            "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "MAP_HEADER_ROUTE_201",
-            "script": 65535,
-            "initial_dir": 2,
-            "data": [],
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_201",
+                "id": "LOCALID_SCHOOL_KID_M"
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 153,
@@ -199,8 +186,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 12,
-            "initial_dir": 0,
+            "script": "SandgemTown_SignboardPokemonCenter",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -214,8 +201,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 11,
-            "initial_dir": 0,
+            "script": "SandgemTown_SignboardPokeMart",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -229,8 +216,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_PROF_ROWAN",
-            "script": 0,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -241,39 +227,44 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SANDGEM_TOWN_MART",
             "x": 187,
             "z": 842,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_MART",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SANDGEM_TOWN"
         },
         {
+            "id": "WARP_SANDGEM_TOWN_POKECENTER_1F",
             "x": 177,
             "z": 842,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SANDGEM_TOWN"
         },
         {
+            "id": "WARP_SANDGEM_TOWN_POKEMON_RESEARCH_LAB",
             "x": 168,
             "z": 842,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SANDGEM_TOWN"
         },
         {
+            "id": "WARP_SANDGEM_TOWN_COUNTERPART_HOUSE_1F",
             "x": 176,
             "z": 854,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SANDGEM_TOWN"
         },
         {
+            "id": "WARP_SANDGEM_TOWN_HOUSE",
             "x": 167,
             "z": 854,
             "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_HOUSE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SANDGEM_TOWN"
         }
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "SandgemTown_CoordEvent_CounterpartLeadToLab",
             "x": 164,
             "z": 842,
             "y": 0,

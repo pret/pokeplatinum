@@ -1,16 +1,16 @@
 {
     "bg_events": [
         {
-            "script": 7,
-            "type": 0,
+            "script": "SpearPillarDistorted_RiftDialga",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 29,
             "z": 17,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8,
-            "type": 0,
+            "script": "SpearPillarDistorted_RiftPalkia",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 33,
             "z": 17,
             "y": 0,
@@ -24,8 +24,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_CYNTHIA",
-            "script": 2,
-            "initial_dir": 0,
+            "script": "SpearPillarDistorted_Cynthia",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -39,8 +39,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_MESPRIT",
-            "script": 0,
-            "initial_dir": 1,
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -54,8 +53,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC",
-            "script": 3,
-            "initial_dir": 0,
+            "script": "SpearPillarDistorted_Jupiter",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -69,8 +68,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC",
-            "script": 4,
-            "initial_dir": 0,
+            "script": "SpearPillarDistorted_Mars",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -84,8 +83,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC",
-            "script": 6,
-            "initial_dir": 0,
+            "script": "SpearPillarDistorted_GruntF",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -99,8 +98,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC",
-            "script": 5,
-            "initial_dir": 0,
+            "script": "SpearPillarDistorted_GruntM",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -111,10 +110,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_6F",
             "x": 31,
             "z": 53,
             "dest_header_id": "MAP_HEADER_MT_CORONET_6F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_SPEAR_PILLAR_DISTORTED"
         }
     ],
     "coord_events": []

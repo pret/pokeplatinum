@@ -1,16 +1,16 @@
 {
     "bg_events": [
         {
-            "script": 3,
-            "type": 0,
+            "script": "Route216House_Bed",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 6,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_WEST_EAST"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "Route216House_Bed",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 8,
             "z": 7,
             "y": 0,
@@ -24,8 +24,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "Route216House_Hiker",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -39,8 +39,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "Route216House_SnowpointNPCF",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 1,
@@ -51,10 +51,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_216",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_ROUTE_216",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ROUTE_216_HOUSE"
         }
     ],
     "coord_events": []

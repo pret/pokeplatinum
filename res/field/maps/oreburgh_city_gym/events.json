@@ -1,16 +1,16 @@
 {
     "bg_events": [
         {
-            "script": 3,
-            "type": 0,
+            "script": "OreburghGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 3,
             "z": 23,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "OreburghGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 7,
             "z": 23,
             "y": 0,
@@ -24,8 +24,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "OreburghGym_Roark",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -39,8 +39,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "OreburghGym_GymGuide",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -54,11 +54,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_JONATHON",
-            "initial_dir": 3,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_JONATHON",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 4,
@@ -71,11 +71,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_DARIUS",
-            "initial_dir": 2,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_DARIUS",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 7,
@@ -85,10 +85,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_OREBURGH_CITY",
             "x": 5,
             "z": 24,
             "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_OREBURGH_CITY_GYM"
         }
     ],
     "coord_events": []

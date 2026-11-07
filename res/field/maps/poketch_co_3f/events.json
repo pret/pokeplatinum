@@ -1,32 +1,32 @@
 {
     "bg_events": [
         {
-            "script": 4,
-            "type": 0,
+            "script": "PoketchCo3F_PCSouthWest",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 11,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 5,
-            "type": 0,
+            "script": "PoketchCo3F_PCSouthMiddle",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 9,
             "z": 11,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 6,
-            "type": 0,
+            "script": "PoketchCo3F_PCSouthEast",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 15,
             "z": 11,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 7,
-            "type": 0,
+            "script": "PoketchCo3F_PCNorthWest",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 4,
             "y": 0,
@@ -40,8 +40,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 3,
+            "script": "PoketchCo3F_NinjaBoy",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 2,
             "movement_range_z": 0,
@@ -55,8 +55,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "PoketchCo3F_PokefanF",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -70,8 +70,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 2,
+            "script": "PoketchCo3F_ExpertF",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -82,10 +82,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKETCH_CO_2F",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_POKETCH_CO_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_POKETCH_CO_3F"
         }
     ],
     "coord_events": []

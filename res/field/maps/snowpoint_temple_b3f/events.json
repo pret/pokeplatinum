@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8179,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SNOWPOINT_TEMPLE_B3F_FULL_RESTORE",
             "x": 10,
             "z": 8,
             "y": 0,
@@ -12,16 +11,18 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_SNOWPOINT_TEMPLE_B2F",
             "x": 6,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_B2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SNOWPOINT_TEMPLE_B3F"
         },
         {
+            "id": "WARP_SNOWPOINT_TEMPLE_B4F",
             "x": 14,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_B4F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SNOWPOINT_TEMPLE_B3F"
         }
     ],
     "coord_events": []

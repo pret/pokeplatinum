@@ -1,16 +1,16 @@
 {
     "bg_events": [
         {
-            "script": 6,
-            "type": 0,
+            "script": "PokemonMansionOffice_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 16,
             "z": 3,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 7,
-            "type": 0,
+            "script": "PokemonMansionOffice_Book",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 16,
             "z": 6,
             "y": 0,
@@ -24,8 +24,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87",
-            "script": 7057,
-            "initial_dir": 0,
+            "script": "VisibleItems_PokemonMansionOffice_TM87",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -39,8 +39,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "PokemonMansionOffice_MrBacklot",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -54,8 +54,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "PokemonMansionOffice_OldMan",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -69,8 +69,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN",
-            "script": 4,
-            "initial_dir": 1,
+            "script": "PokemonMansionOffice_Policeman",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -81,15 +81,16 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKEMON_MANSION",
             "x": 16,
             "z": 10,
             "dest_header_id": "MAP_HEADER_POKEMON_MANSION",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_POKEMON_MANSION_OFFICE"
         }
     ],
     "coord_events": [
         {
-            "script": 5,
+            "script": "PokemonMansionOffice_CoordEvent_BlockStatue",
             "x": 16,
             "z": 4,
             "y": 0,

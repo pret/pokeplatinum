@@ -43,7 +43,7 @@ VeilstoneCitySouthwestHouse_Beauty:
     GoToIfEq VAR_0x8004, -1, VeilstoneCitySouthwestHouse_DropByAgainTomorrow
     Message VeilstoneCitySouthwestHouse_Text_IFoundThis
     SetVar VAR_0x8005, 1
-    Common_GiveAccessory
+    CallCommonScript CommonScript_ObtainAccessory
     GoTo VeilstoneCitySouthwestHouse_DropByAgainTomorrow
 
 VeilstoneCitySouthwestHouse_ComeBackTomorrow:

@@ -21,7 +21,7 @@ OreburghCityEastHouse2F_Youngster:
     SetVar VAR_0x8004, ITEM_GREAT_BALL
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghCityEastHouse2F_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_OREBURGH_CITY_EAST_HOUSE_2F_GREAT_BALL
     GoTo OreburghCityEastHouse2F_IThinkAboutBestPokeBalls
     End
@@ -34,7 +34,7 @@ OreburghCityEastHouse2F_IThinkAboutBestPokeBalls:
     End
 
 OreburghCityEastHouse2F_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

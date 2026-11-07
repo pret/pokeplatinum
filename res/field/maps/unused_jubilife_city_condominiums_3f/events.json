@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "JubilifeCityCondominiums3F_Lass",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "JubilifeCityCondominiums3F_Collector",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -34,16 +34,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_JUBILIFE_CITY_CONDOMINIUMS_2F",
             "x": 8,
             "z": 3,
             "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_3F"
         },
         {
+            "id": "WARP_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_4F",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_4F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_3F"
         }
     ],
     "coord_events": []

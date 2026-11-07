@@ -91,7 +91,7 @@ VeilstoneStore4F_TopDecorVendor:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    Common_VendorGreeting
+    CallCommonScript CommonScript_VendorGreetingGeneric
     CloseMessageWithoutErasing
     PokeMartDecor MART_DECOR_ID_VEILSTONE_4F_UP
     ReleaseAll
@@ -101,7 +101,7 @@ VeilstoneStore4F_BottomDecorVendor:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    Common_VendorGreeting
+    CallCommonScript CommonScript_VendorGreetingGeneric
     CloseMessageWithoutErasing
     PokeMartDecor MART_DECOR_ID_VEILSTONE_4F_DOWN
     ReleaseAll

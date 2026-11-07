@@ -14,7 +14,8 @@
     ScriptEntryEnd
 
 OreburghCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_OREBURGH_NURSE
+    SetVar VAR_0x8007, LOCALID_OREBURGH_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 OreburghCityPokecenter1F_NinjaBoy:

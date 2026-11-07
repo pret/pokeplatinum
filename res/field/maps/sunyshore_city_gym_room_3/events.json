@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 1,
+            "script": "SunyshoreGymRoom3_Volkner",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,11 +22,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_DESTINY",
-            "initial_dir": 3,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_DESTINY",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 4,
@@ -39,11 +39,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_GUITARIST_PRESTON",
-            "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_GUITARIST_PRESTON",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 3,
@@ -56,11 +56,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_GUITARIST_LONNIE",
-            "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_GUITARIST_LONNIE",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 16,
@@ -73,11 +73,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_ZACHERY",
-            "initial_dir": 2,
-            "data": [
-                1
-            ],
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_ZACHERY",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 21,
@@ -87,15 +87,16 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SUNYSHORE_CITY_GYM_ROOM_2",
             "x": 11,
             "z": 25,
             "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_2",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SUNYSHORE_CITY_GYM_ROOM_3"
         }
     ],
     "coord_events": [
         {
-            "script": 2,
+            "script": "SunyshoreGymRoom3_TopButtons",
             "x": 6,
             "z": 8,
             "y": 0,
@@ -105,7 +106,7 @@
             "value": 0
         },
         {
-            "script": 2,
+            "script": "SunyshoreGymRoom3_TopButtons",
             "x": 16,
             "z": 13,
             "y": 0,
@@ -115,7 +116,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "SunyshoreGymRoom3_BottomButtons",
             "x": 6,
             "z": 18,
             "y": 0,
@@ -125,7 +126,7 @@
             "value": 0
         },
         {
-            "script": 3,
+            "script": "SunyshoreGymRoom3_BottomButtons",
             "x": 16,
             "z": 18,
             "y": 0,

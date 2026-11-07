@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8037,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END_WATER_STONE",
             "x": 3,
             "z": 3,
             "y": 0,
@@ -12,10 +11,11 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_SOLACEON_RUINS_ROOM_3",
             "x": 5,
             "z": 3,
             "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END"
         }
     ],
     "coord_events": []

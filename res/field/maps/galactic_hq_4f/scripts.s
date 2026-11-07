@@ -58,7 +58,7 @@ GalacticHQ4F_Cyrus:
     End
 
 GalacticHQ4F_GiveMasterBall:
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     Return
 
 GalacticHQ4F_BlackOut:

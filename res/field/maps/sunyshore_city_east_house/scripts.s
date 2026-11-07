@@ -59,7 +59,7 @@ SunyshoreCityEastHouse_GiveCalendarApp:
     BufferPartyMonSpecies 0, VAR_0x8000
     Message SunyshoreCityEastHouse_Text_IllGiveCalendarApp
     SetVar VAR_0x8004, POKETCH_APPID_CALENDAR
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll
@@ -70,7 +70,7 @@ SunyshoreCityEastHouse_GiveDotArtistApp:
     BufferPartyMonSpecies 0, VAR_0x8000
     Message SunyshoreCityEastHouse_Text_IllGiveDotArtistApp
     SetVar VAR_0x8004, POKETCH_APPID_DOTART
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll
@@ -81,7 +81,7 @@ SunyshoreCityEastHouse_GiveRouletteApp:
     BufferPartyMonSpecies 0, VAR_0x8000
     Message SunyshoreCityEastHouse_Text_IllGiveRouletteApp
     SetVar VAR_0x8004, POKETCH_APPID_ROULETTE
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll

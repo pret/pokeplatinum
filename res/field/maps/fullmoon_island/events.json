@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "FullmoonIsland_Sailor",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,8 +22,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -37,8 +36,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -52,8 +50,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -64,16 +61,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_FULLMOON_ISLAND_FOREST_1",
             "x": 53,
             "z": 268,
             "dest_header_id": "MAP_HEADER_FULLMOON_ISLAND_FOREST",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_FULLMOON_ISLAND_1"
         },
         {
+            "id": "WARP_FULLMOON_ISLAND_FOREST_2",
             "x": 54,
             "z": 268,
             "dest_header_id": "MAP_HEADER_FULLMOON_ISLAND_FOREST",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_FULLMOON_ISLAND_2"
         }
     ],
     "coord_events": []

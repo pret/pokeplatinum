@@ -1,48 +1,42 @@
 {
     "bg_events": [
         {
-            "script": 8084,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_STAR_PIECE_1",
             "x": 41,
             "z": 7,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8092,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_STAR_PIECE_2",
             "x": 44,
             "z": 10,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8089,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_SOUTH_BLUE_SHARD",
             "x": 13,
             "z": 29,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8090,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_SOUTH_MAX_POTION",
             "x": 31,
             "z": 33,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8260,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_SOUTH_REVIVAL_HERB",
             "x": 15,
             "z": 22,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8269,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_SOUTH_ENERGY_ROOT",
             "x": 34,
             "z": 13,
             "y": 0,
@@ -56,8 +50,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -71,8 +65,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -86,8 +80,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -101,8 +95,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -116,8 +110,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_5",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -131,8 +125,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_6",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -146,8 +140,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_7",
-            "script": 10001,
-            "initial_dir": 0,
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -161,8 +155,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_8",
-            "script": 10002,
-            "initial_dir": 0,
+            "script": "FieldMoves_Boulder",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -173,22 +167,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_3F",
             "x": 12,
             "z": 35,
             "dest_header_id": "MAP_HEADER_MT_CORONET_3F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_MT_CORONET_OUTSIDE_SOUTH"
         },
         {
+            "id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_1",
             "x": 11,
             "z": 17,
             "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_MT_CORONET_OUTSIDE_SOUTH_1"
         },
         {
+            "id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_2",
             "x": 39,
             "z": 18,
             "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_MT_CORONET_OUTSIDE_SOUTH_2"
         }
     ],
     "coord_events": []

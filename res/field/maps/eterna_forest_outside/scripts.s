@@ -21,7 +21,7 @@ EternaForestOutside_PokemonBreederF:
     BufferAccessoryName 0, VAR_0x8004
     Message EternaForestOutside_Text_AreYouCollectingAccessories
     SetVar VAR_0x8005, 1
-    Common_GiveAccessoryWaitForConfirm
+    CallCommonScript CommonScript_ObtainAccessoryWaitForConfirm
     SetFlag FLAG_RECEIVED_ETERNA_FOREST_OUTSIDE_ACCESSORY_BIG_TREE
     CloseMessage
     ReleaseAll

@@ -1,8 +1,8 @@
 {
     "bg_events": [
         {
-            "script": 2,
-            "type": 0,
+            "script": "DistortionWorld1F_Portal",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 55,
             "z": 39,
             "y": 0,
@@ -12,10 +12,11 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_MT_CORONET_6F",
             "x": 31,
             "z": 53,
             "dest_header_id": "MAP_HEADER_MT_CORONET_6F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_SPEAR_PILLAR_DISTORTED"
         }
     ],
     "coord_events": []

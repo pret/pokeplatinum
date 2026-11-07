@@ -15,7 +15,7 @@ EternaCityCondominiums4F_ExpertF:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCityCondominiums4F_BagIsFull
     SetFlag FLAG_RECEIVED_UNUSED_ETERNA_CITY_CONDOMINIUMS_4F_TM04
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -28,7 +28,7 @@ EternaCityCondominiums4F_LongHistory:
     End
 
 EternaCityCondominiums4F_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -1,8 +1,8 @@
 {
     "bg_events": [
         {
-            "script": 7,
-            "type": 0,
+            "script": "VeilstoneStore4F_Directory",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 13,
             "z": 2,
             "y": 0,
@@ -16,8 +16,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "VeilstoneStore4F_NinjaBoy",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 2,
@@ -31,8 +31,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 0,
+            "script": "VeilstoneStore4F_Pokefan",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -46,8 +46,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 2,
+            "script": "VeilstoneStore4F_Attendant",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -61,8 +61,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 3,
+            "script": "VeilstoneStore4F_TopDecorVendor",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -76,8 +76,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
-            "initial_dir": 1,
+            "script": "VeilstoneStore4F_BottomDecorVendor",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -91,8 +91,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 1,
+            "script": "VeilstoneStore4F_SchoolBoy",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -103,22 +103,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VEILSTONE_STORE_3F",
             "x": 7,
             "z": 8,
             "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_3F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VEILSTONE_STORE_4F"
         },
         {
+            "id": "WARP_VEILSTONE_STORE_5F",
             "x": 12,
             "z": 8,
             "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_5F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VEILSTONE_STORE_4F"
         },
         {
+            "id": "WARP_VEILSTONE_STORE_ELEVATOR",
             "x": 15,
             "z": 2,
             "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_DYNAMIC"
         }
     ],
     "coord_events": []

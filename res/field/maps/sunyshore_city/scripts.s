@@ -441,7 +441,7 @@ SunyshoreCity_GiveWaterfall:
     Message SunyshoreCity_Text_ThisIsntMuchBut
     SetVar VAR_0x8004, ITEM_HM07
     SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_SUNYSHORE_CITY_HM07
     Message SunyshoreCity_Text_ThatHMContainsWaterfall
     Return
@@ -575,7 +575,7 @@ SunyshoreCity_SealMerchant_Unused:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    Common_VendorGreeting
+    CallCommonScript CommonScript_VendorGreetingGeneric
     CloseMessageWithoutErasing
     GetDayOfWeek VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT

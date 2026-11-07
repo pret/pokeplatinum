@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "HearthomeCityEastGateToAmitySquare_Receptionist",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 0,
+            "script": "HearthomeCityEastGateToAmitySquare_Beauty",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -37,8 +37,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "HearthomeCityEastGateToAmitySquare_Pikachu",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -52,8 +52,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_HEARTHOME_CITY_GATE_TO_AMITY_SQUARE_REPORTER",
-            "script": 10162,
-            "initial_dir": 2,
+            "script": "TVReporterInterviews_HearthomeCityGates",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -64,16 +64,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY",
             "x": 5,
             "z": 12,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_1"
         },
         {
+            "id": "WARP_AMITY_SQUARE",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_AMITY_SQUARE",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE_1"
         }
     ],
     "coord_events": []

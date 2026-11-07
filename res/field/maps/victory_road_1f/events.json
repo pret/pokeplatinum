@@ -1,24 +1,21 @@
 {
     "bg_events": [
         {
-            "script": 8114,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VICTORY_ROAD_1F_ULTRA_BALL",
             "x": 36,
             "z": 41,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8115,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VICTORY_ROAD_1F_MAX_REVIVE",
             "x": 20,
             "z": 32,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 8113,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VICTORY_ROAD_1F_NUGGET",
             "x": 10,
             "z": 26,
             "y": 0,
@@ -32,8 +29,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_RARE_CANDY",
-            "script": 7183,
-            "initial_dir": 0,
+            "script": "VisibleItems_VictoryRoad1F_RareCandy",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -47,8 +44,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_MAX_REPEL",
-            "script": 7182,
-            "initial_dir": 0,
+            "script": "VisibleItems_VictoryRoad1F_MaxRepel",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -62,8 +59,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_TM41",
-            "script": 7181,
-            "initial_dir": 0,
+            "script": "VisibleItems_VictoryRoad1F_TM41",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -77,8 +74,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_RAZOR_CLAW",
-            "script": 7185,
-            "initial_dir": 0,
+            "script": "VisibleItems_VictoryRoad1F_RazorClaw",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -92,8 +89,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_ZINC",
-            "script": 7184,
-            "initial_dir": 0,
+            "script": "VisibleItems_VictoryRoad1F_Zinc",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -107,11 +104,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_BRYCE",
-            "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_BRYCE",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 7,
@@ -124,11 +121,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "hidden_flag": "0",
-            "script": "TRAINER_BLACK_BELT_MILES",
-            "initial_dir": 1,
-            "data": [
-                1
-            ],
+            "trainer": {
+                "id": "TRAINER_BLACK_BELT_MILES",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 30,
@@ -141,11 +138,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BIRD_KEEPER_HANA",
-            "initial_dir": 2,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_BIRD_KEEPER_HANA",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 31,
@@ -158,11 +155,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_ACE_TRAINER_MARIAH",
-            "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_MARIAH",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 10,
@@ -175,11 +172,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_VETERAN_EDGAR",
-            "initial_dir": 3,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_VETERAN_EDGAR",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 27,
@@ -192,11 +189,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_DRAGON_TAMER_CLINTON",
-            "initial_dir": 2,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_DRAGON_TAMER_CLINTON",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 40,
@@ -209,8 +206,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VICTORY_ROAD_1F_COLLECTOR",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "VictoryRoad_Collector",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -221,82 +218,95 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_VICTORY_ROAD_2F_1",
             "x": 4,
             "z": 37,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_2F_2",
             "x": 7,
             "z": 47,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_B1F_1",
             "x": 42,
             "z": 41,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_B1F_2",
             "x": 44,
             "z": 48,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_B1F_3",
             "x": 41,
             "z": 24,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_3"
         },
         {
+            "id": "WARP_VICTORY_ROAD_2F_3",
             "x": 4,
             "z": 25,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_3"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_ROOM_1",
             "x": 45,
             "z": 33,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_1",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_1",
             "x": 15,
             "z": 78,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_2",
             "x": 34,
             "z": 5,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_3",
             "x": 14,
             "z": 78,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_4",
             "x": 16,
             "z": 78,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_1"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_5",
             "x": 34,
             "z": 4,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_6",
             "x": 34,
             "z": 6,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
-            "dest_warp_id": 3
+            "dest_warp_id": "WARP_VICTORY_ROAD_1F_2"
         }
     ],
     "coord_events": []

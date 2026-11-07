@@ -1,72 +1,71 @@
 {
     "bg_events": [
         {
-            "script": 8120,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_POKEMON_LEAGUE_SKY_PLATE",
             "x": 842,
             "z": 580,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "PokemonLeague_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 842,
             "z": 577,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "PokemonLeague_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 843,
             "z": 577,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "PokemonLeague_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 851,
             "z": 577,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "PokemonLeague_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 852,
             "z": 577,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "PokemonLeague_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 837,
             "z": 561,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "PokemonLeague_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 838,
             "z": 561,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "PokemonLeague_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 856,
             "z": 561,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 3,
-            "type": 0,
+            "script": "PokemonLeague_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 857,
             "z": 561,
             "y": 0,
@@ -80,8 +79,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 0,
+            "script": "PokemonLeague_SignboardVictoryRoad",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -95,11 +94,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "script": "PokemonLeague_ArrowSignpostPokemonleague",
+            "signpost": "route_map_03_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 849,
@@ -109,52 +106,60 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
             "x": 842,
             "z": 598,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_LEAGUE_SOUTH_EXIT"
         },
         {
+            "id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
             "x": 847,
             "z": 559,
             "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_LEAGUE_NORTH_EXIT"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_1",
             "x": 851,
             "z": 597,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_2",
             "x": 853,
             "z": 582,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_3",
             "x": 850,
             "z": 597,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_4",
             "x": 852,
             "z": 597,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 7
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_1"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_5",
             "x": 853,
             "z": 581,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_2"
         },
         {
+            "id": "WARP_VICTORY_ROAD_1F_6",
             "x": 853,
             "z": 583,
             "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
-            "dest_warp_id": 8
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_2"
         }
     ],
     "coord_events": []

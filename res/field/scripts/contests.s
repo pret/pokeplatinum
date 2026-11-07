@@ -12,19 +12,19 @@
 #include "generated/pokemon_contest_types.h"
 
 
-    ScriptEntry Contests_LobbyOnFrameExitContestHall @ 0x2648
-    ScriptEntry Contests_Dummy9801 @ 0x2649
-    ScriptEntry Contests_OngoingContestOnTransition @ 0x264A
-    ScriptEntry Contests_LobbyOnTransition @ 0x264B
-    ScriptEntry Contests_OngoingContestOnResume @ 0x264C
-    ScriptEntry Contests_Dummy9805 @ 0x264D
-    ScriptEntry Contests_ReceptionistOfficialContest @ 0x264E
-    ScriptEntry Contests_ReceptionistLinkContest @ 0x264F
-    ScriptEntry Contests_ReceptionistPracticeContest @ 0x2650
-    ScriptEntry Contests_ReceptionistPracticeContest @ 0x2651
-    ScriptEntry Contests_ReceptionistPracticeContest @ 0x2652
-    ScriptEntry Contests_ReceptionistPracticeContest @ 0x2653
-    ScriptEntry Contests_LinkContestRecordsDisplay @ 0x2654
+    ScriptEntry Contests_LobbyOnFrameExitContestHall
+    ScriptEntry Contests_Dummy9801
+    ScriptEntry Contests_OngoingContestOnTransition
+    ScriptEntry Contests_LobbyOnTransition
+    ScriptEntry Contests_OngoingContestOnResume
+    ScriptEntry Contests_Dummy9805
+    ScriptEntry Contests_ReceptionistOfficialContest
+    ScriptEntry Contests_ReceptionistLinkContest
+    ScriptEntry Contests_ReceptionistPracticeContest
+    ScriptEntry Contests_ReceptionistPracticeContest_2
+    ScriptEntry Contests_ReceptionistPracticeContest_3
+    ScriptEntry Contests_ReceptionistPracticeContest_4
+    ScriptEntry Contests_LinkContestRecordsDisplay
     ScriptEntryEnd
 
 Contests_LobbyOnFrameExitContestHall:
@@ -237,8 +237,8 @@ Contests_EnterContest:
 Contests_EnterLinkContest:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00  @ VAR_MAP_LOCAL_0x00 is set in CommonScript_SaveGame
+    CallCommonScript CommonScript_SaveGame
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00  // VAR_MAP_LOCAL_0x00 is set in CommonScript_SaveGame
     GoToIfEq VAR_RESULT, TRUE, Contests_SetLinkContestSavedGame
     GoTo Contests_ContestMenuExit
     End
@@ -831,7 +831,7 @@ Contests_OfficialContestReturnToReceptionist:
     BufferAccessoryName 1, VAR_0x8004
     Message ContestCommon_Text_HeresYourPrize
     SetVar VAR_0x8005, 1
-    Common_GiveAccessory
+    CallCommonScript CommonScript_ObtainAccessory
 Contests_ThankYouForParticipating:
     Message ContestCommon_Text_ThankYouForParticipating
     WaitButton
@@ -1020,6 +1020,9 @@ Contests_Movement_DexterLookSouth:
     EndMovement
 
 Contests_ReceptionistPracticeContest:
+Contests_ReceptionistPracticeContest_2:
+Contests_ReceptionistPracticeContest_3:
+Contests_ReceptionistPracticeContest_4:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer

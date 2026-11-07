@@ -29,7 +29,7 @@ IronIslandHouse_Byron:
     SetVar VAR_0x8004, ITEM_METAL_COAT
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, IronIslandHouse_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_IRON_ISLAND_HOUSE_METAL_COAT
     Message IronIslandHouse_Text_EvolveUsingMetalCoat
     CloseMessage
@@ -41,7 +41,7 @@ IronIslandHouse_Byron:
     End
 
 IronIslandHouse_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

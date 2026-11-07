@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 0,
+            "script": "FloaromaMeadowHouse_Hiker",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 1,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 2,
+            "script": "FloaromaMeadowHouse_NinjaBoy",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -34,10 +34,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_FLOAROMA_MEADOW",
             "x": 4,
             "z": 8,
             "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_FLOAROMA_MEADOW_HOUSE"
         }
     ],
     "coord_events": []

@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "EternaCityCondominiums1F_NinjaBoy",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "EternaCityCondominiums1F_PokefanM",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -37,8 +37,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 2,
+            "script": "EternaCityCondominiums1F_ExpertM",
+            "initial_dir": "DIR_WEST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -49,16 +49,18 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ETERNA_CITY",
             "x": 11,
             "z": 12,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_ETERNA_CITY_CONDOMINIUMS_1F"
         },
         {
+            "id": "WARP_ETERNA_CITY_CONDOMINIUMS_2F",
             "x": 15,
             "z": 3,
             "dest_header_id": "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_CITY_CONDOMINIUMS_1F"
         }
     ],
     "coord_events": []

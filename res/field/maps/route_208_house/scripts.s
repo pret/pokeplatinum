@@ -25,7 +25,7 @@ Route208House_OldMan:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route208House_BagIsFull
     SetFlag FLAG_DAILY_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -38,7 +38,7 @@ Route208House_FeedBerriesToPokemon:
     End
 
 Route208House_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ Route208House_GiveBerrySearcherApp:
     Message Route208House_Text_HaveThisPoketchApp
     SetVar VAR_MAP_LOCAL_0x00, 1
     SetVar VAR_0x8004, POKETCH_APPID_BERRYSEARCHER
-    Common_GivePoketchApp
+    CallCommonScript CommonScript_ObtainPoketchApp
     WaitButton
     CloseMessage
     ReleaseAll

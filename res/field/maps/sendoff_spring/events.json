@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SENDOFF_SPRING_CYNTHIA",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "SendoffSpring_Cynthia",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -19,22 +19,25 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_SPRING_PATH_1",
             "x": 12,
             "z": 56,
             "dest_header_id": "MAP_HEADER_SPRING_PATH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_SENDOFF_SPRING_1"
         },
         {
+            "id": "WARP_SPRING_PATH_2",
             "x": 13,
             "z": 56,
             "dest_header_id": "MAP_HEADER_SPRING_PATH",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_SENDOFF_SPRING_2"
         },
         {
+            "id": "WARP_TURNBACK_CAVE_ENTRANCE",
             "x": 31,
             "z": 16,
             "dest_header_id": "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_SENDOFF_SPRING"
         }
     ],
     "coord_events": []

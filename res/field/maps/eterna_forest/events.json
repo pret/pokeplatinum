@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8001,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ETERNA_FOREST_INSECT_PLATE",
             "x": 80,
             "z": 9,
             "y": 0,
@@ -16,8 +15,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_FOREST_CHERYL",
-            "script": 9702,
-            "initial_dir": 1,
+            "script": "FollowerPartners_Cheryl",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -31,8 +30,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 6,
-            "initial_dir": 3,
+            "script": "EternaForest_BugCatcher",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -46,11 +45,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BUG_CATCHER_JACK",
-            "initial_dir": 3,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_BUG_CATCHER_JACK",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 37,
@@ -63,11 +62,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BUG_CATCHER_PHILLIP",
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_BUG_CATCHER_PHILLIP",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 65,
@@ -80,11 +79,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_KODY",
-            "initial_dir": 3,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_KODY",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 74,
@@ -97,11 +96,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_LINDSEY",
-            "initial_dir": 3,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_LINDSEY",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_EAST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 50,
@@ -114,11 +113,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_LASS_BRIANA",
-            "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_LASS_BRIANA",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 40,
@@ -131,11 +130,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_BUG_CATCHER_DONALD",
-            "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "trainer": {
+                "id": "TRAINER_BUG_CATCHER_DONALD",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 65,
@@ -148,8 +147,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_ANTIDOTE",
-            "script": 7018,
-            "initial_dir": 0,
+            "script": "VisibleItems_EternaForest_Antidote",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -163,8 +162,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_PARLYZ_HEAL",
-            "script": 7019,
-            "initial_dir": 0,
+            "script": "VisibleItems_EternaForest_ParlyzHeal",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -178,8 +177,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_NET_BALL",
-            "script": 7020,
-            "initial_dir": 0,
+            "script": "VisibleItems_EternaForest_NetBall",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -193,8 +192,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_GREEN_SHARD",
-            "script": 7021,
-            "initial_dir": 0,
+            "script": "VisibleItems_EternaForest_GreenShard",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -208,8 +207,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 8,
-            "initial_dir": 0,
+            "script": "EternaForest_SignboardEternaForest",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -223,8 +222,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 9,
-            "initial_dir": 0,
+            "script": "EternaForest_TrainerTipsSignpost",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -238,11 +237,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_ELIJAH",
-            "initial_dir": 2,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_ELIJAH",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 55,
@@ -255,11 +254,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_PSYCHIC_RACHAEL",
-            "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_RACHAEL",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 77,
@@ -272,8 +271,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 10,
-            "initial_dir": 0,
+            "script": "EternaForest_MossRock",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -287,8 +286,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_ETHER",
-            "script": 7085,
-            "initial_dir": 0,
+            "script": "VisibleItems_EternaForest_Ether",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -302,8 +301,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_POTION",
-            "script": 7249,
-            "initial_dir": 0,
+            "script": "VisibleItems_EternaForest_Potion",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -317,8 +316,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -332,8 +331,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -347,8 +346,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -362,8 +361,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -377,8 +376,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_5",
-            "script": 10000,
-            "initial_dir": 0,
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -392,8 +391,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ETERNA_FOREST_GARDENIA",
-            "script": 7,
-            "initial_dir": 0,
+            "script": "EternaForest_Gardenia",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -404,39 +403,44 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_ROUTE_205_SOUTH_1",
             "x": 28,
             "z": 86,
             "dest_header_id": "MAP_HEADER_ROUTE_205_SOUTH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_FOREST_1"
         },
         {
+            "id": "WARP_ROUTE_205_SOUTH_2",
             "x": 29,
             "z": 86,
             "dest_header_id": "MAP_HEADER_ROUTE_205_SOUTH",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ETERNA_FOREST_2"
         },
         {
+            "id": "WARP_ROUTE_205_NORTH_1",
             "x": 86,
             "z": 36,
             "dest_header_id": "MAP_HEADER_ROUTE_205_NORTH",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_ETERNA_FOREST_2"
         },
         {
+            "id": "WARP_ROUTE_205_NORTH_2",
             "x": 86,
             "z": 37,
             "dest_header_id": "MAP_HEADER_ROUTE_205_NORTH",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_ETERNA_FOREST_1"
         },
         {
+            "id": "WARP_OLD_CHATEAU",
             "x": 74,
             "z": 15,
             "dest_header_id": "MAP_HEADER_OLD_CHATEAU",
-            "dest_warp_id": 4
+            "dest_warp_id": "WARP_ETERNA_FOREST"
         }
     ],
     "coord_events": [
         {
-            "script": 1,
+            "script": "EternaForest_CoordEvent_CherylStartFollowing",
             "x": 28,
             "z": 85,
             "y": 0,
@@ -446,7 +450,7 @@
             "value": 0
         },
         {
-            "script": 2,
+            "script": "EternaForest_CoordEvent_PlayerLeaveCheryl",
             "x": 28,
             "z": 86,
             "y": 0,
@@ -456,7 +460,7 @@
             "value": 1
         },
         {
-            "script": 3,
+            "script": "EternaForest_CoordEvent_CherylLeavePlayer",
             "x": 82,
             "z": 34,
             "y": 0,

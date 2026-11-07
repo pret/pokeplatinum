@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VERITY_CAVERN_MESPRIT",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "VerityCavern_Mesprit",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -22,8 +22,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VERITY_CAVERN_PROF_OAK",
-            "script": 0,
-            "initial_dir": 0,
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -34,10 +33,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_LAKE_VERITY",
             "x": 14,
             "z": 29,
             "dest_header_id": "MAP_HEADER_LAKE_VERITY",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_VERITY_CAVERN"
         }
     ],
     "coord_events": []

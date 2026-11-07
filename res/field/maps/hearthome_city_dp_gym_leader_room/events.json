@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "HearthomeCityDPGymLeaderRoom_Fantina",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -19,10 +19,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2",
             "x": 9,
             "z": 12,
             "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_HEARTHOME_CITY_DP_GYM_LEADER_ROOM"
         }
     ],
     "coord_events": []

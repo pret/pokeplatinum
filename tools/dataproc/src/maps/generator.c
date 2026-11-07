@@ -13,6 +13,7 @@
 #include "common.h"
 #include "game_types.h"
 
+#include "constants/field/script_ranges.h"
 #include "generated/species.h"
 #include "struct_defs/wild_encounters.h"
 
@@ -28,6 +29,7 @@ static const char *scriptOrderPath    = NULL;
 static const char *encounterprocPath  = NULL;
 static const char *encounterOrderPath = NULL;
 static const char *zukanScriptPath    = NULL;
+static const char *labelScannerPath   = NULL;
 
 enum { F_BUILD_MANIFEST };
 enum { B_ENCOUNTERS_UNKNOWN };
@@ -46,6 +48,7 @@ static Driver driver = {
         OPTION_VALUE('C', "ENCOUNTERPROC",   &encounterprocPath,  "Path to the encounterproc program."),
         OPTION_VALUE('c', "ENCOUNTER_ORDER", &encounterOrderPath, "Path to the encounter-order file."),
         OPTION_VALUE('Z', "ZUKAN_SCRIPT",    &zukanScriptPath,    "Path to the Pokedex encounter-archive script."),
+        OPTION_VALUE('L', "LABEL_SCANNER",   &labelScannerPath,   "Path to the label-scanner program."),
 
         POSITIONAL("ENUMFILE", &enumFile, "Header defining enum MapHeaderID."),
         POSITIONAL("BASEDIR",  &baseDir,  "Base directory containing map data subdirs."),
@@ -69,6 +72,13 @@ static Driver driver = {
 
         .writeIfChanged = true,
     },
+};
+
+typedef struct ScriptRange { int offset; const char *file; } ScriptRange;
+static const ScriptRange sGlobalScriptRanges[] = {
+#define SCRIPT_RANGE(offset, file, _) { offset, #file },
+    SCRIPT_RANGE_TABLE(SCRIPT_RANGE)
+#undef SCRIPT_RANGE
 };
 
 static void EnsureDir(const char *path)
@@ -107,6 +117,13 @@ static const BuildRule rEncounters = {
     .description = "Compiling encounters $out...",
     .depfile     = "$out.d",
     .deps        = true,
+};
+
+static const BuildRule rLabelScanner = {
+    .name        = "labels",
+    .command     = "$labelscanner $in $offset $out",
+    .description = "Generating script-labels $out...",
+    .restat      = true,
 };
 
 // The script reads generated Python constants from the outer build root, which
@@ -157,8 +174,12 @@ static char *packdirEncounters = NULL;
 static char *makerFlags        = NULL;
 static char *outEventsArchive  = NULL;
 
-static void ProcMapEvents(FILE *build, const char **implicitOutputs)
+static void ProcMapEvents(FILE *build, Buffer *globalScriptLabels, const char **implicitOutputs)
 {
+    Buffer implicitInputs = { 0 };
+    Buffer_Push(&implicitInputs, const char*, mapprocPath);
+    Buffer_Append(&implicitInputs, globalScriptLabels->data, globalScriptLabels->size);
+
     BUILD_EDGE(build,
         .rule = &rMapproc,
         .vars = BUILD_VARS(
@@ -168,9 +189,11 @@ static void ProcMapEvents(FILE *build, const char **implicitOutputs)
 
         .outputs         = BUILD_PATHS(outEventsArchive),
         .inputs          = BUILD_PATHS(enumFile, baseDir),
-        .implicitInputs  = BUILD_PATHS(mapprocPath),
+        .implicitInputs  = implicitInputs.data,
         .implicitOutputs = implicitOutputs,
     );
+
+    free(implicitInputs.data); // only the pointer-array, not the contents
 }
 
 static void ProcMapDir(FILE *build, Entry *entry, Buffer *scriptOutputs, Buffer *eventLocals,
@@ -370,6 +393,47 @@ static void PackZukan(FILE *build, Buffer *inputs)
     free(pathTrophy);
 }
 
+static inline bool MatchesAnyPreviousRange(const ScriptRange *curr, size_t i)
+{
+    for (size_t j = 0; j < i; j++) {
+        const ScriptRange *prev = &sGlobalScriptRanges[j];
+        if (strcmp(curr->file, prev->file) == 0) return true;
+    }
+
+    return false;
+}
+
+static Buffer ScanGlobalScriptLabels(FILE *build)
+{
+    Buffer outputs = { 0 }; // T = char*
+
+    for (size_t i = 0; i < NELEMS(sGlobalScriptRanges); i++) {
+        const ScriptRange *curr = &sGlobalScriptRanges[i];
+        if (MatchesAnyPreviousRange(curr, i)) continue;
+
+        char *inputPath  = String_Format("%s/%s.s", globalScriptsDir, curr->file + strlen("scripts_"));
+        char *outputPath = String_Format("%s/%s.h", CLI_OutputDir(), curr->file);
+        char *offset     = String_Format("%d", curr->offset);
+
+        BUILD_EDGE(build,
+            .rule = &rLabelScanner,
+            .vars = BUILD_VARS(BUILD_VAR("offset", offset)),
+
+            .outputs        = BUILD_PATHS(outputPath),
+            .inputs         = BUILD_PATHS(inputPath),
+            .implicitInputs = BUILD_PATHS(labelScannerPath),
+        );
+
+        Buffer_Push(&outputs, char*, outputPath);
+
+        free(offset);
+        free(inputPath);
+    }
+
+    Buffer_Push(&outputs, char*, NULL);
+    return outputs;
+}
+
 int main(int argc, char **argv)
 {
     Driver_Init(&driver, argc, argv);
@@ -393,19 +457,22 @@ int main(int argc, char **argv)
     Build_Bind(build, "encounterproc", Driver_Keep(Build_QuoteValue(encounterprocPath)));
     Build_Bind(build, "zukan",         Driver_Keep(Build_QuoteValue(zukanScriptPath)));
     Build_Bind(build, "encdir",        Driver_Keep(Build_QuoteValue(packdirEncounters)));
+    Build_Bind(build, "labelscanner",  Driver_Keep(Build_QuoteValue(labelScannerPath)));
     Build_Rule(build, &rScriptMaker);
     Build_Rule(build, &rNARCPacker);
     Build_Rule(build, &rMapproc);
     Build_Rule(build, &rEncounters);
     Build_Rule(build, &rZukan);
+    Build_Rule(build, &rLabelScanner);
 
     EnsureDir(packdirScripts);
     EnsureDir(packdirEncounters);
 
-    Buffer scriptOutputs    = { 0 }; // T = char*
-    Buffer eventLocals      = { 0 }; // T = char*
-    Buffer encounterOutputs = { 0 }; // T = char*
-    Buffer zukanInputs      = { 0 }; // T = char*
+    Buffer scriptOutputs      = { 0 }; // T = char*
+    Buffer eventLocals        = { 0 }; // T = char*
+    Buffer encounterOutputs   = { 0 }; // T = char*
+    Buffer zukanInputs        = { 0 }; // T = char*
+    Buffer globalScriptLabels = ScanGlobalScriptLabels(build);
 
     for (EachEntry(entry, Entries_FromEnum(enumFile, "MapHeaderID", "MAP_HEADER_", NULL, NULL))) {
         if (strcmp(entry.stem, "invalid") == 0 || strcmp(entry.stem, "dynamic") == 0) break;
@@ -421,7 +488,7 @@ int main(int argc, char **argv)
     BinaryFile_Write(B_ENCOUNTERS_UNKNOWN, &sEncountersUnknown, sizeof(sEncountersUnknown));
     Buffer_Push(&encounterOutputs, char*, String_Format("%s/encounters_unknown", packdirEncounters));
 
-    ProcMapEvents(build, eventLocals.data);
+    ProcMapEvents(build, &globalScriptLabels, eventLocals.data);
     ProcGlobalScripts(build, &scriptOutputs);
     PackArchive(build, &scriptOutputs, packdirScripts, scriptOrderPath, "scr_seq");
     PackArchive(build, &encounterOutputs, packdirEncounters, encounterOrderPath, "pl_enc_data");
@@ -434,5 +501,6 @@ int main(int argc, char **argv)
     Buffer_Free(&eventLocals, char*);
     Buffer_Free(&encounterOutputs, char*);
     Buffer_Free(&zukanInputs, char*);
+    Buffer_Free(&globalScriptLabels, char*);
     return Driver_Finish(&driver);
 }

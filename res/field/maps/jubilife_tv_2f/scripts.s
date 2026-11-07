@@ -35,7 +35,7 @@ JubilifeTV2F_GymGuide:
     BufferAccessoryNameWithArticle 0, VAR_0x8004
     Message JubilifeTV2F_Text_GiftForFutureStar
     SetVar VAR_0x8005, 1
-    Common_GiveAccessoryWaitForConfirm
+    CallCommonScript CommonScript_ObtainAccessoryWaitForConfirm
     SetFlag FLAG_RECEIVED_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK
     CloseMessage
     ReleaseAll

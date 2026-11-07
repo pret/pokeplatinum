@@ -358,7 +358,7 @@ DayCareCommon_Unused:
 
 DayCareCommon_GriseousOrbCouldNotBeRemoved:
     HideMoney
-    Common_GriseousOrbCouldNotBeRemoved
+    CallCommonScript CommonScript_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0

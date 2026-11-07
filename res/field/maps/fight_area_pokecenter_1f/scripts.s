@@ -10,7 +10,8 @@
     ScriptEntryEnd
 
 FightAreaPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_FIGHT_AREA_NURSE
+    SetVar VAR_0x8007, LOCALID_FIGHT_AREA_NURSE
+    CallCommonScript CommonScript_PokecenterNurse
     End
 
 FightAreaPokecenter1F_Guitarist:

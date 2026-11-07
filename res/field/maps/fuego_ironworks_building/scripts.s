@@ -22,7 +22,7 @@ FuegoIronworksBuilding_MrFuego:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FuegoIronworksBuilding_BagIsFull
     SetFlag FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     GoTo FuegoIronworksBuilding_CheckStarPieceForTrade
     End
 
@@ -118,7 +118,7 @@ FuegoIronworksBuilding_ThereYouAre:
     End
 
 FuegoIronworksBuilding_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

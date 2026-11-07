@@ -7,8 +7,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "JubilifeTV3F_Beauty1",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 2,
             "movement_range_z": 0,
@@ -22,8 +22,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 0,
+            "script": "JubilifeTV3F_Beauty2",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 1,
@@ -37,8 +37,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "JubilifeTV3F_GymGuide1",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -52,8 +52,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 0,
+            "script": "JubilifeTV3F_GymGuide2",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -64,34 +64,39 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_JUBILIFE_TV_2F",
             "x": 7,
             "z": 3,
             "dest_header_id": "MAP_HEADER_JUBILIFE_TV_2F",
-            "dest_warp_id": 1
+            "dest_warp_id": "WARP_JUBILIFE_TV_3F"
         },
         {
+            "id": "WARP_JUBILIFE_TV_4F",
             "x": 14,
             "z": 3,
             "dest_header_id": "MAP_HEADER_JUBILIFE_TV_4F",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_TV_3F"
         },
         {
+            "id": "WARP_JUBILIFE_TV_3F_GROUP_RANKING_ROOM",
             "x": 5,
             "z": 2,
             "dest_header_id": "MAP_HEADER_JUBILIFE_TV_3F_GROUP_RANKING_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_TV_3F"
         },
         {
+            "id": "WARP_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM",
             "x": 2,
             "z": 2,
             "dest_header_id": "MAP_HEADER_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_JUBILIFE_TV_3F"
         },
         {
+            "id": "WARP_JUBILIFE_TV_ELEVATOR",
             "x": 18,
             "z": 2,
             "dest_header_id": "MAP_HEADER_JUBILIFE_TV_ELEVATOR",
-            "dest_warp_id": 0
+            "dest_warp_id": "WARP_DYNAMIC"
         }
     ],
     "coord_events": []

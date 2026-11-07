@@ -49,7 +49,7 @@ SnowpointGym_CandiceTryGiveTM72:
     SetVar VAR_0x8004, ITEM_TM72
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SnowpointGym_CandiceCannotGiveTM72
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_CANDICE_TM72
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
@@ -60,7 +60,7 @@ SnowpointGym_CandiceTryGiveTM72:
     End
 
 SnowpointGym_CandiceCannotGiveTM72:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

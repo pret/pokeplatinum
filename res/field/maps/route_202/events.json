@@ -1,8 +1,7 @@
 {
     "bg_events": [
         {
-            "script": 8161,
-            "type": 2,
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_JUBILIFE_CITY_STARDUST",
             "x": 168,
             "z": 795,
             "y": 0,
@@ -16,11 +15,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_TRISTAN",
-            "initial_dir": 1,
-            "data": [
-                5
-            ],
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_TRISTAN",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 166,
@@ -33,11 +32,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_LASS_NATALIE",
-            "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "trainer": {
+                "id": "TRAINER_LASS_NATALIE",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 181,
@@ -50,11 +49,11 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
-            "script": "TRAINER_YOUNGSTER_LOGAN",
-            "initial_dir": 1,
-            "data": [
-                5
-            ],
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_LOGAN",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_SOUTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 185,
@@ -67,8 +66,8 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_ROUTE_202_COUNTERPART",
-            "script": 7,
-            "initial_dir": 3,
+            "script": "Route202_Counterpart",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -82,11 +81,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "script": "Route202_ArrowSignpostSandgemTown",
+            "signpost": "route_map_04_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 183,
@@ -99,11 +96,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "script": "Route202_ArrowSignpostJubilifeCity",
+            "signpost": "route_map_03_NCGR",
+            "initial_dir": "DIR_NORTH",
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 176,
@@ -116,8 +111,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 5,
-            "initial_dir": 0,
+            "script": "Route202_TrainerTipsSignpost",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -131,8 +126,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 3,
+            "script": "Route202_Youngster",
+            "initial_dir": "DIR_EAST",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 0,
@@ -146,8 +141,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_202_POTION",
-            "script": 7000,
-            "initial_dir": 0,
+            "script": "VisibleItems_Route202_Potion",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -159,7 +154,7 @@
     "warp_events": [],
     "coord_events": [
         {
-            "script": 6,
+            "script": "Route202_CoordEvent_CatchingTutorial",
             "x": 180,
             "z": 825,
             "y": 0,

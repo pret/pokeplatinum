@@ -13,9 +13,9 @@
 
     ScriptEntry AmitySquare_OnTransition
     ScriptEntry AmitySquare_CoordEvent_WestGate
-    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare
+    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare_West
     ScriptEntry AmitySquare_CoordEvent_EastGate
-    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare
+    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare_East
     ScriptEntry AmitySquare_FollowerMon
     ScriptEntry AmitySquare_WestReceptionist
     ScriptEntry AmitySquare_EastReceptionist
@@ -230,7 +230,8 @@ AmitySquare_Unused:
     ReleaseAll
     End
 
-AmitySquare_CoordEvent_ExitAmitySquare:
+AmitySquare_CoordEvent_ExitAmitySquare_West:
+AmitySquare_CoordEvent_ExitAmitySquare_East:
     LockAll
     FadeScreenOut
     WaitFadeScreen
@@ -372,7 +373,7 @@ AmitySquare_FollowerMon_PickUp_GiveItem:
     WaitCry
     ScrCmd_27C 1, LOCAL_VAR_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -399,7 +400,7 @@ AmitySquare_FollowerMon_PickUp_GiveAccessory:
     WaitCry
     ScrCmd_27C 2, LOCAL_VAR_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
-    Common_GiveAccessoryWaitForConfirm
+    CallCommonScript CommonScript_ObtainAccessoryWaitForConfirm
     CloseMessage
     ReleaseAll
     End
@@ -947,7 +948,7 @@ AmitySquare_GiftMan_AccessoryGift:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, AmitySquare_GiftMan_DeclinedGift
     SetVar LOCAL_VAR_ITEM_OR_ACCESSORY_COUNT, 1
-    Common_GiveAccessoryWaitForConfirm
+    CallCommonScript CommonScript_ObtainAccessoryWaitForConfirm
     GoTo AmitySquare_GiftMan_ReceivedGift
     End
 
@@ -964,7 +965,7 @@ AmitySquare_Unused2:
     End
 
 AmitySquare_GiftMan_CannotFitItem:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

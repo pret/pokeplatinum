@@ -44,7 +44,7 @@ GreatMarsh6_TryGiveShard:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, GreatMarsh6_BagIsFull
     SetFlag FLAG_DAILY_RECEIVED_GREAT_MARSH_6_RANDOM_SHARD
-    Common_GiveItemQuantityNoLineFeed
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -57,7 +57,7 @@ GreatMarsh6_IllTryFindingMore:
     End
 
 GreatMarsh6_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -1,8 +1,8 @@
 {
     "bg_events": [
         {
-            "script": 5,
-            "type": 0,
+            "script": "PastoriaCityMart_CroagunkCarving",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 6,
             "y": 0,
@@ -16,8 +16,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 1,
-            "initial_dir": 1,
+            "script": "PastoriaCityMart_CommonVendor",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -31,8 +31,8 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 3,
-            "initial_dir": 1,
+            "script": "PastoriaCityMart_BugCatcher",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -46,8 +46,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
-            "initial_dir": 0,
+            "script": "PastoriaCityMart_SchoolGirl",
+            "initial_dir": "DIR_NORTH",
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
@@ -61,8 +61,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 2,
-            "initial_dir": 1,
+            "script": "PastoriaCityMart_SpecialtyVendor",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -76,8 +76,8 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_MART_MYSTERY_GIFT_DELIVERYMAN",
-            "script": 10201,
-            "initial_dir": 1,
+            "script": "MysteryGiftDeliveryman_Deliveryman",
+            "initial_dir": "DIR_SOUTH",
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -88,10 +88,11 @@
     ],
     "warp_events": [
         {
+            "id": "WARP_PASTORIA_CITY",
             "x": 3,
             "z": 11,
             "dest_header_id": "MAP_HEADER_PASTORIA_CITY",
-            "dest_warp_id": 2
+            "dest_warp_id": "WARP_PASTORIA_CITY_MART"
         }
     ],
     "coord_events": []

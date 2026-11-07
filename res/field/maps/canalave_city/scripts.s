@@ -112,7 +112,7 @@ CanalaveCity_OnLoad:
 
 CanalaveCity_SetHarborInnDoorClosed:
     SetBgEventPos 0, 58, 713
-    SetWarpEventPos 5, 59, 712
+    SetWarpEventPos WARP_CANALAVE_CITY_HARBOR_INN, 59, 712
     Return
 
 CanalaveCity_CoordEvent_Rival:
@@ -151,7 +151,7 @@ CanalaveCity_RivalBridgeEnter:
     AddObject LOCALID_RIVAL_BRIDGE
     ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalNoticePlayer
     WaitMovement
-    Common_SetRivalBGM
+    CallCommonScript CommonScript_SetRivalBGM
     ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalWalkToPlayer
     WaitMovement
     BufferRivalName 0

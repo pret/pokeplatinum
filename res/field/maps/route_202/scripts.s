@@ -95,14 +95,14 @@ Route202_CheckStartCatchingTutorial:
     End
 
 Route202_DawnIllDemonstrateHowToCatch:
-    Common_SetCounterpartBGM
+    CallCommonScript CommonScript_SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message Route202_Text_DawnIllDemonstrateHowToCatch
     GoTo Route202_DoCatchingTutorial
 
 Route202_LucasIllDemonstrateHowToCatch:
-    Common_SetCounterpartBGM
+    CallCommonScript CommonScript_SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message Route202_Text_LucasIllDemonstrateHowToCatch
@@ -134,7 +134,7 @@ Route202_LucasIllGiveYouFivePokeBalls:
 Route202_GivePokeballs:
     SetVar VAR_0x8004, ITEM_POKE_BALL
     SetVar VAR_0x8005, 5
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnLeave
     GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasLeave

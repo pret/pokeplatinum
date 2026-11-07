@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/script_ranges.h"
 #include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/map_object.h"

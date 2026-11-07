@@ -16,7 +16,7 @@ Route209LostTower5F_OldWoman1:
     SetVar VAR_0x8004, ITEM_SPELL_TAG
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route209LostTower5F_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_ROUTE_209_LOST_TOWER_5F_SPELL_TAG
     GoTo Route209LostTower5F_FantinaIsARegularVisitor
     End
@@ -45,7 +45,7 @@ Route209LostTower5F_OldWoman2:
     SetVar VAR_0x8004, ITEM_CLEANSE_TAG
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route209LostTower5F_BagIsFull
-    Common_GiveItemQuantity
+    CallCommonScript CommonScript_AddItemQuantity
     SetFlag FLAG_RECEIVED_ROUTE_209_LOST_TOWER_5F_CLEANSE_TAG
     GoTo Route209LostTower5F_PokemonFindSolaceHere
     End
@@ -58,7 +58,7 @@ Route209LostTower5F_PokemonFindSolaceHere:
     End
 
 Route209LostTower5F_BagIsFull:
-    Common_MessageBagIsFull
+    CallCommonScript CommonScript_BagIsFull
     CloseMessage
     ReleaseAll
     End

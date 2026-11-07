@@ -1,8 +1,8 @@
 {
     "bg_events": [
         {
-            "script": 1,
-            "type": 0,
+            "script": "HearthomeCitySoutheastHouseElevator_OnFrame_Init",
+            "type": "BG_EVENT_TYPE_FACING",
             "x": 1,
             "z": 5,
             "y": 0,
@@ -12,10 +12,10 @@
     "object_events": [],
     "warp_events": [
         {
+            "id": "WARP_DYNAMIC",
             "x": 3,
             "z": 6,
-            "dest_header_id": "MAP_HEADER_DYNAMIC",
-            "dest_warp_id": 256
+            "dest_header_id": "MAP_HEADER_DYNAMIC"
         }
     ],
     "coord_events": []
