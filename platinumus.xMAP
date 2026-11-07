@@ -15564,8 +15564,8 @@
                                                46](GTSNetworkHandler_FlagGeonetCommunicatedWith,func) found in local src_gts_application_screens_network_handler.c.o
                                                46](GTSNetworkHandler_LogTradeInJournal,func) found in local src_gts_application_screens_network_handler.c.o
                                                 47](JournalEntry_CreateEventGotPokemonGTS,func) found in global src_journal.c.o
-                                               46](sub_0206D104,func) found in global src_tv_segment.c.o
-                                                47](sub_0202E834,func) found in global src_unk_0202E2CC.c.o
+                                               46](TVBroadcast_UpdateGTSData,func) found in global src_tv_segment.c.o
+                                                47](TVBroadcast_GetGTSData,func) found in global src_unk_0202E2CC.c.o
                                               45](GTSNetworkHandler_ShowAlreadyTradedError,func) found in local src_gts_application_screens_network_handler.c.o
                                               45](GTSNetworkHandler_GoToTradeDeposit,func) found in local src_gts_application_screens_network_handler.c.o
                                               45](GTSNetworkHandler_ExchangeFinishResponse,func) found in local src_gts_application_screens_network_handler.c.o
@@ -15602,7 +15602,7 @@
                                             43](GTSApplication_NetworkHandler_Init,func) found in global src_gts_application_screens_network_handler.c.o
                                              44](GTSNetworkHandler_InitStrings,func) found in local src_gts_application_screens_network_handler.c.o
                                              44](GTSNetworkHandler_InitBgLayers,func) found in local src_gts_application_screens_network_handler.c.o
-                                              45](@20883,object) found in local src_gts_application_screens_network_handler.c.o
+                                              45](@20879,object) found in local src_gts_application_screens_network_handler.c.o
                                              44](GTSNetworkHandler_InitGraphics,func) found in local src_gts_application_screens_network_handler.c.o
                                              44](GTSNetworkHandler_InitWindows,func) found in local src_gts_application_screens_network_handler.c.o
                                              44](GTSApplication_InitNetworkIcon,func) found in global src_gts_application_screens_wfc_init.c.o
@@ -17548,7 +17548,7 @@
                                                                 63](BerryPatches_UpdateGrowthStates,func) found in global src_berry_patch_manager.c.o
                                                                  64](MapObject_GetPos,func) found in global src_map_object.c.o
                                                                  64](BerryPatches_IsInView,func) found in local src_berry_patch_manager.c.o
-                                                                  65](@19996,object) found in local src_berry_patch_manager.c.o
+                                                                  65](@19992,object) found in local src_berry_patch_manager.c.o
                                                                  64](BerryPatches_SetIsPatchGrowing,func) found in global src_berry_patches.c.o
                                                                 63](ov5_021D13B4,func) found in local src_overlay005_fieldmap.c.o
                                                                  64](FieldOverworldState_GetMapHistory,func) found in global src_field_overworld_state.c.o
@@ -17660,15 +17660,15 @@
                                                                       69](WifiBattleTowerRecord_SetRngState,func) found in global src_battle_tower_save.c.o
                                                                      68](WiFiHistory_UpdateGeonetCommunicationMap,func) found in global src_wifi_history_save_data.c.o
                                                                      68](sub_0206F2F0,func) found in global src_tv_segment.c.o
-                                                                      69](sub_0206DFE0,func) found in global src_tv_segment.c.o
-                                                                       70](sub_0202E828,func) found in global src_unk_0202E2CC.c.o
+                                                                      69](TVSegment_Save_BattlePointScoringMaster,func) found in global src_tv_segment.c.o
+                                                                       70](TVBroadcast_GetBattlePointData,func) found in global src_unk_0202E2CC.c.o
                                                                        70](SaveData_SaveTVSegment,func) found in local src_tv_segment.c.o
                                                                         71](TVBroadcast_SaveSegmentData,func) found in global src_unk_0202E2CC.c.o
                                                                          72](sub_0202E4DC,func) found in local src_unk_0202E2CC.c.o
                                                                          72](sub_0202E3F4,func) found in local src_unk_0202E2CC.c.o
-                                                                      69](sub_0206E060,func) found in global src_tv_segment.c.o
-                                                                      69](sub_0206D0F0,func) found in global src_tv_segment.c.o
-                                                                      69](sub_0206D12C,func) found in global src_tv_segment.c.o
+                                                                      69](TVSegment_Save_GTSMaster,func) found in global src_tv_segment.c.o
+                                                                      69](TVBroadcast_ResetBattlePointData,func) found in global src_tv_segment.c.o
+                                                                      69](TVBroadcast_ResetGTSData,func) found in global src_tv_segment.c.o
                                                                    66](inline_020559DC,func) found in local src_unk_020559DC.c.o
                                                                     67](GameTime_DecrementPenalty,func) found in global src_system_data.c.o
                                                                     67](sub_02055B64,func) found in local src_unk_020559DC.c.o
@@ -19072,7 +19072,7 @@
                                                                                      84](FieldTask_WaitUntilScreenTransitionDone,func) found in local src_field_transition.c.o
                                                                                     83](FreeEncounter,func) found in local src_encounter.c.o
                                                                                    82](FieldTask_WildEncounter,func) found in local src_encounter.c.o
-                                                                                    83](FieldSystem_SaveTVSegment_CatchThatPokemonShow,func) found in global src_tv_segment.c.o
+                                                                                    83](TVSegment_Save_CatchThatPokemonShow,func) found in global src_tv_segment.c.o
                                                                                      84](FieldSystem_SaveTVSegment,func) found in local src_tv_segment.c.o
                                                                                     83](CheckPlayerWonBattle,func) found in global src_field_battle_data_transfer.c.o
                                                                                     83](FreeWildEncounter,func) found in local src_encounter.c.o
@@ -19725,7 +19725,7 @@
                                                                        70](Pokemon_CheckItemEffects,func) found in global src_item_use_pokemon.c.o
                                                                         71](CheckFriendshipItemEffect,func) found in local src_item_use_pokemon.c.o
                                                                       69](Item_IsHerbalMedicine,func) found in global src_item.c.o
-                                                                      69](FieldSystem_SaveTVSegment_HerbalMedicineTrainerSightingDummy,func) found in global src_tv_segment.c.o
+                                                                      69](TVSegment_Save_HerbalMedicineTrainerSightingDummy,func) found in global src_tv_segment.c.o
                                                                       69](PartyMenu_SetItemUseCallback,func) found in global src_applications_party_menu_callbacks.c.o
                                                                        70](NormalizeItemEffect,func) found in local src_applications_party_menu_callbacks.c.o
                                                                        70](PartyMenuCB_UseItem_RareCandy,func) found in local src_applications_party_menu_callbacks.c.o
@@ -20137,7 +20137,7 @@
                                                                 63](ShowFishingWindow,func) found in local src_overlay005_fishing.c.o
                                                               61](FishingTask_SetNoFishWait,func) found in local src_overlay005_fishing.c.o
                                                               61](FishingTask_FishGotAway,func) found in local src_overlay005_fishing.c.o
-                                                               62](FieldSystem_SaveTVSegment_WhatsFishing,func) found in global src_tv_segment.c.o
+                                                               62](TVSegment_Save_WhatsFishing,func) found in global src_tv_segment.c.o
                                                               61](FishingTask_ReeledInEarly,func) found in local src_overlay005_fishing.c.o
                                                               61](FishingTask_SetCaughtFish,func) found in local src_overlay005_fishing.c.o
                                                               61](FishingTask_WaitCloseFishingMessage,func) found in local src_overlay005_fishing.c.o
@@ -20634,7 +20634,7 @@
                                                                                   81](sub_02058644,func) found in local src_comm_player_manager.c.o
                                                                                    82](Underground_IncrementStepCount,func) found in global src_underground.c.o
                                                                                    82](Underground_GetStepCount,func) found in global src_underground.c.o
-                                                                                  81](@21475,object) found in local src_comm_player_manager.c.o
+                                                                                  81](@21471,object) found in local src_comm_player_manager.c.o
                                                                                  80](PlayerAvatar_GetMovementActionAnimCode,func) found in global src_player_move.c.o
                                                                                   81](PlayerAvatar_CalcFaceDirectionInternal,func) found in local src_player_move.c.o
                                                                                    82](Movement_FaceLeftRightFromInput,func) found in local src_player_move.c.o
@@ -20885,9 +20885,9 @@
                                                                 63](UndergroundRecord_GetFlagRank,func) found in global src_underground.c.o
                                                                 63](UndergroundRecord_IncrementCapturedFlagCount,func) found in global src_underground.c.o
                                                                 63](SystemFlag_SetDeliveredStolenFlag,func) found in global src_system_flags.c.o
-                                                                63](FieldSystem_SaveTVSegment_CaptureTheFlagDigest_TakeFlag,func) found in global src_tv_segment.c.o
+                                                                63](TVSegment_Save_CaptureTheFlagDigest_TakeFlag,func) found in global src_tv_segment.c.o
                                                                  64](sub_0206DA6C,func) found in local src_tv_segment.c.o
-                                                                63](FieldSystem_SaveTVSegment_CaptureTheFlagDigest_LoseFlag,func) found in global src_tv_segment.c.o
+                                                                63](TVSegment_Save_CaptureTheFlagDigest_LoseFlag,func) found in global src_tv_segment.c.o
                                                                 63](UndergroundPlayer_ProcessRegisteredFlag,func) found in local src_underground_player.c.o
                                                                  64](Underground_StoreRegisteredFlagOwnerInfo,func) found in global src_underground.c.o
                                                                 63](UndergroundPlayer_ResumeFieldSystemCallback2,func) found in local src_underground_player.c.o
@@ -21167,18 +21167,18 @@
                                                                    66](Mining_InitGameState,func) found in local src_underground_mining.c.o
                                                                    66](UndergroundTextPrinter_SetBackground,func) found in global src_underground_text_printer.c.o
                                                                    66](Mining_InitBackgrounds,func) found in local src_underground_mining.c.o
-                                                                    67](@21493,object) found in local src_underground_mining.c.o
+                                                                    67](@21489,object) found in local src_underground_mining.c.o
                                                                    66](Mining_GenerateGameLayout,func) found in local src_underground_mining.c.o
                                                                     67](Mining_GetTotalItemWeight,func) found in local src_underground_mining.c.o
                                                                      68](Mining_GetWeightOfItem,func) found in local src_underground_mining.c.o
                                                                      68](sMiningObjects,object) found in local src_underground_mining.c.o
-                                                                      69](dirtLayer6Tiles$22035,object) found in local src_underground_mining.c.o
-                                                                      69](dirtLayer5Tiles$22034,object) found in local src_underground_mining.c.o
-                                                                      69](dirtLayer4Tiles$22033,object) found in local src_underground_mining.c.o
-                                                                      69](dirtLayer3Tiles$22032,object) found in local src_underground_mining.c.o
-                                                                      69](dirtLayer2Tiles$22031,object) found in local src_underground_mining.c.o
-                                                                      69](dirtLayer1Tiles$22030,object) found in local src_underground_mining.c.o
-                                                                      69](dirtLayer0Tiles$22029,object) found in local src_underground_mining.c.o
+                                                                      69](dirtLayer6Tiles$22031,object) found in local src_underground_mining.c.o
+                                                                      69](dirtLayer5Tiles$22030,object) found in local src_underground_mining.c.o
+                                                                      69](dirtLayer4Tiles$22029,object) found in local src_underground_mining.c.o
+                                                                      69](dirtLayer3Tiles$22028,object) found in local src_underground_mining.c.o
+                                                                      69](dirtLayer2Tiles$22027,object) found in local src_underground_mining.c.o
+                                                                      69](dirtLayer1Tiles$22026,object) found in local src_underground_mining.c.o
+                                                                      69](dirtLayer0Tiles$22025,object) found in local src_underground_mining.c.o
                                                                     67](Mining_GetTotalTypesOfRocks,func) found in local src_underground_mining.c.o
                                                                     67](Underground_HasPlayerNeverMined,func) found in global src_underground.c.o
                                                                     67](Mining_PickItem,func) found in local src_underground_mining.c.o
@@ -21208,10 +21208,10 @@
                                                                     67](Mining_IsRockAtCoordinates,func) found in local src_underground_mining.c.o
                                                                     67](Mining_IsItemAtCoordinates,func) found in local src_underground_mining.c.o
                                                                     67](Mining_PlayHitAnimationsAndSoundEffects,func) found in local src_underground_mining.c.o
-                                                                    67](diagonalYModifiers$22082,object) found in local src_underground_mining.c.o
-                                                                    67](diagonalXModifiers$22081,object) found in local src_underground_mining.c.o
-                                                                    67](adjacentYModifiers$22084,object) found in local src_underground_mining.c.o
-                                                                    67](adjacentXModifiers$22083,object) found in local src_underground_mining.c.o
+                                                                    67](diagonalYModifiers$22078,object) found in local src_underground_mining.c.o
+                                                                    67](diagonalXModifiers$22077,object) found in local src_underground_mining.c.o
+                                                                    67](adjacentYModifiers$22080,object) found in local src_underground_mining.c.o
+                                                                    67](adjacentXModifiers$22079,object) found in local src_underground_mining.c.o
                                                                    66](Mining_ButtonTouchCheck,func) found in local src_underground_mining.c.o
                                                                    66](Mining_NearbyLinksRemoveDirt,func) found in local src_underground_mining.c.o
                                                                     67](UndergroundPlayer_GetXPos,func) found in global src_underground_player.c.o
@@ -21228,7 +21228,7 @@
                                                                    66](UndergroundTextPrinter_CapitalizeArgAtIndex,func) found in global src_underground_text_printer.c.o
                                                                   65](Mining_ProcessNextDugUpItem,func) found in local src_underground_mining.c.o
                                                                    66](UndergroundRecord_AddNumSpheresDug,func) found in global src_underground.c.o
-                                                                   66](FieldSystem_SaveTVSegment_UndergroundTreasuresCorner,func) found in global src_tv_segment.c.o
+                                                                   66](TVSegment_Save_UndergroundTreasuresCorner,func) found in global src_tv_segment.c.o
                                                                    66](UndergroundRecord_AddNumFossilsDug,func) found in global src_underground.c.o
                                                                    66](SystemVars_GetUndergroundFossilsUnearthed,func) found in global src_system_vars.c.o
                                                                    66](SystemVars_SetUndergroundFossilsUnearthed,func) found in global src_system_vars.c.o
@@ -21425,9 +21425,9 @@
                                                                           73](Underground_ClearGiftPenaltyPrimedFlag,func) found in global src_underground.c.o
                                                                           73](SecretBasesEnv_Free,func) found in global src_underground_secret_bases.c.o
                                                                           73](TrapsEnv_Free,func) found in global src_underground_traps.c.o
-                                                                           74](sub_0206DEEC,func) found in global src_tv_segment.c.o
+                                                                           74](TVSegment_Save_TrapBustingMaster,func) found in global src_tv_segment.c.o
                                                                           73](CommPlayerMan_Delete,func) found in global src_comm_player_manager.c.o
-                                                                           74](sub_0206DF60,func) found in global src_tv_segment.c.o
+                                                                           74](TVSegment_Save_FlagCapturingMaster,func) found in global src_tv_segment.c.o
                                                                            74](UndergroundPlayerStatuses_Dummy,func) found in global src_underground_player_status.c.o
                                                                           73](SpheresEnv_Free,func) found in global src_underground_spheres.c.o
                                                                           73](MiningEnv_Free,func) found in global src_underground_mining.c.o
@@ -21610,7 +21610,7 @@
                                                                 63](Underground_TryAddMiningSpot,func) found in global src_underground.c.o
                                                               61](Mining_SpawnMiningSpotsAndTraps,func) found in local src_underground_mining.c.o
                                                                62](Traps_SpawnRandomTrap,func) found in global src_underground_traps.c.o
-                                                                63](traps$21394,object) found in local src_underground_traps.c.o
+                                                                63](traps$21390,object) found in local src_underground_traps.c.o
                                                               61](Underground_FlagSpawnedNewBuriedObjects,func) found in global src_underground.c.o
                                                               61](Mining_LoadSavedMiningSpots,func) found in local src_underground_mining.c.o
                                                                62](Underground_GetMiningSpotXCoordAtIndex,func) found in global src_underground.c.o
@@ -24512,7 +24512,7 @@
                                                     51](sTrainerClassPrizeMul,object) found in local src_battle_battle_script.c.o
                                                    50](BattleSystem_CalcMoneyPenalty,func) found in global src_battle_battle_system.c.o
                                                     51](Party_GetMaxLevel,func) found in global src_pokemon.c.o
-                                                    51](badgeMul$18691,object) found in local src_battle_battle_system.c.o
+                                                    51](badgeMul$18687,object) found in local src_battle_battle_system.c.o
                                                    50](TrainerInfo_TakeMoney,func) found in global src_trainer_info.c.o
                                                   49](BtlCmd_PrintTrainerMessage,func) found in local src_battle_battle_script.c.o
                                                   49](BtlCmd_SetHealthBoxStatusIcon,func) found in local src_battle_battle_script.c.o
@@ -24641,7 +24641,7 @@
                                                     51](BattleSystem_EnqueuePokemonHistory,func) found in global src_battle_battle_system.c.o
                                                     51](BattleSystem_InitCaptureAttempt,func) found in global src_battle_battle_system.c.o
                                                      52](CaptureAttempt_Init,func) found in global src_tv_segment.c.o
-                                                      53](sub_0206CED0,func) found in local src_tv_segment.c.o
+                                                      53](TVSegment_TryGetPokemonNickname,func) found in local src_tv_segment.c.o
                                                     51](BattleController_EmitShowPokemon,func) found in global src_battle_battle_controller.c.o
                                                      52](Battler_CryModulation,func) found in global src_battle_battle_lib.c.o
                                                      52](BattleSystem_GetBattleParticipantMask,func) found in global src_battle_battle_system.c.o
@@ -25320,12 +25320,12 @@
                                           41](MiscSaveBlock_SetIntroMsg,func) found in global src_savedata_misc.c.o
                                           41](sub_0209B3AC,func) found in local src_unk_0209B344.c.o
                                        38](ScrCmd_SaveTVSegmentHomeAndManor,func) found in global src_scrcmd_tv_broadcast.c.o
-                                        39](FieldSystem_SaveTVSegment_HomeAndManor,func) found in global src_tv_segment.c.o
+                                        39](TVSegment_Save_HomeAndManor,func) found in global src_tv_segment.c.o
                                        38](ScrCmd_SaveTVSegmentHomeAndManorNoFurniture,func) found in global src_scrcmd_tv_broadcast.c.o
-                                        39](FieldSystem_SaveTVSegment_HomeAndManor_NoFurniture,func) found in global src_tv_segment.c.o
+                                        39](TVSegment_Save_HomeAndManor_NoFurniture,func) found in global src_tv_segment.c.o
                                        38](ScrCmd_SaveTVSegmentPokemonStorageBulletin,func) found in global src_scrcmd_tv_broadcast.c.o
-                                        39](FieldSystem_SaveTVSegment_PokemonStorageSpecialNewsBulletin,func) found in global src_tv_segment.c.o
-                                         40](Party_FindFirstHatchedMon,func) found in global src_unk_02054884.c.o
+                                        39](TVSegment_Save_PokemonStorageSpecialNewsBulletin,func) found in global src_tv_segment.c.o
+                                         40](Party_FindFirstNonEggMon,func) found in global src_unk_02054884.c.o
                                        38](ScrCmd_IncrementTrainerScore,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_RemoveCameraOverrideObject,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_AddCameraOverrideObject,func) found in local src_scrcmd.c.o
@@ -28294,7 +28294,7 @@
                                        38](ScrCmd_FreeScratchOffCardsArgs,func) found in global src_scrcmd.c.o
                                        38](ScrCmd_OpenScratchOffCardsApp,func) found in global src_scrcmd.c.o
                                         39](FieldSystem_OpenScratchOffCardsApp,func) found in global src_unk_0203D1B8.c.o
-                                         40](template$22972,object) found in local src_unk_0203D1B8.c.o
+                                         40](template$22968,object) found in local src_unk_0203D1B8.c.o
                                           41](BattleFrontierRecordsApp_Exit,func) found in global src_applications_frontier_records_main.c.o
                                            42](GetWindowGroup,func) found in local src_applications_frontier_records_main.c.o
                                            42](FrontierRecordsApp_FreeWindows,func) found in global src_applications_frontier_records_windows.c.o
@@ -28942,15 +28942,15 @@
                                           41](Shop_InitCamera,func) found in local src_overlay007_shop_menu.c.o
                                            42](Shop_LoadWindows,func) found in local src_overlay007_shop_menu.c.o
                                             43](sShop_DefaultWindowTemplates,object) found in local src_overlay007_shop_menu.c.o
-                                             44](@21759,object) found in local src_overlay007_shop_menu.c.o
-                                             44](@21758,object) found in local src_overlay007_shop_menu.c.o
-                                             44](@21757,object) found in local src_overlay007_shop_menu.c.o
-                                             44](@21756,object) found in local src_overlay007_shop_menu.c.o
                                              44](@21755,object) found in local src_overlay007_shop_menu.c.o
+                                             44](@21754,object) found in local src_overlay007_shop_menu.c.o
+                                             44](@21753,object) found in local src_overlay007_shop_menu.c.o
+                                             44](@21752,object) found in local src_overlay007_shop_menu.c.o
+                                             44](@21751,object) found in local src_overlay007_shop_menu.c.o
                                              44](Shop_MenuPrintCallback,func) found in local src_overlay007_shop_menu.c.o
                                               45](Shop_GetItemPrice,func) found in local src_overlay007_shop_menu.c.o
                                                46](Shop_GetItemBPPrice,func) found in local src_overlay007_shop_menu.c.o
-                                                47](itemToBpPrice$21704,object) found in local src_overlay007_shop_menu.c.o
+                                                47](itemToBpPrice$21700,object) found in local src_overlay007_shop_menu.c.o
                                                46](Good_GetMoneyPrice,func) found in global src_goods.c.o
                                                46](CapsuleMenu_GetSealPrice,func) found in global src_applications_capsule_menu_main.c.o
                                              44](Shop_MenuCursorCallback,func) found in local src_overlay007_shop_menu.c.o
@@ -28986,7 +28986,7 @@
                                           41](Shop_ShowConfirmPurchase,func) found in local src_overlay007_shop_menu.c.o
                                           41](Shop_SelectConfirmPurchase,func) found in local src_overlay007_shop_menu.c.o
                                           41](Shop_ConfirmItemPurchase,func) found in local src_overlay007_shop_menu.c.o
-                                           42](FieldSystem_SaveTVSegment_SinnohShoppingChampCorner,func) found in global src_tv_segment.c.o
+                                           42](TVSegment_Save_SinnohShoppingChampCorner,func) found in global src_tv_segment.c.o
                                            42](Shop_TakeMoney,func) found in local src_overlay007_shop_menu.c.o
                                           41](Shop_FinishPurchase,func) found in local src_overlay007_shop_menu.c.o
                                            42](SystemVars_IncrementDepartmentStoreBuyCount,func) found in global src_system_vars.c.o
@@ -29010,7 +29010,7 @@
                                            42](JournalEntry_CreateEventSoldALot,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventShoppedAtMart,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventSoldALittle,func) found in global src_journal.c.o
-                                        39](BattleFrontierExchangeServiceCorners$28452,object) found in local src_scrcmd.c.o
+                                        39](BattleFrontierExchangeServiceCorners$28448,object) found in local src_scrcmd.c.o
                                        38](ScrCmd_CheckIsMiscSaveInit,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_SaveExtraData,func) found in local src_scrcmd.c.o
                                         39](SaveDataExtra_Init,func) found in global src_savedata.c.o
@@ -29423,7 +29423,7 @@
                                             43](FieldSystem_OpenPartyMenu_SelectForSpinTrade,func) found in global src_unk_0203D1B8.c.o
                                            42](sub_0209C2C0,func) found in local src_unk_0209C194.c.o
                                             43](sub_0203D670,func) found in global src_unk_0203D1B8.c.o
-                                             44](visiblePages$22454,object) found in local src_unk_0203D1B8.c.o
+                                             44](visiblePages$22450,object) found in local src_unk_0203D1B8.c.o
                                             43](Unk_020F950C,object) found in local src_unk_0209C194.c.o
                                            42](sub_0209C280,func) found in local src_unk_0209C194.c.o
                                             43](sub_0209C1E8,func) found in global src_unk_0209C194.c.o
@@ -30343,7 +30343,7 @@
                                                46](GetBattleHallAppSelectedCell,func) found in local src_overlay104_battle_hall.c.o
                                                46](BattleHall_CursorPosToType,func) found in global src_overlay104_battle_hall_helpers.c.o
                                                 47](sBattleHallAppGridOrder,object) found in local src_overlay104_battle_hall_helpers.c.o
-                                             44](sBattleHallAppTemplate$19986,object) found in local src_overlay104_frscrcmd_battle_hall.c.o
+                                             44](sBattleHallAppTemplate$19982,object) found in local src_overlay104_frscrcmd_battle_hall.c.o
                                               45](BattleHallApp_Exit,func) found in global src_applications_frontier_battle_hall_main.c.o
                                                46](FreeAssets,func) found in local src_applications_frontier_battle_hall_main.c.o
                                                 47](BattleHallAppSprite_Free,func) found in global src_applications_frontier_battle_hall_sprites.c.o
@@ -30449,12 +30449,12 @@
                                             43](FrontierScrCmd_CallBattleTowerFunction,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
                                              44](BattleTower_ResetSystem,func) found in global src_battle_tower.c.o
                                              44](BattleTower_GiveBattlePointsReward,func) found in global src_battle_tower.c.o
-                                              45](wifiBattlePoints$21022,object) found in local src_battle_tower.c.o
-                                              45](linkMultiBattlePoints$21024,object) found in local src_battle_tower.c.o
-                                              45](soloBattlePoints$21023,object) found in local src_battle_tower.c.o
-                                             44](sub_0206D0C8,func) found in global src_tv_segment.c.o
+                                              45](wifiBattlePoints$21018,object) found in local src_battle_tower.c.o
+                                              45](linkMultiBattlePoints$21020,object) found in local src_battle_tower.c.o
+                                              45](soloBattlePoints$21019,object) found in local src_battle_tower.c.o
+                                             44](TVBroadcast_UpdateBattlePointData,func) found in global src_tv_segment.c.o
                                              44](BattleTower_GetPartnerParam,func) found in local src_overlay104_frscrcmd_battle_tower.c.o
-                                              45](partnerGraphics$16687,object) found in local src_overlay104_frscrcmd_battle_tower.c.o
+                                              45](partnerGraphics$16683,object) found in local src_overlay104_frscrcmd_battle_tower.c.o
                                              44](BattleTower_GetNextOpponentNum,func) found in global src_battle_tower.c.o
                                              44](BattleTower_IncrementCurrentBattle,func) found in global src_overlay104_battle_tower.c.o
                                              44](BattleTower_HasDefeatedSevenTrainers,func) found in global src_battle_tower.c.o
@@ -30475,7 +30475,7 @@
                                              44](BattleTower_SetBeatPalmer,func) found in global src_overlay104_battle_tower.c.o
                                              44](BattleTower_UpdateGameRecords,func) found in global src_battle_tower.c.o
                                               45](sub_0204A5A0,func) found in local src_battle_tower.c.o
-                                               46](sub_0206DBB0,func) found in global src_tv_segment.c.o
+                                               46](TVSegment_Save_BattleTowerMaster,func) found in global src_tv_segment.c.o
                                                 47](sub_0206CD58,func) found in local src_tv_segment.c.o
                                               45](CheckIfRibbonsEarned,func) found in local src_battle_tower.c.o
                                               45](sub_0204A5EC,func) found in local src_battle_tower.c.o
@@ -31030,8 +31030,8 @@
                                         39](ResumeOnSelectionOrDisconnect,func) found in local src_scrcmd.c.o
                                          40](UnionRoom_HasChatEnded,func) found in global src_union_room.c.o
                                        38](ScrCmd_2B8,func) found in global src_scrcmd_tv_broadcast.c.o
-                                        39](FieldSystem_SaveTVSegment_RateThatNameChange,func) found in global src_tv_segment.c.o
-                                         40](sub_0206CE08,func) found in local src_tv_segment.c.o
+                                        39](TVSegment_Save_RateThatNameChange,func) found in global src_tv_segment.c.o
+                                         40](TVSegment_GetPokemonNickname,func) found in local src_tv_segment.c.o
                                        38](ScrCmd_CheckPartyHasBadEgg,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_2B6,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_2B5,func) found in local src_scrcmd.c.o
@@ -31234,11 +31234,11 @@
                                        38](ScrCmd_267,func) found in local src_scrcmd.c.o
                                         39](sub_0203E414,func) found in global src_unk_0203D1B8.c.o
                                          40](sub_0203E484,func) found in local src_unk_0203D1B8.c.o
-                                          41](v0$22911,object) found in local src_unk_0203D1B8.c.o
+                                          41](v0$22907,object) found in local src_unk_0203D1B8.c.o
                                          40](sub_0203E35C,func) found in local src_unk_0203D1B8.c.o
                                           41](sub_0203E348,func) found in global src_unk_0203D1B8.c.o
                                           41](TimeElapsed,func) found in global src_rtc.c.o
-                                          41](sub_0206DD38,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_RecordsSlotGameMaster,func) found in global src_tv_segment.c.o
                                           41](Coins_SetValue,func) found in global src_coins.c.o
                                           41](SystemVars_SetConsecutiveBonusRoundWins,func) found in global src_system_vars.c.o
                                        38](ScrCmd_ShowPoketch,func) found in local src_scrcmd.c.o
@@ -31546,43 +31546,43 @@
                                          40](sInterviews,object) found in local src_scrcmd_tv_broadcast.c.o
                                           41](sub_020493B8,func) found in local src_scrcmd_tv_broadcast.c.o
                                           41](sub_02049308,func) found in local src_scrcmd_tv_broadcast.c.o
-                                          41](FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Multi,func) found in global src_tv_segment.c.o
-                                          41](FieldSystem_SaveTVSegment_InYourFaceInterview_Question4,func) found in global src_tv_segment.c.o
-                                          41](FieldSystem_SaveTVSegment_InYourFaceInterview_Question3,func) found in global src_tv_segment.c.o
-                                          41](FieldSystem_SaveTVSegment_InYourFaceInterview_Question2,func) found in global src_tv_segment.c.o
-                                          41](FieldSystem_SaveTVSegment_InYourFaceInterview_Question1,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_BattleFrontierFrontlineNews_Multi,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_InYourFaceInterview_Question4,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_InYourFaceInterview_Question3,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_InYourFaceInterview_Question2,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_InYourFaceInterview_Question1,func) found in global src_tv_segment.c.o
                                           41](sub_020493A8,func) found in local src_scrcmd_tv_broadcast.c.o
                                           41](sub_020492D4,func) found in local src_scrcmd_tv_broadcast.c.o
                                            42](sub_0204922C,func) found in local src_scrcmd_tv_broadcast.c.o
-                                          41](FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Single,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_BattleFrontierFrontlineNews_Single,func) found in global src_tv_segment.c.o
                                           41](sub_02049398,func) found in local src_scrcmd_tv_broadcast.c.o
                                           41](sub_020492A0,func) found in local src_scrcmd_tv_broadcast.c.o
-                                          41](FieldSystem_SaveTVSegment_AmitySquareWatch,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_AmitySquareWatch,func) found in global src_tv_segment.c.o
                                           41](sub_02049388,func) found in local src_scrcmd_tv_broadcast.c.o
                                            42](sub_0202E7F0,func) found in global src_unk_0202E2CC.c.o
-                                          41](FieldSystem_SaveTVSegment_ThreeCheersForPoffinCorner,func) found in global src_tv_segment.c.o
-                                          41](FieldSystem_SaveTVSegment_StreetCornerPersonalityCheckup,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_ThreeCheersForPoffinCorner,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_StreetCornerPersonalityCheckup,func) found in global src_tv_segment.c.o
                                           41](sub_02049378,func) found in local src_scrcmd_tv_broadcast.c.o
                                            42](ImageClips_DressUpPhotoHasData,func) found in global src_unk_020298BC.c.o
-                                          41](FieldSystem_SaveTVSegment_RightOnPhotoCorner,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_RightOnPhotoCorner,func) found in global src_tv_segment.c.o
                                            42](DressUpPhoto_GetMonSpecies,func) found in global src_unk_020298BC.c.o
                                             43](PhotoPokemon_GetSpecies,func) found in global src_unk_020298BC.c.o
                                           41](sub_02049368,func) found in local src_scrcmd_tv_broadcast.c.o
                                            42](TVBroadcast_GetShowcasedPokemon,func) found in global src_unk_0202E2CC.c.o
-                                          41](FieldSystem_SaveTVSegment_ContestHall,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_ContestHall,func) found in global src_tv_segment.c.o
                                           41](sub_02049358,func) found in local src_scrcmd_tv_broadcast.c.o
                                           41](sub_02049288,func) found in local src_scrcmd_tv_broadcast.c.o
                                            42](PoketchSystem_CurrentAppID,func) found in global src_applications_poketch_poketch_system.c.o
-                                          41](FieldSystem_SaveTVSegment_ThePoketchWatch,func) found in global src_tv_segment.c.o
-                                          41](sub_02049268,func) found in local src_scrcmd_tv_broadcast.c.o
-                                          41](FieldSystem_SaveTVSegment_YourPokemonCorner,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_ThePoketchWatch,func) found in global src_tv_segment.c.o
+                                          41](TVInterview_GetPartyFirstSpeciesName,func) found in local src_scrcmd_tv_broadcast.c.o
+                                          41](TVSegment_Save_YourPokemonCorner,func) found in global src_tv_segment.c.o
                                           41](sub_02049348,func) found in local src_scrcmd_tv_broadcast.c.o
-                                          41](FieldSystem_SaveTVSegment_BattleTowerCorner,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_BattleTowerCorner,func) found in global src_tv_segment.c.o
                                        38](ScrCmd_CallTVInterview,func) found in global src_scrcmd_tv_broadcast.c.o
                                         39](TVInterview_LoadMessage,func) found in local src_scrcmd_tv_broadcast.c.o
                                         39](TVInterview_SaveResponse,func) found in local src_scrcmd_tv_broadcast.c.o
                                        38](ScrCmd_SaveTVSegmentHiddenItem,func) found in global src_scrcmd_tv_broadcast.c.o
-                                        39](FieldSystem_SaveTVSegment_HiddenItemBreakingNews,func) found in global src_tv_segment.c.o
+                                        39](TVSegment_Save_HiddenItemBreakingNews,func) found in global src_tv_segment.c.o
                                        38](ScrCmd_CallTVBroadcast,func) found in global src_scrcmd_tv_broadcast.c.o
                                         39](TVBroadcast_GetPendingBroadcastType,func) found in global src_overlay006_ov6_022465FC.c.o
                                          40](TVBroadcast_IsProgramFinished,func) found in global src_unk_0202E2CC.c.o
@@ -31626,33 +31626,33 @@
                                             43](sub_0206F260,func) found in local src_tv_segment.c.o
                                             43](sub_0206F160,func) found in local src_tv_segment.c.o
                                              44](TVSegment_SetTemplatePokemonSpecies,func) found in local src_tv_segment.c.o
-                                              45](sub_0206CD94,func) found in local src_tv_segment.c.o
+                                              45](TVSegment_SetTemplate,func) found in local src_tv_segment.c.o
                                              44](sub_0206F0D8,func) found in local src_tv_segment.c.o
                                             43](sub_0206F13C,func) found in local src_tv_segment.c.o
                                             43](sub_0206F118,func) found in local src_tv_segment.c.o
                                             43](sub_0206F100,func) found in local src_tv_segment.c.o
                                             43](sub_0206F01C,func) found in local src_tv_segment.c.o
                                             43](sub_0206EF7C,func) found in local src_tv_segment.c.o
-                                            43](sub_0206E0CC,func) found in local src_tv_segment.c.o
-                                            43](sub_0206E098,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_IsEligible_GTSMaster,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_LoadMessage_GTSMaster,func) found in local src_tv_segment.c.o
                                              44](TVEpisode_GetSegment,func) found in global src_overlay006_tv_episode.c.o
                                               45](sub_0202E574,func) found in global src_unk_0202E2CC.c.o
                                              44](TVSegment_SetTemplateTrainerName,func) found in local src_tv_segment.c.o
                                               45](TVEpisode_GetTrainerName,func) found in global src_overlay006_tv_episode.c.o
                                               45](TVEpisode_GetGender,func) found in global src_overlay006_tv_episode.c.o
                                               45](TVEpisode_GetLanguage,func) found in global src_overlay006_tv_episode.c.o
-                                            43](sub_0206E04C,func) found in local src_tv_segment.c.o
-                                            43](sub_0206E018,func) found in local src_tv_segment.c.o
-                                            43](sub_0206DFC8,func) found in local src_tv_segment.c.o
-                                            43](sub_0206DF88,func) found in local src_tv_segment.c.o
-                                            43](sub_0206DF14,func) found in local src_tv_segment.c.o
-                                            43](sub_0206DE80,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_IsEligible_BattlePointScoringMaster,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_LoadMessage_BattlePointScoringMaster,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_IsEligible_TrapBustingFlagCapturingMaster,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_LoadMessage_FlagCapturingMaster,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_LoadMessage_TrapBustingMaster,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_LoadMessage_RibbonMaster,func) found in local src_tv_segment.c.o
                                              44](StringTemplate_SetRibbonName,func) found in global src_string_template.c.o
-                                            43](sub_0206DD5C,func) found in local src_tv_segment.c.o
-                                            43](sub_0206DD1C,func) found in local src_tv_segment.c.o
-                                            43](sub_0206DC9C,func) found in local src_tv_segment.c.o
-                                            43](sub_0206DC3C,func) found in local src_tv_segment.c.o
-                                            43](sub_0206DBE8,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_LoadMessage_SlotGameMaster,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_IsEligible_PokemonSize,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_LoadMessage_PokemonSize,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_IsEligible_BattleTowerMaster,func) found in local src_tv_segment.c.o
+                                            43](TVSegment_LoadMessage_BattleTowerMaster,func) found in local src_tv_segment.c.o
                                             43](TVSegment_IsEligible_PokemonPhotoRating,func) found in local src_tv_segment.c.o
                                              44](ImageClips_CountDressUpPhotosWithData,func) found in local src_tv_segment.c.o
                                             43](TVSegment_LoadMessage_PokemonPhotoRating,func) found in local src_tv_segment.c.o
@@ -31777,8 +31777,8 @@
                                        38](ScrCmd_GetPartyMonEVTotal,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_BufferRibbonName,func) found in global src_scrcmd_strings.c.o
                                        38](ScrCmd_SetPartyMonRibbon,func) found in global src_scrcmd_party.c.o
-                                        39](sub_0206DDB8,func) found in global src_tv_segment.c.o
-                                         40](sub_0206DE4C,func) found in local src_tv_segment.c.o
+                                        39](TVSegment_Save_RibbonMaster,func) found in global src_tv_segment.c.o
+                                         40](TVSegment_GetPokemonRibbonCount,func) found in local src_tv_segment.c.o
                                          40](Ribbon_MonDataParamToNameID,func) found in global src_ribbon.c.o
                                        38](ScrCmd_GetPartyMonRibbon,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_CountPartyRibbons,func) found in global src_scrcmd_party.c.o
@@ -31824,12 +31824,12 @@
                                        38](ScrCmd_DoGroupConnectionAction,func) found in global src_scrcmd_group_connection.c.o
                                         39](RecordMixedRNG_IsEntryEqualToOverride,func) found in global src_record_mixed_rng.c.o
                                         39](RecordMixedRNG_CopyEntry,func) found in global src_record_mixed_rng.c.o
-                                        39](FieldSystem_SaveTVSegment_LoveThatGroupCorner_SwitchGroup,func) found in global src_tv_segment.c.o
-                                         40](FieldSystem_SaveTVSegment_LoveThatGroupCorner,func) found in local src_tv_segment.c.o
+                                        39](TVSegment_Save_LoveThatGroupCorner_SwitchGroup,func) found in global src_tv_segment.c.o
+                                         40](TVSegment_Save_LoveThatGroupCorner,func) found in local src_tv_segment.c.o
                                         39](RecordMixedRNG_SetEntryGender,func) found in global src_record_mixed_rng.c.o
                                         39](RecordMixedRNG_SetEntryLanguage,func) found in global src_record_mixed_rng.c.o
                                         39](RecordMixedRNG_SetEntrySeed,func) found in global src_record_mixed_rng.c.o
-                                        39](FieldSystem_SaveTVSegment_LoveThatGroupCorner_NewGroup,func) found in global src_tv_segment.c.o
+                                        39](TVSegment_Save_LoveThatGroupCorner_NewGroup,func) found in global src_tv_segment.c.o
                                        38](ScrCmd_ActivateRoamingPokemon,func) found in local src_scrcmd.c.o
                                         39](RoamingPokemon_ActivateSlot,func) found in global src_roaming_pokemon.c.o
                                        38](ScrCmd_EnableSwarms,func) found in local src_scrcmd.c.o
@@ -32057,7 +32057,7 @@
                                         39](FieldOverworldState_GetSafariStepCount,func) found in global src_field_overworld_state.c.o
                                         39](SystemFlag_SetSafariGameActive,func) found in global src_system_flags.c.o
                                         39](TVBroadcast_ResetSafariGameData,func) found in global src_tv_segment.c.o
-                                        39](FieldSystem_SaveTVSegment_SafariGameSpecialNewsBulletin,func) found in global src_tv_segment.c.o
+                                        39](TVSegment_Save_SafariGameSpecialNewsBulletin,func) found in global src_tv_segment.c.o
                                         39](JournalEntry_CreateEventSafariGame,func) found in global src_journal.c.o
                                        38](ScrCmd_GetCurrentMapID,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_GetPreviousMapID,func) found in local src_scrcmd.c.o
@@ -32134,7 +32134,7 @@
                                         39](BattleTower_GetLatestStreak,func) found in global src_battle_tower.c.o
                                         39](BattleTower_WifiRankOperation,func) found in global src_battle_tower.c.o
                                          40](WifiBattleTowerRecord_UpdateLossStreak,func) found in global src_battle_tower_save.c.o
-                                         40](lossesForDemotion$21067,object) found in local src_battle_tower.c.o
+                                         40](lossesForDemotion$21063,object) found in local src_battle_tower.c.o
                                         39](sub_0204A030,func) found in global src_battle_tower.c.o
                                         39](sub_0204A050,func) found in global src_battle_tower.c.o
                                         39](sub_0204A064,func) found in global src_battle_tower.c.o
@@ -32308,7 +32308,7 @@
                                                   49](ov83_0223C3E8,func) found in local src_overlay083_ov83_0223B5A0.c.o
                                                    50](ov83_0223E4A4,func) found in global src_overlay083_ov83_0223D6A8.c.o
                                                    50](ov83_0223C90C,func) found in local src_overlay083_ov83_0223B5A0.c.o
-                                                    51](v1$19272,object) found in local src_overlay083_ov83_0223B5A0.c.o
+                                                    51](v1$19268,object) found in local src_overlay083_ov83_0223B5A0.c.o
                                                    50](ov83_0223E4C0,func) found in global src_overlay083_ov83_0223D6A8.c.o
                                                    50](ov83_0223E51C,func) found in global src_overlay083_ov83_0223D6A8.c.o
                                                     51](ov83_0223D9DC,func) found in global src_overlay083_ov83_0223D6A8.c.o
@@ -32328,8 +32328,8 @@
                                                     51](ov83_0223E908,func) found in global src_overlay083_ov83_0223D6A8.c.o
                                                      52](ov83_0223E8DC,func) found in local src_overlay083_ov83_0223D6A8.c.o
                                                     51](ov83_0223E984,func) found in global src_overlay083_ov83_0223D6A8.c.o
-                                                    51](v1$19162,object) found in local src_overlay083_ov83_0223B5A0.c.o
-                                                    51](v2$19163,object) found in local src_overlay083_ov83_0223B5A0.c.o
+                                                    51](v1$19158,object) found in local src_overlay083_ov83_0223B5A0.c.o
+                                                    51](v2$19159,object) found in local src_overlay083_ov83_0223B5A0.c.o
                                                    50](ov83_0223C6D4,func) found in local src_overlay083_ov83_0223B5A0.c.o
                                                     51](ov83_0223EDDC,func) found in global src_overlay083_ov83_0223D6A8.c.o
                                                      52](ov83_0223EFF4,func) found in local src_overlay083_ov83_0223D6A8.c.o
@@ -32485,7 +32485,7 @@
                                         39](PokemonSummary_GetSelectedMoveSlot,func) found in global src_unk_0203D1B8.c.o
                                        38](ScrCmd_SelectPartyMonMove,func) found in global src_scrcmd_party_mon_moves.c.o
                                         39](FieldSystem_OpenSummaryScreenSelectMove,func) found in global src_unk_0203D1B8.c.o
-                                         40](visiblePages$22463,object) found in local src_unk_0203D1B8.c.o
+                                         40](visiblePages$22459,object) found in local src_unk_0203D1B8.c.o
                                        38](ScrCmd_InitSizeContestRecord,func) found in local src_scrcmd.c.o
                                         39](SystemVars_SetSizeContestRecord,func) found in global src_system_vars.c.o
                                        38](ScrCmd_BufferSizeContestRecord,func) found in local src_scrcmd.c.o
@@ -32502,7 +32502,7 @@
                                         39](SizeContest_UpdateRecordFromPartyMon,func) found in global src_overlay005_size_contest.c.o
                                        38](ScrCmd_CalcSizeContestResult,func) found in local src_scrcmd.c.o
                                         39](SizeContest_CalcResultForPartyMon,func) found in global src_overlay005_size_contest.c.o
-                                         40](sub_0206DC6C,func) found in global src_tv_segment.c.o
+                                         40](TVSegment_Save_RecordsPokemonSize,func) found in global src_tv_segment.c.o
                                        38](ScrCmd_CheckPartyHasSpecies,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_CheckDaycareHasEgg,func) found in global src_scrcmd_daycare.c.o
                                        38](ScrCmd_GetDaycareCompatibilityLevel,func) found in global src_scrcmd_daycare.c.o
@@ -32639,7 +32639,7 @@
                                        38](ScrCmd_HatchEgg,func) found in local src_scrcmd.c.o
                                         39](FieldSystem_HatchEgg,func) found in global src_unk_0203D1B8.c.o
                                          40](Party_GetFirstEgg,func) found in global src_overlay005_daycare.c.o
-                                         40](FieldSystem_SaveTVSegment_HappyHappyEggClub,func) found in global src_tv_segment.c.o
+                                         40](TVSegment_Save_HappyHappyEggClub,func) found in global src_tv_segment.c.o
                                          40](EggHatch_HatchEgg,func) found in global src_egg_hatch.c.o
                                           41](FieldTask_HatchEgg,func) found in local src_egg_hatch.c.o
                                            42](Egg_CreateHatchedMon,func) found in global src_overlay005_daycare.c.o
@@ -32786,7 +32786,7 @@
                                          40](BerryPatches_GetPatchYield,func) found in global src_berry_patches.c.o
                                          40](BerryPatches_ConvertTagNumberToItemID,func) found in local src_berry_patch_manager.c.o
                                          40](BerryPatches_GetPatchYieldRating,func) found in global src_berry_patches.c.o
-                                         40](FieldSystem_SaveTVSegment_PlantingAndWateringShow,func) found in global src_tv_segment.c.o
+                                         40](TVSegment_Save_PlantingAndWateringShow,func) found in global src_tv_segment.c.o
                                          40](BerryPatches_HarvestPatch,func) found in global src_berry_patches.c.o
                                          40](BerryPatchGraphics_MarkForUpdate,func) found in global src_berry_patch_graphics.c.o
                                        38](ScrCmd_SetBerryWateringState,func) found in global src_scrcmd_berry.c.o
@@ -32826,8 +32826,8 @@
                                         39](BagContext_GetSelectedItem,func) found in global src_unk_0203D1B8.c.o
                                        38](ScrCmd_OpenBag,func) found in local src_scrcmd.c.o
                                         39](FieldSystem_CreateBagContext,func) found in global src_unk_0203D1B8.c.o
-                                         40](itemsPockets$22313,object) found in local src_unk_0203D1B8.c.o
-                                         40](berriesPockets$22312,object) found in local src_unk_0203D1B8.c.o
+                                         40](itemsPockets$22309,object) found in local src_unk_0203D1B8.c.o
+                                         40](berriesPockets$22308,object) found in local src_unk_0203D1B8.c.o
                                        38](ScrCmd_GetPartyCount,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_PressSunyshoreGymButton,func) found in local src_scrcmd.c.o
                                         39](SunyshoreGym_PressButton,func) found in global src_overlay008_gym_features.c.o
@@ -36746,7 +36746,7 @@
                                          40](CapsuleMenu_FieldTaskCB,func) found in local src_applications_capsule_menu_main.c.o
                                           41](CapsuleMenu_GetAction,func) found in global src_applications_capsule_menu_main.c.o
                                           41](CapsuleMenu_GetPokemonIndex,func) found in global src_applications_capsule_menu_main.c.o
-                                          41](FieldSystem_SaveTVSegment_SealClubShow,func) found in global src_tv_segment.c.o
+                                          41](TVSegment_Save_SealClubShow,func) found in global src_tv_segment.c.o
                                        38](ScrCmd_0A8,func) found in local src_scrcmd.c.o
                                         39](sub_02041DC8,func) found in local src_scrcmd.c.o
                                         39](sub_0203DB24,func) found in global src_unk_0203D1B8.c.o
@@ -46506,10 +46506,10 @@
   0202E81C 0000000C .text   sub_0202E81C	(src_unk_0202E2CC.c.o)
   0202E824 00000000 .text   $d	(src_unk_0202E2CC.c.o)
   0202E828 00000000 .text   $t	(src_unk_0202E2CC.c.o)
-  0202E828 0000000C .text   sub_0202E828	(src_unk_0202E2CC.c.o)
+  0202E828 0000000C .text   TVBroadcast_GetBattlePointData	(src_unk_0202E2CC.c.o)
   0202E830 00000000 .text   $d	(src_unk_0202E2CC.c.o)
   0202E834 00000000 .text   $t	(src_unk_0202E2CC.c.o)
-  0202E834 0000000C .text   sub_0202E834	(src_unk_0202E2CC.c.o)
+  0202E834 0000000C .text   TVBroadcast_GetGTSData	(src_unk_0202E2CC.c.o)
   0202E83C 00000000 .text   $d	(src_unk_0202E2CC.c.o)
   0202E840 00000000 .text   $t	(src_rankings.c.o)
   0202E840 0000000C .text   Rankings_GetCategoryStatCount	(src_rankings.c.o)
@@ -50871,7 +50871,7 @@
   02049228 00000000 .text   $d	(src_scrcmd_tv_broadcast.c.o)
   0204922C 0000003A .text   sub_0204922C	(src_scrcmd_tv_broadcast.c.o)
   0204922C 00000000 .text   $t	(src_scrcmd_tv_broadcast.c.o)
-  02049268 0000001E .text   sub_02049268	(src_scrcmd_tv_broadcast.c.o)
+  02049268 0000001E .text   TVInterview_GetPartyFirstSpeciesName	(src_scrcmd_tv_broadcast.c.o)
   02049268 00000000 .text   $t	(src_scrcmd_tv_broadcast.c.o)
   02049288 00000018 .text   sub_02049288	(src_scrcmd_tv_broadcast.c.o)
   02049288 00000000 .text   $t	(src_scrcmd_tv_broadcast.c.o)
@@ -52087,7 +52087,7 @@
   02054A40 00000034 .text   Party_FindFirstEligibleBattler	(src_unk_02054884.c.o)
   02054A40 00000000 .text   $t	(src_unk_02054884.c.o)
   02054A74 00000000 .text   $t	(src_unk_02054884.c.o)
-  02054A74 0000003C .text   Party_FindFirstHatchedMon	(src_unk_02054884.c.o)
+  02054A74 0000003C .text   Party_FindFirstNonEggMon	(src_unk_02054884.c.o)
   02054AAC 00000000 .text   $d	(src_unk_02054884.c.o)
   02054AB0 00000012 .text   Party_HasTwoAliveMons	(src_unk_02054884.c.o)
   02054AB0 00000000 .text   $t	(src_unk_02054884.c.o)
@@ -56514,11 +56514,11 @@
   0206CD70 00000000 .text   $t	(src_tv_segment.c.o)
   0206CD7C 00000018 .text   SaveData_SaveTVSegment	(src_tv_segment.c.o)
   0206CD7C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206CD94 0000003A .text   sub_0206CD94	(src_tv_segment.c.o)
+  0206CD94 0000003A .text   TVSegment_SetTemplate	(src_tv_segment.c.o)
   0206CD94 00000000 .text   $t	(src_tv_segment.c.o)
   0206CDD0 00000036 .text   TVSegment_SetTemplateTrainerName	(src_tv_segment.c.o)
   0206CDD0 00000000 .text   $t	(src_tv_segment.c.o)
-  0206CE08 0000002E .text   sub_0206CE08	(src_tv_segment.c.o)
+  0206CE08 0000002E .text   TVSegment_GetPokemonNickname	(src_tv_segment.c.o)
   0206CE08 00000000 .text   $t	(src_tv_segment.c.o)
   0206CE38 0000003C .text   TVSegment_CopyPokemonValues	(src_tv_segment.c.o)
   0206CE38 00000000 .text   $t	(src_tv_segment.c.o)
@@ -56526,7 +56526,7 @@
   0206CE74 00000000 .text   $t	(src_tv_segment.c.o)
   0206CEA4 0000002A .text   TVSegment_SetTemplateOwnPokemonSpecies	(src_tv_segment.c.o)
   0206CEA4 00000000 .text   $t	(src_tv_segment.c.o)
-  0206CED0 00000042 .text   sub_0206CED0	(src_tv_segment.c.o)
+  0206CED0 00000042 .text   TVSegment_TryGetPokemonNickname	(src_tv_segment.c.o)
   0206CED0 00000000 .text   $t	(src_tv_segment.c.o)
   0206CF14 00000032 .text   TVBroadcast_SetContestHallShowInfo	(src_tv_segment.c.o)
   0206CF14 00000000 .text   $t	(src_tv_segment.c.o)
@@ -56549,14 +56549,14 @@
   0206D088 00000040 .text   sub_0206D088	(src_tv_segment.c.o)
   0206D088 00000000 .text   $t	(src_tv_segment.c.o)
   0206D0C8 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D0C8 00000028 .text   sub_0206D0C8	(src_tv_segment.c.o)
+  0206D0C8 00000028 .text   TVBroadcast_UpdateBattlePointData	(src_tv_segment.c.o)
   0206D0EC 00000000 .text   $d	(src_tv_segment.c.o)
-  0206D0F0 00000012 .text   sub_0206D0F0	(src_tv_segment.c.o)
+  0206D0F0 00000012 .text   TVBroadcast_ResetBattlePointData	(src_tv_segment.c.o)
   0206D0F0 00000000 .text   $t	(src_tv_segment.c.o)
   0206D104 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D104 00000028 .text   sub_0206D104	(src_tv_segment.c.o)
+  0206D104 00000028 .text   TVBroadcast_UpdateGTSData	(src_tv_segment.c.o)
   0206D128 00000000 .text   $d	(src_tv_segment.c.o)
-  0206D12C 00000012 .text   sub_0206D12C	(src_tv_segment.c.o)
+  0206D12C 00000012 .text   TVBroadcast_ResetGTSData	(src_tv_segment.c.o)
   0206D12C 00000000 .text   $t	(src_tv_segment.c.o)
   0206D140 00000018 .text   CaptureAttempt_New	(src_tv_segment.c.o)
   0206D140 00000000 .text   $t	(src_tv_segment.c.o)
@@ -56566,7 +56566,7 @@
   0206D160 00000056 .text   CaptureAttempt_Init	(src_tv_segment.c.o)
   0206D160 00000000 .text   $t	(src_tv_segment.c.o)
   0206D1B8 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D1B8 00000078 .text   FieldSystem_SaveTVSegment_CatchThatPokemonShow	(src_tv_segment.c.o)
+  0206D1B8 00000078 .text   TVSegment_Save_CatchThatPokemonShow	(src_tv_segment.c.o)
   0206D22C 00000000 .text   $d	(src_tv_segment.c.o)
   0206D230 000000B0 .text   TVSegment_LoadMessage_CatchThatPokemonShow_Success	(src_tv_segment.c.o)
   0206D230 00000000 .text   $t	(src_tv_segment.c.o)
@@ -56574,74 +56574,74 @@
   0206D2E0 00000000 .text   $t	(src_tv_segment.c.o)
   0206D320 0000001E .text   TVSegment_IsEligible_CatchThatPokemonShow_Success	(src_tv_segment.c.o)
   0206D320 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D340 00000034 .text   FieldSystem_SaveTVSegment_WhatsFishing	(src_tv_segment.c.o)
+  0206D340 00000034 .text   TVSegment_Save_WhatsFishing	(src_tv_segment.c.o)
   0206D340 00000000 .text   $t	(src_tv_segment.c.o)
   0206D374 0000004A .text   TVSegment_LoadMessage_WhatsFishing	(src_tv_segment.c.o)
   0206D374 00000000 .text   $t	(src_tv_segment.c.o)
   0206D3C0 00000024 .text   TVSegment_IsEligible_WhatsFishing	(src_tv_segment.c.o)
   0206D3C0 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D3E4 0000003E .text   FieldSystem_SaveTVSegment_LoveThatGroupCorner	(src_tv_segment.c.o)
+  0206D3E4 0000003E .text   TVSegment_Save_LoveThatGroupCorner	(src_tv_segment.c.o)
   0206D3E4 00000000 .text   $t	(src_tv_segment.c.o)
   0206D424 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D424 0000000C .text   FieldSystem_SaveTVSegment_LoveThatGroupCorner_NewGroup	(src_tv_segment.c.o)
+  0206D424 0000000C .text   TVSegment_Save_LoveThatGroupCorner_NewGroup	(src_tv_segment.c.o)
   0206D42C 00000000 .text   $d	(src_tv_segment.c.o)
   0206D430 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D430 0000000C .text   FieldSystem_SaveTVSegment_LoveThatGroupCorner_SwitchGroup	(src_tv_segment.c.o)
+  0206D430 0000000C .text   TVSegment_Save_LoveThatGroupCorner_SwitchGroup	(src_tv_segment.c.o)
   0206D438 00000000 .text   $d	(src_tv_segment.c.o)
   0206D43C 00000036 .text   TVSegment_LoadMessage_LoveThatGroupCorner_SwitchGroup	(src_tv_segment.c.o)
   0206D43C 00000000 .text   $t	(src_tv_segment.c.o)
   0206D474 00000036 .text   TVSegment_LoadMessage_LoveThatGroupCorner_NewGroup	(src_tv_segment.c.o)
   0206D474 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D4AC 00000026 .text   FieldSystem_SaveTVSegment_HiddenItemBreakingNews	(src_tv_segment.c.o)
+  0206D4AC 00000026 .text   TVSegment_Save_HiddenItemBreakingNews	(src_tv_segment.c.o)
   0206D4AC 00000000 .text   $t	(src_tv_segment.c.o)
   0206D4D4 00000030 .text   TVSegment_LoadMessage_HiddenItemBreakingNews	(src_tv_segment.c.o)
   0206D4D4 00000000 .text   $t	(src_tv_segment.c.o)
   0206D504 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D504 0000002C .text   FieldSystem_SaveTVSegment_SinnohShoppingChampCorner	(src_tv_segment.c.o)
+  0206D504 0000002C .text   TVSegment_Save_SinnohShoppingChampCorner	(src_tv_segment.c.o)
   0206D52C 00000000 .text   $d	(src_tv_segment.c.o)
   0206D530 00000046 .text   TVSegment_LoadMessage_SinnohShoppingChampCorner	(src_tv_segment.c.o)
   0206D530 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D578 00000036 .text   FieldSystem_SaveTVSegment_HappyHappyEggClub	(src_tv_segment.c.o)
+  0206D578 00000036 .text   TVSegment_Save_HappyHappyEggClub	(src_tv_segment.c.o)
   0206D578 00000000 .text   $t	(src_tv_segment.c.o)
   0206D5B0 0000003E .text   TVSegment_LoadMessage_HappyHappyEggClub	(src_tv_segment.c.o)
   0206D5B0 00000000 .text   $t	(src_tv_segment.c.o)
   0206D5F0 0000001A .text   TVSegment_IsEligible_HappyHappyEggClub	(src_tv_segment.c.o)
   0206D5F0 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D60C 00000038 .text   FieldSystem_SaveTVSegment_RateThatNameChange	(src_tv_segment.c.o)
+  0206D60C 00000038 .text   TVSegment_Save_RateThatNameChange	(src_tv_segment.c.o)
   0206D60C 00000000 .text   $t	(src_tv_segment.c.o)
   0206D644 00000000 .text   $t	(src_tv_segment.c.o)
   0206D644 00000064 .text   TVSegment_LoadMessage_RateThatNameChange	(src_tv_segment.c.o)
   0206D6A4 00000000 .text   $d	(src_tv_segment.c.o)
   0206D6A8 0000001E .text   TVSegment_IsEligible_RateThatNameChange	(src_tv_segment.c.o)
   0206D6A8 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D6C8 00000018 .text   FieldSystem_SaveTVSegment_UndergroundTreasuresCorner	(src_tv_segment.c.o)
+  0206D6C8 00000018 .text   TVSegment_Save_UndergroundTreasuresCorner	(src_tv_segment.c.o)
   0206D6C8 00000000 .text   $t	(src_tv_segment.c.o)
   0206D6E0 0000003E .text   TVSegment_LoadMessage_UndergroundTreasuresCorner	(src_tv_segment.c.o)
   0206D6E0 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D720 0000003C .text   FieldSystem_SaveTVSegment_SafariGameSpecialNewsBulletin	(src_tv_segment.c.o)
+  0206D720 0000003C .text   TVSegment_Save_SafariGameSpecialNewsBulletin	(src_tv_segment.c.o)
   0206D720 00000000 .text   $t	(src_tv_segment.c.o)
   0206D75C 00000048 .text   TVSegment_LoadMessage_SafariGameSpecialNewsBulletin	(src_tv_segment.c.o)
   0206D75C 00000000 .text   $t	(src_tv_segment.c.o)
   0206D7A4 0000001E .text   TVSegment_IsEligible_SafariGameSpecialNewsBulletin	(src_tv_segment.c.o)
   0206D7A4 00000000 .text   $t	(src_tv_segment.c.o)
   0206D7C4 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D7C4 000000EC .text   FieldSystem_SaveTVSegment_PokemonStorageSpecialNewsBulletin	(src_tv_segment.c.o)
+  0206D7C4 000000EC .text   TVSegment_Save_PokemonStorageSpecialNewsBulletin	(src_tv_segment.c.o)
   0206D8AC 00000000 .text   $d	(src_tv_segment.c.o)
   0206D8B0 00000040 .text   TVSegment_LoadMessage_PokemonStorageSpecialNewsBulletin	(src_tv_segment.c.o)
   0206D8B0 00000000 .text   $t	(src_tv_segment.c.o)
   0206D8F0 0000001A .text   TVSegment_IsEligible_PokemonStorageSpecialNewsBulletin	(src_tv_segment.c.o)
   0206D8F0 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D90C 00000002 .text   FieldSystem_SaveTVSegment_HerbalMedicineTrainerSightingDummy	(src_tv_segment.c.o)
+  0206D90C 00000002 .text   TVSegment_Save_HerbalMedicineTrainerSightingDummy	(src_tv_segment.c.o)
   0206D90C 00000000 .text   $t	(src_tv_segment.c.o)
   0206D910 00000004 .text   TVSegment_IsEligible_HerbalMedicineTrainerSightingDummy	(src_tv_segment.c.o)
   0206D910 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D914 00000036 .text   FieldSystem_SaveTVSegment_PlantingAndWateringShow	(src_tv_segment.c.o)
+  0206D914 00000036 .text   TVSegment_Save_PlantingAndWateringShow	(src_tv_segment.c.o)
   0206D914 00000000 .text   $t	(src_tv_segment.c.o)
   0206D94C 0000003E .text   TVSegment_LoadMessage_PlantingAndWateringShow	(src_tv_segment.c.o)
   0206D94C 00000000 .text   $t	(src_tv_segment.c.o)
   0206D98C 00000026 .text   TVSegment_LoadMessage_PlantingAndWateringShow_NoBerries	(src_tv_segment.c.o)
   0206D98C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206D9B4 0000003E .text   FieldSystem_SaveTVSegment_SealClubShow	(src_tv_segment.c.o)
+  0206D9B4 0000003E .text   TVSegment_Save_SealClubShow	(src_tv_segment.c.o)
   0206D9B4 00000000 .text   $t	(src_tv_segment.c.o)
   0206D9F4 00000000 .text   $t	(src_tv_segment.c.o)
   0206D9F4 0000005C .text   TVSegment_LoadMessage_SealClubShow	(src_tv_segment.c.o)
@@ -56652,9 +56652,9 @@
   0206DA6C 00000000 .text   $t	(src_tv_segment.c.o)
   0206DA84 00000032 .text   TVSegment_LoadMessage_CaptureTheFlagDigest	(src_tv_segment.c.o)
   0206DA84 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DAB8 0000001C .text   FieldSystem_SaveTVSegment_CaptureTheFlagDigest_TakeFlag	(src_tv_segment.c.o)
+  0206DAB8 0000001C .text   TVSegment_Save_CaptureTheFlagDigest_TakeFlag	(src_tv_segment.c.o)
   0206DAB8 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DAD4 0000001C .text   FieldSystem_SaveTVSegment_CaptureTheFlagDigest_LoseFlag	(src_tv_segment.c.o)
+  0206DAD4 0000001C .text   TVSegment_Save_CaptureTheFlagDigest_LoseFlag	(src_tv_segment.c.o)
   0206DAD4 00000000 .text   $t	(src_tv_segment.c.o)
   0206DAF0 0000000A .text   TVSegment_LoadMessage_CaptureTheFlagDigest_TakeFlag	(src_tv_segment.c.o)
   0206DAF0 00000000 .text   $t	(src_tv_segment.c.o)
@@ -56662,130 +56662,130 @@
   0206DAFC 00000000 .text   $t	(src_tv_segment.c.o)
   0206DB08 00000016 .text   TVSegment_IsEligible_HasExplorerKit	(src_tv_segment.c.o)
   0206DB08 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DB20 00000018 .text   FieldSystem_SaveTVSegment_HomeAndManor_NoFurniture	(src_tv_segment.c.o)
+  0206DB20 00000018 .text   TVSegment_Save_HomeAndManor_NoFurniture	(src_tv_segment.c.o)
   0206DB20 00000000 .text   $t	(src_tv_segment.c.o)
   0206DB38 0000000E .text   TVSegment_LoadMessage_HomeAndManor_NoFurniture	(src_tv_segment.c.o)
   0206DB38 00000000 .text   $t	(src_tv_segment.c.o)
   0206DB48 00000012 .text   TVSegment_IsEligible_HomeAndManor_NoFurniture	(src_tv_segment.c.o)
   0206DB48 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DB5C 00000016 .text   FieldSystem_SaveTVSegment_HomeAndManor	(src_tv_segment.c.o)
+  0206DB5C 00000016 .text   TVSegment_Save_HomeAndManor	(src_tv_segment.c.o)
   0206DB5C 00000000 .text   $t	(src_tv_segment.c.o)
   0206DB74 00000026 .text   TVSegment_LoadMessage_HomeAndManor	(src_tv_segment.c.o)
   0206DB74 00000000 .text   $t	(src_tv_segment.c.o)
   0206DB9C 00000012 .text   TVSegment_IsEligible_HomeAndManor	(src_tv_segment.c.o)
   0206DB9C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DBB0 00000036 .text   sub_0206DBB0	(src_tv_segment.c.o)
+  0206DBB0 00000036 .text   TVSegment_Save_BattleTowerMaster	(src_tv_segment.c.o)
   0206DBB0 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DBE8 00000054 .text   sub_0206DBE8	(src_tv_segment.c.o)
+  0206DBE8 00000054 .text   TVSegment_LoadMessage_BattleTowerMaster	(src_tv_segment.c.o)
   0206DBE8 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DC3C 00000030 .text   sub_0206DC3C	(src_tv_segment.c.o)
+  0206DC3C 00000030 .text   TVSegment_IsEligible_BattleTowerMaster	(src_tv_segment.c.o)
   0206DC3C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DC6C 0000002E .text   sub_0206DC6C	(src_tv_segment.c.o)
+  0206DC6C 0000002E .text   TVSegment_Save_RecordsPokemonSize	(src_tv_segment.c.o)
   0206DC6C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DC9C 00000080 .text   sub_0206DC9C	(src_tv_segment.c.o)
+  0206DC9C 00000080 .text   TVSegment_LoadMessage_PokemonSize	(src_tv_segment.c.o)
   0206DC9C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DD1C 0000001A .text   sub_0206DD1C	(src_tv_segment.c.o)
+  0206DD1C 0000001A .text   TVSegment_IsEligible_PokemonSize	(src_tv_segment.c.o)
   0206DD1C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DD38 00000024 .text   sub_0206DD38	(src_tv_segment.c.o)
+  0206DD38 00000024 .text   TVSegment_Save_RecordsSlotGameMaster	(src_tv_segment.c.o)
   0206DD38 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DD5C 0000005A .text   sub_0206DD5C	(src_tv_segment.c.o)
+  0206DD5C 0000005A .text   TVSegment_LoadMessage_SlotGameMaster	(src_tv_segment.c.o)
   0206DD5C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DDB8 00000092 .text   sub_0206DDB8	(src_tv_segment.c.o)
+  0206DDB8 00000092 .text   TVSegment_Save_RibbonMaster	(src_tv_segment.c.o)
   0206DDB8 00000000 .text   $t	(src_tv_segment.c.o)
   0206DE4C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DE4C 00000034 .text   sub_0206DE4C	(src_tv_segment.c.o)
+  0206DE4C 00000034 .text   TVSegment_GetPokemonRibbonCount	(src_tv_segment.c.o)
   0206DE7C 00000000 .text   $d	(src_tv_segment.c.o)
-  0206DE80 0000006A .text   sub_0206DE80	(src_tv_segment.c.o)
+  0206DE80 0000006A .text   TVSegment_LoadMessage_RibbonMaster	(src_tv_segment.c.o)
   0206DE80 00000000 .text   $t	(src_tv_segment.c.o)
   0206DEEC 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DEEC 00000028 .text   sub_0206DEEC	(src_tv_segment.c.o)
+  0206DEEC 00000028 .text   TVSegment_Save_TrapBustingMaster	(src_tv_segment.c.o)
   0206DF10 00000000 .text   $d	(src_tv_segment.c.o)
   0206DF14 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DF14 0000004C .text   sub_0206DF14	(src_tv_segment.c.o)
+  0206DF14 0000004C .text   TVSegment_LoadMessage_TrapBustingMaster	(src_tv_segment.c.o)
   0206DF5C 00000000 .text   $d	(src_tv_segment.c.o)
   0206DF60 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DF60 00000028 .text   sub_0206DF60	(src_tv_segment.c.o)
+  0206DF60 00000028 .text   TVSegment_Save_FlagCapturingMaster	(src_tv_segment.c.o)
   0206DF84 00000000 .text   $d	(src_tv_segment.c.o)
   0206DF88 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DF88 00000040 .text   sub_0206DF88	(src_tv_segment.c.o)
+  0206DF88 00000040 .text   TVSegment_LoadMessage_FlagCapturingMaster	(src_tv_segment.c.o)
   0206DFC4 00000000 .text   $d	(src_tv_segment.c.o)
-  0206DFC8 00000016 .text   sub_0206DFC8	(src_tv_segment.c.o)
+  0206DFC8 00000016 .text   TVSegment_IsEligible_TrapBustingFlagCapturingMaster	(src_tv_segment.c.o)
   0206DFC8 00000000 .text   $t	(src_tv_segment.c.o)
-  0206DFE0 00000036 .text   sub_0206DFE0	(src_tv_segment.c.o)
+  0206DFE0 00000036 .text   TVSegment_Save_BattlePointScoringMaster	(src_tv_segment.c.o)
   0206DFE0 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E018 00000032 .text   sub_0206E018	(src_tv_segment.c.o)
+  0206E018 00000032 .text   TVSegment_LoadMessage_BattlePointScoringMaster	(src_tv_segment.c.o)
   0206E018 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E04C 00000012 .text   sub_0206E04C	(src_tv_segment.c.o)
+  0206E04C 00000012 .text   TVSegment_IsEligible_BattlePointScoringMaster	(src_tv_segment.c.o)
   0206E04C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E060 00000038 .text   sub_0206E060	(src_tv_segment.c.o)
+  0206E060 00000038 .text   TVSegment_Save_GTSMaster	(src_tv_segment.c.o)
   0206E060 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E098 00000032 .text   sub_0206E098	(src_tv_segment.c.o)
+  0206E098 00000032 .text   TVSegment_LoadMessage_GTSMaster	(src_tv_segment.c.o)
   0206E098 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E0CC 00000012 .text   sub_0206E0CC	(src_tv_segment.c.o)
+  0206E0CC 00000012 .text   TVSegment_IsEligible_GTSMaster	(src_tv_segment.c.o)
   0206E0CC 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E0E0 00000038 .text   FieldSystem_SaveTVSegment_BattleTowerCorner	(src_tv_segment.c.o)
+  0206E0E0 00000038 .text   TVSegment_Save_BattleTowerCorner	(src_tv_segment.c.o)
   0206E0E0 00000000 .text   $t	(src_tv_segment.c.o)
   0206E118 00000048 .text   TVSegment_LoadMessage_BattleTowerCorner	(src_tv_segment.c.o)
   0206E118 00000000 .text   $t	(src_tv_segment.c.o)
   0206E160 00000012 .text   TVSegment_IsEligible_BattleTowerCorner	(src_tv_segment.c.o)
   0206E160 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E174 0000004A .text   FieldSystem_SaveTVSegment_YourPokemonCorner	(src_tv_segment.c.o)
+  0206E174 0000004A .text   TVSegment_Save_YourPokemonCorner	(src_tv_segment.c.o)
   0206E174 00000000 .text   $t	(src_tv_segment.c.o)
   0206E1C0 00000086 .text   TVSegment_LoadMessage_YourPokemonCorner	(src_tv_segment.c.o)
   0206E1C0 00000000 .text   $t	(src_tv_segment.c.o)
   0206E248 0000001A .text   TVSegment_IsEligible_YourPokemonCorner	(src_tv_segment.c.o)
   0206E248 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E264 00000026 .text   FieldSystem_SaveTVSegment_ThePoketchWatch	(src_tv_segment.c.o)
+  0206E264 00000026 .text   TVSegment_Save_ThePoketchWatch	(src_tv_segment.c.o)
   0206E264 00000000 .text   $t	(src_tv_segment.c.o)
   0206E28C 00000030 .text   TVSegment_LoadMessage_ThePoketchWatch	(src_tv_segment.c.o)
   0206E28C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E2BC 00000044 .text   FieldSystem_SaveTVSegment_ContestHall	(src_tv_segment.c.o)
+  0206E2BC 00000044 .text   TVSegment_Save_ContestHall	(src_tv_segment.c.o)
   0206E2BC 00000000 .text   $t	(src_tv_segment.c.o)
   0206E300 0000007C .text   TVSegment_LoadMessage_ContestHall	(src_tv_segment.c.o)
   0206E300 00000000 .text   $t	(src_tv_segment.c.o)
   0206E37C 0000001A .text   TVSegment_IsEligible_ContestHall	(src_tv_segment.c.o)
   0206E37C 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E398 0000002E .text   FieldSystem_SaveTVSegment_RightOnPhotoCorner	(src_tv_segment.c.o)
+  0206E398 0000002E .text   TVSegment_Save_RightOnPhotoCorner	(src_tv_segment.c.o)
   0206E398 00000000 .text   $t	(src_tv_segment.c.o)
   0206E3C8 00000030 .text   TVSegment_LoadMessage_RightOnPhotoCorner	(src_tv_segment.c.o)
   0206E3C8 00000000 .text   $t	(src_tv_segment.c.o)
   0206E3F8 0000001A .text   TVSegment_IsEligible_RightOnPhotoCorner	(src_tv_segment.c.o)
   0206E3F8 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E414 00000014 .text   FieldSystem_SaveTVSegment_StreetCornerPersonalityCheckup	(src_tv_segment.c.o)
+  0206E414 00000014 .text   TVSegment_Save_StreetCornerPersonalityCheckup	(src_tv_segment.c.o)
   0206E414 00000000 .text   $t	(src_tv_segment.c.o)
   0206E428 0000001E .text   TVSegment_LoadMessage_StreetCornerPersonalityCheckup	(src_tv_segment.c.o)
   0206E428 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E448 00000038 .text   FieldSystem_SaveTVSegment_ThreeCheersForPoffinCorner	(src_tv_segment.c.o)
+  0206E448 00000038 .text   TVSegment_Save_ThreeCheersForPoffinCorner	(src_tv_segment.c.o)
   0206E448 00000000 .text   $t	(src_tv_segment.c.o)
   0206E480 0000005C .text   TVSegment_LoadMessage_ThreeCheersForPoffinCorner	(src_tv_segment.c.o)
   0206E480 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E4DC 00000042 .text   FieldSystem_SaveTVSegment_AmitySquareWatch	(src_tv_segment.c.o)
+  0206E4DC 00000042 .text   TVSegment_Save_AmitySquareWatch	(src_tv_segment.c.o)
   0206E4DC 00000000 .text   $t	(src_tv_segment.c.o)
   0206E520 00000080 .text   TVSegment_LoadMessage_AmitySquareWatch	(src_tv_segment.c.o)
   0206E520 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E5A0 00000042 .text   FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Single	(src_tv_segment.c.o)
+  0206E5A0 00000042 .text   TVSegment_Save_BattleFrontierFrontlineNews_Single	(src_tv_segment.c.o)
   0206E5A0 00000000 .text   $t	(src_tv_segment.c.o)
   0206E5E4 0000006E .text   TVSegment_LoadMessage_BattleFrontierFrontlineNews_Single	(src_tv_segment.c.o)
   0206E5E4 00000000 .text   $t	(src_tv_segment.c.o)
   0206E654 00000012 .text   TVSegment_IsEligible_BattleFrontierFrontlineNews_Single	(src_tv_segment.c.o)
   0206E654 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E668 00000016 .text   FieldSystem_SaveTVSegment_InYourFaceInterview_Question1	(src_tv_segment.c.o)
+  0206E668 00000016 .text   TVSegment_Save_InYourFaceInterview_Question1	(src_tv_segment.c.o)
   0206E668 00000000 .text   $t	(src_tv_segment.c.o)
   0206E680 00000026 .text   TVSegment_LoadMessage_InYourFaceInterview_Question1	(src_tv_segment.c.o)
   0206E680 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E6A8 00000016 .text   FieldSystem_SaveTVSegment_InYourFaceInterview_Question2	(src_tv_segment.c.o)
+  0206E6A8 00000016 .text   TVSegment_Save_InYourFaceInterview_Question2	(src_tv_segment.c.o)
   0206E6A8 00000000 .text   $t	(src_tv_segment.c.o)
   0206E6C0 00000026 .text   TVSegment_LoadMessage_InYourFaceInterview_Question2	(src_tv_segment.c.o)
   0206E6C0 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E6E8 00000016 .text   FieldSystem_SaveTVSegment_InYourFaceInterview_Question3	(src_tv_segment.c.o)
+  0206E6E8 00000016 .text   TVSegment_Save_InYourFaceInterview_Question3	(src_tv_segment.c.o)
   0206E6E8 00000000 .text   $t	(src_tv_segment.c.o)
   0206E700 00000026 .text   TVSegment_LoadMessage_InYourFaceInterview_Question3	(src_tv_segment.c.o)
   0206E700 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E728 00000016 .text   FieldSystem_SaveTVSegment_InYourFaceInterview_Question4	(src_tv_segment.c.o)
+  0206E728 00000016 .text   TVSegment_Save_InYourFaceInterview_Question4	(src_tv_segment.c.o)
   0206E728 00000000 .text   $t	(src_tv_segment.c.o)
   0206E740 00000026 .text   TVSegment_LoadMessage_InYourFaceInterview_Question4	(src_tv_segment.c.o)
   0206E740 00000000 .text   $t	(src_tv_segment.c.o)
-  0206E768 00000042 .text   FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Multi	(src_tv_segment.c.o)
+  0206E768 00000042 .text   TVSegment_Save_BattleFrontierFrontlineNews_Multi	(src_tv_segment.c.o)
   0206E768 00000000 .text   $t	(src_tv_segment.c.o)
   0206E7AC 00000088 .text   TVSegment_LoadMessage_BattleFrontierFrontlineNews_Multi	(src_tv_segment.c.o)
   0206E7AC 00000000 .text   $t	(src_tv_segment.c.o)
@@ -66527,42 +66527,42 @@
   020EA12C 00000000 .rodata .rodata	(src_location.c.o)
   020EA12C 00000014 .rodata sPlayerStartLocation	(src_location.c.o)
   020EA140 00000014 .rodata sPlayerFirstRespawnLocation	(src_location.c.o)
-  020EA154 00000002 .rodata itemsPockets$22313	(src_unk_0203D1B8.c.o)
-  020EA158 00000002 .rodata berriesPockets$22312	(src_unk_0203D1B8.c.o)
+  020EA154 00000002 .rodata itemsPockets$22309	(src_unk_0203D1B8.c.o)
+  020EA158 00000002 .rodata berriesPockets$22308	(src_unk_0203D1B8.c.o)
   020EA15C 00000003 .rodata sTeachMoveSummaryPages	(src_unk_0203D1B8.c.o)
-  020EA160 00000003 .rodata visiblePages$22463	(src_unk_0203D1B8.c.o)
+  020EA160 00000003 .rodata visiblePages$22459	(src_unk_0203D1B8.c.o)
   020EA164 00000009 .rodata Unk_020EA164	(src_unk_0203D1B8.c.o)
-  020EA170 00000009 .rodata visiblePages$22454	(src_unk_0203D1B8.c.o)
-  020EA17C 0000000C .rodata v0$22911	(src_unk_0203D1B8.c.o)
+  020EA170 00000009 .rodata visiblePages$22450	(src_unk_0203D1B8.c.o)
+  020EA17C 0000000C .rodata v0$22907	(src_unk_0203D1B8.c.o)
   020EA188 00000000 .rodata .rodata	(src_unk_0203D1B8.c.o)
-  020EA188 00000010 .rodata template$22948	(src_unk_0203D1B8.c.o)
-  020EA198 00000010 .rodata @22852	(src_unk_0203D1B8.c.o)
-  020EA1A8 00000010 .rodata template$22845	(src_unk_0203D1B8.c.o)
-  020EA1B8 00000010 .rodata template$22835	(src_unk_0203D1B8.c.o)
-  020EA1C8 00000010 .rodata template$22830	(src_unk_0203D1B8.c.o)
-  020EA1D8 00000010 .rodata @22989	(src_unk_0203D1B8.c.o)
-  020EA1E8 00000010 .rodata @22859	(src_unk_0203D1B8.c.o)
-  020EA1F8 00000010 .rodata template$22796	(src_unk_0203D1B8.c.o)
-  020EA208 00000010 .rodata @22866	(src_unk_0203D1B8.c.o)
-  020EA218 00000010 .rodata template$22790	(src_unk_0203D1B8.c.o)
-  020EA228 00000010 .rodata template$22784	(src_unk_0203D1B8.c.o)
+  020EA188 00000010 .rodata template$22944	(src_unk_0203D1B8.c.o)
+  020EA198 00000010 .rodata @22848	(src_unk_0203D1B8.c.o)
+  020EA1A8 00000010 .rodata template$22841	(src_unk_0203D1B8.c.o)
+  020EA1B8 00000010 .rodata template$22831	(src_unk_0203D1B8.c.o)
+  020EA1C8 00000010 .rodata template$22826	(src_unk_0203D1B8.c.o)
+  020EA1D8 00000010 .rodata @22985	(src_unk_0203D1B8.c.o)
+  020EA1E8 00000010 .rodata @22855	(src_unk_0203D1B8.c.o)
+  020EA1F8 00000010 .rodata template$22792	(src_unk_0203D1B8.c.o)
+  020EA208 00000010 .rodata @22862	(src_unk_0203D1B8.c.o)
+  020EA218 00000010 .rodata template$22786	(src_unk_0203D1B8.c.o)
+  020EA228 00000010 .rodata template$22780	(src_unk_0203D1B8.c.o)
   020EA238 00000010 .rodata Unk_020EA238	(src_unk_0203D1B8.c.o)
   020EA248 00000010 .rodata Unk_020EA248	(src_unk_0203D1B8.c.o)
   020EA258 00000010 .rodata Unk_020EA258	(src_unk_0203D1B8.c.o)
-  020EA268 00000010 .rodata appTemplate2$22656	(src_unk_0203D1B8.c.o)
-  020EA278 00000010 .rodata @22587	(src_unk_0203D1B8.c.o)
-  020EA288 00000010 .rodata template$22531	(src_unk_0203D1B8.c.o)
-  020EA298 00000010 .rodata @22803	(src_unk_0203D1B8.c.o)
-  020EA2A8 00000010 .rodata @22810	(src_unk_0203D1B8.c.o)
-  020EA2B8 00000010 .rodata appTemplate$22879	(src_unk_0203D1B8.c.o)
-  020EA2C8 00000010 .rodata boxAppManTemplate$22474	(src_unk_0203D1B8.c.o)
-  020EA2D8 00000010 .rodata @22819	(src_unk_0203D1B8.c.o)
-  020EA2E8 00000010 .rodata @22341	(src_unk_0203D1B8.c.o)
-  020EA2F8 00000010 .rodata @22334	(src_unk_0203D1B8.c.o)
-  020EA308 00000010 .rodata appTemplate$22513	(src_unk_0203D1B8.c.o)
-  020EA318 00000010 .rodata @22520	(src_unk_0203D1B8.c.o)
+  020EA268 00000010 .rodata appTemplate2$22652	(src_unk_0203D1B8.c.o)
+  020EA278 00000010 .rodata @22583	(src_unk_0203D1B8.c.o)
+  020EA288 00000010 .rodata template$22527	(src_unk_0203D1B8.c.o)
+  020EA298 00000010 .rodata @22799	(src_unk_0203D1B8.c.o)
+  020EA2A8 00000010 .rodata @22806	(src_unk_0203D1B8.c.o)
+  020EA2B8 00000010 .rodata appTemplate$22875	(src_unk_0203D1B8.c.o)
+  020EA2C8 00000010 .rodata boxAppManTemplate$22470	(src_unk_0203D1B8.c.o)
+  020EA2D8 00000010 .rodata @22815	(src_unk_0203D1B8.c.o)
+  020EA2E8 00000010 .rodata @22337	(src_unk_0203D1B8.c.o)
+  020EA2F8 00000010 .rodata @22330	(src_unk_0203D1B8.c.o)
+  020EA308 00000010 .rodata appTemplate$22509	(src_unk_0203D1B8.c.o)
+  020EA318 00000010 .rodata @22516	(src_unk_0203D1B8.c.o)
   020EA328 00000010 .rodata Unk_020EA328	(src_unk_0203D1B8.c.o)
-  020EA338 00000010 .rodata @22296	(src_unk_0203D1B8.c.o)
+  020EA338 00000010 .rodata @22292	(src_unk_0203D1B8.c.o)
   020EA348 00000010 .rodata LibraryTV_template	(src_unk_0203D1B8.c.o)
   020EA358 00000010 .rodata gBattleApplicationTemplate	(src_unk_0203D1B8.c.o)
   020EA368 00000010 .rodata sDWWarpTemplate	(src_unk_0203D1B8.c.o)
@@ -66574,10 +66574,10 @@
   020EAB8C 0000000A .rodata sBattlegroundStatTrainers	(src_scrcmd.c.o)
   020EAB96 00000010 .rodata sBattlegroundGymLeaders	(src_scrcmd.c.o)
   020EABA6 00000012 .rodata sConditionTable	(src_scrcmd.c.o)
-  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28450	(src_scrcmd.c.o)
-  020EABD8 00000024 .rodata unused$28132	(src_scrcmd.c.o)
-  020EABFC 00000024 .rodata pillarRooms$28145	(src_scrcmd.c.o)
-  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28451	(src_scrcmd.c.o)
+  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28446	(src_scrcmd.c.o)
+  020EABD8 00000024 .rodata unused$28128	(src_scrcmd.c.o)
+  020EABFC 00000024 .rodata pillarRooms$28141	(src_scrcmd.c.o)
+  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28447	(src_scrcmd.c.o)
   020EAC58 00000D20 .rodata gFieldScriptCommands	(src_scrcmd.c.o)
   020EB978 00000006 .rodata JubilifeMartSpecialties	(src_scrcmd_shop.c.o)
   020EB978 00000000 .rodata .rodata	(src_scrcmd_shop.c.o)
@@ -66615,10 +66615,10 @@
   020EBC78 00000000 .rodata .rodata	(src_scrcmd_battle_tower.c.o)
   020EBC78 0000000A .rodata partnerGraphics$20685	(src_scrcmd_battle_tower.c.o)
   020EBC82 000000A4 .rodata prizeList$20761	(src_scrcmd_battle_tower.c.o)
-  020EBD28 00000008 .rodata linkMultiBattlePoints$21024	(src_battle_tower.c.o)
-  020EBD30 00000008 .rodata soloBattlePoints$21023	(src_battle_tower.c.o)
-  020EBD38 0000000A .rodata lossesForDemotion$21067	(src_battle_tower.c.o)
-  020EBD44 0000000B .rodata wifiBattlePoints$21022	(src_battle_tower.c.o)
+  020EBD28 00000008 .rodata linkMultiBattlePoints$21020	(src_battle_tower.c.o)
+  020EBD30 00000008 .rodata soloBattlePoints$21019	(src_battle_tower.c.o)
+  020EBD38 0000000A .rodata lossesForDemotion$21063	(src_battle_tower.c.o)
+  020EBD44 0000000B .rodata wifiBattlePoints$21018	(src_battle_tower.c.o)
   020EBD50 00000000 .rodata .rodata	(src_battle_tower_trainers.c.o)
   020EBD50 00000008 .rodata sBattleTowerReservedItems	(src_battle_tower_trainers.c.o)
   020EBD58 00000020 .rodata sBattleTowerOpponentPools	(src_battle_tower_trainers.c.o)
@@ -66663,7 +66663,7 @@
   020EC51C 00000008 .rodata BerryWatering_LeftAnimation	(src_berry_patch_manager.c.o)
   020EC51C 00000000 .rodata .rodata	(src_berry_patch_manager.c.o)
   020EC524 00000008 .rodata BerryWatering_RightAnimation	(src_berry_patch_manager.c.o)
-  020EC52C 0000000C .rodata @19996	(src_berry_patch_manager.c.o)
+  020EC52C 0000000C .rodata @19992	(src_berry_patch_manager.c.o)
   020EC538 00000000 .rodata .rodata	(src_poketch.c.o)
   020EC538 0000000C .rodata sDefaultMapMarkers	(src_poketch.c.o)
   020EC544 0000001C .rodata Unk_020EC544	(src_unk_02056B30.c.o)
@@ -66675,10 +66675,10 @@
   020ED4CC 00000000 .rodata .rodata	(src_unk_0205749C.c.o)
   020ED4CC 00000010 .rodata Unk_020ED4CC	(src_unk_0205749C.c.o)
   020ED4DC 00000000 .rodata .rodata	(src_comm_player_manager.c.o)
-  020ED4DC 00000008 .rodata @21823	(src_comm_player_manager.c.o)
-  020ED4E4 0000000C .rodata @21475	(src_comm_player_manager.c.o)
-  020ED4F0 00000010 .rodata @21825	(src_comm_player_manager.c.o)
-  020ED500 00000014 .rodata @21314	(src_comm_player_manager.c.o)
+  020ED4DC 00000008 .rodata @21819	(src_comm_player_manager.c.o)
+  020ED4E4 0000000C .rodata @21471	(src_comm_player_manager.c.o)
+  020ED4F0 00000010 .rodata @21821	(src_comm_player_manager.c.o)
+  020ED500 00000014 .rodata @21310	(src_comm_player_manager.c.o)
   020ED514 00000009 .rodata visiblePages$21389	(src_unk_0205A0D8.c.o)
   020ED520 00000000 .rodata .rodata	(src_union_room.c.o)
   020ED520 00000008 .rodata sMessagesThisIsPlayerAskDoSomething	(src_union_room.c.o)
@@ -67162,7 +67162,7 @@
   020EFD3C 00000000 .rodata .rodata	(src_tv_segment.c.o)
   020EFD60 0000003C .rodata sProgramTypes	(src_tv_segment.c.o)
   020EFD9C 00000040 .rodata sVarietyHourSegments	(src_tv_segment.c.o)
-  020EFDDC 0000004E .rodata Unk_020EFDDC	(src_tv_segment.c.o)
+  020EFDDC 0000004E .rodata sRibbonMonDataParams	(src_tv_segment.c.o)
   020EFE2C 00000058 .rodata sRecordsSegments	(src_tv_segment.c.o)
   020EFE84 00000088 .rodata sSinnohNowSegments	(src_tv_segment.c.o)
   020EFF0C 00000098 .rodata sInterviewsSegments	(src_tv_segment.c.o)
@@ -67234,17 +67234,17 @@
   020F1BA8 00000010 .rodata v1$20705	(src_unk_0207DA28.c.o)
   020F1BB8 0000000C .rodata sTouchScreenButtonCoords	(src_applications_party_menu_main.c.o)
   020F1BB8 00000000 .rodata .rodata	(src_applications_party_menu_main.c.o)
-  020F1BC4 00000010 .rodata @20445	(src_applications_party_menu_main.c.o)
+  020F1BC4 00000010 .rodata @20441	(src_applications_party_menu_main.c.o)
   020F1BD4 00000018 .rodata Unk_020F1BD4	(src_applications_party_menu_main.c.o)
-  020F1BEC 0000001C .rodata @20447	(src_applications_party_menu_main.c.o)
-  020F1C08 0000001C .rodata @20449	(src_applications_party_menu_main.c.o)
-  020F1C24 0000001C .rodata @20451	(src_applications_party_menu_main.c.o)
-  020F1C40 0000001C .rodata @20439	(src_applications_party_menu_main.c.o)
-  020F1C5C 0000001C .rodata @20455	(src_applications_party_menu_main.c.o)
-  020F1C78 0000001C .rodata @20453	(src_applications_party_menu_main.c.o)
+  020F1BEC 0000001C .rodata @20443	(src_applications_party_menu_main.c.o)
+  020F1C08 0000001C .rodata @20445	(src_applications_party_menu_main.c.o)
+  020F1C24 0000001C .rodata @20447	(src_applications_party_menu_main.c.o)
+  020F1C40 0000001C .rodata @20435	(src_applications_party_menu_main.c.o)
+  020F1C5C 0000001C .rodata @20451	(src_applications_party_menu_main.c.o)
+  020F1C78 0000001C .rodata @20449	(src_applications_party_menu_main.c.o)
   020F1C94 0000001C .rodata TouchScreenPartyBalls	(src_applications_party_menu_main.c.o)
   020F1CB0 0000001E .rodata sFieldMoves	(src_applications_party_menu_main.c.o)
-  020F1CD0 00000028 .rodata @20433	(src_applications_party_menu_main.c.o)
+  020F1CD0 00000028 .rodata @20429	(src_applications_party_menu_main.c.o)
   020F1CF8 00000040 .rodata sCursorPosTable_MultiBattle	(src_applications_party_menu_main.c.o)
   020F1D38 00000040 .rodata sCursorPosTable_SelectOrder	(src_applications_party_menu_main.c.o)
   020F1D78 00000040 .rodata sCursorPosTable_SelectEgg	(src_applications_party_menu_main.c.o)
@@ -67908,17 +67908,17 @@
   02100A5C 00000012 .data   @13778	(src_network_icon.c.o)
   02100A70 00000010 .data   @13779	(src_network_icon.c.o)
   02100A80 00000000 .data   .data	(src_unk_0203D1B8.c.o)
-  02100A80 00000004 .data   pocketList$22311	(src_unk_0203D1B8.c.o)
-  02100A84 00000010 .data   template$22958	(src_unk_0203D1B8.c.o)
-  02100A94 00000010 .data   template$22972	(src_unk_0203D1B8.c.o)
-  02100AA4 00000010 .data   appTemplate1$22655	(src_unk_0203D1B8.c.o)
-  02100AB4 00000010 .data   appTemplate$22635	(src_unk_0203D1B8.c.o)
-  02100AC4 00000010 .data   appTemplate$22629	(src_unk_0203D1B8.c.o)
+  02100A80 00000004 .data   pocketList$22307	(src_unk_0203D1B8.c.o)
+  02100A84 00000010 .data   template$22954	(src_unk_0203D1B8.c.o)
+  02100A94 00000010 .data   template$22968	(src_unk_0203D1B8.c.o)
+  02100AA4 00000010 .data   appTemplate1$22651	(src_unk_0203D1B8.c.o)
+  02100AB4 00000010 .data   appTemplate$22631	(src_unk_0203D1B8.c.o)
+  02100AC4 00000010 .data   appTemplate$22625	(src_unk_0203D1B8.c.o)
   02100AD4 00000000 .data   .data	(src_script_manager.c.o)
   02100AD4 0000000C .data   sFloaromaMeadowHiddenItemFlags	(src_script_manager.c.o)
   02100AE0 00000010 .data   sIronIslandHiddenItemFlags	(src_script_manager.c.o)
   02100AF0 00000000 .data   .data	(src_scrcmd.c.o)
-  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28452	(src_scrcmd.c.o)
+  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28448	(src_scrcmd.c.o)
   02100AF8 00000000 .data   .data	(src_scrcmd_shop.c.o)
   02100AF8 00000008 .data   VeilstoneDeptStoreDecorationStocks	(src_scrcmd_shop.c.o)
   02100B00 0000001C .data   SunyshoreMarketDailyStocks	(src_scrcmd_shop.c.o)
@@ -80996,13 +80996,13 @@
   0224F2BC 00000008 .rodata sShop_NormalItemDescWindowTemplate	(src_overlay007_shop_menu.c.o)
   0224F2C4 00000008 .rodata sShop_FrontierCurrMoneyWindowTemplate	(src_overlay007_shop_menu.c.o)
   0224F2CC 00000008 .rodata sShop_YesNoChoiceWindowTemplate	(src_overlay007_shop_menu.c.o)
-  0224F2D4 0000000C .rodata @21354	(src_overlay007_shop_menu.c.o)
-  0224F2E0 0000000C .rodata @21736	(src_overlay007_shop_menu.c.o)
+  0224F2D4 0000000C .rodata @21350	(src_overlay007_shop_menu.c.o)
+  0224F2E0 0000000C .rodata @21732	(src_overlay007_shop_menu.c.o)
   0224F2EC 0000001C .rodata sShop_SpriteResourcePaths	(src_overlay007_shop_menu.c.o)
   0224F308 00000020 .rodata sShop_ItemListMenuTemplate	(src_overlay007_shop_menu.c.o)
   0224F328 00000030 .rodata sShop_DefaultWindowTemplates	(src_overlay007_shop_menu.c.o)
   0224F358 000000A0 .rodata sShop_SpriteTemplates	(src_overlay007_shop_menu.c.o)
-  0224F3F8 000000A4 .rodata itemToBpPrice$21704	(src_overlay007_shop_menu.c.o)
+  0224F3F8 000000A4 .rodata itemToBpPrice$21700	(src_overlay007_shop_menu.c.o)
   0224F49C 00000009 .rodata sShop_BagPockets	(src_overlay007_shop_menu.c.o)
 #>0224F4A8          SDK_OVERLAY.overlay7.SINIT_START (linker command file)
 #>0224F4AC          SDK_OVERLAY.overlay7.SINIT_END (linker command file)
@@ -81014,11 +81014,11 @@
   0224F4D8 00000018 .data   sConfirmMenuEntries	(src_overlay007_battle_regulation_menu.c.o)
   0224F4F0 00000000 .data   .data	(src_overlay007_accessory_shop.c.o)
   0224F4F0 00000020 .data   listTemplate$16316	(src_overlay007_accessory_shop.c.o)
-  0224F510 00000012 .data   @21759	(src_overlay007_shop_menu.c.o)
-  0224F524 00000015 .data   @21755	(src_overlay007_shop_menu.c.o)
-  0224F53C 00000015 .data   @21756	(src_overlay007_shop_menu.c.o)
-  0224F554 00000016 .data   @21757	(src_overlay007_shop_menu.c.o)
-  0224F56C 00000016 .data   @21758	(src_overlay007_shop_menu.c.o)
+  0224F510 00000012 .data   @21755	(src_overlay007_shop_menu.c.o)
+  0224F524 00000015 .data   @21751	(src_overlay007_shop_menu.c.o)
+  0224F53C 00000015 .data   @21752	(src_overlay007_shop_menu.c.o)
+  0224F554 00000016 .data   @21753	(src_overlay007_shop_menu.c.o)
+  0224F56C 00000016 .data   @21754	(src_overlay007_shop_menu.c.o)
 #>0224F5A0          SDK_OVERLAY.overlay7.DATA_END (linker command file)
 #>0224F5A0          SDK_OVERLAY.overlay7.END (linker command file)
 #>00005B60          SDK_OVERLAY.overlay7.TEXT_SIZE (linker command file)
@@ -90568,7 +90568,7 @@
   0226E3F8 00000054 .rodata @20333	(src_battle_battle_main.c.o)
   0226E44C 00000114 .rodata sBackgroundColors	(src_battle_battle_main.c.o)
   0226E560 00000004 .rodata sDoubleBattleBattlerTypes	(src_battle_battle_main.c.o)
-  0226E564 00000009 .rodata badgeMul$18691	(src_battle_battle_system.c.o)
+  0226E564 00000009 .rodata badgeMul$18687	(src_battle_battle_system.c.o)
   0226E570 00000004 .rodata sBasicBallMod	(src_battle_battle_script.c.o)
   0226E574 00000005 .rodata sCurrentPPScaledPower	(src_battle_battle_script.c.o)
   0226E57C 00000008 .rodata sProtectSuccessRate	(src_battle_battle_script.c.o)
@@ -105720,33 +105720,33 @@
   022562C8 00000044 .text   ov23_022562C8	(src_underground_base_decoration.c.o)
   02256304 00000000 .text   $d	(src_underground_base_decoration.c.o)
   0225630C 00000000 .rodata .rodata	(src_underground_mining.c.o)
-  0225630C 00000001 .rodata dirtLayer4MapLength$21945	(src_underground_mining.c.o)
-  0225630D 00000001 .rodata dirtLayer6MapLength$21946	(src_underground_mining.c.o)
+  0225630C 00000001 .rodata dirtLayer4MapLength$21941	(src_underground_mining.c.o)
+  0225630D 00000001 .rodata dirtLayer6MapLength$21942	(src_underground_mining.c.o)
   0225630E 00000008 .rodata sYesNoWindowTemplate	(src_underground_mining.c.o)
-  02256318 00000010 .rodata @22479	(src_underground_mining.c.o)
-  02256328 00000010 .rodata @21495	(src_underground_mining.c.o)
-  02256338 0000001C .rodata @21497	(src_underground_mining.c.o)
-  02256354 0000001C .rodata @21499	(src_underground_mining.c.o)
-  02256370 0000001C .rodata @21501	(src_underground_mining.c.o)
-  0225638C 0000001C .rodata @21503	(src_underground_mining.c.o)
-  022563A8 00000028 .rodata @21493	(src_underground_mining.c.o)
+  02256318 00000010 .rodata @22475	(src_underground_mining.c.o)
+  02256328 00000010 .rodata @21491	(src_underground_mining.c.o)
+  02256338 0000001C .rodata @21493	(src_underground_mining.c.o)
+  02256354 0000001C .rodata @21495	(src_underground_mining.c.o)
+  02256370 0000001C .rodata @21497	(src_underground_mining.c.o)
+  0225638C 0000001C .rodata @21499	(src_underground_mining.c.o)
+  022563A8 00000028 .rodata @21489	(src_underground_mining.c.o)
   022563D0 00000000 .rodata .rodata	(src_underground_traps.c.o)
-  022563D0 00000004 .rodata screenWidth$22843	(src_underground_traps.c.o)
-  022563D4 00000004 .rodata screenHeight$22614	(src_underground_traps.c.o)
-  022563D8 00000004 .rodata screenHeight$22845	(src_underground_traps.c.o)
-  022563DC 00000004 .rodata screenWidth$22612	(src_underground_traps.c.o)
-  022563E0 00000008 .rodata @22238	(src_underground_traps.c.o)
+  022563D0 00000004 .rodata screenWidth$22839	(src_underground_traps.c.o)
+  022563D4 00000004 .rodata screenHeight$22610	(src_underground_traps.c.o)
+  022563D8 00000004 .rodata screenHeight$22841	(src_underground_traps.c.o)
+  022563DC 00000004 .rodata screenWidth$22608	(src_underground_traps.c.o)
+  022563E0 00000008 .rodata @22234	(src_underground_traps.c.o)
   022563E8 0000000C .rodata sBubbleSizeRadii	(src_underground_traps.c.o)
-  022563F4 0000000F .rodata @22529	(src_underground_traps.c.o)
-  02256404 00000018 .rodata @23113	(src_underground_traps.c.o)
-  0225641C 00000024 .rodata @22187	(src_underground_traps.c.o)
+  022563F4 0000000F .rodata @22525	(src_underground_traps.c.o)
+  02256404 00000018 .rodata @23109	(src_underground_traps.c.o)
+  0225641C 00000024 .rodata @22183	(src_underground_traps.c.o)
   02256440 0000008C .rodata sTrapEffectClientFuncs	(src_underground_traps.c.o)
   022564CC 0000008C .rodata sTrapEffectServerFuncs	(src_underground_traps.c.o)
   02256558 0000008C .rodata sTrapEffectServerSecondFuncs	(src_underground_traps.c.o)
   022565E4 0000008C .rodata sEndTrapEffectServerFuncs	(src_underground_traps.c.o)
   02256670 0000008C .rodata sEndTrapEffectClientFuncs	(src_underground_traps.c.o)
   022566FC 0000008C .rodata sForceEndTrapEffectClientFuncs	(src_underground_traps.c.o)
-  02256788 0000001A .rodata traps$21394	(src_underground_traps.c.o)
+  02256788 0000001A .rodata traps$21390	(src_underground_traps.c.o)
   022567A4 0000001C .rodata @20028	(src_underground_top_screen.c.o)
   022567A4 00000000 .rodata .rodata	(src_underground_top_screen.c.o)
   022567C0 0000001C .rodata @20026	(src_underground_top_screen.c.o)
@@ -105808,10 +105808,10 @@
 #>02256BC8          SDK_OVERLAY.underground.SINIT_END (linker command file)
 #>02256BE0          SDK_OVERLAY.underground.TEXT_END (linker command file)
 #>02256BE0          SDK_OVERLAY.underground.DATA_START (linker command file)
-  02256BE0 00000004 .data   diagonalXModifiers$22081	(src_underground_mining.c.o)
-  02256BE4 00000004 .data   dirtLayer4Tiles$22033	(src_underground_mining.c.o)
-  02256BE8 00000004 .data   dirtLayer3Tiles$22032	(src_underground_mining.c.o)
-  02256BEC 00000004 .data   dirtLayer0Tiles$22029	(src_underground_mining.c.o)
+  02256BE0 00000004 .data   diagonalXModifiers$22077	(src_underground_mining.c.o)
+  02256BE4 00000004 .data   dirtLayer4Tiles$22029	(src_underground_mining.c.o)
+  02256BE8 00000004 .data   dirtLayer3Tiles$22028	(src_underground_mining.c.o)
+  02256BEC 00000004 .data   dirtLayer0Tiles$22025	(src_underground_mining.c.o)
   02256BF0 00000000 .data   .data	(src_underground_mining.c.o)
   02256BF0 00000004 .data   sHeartScaleShape	(src_underground_mining.c.o)
   02256BF4 00000004 .data   sPickaxeButtonRectangle	(src_underground_mining.c.o)
@@ -105858,17 +105858,17 @@
   02256DEF 00000019 .data   sRootFossilShape90deg	(src_underground_mining.c.o)
   02256E08 00000019 .data   sRootFossilShape180deg	(src_underground_mining.c.o)
   02256E21 00000019 .data   sRootFossilShape270deg	(src_underground_mining.c.o)
-  02256E3A 00000019 .data   dirtLayer6Map$21948	(src_underground_mining.c.o)
-  02256E54 0000001C .data   dirtTiles$22036	(src_underground_mining.c.o)
-  02256E70 00000040 .data   dirtLayer4Map$21947	(src_underground_mining.c.o)
+  02256E3A 00000019 .data   dirtLayer6Map$21944	(src_underground_mining.c.o)
+  02256E54 0000001C .data   dirtTiles$22032	(src_underground_mining.c.o)
+  02256E70 00000040 .data   dirtLayer4Map$21943	(src_underground_mining.c.o)
   02256EB0 000006A4 .data   sMiningObjects	(src_underground_mining.c.o)
-  02257554 00000004 .data   diagonalYModifiers$22082	(src_underground_mining.c.o)
-  02257558 00000004 .data   adjacentXModifiers$22083	(src_underground_mining.c.o)
-  0225755C 00000004 .data   dirtLayer1Tiles$22030	(src_underground_mining.c.o)
-  02257560 00000004 .data   dirtLayer5Tiles$22034	(src_underground_mining.c.o)
-  02257564 00000004 .data   dirtLayer6Tiles$22035	(src_underground_mining.c.o)
-  02257568 00000004 .data   dirtLayer2Tiles$22031	(src_underground_mining.c.o)
-  0225756C 00000004 .data   adjacentYModifiers$22084	(src_underground_mining.c.o)
+  02257554 00000004 .data   diagonalYModifiers$22078	(src_underground_mining.c.o)
+  02257558 00000004 .data   adjacentXModifiers$22079	(src_underground_mining.c.o)
+  0225755C 00000004 .data   dirtLayer1Tiles$22026	(src_underground_mining.c.o)
+  02257560 00000004 .data   dirtLayer5Tiles$22030	(src_underground_mining.c.o)
+  02257564 00000004 .data   dirtLayer6Tiles$22031	(src_underground_mining.c.o)
+  02257568 00000004 .data   dirtLayer2Tiles$22027	(src_underground_mining.c.o)
+  0225756C 00000004 .data   adjacentYModifiers$22080	(src_underground_mining.c.o)
   02257570 00000010 .data   sItemShineAnimSequence	(src_underground_mining.c.o)
   02257580 00000000 .data   .data	(src_underground_player_status.c.o)
   02257580 0000001C .data   sDummiedStatusDurations	(src_underground_player_status.c.o)
@@ -124032,13 +124032,13 @@
   022401AC 00000000 .text   $t	(src_overlay083_ov83_0223F7F4.c.o)
   022401AC 0000005C .text   ov83_022401AC	(src_overlay083_ov83_0223F7F4.c.o)
   02240204 00000000 .text   $d	(src_overlay083_ov83_0223F7F4.c.o)
-  02240208 00000003 .rodata v1$19162	(src_overlay083_ov83_0223B5A0.c.o)
-  0224020C 00000003 .rodata v2$19163	(src_overlay083_ov83_0223B5A0.c.o)
+  02240208 00000003 .rodata v1$19158	(src_overlay083_ov83_0223B5A0.c.o)
+  0224020C 00000003 .rodata v2$19159	(src_overlay083_ov83_0223B5A0.c.o)
   02240210 00000000 .rodata .rodata	(src_overlay083_ov83_0223B5A0.c.o)
-  02240210 0000000C .rodata v1$19187	(src_overlay083_ov83_0223B5A0.c.o)
-  0224021C 0000000C .rodata v2$19188	(src_overlay083_ov83_0223B5A0.c.o)
-  02240228 0000000C .rodata v1$19272	(src_overlay083_ov83_0223B5A0.c.o)
-  02240234 00000015 .rodata v1$19134	(src_overlay083_ov83_0223B5A0.c.o)
+  02240210 0000000C .rodata v1$19183	(src_overlay083_ov83_0223B5A0.c.o)
+  0224021C 0000000C .rodata v2$19184	(src_overlay083_ov83_0223B5A0.c.o)
+  02240228 0000000C .rodata v1$19268	(src_overlay083_ov83_0223B5A0.c.o)
+  02240234 00000015 .rodata v1$19130	(src_overlay083_ov83_0223B5A0.c.o)
   0224024C 00000070 .rodata Unk_ov83_0224024C	(src_overlay083_ov83_0223B5A0.c.o)
   022402BC 00000000 .rodata .rodata	(src_overlay083_ov83_0223C958.c.o)
   022402BC 00000004 .rodata @15159	(src_overlay083_ov83_0223C958.c.o)
@@ -127110,12 +127110,12 @@
   02246108 00000068 .rodata gtsLevelPreferenceMessages	(src_gts_application_screens_deposit.c.o)
   02246170 00000104 .rodata gtsAvailableCountries	(src_gts_application_screens_deposit.c.o)
   02246274 00000000 .rodata .rodata	(src_gts_application_screens_network_handler.c.o)
-  02246274 00000010 .rodata @20883	(src_gts_application_screens_network_handler.c.o)
-  02246284 0000001C .rodata @20893	(src_gts_application_screens_network_handler.c.o)
-  022462A0 0000001C .rodata @20887	(src_gts_application_screens_network_handler.c.o)
-  022462BC 0000001C .rodata @20885	(src_gts_application_screens_network_handler.c.o)
-  022462D8 0000001C .rodata @20891	(src_gts_application_screens_network_handler.c.o)
-  022462F4 0000001C .rodata @20889	(src_gts_application_screens_network_handler.c.o)
+  02246274 00000010 .rodata @20879	(src_gts_application_screens_network_handler.c.o)
+  02246284 0000001C .rodata @20889	(src_gts_application_screens_network_handler.c.o)
+  022462A0 0000001C .rodata @20883	(src_gts_application_screens_network_handler.c.o)
+  022462BC 0000001C .rodata @20881	(src_gts_application_screens_network_handler.c.o)
+  022462D8 0000001C .rodata @20887	(src_gts_application_screens_network_handler.c.o)
+  022462F4 0000001C .rodata @20885	(src_gts_application_screens_network_handler.c.o)
   02246310 0000000E .rodata sSearchResultVRAMAddresses	(src_gts_application_avatar.c.o)
   02246310 00000000 .rodata .rodata	(src_gts_application_avatar.c.o)
   0224631E 0000001C .rodata sSearchResultSpritePositions	(src_gts_application_avatar.c.o)
@@ -133838,7 +133838,7 @@
   0223FA34 00000009 .rodata sBPPerRoundSolo$19155	(src_overlay104_battle_factory.c.o)
   0223FA40 00000009 .rodata sBPPerRoundWifi$19156	(src_overlay104_battle_factory.c.o)
   0223FA4C 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_hall.c.o)
-  0223FA4C 00000010 .rodata sBattleHallAppTemplate$19986	(src_overlay104_frscrcmd_battle_hall.c.o)
+  0223FA4C 00000010 .rodata sBattleHallAppTemplate$19982	(src_overlay104_frscrcmd_battle_hall.c.o)
   0223FA5C 00000013 .rodata sBPPerRoundSolo$19039	(src_overlay104_battle_hall.c.o)
   0223FA70 00000013 .rodata sBPPerRoundWiFi$19040	(src_overlay104_battle_hall.c.o)
   0223FA84 00000010 .rodata sBattleCastleNullTemplate$19887	(src_overlay104_frscrcmd_battle_castle.c.o)
@@ -133867,7 +133867,7 @@
   0223FC7C 00000009 .rodata sBPPerRoundSolo$19755	(src_overlay104_battle_arcade.c.o)
   0223FC88 00000009 .rodata sBPPerRoundWifi$19756	(src_overlay104_battle_arcade.c.o)
   0223FC94 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_tower.c.o)
-  0223FC94 0000000A .rodata partnerGraphics$16687	(src_overlay104_frscrcmd_battle_tower.c.o)
+  0223FC94 0000000A .rodata partnerGraphics$16683	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FCA0 00000009 .rodata visiblePages$19507	(src_overlay104_wfc_facility_selector.c.o)
   0223FCAC 00000000 .rodata .rodata	(src_overlay104_battle_tower_helpers.c.o)
   0223FCAC 00000008 .rodata sBattleTowerReservedItems	(src_overlay104_battle_tower_helpers.c.o)
