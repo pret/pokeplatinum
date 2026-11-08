@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/geonet_globe.h"
 #include "constants/graphics.h"
 
 #include "struct_decls/wi_fi_list.h"
@@ -127,8 +128,8 @@ typedef struct {
 } UnkStruct_ov114_0225DAC0;
 
 typedef struct {
-    u8 unk_00[4];
-    u8 unk_04[4];
+    u8 countries[4];
+    u8 regions[4];
     const TrainerInfo *unk_08[4];
 } UnkStruct_ov114_0225E0F8;
 
@@ -279,8 +280,8 @@ static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 heapID);
 static void ov114_0225D0D8(UnkStruct_ov114_0225D084 *param0);
 static void ov114_0225D0F8(UnkStruct_ov114_0225D084 *param0);
 static void ov114_0225D104(UnkStruct_ov114_0225D084 *param0, const TrainerInfo *param1);
-static void ov114_0225D114(UnkStruct_ov114_0225D084 *param0, u32 param1);
-static void ov114_0225D124(UnkStruct_ov114_0225D084 *param0, u32 param1, u32 param2);
+static void ov114_0225D114(UnkStruct_ov114_0225D084 *param0, u32 country);
+static void ov114_0225D124(UnkStruct_ov114_0225D084 *param0, u32 country, u32 region);
 static void ov114_0225D138(UnkStruct_ov114_0225D084 *param0, u32 param1, u32 param2);
 static void ov114_0225D154(UnkStruct_ov114_0225D084 *param0, u32 param1);
 static void ov114_0225D170(UnkStruct_ov114_0225D084 *param0, u32 param1);
@@ -299,7 +300,7 @@ static void ov114_0225D458(UnkStruct_ov114_0225D338 *param0, u32 param1);
 static void ov114_0225D474(UnkStruct_ov114_0225D338 *param0, u32 param1);
 static void ov114_0225DAC0(UnkStruct_ov114_0225DAC0 *param0, u32 param1, u32 param2, NNSG2dScreenData *param3, UnkStruct_ov114_0225CEF0 *param4, u32 param5, u32 param6, UnkStruct_ov114_0225CFCC *param7, UnkStruct_ov114_0225CDB4 *param8, u32 heapID);
 static void ov114_0225DC44(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_0225D084 *param1, const TrainerInfo *param2, s16 param3, s16 param4, u32 param5);
-static void ov114_0225DCA0(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_0225D084 *param1, BOOL param2, u32 param3, u32 param4, s16 param5);
+static void ov114_0225DCA0(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_0225D084 *param1, BOOL param2, u32 country, u32 region, s16 param5);
 static void ov114_0225DD0C(UnkStruct_ov114_0225DAC0 *param0, u32 param1);
 static void ov114_0225DD2C(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_0225D084 *param1, u32 param2, s16 param3, s16 param4, u32 param5);
 static void ov114_0225DD80(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_0225CEF0 *param1);
@@ -1424,14 +1425,14 @@ static void ov114_0225D104(UnkStruct_ov114_0225D084 *param0, const TrainerInfo *
     StringTemplate_SetPlayerName(param0->unk_04, 0, param1);
 }
 
-static void ov114_0225D114(UnkStruct_ov114_0225D084 *param0, u32 param1)
+static void ov114_0225D114(UnkStruct_ov114_0225D084 *param0, u32 country)
 {
-    StringTemplate_SetCountryName(param0->unk_04, 0, param1);
+    StringTemplate_SetCountryName(param0->unk_04, 0, country);
 }
 
-static void ov114_0225D124(UnkStruct_ov114_0225D084 *param0, u32 param1, u32 param2)
+static void ov114_0225D124(UnkStruct_ov114_0225D084 *param0, u32 country, u32 region)
 {
-    StringTemplate_SetCityName(param0->unk_04, 0, param1, param2);
+    StringTemplate_SetRegionName(param0->unk_04, 0, country, region);
 }
 
 static void ov114_0225D138(UnkStruct_ov114_0225D084 *param0, u32 param1, u32 param2)
@@ -1747,7 +1748,7 @@ static void ov114_0225D688(SysTask *param0, void *param1)
             v4 = ov114_0225C7A4(&v0->unk_08, v5);
 
             ov114_0225DC44(&v0->unk_268[v2], &v0->unk_3C, v0->unk_18.unk_08[v2], 8, 0, v4);
-            ov114_0225DCA0(&v0->unk_268[v2], &v0->unk_3C, v3, v0->unk_18.unk_00[v2], v0->unk_18.unk_04[v2], 8);
+            ov114_0225DCA0(&v0->unk_268[v2], &v0->unk_3C, v3, v0->unk_18.countries[v2], v0->unk_18.regions[v2], 8);
             ov114_0225DDD4(&v0->unk_268[v2], -8, 3 * v2);
         }
     }
@@ -1977,18 +1978,18 @@ static void ov114_0225DC44(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_022
     }
 }
 
-static void ov114_0225DCA0(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_0225D084 *param1, BOOL param2, u32 param3, u32 param4, s16 param5)
+static void ov114_0225DCA0(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_0225D084 *param1, BOOL param2, u32 country, u32 region, s16 param5)
 {
     if (param2) {
-        if (param3 != 0) {
+        if (country != COUNTRY_NONE) {
             ov114_0225D0F8(param1);
-            ov114_0225D114(param1, param3);
+            ov114_0225D114(param1, country);
             ov114_0225D1AC(param1, 11, &param0->unk_00, param5, 16);
         }
     } else {
-        if (param3 != 0) {
+        if (country != COUNTRY_NONE) {
             ov114_0225D0F8(param1);
-            ov114_0225D124(param1, param3, param4);
+            ov114_0225D124(param1, country, region);
             ov114_0225D1AC(param1, 12, &param0->unk_00, param5, 16);
         }
     }
@@ -2217,24 +2218,24 @@ static void ov114_0225E0AC(void *param0)
 
 static void ov114_0225E0F8(UnkStruct_ov114_0225E0F8 *param0, const UnkStruct_ov114_0225C76C *param1)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param1->unk_08; v0++) {
-        param0->unk_08[v0] = ov114_0225C7CC(param1, param1->unk_04[v0]);
-        GF_ASSERT(param0->unk_08[v0]);
-        param0->unk_00[v0] = CommInfo_PlayerCountry(param1->unk_04[v0]);
-        param0->unk_04[v0] = CommInfo_PlayerRegion(param1->unk_04[v0]);
+    for (i = 0; i < param1->unk_08; i++) {
+        param0->unk_08[i] = ov114_0225C7CC(param1, param1->unk_04[i]);
+        GF_ASSERT(param0->unk_08[i]);
+        param0->countries[i] = CommInfo_PlayerCountry(param1->unk_04[i]);
+        param0->regions[i] = CommInfo_PlayerRegion(param1->unk_04[i]);
     }
 }
 
 static BOOL ov114_0225E14C(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225E0F8 *param1)
 {
-    int v0;
-    BOOL v1 = 0;
+    int i;
+    BOOL v1 = FALSE;
 
-    for (v0 = 0; v0 < param0->unk_08 - 1; v0++) {
-        if ((param1->unk_00[v0] != param1->unk_00[v0 + 1]) || (param1->unk_00[v0] == 0) || (param1->unk_00[v0 + 1] == 0)) {
-            v1 = 1;
+    for (i = 0; i < param0->unk_08 - 1; i++) {
+        if ((param1->countries[i] != param1->countries[i + 1]) || (param1->countries[i] == 0) || (param1->countries[i + 1] == 0)) {
+            v1 = TRUE;
         }
     }
 
@@ -2948,7 +2949,7 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
             v3 = ov114_0225C7A4(&v0->unk_0C, v4);
 
             ov114_0225DC44(&v0->unk_2C0[v2], &v0->unk_58, v0->unk_34.unk_08[v2], 8, 0, v3);
-            ov114_0225DCA0(&v0->unk_2C0[v2], &v0->unk_58, v0->unk_05, v0->unk_34.unk_00[v2], v0->unk_34.unk_04[v2], 8);
+            ov114_0225DCA0(&v0->unk_2C0[v2], &v0->unk_58, v0->unk_05, v0->unk_34.countries[v2], v0->unk_34.regions[v2], 8);
             ov114_0225DD80(&v0->unk_2C0[v2], &v0->unk_4C);
             ov114_0225DD94(&v0->unk_2C0[v2]);
             ov114_0225DDD4(&v0->unk_2C0[v2], -8, 3 * v2);
@@ -3456,7 +3457,7 @@ static void ov114_0225F6E4(UnkStruct_ov114_0225E854 *param0, u32 param1, u32 par
     v0 = ov114_0225C7A4(&param0->unk_0C, v2);
 
     ov114_0225DC44(&param0->unk_2C0[param1], &param0->unk_58, param0->unk_34.unk_08[param1], 8, 0, v0);
-    ov114_0225DCA0(&param0->unk_2C0[param1], &param0->unk_58, param0->unk_05, param0->unk_34.unk_00[param1], param0->unk_34.unk_04[param1], 8);
+    ov114_0225DCA0(&param0->unk_2C0[param1], &param0->unk_58, param0->unk_05, param0->unk_34.countries[param1], param0->unk_34.regions[param1], 8);
 
     if (param0->unk_07 == UnkEnum_ov66_022324D0_00) {
         v1 = 5;

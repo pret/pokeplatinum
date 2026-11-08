@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/geonet_globe.h"
+
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -73,8 +75,8 @@ typedef struct {
     UnkStruct_ov61_0222BED8 *unk_4BC;
     u16 unk_4C0;
     u8 unk_4C2;
-    u8 unk_4C3;
-    u8 unk_4C4;
+    u8 country;
+    u8 region;
     u8 unk_4C5;
     u8 unk_4C6[2];
     UnkStruct_ov62_0223E01C_sub1 unk_4C8;
@@ -98,7 +100,7 @@ static BOOL ov62_02241780(UnkStruct_0208C06C *param0);
 static void ov62_022417C0(UnkStruct_0208C06C *param0, int param1);
 static void ov62_022418DC(UnkStruct_0208C06C *param0, int param1);
 static void ov62_02241954(UnkStruct_0208C06C *param0, int param1);
-static void ov62_022419D4(UnkStruct_0208C06C *param0, int param1, int param2);
+static void ov62_022419D4(UnkStruct_0208C06C *param0, int country, int region);
 static void ov62_02241AA4(UnkStruct_0208C06C *param0, int param1);
 static void ov62_02241BB8(UnkStruct_0208C06C *param0);
 static void ov62_02241BF8(UnkStruct_0208C06C *param0);
@@ -577,7 +579,7 @@ static BOOL ov62_02241780(UnkStruct_0208C06C *param0)
         return 1;
     }
 
-    if ((v0->unk_4C3 != 0xff) || (v0->unk_4C4 != 0xff)) {
+    if ((v0->country != 0xff) || (v0->region != 0xff)) {
         return 1;
     }
 
@@ -692,7 +694,7 @@ static void ov62_02241954(UnkStruct_0208C06C *param0, int param1)
     String_Free(v2);
 }
 
-static void ov62_022419D4(UnkStruct_0208C06C *param0, int param1, int param2)
+static void ov62_022419D4(UnkStruct_0208C06C *param0, int country, int region)
 {
     UnkStruct_ov62_02241204 *v0 = param0->unk_860;
     Window *v1;
@@ -703,20 +705,20 @@ static void ov62_022419D4(UnkStruct_0208C06C *param0, int param1, int param2)
     v1 = &v0->unk_614[5];
     Window_FillTilemap(v1, 0x0);
 
-    if ((param1 == 0xff) && (param2 == 0xff)) {
+    if ((country == 0xff) && (region == 0xff)) {
         v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 125);
     } else {
         v4 = ov62_02231690(HEAP_ID_102);
 
-        if (param2 != 0) {
+        if (region != 0) {
             v2 = String_Init(255, HEAP_ID_102);
             v3 = MessageLoader_GetNewString(param0->unk_14.unk_34, 23);
-            StringTemplate_SetCityName(v4, 0, param1, param2);
+            StringTemplate_SetRegionName(v4, 0, country, region);
             StringTemplate_Format(v4, v2, v3);
         } else {
             v2 = String_Init(255, HEAP_ID_102);
             v3 = MessageLoader_GetNewString(param0->unk_14.unk_34, 22);
-            StringTemplate_SetCountryName(v4, 0, param1);
+            StringTemplate_SetCountryName(v4, 0, country);
             StringTemplate_Format(v4, v2, v3);
         }
 
@@ -882,12 +884,12 @@ static BOOL ov62_02241D24(UnkStruct_0208C06C *param0)
 
             v0->unk_4C0 = 0xffff;
             v0->unk_4C2 = 0xff;
-            v0->unk_4C3 = 0xff;
-            v0->unk_4C4 = 0xff;
+            v0->country = 0xff;
+            v0->region = 0xff;
 
             ov62_02241954(param0, v0->unk_4C0);
             ov62_022418DC(param0, v0->unk_4C2);
-            ov62_022419D4(param0, v0->unk_4C3, v0->unk_4C4);
+            ov62_022419D4(param0, v0->country, v0->region);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1540,9 +1542,9 @@ static BOOL ov62_02242970(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         ov62_02231B3C(param0, 115);
-        v0->unk_4C3 = 0xff;
-        v0->unk_4C4 = 0xff;
-        ov62_022419D4(param0, v0->unk_4C3, v0->unk_4C4);
+        v0->country = 0xff;
+        v0->region = 0xff;
+        ov62_022419D4(param0, v0->country, v0->region);
         ov62_02245C08(param0, 1);
         ov62_022343B8(param0, 57, 7);
         param0->unk_08++;
@@ -1569,9 +1571,9 @@ static BOOL ov62_02242970(UnkStruct_0208C06C *param0)
             int v1 = ov62_02232F68(&param0->unk_14.unk_48C, param0);
 
             if (v1) {
-                v0->unk_4C3 = sub_02030BFC(param0->unk_88C[0]);
-                v0->unk_4C4 = sub_02030C08(param0->unk_88C[0]);
-                ov62_022419D4(param0, v0->unk_4C3, v0->unk_4C4);
+                v0->country = sub_02030BFC(param0->unk_88C[0]);
+                v0->region = sub_02030C08(param0->unk_88C[0]);
+                ov62_022419D4(param0, v0->country, v0->region);
                 param0->unk_08++;
             }
         }
@@ -1659,7 +1661,7 @@ static BOOL ov62_02242BB8(UnkStruct_0208C06C *param0)
             }
         }
 
-        if (ov61_0222B394(ov62_0224112C(param0), v0->unk_4C0, v2, v0->unk_4C3, v0->unk_4C4) == 1) {
+        if (ov61_0222B394(ov62_0224112C(param0), v0->unk_4C0, v2, v0->country, v0->region) == 1) {
             param0->unk_08++;
         }
     } break;
@@ -1912,7 +1914,7 @@ static BOOL ov62_0224312C(UnkStruct_0208C06C *param0)
             ov62_022417C0(param0, 0);
             ov62_02241954(param0, v0->unk_4C0);
             ov62_022418DC(param0, v0->unk_4C2);
-            ov62_022419D4(param0, v0->unk_4C3, v0->unk_4C4);
+            ov62_022419D4(param0, v0->country, v0->region);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
@@ -2367,8 +2369,8 @@ static BOOL ov62_02243B1C(UnkStruct_0208C06C *param0)
 
         v0->unk_4C0 = 0xffff;
         v0->unk_4C2 = 0xff;
-        v0->unk_4C3 = 0xff;
-        v0->unk_4C4 = 0xff;
+        v0->country = 0xff;
+        v0->region = 0xff;
         v0->unk_50C.unk_08 = 500;
         v0->unk_50C.unk_04 = param0->unk_14.unk_48C.unk_08;
         param0->unk_08++;
@@ -3770,11 +3772,11 @@ static void ov62_022458A0(u32 param0, enum TouchScreenButtonState param1, void *
         ov62_0222FB60(v0, 5);
         break;
     case 2: {
-        int v2 = sub_02030BFC(v0->unk_88C[0]);
+        int country = sub_02030BFC(v0->unk_88C[0]);
 
         ov62_02234520(v0);
 
-        if (v2 == 0) {
+        if (country == COUNTRY_NONE) {
             Sound_PlayEffect(SEQ_SE_PL_BREC58_sseq);
             ov62_02231B3C(v0, 128);
         } else {

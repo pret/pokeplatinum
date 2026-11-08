@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/geonet_globe.h"
 #include "constants/narc.h"
 #include "constants/string.h"
 
@@ -460,12 +461,12 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
             String_Free(v8);
 
             {
-                int v13 = sub_02030BFC(v11);
-                int v14 = sub_02030C08(v11);
+                int country = sub_02030BFC(v11);
+                int region = sub_02030C08(v11);
 
                 v10 = &param0->unk_0C[4];
                 Window_FillTilemap(v10, 0x00);
-                if (v13 == 0) {
+                if (country == 0) {
                     v8 = MessageLoader_GetNewString(param1->unk_14.unk_34, 21);
 
                     Text_AddPrinterWithParamsAndColor(v10, FONT_SYSTEM, v8, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
@@ -474,19 +475,19 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
                 } else {
                     v8 = String_Init(255, HEAP_ID_102);
                     v6 = MessageLoader_GetNewString(param1->unk_14.unk_34, 22);
-                    StringTemplate_SetCountryName(v9, 0, v13);
+                    StringTemplate_SetCountryName(v9, 0, country);
                     StringTemplate_Format(v9, v8, v6);
 
                     Text_AddPrinterWithParamsAndColor(v10, FONT_SYSTEM, v8, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
                     Window_ScheduleCopyToVRAM(v10);
                     String_Free(v8);
                     String_Free(v6);
-                    if (v14 != 0) {
+                    if (region != 0) {
                         v10 = &param0->unk_0C[5];
                         Window_FillTilemap(v10, 0x00);
                         v8 = String_Init(255, HEAP_ID_102);
                         v6 = MessageLoader_GetNewString(param1->unk_14.unk_34, 23);
-                        StringTemplate_SetCityName(v9, 0, v13, v14);
+                        StringTemplate_SetRegionName(v9, 0, country, region);
                         StringTemplate_Format(v9, v8, v6);
 
                         Text_AddPrinterWithParamsAndColor(v10, FONT_SYSTEM, v8, 4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
@@ -766,25 +767,25 @@ static void ov62_022323CC(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *p
     String *v1;
     StringTemplate *v2;
     Window *v3;
-    int v4 = sub_02030BFC(param1->unk_88C[0]);
-    int v5 = sub_02030C08(param1->unk_88C[0]);
+    int country = sub_02030BFC(param1->unk_88C[0]);
+    int region = sub_02030C08(param1->unk_88C[0]);
 
     v3 = &param0->unk_18;
 
-    if ((v4 == 0) && (v5 == 0)) {
+    if ((country == COUNTRY_NONE) && (region == 0)) {
         v0 = MessageLoader_GetNewString(param1->unk_14.unk_34, 125);
     } else {
         v2 = ov62_02231690(HEAP_ID_102);
 
-        if (v5 != 0) {
+        if (region != 0) {
             v0 = String_Init(255, HEAP_ID_102);
             v1 = MessageLoader_GetNewString(param1->unk_14.unk_34, 23);
-            StringTemplate_SetCityName(v2, 0, v4, v5);
+            StringTemplate_SetRegionName(v2, 0, country, region);
             StringTemplate_Format(v2, v0, v1);
         } else {
             v0 = String_Init(255, HEAP_ID_102);
             v1 = MessageLoader_GetNewString(param1->unk_14.unk_34, 22);
-            StringTemplate_SetCountryName(v2, 0, v4);
+            StringTemplate_SetCountryName(v2, 0, country);
             StringTemplate_Format(v2, v0, v1);
         }
 

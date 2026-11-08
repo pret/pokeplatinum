@@ -1109,7 +1109,7 @@ static void WiFiEarth_ShowPlayerLocation(WiFiEarthData *wifiEarth)
     Window_DrawStandardFrame(&wifiEarth->locationWindow, 0, WIFI_EARTH_BASE_TILE_STANDARD_WINDOW_FRAME, 7);
 
     StringTemplate_SetCountryName(wifiEarth->locationTemplate, 0, wifiEarth->country1);
-    StringTemplate_SetCityName(wifiEarth->locationTemplate, 1, wifiEarth->country1, wifiEarth->region1);
+    StringTemplate_SetRegionName(wifiEarth->locationTemplate, 1, wifiEarth->country1, wifiEarth->region1);
 
     MessageLoader_GetString(wifiEarth->messageLoader, WiFiEarth_Text_RegisteredLocation, format);
     StringTemplate_Format(wifiEarth->locationTemplate, text, format);
