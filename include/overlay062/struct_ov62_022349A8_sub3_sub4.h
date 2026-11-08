@@ -4,8 +4,8 @@
 typedef struct {
     u16 unk_00;
     u8 unk_02;
-    u8 unk_03;
-    u8 unk_04;
+    u8 country;
+    u8 region;
     u8 unk_05[3];
     u32 unk_08;
     u8 unk_0C[4];

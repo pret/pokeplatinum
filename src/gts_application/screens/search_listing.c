@@ -271,7 +271,7 @@ static void GTSSearchListing_InitStrings(GTSApplicationState *appState)
     }
 
     if (listing->trainerRegion != 0) {
-        StringTemplate_SetCityName(appState->stringTemplate, 9, listing->trainerCountry, listing->trainerRegion);
+        StringTemplate_SetRegionName(appState->stringTemplate, 9, listing->trainerCountry, listing->trainerRegion);
     }
 
     appState->trainerLocationStrings[0] = MessageUtil_ExpandedString(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_Country, HEAP_ID_62);

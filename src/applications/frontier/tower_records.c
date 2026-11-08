@@ -851,7 +851,7 @@ static void PrintSelectedWifiTrainersHomeCountry(BattleTowerRecordsApp *app)
         Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, app->strMan.string, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     } else {
         StringTemplate_SetCountryName(app->strMan.strTemplate, 0, trainer->country);
-        StringTemplate_SetCityName(app->strMan.strTemplate, 1, trainer->country, trainer->region);
+        StringTemplate_SetRegionName(app->strMan.strTemplate, 1, trainer->country, trainer->region);
         StringTemplate_Format(app->strMan.strTemplate, app->strMan.string, app->strMan.countryAndCityStr);
         Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, app->strMan.string, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     }

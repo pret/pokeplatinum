@@ -894,7 +894,7 @@ int UnionRoom_GetTrainerCasePlayerMessage(StringTemplate *strTemplate)
         StringTemplate_SetCountryName(strTemplate, 3, commCountry);
 
         if (commRegion != 0) {
-            StringTemplate_SetCityName(strTemplate, 4, commCountry, commRegion);
+            StringTemplate_SetRegionName(strTemplate, 4, commCountry, commRegion);
         }
     }
 

@@ -63,7 +63,7 @@ int ov61_0222B290(UnkStruct_ov62_022349A8 *param0, int param1);
 int ov61_0222B2B8(UnkStruct_ov62_022349A8 *param0);
 int ov61_0222B2D8(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, UnkStruct_ov61_0222B2D8 param2[]);
 int ov61_0222B338(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1);
-int ov61_0222B394(UnkStruct_ov62_022349A8 *param0, u16 param1, u8 param2, u8 param3, u8 param4);
+int ov61_0222B394(UnkStruct_ov62_022349A8 *param0, u16 param1, u8 param2, u8 country, u8 region);
 int ov61_0222B3EC(UnkStruct_ov62_022349A8 *param0);
 int ov61_0222B44C(UnkStruct_ov62_022349A8 *param0);
 int ov61_0222B4A8(UnkStruct_ov62_022349A8 *param0);
