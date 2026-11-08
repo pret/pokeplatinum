@@ -1286,7 +1286,7 @@ static u32 ov69_0225D1E0(const UnkStruct_ov69_0225CE64 *param0, u32 param1, UnkS
     int v4;
 
     v0 = param2.unk_00_val2_unk_00 - 4;
-    v4 = ov69_0225D9C4(&param0->unk_288, COUNTRY_UNITED_KINGDOM, STATE_UNITED_KINGDOM_GREATER_LONDON);
+    v4 = ov69_0225D9C4(&param0->unk_288, COUNTRY_UNITED_KINGDOM, REGION_UNITED_KINGDOM_GREATER_LONDON);
 
     GF_ASSERT(v4 < ov69_0225DA70(&param0->unk_288));
 
