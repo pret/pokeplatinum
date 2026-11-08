@@ -447,7 +447,7 @@ GlobalTerminal1F_PokemonBreederM:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_30E VAR_0x8004
+    OpenIntroMessageScreen VAR_0x8004
     GoToIfEq VAR_0x8004, 0, GlobalTerminal1F_NothingToSay
     Message GlobalTerminal1F_Text_IKnowAll
     WaitButton

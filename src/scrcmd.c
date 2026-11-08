@@ -121,6 +121,7 @@
 #include "hall_of_fame_entries.h"
 #include "heap.h"
 #include "inlines.h"
+#include "intro_message_screen.h"
 #include "item_use_pokemon.h"
 #include "items.h"
 #include "journal.h"
@@ -216,7 +217,6 @@
 #include "unk_020985E4.h"
 #include "unk_02099500.h"
 #include "unk_0209ACF4.h"
-#include "unk_0209B344.h"
 #include "unk_0209C194.h"
 #include "vars_flags.h"
 #include "wifi_list.h"
@@ -371,7 +371,7 @@ static BOOL ScrCmd_RemovePokemonPreview(ScriptContext *ctx);
 static BOOL ScrCmd_StartVsSeeker(ScriptContext *ctx);
 static BOOL ScrCmd_SetMoveCodeForFacingDirection(ScriptContext *ctx);
 static BOOL ScrCmd_0A5(ScriptContext *ctx);
-static BOOL ScrCmd_30E(ScriptContext *ctx);
+static BOOL ScrCmd_OpenIntroMessageScreen(ScriptContext *ctx);
 static BOOL ScrCmd_0A6(ScriptContext *ctx);
 static BOOL ScrCmd_ShowDressUpPhoto(ScriptContext *ctx);
 static BOOL ScrCmd_0A8(ScriptContext *ctx);
@@ -3097,11 +3097,11 @@ static BOOL ScrCmd_0A5(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_30E(ScriptContext *ctx)
+static BOOL ScrCmd_OpenIntroMessageScreen(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    sub_0209B344(ctx->task, v0);
+    OpenIntroMessageScreen(ctx->task, destVar);
     return TRUE;
 }
 

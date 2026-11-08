@@ -358,7 +358,7 @@ Static main
 	Object src/shop_misc.c
 	Object src/pokedex_memory.c
 	Object src/unk_0209ACF4.c
-	Object src/unk_0209B344.c
+	Object src/intro_message_screen.c
 	Object src/error_message_reset.c
 	Object src/battle_frontier.c
 	Object src/unk_0209BA80.c
