@@ -1561,7 +1561,7 @@ static void DrawMoveContestStats(BattleParty *battleParty, enum BattlePartyScree
     }
 
     contestEffect = MoveTable_LoadParam(selectedMove, MOVEATTRIBUTE_CONTEST_EFFECT);
-    appealPts = sub_02095734(contestEffect) / POINTS_PER_APPEAL_HEART;
+    appealPts = Contest_GetMoveEffectAppeal(contestEffect) / POINTS_PER_APPEAL_HEART;
 
     for (u16 i = 0; i < appealPts; i++) {
         DrawAppealPt(battleParty, 320, i);

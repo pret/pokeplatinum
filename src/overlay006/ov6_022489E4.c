@@ -15,352 +15,353 @@
 #include "pokemon.h"
 #include "string_gf.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03[1];
-} UnkStruct_ov6_02248A94;
+typedef struct ContestHostElectionData {
+    u8 linkVersion;
+    u8 contestantID;
+    u8 dressUpTheme;
+    u8 padding_03[1];
+} ContestHostElectionData;
 
-static int ov6_02248A94(UnkStruct_ov6_02248A94 *param0[4], int connectionCount, u8 *param2);
+static int ElectHost(ContestHostElectionData *candidates[CONTEST_NUM_PARTICIPANTS], int connectionCount, u8 *destHostLinkVersion);
 
-void ov6_022489E4(int param0, int param1, void *param2, void *param3)
+void Contest_RecvHostElectionData(int netID, int size, void *src, void *param)
 {
-    Contest *v0 = param3;
+    Contest *contest = param;
 
-    MI_CpuCopy8(param2, v0->unk_168[param0], param1);
-    v0->unk_568++;
+    MI_CpuCopy8(src, contest->hostElectionBuffers[netID], size);
+    contest->numMessagesReceived++;
 
-    if (v0->unk_568 >= v0->unk_00.connectionCount) {
-        UnkStruct_ov6_02248A94 *v1[4];
-        int v2;
-        u8 v3;
+    if (contest->numMessagesReceived >= contest->data.connectionCount) {
+        ContestHostElectionData *candidates[CONTEST_NUM_PARTICIPANTS];
+        int i;
+        u8 hostLinkVersion;
 
-        for (v2 = 0; v2 < v0->unk_00.connectionCount; v2++) {
-            v1[v2] = (void *)v0->unk_168[v2];
+        for (i = 0; i < contest->data.connectionCount; i++) {
+            candidates[i] = (void *)contest->hostElectionBuffers[i];
         }
 
-        v0->unk_00.unk_10C = ov6_02248A94(v1, v0->unk_00.connectionCount, &v3);
-        v0->unk_00.unk_10D = v3;
-        v0->unk_00.unk_112 = v1[v0->unk_00.unk_10C]->unk_02;
+        contest->data.hostContestantID = ElectHost(candidates, contest->data.connectionCount, &hostLinkVersion);
+        contest->data.hostLinkVersion = hostLinkVersion;
+        contest->data.dressUpTheme = candidates[contest->data.hostContestantID]->dressUpTheme;
     }
 }
 
-BOOL ov6_02248A64(Contest *param0)
+BOOL Contest_SendHostElectionData(Contest *contest)
 {
-    UnkStruct_ov6_02248A94 v0;
+    ContestHostElectionData electionData;
 
-    v0.unk_00 = param0->unk_00.unk_115;
-    v0.unk_01 = param0->unk_00.playerContestantID;
-    v0.unk_02 = param0->unk_00.unk_112;
+    electionData.linkVersion = contest->data.linkVersion;
+    electionData.contestantID = contest->data.playerContestantID;
+    electionData.dressUpTheme = contest->data.dressUpTheme;
 
-    if (CommSys_SendData(26, &v0, sizeof(UnkStruct_ov6_02248A94)) == 1) {
-        return 1;
+    if (CommSys_SendData(CONTEST_CMD_SEND_HOST_ELECTION_DATA, &electionData, sizeof(ContestHostElectionData)) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int ov6_02248A94(UnkStruct_ov6_02248A94 *param0[4], int connectionCount, u8 *param2)
+static int ElectHost(ContestHostElectionData *candidates[CONTEST_NUM_PARTICIPANTS], int connectionCount, u8 *destHostLinkVersion)
 {
-    int v0, v1 = 0;
+    int i, hostID = 0;
 
-    for (v0 = 0; v0 < connectionCount; v0++) {
-        if (param0[v1]->unk_00 < param0[v0]->unk_00) {
-            v1 = v0;
+    for (i = 0; i < connectionCount; i++) {
+        if (candidates[hostID]->linkVersion < candidates[i]->linkVersion) {
+            hostID = i;
         }
     }
 
-    *param2 = param0[v1]->unk_00;
-    return v1;
+    *destHostLinkVersion = candidates[hostID]->linkVersion;
+    return hostID;
 }
 
-void ov6_02248AC8(int param0, int param1, void *param2, void *param3)
+void Contest_RecvMon(int unused1, int unused2, void *src, void *param)
 {
-    Contest *v0 = param3;
-    int v1;
-    int v2;
-    u8 *v3;
-
-    v1 = Pokemon_StructSize();
-    v3 = param2;
-    v2 = v3[v1];
-
-    MI_CpuCopy8(param2, v0->unk_00.contestMons[v2], v1);
-
-    v0->unk_568++;
-}
-
-BOOL ov6_02248AF0(Contest *param0, int param1, const Pokemon *param2)
-{
-    u8 *v0;
-    int v1;
-    int v2;
-
-    v1 = Pokemon_StructSize();
-    v0 = Heap_Alloc(HEAP_ID_20, v1 + 1);
-    MI_CpuCopy8(param2, v0, v1);
-    v0[v1] = param1;
-
-    if (CommSys_SendData(27, v0, v1 + 1) == 1) {
-        v2 = 1;
-    } else {
-        v2 = 0;
-    }
-
-    Heap_Free(v0);
-    return v2;
-}
-
-void ov6_02248B30(int param0, int param1, void *param2, void *param3)
-{
-    Contest *v0 = param3;
-    int v1, v2;
-    u8 *v3;
-    int v4;
-
-    v1 = Pokemon_StructSize();
-    v2 = v1 * 4;
-    v3 = param2;
-
-    for (v4 = 0; v4 < 4; v4++) {
-        MI_CpuCopy8(&v3[v1 * v4], v0->unk_00.contestMons[v4], v1);
-    }
-
-    v0->unk_568++;
-}
-
-BOOL ov6_02248B70(Contest *param0, Pokemon **param1)
-{
-    u8 *v0;
-    int v1, v2;
-    int v3;
-    int v4;
-
-    v1 = Pokemon_StructSize();
-    v2 = v1 * 4;
-    v0 = param0->unk_569;
-
-    for (v4 = 0; v4 < 4; v4++) {
-        MI_CpuCopy8(param1[v4], &v0[v1 * v4], v1);
-    }
-
-    if (CommSys_SendDataHuge(28, v0, v2) == 1) {
-        v3 = 1;
-    } else {
-        v3 = 0;
-    }
-
-    return v3;
-}
-
-void ov6_02248BC0(int param0, int param1, void *param2, void *param3)
-{
-    Contest *v0 = param3;
-    int v1;
-    int v2;
-    u8 *v3;
-
-    v1 = sizeof(UnkStruct_ov6_02248BE8);
-    v3 = param2;
-    v2 = v3[v1];
-
-    MI_CpuCopy8(param2, &v0->unk_00.unk_10[v2], v1);
-
-    v0->unk_568++;
-}
-
-BOOL ov6_02248BE8(Contest *param0, int param1, const UnkStruct_ov6_02248BE8 *param2)
-{
-    u8 *v0;
-    int v1;
-    int v2;
-
-    v1 = sizeof(UnkStruct_ov6_02248BE8);
-    v0 = Heap_Alloc(HEAP_ID_20, v1 + 1);
-    MI_CpuCopy8(param2, v0, v1);
-    v0[v1] = param1;
-
-    if (CommSys_SendData(29, v0, v1 + 1) == 1) {
-        v2 = 1;
-    } else {
-        v2 = 0;
-    }
-
-    Heap_Free(v0);
-    return v2;
-}
-
-void ov6_02248C28(int param0, int param1, void *param2, void *param3)
-{
-    Contest *v0 = param3;
-    int v1;
-    u8 *v2;
-    int v3;
-
-    v1 = sizeof(UnkStruct_020954F0) * (1 + 2) + 1;
-    v2 = param2;
-
-    for (v3 = 0; v3 < (1 + 2); v3++) {
-        MI_CpuCopy8(&v2[sizeof(UnkStruct_020954F0) * v3], &v0->unk_00.unk_C0[v3], sizeof(UnkStruct_020954F0));
-    }
-
-    v0->unk_00.unk_10E = v2[v1 - 1];
-    v0->unk_568++;
-}
-
-BOOL ov6_02248C68(Contest *param0, int param1, const UnkStruct_020954F0 *param2)
-{
-    u8 *v0;
-    int v1;
-    int v2;
-    int v3;
-    const UnkStruct_020954F0 *v4 = param2;
-    v1 = sizeof(UnkStruct_020954F0) * (1 + 2) + 1;
-    v0 = Heap_Alloc(HEAP_ID_20, v1);
-
-    for (v3 = 0; v3 < (1 + 2); v3++) {
-        MI_CpuCopy8(v4, &v0[sizeof(UnkStruct_020954F0) * v3], sizeof(UnkStruct_020954F0));
-        v4++;
-    }
-
-    v0[v1 - 1] = param0->unk_00.unk_10E;
-
-    if (CommSys_SendData(30, v0, v1) == 1) {
-        v2 = 1;
-    } else {
-        v2 = 0;
-    }
-
-    Heap_Free(v0);
-    return v2;
-}
-
-void ov6_02248CBC(int param0, int param1, void *param2, void *param3)
-{
-    Contest *v0 = param3;
-    int contestantID, v2, v3;
-    u8 *v4;
-    u16 *v5;
-
-    v3 = 4;
-    v4 = param2;
-    contestantID = v4[0];
-    v2 = v4[1];
-    v5 = (u16 *)(&v4[v3]);
-
-    String_Clear(v0->unk_00.trainerNames[contestantID]);
-    String_CopyChars(v0->unk_00.trainerNames[contestantID], v5);
-
-    v0->unk_568++;
-}
-
-BOOL ov6_02248CE8(Contest *contest, int param1, const String *trainerNames)
-{
-    int v0, v1;
-    u8 *v2;
-    BOOL v3;
-    u16 v4[TRAINER_NAME_LEN + 1];
-
-    v0 = 8 * sizeof(u16);
-    v1 = 4;
-
-    String_ToChars(trainerNames, v4, TRAINER_NAME_LEN + 1);
-
-    v2 = Heap_Alloc(HEAP_ID_20, v0 + v1);
-    MI_CpuCopy8(v4, &v2[v1], v0);
-    v2[0] = param1;
-    v2[1] = v0;
-    v2[2] = 0;
-    v2[3] = 0;
-
-    if (CommSys_SendData(31, v2, v0 + v1) == 1) {
-        v3 = 1;
-    } else {
-        v3 = 0;
-    }
-
-    Heap_Free(v2);
-    return v3;
-}
-
-void ov6_02248D38(int param0, int param1, void *param2, void *param3)
-{
-    Contest *v0 = param3;
-    int v1;
-    int v2;
-    u8 *v3;
-
-    v1 = ChatotCry_SaveSize();
-    v3 = param2;
-    v2 = v3[v1];
-
-    MI_CpuCopy8(param2, v0->chatotCry[v2], v1);
-
-    v0->unk_568++;
-}
-
-BOOL ov6_02248D64(Contest *param0, int param1, void *param2)
-{
-    u8 *v0;
-    int v1;
-    int v2;
-
-    v1 = ChatotCry_SaveSize();
-    v0 = param0->unk_569;
-
-    if (param2 != NULL) {
-        MI_CpuCopy8(param2, v0, v1);
-    }
-
-    v0[v1] = param1;
-
-    if (CommSys_SendDataHuge(36, v0, v1 + 1) == 1) {
-        v2 = 1;
-    } else {
-        v2 = 0;
-    }
-
-    return v2;
-}
-
-void ov6_02248DA0(int param0, int param1, void *param2, void *param3)
-{
-    Contest *contest = param3;
-    int v1;
+    Contest *contest = param;
+    int monSize;
     int contestantID;
-    u8 *v3;
-    UnkStruct_ov6_02248DD8 *v4;
+    u8 *data;
 
-    v1 = sizeof(UnkStruct_ov6_02248DD8);
-    v4 = param2;
-    v3 = param2;
-    contestantID = v3[v1];
+    monSize = Pokemon_StructSize();
+    data = src;
+    contestantID = data[monSize];
 
-    contest->unk_00.trainerGenders[contestantID] = v4->trainerGender;
-    contest->unk_00.unk_FC[contestantID] = v4->unk_01;
-    contest->unk_00.monContestFame[contestantID] = v4->monContestFame;
-    contest->unk_00.contestantObjEventGFX[contestantID] = v4->contestantObjEventGFX;
-    contest->unk_568++;
+    MI_CpuCopy8(src, contest->data.contestMons[contestantID], monSize);
+
+    contest->numMessagesReceived++;
 }
 
-BOOL ov6_02248DD8(Contest *param0, int param1, const UnkStruct_ov6_02248DD8 *param2)
+BOOL Contest_SendMon(Contest *unused, int contestantID, const Pokemon *mon)
 {
-    u8 *v0;
-    int v1;
-    int v2;
+    u8 *buffer;
+    int monSize;
+    BOOL result;
 
-    v1 = sizeof(UnkStruct_ov6_02248DD8);
-    v0 = Heap_Alloc(HEAP_ID_20, v1 + 1);
-    MI_CpuCopy8(param2, v0, v1);
-    v0[v1] = param1;
+    monSize = Pokemon_StructSize();
+    buffer = Heap_Alloc(HEAP_ID_20, monSize + 1);
+    MI_CpuCopy8(mon, buffer, monSize);
+    buffer[monSize] = contestantID;
 
-    if (CommSys_SendData(37, v0, v1 + 1) == 1) {
-        v2 = 1;
+    if (CommSys_SendData(CONTEST_CMD_SEND_MON, buffer, monSize + 1) == TRUE) {
+        result = TRUE;
     } else {
-        v2 = 0;
+        result = FALSE;
     }
 
-    Heap_Free(v0);
-    return v2;
+    Heap_Free(buffer);
+    return result;
+}
+
+void Contest_RecvAllMons(int unused1, int unused2, void *src, void *param)
+{
+    Contest *contest = param;
+    int monSize, unread;
+    u8 *data;
+    int i;
+
+    monSize = Pokemon_StructSize();
+    unread = monSize * CONTEST_NUM_PARTICIPANTS;
+    data = src;
+
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        MI_CpuCopy8(&data[monSize * i], contest->data.contestMons[i], monSize);
+    }
+
+    contest->numMessagesReceived++;
+}
+
+BOOL Contest_SendAllMons(Contest *contest, Pokemon **mons)
+{
+    u8 *buffer;
+    int monSize, totalSize;
+    BOOL result;
+    int i;
+
+    monSize = Pokemon_StructSize();
+    totalSize = monSize * CONTEST_NUM_PARTICIPANTS;
+    buffer = contest->commSendBuffer;
+
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        MI_CpuCopy8(mons[i], &buffer[monSize * i], monSize);
+    }
+
+    if (CommSys_SendDataHuge(CONTEST_CMD_SEND_ALL_MONS, buffer, totalSize) == TRUE) {
+        result = TRUE;
+    } else {
+        result = FALSE;
+    }
+
+    return result;
+}
+
+void Contest_RecvContestant(int unused1, int unused2, void *src, void *param)
+{
+    Contest *contest = param;
+    int opponentSize;
+    int contestantID;
+    u8 *data;
+
+    opponentSize = sizeof(Contestant);
+    data = src;
+    contestantID = data[opponentSize];
+
+    MI_CpuCopy8(src, &contest->data.contestants[contestantID], opponentSize);
+
+    contest->numMessagesReceived++;
+}
+
+BOOL Contest_SendContestant(Contest *unused, int contestantID, const Contestant *contestant)
+{
+    u8 *buffer;
+    int opponentSize;
+    BOOL result;
+
+    opponentSize = sizeof(Contestant);
+    buffer = Heap_Alloc(HEAP_ID_20, opponentSize + 1);
+    MI_CpuCopy8(contestant, buffer, opponentSize);
+    buffer[opponentSize] = contestantID;
+
+    if (CommSys_SendData(CONTEST_CMD_SEND_CONTESTANT, buffer, opponentSize + 1) == TRUE) {
+        result = TRUE;
+    } else {
+        result = FALSE;
+    }
+
+    Heap_Free(buffer);
+    return result;
+}
+
+void Contest_RecvJudges(int unused1, int unused2, void *src, void *param)
+{
+    Contest *contest = param;
+    int packetSize;
+    u8 *data;
+    int i;
+
+    packetSize = sizeof(ContestJudge) * CONTEST_NUM_JUDGES + 1;
+    data = src;
+
+    for (i = 0; i < CONTEST_NUM_JUDGES; i++) {
+        MI_CpuCopy8(&data[sizeof(ContestJudge) * i], &contest->data.judges[i], sizeof(ContestJudge));
+    }
+
+    contest->data.headJudgeID = data[packetSize - 1];
+    contest->numMessagesReceived++;
+}
+
+BOOL Contest_SendJudges(Contest *contest, int unused, const ContestJudge *judges)
+{
+    u8 *buffer;
+    int packetSize;
+    BOOL result;
+    int i;
+    const ContestJudge *judge = judges;
+
+    packetSize = sizeof(ContestJudge) * CONTEST_NUM_JUDGES + 1;
+    buffer = Heap_Alloc(HEAP_ID_20, packetSize);
+
+    for (i = 0; i < CONTEST_NUM_JUDGES; i++) {
+        MI_CpuCopy8(judge, &buffer[sizeof(ContestJudge) * i], sizeof(ContestJudge));
+        judge++;
+    }
+
+    buffer[packetSize - 1] = contest->data.headJudgeID;
+
+    if (CommSys_SendData(CONTEST_CMD_SEND_JUDGES, buffer, packetSize) == TRUE) {
+        result = TRUE;
+    } else {
+        result = FALSE;
+    }
+
+    Heap_Free(buffer);
+    return result;
+}
+
+void Contest_RecvTrainerName(int unused1, int unused2, void *src, void *param)
+{
+    Contest *contest = param;
+    int contestantID, unread, headerSize;
+    u8 *data;
+    u16 *name;
+
+    headerSize = 4;
+    data = src;
+    contestantID = data[0];
+    unread = data[1];
+    name = (u16 *)(&data[headerSize]);
+
+    String_Clear(contest->data.trainerNames[contestantID]);
+    String_CopyChars(contest->data.trainerNames[contestantID], name);
+
+    contest->numMessagesReceived++;
+}
+
+BOOL Contest_SendTrainerName(Contest *contest, int contestantID, const String *trainerName)
+{
+    int nameSize, headerSize;
+    u8 *buffer;
+    BOOL result;
+    u16 name[TRAINER_NAME_LEN + 1];
+
+    nameSize = (TRAINER_NAME_LEN + 1) * sizeof(u16);
+    headerSize = 4;
+
+    String_ToChars(trainerName, name, TRAINER_NAME_LEN + 1);
+
+    buffer = Heap_Alloc(HEAP_ID_20, nameSize + headerSize);
+    MI_CpuCopy8(name, &buffer[headerSize], nameSize);
+    buffer[0] = contestantID;
+    buffer[1] = nameSize;
+    buffer[2] = 0;
+    buffer[3] = 0;
+
+    if (CommSys_SendData(CONTEST_CMD_SEND_TRAINER_NAME, buffer, nameSize + headerSize) == TRUE) {
+        result = TRUE;
+    } else {
+        result = FALSE;
+    }
+
+    Heap_Free(buffer);
+    return result;
+}
+
+void Contest_RecvChatotCry(int unused1, int unused2, void *src, void *param)
+{
+    Contest *contest = param;
+    int chatotCrySize;
+    int contestantID;
+    u8 *data;
+
+    chatotCrySize = ChatotCry_SaveSize();
+    data = src;
+    contestantID = data[chatotCrySize];
+
+    MI_CpuCopy8(src, contest->chatotCry[contestantID], chatotCrySize);
+
+    contest->numMessagesReceived++;
+}
+
+BOOL Contest_SendChatotCry(Contest *contest, int contestantID, void *chatotCry)
+{
+    u8 *buffer;
+    int chatotCrySize;
+    BOOL result;
+
+    chatotCrySize = ChatotCry_SaveSize();
+    buffer = contest->commSendBuffer;
+
+    if (chatotCry != NULL) {
+        MI_CpuCopy8(chatotCry, buffer, chatotCrySize);
+    }
+
+    buffer[chatotCrySize] = contestantID;
+
+    if (CommSys_SendDataHuge(CONTEST_CMD_SEND_CHATOT_CRY, buffer, chatotCrySize + 1) == TRUE) {
+        result = TRUE;
+    } else {
+        result = FALSE;
+    }
+
+    return result;
+}
+
+void Contest_RecvContestantLinkInfo(int unused1, int unused2, void *src, void *param)
+{
+    Contest *contest = param;
+    int linkInfoSize;
+    int contestantID;
+    u8 *data;
+    ContestantLinkInfo *linkInfo;
+
+    linkInfoSize = sizeof(ContestantLinkInfo);
+    linkInfo = src;
+    data = src;
+    contestantID = data[linkInfoSize];
+
+    contest->data.trainerGenders[contestantID] = linkInfo->trainerGender;
+    contest->data.npcSkillLevels[contestantID] = linkInfo->npcSkillLevel;
+    contest->data.monContestFame[contestantID] = linkInfo->monContestFame;
+    contest->data.contestantObjEventGFX[contestantID] = linkInfo->contestantObjEventGFX;
+    contest->numMessagesReceived++;
+}
+
+BOOL Contest_SendContestantLinkInfo(Contest *unused, int contestantID, const ContestantLinkInfo *linkInfo)
+{
+    u8 *buffer;
+    int linkInfoSize;
+    BOOL result;
+
+    linkInfoSize = sizeof(ContestantLinkInfo);
+    buffer = Heap_Alloc(HEAP_ID_20, linkInfoSize + 1);
+    MI_CpuCopy8(linkInfo, buffer, linkInfoSize);
+    buffer[linkInfoSize] = contestantID;
+
+    if (CommSys_SendData(CONTEST_CMD_SEND_CONTESTANT_LINK_INFO, buffer, linkInfoSize + 1) == TRUE) {
+        result = TRUE;
+    } else {
+        result = FALSE;
+    }
+
+    Heap_Free(buffer);
+    return result;
 }

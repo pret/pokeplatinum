@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/string.h"
+
 #include "struct_defs/contest_player_mon_dto.h"
 
 #include "field/field_system_sub2_t.h"
@@ -58,8 +60,6 @@ static BOOL ResumeWhenContestSynced(ScriptContext *ctx)
 
 BOOL ScrCmd_NewContest(ScriptContext *ctx)
 {
-    String *trainerName;
-    Pokemon *mon;
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 contestRank = ScriptContext_GetVar(ctx);
@@ -68,8 +68,8 @@ BOOL ScrCmd_NewContest(ScriptContext *ctx)
     u16 pokemonPartySlot = ScriptContext_GetVar(ctx);
     PlayerMonContestDTO playerMonContestDTO;
 
-    mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), pokemonPartySlot);
-    trainerName = TrainerInfo_NameNewString(trainerInfo, HEAP_ID_FIELD1);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), pokemonPartySlot);
+    String *trainerName = TrainerInfo_NameNewString(trainerInfo, HEAP_ID_FIELD1);
 
     playerMonContestDTO.contestType = contestType;
     playerMonContestDTO.contestRank = contestRank;
@@ -119,11 +119,11 @@ BOOL ScrCmd_BufferJudgeName(ScriptContext *ctx)
 BOOL ScrCmd_BufferContestantTrainerName(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    StringTemplate **strTempalte = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 contestantEntryNum = ScriptContext_GetVar(ctx);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    Contest_BufferContestantTrainerName(*contest, contestantEntryNum, *strTempalte, idx);
+    Contest_BufferContestantTrainerName(*contest, contestantEntryNum, *strTemplate, idx);
 
     return FALSE;
 }
@@ -143,11 +143,11 @@ BOOL ScrCmd_BufferContestantMonName(ScriptContext *ctx)
 BOOL ScrCmd_BufferContestRegistrationEntryNumber(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    StringTemplate **str = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 entryNum = ScriptContext_GetVar(ctx);
     u16 strNumIdx = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetNumber(*str, strNumIdx, entryNum, 1, 0, 1);
+    StringTemplate_SetNumber(*strTemplate, strNumIdx, entryNum, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
     return FALSE;
 }
 
@@ -304,10 +304,10 @@ BOOL ScrCmd_CheckPlayerMonHasRibbon(ScriptContext *ctx)
 BOOL ScrCmd_SetRibbonName(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    StringTemplate **string = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    Contest_SetRibbonName(*contest, *string, idx, 11);
+    Contest_SetRibbonName(*contest, *strTemplate, idx, 11);
     return FALSE;
 }
 
@@ -330,9 +330,9 @@ BOOL ScrCmd_LockAutoScrollForLinkContests(ScriptContext *ctx)
 
 BOOL ScrCmd_LockTextSpeed(ScriptContext *ctx)
 {
-    void **unused = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    Contest_LockTextSpeed(*unused);
+    Contest_LockTextSpeed(*contest);
     return FALSE;
 }
 
@@ -380,11 +380,12 @@ BOOL ScrCmd_GetShouldSkipAwardCeremony(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destSkipAwardCeremony = ScriptContext_GetVarPointer(ctx);
-    int winningContestantEntryNum, isLinkContest, v4, isPracticeCompetition, v6;
+    int winningContestantEntryNum;
+    BOOL isLinkContest, isNPCWinner, isPracticeCompetition, isSingleCompetition;
 
-    sub_02094BB4(*contest, &winningContestantEntryNum, &isLinkContest, &v4, &isPracticeCompetition, &v6);
+    Contest_GetAwardCeremonyConditions(*contest, &winningContestantEntryNum, &isLinkContest, &isNPCWinner, &isPracticeCompetition, &isSingleCompetition);
 
-    if (isLinkContest == TRUE || v4 == 1 || isPracticeCompetition == TRUE || v6 == 1) {
+    if (isLinkContest == TRUE || isNPCWinner == TRUE || isPracticeCompetition == TRUE || isSingleCompetition == TRUE) {
         *destSkipAwardCeremony = TRUE;
     } else {
         *destSkipAwardCeremony = FALSE;

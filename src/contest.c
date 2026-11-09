@@ -6,6 +6,7 @@
 #include "constants/accessories.h"
 #include "constants/contests.h"
 #include "constants/heap.h"
+#include "constants/string.h"
 #include "generated/game_records.h"
 #include "generated/object_events_gfx.h"
 #include "generated/pokemon_contest_ranks.h"
@@ -75,17 +76,17 @@ static void Contest_SetLCRNGSeed(Contest *contest);
 u16 Contest_GetRNGNext(Contest *contest);
 BOOL Contest_SetUpLinkContest(Contest *contest);
 static BOOL Contest_IsCommTaskDoneInternal(Contest *contest);
-static void sub_02093C6C(SysTask *param0, void *param1);
+static void SysTask_LinkContestSetup(SysTask *param0, void *param1);
 static BOOL FieldTask_RunContest(FieldTask *param0);
 static BOOL FieldTask_RunPracticeCompetition(FieldTask *param0);
 void Contest_GetVisualCompetitionAppArgs(Contest *contest);
 void Contest_VisualCompetitionAppArgsFree(Contest *contest);
-static void sub_020944E8(Contest *contest);
-static void sub_0209451C(SysTask *param0, void *param1);
-static void sub_02094EB4(Contest *contest, int contestantID, UnkStruct_ov6_02248DD8 *param2);
+static void Contest_StartPhotoExchangeTask(Contest *contest);
+static void SysTask_ExchangePhotos(SysTask *param0, void *param1);
+static void Contest_GetContestantLinkInfo(Contest *contest, int contestantID, ContestantLinkInfo *param2);
 static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam);
 static int CalcMonContestFame(Pokemon *mon, enum PokemonContestType contestType);
-static void sub_020939E0(Contest *contest, int isGameCompleted, int isNatDexObtained);
+static void Contest_InitOpponents(Contest *contest, int isGameCompleted, int isNatDexObtained);
 
 const ApplicationManagerTemplate ActingCompetitionAppTemplate = {
     ActingCompetition_Init,
@@ -151,7 +152,7 @@ void FieldTask_InitRunContestTask(FieldTask *fieldTask, Contest *contest)
     MI_CpuClear8(taskEnv, sizeof(ContestTaskEnv));
     taskEnv->contest = contest;
 
-    switch (contest->unk_00.competitionType) {
+    switch (contest->data.competitionType) {
     case CONTEST_COMPETITION_UNK0:
     case CONTEST_COMPETITION_UNK1:
     case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
@@ -162,23 +163,6 @@ void FieldTask_InitRunContestTask(FieldTask *fieldTask, Contest *contest)
         break;
     }
 }
-
-enum ContestManagerState {
-    CONTEST_MANAGER_STATE_START,
-    CONTEST_MANAGER_STATE_WAIT_FOR_COMM_TASK,
-    CONTEST_MANAGER_STATE_START_COMM_SYNC_0,
-    CONTEST_MANAGER_STATE_CONFIRM_COMM_SYNC_0,
-    CONTEST_MANAGER_STATE_RUN_APP_VISUAL_COMPETITION,
-    CONTEST_MANAGER_STATE_5,
-    CONTEST_MANAGER_STATE_WAIT_FOR_COMM_TASK_2,
-    CONTEST_MANAGER_STATE_RUN_APP_VISUAL_COMPETITION_SCORING,
-    CONTEST_MANAGER_STATE_RUN_APP_DANCE_COMPETITION,
-    CONTEST_MANAGER_STATE_RUN_APP_ACTING_COMPETITION,
-    CONTEST_MANAGER_STATE_RUN_APP_FINAL_SCORING,
-    CONTEST_MANAGER_STATE_WAIT_ONE_FRAME,
-    CONTEST_MANAGER_STATE_RETURN_TO_MAP,
-    CONTEST_MANAGER_STATE_END
-};
 
 static BOOL FieldTask_RunContest(FieldTask *fieldTask)
 {
@@ -191,7 +175,7 @@ static BOOL FieldTask_RunContest(FieldTask *fieldTask)
         taskEnv->state++;
         break;
     case CONTEST_MANAGER_STATE_WAIT_FOR_COMM_TASK:
-        if (taskEnv->contest->isLinkContest == FALSE || Contest_IsCommTaskDoneInternal(taskEnv->contest) == 1) {
+        if (taskEnv->contest->isLinkContest == FALSE || Contest_IsCommTaskDoneInternal(taskEnv->contest) == TRUE) {
             taskEnv->state++;
         }
         break;
@@ -216,11 +200,11 @@ static BOOL FieldTask_RunContest(FieldTask *fieldTask)
         FieldTask_RunApplication(fieldTask, &VisualCompetitionAppTemplate, taskEnv->contest->visualCompetitionAppArgs);
         taskEnv->state++;
         break;
-    case CONTEST_MANAGER_STATE_5:
+    case CONTEST_MANAGER_STATE_START_PHOTO_EXCHANGE:
         Contest_VisualCompetitionAppArgsFree(taskEnv->contest);
 
         if (taskEnv->contest->isLinkContest == TRUE) {
-            sub_020944E8(taskEnv->contest);
+            Contest_StartPhotoExchangeTask(taskEnv->contest);
             taskEnv->state++;
         } else {
             taskEnv->state = CONTEST_MANAGER_STATE_WAIT_FOR_COMM_TASK_2;
@@ -236,14 +220,14 @@ static BOOL FieldTask_RunContest(FieldTask *fieldTask)
         taskEnv->state++;
         break;
     case CONTEST_MANAGER_STATE_RUN_APP_DANCE_COMPETITION:
-        if (taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_UNK1 || taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL) {
+        if (taskEnv->contest->data.competitionType == CONTEST_COMPETITION_UNK1 || taskEnv->contest->data.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL) {
             FieldTask_RunApplication(fieldTask, &DanceCompetitionAppTemplate, taskEnv->contest);
         }
 
         taskEnv->state++;
         break;
     case CONTEST_MANAGER_STATE_RUN_APP_ACTING_COMPETITION:
-        if (taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_UNK0 || taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL) {
+        if (taskEnv->contest->data.competitionType == CONTEST_COMPETITION_UNK0 || taskEnv->contest->data.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL) {
             FieldTask_RunApplication(fieldTask, &ActingCompetitionAppTemplate, taskEnv->contest);
         }
 
@@ -276,12 +260,12 @@ static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask)
     ContestTaskEnv *taskEnv = FieldTask_GetEnv(fieldTask);
 
     switch (taskEnv->state) {
-    case 0:
+    case PRACTICE_COMPETITION_STATE_START:
         FieldTransition_FinishMap(fieldTask);
         taskEnv->state++;
         break;
-    case 1:
-        switch (taskEnv->contest->unk_00.competitionType) {
+    case PRACTICE_COMPETITION_STATE_RUN_APP_VISUAL_COMPETITION:
+        switch (taskEnv->contest->data.competitionType) {
         case CONTEST_COMPETITION_PRACTICE_VISUAL:
         case CONTEST_COMPETITION_VISUAL:
             Contest_GetVisualCompetitionAppArgs(taskEnv->contest);
@@ -291,8 +275,8 @@ static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask)
 
         taskEnv->state++;
         break;
-    case 2:
-        switch (taskEnv->contest->unk_00.competitionType) {
+    case PRACTICE_COMPETITION_STATE_FREE_VISUAL_COMPETITION_APP_ARGS:
+        switch (taskEnv->contest->data.competitionType) {
         case CONTEST_COMPETITION_PRACTICE_VISUAL:
         case CONTEST_COMPETITION_VISUAL:
             Contest_VisualCompetitionAppArgsFree(taskEnv->contest);
@@ -301,11 +285,11 @@ static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask)
 
         taskEnv->state++;
         break;
-    case 3:
+    case PRACTICE_COMPETITION_STATE_WAIT_ONE_FRAME:
         taskEnv->state++;
         break;
-    case 4:
-        switch (taskEnv->contest->unk_00.competitionType) {
+    case PRACTICE_COMPETITION_STATE_RUN_APP_VISUAL_COMPETITION_SCORING:
+        switch (taskEnv->contest->data.competitionType) {
         case CONTEST_COMPETITION_PRACTICE_VISUAL:
         case CONTEST_COMPETITION_VISUAL:
             FieldTask_RunApplication(fieldTask, &VisualCompetitionScoringAppTemplate, taskEnv->contest);
@@ -314,19 +298,19 @@ static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask)
 
         taskEnv->state++;
         break;
-    case 5:
-        switch (taskEnv->contest->unk_00.competitionType) {
+    case PRACTICE_COMPETITION_STATE_RUN_APP_DANCE_COMPETITION:
+        switch (taskEnv->contest->data.competitionType) {
         case CONTEST_COMPETITION_PRACTICE_DANCE:
         case CONTEST_COMPETITION_DANCE:
-            sub_02095338(taskEnv->contest);
+            Contest_InitPhotosWithoutAccessories(taskEnv->contest);
             FieldTask_RunApplication(fieldTask, &DanceCompetitionAppTemplate, taskEnv->contest);
             break;
         }
 
         taskEnv->state++;
         break;
-    case 6:
-        switch (taskEnv->contest->unk_00.competitionType) {
+    case PRACTICE_COMPETITION_STATE_RUN_APP_ACTING_COMPETITION:
+        switch (taskEnv->contest->data.competitionType) {
         case CONTEST_COMPETITION_PRACTICE_ACTING:
         case CONTEST_COMPETITION_ACTING:
             FieldTask_RunApplication(fieldTask, &ActingCompetitionAppTemplate, taskEnv->contest);
@@ -335,56 +319,55 @@ static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask)
 
         taskEnv->state++;
         break;
-    case 7: {
-        s32 v2[4];
-        int v3, v4;
+    case PRACTICE_COMPETITION_STATE_CALC_PLAYER_PLACEMENT:
+        s32 scores[CONTEST_NUM_PARTICIPANTS];
+        int contestantID, placement;
 
-        switch (taskEnv->contest->unk_00.competitionType) {
+        switch (taskEnv->contest->data.competitionType) {
         case CONTEST_COMPETITION_PRACTICE_VISUAL:
         case CONTEST_COMPETITION_VISUAL:
-            for (v3 = 0; v3 < 4; v3++) {
-                v2[v3] = sub_02095928(taskEnv->contest, v3)
-                    + sub_0209598C(taskEnv->contest, v3);
+            for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+                scores[contestantID] = Contest_CalcConditionRating(taskEnv->contest, contestantID)
+                    + Contest_CalcDressUpRating(taskEnv->contest, contestantID);
             }
             break;
         case CONTEST_COMPETITION_PRACTICE_DANCE:
         case CONTEST_COMPETITION_DANCE:
-            for (v3 = 0; v3 < 4; v3++) {
-                v2[v3] = taskEnv->contest->unk_00.unk_118[v3].unk_04;
+            for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+                scores[contestantID] = taskEnv->contest->data.results[contestantID].danceScore;
             }
             break;
         case CONTEST_COMPETITION_PRACTICE_ACTING:
         case CONTEST_COMPETITION_ACTING:
-            for (v3 = 0; v3 < 4; v3++) {
-                v2[v3] = taskEnv->contest->unk_00.unk_118[v3].unk_06;
+            for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+                scores[contestantID] = taskEnv->contest->data.results[contestantID].actingScore;
             }
             break;
         }
 
-        v4 = 0;
+        placement = 0;
 
-        for (v3 = 1; v3 < 4; v3++) {
-            if (v2[0] < v2[v3]) {
-                v4++;
+        for (contestantID = 1; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+            if (scores[0] < scores[contestantID]) {
+                placement++;
             }
         }
 
-        taskEnv->contest->unk_00.unk_118[0].contestPlacement = v4;
-    }
+        taskEnv->contest->data.results[0].contestPlacement = placement;
         taskEnv->state++;
         break;
-    case 8:
+    case PRACTICE_COMPETITION_STATE_RETURN_TO_MAP:
         FieldTransition_StartMap(fieldTask);
         taskEnv->state++;
         break;
     default:
         GF_ASSERT(FALSE);
-    case 9:
+    case PRACTICE_COMPETITION_STATE_END:
         Heap_Free(taskEnv);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static Contest *Contest_New(void)
@@ -392,9 +375,9 @@ static Contest *Contest_New(void)
     Contest *contest = Heap_Alloc(HEAP_ID_20, sizeof(Contest));
     MI_CpuClear8(contest, sizeof(Contest));
 
-    contest->unk_00.playerContestantID = PLAYER_CONTESTANT_ID;
-    contest->unk_00.connectionCount = 1;
-    contest->unk_00.npcCount = CONTEST_NUM_PARTICIPANTS - 1;
+    contest->data.playerContestantID = PLAYER_CONTESTANT_ID;
+    contest->data.connectionCount = 1;
+    contest->data.npcCount = CONTEST_NUM_PARTICIPANTS - 1;
 
     return contest;
 }
@@ -413,14 +396,14 @@ Contest *Contest_Init(const PlayerMonContestDTO *playerMonContestDTO)
 
     Contest_SetLCRNGSeed(contest);
 
-    contest->unk_00.contestType = playerMonContestDTO->contestType;
-    contest->unk_00.contestRank = playerMonContestDTO->contestRank;
-    contest->unk_00.competitionType = playerMonContestDTO->competitionType;
-    contest->unk_00.unk_112 = sub_02095A74(playerMonContestDTO->contestRank, FALSE);
-    contest->unk_00.unk_10C = contest->unk_00.playerContestantID;
-    contest->unk_00.unk_115 = 110;
-    contest->unk_00.unk_10D = contest->unk_00.unk_115;
-    contest->unk_00.unk_10E = 1;
+    contest->data.contestType = playerMonContestDTO->contestType;
+    contest->data.contestRank = playerMonContestDTO->contestRank;
+    contest->data.competitionType = playerMonContestDTO->competitionType;
+    contest->data.dressUpTheme = Contest_GetRandomDressUpTheme(playerMonContestDTO->contestRank, FALSE);
+    contest->data.hostContestantID = contest->data.playerContestantID;
+    contest->data.linkVersion = CONTEST_LINK_VERSION;
+    contest->data.hostLinkVersion = contest->data.linkVersion;
+    contest->data.headJudgeID = 1;
     contest->imageClips = playerMonContestDTO->imageClips;
     contest->options = playerMonContestDTO->options;
     contest->saveData = playerMonContestDTO->saveData;
@@ -431,15 +414,15 @@ Contest *Contest_Init(const PlayerMonContestDTO *playerMonContestDTO)
     contest->isNatDexObtained = playerMonContestDTO->isNatDexObtained;
 
     int i;
-    for (i = 0; i < 4; i++) {
-        contest->unk_00.unk_E8[i] = sub_02029C88(HEAP_ID_20);
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        contest->data.photos[i] = ContestPhoto_New(HEAP_ID_20);
     }
 
-    sub_020954F0(contest, HEAP_ID_FIELD2, contest->unk_00.unk_10E, contest->unk_00.contestType, contest->unk_00.contestRank);
+    Contest_SelectJudges(contest, HEAP_ID_FIELD2, contest->data.headJudgeID, contest->data.contestType, contest->data.contestRank);
     contest->party = Party_New(HEAP_ID_20);
 
     for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        contest->unk_00.contestMons[i] = Pokemon_New(HEAP_ID_20);
+        contest->data.contestMons[i] = Pokemon_New(HEAP_ID_20);
     }
 
     for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
@@ -448,82 +431,80 @@ Contest *Contest_Init(const PlayerMonContestDTO *playerMonContestDTO)
 
     ChatotCry_Copy(contest->chatotCry[PLAYER_CONTESTANT_ID], playerMonContestDTO->chatotCry);
 
-    {
-        Pokemon_Copy(playerMonContestDTO->mon, contest->unk_00.contestMons[PLAYER_CONTESTANT_ID]);
-        contest->unk_00.trainerNames[PLAYER_CONTESTANT_ID] = String_Init(8, HEAP_ID_20);
-        String_Copy(contest->unk_00.trainerNames[PLAYER_CONTESTANT_ID], playerMonContestDTO->trainerName);
+    Pokemon_Copy(playerMonContestDTO->mon, contest->data.contestMons[PLAYER_CONTESTANT_ID]);
+    contest->data.trainerNames[PLAYER_CONTESTANT_ID] = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_20);
+    String_Copy(contest->data.trainerNames[PLAYER_CONTESTANT_ID], playerMonContestDTO->trainerName);
 
-        contest->unk_00.trainerGenders[PLAYER_CONTESTANT_ID] = TrainerInfo_Gender(playerMonContestDTO->trainerInfo);
-        contest->unk_00.unk_FC[PLAYER_CONTESTANT_ID] = 0;
-        contest->unk_00.monContestFame[PLAYER_CONTESTANT_ID] = CalcMonContestFame(contest->unk_00.contestMons[PLAYER_CONTESTANT_ID], contest->unk_00.contestType);
+    contest->data.trainerGenders[PLAYER_CONTESTANT_ID] = TrainerInfo_Gender(playerMonContestDTO->trainerInfo);
+    contest->data.npcSkillLevels[PLAYER_CONTESTANT_ID] = 0;
+    contest->data.monContestFame[PLAYER_CONTESTANT_ID] = CalcMonContestFame(contest->data.contestMons[PLAYER_CONTESTANT_ID], contest->data.contestType);
 
-        if (Contest_IsPracticeCompetition(contest) == FALSE) {
-            if (TrainerInfo_Gender(playerMonContestDTO->trainerInfo) == GENDER_MALE) {
-                contest->unk_00.contestantObjEventGFX[PLAYER_CONTESTANT_ID] = OBJ_EVENT_GFX_PLAYER_M_CONTEST;
-            } else {
-                contest->unk_00.contestantObjEventGFX[PLAYER_CONTESTANT_ID] = OBJ_EVENT_GFX_PLAYER_F_CONTEST;
-            }
+    if (Contest_IsPracticeCompetition(contest) == FALSE) {
+        if (TrainerInfo_Gender(playerMonContestDTO->trainerInfo) == GENDER_MALE) {
+            contest->data.contestantObjEventGFX[PLAYER_CONTESTANT_ID] = OBJ_EVENT_GFX_PLAYER_M_CONTEST;
         } else {
-            if (TrainerInfo_Gender(playerMonContestDTO->trainerInfo) == GENDER_MALE) {
-                contest->unk_00.contestantObjEventGFX[PLAYER_CONTESTANT_ID] = OBJ_EVENT_GFX_PLAYER_M;
-            } else {
-                contest->unk_00.contestantObjEventGFX[PLAYER_CONTESTANT_ID] = OBJ_EVENT_GFX_PLAYER_F;
-            }
+            contest->data.contestantObjEventGFX[PLAYER_CONTESTANT_ID] = OBJ_EVENT_GFX_PLAYER_F_CONTEST;
+        }
+    } else {
+        if (TrainerInfo_Gender(playerMonContestDTO->trainerInfo) == GENDER_MALE) {
+            contest->data.contestantObjEventGFX[PLAYER_CONTESTANT_ID] = OBJ_EVENT_GFX_PLAYER_M;
+        } else {
+            contest->data.contestantObjEventGFX[PLAYER_CONTESTANT_ID] = OBJ_EVENT_GFX_PLAYER_F;
         }
     }
 
-    sub_020939E0(contest, playerMonContestDTO->isGameCompleted, playerMonContestDTO->isNatDexObtained);
+    Contest_InitOpponents(contest, playerMonContestDTO->isGameCompleted, playerMonContestDTO->isNatDexObtained);
 
     if (Contest_IsPracticeCompetition(contest) == TRUE) {
-        for (i = 0; i < 4; i++) {
-            contest->unk_156[i] = 4 - i - 1;
+        for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+            contest->performanceOrder[i] = CONTEST_NUM_PARTICIPANTS - i - 1;
         }
     } else {
-        for (i = 0; i < 4; i++) {
-            contest->unk_156[i] = i;
+        for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+            contest->performanceOrder[i] = i;
         }
     }
 
     return contest;
 }
 
-static void sub_020939E0(Contest *contest, int isGameCompleted, int isNatDexObtained)
+static void Contest_InitOpponents(Contest *contest, int isGameCompleted, int isNatDexObtained)
 {
-    int v0 = 4 - 1;
+    int numOpponents = CONTEST_NUM_PARTICIPANTS - 1;
     int i;
 
-    sub_02094F04(contest, HEAP_ID_FIELD2, v0, contest->unk_00.contestType, contest->unk_00.contestRank, contest->unk_00.competitionType, isGameCompleted, isNatDexObtained);
+    Contest_SelectOpponents(contest, HEAP_ID_FIELD2, numOpponents, contest->data.contestType, contest->data.contestRank, contest->data.competitionType, isGameCompleted, isNatDexObtained);
 
     // starts at 1, because 0 was already initialized for player
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        sub_02095380(&contest->unk_00.unk_10[i], contest->unk_00.contestMons[i], HEAP_ID_20);
+        Contestant_InitPokemon(&contest->data.contestants[i], contest->data.contestMons[i], HEAP_ID_20);
     }
 
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        if (contest->unk_00.trainerNames[i] == NULL) {
-            contest->unk_00.trainerNames[i] = String_Init(8, HEAP_ID_20);
+        if (contest->data.trainerNames[i] == NULL) {
+            contest->data.trainerNames[i] = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_20);
         }
 
-        Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_OT_NAME_STRING, contest->unk_00.trainerNames[i]);
+        Pokemon_GetValue(contest->data.contestMons[i], MON_DATA_OT_NAME_STRING, contest->data.trainerNames[i]);
     }
 
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        contest->unk_00.trainerGenders[i] = contest->unk_00.unk_10[i].unk_20_12;
+        contest->data.trainerGenders[i] = contest->data.contestants[i].gender;
     }
 
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        contest->unk_00.unk_FC[i] = contest->unk_00.unk_10[i].unk_20_14;
+        contest->data.npcSkillLevels[i] = contest->data.contestants[i].npcSkillLevel;
     }
 
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        contest->unk_00.monContestFame[i] = contest->unk_00.unk_10[i].unk_2E;
+        contest->data.monContestFame[i] = contest->data.contestants[i].monContestFame;
     }
 
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        contest->unk_00.contestantObjEventGFX[i] = contest->unk_00.unk_10[i].unk_08;
+        contest->data.contestantObjEventGFX[i] = contest->data.contestants[i].objEventGFX;
     }
 
-    sub_020951B0(contest, HEAP_ID_FIELD2);
+    Contest_DressUpOpponentPhotos(contest, HEAP_ID_FIELD2);
 }
 
 void Contest_Free(Contest *contest)
@@ -531,9 +512,9 @@ void Contest_Free(Contest *contest)
     Heap_Free(contest->party);
 
     for (int i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        Heap_Free(contest->unk_00.contestMons[i]);
-        String_Free(contest->unk_00.trainerNames[i]);
-        Heap_Free(contest->unk_00.unk_E8[i]);
+        Heap_Free(contest->data.contestMons[i]);
+        String_Free(contest->data.trainerNames[i]);
+        Heap_Free(contest->data.photos[i]);
         Heap_Free(contest->chatotCry[i]);
     }
 
@@ -583,23 +564,23 @@ void Contest_GetVisualCompetitionAppArgs(Contest *contest)
 {
     VisualCompetitionAppArgs *appArgs;
 
-    sub_0202A25C(contest->unk_00.unk_E8[contest->unk_00.playerContestantID]);
+    ContestPhoto_Init(contest->data.photos[contest->data.playerContestantID]);
 
     appArgs = Heap_Alloc(HEAP_ID_20, sizeof(VisualCompetitionAppArgs));
     MI_CpuClear8(appArgs, sizeof(VisualCompetitionAppArgs));
 
-    appArgs->mon = contest->unk_00.contestMons[contest->unk_00.playerContestantID];
-    appArgs->unk_04 = contest->unk_00.unk_E8[contest->unk_00.playerContestantID];
-    appArgs->unk_08 = contest->unk_00.unk_112;
+    appArgs->mon = contest->data.contestMons[contest->data.playerContestantID];
+    appArgs->unk_04 = contest->data.photos[contest->data.playerContestantID];
+    appArgs->dressUpTheme = contest->data.dressUpTheme;
 
     if (contest->isLinkContest == TRUE) {
         appArgs->contestRank = CONTEST_RANK_LINK;
     } else {
-        appArgs->contestRank = contest->unk_00.contestRank;
+        appArgs->contestRank = contest->data.contestRank;
     }
 
-    appArgs->competitionType = contest->unk_00.competitionType;
-    appArgs->contestType = contest->unk_00.contestType;
+    appArgs->competitionType = contest->data.competitionType;
+    appArgs->contestType = contest->data.contestType;
     appArgs->fashionCase = ImageClips_GetFashionCase(contest->imageClips);
     appArgs->unk_1C = &contest->unk_1984;
     appArgs->options = contest->options;
@@ -614,353 +595,350 @@ void Contest_VisualCompetitionAppArgsFree(Contest *contest)
     contest->visualCompetitionAppArgs = NULL;
 }
 
-static void sub_02093C6C(SysTask *sysTask, void *param1)
+static void SysTask_LinkContestSetup(SysTask *sysTask, void *param)
 {
-    Contest *contest = param1;
+    Contest *contest = param;
 
     switch (contest->linkState) {
-    case 0:
-        CommTiming_StartSync(5);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_HOST_ELECTION:
+        CommTiming_StartSync(CONTEST_SYNC_HOST_ELECTION);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 1:
-        if (CommTiming_IsSyncState(5) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_HOST_ELECTION:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_HOST_ELECTION) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 2:
-        if (ov6_02248A64(contest) == 1) {
+    case LINK_SETUP_STATE_SEND_HOST_ELECTION_DATA:
+        if (Contest_SendHostElectionData(contest) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 3:
-        if (contest->unk_568 >= contest->unk_00.connectionCount) {
-            contest->unk_568 = 0;
+    case LINK_SETUP_STATE_WAIT_FOR_HOST_ELECTION_DATA:
+        if (contest->numMessagesReceived >= contest->data.connectionCount) {
+            contest->numMessagesReceived = 0;
             contest->linkState++;
         }
         break;
-    case 4:
-        CommTiming_StartSync(6);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_EXCHANGE_MONS:
+        CommTiming_StartSync(CONTEST_SYNC_EXCHANGE_MONS);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 5:
-        if (CommTiming_IsSyncState(6) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_EXCHANGE_MONS:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_EXCHANGE_MONS) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 6:
-        if (ov6_02248AF0(contest, contest->unk_00.playerContestantID, contest->unk_00.contestMons[PLAYER_CONTESTANT_ID]) == 1) {
+    case LINK_SETUP_STATE_SEND_MON:
+        if (Contest_SendMon(contest, contest->data.playerContestantID, contest->data.contestMons[PLAYER_CONTESTANT_ID]) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 7:
-        if (contest->unk_568 >= contest->unk_00.connectionCount) {
-            contest->unk_568 = 0;
+    case LINK_SETUP_STATE_WAIT_FOR_MONS:
+        if (contest->numMessagesReceived >= contest->data.connectionCount) {
+            contest->numMessagesReceived = 0;
             contest->linkState++;
         }
         break;
-    case 8:
-        CommTiming_StartSync(7);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_SHARE_MONS:
+        CommTiming_StartSync(CONTEST_SYNC_SHARE_MONS);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 9:
-        if (CommTiming_IsSyncState(7) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_SHARE_MONS:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_SHARE_MONS) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 10:
-        if (contest->unk_00.playerContestantID == contest->unk_00.unk_10C) {
-            if (ov6_02248B70(contest, contest->unk_00.contestMons) == 1) {
+    case LINK_SETUP_STATE_SEND_ALL_MONS:
+        if (contest->data.playerContestantID == contest->data.hostContestantID) {
+            if (Contest_SendAllMons(contest, contest->data.contestMons) == TRUE) {
                 contest->linkState++;
             }
         } else {
             contest->linkState++;
         }
         break;
-    case 11:
-        if (contest->unk_568 > 0) {
-            contest->unk_568 = 0;
+    case LINK_SETUP_STATE_WAIT_FOR_ALL_MONS:
+        if (contest->numMessagesReceived > 0) {
+            contest->numMessagesReceived = 0;
             contest->linkState++;
         }
         break;
-    case 12:
-        CommTiming_StartSync(8);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_EXCHANGE_OPPONENTS:
+        CommTiming_StartSync(CONTEST_SYNC_EXCHANGE_OPPONENTS);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 13:
-        if (CommTiming_IsSyncState(8) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_EXCHANGE_OPPONENTS:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_EXCHANGE_OPPONENTS) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 14:
-        if (ov6_02248BE8(contest, contest->unk_00.playerContestantID, &contest->unk_00.unk_10[0]) == 1) {
+    case LINK_SETUP_STATE_SEND_OPPONENT:
+        if (Contest_SendContestant(contest, contest->data.playerContestantID, &contest->data.contestants[0]) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 15:
-        if (contest->unk_568 >= contest->unk_00.connectionCount) {
-            contest->unk_568 = 0;
+    case LINK_SETUP_STATE_WAIT_FOR_OPPONENTS:
+        if (contest->numMessagesReceived >= contest->data.connectionCount) {
+            contest->numMessagesReceived = 0;
             contest->linkState++;
         }
         break;
-    case 16:
-        CommTiming_StartSync(9);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_SHARE_OPPONENTS:
+        CommTiming_StartSync(CONTEST_SYNC_SHARE_OPPONENTS);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 17:
-        if (CommTiming_IsSyncState(9) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_SHARE_OPPONENTS:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_SHARE_OPPONENTS) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 18:
-        if (contest->unk_00.playerContestantID == contest->unk_00.unk_10C) {
-            if (ov6_02248BE8(contest, contest->unk_15C, &contest->unk_00.unk_10[contest->unk_15C]) == 1) {
+    case LINK_SETUP_STATE_SEND_NEXT_OPPONENT:
+        if (contest->data.playerContestantID == contest->data.hostContestantID) {
+            if (Contest_SendContestant(contest, contest->sendingContestantID, &contest->data.contestants[contest->sendingContestantID]) == TRUE) {
                 contest->linkState++;
             }
         } else {
             contest->linkState++;
         }
         break;
-    case 19:
-        if (contest->unk_568 > 0) {
-            contest->unk_568 = 0;
-            contest->unk_15C++;
+    case LINK_SETUP_STATE_WAIT_FOR_NEXT_OPPONENT:
+        if (contest->numMessagesReceived > 0) {
+            contest->numMessagesReceived = 0;
+            contest->sendingContestantID++;
 
-            if (contest->unk_15C < 4) {
+            if (contest->sendingContestantID < CONTEST_NUM_PARTICIPANTS) {
                 contest->linkState--;
             } else {
-                contest->unk_15C = 0;
+                contest->sendingContestantID = 0;
                 contest->linkState++;
             }
         }
         break;
-    case 20:
-        CommTiming_StartSync(10);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_EXCHANGE_TRAINER_NAMES:
+        CommTiming_StartSync(CONTEST_SYNC_EXCHANGE_TRAINER_NAMES);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 21:
-        if (CommTiming_IsSyncState(10) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_EXCHANGE_TRAINER_NAMES:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_EXCHANGE_TRAINER_NAMES) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 22:
-        if (ov6_02248CE8(contest, contest->unk_00.playerContestantID, contest->unk_00.trainerNames[PLAYER_CONTESTANT_ID]) == 1) {
+    case LINK_SETUP_STATE_SEND_TRAINER_NAME:
+        if (Contest_SendTrainerName(contest, contest->data.playerContestantID, contest->data.trainerNames[PLAYER_CONTESTANT_ID]) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 23:
-        if (contest->unk_568 >= contest->unk_00.connectionCount) {
-            {
-                int netID;
-                const TrainerInfo *v2;
+    case LINK_SETUP_STATE_WAIT_FOR_TRAINER_NAMES:
+        if (contest->numMessagesReceived >= contest->data.connectionCount) {
+            int netID;
+            const TrainerInfo *trainerInfo;
 
-                for (netID = 0; netID < contest->unk_00.connectionCount; netID++) {
-                    v2 = CommInfo_TrainerInfo(netID);
-                    String_Clear(contest->unk_00.trainerNames[netID]);
-                    TrainerInfo_NameString(v2, contest->unk_00.trainerNames[netID]);
-                }
+            for (netID = 0; netID < contest->data.connectionCount; netID++) {
+                trainerInfo = CommInfo_TrainerInfo(netID);
+                String_Clear(contest->data.trainerNames[netID]);
+                TrainerInfo_NameString(trainerInfo, contest->data.trainerNames[netID]);
             }
 
-            contest->unk_568 = 0;
+            contest->numMessagesReceived = 0;
             contest->linkState++;
         }
         break;
-    case 24:
-        CommTiming_StartSync(11);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_SHARE_TRAINER_NAMES:
+        CommTiming_StartSync(CONTEST_SYNC_SHARE_TRAINER_NAMES);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 25:
-        if (CommTiming_IsSyncState(11) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_SHARE_TRAINER_NAMES:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_SHARE_TRAINER_NAMES) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 26:
-        if (contest->unk_00.playerContestantID == contest->unk_00.unk_10C) {
-            if (ov6_02248CE8(contest, contest->unk_15C, contest->unk_00.trainerNames[contest->unk_15C]) == 1) {
-                contest->linkState++;
-            }
-        } else {
-            contest->linkState++;
-        }
-        break;
-    case 27:
-        if (contest->unk_568 > 0) {
-            contest->unk_568 = 0;
-            contest->unk_15C++;
-
-            if (contest->unk_15C < 4) {
-                contest->linkState--;
-            } else {
-                contest->unk_15C = 0;
-                contest->linkState++;
-            }
-        }
-        break;
-    case 28:
-        MI_CpuCopy8(contest->chatotCry[PLAYER_CONTESTANT_ID], contest->unk_569, ChatotCry_SaveSize());
-        CommTiming_StartSync(12);
-
-        contest->unk_568 = 0;
-        contest->linkState++;
-        break;
-    case 29:
-        if (CommTiming_IsSyncState(12) == 1) {
-            contest->linkState++;
-        }
-        break;
-    case 30:
-        if (ov6_02248D64(contest, contest->unk_00.playerContestantID, NULL) == 1) {
-            contest->linkState++;
-        }
-        break;
-    case 31:
-        if (contest->unk_568 >= contest->unk_00.connectionCount) {
-            contest->unk_568 = 0;
-            contest->linkState++;
-        }
-        break;
-    case 32:
-        CommTiming_StartSync(13);
-        contest->unk_568 = 0;
-        contest->linkState++;
-        break;
-    case 33:
-        if (CommTiming_IsSyncState(13) == 1) {
-            contest->linkState++;
-        }
-        break;
-    case 34:
-        if (contest->unk_00.playerContestantID == contest->unk_00.unk_10C) {
-            if (ov6_02248D64(contest, contest->unk_15C, contest->chatotCry[contest->unk_15C]) == 1) {
+    case LINK_SETUP_STATE_SEND_NEXT_TRAINER_NAME:
+        if (contest->data.playerContestantID == contest->data.hostContestantID) {
+            if (Contest_SendTrainerName(contest, contest->sendingContestantID, contest->data.trainerNames[contest->sendingContestantID]) == TRUE) {
                 contest->linkState++;
             }
         } else {
             contest->linkState++;
         }
         break;
-    case 35:
-        if (contest->unk_568 > 0) {
-            contest->unk_568 = 0;
-            contest->unk_15C++;
+    case LINK_SETUP_STATE_WAIT_FOR_NEXT_TRAINER_NAME:
+        if (contest->numMessagesReceived > 0) {
+            contest->numMessagesReceived = 0;
+            contest->sendingContestantID++;
 
-            if (contest->unk_15C < 4) {
+            if (contest->sendingContestantID < CONTEST_NUM_PARTICIPANTS) {
                 contest->linkState--;
             } else {
-                contest->unk_15C = 0;
+                contest->sendingContestantID = 0;
                 contest->linkState++;
             }
         }
         break;
-    case 36:
-        CommTiming_StartSync(14);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_EXCHANGE_CHATOT_CRIES:
+        MI_CpuCopy8(contest->chatotCry[PLAYER_CONTESTANT_ID], contest->commSendBuffer, ChatotCry_SaveSize());
+        CommTiming_StartSync(CONTEST_SYNC_EXCHANGE_CHATOT_CRIES);
+
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 37:
-        if (CommTiming_IsSyncState(14) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_EXCHANGE_CHATOT_CRIES:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_EXCHANGE_CHATOT_CRIES) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 38: {
-        UnkStruct_ov6_02248DD8 v3;
-
-        sub_02094EB4(contest, 0, &v3);
-
-        if (ov6_02248DD8(contest, contest->unk_00.playerContestantID, &v3) == 1) {
-            contest->linkState++;
-        }
-    } break;
-    case 39:
-        if (contest->unk_568 >= contest->unk_00.connectionCount) {
-            contest->unk_568 = 0;
+    case LINK_SETUP_STATE_SEND_CHATOT_CRY:
+        if (Contest_SendChatotCry(contest, contest->data.playerContestantID, NULL) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 40:
-        CommTiming_StartSync(15);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_WAIT_FOR_CHATOT_CRIES:
+        if (contest->numMessagesReceived >= contest->data.connectionCount) {
+            contest->numMessagesReceived = 0;
+            contest->linkState++;
+        }
+        break;
+    case LINK_SETUP_STATE_START_SYNC_SHARE_CHATOT_CRIES:
+        CommTiming_StartSync(CONTEST_SYNC_SHARE_CHATOT_CRIES);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 41:
-        if (CommTiming_IsSyncState(15) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_SHARE_CHATOT_CRIES:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_SHARE_CHATOT_CRIES) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 42:
-        if (contest->unk_00.playerContestantID == contest->unk_00.unk_10C) {
-            UnkStruct_ov6_02248DD8 v4;
-
-            sub_02094EB4(contest, contest->unk_15C, &v4);
-
-            if (ov6_02248DD8(contest, contest->unk_15C, &v4) == 1) {
+    case LINK_SETUP_STATE_SEND_NEXT_CHATOT_CRY:
+        if (contest->data.playerContestantID == contest->data.hostContestantID) {
+            if (Contest_SendChatotCry(contest, contest->sendingContestantID, contest->chatotCry[contest->sendingContestantID]) == TRUE) {
                 contest->linkState++;
             }
         } else {
             contest->linkState++;
         }
         break;
-    case 43:
-        if (contest->unk_568 > 0) {
-            contest->unk_568 = 0;
-            contest->unk_15C++;
+    case LINK_SETUP_STATE_WAIT_FOR_NEXT_CHATOT_CRY:
+        if (contest->numMessagesReceived > 0) {
+            contest->numMessagesReceived = 0;
+            contest->sendingContestantID++;
 
-            if (contest->unk_15C < 4) {
+            if (contest->sendingContestantID < CONTEST_NUM_PARTICIPANTS) {
                 contest->linkState--;
             } else {
-                contest->unk_15C = 0;
+                contest->sendingContestantID = 0;
                 contest->linkState++;
             }
         }
         break;
-    case 44:
-        CommTiming_StartSync(16);
-        contest->unk_568 = 0;
+    case LINK_SETUP_STATE_START_SYNC_EXCHANGE_CONTESTANT_INFO:
+        CommTiming_StartSync(CONTEST_SYNC_EXCHANGE_CONTESTANT_INFO);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 45:
-        if (CommTiming_IsSyncState(16) == 1) {
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_EXCHANGE_CONTESTANT_INFO:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_EXCHANGE_CONTESTANT_INFO) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 46:
-        if (ov6_02248C68(contest, contest->unk_00.playerContestantID, contest->unk_00.unk_C0) == 1) {
+    case LINK_SETUP_STATE_SEND_CONTESTANT_INFO:
+        ContestantLinkInfo linkInfo;
+
+        Contest_GetContestantLinkInfo(contest, 0, &linkInfo);
+
+        if (Contest_SendContestantLinkInfo(contest, contest->data.playerContestantID, &linkInfo) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 47:
-        if (contest->unk_568 >= contest->unk_00.connectionCount) {
-            contest->unk_568 = 0;
+    case LINK_SETUP_STATE_WAIT_FOR_CONTESTANT_INFO:
+        if (contest->numMessagesReceived >= contest->data.connectionCount) {
+            contest->numMessagesReceived = 0;
             contest->linkState++;
         }
         break;
-    default: {
+    case LINK_SETUP_STATE_START_SYNC_SHARE_CONTESTANT_INFO:
+        CommTiming_StartSync(CONTEST_SYNC_SHARE_CONTESTANT_INFO);
+        contest->numMessagesReceived = 0;
+        contest->linkState++;
+        break;
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_SHARE_CONTESTANT_INFO:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_SHARE_CONTESTANT_INFO) == TRUE) {
+            contest->linkState++;
+        }
+        break;
+    case LINK_SETUP_STATE_SEND_NEXT_CONTESTANT_INFO:
+        if (contest->data.playerContestantID == contest->data.hostContestantID) {
+            ContestantLinkInfo linkInfo;
+
+            Contest_GetContestantLinkInfo(contest, contest->sendingContestantID, &linkInfo);
+
+            if (Contest_SendContestantLinkInfo(contest, contest->sendingContestantID, &linkInfo) == TRUE) {
+                contest->linkState++;
+            }
+        } else {
+            contest->linkState++;
+        }
+        break;
+    case LINK_SETUP_STATE_WAIT_FOR_NEXT_CONTESTANT_INFO:
+        if (contest->numMessagesReceived > 0) {
+            contest->numMessagesReceived = 0;
+            contest->sendingContestantID++;
+
+            if (contest->sendingContestantID < CONTEST_NUM_PARTICIPANTS) {
+                contest->linkState--;
+            } else {
+                contest->sendingContestantID = 0;
+                contest->linkState++;
+            }
+        }
+        break;
+    case LINK_SETUP_STATE_START_SYNC_EXCHANGE_JUDGES:
+        CommTiming_StartSync(CONTEST_SYNC_EXCHANGE_JUDGES);
+        contest->numMessagesReceived = 0;
+        contest->linkState++;
+        break;
+    case LINK_SETUP_STATE_WAIT_FOR_SYNC_EXCHANGE_JUDGES:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_EXCHANGE_JUDGES) == TRUE) {
+            contest->linkState++;
+        }
+        break;
+    case LINK_SETUP_STATE_SEND_JUDGES:
+        if (Contest_SendJudges(contest, contest->data.playerContestantID, contest->data.judges) == TRUE) {
+            contest->linkState++;
+        }
+        break;
+    case LINK_SETUP_STATE_WAIT_FOR_JUDGES:
+        if (contest->numMessagesReceived >= contest->data.connectionCount) {
+            contest->numMessagesReceived = 0;
+            contest->linkState++;
+        }
+        break;
+    default:
         int contestantID;
         const TrainerInfo *trainerInfo;
 
-        for (contestantID = 0; contestantID < contest->unk_00.connectionCount; contestantID++) {
+        for (contestantID = 0; contestantID < contest->data.connectionCount; contestantID++) {
             trainerInfo = CommInfo_TrainerInfo(contestantID);
-            contest->unk_00.trainerGenders[contestantID] = TrainerInfo_Gender(trainerInfo);
+            contest->data.trainerGenders[contestantID] = TrainerInfo_Gender(trainerInfo);
         }
 
         for (; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
-            contest->unk_00.trainerGenders[contestantID] = contest->unk_00.unk_10[contestantID].unk_20_12;
+            contest->data.trainerGenders[contestantID] = contest->data.contestants[contestantID].gender;
         }
-    }
 
-        contest->unk_1984.unk_14 = contest->unk_00.unk_10C;
-        contest->unk_1984.unk_15 = contest->unk_00.unk_114;
+        contest->unk_1984.unk_14 = contest->data.hostContestantID;
+        contest->unk_1984.unk_15 = contest->data.unk_114;
         contest->unk_1984.unk_16 = 1;
-        contest->unk_1984.unk_17 = contest->unk_00.connectionCount;
+        contest->unk_1984.unk_17 = contest->data.connectionCount;
 
         contest->commTask = NULL;
-        contest->linkState = 0;
+        contest->linkState = LINK_SETUP_STATE_START_SYNC_HOST_ELECTION;
 
         SysTask_Done(sysTask);
         return;
@@ -978,61 +956,59 @@ BOOL Contest_SetUpLinkContest(Contest *contest)
     int connectionCount = CommSys_ConnectedCount();
     int netID = CommSys_CurNetId();
 
-    {
-        int i;
-        TrainerInfo *connectedTrainerInfo;
+    int i;
+    TrainerInfo *connectedTrainerInfo;
 
-        for (i = 0; i < connectionCount; i++) {
-            connectedTrainerInfo = CommInfo_TrainerInfo(i);
-            GF_ASSERT(connectedTrainerInfo != NULL);
+    for (i = 0; i < connectionCount; i++) {
+        connectedTrainerInfo = CommInfo_TrainerInfo(i);
+        GF_ASSERT(connectedTrainerInfo != NULL);
 
-            if (TrainerInfo_IsMainStoryCleared(connectedTrainerInfo) == FALSE) {
-                break;
-            }
-        }
-
-        if (i != connectionCount) {
-            contest->isGameCompleted = FALSE;
-        } else {
-            contest->isGameCompleted = TRUE;
-        }
-
-        for (i = 0; i < connectionCount; i++) {
-            connectedTrainerInfo = CommInfo_TrainerInfo(i);
-            GF_ASSERT(connectedTrainerInfo != NULL);
-
-            if (TrainerInfo_HasNationalDex(connectedTrainerInfo) == FALSE) {
-                break;
-            }
-        }
-
-        if (i != connectionCount) {
-            contest->isNatDexObtained = FALSE;
-        } else {
-            contest->isNatDexObtained = TRUE;
-        }
-
-        sub_020939E0(contest, contest->isGameCompleted, contest->isNatDexObtained);
-
-        for (i = 0; i < connectionCount; i++) {
-            connectedTrainerInfo = CommInfo_TrainerInfo(i);
-
-            if (TrainerInfo_GameCode(connectedTrainerInfo) == 0) {
-                contest->unk_15B++;
-            }
+        if (TrainerInfo_IsMainStoryCleared(connectedTrainerInfo) == FALSE) {
+            break;
         }
     }
 
-    contest->unk_00.unk_114 = netID;
-    contest->unk_00.npcCount = CONTEST_NUM_PARTICIPANTS - connectionCount;
-    contest->unk_00.connectionCount = connectionCount;
-    contest->unk_00.playerContestantID = netID;
-    contest->unk_00.unk_115 = 110;
-    contest->unk_00.unk_112 = sub_02095A74(contest->unk_00.contestRank, TRUE);
+    if (i != connectionCount) {
+        contest->isGameCompleted = FALSE;
+    } else {
+        contest->isGameCompleted = TRUE;
+    }
 
-    sub_02095AF0(contest);
+    for (i = 0; i < connectionCount; i++) {
+        connectedTrainerInfo = CommInfo_TrainerInfo(i);
+        GF_ASSERT(connectedTrainerInfo != NULL);
 
-    contest->commTask = SysTask_Start(sub_02093C6C, contest, 10);
+        if (TrainerInfo_HasNationalDex(connectedTrainerInfo) == FALSE) {
+            break;
+        }
+    }
+
+    if (i != connectionCount) {
+        contest->isNatDexObtained = FALSE;
+    } else {
+        contest->isNatDexObtained = TRUE;
+    }
+
+    Contest_InitOpponents(contest, contest->isGameCompleted, contest->isNatDexObtained);
+
+    for (i = 0; i < connectionCount; i++) {
+        connectedTrainerInfo = CommInfo_TrainerInfo(i);
+
+        if (TrainerInfo_GameCode(connectedTrainerInfo) == 0) {
+            contest->numDPPlayers++;
+        }
+    }
+
+    contest->data.unk_114 = netID;
+    contest->data.npcCount = CONTEST_NUM_PARTICIPANTS - connectionCount;
+    contest->data.connectionCount = connectionCount;
+    contest->data.playerContestantID = netID;
+    contest->data.linkVersion = CONTEST_LINK_VERSION;
+    contest->data.dressUpTheme = Contest_GetRandomDressUpTheme(contest->data.contestRank, TRUE);
+
+    Contest_InitCommCommands(contest);
+
+    contest->commTask = SysTask_Start(SysTask_LinkContestSetup, contest, 10);
 
     return TRUE;
 }
@@ -1051,68 +1027,68 @@ BOOL Contest_IsCommTaskDoneInternal(Contest *contest)
     return FALSE;
 }
 
-static void sub_020944E8(Contest *contest)
+static void Contest_StartPhotoExchangeTask(Contest *contest)
 {
     GF_ASSERT(contest->commTask == NULL);
 
-    contest->linkState = 0;
-    contest->commTask = SysTask_Start(sub_0209451C, contest, 10);
+    contest->linkState = PHOTO_EXCHANGE_STATE_START_SYNC_EXCHANGE_PHOTOS;
+    contest->commTask = SysTask_Start(SysTask_ExchangePhotos, contest, 10);
 }
 
-static void sub_0209451C(SysTask *sysTask, void *param1)
+static void SysTask_ExchangePhotos(SysTask *sysTask, void *param)
 {
-    Contest *contest = param1;
+    Contest *contest = param;
 
     switch (contest->linkState) {
-    case 0:
-        CommTiming_StartSync(17);
-        contest->unk_568 = 0;
+    case PHOTO_EXCHANGE_STATE_START_SYNC_EXCHANGE_PHOTOS:
+        CommTiming_StartSync(CONTEST_SYNC_EXCHANGE_PHOTOS);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 1:
-        if (CommTiming_IsSyncState(17) == 1) {
+    case PHOTO_EXCHANGE_STATE_WAIT_FOR_SYNC_EXCHANGE_PHOTOS:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_EXCHANGE_PHOTOS) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 2:
-        if (sub_02095B5C(contest, contest->unk_00.playerContestantID, contest->unk_00.unk_E8[contest->unk_00.playerContestantID]) == 1) {
+    case PHOTO_EXCHANGE_STATE_SEND_PHOTO:
+        if (Contest_SendPhoto(contest, contest->data.playerContestantID, contest->data.photos[contest->data.playerContestantID]) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 3:
-        if (contest->unk_568 >= contest->unk_00.connectionCount) {
-            contest->unk_568 = 0;
+    case PHOTO_EXCHANGE_STATE_WAIT_FOR_PHOTOS:
+        if (contest->numMessagesReceived >= contest->data.connectionCount) {
+            contest->numMessagesReceived = 0;
             contest->linkState++;
         }
         break;
-    case 4:
-        CommTiming_StartSync(18);
-        contest->unk_568 = 0;
+    case PHOTO_EXCHANGE_STATE_START_SYNC_SHARE_PHOTOS:
+        CommTiming_StartSync(CONTEST_SYNC_SHARE_PHOTOS);
+        contest->numMessagesReceived = 0;
         contest->linkState++;
         break;
-    case 5:
-        if (CommTiming_IsSyncState(18) == 1) {
+    case PHOTO_EXCHANGE_STATE_WAIT_FOR_SYNC_SHARE_PHOTOS:
+        if (CommTiming_IsSyncState(CONTEST_SYNC_SHARE_PHOTOS) == TRUE) {
             contest->linkState++;
         }
         break;
-    case 6:
-        if (contest->unk_00.playerContestantID == contest->unk_00.unk_10C) {
-            if (sub_02095BEC(contest, contest->unk_00.unk_E8) == 1) {
+    case PHOTO_EXCHANGE_STATE_SEND_ALL_PHOTOS:
+        if (contest->data.playerContestantID == contest->data.hostContestantID) {
+            if (Contest_SendAllPhotos(contest, contest->data.photos) == TRUE) {
                 contest->linkState++;
             }
         } else {
             contest->linkState++;
         }
         break;
-    case 7:
-        if (contest->unk_568 > 0) {
-            contest->unk_568 = 0;
+    case PHOTO_EXCHANGE_STATE_WAIT_FOR_ALL_PHOTOS:
+        if (contest->numMessagesReceived > 0) {
+            contest->numMessagesReceived = 0;
             contest->linkState++;
         }
         break;
     default:
         contest->commTask = NULL;
-        contest->linkState = 0;
+        contest->linkState = PHOTO_EXCHANGE_STATE_START_SYNC_EXCHANGE_PHOTOS;
         SysTask_Done(sysTask);
         return;
     }
@@ -1120,42 +1096,42 @@ static void sub_0209451C(SysTask *sysTask, void *param1)
 
 void Contest_BufferJudgeName(Contest *contest, int judgeID, StringTemplate *strTemplate, u32 idx)
 {
-    StringTemplate_SetContestJudgeName(strTemplate, idx, contest->unk_00.unk_C0[judgeID].judgeNameMessageID);
+    StringTemplate_SetContestJudgeName(strTemplate, idx, contest->data.judges[judgeID].judgeNameMessageID);
 }
 
 void Contest_BufferContestantTrainerName(Contest *contest, int contestantEntryNum, StringTemplate *strTemplate, u32 idx)
 {
     int contestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
-    StringTemplate_SetString(strTemplate, idx, contest->unk_00.trainerNames[contestantID], contest->unk_00.trainerGenders[contestantID], 1, GAME_LANGUAGE);
+    StringTemplate_SetString(strTemplate, idx, contest->data.trainerNames[contestantID], contest->data.trainerGenders[contestantID], 1, GAME_LANGUAGE);
 }
 
 void Contest_BufferMonNickname(Contest *contest, int contestantEntryNum, StringTemplate *strTemplate, u32 idx)
 {
     BoxPokemon *boxMon;
     int contestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
-    boxMon = Pokemon_GetBoxPokemon(contest->unk_00.contestMons[contestantID]);
+    boxMon = Pokemon_GetBoxPokemon(contest->data.contestMons[contestantID]);
 
     StringTemplate_SetNickname(strTemplate, idx, boxMon);
 }
 
 void Contest_BufferContestRank(Contest *contest, StringTemplate *strTemplate, u32 idx)
 {
-    u32 contestRankMessageID = Contest_GetContestRankTitleMessageID(contest->unk_00.contestRank, contest->unk_00.competitionType, contest->isLinkContest);
+    u32 contestRankMessageID = Contest_GetContestRankTitleMessageID(contest->data.contestRank, contest->data.competitionType, contest->isLinkContest);
     StringTemplate_SetContestRankName(strTemplate, idx, contestRankMessageID);
 }
 
 void Contest_BufferContestType(Contest *contest, StringTemplate *strTemplate, u32 idx)
 {
-    u32 contestTypeMessageID = Contest_GetFullContestTypeMessageID(contest->unk_00.contestType, contest->unk_00.competitionType);
+    u32 contestTypeMessageID = Contest_GetFullContestTypeMessageID(contest->data.contestType, contest->data.competitionType);
     StringTemplate_SetContestTypeName(strTemplate, idx, contestTypeMessageID);
 }
 
-void Contest_BufferWinningContestantTrainerName(Contest *contest, StringTemplate *strTemplate, u32 param2)
+void Contest_BufferWinningContestantTrainerName(Contest *contest, StringTemplate *strTemplate, u32 idx)
 {
     int i;
 
     for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        if (contest->unk_00.unk_118[i].contestPlacement == 0) {
+        if (contest->data.results[i].contestPlacement == CONTEST_PLACEMENT_FIRST) {
             break;
         }
     }
@@ -1163,7 +1139,7 @@ void Contest_BufferWinningContestantTrainerName(Contest *contest, StringTemplate
     int contestantID = i;
     int contestantEntryNum = Contest_ContestantIDToContestantEntryNum(contestantID);
 
-    Contest_BufferContestantTrainerName(contest, contestantEntryNum, strTemplate, param2);
+    Contest_BufferContestantTrainerName(contest, contestantEntryNum, strTemplate, idx);
 }
 
 void Contest_BufferWinningContestantMonName(Contest *contest, StringTemplate *strTemplate, u32 idx)
@@ -1172,7 +1148,7 @@ void Contest_BufferWinningContestantMonName(Contest *contest, StringTemplate *st
     int i;
 
     for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        if (contest->unk_00.unk_118[i].contestPlacement == 0) {
+        if (contest->data.results[i].contestPlacement == CONTEST_PLACEMENT_FIRST) {
             break;
         }
     }
@@ -1212,7 +1188,7 @@ BOOL Contest_IsSyncState(Contest *contest, u8 syncState)
 
 int Contest_GetPlayerContestPlacement(Contest *contest)
 {
-    return contest->unk_00.unk_118[contest->unk_00.playerContestantID].contestPlacement;
+    return contest->data.results[contest->data.playerContestantID].contestPlacement;
 }
 
 int Contest_GetWinningContestantEntryNum(Contest *contest)
@@ -1220,7 +1196,7 @@ int Contest_GetWinningContestantEntryNum(Contest *contest)
     int contestantID;
 
     for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
-        if (contest->unk_00.unk_118[contestantID].contestPlacement == 0) {
+        if (contest->data.results[contestantID].contestPlacement == CONTEST_PLACEMENT_FIRST) {
             return Contest_ContestantIDToContestantEntryNum(contestantID);
         }
     }
@@ -1230,13 +1206,13 @@ int Contest_GetWinningContestantEntryNum(Contest *contest)
 
 int Contest_GetPlayerContestantEntryNum(Contest *contest)
 {
-    return Contest_ContestantIDToContestantEntryNum(contest->unk_00.playerContestantID);
+    return Contest_ContestantIDToContestantEntryNum(contest->data.playerContestantID);
 }
 
 int Contest_GetContestantObjEventGFX(Contest *contest, int contestantEntryNum)
 {
     int contestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
-    int contestantObjEventGFX = contest->unk_00.contestantObjEventGFX[contestantID];
+    int contestantObjEventGFX = contest->data.contestantObjEventGFX[contestantID];
 
     return contestantObjEventGFX;
 }
@@ -1244,7 +1220,7 @@ int Contest_GetContestantObjEventGFX(Contest *contest, int contestantEntryNum)
 int Contest_GetContestantMonContestFame(Contest *contest, int contestantEntryNum)
 {
     int ContestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
-    return contest->unk_00.monContestFame[ContestantID];
+    return contest->data.monContestFame[ContestantID];
 }
 
 int Contest_GetContestMode(Contest *contest)
@@ -1262,9 +1238,9 @@ int Contest_GetContestMode(Contest *contest)
 
 void Contest_GetContestInfo(Contest *contest, u16 *contestRank, u16 *contestType, u16 *competitionType, u16 *monPartySlot)
 {
-    *contestRank = contest->unk_00.contestRank;
-    *contestType = contest->unk_00.contestType;
-    *competitionType = contest->unk_00.competitionType;
+    *contestRank = contest->data.contestRank;
+    *contestType = contest->data.contestType;
+    *competitionType = contest->data.competitionType;
     *monPartySlot = contest->monPartySlot;
 }
 
@@ -1280,7 +1256,7 @@ void Contest_LockTextSpeed(Contest *contest)
 
 BOOL Contest_CheckPlayerMonHasRibbon(Contest *contest)
 {
-    u32 monDataRibbon = CalcMonDataRibbon(contest->unk_00.contestRank, contest->unk_00.contestType);
+    u32 monDataRibbon = CalcMonDataRibbon(contest->data.contestRank, contest->data.contestType);
 
     if (Pokemon_GetValue(contest->playerMon, monDataRibbon, NULL) == FALSE) {
         return FALSE;
@@ -1293,21 +1269,21 @@ void Contest_SetRibbonName(Contest *contest, StringTemplate *string, u32 idx, in
 {
     u32 ribbonID, ribbon;
 
-    switch (contest->unk_00.contestType) {
+    switch (contest->data.contestType) {
     case CONTEST_TYPE_COOL:
-        ribbonID = RIBBON_COOL + contest->unk_00.contestRank;
+        ribbonID = RIBBON_COOL + contest->data.contestRank;
         break;
     case CONTEST_TYPE_BEAUTY:
-        ribbonID = RIBBON_BEAUTY + contest->unk_00.contestRank;
+        ribbonID = RIBBON_BEAUTY + contest->data.contestRank;
         break;
     case CONTEST_TYPE_CUTE:
-        ribbonID = RIBBON_CUTE + contest->unk_00.contestRank;
+        ribbonID = RIBBON_CUTE + contest->data.contestRank;
         break;
     case CONTEST_TYPE_SMART:
-        ribbonID = RIBBON_SMART + contest->unk_00.contestRank;
+        ribbonID = RIBBON_SMART + contest->data.contestRank;
         break;
     case CONTEST_TYPE_TOUGH:
-        ribbonID = RIBBON_TOUGH + contest->unk_00.contestRank;
+        ribbonID = RIBBON_TOUGH + contest->data.contestRank;
         break;
     default:
         GF_ASSERT(FALSE);
@@ -1322,13 +1298,13 @@ u32 Contest_CalcFirstTimeVictoryAccessoryReward(Contest *contest)
 {
     u32 accessoryID = ACCESSORY_COUNT;
 
-    if (contest->unk_00.unk_118[contest->unk_00.playerContestantID].contestPlacement > 0) {
-        return 0xffff;
+    if (contest->data.results[contest->data.playerContestantID].contestPlacement > CONTEST_PLACEMENT_FIRST) {
+        return CONTEST_NO_ACCESSORY_REWARD;
     }
 
-    switch (contest->unk_00.contestType) {
+    switch (contest->data.contestType) {
     case CONTEST_TYPE_COOL:
-        switch (contest->unk_00.contestRank) {
+        switch (contest->data.contestRank) {
         case CONTEST_RANK_NORMAL:
             accessoryID = ACCESSORY_RED_BARRETTE;
             break;
@@ -1344,7 +1320,7 @@ u32 Contest_CalcFirstTimeVictoryAccessoryReward(Contest *contest)
         }
         break;
     case CONTEST_TYPE_BEAUTY:
-        switch (contest->unk_00.contestRank) {
+        switch (contest->data.contestRank) {
         case CONTEST_RANK_NORMAL:
             accessoryID = ACCESSORY_BLUE_BARRETTE;
             break;
@@ -1360,7 +1336,7 @@ u32 Contest_CalcFirstTimeVictoryAccessoryReward(Contest *contest)
         }
         break;
     case CONTEST_TYPE_CUTE:
-        switch (contest->unk_00.contestRank) {
+        switch (contest->data.contestRank) {
         case CONTEST_RANK_NORMAL:
             accessoryID = ACCESSORY_PINK_BARRETTE;
             break;
@@ -1376,7 +1352,7 @@ u32 Contest_CalcFirstTimeVictoryAccessoryReward(Contest *contest)
         }
         break;
     case CONTEST_TYPE_SMART:
-        switch (contest->unk_00.contestRank) {
+        switch (contest->data.contestRank) {
         case CONTEST_RANK_NORMAL:
             accessoryID = ACCESSORY_GREEN_BARRETTE;
             break;
@@ -1392,7 +1368,7 @@ u32 Contest_CalcFirstTimeVictoryAccessoryReward(Contest *contest)
         }
         break;
     case CONTEST_TYPE_TOUGH:
-        switch (contest->unk_00.contestRank) {
+        switch (contest->data.contestRank) {
         case CONTEST_RANK_NORMAL:
             accessoryID = ACCESSORY_YELLOW_BARRETTE;
             break;
@@ -1415,7 +1391,7 @@ u32 Contest_CalcFirstTimeVictoryAccessoryReward(Contest *contest)
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
     if (!FashionCase_CanFitAccessoryCount(fashionCase, accessoryID, 1)) {
-        return 0xffff;
+        return CONTEST_NO_ACCESSORY_REWARD;
     }
 
     return accessoryID;
@@ -1431,12 +1407,12 @@ void Contest_StartCameraFlashTask(Contest *contest, int contestantEntryNum)
     MI_CpuClear8(cameraFlashTask, sizeof(ContestCameraFlashTask));
     cameraFlashTask->contestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
 
-    int varianceIndex = contest->unk_00.unk_FC[cameraFlashTask->contestantID] & 1;
+    int varianceIndex = contest->data.npcSkillLevels[cameraFlashTask->contestantID] & 1;
 
     if (contest->isLinkContest == TRUE) {
         cameraFlashTask->cameraFlashFrameDelays = sLinkMasterRankCameraFrameDelays[varianceIndex];
     } else {
-        switch (contest->unk_00.contestRank) {
+        switch (contest->data.contestRank) {
         case CONTEST_RANK_NORMAL:
             cameraFlashTask->cameraFlashFrameDelays = sNormalRankCameraFrameDelays[varianceIndex];
             break;
@@ -1462,9 +1438,9 @@ BOOL Contest_CameraFlashTaskDone(Contest *contest)
     return contest->cameraFlashTask == NULL;
 }
 
-static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam)
+static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *param)
 {
-    Contest *contest = contestParam;
+    Contest *contest = param;
     ContestCameraFlashTask *cameraFlashTask = contest->cameraFlashTask;
 
     if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
@@ -1472,7 +1448,7 @@ static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam)
     }
 
     switch (cameraFlashTask->state) {
-    case 0:
+    case CAMERA_FLASH_STATE_FLASH:
         cameraFlashTask->frameCounter++;
 
         if (cameraFlashTask->frameCounter > cameraFlashTask->cameraFlashFrameDelays[cameraFlashTask->flashCounter]) {
@@ -1494,13 +1470,13 @@ static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam)
     }
 }
 
-void sub_02094BB4(Contest *contest, int *destWinningContestantEntryNum, BOOL *destIsLinkContest, int *param3, BOOL *destIsPracticeCompetition, int *param5)
+void Contest_GetAwardCeremonyConditions(Contest *contest, int *destWinningContestantEntryNum, BOOL *destIsLinkContest, BOOL *destIsNPCWinner, BOOL *destIsPracticeCompetition, BOOL *destIsSingleCompetition)
 {
     int winningContestantID;
     int contestantID;
 
     for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
-        if (contest->unk_00.unk_118[contestantID].contestPlacement == 0) {
+        if (contest->data.results[contestantID].contestPlacement == CONTEST_PLACEMENT_FIRST) {
             break;
         }
     }
@@ -1510,16 +1486,16 @@ void sub_02094BB4(Contest *contest, int *destWinningContestantEntryNum, BOOL *de
     *destWinningContestantEntryNum = Contest_ContestantIDToContestantEntryNum(winningContestantID);
     *destIsLinkContest = contest->isLinkContest;
 
-    if (winningContestantID >= contest->unk_00.connectionCount) {
-        *param3 = 1;
+    if (winningContestantID >= contest->data.connectionCount) {
+        *destIsNPCWinner = TRUE;
     } else {
-        *param3 = 0;
+        *destIsNPCWinner = FALSE;
     }
 
     *destIsPracticeCompetition = FALSE;
-    *param5 = 0;
+    *destIsSingleCompetition = FALSE;
 
-    switch (contest->unk_00.competitionType) {
+    switch (contest->data.competitionType) {
     case CONTEST_COMPETITION_PRACTICE_VISUAL:
     case CONTEST_COMPETITION_PRACTICE_DANCE:
     case CONTEST_COMPETITION_PRACTICE_ACTING:
@@ -1528,7 +1504,7 @@ void sub_02094BB4(Contest *contest, int *destWinningContestantEntryNum, BOOL *de
     case CONTEST_COMPETITION_VISUAL:
     case CONTEST_COMPETITION_DANCE:
     case CONTEST_COMPETITION_ACTING:
-        *param5 = 1;
+        *destIsSingleCompetition = TRUE;
         break;
     }
 }
@@ -1537,7 +1513,7 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
 {
     BOOL ribbonWon = FALSE;
 
-    switch (contest->unk_00.competitionType) {
+    switch (contest->data.competitionType) {
     case CONTEST_COMPETITION_PRACTICE_VISUAL:
     case CONTEST_COMPETITION_VISUAL:
     case CONTEST_COMPETITION_PRACTICE_DANCE:
@@ -1550,30 +1526,30 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
     if (contest->isLinkContest == FALSE) {
         VarsFlags *varsFlags = SaveData_GetVarsFlags(contest->saveData);
 
-        if (contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL && contest->unk_00.contestRank >= CONTEST_RANK_MASTER && Contest_GetPlayerContestPlacement(contest) == 0
-            && SystemFlag_CheckContestMaster(varsFlags, contest->unk_00.contestType) == FALSE) {
-            SystemFlag_SetContestMaster(varsFlags, contest->unk_00.contestType);
+        if (contest->data.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL && contest->data.contestRank >= CONTEST_RANK_MASTER && Contest_GetPlayerContestPlacement(contest) == CONTEST_PLACEMENT_FIRST
+            && SystemFlag_CheckContestMaster(varsFlags, contest->data.contestType) == FALSE) {
+            SystemFlag_SetContestMaster(varsFlags, contest->data.contestType);
         }
 
-        if (Contest_GetPlayerContestPlacement(contest) == 0) {
-            u8 v3 = 1;
-            int monDataRibbon = CalcMonDataRibbon(contest->unk_00.contestRank, contest->unk_00.contestType);
+        if (Contest_GetPlayerContestPlacement(contest) == CONTEST_PLACEMENT_FIRST) {
+            u8 hasRibbon = TRUE;
+            int monDataRibbon = CalcMonDataRibbon(contest->data.contestRank, contest->data.contestType);
 
             if (Pokemon_GetValue(contest->playerMon, monDataRibbon, NULL) == 0) {
                 ribbonWon = TRUE;
             }
 
-            Pokemon_SetValue(contest->playerMon, monDataRibbon, &v3);
+            Pokemon_SetValue(contest->playerMon, monDataRibbon, &hasRibbon);
             sub_0206DDB8(contest->saveData, contest->playerMon, monDataRibbon);
         }
 
         TVBroadcast *broadcast = SaveData_GetTVBroadcast(contest->saveData);
-        TVBroadcast_SetContestHallShowInfo(broadcast, contest->playerMon, contest->unk_00.contestType, contest->unk_00.contestRank, contest->unk_00.unk_118[contest->unk_00.playerContestantID].contestPlacement + 1);
+        TVBroadcast_SetContestHallShowInfo(broadcast, contest->playerMon, contest->data.contestType, contest->data.contestRank, contest->data.results[contest->data.playerContestantID].contestPlacement + 1);
 
         GameRecords *gameRecords = SaveData_GetGameRecords(contest->saveData);
         GameRecords_IncrementRecordValue(gameRecords, RECORD_SUPER_CONTEST_PARTICIPATIONS);
 
-        if (Contest_GetPlayerContestPlacement(contest) == 0) {
+        if (Contest_GetPlayerContestPlacement(contest) == CONTEST_PLACEMENT_FIRST) {
             GameRecords_IncrementRecordValue(gameRecords, RECORD_OFFICIAL_CONTEST_WINS);
             GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_WIN_OFFICIAL_CONTEST);
         }
@@ -1584,46 +1560,46 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
 
         Pokedex *pokedex = SaveData_GetPokedex(contest->saveData);
 
-        for (int i = contest->unk_00.connectionCount; i < CONTEST_NUM_PARTICIPANTS; i++) {
-            Pokedex_Encounter(pokedex, contest->unk_00.contestMons[i]);
+        for (int i = contest->data.connectionCount; i < CONTEST_NUM_PARTICIPANTS; i++) {
+            Pokedex_Encounter(pokedex, contest->data.contestMons[i]);
         }
     } else {
-        LinkContestRecords_IncrementSavaData(contest->saveData, contest->unk_00.contestType, contest->unk_00.unk_118[contest->unk_00.playerContestantID].contestPlacement);
+        LinkContestRecords_IncrementSavaData(contest->saveData, contest->data.contestType, contest->data.results[contest->data.playerContestantID].contestPlacement);
 
         GameRecords *records = SaveData_GetGameRecords(contest->saveData);
         GameRecords_IncrementRecordValue(records, RECORD_LINK_CONTEST_PARTICIPATIONS);
 
-        if (Contest_GetPlayerContestPlacement(contest) == 0) {
+        if (Contest_GetPlayerContestPlacement(contest) == CONTEST_PLACEMENT_FIRST) {
             GameRecords_IncrementRecordValue(records, RECORD_LINK_CONTEST_WINS);
             GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_WIN_LINK_CONTEST);
         }
 
-        void *journalEntryOnlineEvent = JournalEntry_CreateEventPlacedInContest(contest->unk_00.unk_118[contest->unk_00.playerContestantID].contestPlacement + 1, HEAP_ID_FIELD2);
+        void *journalEntryOnlineEvent = JournalEntry_CreateEventPlacedInContest(contest->data.results[contest->data.playerContestantID].contestPlacement + 1, HEAP_ID_FIELD2);
         JournalEntry *unused = SaveData_GetJournal(contest->saveData);
 
         JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }
 
-    if (Contest_GetPlayerContestPlacement(contest) == 0) {
+    if (Contest_GetPlayerContestPlacement(contest) == CONTEST_PLACEMENT_FIRST) {
         ImageClips *imageClips = SaveData_GetImageClips(contest->saveData);
-        UnkStruct_02029C88 *v12 = sub_02029CD0(imageClips, contest->unk_00.contestType);
+        ContestPhoto *savedPhoto = ImageClips_GetContestPhoto(imageClips, contest->data.contestType);
 
-        sub_0202A25C(v12);
-        sub_0202A390(v12, contest->unk_00.unk_E8[contest->unk_00.playerContestantID]);
-        sub_0202A240(v12);
+        ContestPhoto_Init(savedPhoto);
+        ContestPhoto_Copy(savedPhoto, contest->data.photos[contest->data.playerContestantID]);
+        ContestPhoto_SetMagic(savedPhoto);
     }
 
-    if (Contest_GetPlayerContestPlacement(contest) == 0) {
+    if (Contest_GetPlayerContestPlacement(contest) == CONTEST_PLACEMENT_FIRST) {
         Pokemon_UpdateFriendship(contest->playerMon, FRIENDSHIP_EVENT_CONTEST_WIN, mapID);
     }
 }
 
-static void Contest_SetLCRNGSeed(Contest *contest)
+static void Contest_SetLCRNGSeed(Contest *unused)
 {
     LCRNG_SetSeed((GetSecondsSinceMidnight() * (LCRNG_GetSeed() + 10)) & 0xffff);
 }
 
-u16 Contest_GetRNGNext(Contest *contest)
+u16 Contest_GetRNGNext(Contest *unused)
 {
     return LCRNG_Next();
 }
@@ -1636,10 +1612,10 @@ u16 Contest_GetSeededRNGNext(u32 seed, u32 *destRNGVal)
     return rngVal / LCRNG_DIVISOR;
 }
 
-static void sub_02094EB4(Contest *contest, int contestantID, UnkStruct_ov6_02248DD8 *param2)
+static void Contest_GetContestantLinkInfo(Contest *contest, int contestantID, ContestantLinkInfo *destLinkInfo)
 {
-    param2->trainerGender = contest->unk_00.trainerGenders[contestantID];
-    param2->unk_01 = contest->unk_00.unk_FC[contestantID];
-    param2->monContestFame = contest->unk_00.monContestFame[contestantID];
-    param2->contestantObjEventGFX = contest->unk_00.contestantObjEventGFX[contestantID];
+    destLinkInfo->trainerGender = contest->data.trainerGenders[contestantID];
+    destLinkInfo->npcSkillLevel = contest->data.npcSkillLevels[contestantID];
+    destLinkInfo->monContestFame = contest->data.monContestFame[contestantID];
+    destLinkInfo->contestantObjEventGFX = contest->data.contestantObjEventGFX[contestantID];
 }

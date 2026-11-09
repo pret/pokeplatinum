@@ -74,7 +74,7 @@ static void ov22_0225B480(UnkStruct_ov22_0225B1BC *param0);
 static void ov22_0225B490(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_0225B4E4 *param1);
 static void ov22_0225B4E4(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_ov22_0225AF8C *param1);
 static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const DressUpPhoto *photo);
-static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C88 *param1);
+static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const ContestPhoto *param1);
 static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, enum HeapID heapID);
 static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, enum HeapID heapID);
 
@@ -88,7 +88,7 @@ UnkStruct_ov22_0225B1BC *ov22_0225AF8C(const UnkStruct_ov22_0225AF8C *param0, co
     return ov22_0225B1BC(&v0);
 }
 
-UnkStruct_ov22_0225B1BC *ov22_0225AFB0(const UnkStruct_ov22_0225AF8C *param0, const UnkStruct_02029C88 *param1)
+UnkStruct_ov22_0225B1BC *ov22_0225AFB0(const UnkStruct_ov22_0225AF8C *param0, const ContestPhoto *param1)
 {
     UnkStruct_ov22_0225B4E4 v0;
 
@@ -98,7 +98,7 @@ UnkStruct_ov22_0225B1BC *ov22_0225AFB0(const UnkStruct_ov22_0225AF8C *param0, co
     return ov22_0225B1BC(&v0);
 }
 
-UnkStruct_ov22_0225B1BC *ov22_0225AFD4(const UnkStruct_ov22_0225AF8C *param0, const UnkStruct_02029C88 *param1)
+UnkStruct_ov22_0225B1BC *ov22_0225AFD4(const UnkStruct_ov22_0225AF8C *param0, const ContestPhoto *param1)
 {
     UnkStruct_ov22_0225B4E4 v0;
 
@@ -359,7 +359,7 @@ static void ov22_0225B388(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
         s8 v9;
 
         for (v5 = 0; v5 < param1->unk_54; v5++) {
-            v8 = sub_0202A624(param1->unk_04[v5]);
+            v8 = PhotoAccessory_GetAccessoryID(param1->unk_04[v5]);
             v6 = PhotoAccessory_GetXPos(param1->unk_04[v5]);
             v7 = PhotoAccessory_GetYPos(param1->unk_04[v5]);
             v9 = PhotoAccessory_GetPriority(param1->unk_04[v5]);
@@ -416,31 +416,31 @@ static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const DressUpPhoto *p
     param0->photoMon = DressUpPhoto_GetPhotoMon(photo);
     param0->unk_54 = 0;
 
-    for (i = 0; i < (11 - 1); i++) {
-        if (sub_0202A110(photo, i)) {
-            param0->unk_04[param0->unk_54] = sub_0202A150(photo, i);
+    for (i = 0; i < PHOTO_ACCESSORY_COUNT; i++) {
+        if (DressUpPhoto_HasAccessory(photo, i)) {
+            param0->unk_04[param0->unk_54] = DressUpPhoto_GetAccessory(photo, i);
             param0->unk_54++;
         }
     }
 
-    param0->unk_5C = sub_0202A1DC(photo);
+    param0->unk_5C = DressUpPhoto_GetBackdrop(photo);
 }
 
-static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C88 *param1)
+static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const ContestPhoto *param1)
 {
     int v0;
 
-    param0->photoMon = sub_0202A4D8(param1);
+    param0->photoMon = ContestPhoto_GetPhotoMon(param1);
     param0->unk_54 = 0;
 
-    for (v0 = 0; v0 < (21 - 1); v0++) {
-        if (sub_0202A488(param1, v0)) {
-            param0->unk_04[param0->unk_54] = sub_0202A4F0(param1, v0);
+    for (v0 = 0; v0 < CONTEST_PHOTO_ACCESSORY_COUNT; v0++) {
+        if (ContestPhoto_HasAccessory(param1, v0)) {
+            param0->unk_04[param0->unk_54] = ContestPhoto_GetAccessory(param1, v0);
             param0->unk_54++;
         }
     }
 
-    param0->unk_5C = sub_0202A5B8(param1);
+    param0->unk_5C = ContestPhoto_GetBackdrop(param1);
 }
 
 static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, enum HeapID heapID)
@@ -457,7 +457,7 @@ static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
     int v3;
 
     for (v0 = 0; v0 < param2->unk_54; v0++) {
-        v3 = sub_0202A624(param2->unk_04[v0]);
+        v3 = PhotoAccessory_GetAccessoryID(param2->unk_04[v0]);
         v1 = v3;
 
         if (ResourceCollection_IsIDUnused(param1->unk_10, v1) == 1) {

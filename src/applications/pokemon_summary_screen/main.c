@@ -1940,7 +1940,7 @@ static void UpdateAppealHearts(PokemonSummaryScreen *summaryScreen, u32 move)
 
     if (move != SUMMARY_MOVE_NONE) {
         effect = MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT);
-        numHearts = sub_02095734(effect) / POINTS_PER_APPEAL_HEART;
+        numHearts = Contest_GetMoveEffectAppeal(effect) / POINTS_PER_APPEAL_HEART;
 
         for (i = 0; i < numHearts; i++) {
             DrawAppealHeart(summaryScreen, FILLED_HEART_BASE_TILE, i);

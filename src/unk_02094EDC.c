@@ -5,6 +5,7 @@
 
 #include "constants/contests.h"
 #include "generated/move_contest_effects.h"
+#include "generated/natures.h"
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
@@ -31,383 +32,314 @@
 #include "res/text/bank/contest_effects.h"
 #include "res/text/bank/contest_text.h"
 
-const UnkStruct_020F568C Unk_020F568C[CONTEST_EFFECT_MAX] = {
+static const ContestEffectData sContestEffects[CONTEST_EFFECT_MAX] = {
     [CONTEST_EFFECT_NONE] = {
-        0x0,
-        0x0,
-        0x0,
+        .lineOneEffectMessageID = 0,
+        .lineTwoEffectMessageID = 0,
+        .appeal = 0,
     },
     [CONTEST_EFFECT_FIRST_NEXT_TURN] = {
-        ContestEffects_Text_PerformFirst,
-        ContestEffects_Text_NextTurn1,
-        0x14,
-        0x0,
-        0x2,
-        0x1,
-        0x7,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_PerformFirst,
+        .lineTwoEffectMessageID = ContestEffects_Text_NextTurn1,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 0, .format = 2 },
+            { .messageID = 1, .format = 7 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_LAST_NEXT_TURN] = {
-        ContestEffects_Text_PerformLast,
-        ContestEffects_Text_NextTurn2,
-        0x14,
-        0x2,
-        0x2,
-        0x3,
-        0x7,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_PerformLast,
+        .lineTwoEffectMessageID = ContestEffects_Text_NextTurn2,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 2, .format = 2 },
+            { .messageID = 3, .format = 7 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_DOUBLED_JUDGE] = {
-        ContestEffects_Text_EachDoubled,
-        ContestEffects_Text_JudgePlusTwo,
-        0x0,
-        0x4,
-        0x2,
-        0x5,
-        0x2,
-        0x6,
-        0x2,
-        0x7,
-        0x2,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_EachDoubled,
+        .lineTwoEffectMessageID = ContestEffects_Text_JudgePlusTwo,
+        .appeal = 0,
+        .actingMessages = {
+            { .messageID = 4, .format = 2 },
+            { .messageID = 5, .format = 2 },
+            { .messageID = 6, .format = 2 },
+            { .messageID = 7, .format = 2 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_2_HEARTS_WHEN_VOLTAGE_UP] = {
-        ContestEffects_Text_IfTheVoltage,
-        ContestEffects_Text_GoesUpPlusTwo,
-        0x14,
-        0x8,
-        0x8,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_IfTheVoltage,
+        .lineTwoEffectMessageID = ContestEffects_Text_GoesUpPlusTwo,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 8, .format = 8 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_BASIC] = {
-        ContestEffects_Text_BasicAct,
-        ContestEffects_Text_Unused,
-        0x1E,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_BasicAct,
+        .lineTwoEffectMessageID = ContestEffects_Text_Unused,
+        .appeal = 30,
+        .actingMessages = {
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_UNIQUE_JUDGE] = {
-        ContestEffects_Text_IfJudgesAre,
-        ContestEffects_Text_NotDoubledPlusThree,
-        0xA,
-        0x9,
-        0x2,
-        0xA,
-        0x2,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xB,
-        0x2,
+        .lineOneEffectMessageID = ContestEffects_Text_IfJudgesAre,
+        .lineTwoEffectMessageID = ContestEffects_Text_NotDoubledPlusThree,
+        .appeal = 10,
+        .actingMessages = {
+            { .messageID = 9, .format = 2 },
+            { .messageID = 10, .format = 2 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = 11, .format = 2 },
+        },
     },
     [CONTEST_EFFECT_CONSECUTIVE_USE] = {
-        ContestEffects_Text_PerformableTwo,
-        ContestEffects_Text_TurnsInARow,
-        0x14,
-        0xC,
-        0x2,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_PerformableTwo,
+        .lineTwoEffectMessageID = ContestEffects_Text_TurnsInARow,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 12, .format = 2 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_VOLTAGE] = {
-        ContestEffects_Text_VoltagePts,
-        ContestEffects_Text_AreAdded,
-        0x0,
-        0xD,
-        0x5,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_VoltagePts,
+        .lineTwoEffectMessageID = ContestEffects_Text_AreAdded,
+        .appeal = 0,
+        .actingMessages = {
+            { .messageID = 13, .format = 5 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_ALL_SAME_JUDGE] = {
-        ContestEffects_Text_IfAllChoose,
-        ContestEffects_Text_SameJudgePlusFifteen,
-        0x0,
-        0xE,
-        0x2,
-        0xF,
-        0x2,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0x10,
-        0x2,
+        .lineOneEffectMessageID = ContestEffects_Text_IfAllChoose,
+        .lineTwoEffectMessageID = ContestEffects_Text_SameJudgePlusFifteen,
+        .appeal = 0,
+        .actingMessages = {
+            { .messageID = 14, .format = 2 },
+            { .messageID = 15, .format = 2 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = 16, .format = 2 },
+        },
     },
     [CONTEST_EFFECT_LOWERS_VOLTAGE] = {
-        ContestEffects_Text_LowersVoltage,
-        ContestEffects_Text_OfJudgesByOne,
-        0x14,
-        0x11,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_LowersVoltage,
+        .lineTwoEffectMessageID = ContestEffects_Text_OfJudgesByOne,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 17, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_DOUBLE_NEXT_TURN] = {
-        ContestEffects_Text_DoubleScoreIn,
-        ContestEffects_Text_NextTurn3,
-        0x0,
-        0x12,
-        0x9,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_DoubleScoreIn,
+        .lineTwoEffectMessageID = ContestEffects_Text_NextTurn3,
+        .appeal = 0,
+        .actingMessages = {
+            { .messageID = 18, .format = 9 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_STEAL_VOLTAGE] = {
-        ContestEffects_Text_GetVoltage,
-        ContestEffects_Text_FromOneAhead,
-        0x0,
-        0x13,
-        0x7,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_GetVoltage,
+        .lineTwoEffectMessageID = ContestEffects_Text_FromOneAhead,
+        .appeal = 0,
+        .actingMessages = {
+            { .messageID = 19, .format = 7 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_SUPPRESS_VOLTAGE] = {
-        ContestEffects_Text_NoVoltageUp,
-        ContestEffects_Text_ThisTurn1,
-        0x14,
-        0x14,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_NoVoltageUp,
+        .lineTwoEffectMessageID = ContestEffects_Text_ThisTurn1,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 20, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_RANDOM_ORDER] = {
-        ContestEffects_Text_RandomOrder,
-        ContestEffects_Text_NextTurn4,
-        0x14,
-        0x15,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_RandomOrder,
+        .lineTwoEffectMessageID = ContestEffects_Text_NextTurn4,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 21, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_DOUBLE_FINAL_ACT] = {
-        ContestEffects_Text_DoubleScore,
-        ContestEffects_Text_ForFinalAct,
-        0x14,
-        0x16,
-        0x9,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_DoubleScore,
+        .lineTwoEffectMessageID = ContestEffects_Text_ForFinalAct,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 22, .format = 9 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_LOW_VOLTAGE_ADVANTAGE] = {
-        ContestEffects_Text_HighScoreFor1,
-        ContestEffects_Text_LowVoltage,
-        0x0,
-        0x17,
-        0x5,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_HighScoreFor1,
+        .lineTwoEffectMessageID = ContestEffects_Text_LowVoltage,
+        .appeal = 0,
+        .actingMessages = {
+            { .messageID = 23, .format = 5 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_FIRST_PERFORMANCE_ADVANTAGE] = {
-        ContestEffects_Text_IfFirst,
-        ContestEffects_Text_PerformancePlusTwo1,
-        0x14,
-        0x18,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_IfFirst,
+        .lineTwoEffectMessageID = ContestEffects_Text_PerformancePlusTwo1,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 24, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_FINAL_PERFORMANCE_ADVANTAGE] = {
-        ContestEffects_Text_IfFinal,
-        ContestEffects_Text_PerformancePlusTwo2,
-        0x14,
-        0x19,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_IfFinal,
+        .lineTwoEffectMessageID = ContestEffects_Text_PerformancePlusTwo2,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 25, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_NO_VOLTAGE_DOWN] = {
-        ContestEffects_Text_NoVoltageDown,
-        ContestEffects_Text_ThisTurn2,
-        0x14,
-        0x1A,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_NoVoltageDown,
+        .lineTwoEffectMessageID = ContestEffects_Text_ThisTurn2,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 26, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_TWO_VOLTAGE_IN_A_ROW_ADVANTAGE] = {
-        ContestEffects_Text_IfVoltageGoes,
-        ContestEffects_Text_UpInARowPlusThree,
-        0xA,
-        0x1B,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_IfVoltageGoes,
+        .lineTwoEffectMessageID = ContestEffects_Text_UpInARowPlusThree,
+        .appeal = 10,
+        .actingMessages = {
+            { .messageID = 27, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_HIGH_SCORE_LATER_TURN] = {
-        ContestEffects_Text_HighScoreFor2,
-        ContestEffects_Text_ALaterTurn,
-        0x0,
-        0x1C,
-        0x2,
-        0x1D,
-        0x2,
-        0x1E,
-        0x2,
-        0x1F,
-        0x2,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_HighScoreFor2,
+        .lineTwoEffectMessageID = ContestEffects_Text_ALaterTurn,
+        .appeal = 0,
+        .actingMessages = {
+            { .messageID = 28, .format = 2 },
+            { .messageID = 29, .format = 2 },
+            { .messageID = 30, .format = 2 },
+            { .messageID = 31, .format = 2 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_MAX_VOLTAGE_ADVANTAGE] = {
-        ContestEffects_Text_AfterVoltage,
-        ContestEffects_Text_HitsMaxPlusThree,
-        0x14,
-        0x20,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_AfterVoltage,
+        .lineTwoEffectMessageID = ContestEffects_Text_HitsMaxPlusThree,
+        .appeal = 20,
+        .actingMessages = {
+            { .messageID = 32, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
     [CONTEST_EFFECT_PITY_POINTS] = {
-        ContestEffects_Text_IfRatedThe,
-        ContestEffects_Text_WorstPlusThree,
-        0xA,
-        0x21,
-        0x2,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
-        0xffff,
-        0x0,
+        .lineOneEffectMessageID = ContestEffects_Text_IfRatedThe,
+        .lineTwoEffectMessageID = ContestEffects_Text_WorstPlusThree,
+        .appeal = 10,
+        .actingMessages = {
+            { .messageID = 33, .format = 2 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+            { .messageID = CONTEST_EFFECT_ACTING_MESSAGE_NONE, .format = 0 },
+        },
     },
 };
 
-BOOL sub_02094EDC(Contest *contest)
+BOOL Contest_IsPlayerHost(Contest *contest)
 {
-    if (contest->isLinkContest == FALSE || (contest->isLinkContest == TRUE && contest->unk_00.unk_10C == contest->unk_00.playerContestantID)) {
+    if (contest->isLinkContest == FALSE || (contest->isLinkContest == TRUE && contest->data.hostContestantID == contest->data.playerContestantID)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void sub_02094F04(Contest *contest, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int competitionType, BOOL isGameCompleted, BOOL isNatDexObtained)
+void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOpponents, enum PokemonContestType contestType, enum PokemonContestRank contestRank, enum ContestCompetition competitionType, BOOL isGameCompleted, BOOL isNatDexObtained)
 {
-    int v0, v1;
-    u8 *v2;
-    u8 v3 = 0;
-    u16 v4;
-    int v5 = 0;
-    int v6;
-    int v7, isPracticeCompetition;
-    UnkStruct_ov6_02248BE8 *v9;
-    int v10, v11;
-    UnkStruct_ov6_02248BE8 v12;
+    int i, j;
+    u8 *candidates;
+    u8 numCandidates = 0;
+    u16 candidateIdx;
+    BOOL isPostgame = FALSE;
+    int numOpponentEntries;
+    BOOL isSingleCompetition, isPracticeCompetition;
+    Contestant *opponentEntries;
+    int numGuests, guestIdx;
+    Contestant guest;
 
     isPracticeCompetition = FALSE;
-    v7 = FALSE;
+    isSingleCompetition = FALSE;
 
     switch (competitionType) {
     case CONTEST_COMPETITION_PRACTICE_VISUAL:
@@ -418,226 +350,226 @@ void sub_02094F04(Contest *contest, enum HeapID heapID, int param2, enum Pokemon
     case CONTEST_COMPETITION_VISUAL:
     case CONTEST_COMPETITION_DANCE:
     case CONTEST_COMPETITION_ACTING:
-        v7 = TRUE;
+        isSingleCompetition = TRUE;
         break;
     }
 
-    v9 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0, 0, heapID, 1);
-    v6 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0) / sizeof(UnkStruct_ov6_02248BE8);
-    v2 = Heap_AllocAtEnd(heapID, v6 + 1);
+    opponentEntries = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_OPPONENTS, FALSE, heapID, TRUE);
+    numOpponentEntries = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_OPPONENTS) / sizeof(Contestant);
+    candidates = Heap_AllocAtEnd(heapID, numOpponentEntries + 1);
 
     if (isGameCompleted == TRUE && isNatDexObtained == TRUE) {
-        v5 = 1;
+        isPostgame = TRUE;
     }
 
-    for (v0 = 0; v0 < v6; v0++) {
-        if (contestRank != v9[v0].unk_20_0) {
+    for (i = 0; i < numOpponentEntries; i++) {
+        if (contestRank != opponentEntries[i].rank) {
             continue;
         }
 
-        if (v5 == 1) {
-            if (v9[v0].unk_20_10 == 1) {
+        if (isPostgame == TRUE) {
+            if (opponentEntries[i].availability == 1) {
                 continue;
             }
         } else {
-            if ((v9[v0].unk_20_10 == 2) || (v9[v0].unk_20_10 == 3)) {
+            if ((opponentEntries[i].availability == 2) || (opponentEntries[i].availability == 3)) {
                 continue;
             }
         }
 
         if (isPracticeCompetition == TRUE) {
-            if (v9[v0].unk_20_9 == 0) {
+            if (opponentEntries[i].inPracticeCompetitions == 0) {
                 continue;
             }
-        } else if (v7 == 1) {
-            if (v9[v0].unk_20_8 == 0) {
+        } else if (isSingleCompetition == TRUE) {
+            if (opponentEntries[i].inSingleCompetitions == 0) {
                 continue;
             }
         } else {
-            if ((v9[v0].unk_20_9 == 1) || (v9[v0].unk_20_8 == 1)) {
+            if ((opponentEntries[i].inPracticeCompetitions == 1) || (opponentEntries[i].inSingleCompetitions == 1)) {
                 continue;
             }
         }
 
-        if (contestType == CONTEST_TYPE_COOL && v9[v0].unk_20_3
-            || contestType == CONTEST_TYPE_BEAUTY && v9[v0].unk_20_4
-            || contestType == CONTEST_TYPE_CUTE && v9[v0].unk_20_5
-            || contestType == CONTEST_TYPE_SMART && v9[v0].unk_20_6
-            || contestType == CONTEST_TYPE_TOUGH && v9[v0].unk_20_7) {
-            v2[v3++] = v0;
+        if (contestType == CONTEST_TYPE_COOL && opponentEntries[i].inCoolContests
+            || contestType == CONTEST_TYPE_BEAUTY && opponentEntries[i].inBeautyContests
+            || contestType == CONTEST_TYPE_CUTE && opponentEntries[i].inCuteContests
+            || contestType == CONTEST_TYPE_SMART && opponentEntries[i].inSmartContests
+            || contestType == CONTEST_TYPE_TOUGH && opponentEntries[i].inToughContests) {
+            candidates[numCandidates++] = i;
         }
     }
 
-    v2[v3] = 0xff;
+    candidates[numCandidates] = CONTEST_CANDIDATES_TERMINATOR;
 
-    if (v7 == 0) {
-        GF_ASSERT(v3 >= param2);
+    if (isSingleCompetition == FALSE) {
+        GF_ASSERT(numCandidates >= numOpponents);
 
-        v10 = 0;
+        numGuests = 0;
 
-        for (v0 = 0; v0 < v3; v0++) {
-            if (v9[v2[v0]].unk_20_10 == 3) {
-                v10++;
+        for (i = 0; i < numCandidates; i++) {
+            if (opponentEntries[candidates[i]].availability == 3) {
+                numGuests++;
             }
         }
 
-        if (v10 > 0) {
-            v11 = Contest_GetRNGNext(contest) % v10;
+        if (numGuests > 0) {
+            guestIdx = Contest_GetRNGNext(contest) % numGuests;
 
-            for (v0 = 0; v0 < v3; v0++) {
-                if (v9[v2[v0]].unk_20_10 == 3) {
-                    if (v11 == 0) {
-                        v12 = v9[v2[v0]];
+            for (i = 0; i < numCandidates; i++) {
+                if (opponentEntries[candidates[i]].availability == 3) {
+                    if (guestIdx == 0) {
+                        guest = opponentEntries[candidates[i]];
                         break;
                     } else {
-                        v11--;
+                        guestIdx--;
                     }
                 }
             }
         }
 
-        for (v0 = 4 - param2; v0 < 4; v0++) {
-            v4 = Contest_GetRNGNext(contest) % v3;
+        for (i = CONTEST_NUM_PARTICIPANTS - numOpponents; i < CONTEST_NUM_PARTICIPANTS; i++) {
+            candidateIdx = Contest_GetRNGNext(contest) % numCandidates;
 
-            if (v9[v2[v4]].unk_20_10 == 3) {
-                v0--;
+            if (opponentEntries[candidates[candidateIdx]].availability == 3) {
+                i--;
                 continue;
             }
 
-            contest->unk_00.unk_10[v0] = v9[v2[v4]];
+            contest->data.contestants[i] = opponentEntries[candidates[candidateIdx]];
 
-            for (v1 = v4; v2[v1] != 0xff; v1++) {
-                v2[v1] = v2[v1 + 1];
+            for (j = candidateIdx; candidates[j] != CONTEST_CANDIDATES_TERMINATOR; j++) {
+                candidates[j] = candidates[j + 1];
             }
 
-            v3--;
+            numCandidates--;
         }
 
-        if (v10 > 0) {
-            v4 = 4 - param2;
-            v4 += Contest_GetRNGNext(contest) % param2;
-            contest->unk_00.unk_10[v4] = v12;
+        if (numGuests > 0) {
+            candidateIdx = CONTEST_NUM_PARTICIPANTS - numOpponents;
+            candidateIdx += Contest_GetRNGNext(contest) % numOpponents;
+            contest->data.contestants[candidateIdx] = guest;
         }
     } else {
-        GF_ASSERT(v3 >= 4);
+        GF_ASSERT(numCandidates >= CONTEST_NUM_PARTICIPANTS);
 
-        for (v0 = 0; v0 < 4; v0++) {
-            contest->unk_00.unk_10[v0] = v9[v2[v0]];
+        for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+            contest->data.contestants[i] = opponentEntries[candidates[i]];
         }
     }
 
-    Heap_Free(v2);
-    Heap_Free(v9);
+    Heap_Free(candidates);
+    Heap_Free(opponentEntries);
 }
 
-void sub_020951B0(Contest *contest, enum HeapID heapID)
+void Contest_DressUpOpponentPhotos(Contest *contest, enum HeapID heapID)
 {
-    int i, v1;
-    UnkStruct_020951B0 *v2;
-    UnkStruct_020951B0 *v3;
-    int v4;
-    int v5;
+    int i, j;
+    OpponentDressUp *dressUps;
+    OpponentDressUp *dressUp;
+    int firstOpponentID;
+    int dressUpID;
 
-    v2 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 2, FALSE, heapID, TRUE);
+    dressUps = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_OPPONENT_DRESS_UPS, FALSE, heapID, TRUE);
 
-    switch (contest->unk_00.competitionType) {
+    switch (contest->data.competitionType) {
     case CONTEST_COMPETITION_VISUAL:
     case CONTEST_COMPETITION_DANCE:
     case CONTEST_COMPETITION_ACTING:
-        v4 = 0;
+        firstOpponentID = 0;
         break;
     default:
-        v4 = contest->unk_00.connectionCount;
+        firstOpponentID = contest->data.connectionCount;
         break;
     }
 
-    for (i = v4; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        switch (contest->unk_00.unk_112) {
-        case 0:
-            v5 = contest->unk_00.unk_10[i].unk_22;
+    for (i = firstOpponentID; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        switch (contest->data.dressUpTheme) {
+        case DRESS_UP_THEME_SHAPELY:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_SHAPELY];
             break;
-        case 1:
-            v5 = contest->unk_00.unk_10[i].unk_23;
+        case DRESS_UP_THEME_SHARP:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_SHARP];
             break;
-        case 2:
-            v5 = contest->unk_00.unk_10[i].unk_24;
+        case DRESS_UP_THEME_CREATED:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_CREATED];
             break;
-        case 3:
-            v5 = contest->unk_00.unk_10[i].unk_25;
+        case DRESS_UP_THEME_NATURAL:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_NATURAL];
             break;
-        case 4:
-            v5 = contest->unk_00.unk_10[i].unk_26;
+        case DRESS_UP_THEME_COLORFUL:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_COLORFUL];
             break;
-        case 5:
-            v5 = contest->unk_00.unk_10[i].unk_27;
+        case DRESS_UP_THEME_SOLID:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_SOLID];
             break;
-        case 6:
-            v5 = contest->unk_00.unk_10[i].unk_28;
+        case DRESS_UP_THEME_BRIGHT:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_BRIGHT];
             break;
-        case 7:
-            v5 = contest->unk_00.unk_10[i].unk_29;
+        case DRESS_UP_THEME_GAUDY:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_GAUDY];
             break;
-        case 8:
-            v5 = contest->unk_00.unk_10[i].unk_2A;
+        case DRESS_UP_THEME_FLEXIBLE:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_FLEXIBLE];
             break;
-        case 9:
-            v5 = contest->unk_00.unk_10[i].unk_2B;
+        case DRESS_UP_THEME_FESTIVE:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_FESTIVE];
             break;
-        case 10:
-            v5 = contest->unk_00.unk_10[i].unk_2C;
+        case DRESS_UP_THEME_INTANGIBLE:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_INTANGIBLE];
             break;
-        case 11:
-            v5 = contest->unk_00.unk_10[i].unk_2D;
+        case DRESS_UP_THEME_RELAXED:
+            dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_RELAXED];
             break;
         default:
             GF_ASSERT(FALSE);
-            v5 = 0;
+            dressUpID = 0;
             break;
         }
 
-        v3 = &v2[v5];
+        dressUp = &dressUps[dressUpID];
 
-        sub_0202A25C(contest->unk_00.unk_E8[i]);
-        sub_0202A3B0(contest->unk_00.unk_E8[i], contest->unk_00.contestMons[i], v3->unk_51);
+        ContestPhoto_Init(contest->data.photos[i]);
+        ContestPhoto_SetMon(contest->data.photos[i], contest->data.contestMons[i], dressUp->monPriority);
 
-        for (v1 = 0; v1 < v3->unk_50; v1++) {
-            sub_0202A3EC(contest->unk_00.unk_E8[i], v1, v3->unk_00[v1].unk_00, v3->unk_00[v1].unk_01, v3->unk_00[v1].unk_02, v3->unk_00[v1].unk_03);
+        for (j = 0; j < dressUp->numAccessories; j++) {
+            ContestPhoto_SetAccessory(contest->data.photos[i], j, dressUp->accessories[j].accessoryID, dressUp->accessories[j].xPos, dressUp->accessories[j].yPos, dressUp->accessories[j].priority);
         }
 
-        sub_0202A35C(contest->unk_00.unk_E8[i], v3->unk_52);
-        sub_0202A378(contest->unk_00.unk_E8[i], contest->unk_00.contestRank);
+        ContestPhoto_SetBackdrop(contest->data.photos[i], dressUp->backdrop);
+        ContestPhoto_SetContestRank(contest->data.photos[i], contest->data.contestRank);
     }
 
-    Heap_Free(v2);
+    Heap_Free(dressUps);
 }
 
-void sub_02095338(Contest *contest)
+void Contest_InitPhotosWithoutAccessories(Contest *contest)
 {
     int i;
 
     for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        sub_0202A25C(contest->unk_00.unk_E8[i]);
-        sub_0202A3B0(contest->unk_00.unk_E8[i], contest->unk_00.contestMons[i], -1);
-        sub_0202A35C(contest->unk_00.unk_E8[i], 0);
-        sub_0202A378(contest->unk_00.unk_E8[i], contest->unk_00.contestRank);
+        ContestPhoto_Init(contest->data.photos[i]);
+        ContestPhoto_SetMon(contest->data.photos[i], contest->data.contestMons[i], -1);
+        ContestPhoto_SetBackdrop(contest->data.photos[i], 0);
+        ContestPhoto_SetContestRank(contest->data.photos[i], contest->data.contestRank);
     }
 }
 
-void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *mon, enum HeapID heapID)
+void Contestant_InitPokemon(const Contestant *contestant, Pokemon *mon, enum HeapID heapID)
 {
     int i;
-    u16 v1;
-    u32 personality = sub_02074128(param0->unk_14, param0->unk_20_12, 0);
-    Pokemon_InitWith(mon, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SHINY, 0xf0f0f0f);
+    u16 move;
+    u32 personality = Pokemon_CreatePersonalityWithGenderAndNature(contestant->species, contestant->gender, NATURE_HARDY);
+    Pokemon_InitWith(mon, contestant->species, CONTESTANT_POKEMON_LEVEL, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SHINY, 0xf0f0f0f);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        v1 = param0->unk_0C[i];
-        Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &v1);
+        move = contestant->moves[i];
+        Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &move);
     }
 
     MessageLoader *contestOpponentNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, heapID);
-    String *monNickname = MessageLoader_GetNewString(contestOpponentNames, param0->unk_16);
-    String *monOTName = MessageLoader_GetNewString(contestOpponentNames, param0->unk_18);
+    String *monNickname = MessageLoader_GetNewString(contestOpponentNames, contestant->nicknameID);
+    String *monOTName = MessageLoader_GetNewString(contestOpponentNames, contestant->otNameID);
 
     Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, monNickname);
     Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, monOTName);
@@ -646,14 +578,12 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *mon, enum HeapI
     String_Free(monOTName);
     MessageLoader_Free(contestOpponentNames);
 
-    u8 cool, beauty, cute, smart, tough, sheen;
-
-    cool = param0->cool;
-    beauty = param0->beauty;
-    cute = param0->cute;
-    smart = param0->smart;
-    tough = param0->tough;
-    sheen = param0->sheen;
+    u8 cool = contestant->cool;
+    u8 beauty = contestant->beauty;
+    u8 cute = contestant->cute;
+    u8 smart = contestant->smart;
+    u8 tough = contestant->tough;
+    u8 sheen = contestant->sheen;
 
     Pokemon_SetValue(mon, MON_DATA_COOL, &cool);
     Pokemon_SetValue(mon, MON_DATA_BEAUTY, &beauty);
@@ -663,156 +593,150 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *mon, enum HeapI
     Pokemon_SetValue(mon, MON_DATA_SHEEN, &sheen);
 }
 
-PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, PokemonSpriteData *pokemonSpriteData, enum HeapID heapID, int param6, int param7, int param8)
+PokemonSprite *Contestant_CreateMonSprite(PokemonSpriteManager *monSpriteMan, int polygonID, Pokemon *mon, int face, PokemonSpriteData *pokemonSpriteData, enum HeapID heapID, int x, int y, int z)
 {
-    PokemonSpriteTemplate v0;
-    PokemonSprite *v1;
-    int v2, v3, v4;
+    PokemonSpriteTemplate template;
 
-    Pokemon_BuildSpriteTemplate(&v0, param2, param3);
+    Pokemon_BuildSpriteTemplate(&template, mon, face);
 
-    v2 = Pokemon_SpriteYOffset(param2, param3);
+    int yOffset = Pokemon_SpriteYOffset(mon, face);
 
     if (pokemonSpriteData != NULL) {
         GF_ASSERT(pokemonSpriteData->tiles != NULL);
-        CharacterSprite_LoadSpriteFrame0(v0.narcID, v0.character, heapID, pokemonSpriteData->tiles);
-        pokemonSpriteData->palette = v0.palette;
-        pokemonSpriteData->narcID = v0.narcID;
+        CharacterSprite_LoadSpriteFrame0(template.narcID, template.character, heapID, pokemonSpriteData->tiles);
+        pokemonSpriteData->palette = template.palette;
+        pokemonSpriteData->narcID = template.narcID;
     }
 
-    v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
-    return v1;
+    PokemonSprite *sprite = PokemonSpriteManager_CreateSprite(monSpriteMan, &template, x, y + yOffset, z, polygonID, NULL, NULL);
+    return sprite;
 }
 
-void sub_020954F0(Contest *contest, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank)
+void Contest_SelectJudges(Contest *contest, enum HeapID heapID, int mainJudgeID, enum PokemonContestType contestType, enum PokemonContestRank contestRank)
 {
-    int v0, v1;
-    u8 v2 = 0, v3 = 0;
-    u16 v4;
-    int v5;
-    UnkStruct_020954F0 *v6;
-    u8 *v7, *v8;
+    int i;
+    u8 numJudges = 0, numMainJudges = 0;
+    u16 mainJudgeIdx;
+    int numJudgeEntries;
+    ContestJudge *judges;
+    u8 *judgeCandidates, *mainJudgeCandidates;
 
-    v6 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1, 0, heapID, 1);
-    v5 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1) / sizeof(UnkStruct_020954F0);
-    v7 = Heap_AllocAtEnd(heapID, v5 + 1);
-    v8 = Heap_AllocAtEnd(heapID, v5 + 1);
+    judges = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_JUDGES, FALSE, heapID, TRUE);
+    numJudgeEntries = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_JUDGES) / sizeof(ContestJudge);
+    judgeCandidates = Heap_AllocAtEnd(heapID, numJudgeEntries + 1);
+    mainJudgeCandidates = Heap_AllocAtEnd(heapID, numJudgeEntries + 1);
 
-    for (v0 = 0; v0 < v5; v0++) {
-        if (contestRank != v6[v0].unk_04_10) {
+    for (i = 0; i < numJudgeEntries; i++) {
+        if (contestRank != judges[i].rank) {
             continue;
         }
 
-        if (contestType == CONTEST_TYPE_COOL && v6[v0].unk_04_0) {
-            if (v6[v0].unk_04_0 > 1) {
-                v8[v3++] = v0;
+        if (contestType == CONTEST_TYPE_COOL && judges[i].coolRole) {
+            if (judges[i].coolRole > 1) {
+                mainJudgeCandidates[numMainJudges++] = i;
             } else {
-                v7[v2++] = v0;
+                judgeCandidates[numJudges++] = i;
             }
-        } else if (contestType == CONTEST_TYPE_BEAUTY && v6[v0].unk_04_2) {
-            if (v6[v0].unk_04_2 > 1) {
-                v8[v3++] = v0;
+        } else if (contestType == CONTEST_TYPE_BEAUTY && judges[i].beautyRole) {
+            if (judges[i].beautyRole > 1) {
+                mainJudgeCandidates[numMainJudges++] = i;
             } else {
-                v7[v2++] = v0;
+                judgeCandidates[numJudges++] = i;
             }
-        } else if (contestType == CONTEST_TYPE_CUTE && v6[v0].unk_04_4) {
-            if (v6[v0].unk_04_4 > 1) {
-                v8[v3++] = v0;
+        } else if (contestType == CONTEST_TYPE_CUTE && judges[i].cuteRole) {
+            if (judges[i].cuteRole > 1) {
+                mainJudgeCandidates[numMainJudges++] = i;
             } else {
-                v7[v2++] = v0;
+                judgeCandidates[numJudges++] = i;
             }
-        } else if (contestType == CONTEST_TYPE_SMART && v6[v0].unk_04_6) {
-            if (v6[v0].unk_04_6 > 1) {
-                v8[v3++] = v0;
+        } else if (contestType == CONTEST_TYPE_SMART && judges[i].smartRole) {
+            if (judges[i].smartRole > 1) {
+                mainJudgeCandidates[numMainJudges++] = i;
             } else {
-                v7[v2++] = v0;
+                judgeCandidates[numJudges++] = i;
             }
-        } else if (contestType == CONTEST_TYPE_TOUGH && v6[v0].unk_04_8) {
-            if (v6[v0].unk_04_8 > 1) {
-                v8[v3++] = v0;
+        } else if (contestType == CONTEST_TYPE_TOUGH && judges[i].toughRole) {
+            if (judges[i].toughRole > 1) {
+                mainJudgeCandidates[numMainJudges++] = i;
             } else {
-                v7[v2++] = v0;
+                judgeCandidates[numJudges++] = i;
             }
         }
     }
 
-    v7[v2] = 0xff;
-    v8[v3] = 0xff;
+    judgeCandidates[numJudges] = CONTEST_CANDIDATES_TERMINATOR;
+    mainJudgeCandidates[numMainJudges] = CONTEST_CANDIDATES_TERMINATOR;
 
-    GF_ASSERT(v2 >= 2);
+    GF_ASSERT(numJudges >= CONTEST_NUM_JUDGES - 1);
 
-    for (v0 = 0; v0 < 2; v0++) {
-        contest->unk_00.unk_C0[v0] = v6[v7[v0]];
+    for (i = 0; i < CONTEST_NUM_JUDGES - 1; i++) {
+        contest->data.judges[i] = judges[judgeCandidates[i]];
     }
 
-    GF_ASSERT(v3 >= 1);
-    v4 = Contest_GetRNGNext(contest) % v3;
-    contest->unk_00.unk_C0[2] = v6[v8[v4]];
+    GF_ASSERT(numMainJudges >= 1);
+    mainJudgeIdx = Contest_GetRNGNext(contest) % numMainJudges;
+    contest->data.judges[CONTEST_NUM_JUDGES - 1] = judges[mainJudgeCandidates[mainJudgeIdx]];
 
-    {
-        UnkStruct_020954F0 v9;
+    contest->data.headJudgeID = mainJudgeID;
+    ContestJudge judge = contest->data.judges[mainJudgeID];
+    contest->data.judges[mainJudgeID] = contest->data.judges[CONTEST_NUM_JUDGES - 1];
+    contest->data.judges[CONTEST_NUM_JUDGES - 1] = judge;
 
-        contest->unk_00.unk_10E = param2;
-        v9 = contest->unk_00.unk_C0[param2];
-        contest->unk_00.unk_C0[param2] = contest->unk_00.unk_C0[2];
-        contest->unk_00.unk_C0[2] = v9;
-    }
-
-    Heap_Free(v8);
-    Heap_Free(v7);
-    Heap_Free(v6);
+    Heap_Free(mainJudgeCandidates);
+    Heap_Free(judgeCandidates);
+    Heap_Free(judges);
 }
 
-s8 sub_02095734(enum MoveContestEffect contestEffect)
+s8 Contest_GetMoveEffectAppeal(enum MoveContestEffect contestEffect)
 {
-    GF_ASSERT(contestEffect < (NELEMS(Unk_020F568C)));
-    return Unk_020F568C[contestEffect].unk_04;
+    GF_ASSERT(contestEffect < (NELEMS(sContestEffects)));
+    return sContestEffects[contestEffect].appeal;
 }
 
-void Contest_LoadTwoLineContestEffectMessages(int moveContestEffectID, u32 *lineOneEffectMessageID, u32 *lineTwoEffectMessageID)
+void Contest_LoadTwoLineContestEffectMessages(enum MoveContestEffect moveContestEffectID, u32 *lineOneEffectMessageID, u32 *lineTwoEffectMessageID)
 {
-    GF_ASSERT(moveContestEffectID < (NELEMS(Unk_020F568C)));
+    GF_ASSERT(moveContestEffectID < (NELEMS(sContestEffects)));
 
-    *lineOneEffectMessageID = Unk_020F568C[moveContestEffectID].lineOneEffectMessageID;
-    *lineTwoEffectMessageID = Unk_020F568C[moveContestEffectID].lineTwoEffectMessageID;
+    *lineOneEffectMessageID = sContestEffects[moveContestEffectID].lineOneEffectMessageID;
+    *lineTwoEffectMessageID = sContestEffects[moveContestEffectID].lineTwoEffectMessageID;
 }
 
-u32 sub_0209577C(int param0)
+u32 Contest_GetMoveEffectDescriptionMessageID(enum MoveContestEffect contestEffect)
 {
-    GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
-    return 46 + (param0 - 1);
+    GF_ASSERT(contestEffect < (NELEMS(sContestEffects)));
+    return ContestEffects_Text_DescriptionFirstNextTurn + (contestEffect - 1);
 }
 
-void sub_02095790(int contestMoveEffect, int param1, u32 *destMessageID, u32 *param3)
+void Contest_GetEffectActingMessage(enum MoveContestEffect contestMoveEffect, enum ContestEffectActingMessage index, u32 *destMessageID, u32 *destFormat)
 {
-    GF_ASSERT(contestMoveEffect < (NELEMS(Unk_020F568C)));
+    GF_ASSERT(contestMoveEffect < (NELEMS(sContestEffects)));
 
-    switch (param1) {
-    case 0:
+    switch (index) {
+    case CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_1:
     default:
-        *destMessageID = Unk_020F568C[contestMoveEffect].unk_06;
-        *param3 = Unk_020F568C[contestMoveEffect].unk_08;
+        *destMessageID = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_1].messageID;
+        *destFormat = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_1].format;
         break;
-    case 1:
-        *destMessageID = Unk_020F568C[contestMoveEffect].unk_0A;
-        *param3 = Unk_020F568C[contestMoveEffect].unk_0C;
+    case CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_2:
+        *destMessageID = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_2].messageID;
+        *destFormat = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_2].format;
         break;
-    case 2:
-        *destMessageID = Unk_020F568C[contestMoveEffect].unk_0E;
-        *param3 = Unk_020F568C[contestMoveEffect].unk_10;
+    case CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_3:
+        *destMessageID = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_3].messageID;
+        *destFormat = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_3].format;
         break;
-    case 3:
-        *destMessageID = Unk_020F568C[contestMoveEffect].unk_12;
-        *param3 = Unk_020F568C[contestMoveEffect].unk_14;
+    case CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_4:
+        *destMessageID = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_4].messageID;
+        *destFormat = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_VARIANT_4].format;
         break;
-    case 4:
-        *destMessageID = Unk_020F568C[contestMoveEffect].unk_16;
-        *param3 = Unk_020F568C[contestMoveEffect].unk_18;
+    case CONTEST_EFFECT_ACTING_MESSAGE_PREVIEW:
+        *destMessageID = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_PREVIEW].messageID;
+        *destFormat = sContestEffects[contestMoveEffect].actingMessages[CONTEST_EFFECT_ACTING_MESSAGE_PREVIEW].format;
         break;
     }
 }
 
-u32 Contest_GetContestRankTitleMessageID(enum PokemonContestRank contestRank, int competitionType, BOOL isLinkContest)
+u32 Contest_GetContestRankTitleMessageID(enum PokemonContestRank contestRank, enum ContestCompetition competitionType, BOOL isLinkContest)
 {
     u32 messageID;
 
@@ -874,10 +798,10 @@ u32 Contest_GetRankMessageID(enum PokemonContestRank contestRank)
 
 u32 Contest_GetContestTypeMessageID(enum PokemonContestType contestType)
 {
-    return Contest_GetFullContestTypeMessageID(contestType, 2);
+    return Contest_GetFullContestTypeMessageID(contestType, CONTEST_COMPETITION_LINK_OR_OFFICIAL);
 }
 
-u32 Contest_GetFullContestTypeMessageID(enum PokemonContestType contestType, int competitionType)
+u32 Contest_GetFullContestTypeMessageID(enum PokemonContestType contestType, enum ContestCompetition competitionType)
 {
     u32 messageID;
 
@@ -919,7 +843,7 @@ int Contest_ContestantEntryNumToContestantID(int contestantEntryNum)
 
 BOOL Contest_IsPracticeCompetition(Contest *contest)
 {
-    switch (contest->unk_00.competitionType) {
+    switch (contest->data.competitionType) {
     case CONTEST_COMPETITION_PRACTICE_VISUAL:
     case CONTEST_COMPETITION_PRACTICE_DANCE:
     case CONTEST_COMPETITION_PRACTICE_ACTING:
@@ -929,11 +853,11 @@ BOOL Contest_IsPracticeCompetition(Contest *contest)
     return FALSE;
 }
 
-int sub_02095928(Contest *contest, int param1)
+int Contest_CalcConditionRating(Contest *contest, int contestantID)
 {
-    int v0, v1, v2;
-    const u16 *v3;
-    const u16 v4[][8] = {
+    int rating, score, i;
+    const u16 *thresholds;
+    const u16 conditionScoreThresholds[][MAX_CONDITION_HEARTS] = {
         { 10, 20, 30, 40, 50, 60, 70, 80 },
         { 90, 110, 130, 150, 170, 190, 210, 230 },
         { 170, 200, 230, 260, 290, 320, 350, 380 },
@@ -941,31 +865,31 @@ int sub_02095928(Contest *contest, int param1)
         { 100, 200, 300, 400, 450, 500, 550, 600 },
     };
 
-    v0 = 0;
-    v1 = contest->unk_00.unk_118[param1].unk_00;
+    rating = 0;
+    score = contest->data.results[contestantID].conditionScore;
 
     if (contest->isLinkContest == TRUE) {
-        v3 = v4[CONTEST_RANK_LINK];
+        thresholds = conditionScoreThresholds[CONTEST_RANK_LINK];
     } else {
-        v3 = v4[contest->unk_00.contestRank];
+        thresholds = conditionScoreThresholds[contest->data.contestRank];
     }
 
-    for (v2 = 0; v2 < 8; v2++) {
-        if (v1 < v3[v2]) {
-            return v0;
+    for (i = 0; i < MAX_CONDITION_HEARTS; i++) {
+        if (score < thresholds[i]) {
+            return rating;
         }
 
-        v0++;
+        rating++;
     }
 
-    return v0;
+    return rating;
 }
 
-int sub_0209598C(Contest *contest, int param1)
+int Contest_CalcDressUpRating(Contest *contest, int contestantID)
 {
-    int v0, v1, v2;
-    const u8 *v3;
-    const u8 v4[][3] = {
+    int rating, score, i;
+    const u8 *thresholds;
+    const u8 dressUpScoreThresholds[][MAX_DRESS_UP_HEARTS - 1] = {
         { 3, 5, 8 },
         { 5, 10, 15 },
         { 7, 15, 23 },
@@ -973,30 +897,30 @@ int sub_0209598C(Contest *contest, int param1)
         { 10, 20, 30 },
     };
 
-    v0 = 0;
-    v1 = contest->unk_00.unk_118[param1].unk_02;
+    rating = 0;
+    score = contest->data.results[contestantID].dressUpScore;
 
-    if (v1 == 0) {
+    if (score == 0) {
         return 0;
     }
 
     if (contest->isLinkContest == TRUE) {
-        v3 = v4[CONTEST_RANK_LINK];
+        thresholds = dressUpScoreThresholds[CONTEST_RANK_LINK];
     } else {
-        v3 = v4[contest->unk_00.contestRank];
+        thresholds = dressUpScoreThresholds[contest->data.contestRank];
     }
 
-    v0 = 1;
+    rating = 1;
 
-    for (v2 = 0; v2 < 3; v2++) {
-        if (v1 <= v3[v2]) {
-            return v0;
+    for (i = 0; i < MAX_DRESS_UP_HEARTS - 1; i++) {
+        if (score <= thresholds[i]) {
+            return rating;
         }
 
-        v0++;
+        rating++;
     }
 
-    return v0;
+    return rating;
 }
 
 void SetLockTextWithAutoScroll(BOOL lockTextWithAutoScroll)
@@ -1012,7 +936,7 @@ void SetLockTextWithAutoScroll(BOOL lockTextWithAutoScroll)
     }
 }
 
-void LockTextSpeed()
+void LockTextSpeed(void)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
@@ -1047,32 +971,32 @@ u32 CalcMonDataRibbon(enum PokemonContestRank contestRank, enum PokemonContestTy
     return monDataRibbon;
 }
 
-u32 sub_02095A74(enum PokemonContestRank contestRank, BOOL isLinkContest)
+u32 Contest_GetRandomDressUpTheme(enum PokemonContestRank contestRank, BOOL isLinkContest)
 {
-    u8 v0[12];
+    u8 themes[DRESS_UP_THEME_MAX];
     int arrayLength = 0;
 
     if (contestRank == CONTEST_RANK_MASTER || isLinkContest == TRUE) {
-        return LCRNG_Next() % 12;
+        return LCRNG_Next() % DRESS_UP_THEME_MAX;
     }
 
-    MI_CpuClear8(v0, 12);
+    MI_CpuClear8(themes, DRESS_UP_THEME_MAX);
 
-    v0[arrayLength++] = 2;
-    v0[arrayLength++] = 3;
-    v0[arrayLength++] = 4;
+    themes[arrayLength++] = DRESS_UP_THEME_CREATED;
+    themes[arrayLength++] = DRESS_UP_THEME_NATURAL;
+    themes[arrayLength++] = DRESS_UP_THEME_COLORFUL;
 
     if (contestRank >= CONTEST_RANK_GREAT) {
-        v0[arrayLength++] = 0;
-        v0[arrayLength++] = 1;
-        v0[arrayLength++] = 5;
+        themes[arrayLength++] = DRESS_UP_THEME_SHAPELY;
+        themes[arrayLength++] = DRESS_UP_THEME_SHARP;
+        themes[arrayLength++] = DRESS_UP_THEME_SOLID;
     }
 
     if (contestRank >= CONTEST_RANK_ULTRA) {
-        v0[arrayLength++] = 6;
-        v0[arrayLength++] = 7;
-        v0[arrayLength++] = 8;
+        themes[arrayLength++] = DRESS_UP_THEME_BRIGHT;
+        themes[arrayLength++] = DRESS_UP_THEME_GAUDY;
+        themes[arrayLength++] = DRESS_UP_THEME_FLEXIBLE;
     }
 
-    return v0[LCRNG_Next() % arrayLength];
+    return themes[LCRNG_Next() % arrayLength];
 }

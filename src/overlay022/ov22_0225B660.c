@@ -35,7 +35,7 @@
 
 typedef struct {
     const DressUpPhoto *photo;
-    const UnkStruct_02029C88 *unk_04;
+    const ContestPhoto *unk_04;
     u32 unk_08;
     u32 unk_0C;
     UnkStruct_ov22_0225B1BC *unk_10;
@@ -74,7 +74,7 @@ int ov22_0225B660(ApplicationManager *appMan, int *param1)
     if (v1->unk_08 == 0) {
         v0->photo = ImageClips_GetDressUpPhoto(v1->imageClips, v1->unk_04);
     } else {
-        v0->unk_04 = sub_02029CD0(v1->imageClips, v1->unk_04);
+        v0->unk_04 = ImageClips_GetContestPhoto(v1->imageClips, v1->unk_04);
     }
 
     v0->unk_08 = v1->unk_04;
@@ -329,19 +329,19 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
 
     Sprite_SetAnim(param0->unk_1FC, param0->unk_08);
 
-    contestRank = sub_0202A5D0(param0->unk_04);
+    contestRank = ContestPhoto_GetContestRank(param0->unk_04);
     v1 = StringTemplate_Default(HEAP_ID_13);
     v2 = String_Init(200, HEAP_ID_13);
 
     StringTemplate_SetContestTypeName(v1, 0, Contest_GetContestTypeMessageID(param0->unk_08));
     StringTemplate_SetContestRankName(v1, 1, Contest_GetRankMessageID(contestRank));
 
-    v4 = sub_0202A544(param0->unk_04);
-    sub_0202A524(param0->unk_04, v2);
+    v4 = ContestPhoto_GetTrainerGender(param0->unk_04);
+    ContestPhoto_SetTrainerName(param0->unk_04, v2);
     StringTemplate_SetString(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
     v5 = Pokemon_New(HEAP_ID_13);
-    sub_0202A560(param0->unk_04, v5);
+    ContestPhoto_CopyToPokemon(param0->unk_04, v5);
     v6 = Pokemon_GetBoxPokemon(v5);
     StringTemplate_SetNickname(v1, 4, v6);
     Heap_Free(v5);

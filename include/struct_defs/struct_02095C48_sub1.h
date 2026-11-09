@@ -12,29 +12,29 @@
 #include "pokemon.h"
 #include "string_gf.h"
 
-typedef struct {
+typedef struct ContestData {
     Pokemon *contestMons[CONTEST_NUM_PARTICIPANTS];
-    UnkStruct_ov6_02248BE8 unk_10[CONTEST_NUM_PARTICIPANTS];
-    UnkStruct_020954F0 unk_C0[CONTEST_NUM_JUDGES];
+    Contestant contestants[CONTEST_NUM_PARTICIPANTS];
+    ContestJudge judges[CONTEST_NUM_JUDGES];
     String *trainerNames[CONTEST_NUM_PARTICIPANTS];
-    UnkStruct_02029C88 *unk_E8[CONTEST_NUM_PARTICIPANTS];
+    ContestPhoto *photos[CONTEST_NUM_PARTICIPANTS];
     u8 trainerGenders[CONTEST_NUM_PARTICIPANTS];
-    u8 unk_FC[CONTEST_NUM_PARTICIPANTS];
+    u8 npcSkillLevels[CONTEST_NUM_PARTICIPANTS];
     u8 monContestFame[CONTEST_NUM_PARTICIPANTS];
     u16 contestantObjEventGFX[CONTEST_NUM_PARTICIPANTS];
-    u8 unk_10C;
-    u8 unk_10D;
-    u8 unk_10E;
+    u8 hostContestantID;
+    u8 hostLinkVersion;
+    u8 headJudgeID;
     u8 contestType;
     u8 contestRank;
     u8 competitionType;
-    u8 unk_112;
+    u8 dressUpTheme;
     u8 playerContestantID;
     u8 unk_114;
-    u8 unk_115;
+    u8 linkVersion;
     u8 npcCount;
     u8 connectionCount;
-    UnkStruct_02095C48_sub1_sub1 unk_118[CONTEST_NUM_PARTICIPANTS];
-} UnkStruct_02095C48_sub1;
+    ContestantResult results[CONTEST_NUM_PARTICIPANTS];
+} ContestData;
 
 #endif // POKEPLATINUM_STRUCT_02095C48_SUB1_H

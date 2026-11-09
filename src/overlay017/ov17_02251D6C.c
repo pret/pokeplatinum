@@ -109,8 +109,8 @@ void ov17_02251D6C(UnkStruct_ov17_0224FCA0 *param0)
 
     v0.unk_00 = Unk_ov17_02254D18;
     v0.unk_04 = NELEMS(Unk_ov17_02254D18);
-    v0.playerContestantID = param0->unk_00->unk_00.playerContestantID;
-    v0.unk_08 = param0->unk_00->unk_00.unk_10C;
+    v0.playerContestantID = param0->unk_00->data.playerContestantID;
+    v0.unk_08 = param0->unk_00->data.hostContestantID;
     v0.isLinkContest = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_85C, &v0);
@@ -151,7 +151,7 @@ static void ov17_02251DE8(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     v0->unk_39A = *v1;
 
     for (v2 = 0; v2 < 4; v2++) {
-        v0->unk_00->unk_00.unk_118[v2] = v1->unk_00[v2];
+        v0->unk_00->data.results[v2] = v1->unk_00[v2];
     }
 
     ov17_0224F26C(param0, param2, NULL, 0);

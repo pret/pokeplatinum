@@ -15,7 +15,7 @@
 #include "string_template.h"
 
 typedef struct {
-    UnkStruct_02095C48_sub1 *unk_00;
+    ContestData *unk_00;
     PokemonSpriteManager *unk_04;
     PokemonSprite *unk_08[4];
     PokemonSprite *unk_18;

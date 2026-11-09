@@ -18,21 +18,21 @@ void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
     Contest *v0 = param3;
     UnkStruct_ov17_0224F30C *v1;
 
-    if (v0->unk_154 == 0) {
+    if (v0->activeAppID == CONTEST_APP_ID_VISUAL_COMPETITION_SCORING) {
         UnkStruct_ov17_02247A48 *v2;
-        v2 = v0->unk_150;
+        v2 = v0->activeAppData;
         v1 = &v2->unk_4F8;
-    } else if (v0->unk_154 == 1) {
+    } else if (v0->activeAppID == CONTEST_APP_ID_DANCE_COMPETITION) {
         UnkStruct_ov17_0224DF54 *v3;
-        v3 = v0->unk_150;
+        v3 = v0->activeAppData;
         v1 = &v3->unk_109C;
-    } else if (v0->unk_154 == 2) {
+    } else if (v0->activeAppID == CONTEST_APP_ID_ACTING_COMPETITION) {
         UnkStruct_ov17_02246F24 *v4;
-        v4 = v0->unk_150;
+        v4 = v0->activeAppData;
         v1 = &v4->unk_BF8;
-    } else if (v0->unk_154 == 3) {
+    } else if (v0->activeAppID == CONTEST_APP_ID_FINAL_SCORING) {
         UnkStruct_ov17_0224FCA0 *v5;
-        v5 = v0->unk_150;
+        v5 = v0->activeAppData;
         v1 = &v5->unk_85C;
     } else {
         GF_ASSERT(FALSE);
@@ -49,7 +49,7 @@ void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
 void ov17_02252D7C(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
-    UnkStruct_ov17_0224DF54 *v1 = v0->unk_150;
+    UnkStruct_ov17_0224DF54 *v1 = v0->activeAppData;
     UnkStruct_ov17_0224EDE0 *v2 = param2;
 
     ov17_0224B20C(v1, v2);

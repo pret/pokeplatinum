@@ -870,7 +870,7 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
             continue;
         }
 
-        v10 = sub_02095734(moveContestEffects[i]);
+        v10 = Contest_GetMoveEffectAppeal(moveContestEffects[i]);
         v11 = MATH_IAbs(v10) / 10;
 
         GF_ASSERT(v11 <= 6);
@@ -899,7 +899,7 @@ static void ov17_0223FF38(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
     ov17_02240138(param0, &param0->unk_40[0 + v0], message, FONT_SUBSCREEN, TEXT_COLOR(1, 9, 0xa), 0, 33008, 128, 0x14 * 8 + 4, 1, NULL);
     String_Free(message);
 
-    param0->unk_128 = ov17_022412C0(param0->unk_04->unk_18, param0->unk_04->unk_1C, param0->unk_04->unk_00->unk_10E);
+    param0->unk_128 = ov17_022412C0(param0->unk_04->unk_18, param0->unk_04->unk_1C, param0->unk_04->unk_00->headJudgeID);
 }
 
 static int ov17_0223FFF4(UnkStruct_ov17_0223F7E4 *param0, int moveSlot, int param2)
@@ -964,7 +964,7 @@ static int ov17_02240094(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2
         break;
     }
 
-    v1 = (param1 == param0->unk_04->unk_00->unk_10E) ? 1 : 0;
+    v1 = (param1 == param0->unk_04->unk_00->headJudgeID) ? 1 : 0;
 
     ov17_02240930(param0, param2);
     ov17_022404CC(ov17_0224051C, param0);
@@ -1515,7 +1515,7 @@ void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 moves[])
     }
 
     for (v1 = 0; v1 < (1 + 2); v1++) {
-        judgeName = Contest_GetJudgeName(param0->unk_04->unk_00->unk_C0[v1].judgeNameMessageID, HEAP_ID_21);
+        judgeName = Contest_GetJudgeName(param0->unk_04->unk_00->judges[v1].judgeNameMessageID, HEAP_ID_21);
         ov17_02240BF4(param0, judgeName, FONT_SUBSCREEN, &v0->unk_F0[v1], TEXT_COLOR(1, 9, 0xa));
         String_Free(judgeName);
     }

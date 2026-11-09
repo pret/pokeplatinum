@@ -80,7 +80,7 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
         v9 = (param3 / 6 + 10000 / 2) / 10000;
     }
 
-    switch (param0->unk_00->unk_00.contestRank) {
+    switch (param0->unk_00->data.contestRank) {
     case CONTEST_RANK_NORMAL:
     case CONTEST_RANK_GREAT:
         v8 = 0;
@@ -138,7 +138,7 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
         }
     }
 
-    v4 = ov17_0224EBE0(param0->unk_00->unk_00.contestRank, param1->unk_39);
+    v4 = ov17_0224EBE0(param0->unk_00->data.contestRank, param1->unk_39);
 
     for (v0 = 0; v0 < param0->unk_A3C.unk_2E; v0++) {
         s32 v11;
@@ -160,7 +160,7 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
     {
         int v12;
 
-        v12 = Unk_ov17_02254A84[param0->unk_00->unk_00.contestRank];
+        v12 = Unk_ov17_02254A84[param0->unk_00->data.contestRank];
         param1->unk_00_val1.unk_20[0] = 0 + (Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % 4);
 
         for (v0 = 1; v0 < param0->unk_A3C.unk_2E; v0++) {
@@ -400,8 +400,8 @@ static void ov17_0224EE90(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E9
             v9 = param0->unk_1AD4[param1->unk_36 - 1].unk_03;
         }
 
-        v6 = ov17_0224EC24(param0->unk_00->unk_00.contestRank, param0->unk_00->unk_00.contestType, param1->unk_39, v1->unk_06, v10, param0->unk_A3C.unk_2F, param0->unk_1B26);
-        v7 = ov17_0224ECC4(param0->unk_00->unk_00.contestRank, param0->unk_00->unk_00.contestType, param1->unk_39, v1->unk_06, v10, v1->unk_03, v9, param0->unk_1B26);
+        v6 = ov17_0224EC24(param0->unk_00->data.contestRank, param0->unk_00->data.contestType, param1->unk_39, v1->unk_06, v10, param0->unk_A3C.unk_2F, param0->unk_1B26);
+        v7 = ov17_0224ECC4(param0->unk_00->data.contestRank, param0->unk_00->data.contestType, param1->unk_39, v1->unk_06, v10, v1->unk_03, v9, param0->unk_1B26);
         v4 = (v1->unk_06 * v2 + 10000 / 2) / 10000;
         v5 = (Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % (2 + v6)) - (1 + v6 / 2);
 

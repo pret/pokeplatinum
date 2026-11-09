@@ -18,46 +18,46 @@
 #include "unk_020298BC.h"
 #include "unk_02032798.h"
 
-static void sub_02095B2C(int param0, int param1, void *param2, void *param3);
-static u8 *sub_02095B04(int param0, void *param1, int param2);
-static void sub_02095B30(int param0, int param1, void *param2, void *param3);
-static void sub_02095B9C(int param0, int param1, void *param2, void *param3);
-static void sub_02095C48(int param0, int param1, void *param2, void *param3);
+static void Contest_Dummy(int unused1, int unused2, void *unused3, void *unused4);
+static u8 *Contest_GetCommRecvBuffer(int netID, void *contestParam, int size);
+static void Contest_RecvPhoto(int unused1, int unused2, void *src, void *param);
+static void Contest_RecvAllPhotos(int unused1, int unused2, void *src, void *param);
+static void Contest_RecvVisualCompetitionTimer(int unused, int size, void *src, void *param);
 static void sub_02095C98(int param0, int param1, void *param2, void *param3);
 static int sub_02095B24(void);
 static int sub_02095B28(void);
 
-static const CommCmdTable Unk_020F58FC[] = {
+static const CommCmdTable sContestCommCmdTable[] = {
     { NULL, CommPacketSizeOf_Nothing, NULL },
-    { sub_02095B2C, CommPacketSizeOf_Nothing, NULL },
-    { ov17_02252CEC, CommPacketSizeOf_Variable, sub_02095B04 },
+    { Contest_Dummy, CommPacketSizeOf_Nothing, NULL },
+    { ov17_02252CEC, CommPacketSizeOf_Variable, Contest_GetCommRecvBuffer },
     { ov17_02252D7C, sub_02095B24, NULL },
-    { ov6_022489E4, CommPacketSizeOf_Variable, NULL },
-    { ov6_02248AC8, CommPacketSizeOf_Variable, NULL },
-    { ov6_02248B30, CommPacketSizeOf_Variable, sub_02095B04 },
-    { ov6_02248BC0, CommPacketSizeOf_Variable, NULL },
-    { ov6_02248C28, CommPacketSizeOf_Variable, NULL },
-    { ov6_02248CBC, CommPacketSizeOf_Variable, NULL },
-    { sub_02095B30, CommPacketSizeOf_Variable, NULL },
-    { sub_02095B9C, CommPacketSizeOf_Variable, sub_02095B04 },
-    { sub_02095C48, sub_02095B28, NULL },
+    { Contest_RecvHostElectionData, CommPacketSizeOf_Variable, NULL },
+    { Contest_RecvMon, CommPacketSizeOf_Variable, NULL },
+    { Contest_RecvAllMons, CommPacketSizeOf_Variable, Contest_GetCommRecvBuffer },
+    { Contest_RecvContestant, CommPacketSizeOf_Variable, NULL },
+    { Contest_RecvJudges, CommPacketSizeOf_Variable, NULL },
+    { Contest_RecvTrainerName, CommPacketSizeOf_Variable, NULL },
+    { Contest_RecvPhoto, CommPacketSizeOf_Variable, NULL },
+    { Contest_RecvAllPhotos, CommPacketSizeOf_Variable, Contest_GetCommRecvBuffer },
+    { Contest_RecvVisualCompetitionTimer, sub_02095B28, NULL },
     { sub_02095C98, sub_02095B28, NULL },
-    { ov6_02248D38, CommPacketSizeOf_Variable, sub_02095B04 },
-    { ov6_02248DA0, CommPacketSizeOf_Variable, NULL }
+    { Contest_RecvChatotCry, CommPacketSizeOf_Variable, Contest_GetCommRecvBuffer },
+    { Contest_RecvContestantLinkInfo, CommPacketSizeOf_Variable, NULL }
 };
 
-void sub_02095AF0(void *param0)
+void Contest_InitCommCommands(void *contest)
 {
-    int v0 = sizeof(Unk_020F58FC) / sizeof(CommCmdTable);
-    CommCmd_Init(Unk_020F58FC, v0, param0);
+    int numCommands = NELEMS(sContestCommCmdTable);
+    CommCmd_Init(sContestCommCmdTable, numCommands, contest);
 }
 
-static u8 *sub_02095B04(int param0, void *param1, int param2)
+static u8 *Contest_GetCommRecvBuffer(int netID, void *contestParam, int size)
 {
-    Contest *v0 = param1;
+    Contest *contest = contestParam;
 
-    GF_ASSERT(param2 < 1024);
-    return v0->unk_969[param0];
+    GF_ASSERT(size < CONTEST_COMM_BUFFER_SIZE);
+    return contest->commRecvBuffers[netID];
 }
 
 static int sub_02095B24(void)
@@ -70,140 +70,140 @@ static int sub_02095B28(void)
     return sizeof(UnkStruct_02095B28);
 }
 
-static void sub_02095B2C(int param0, int param1, void *param2, void *param3)
+static void Contest_Dummy(int unused1, int unused2, void *unused3, void *unused4)
 {
     return;
 }
 
-static void sub_02095B30(int param0, int param1, void *param2, void *param3)
+static void Contest_RecvPhoto(int unused1, int unused2, void *src, void *param)
 {
-    Contest *v0 = param3;
-    int v1;
-    int v2;
-    u8 *v3;
+    Contest *contest = param;
+    int photoSize;
+    int contestantID;
+    u8 *data;
 
-    v1 = sub_02029C64();
-    v3 = param2;
-    v2 = v3[v1];
+    photoSize = ContestPhoto_Size();
+    data = src;
+    contestantID = data[photoSize];
 
-    MI_CpuCopy8(param2, v0->unk_00.unk_E8[v2], v1);
+    MI_CpuCopy8(src, contest->data.photos[contestantID], photoSize);
 
-    v0->unk_568++;
+    contest->numMessagesReceived++;
 }
 
-BOOL sub_02095B5C(Contest *param0, int param1, const UnkStruct_02029C88 *param2)
+BOOL Contest_SendPhoto(Contest *unused, int contestantID, const ContestPhoto *contestPhoto)
 {
-    u8 *v0;
-    int v1;
-    int v2;
+    u8 *buffer;
+    int photoSize;
+    BOOL result;
 
-    v1 = sub_02029C64();
-    v0 = Heap_Alloc(HEAP_ID_20, v1 + 1);
-    MI_CpuCopy8(param2, v0, v1);
-    v0[v1] = param1;
+    photoSize = ContestPhoto_Size();
+    buffer = Heap_Alloc(HEAP_ID_20, photoSize + 1);
+    MI_CpuCopy8(contestPhoto, buffer, photoSize);
+    buffer[photoSize] = contestantID;
 
-    if (CommSys_SendData(32, v0, v1 + 1) == 1) {
-        v2 = 1;
+    if (CommSys_SendData(CONTEST_CMD_SEND_PHOTO, buffer, photoSize + 1) == TRUE) {
+        result = TRUE;
     } else {
-        v2 = 0;
+        result = FALSE;
     }
 
-    Heap_Free(v0);
-    return v2;
+    Heap_Free(buffer);
+    return result;
 }
 
-static void sub_02095B9C(int param0, int param1, void *param2, void *param3)
+static void Contest_RecvAllPhotos(int unused1, int unused2, void *src, void *param)
 {
-    Contest *v0 = param3;
-    int v1, v2;
-    u8 *v3;
-    int v4;
+    Contest *contest = param;
+    int photoSize, totalSize;
+    u8 *data;
+    int i;
 
-    v1 = sub_02029C64();
-    v2 = v1 * 4;
-    v3 = param2;
+    photoSize = ContestPhoto_Size();
+    totalSize = photoSize * CONTEST_NUM_PARTICIPANTS;
+    data = src;
 
-    GF_ASSERT(v2 < 1024);
+    GF_ASSERT(totalSize < CONTEST_COMM_BUFFER_SIZE);
 
-    for (v4 = 0; v4 < 4; v4++) {
-        MI_CpuCopy8(&v3[v1 * v4], v0->unk_00.unk_E8[v4], v1);
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        MI_CpuCopy8(&data[photoSize * i], contest->data.photos[i], photoSize);
     }
 
-    v0->unk_568++;
+    contest->numMessagesReceived++;
 }
 
-BOOL sub_02095BEC(Contest *param0, UnkStruct_02029C88 **param1)
+BOOL Contest_SendAllPhotos(Contest *contest, ContestPhoto **contestPhotos)
 {
-    u8 *v0;
-    int v1, v2;
-    int v3;
-    int v4;
+    u8 *buffer;
+    int photoSize, totalSize;
+    BOOL result;
+    int i;
 
-    v1 = sub_02029C64();
-    v2 = v1 * 4;
+    photoSize = ContestPhoto_Size();
+    totalSize = photoSize * CONTEST_NUM_PARTICIPANTS;
 
-    GF_ASSERT(v2 < 1024);
+    GF_ASSERT(totalSize < CONTEST_COMM_BUFFER_SIZE);
 
-    v0 = param0->unk_569;
+    buffer = contest->commSendBuffer;
 
-    for (v4 = 0; v4 < 4; v4++) {
-        MI_CpuCopy8(param1[v4], &v0[v1 * v4], v1);
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        MI_CpuCopy8(contestPhotos[i], &buffer[photoSize * i], photoSize);
     }
 
-    if (CommSys_SendDataHuge(33, v0, v2) == 1) {
-        v3 = 1;
+    if (CommSys_SendDataHuge(CONTEST_CMD_SEND_ALL_PHOTOS, buffer, totalSize) == TRUE) {
+        result = TRUE;
     } else {
-        v3 = 0;
+        result = FALSE;
     }
 
-    return v3;
+    return result;
 }
 
-static void sub_02095C48(int param0, int param1, void *param2, void *param3)
+static void Contest_RecvVisualCompetitionTimer(int unused, int size, void *src, void *param)
 {
-    Contest *v0 = param3;
-    MI_CpuCopy8(param2, &v0->unk_1984.unk_00, param1);
+    Contest *contest = param;
+    MI_CpuCopy8(src, &contest->unk_1984.unk_00, size);
 }
 
 BOOL sub_02095C60(UnkStruct_02095C60 *param0, u32 param1)
 {
     if (param0->unk_16 == 0) {
         param0->unk_00.unk_00 = param1;
-        return 1;
+        return TRUE;
     }
 
     if (param0->unk_14 != param0->unk_15) {
-        return 0;
+        return FALSE;
     }
 
     param0->unk_08.unk_00 = param1;
 
-    if (CommSys_SendData(34, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
-        return 1;
+    if (CommSys_SendData(CONTEST_CMD_SEND_VISUAL_COMPETITION_TIMER, &param0->unk_08, sizeof(UnkStruct_02095B28)) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void sub_02095C98(int param0, int param1, void *param2, void *param3)
 {
-    Contest *v0 = param3;
+    Contest *contest = param3;
     UnkStruct_02095B28 *v1 = param2;
-    v0->unk_1984.unk_10[param0] = v1->unk_04;
+    contest->unk_1984.unk_10[param0] = v1->unk_04;
 }
 
 BOOL sub_02095CA8(UnkStruct_02095C60 *param0, int param1)
 {
     if (param0->unk_16 == 0) {
         param0->unk_10[0] = param1;
-        return 1;
+        return TRUE;
     }
 
     param0->unk_08.unk_04 = param1;
 
-    if (CommSys_SendData(35, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
-        return 1;
+    if (CommSys_SendData(CONTEST_CMD_UNK_35, &param0->unk_08, sizeof(UnkStruct_02095B28)) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

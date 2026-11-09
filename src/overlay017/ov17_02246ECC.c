@@ -1260,7 +1260,7 @@ void ov17_02246ECC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BE58 *par
 {
     UnkStruct_ov17_02246F9C *v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02246F9C));
 
-    for (int contestantID = param0->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+    for (int contestantID = param0->unk_00->data.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
         ov17_02246F24(param0, v1, contestantID);
         ov17_02246F9C(param0, v1, contestantID, &param1->moveIDs[contestantID], &param1->unk_08[contestantID]);
     }
@@ -1275,7 +1275,7 @@ static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
     MI_CpuClear8(param1, sizeof(UnkStruct_ov17_02246F9C));
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        param1->unk_00[v0].moveID = Pokemon_GetValue(param0->unk_00->unk_00.contestMons[contestantID], MON_DATA_MOVE1 + v0, NULL);
+        param1->unk_00[v0].moveID = Pokemon_GetValue(param0->unk_00->data.contestMons[contestantID], MON_DATA_MOVE1 + v0, NULL);
 
         if (ov17_02243A98(&param0->unk_220, contestantID, param1->unk_00[v0].moveID) == TRUE) {
             param1->unk_00[v0].moveContestEffect = MoveTable_LoadParam(param1->unk_00[v0].moveID, MOVEATTRIBUTE_CONTEST_EFFECT);
@@ -1285,7 +1285,7 @@ static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
         }
     }
 
-    param1->unk_30 = param0->unk_00->unk_00.unk_FC[contestantID];
+    param1->unk_30 = param0->unk_00->data.npcSkillLevels[contestantID];
 }
 
 static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int contestantID, u16 *destMoveID, u8 *param4)
@@ -1312,7 +1312,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                 v7[v4] = 0;
             }
 
-            v2 = Unk_ov17_02253BBC[Unk_ov17_02253C30[v1].unk_01](v5, contestantID, param1, v7, param0->unk_00->unk_00.contestType);
+            v2 = Unk_ov17_02253BBC[Unk_ov17_02253C30[v1].unk_01](v5, contestantID, param1, v7, param0->unk_00->data.contestType);
 
             if (v2 == 1) {
                 switch (Unk_ov17_02253C30[v1].unk_03) {
@@ -1330,16 +1330,16 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                     break;
                 }
 
-                v6 = Unk_ov17_02253C30[v1].unk_04[param0->unk_00->unk_00.unk_FC[contestantID]];
+                v6 = Unk_ov17_02253C30[v1].unk_04[param0->unk_00->data.npcSkillLevels[contestantID]];
 
-                if (param0->unk_00->unk_00.unk_FC[contestantID] != 0) {
+                if (param0->unk_00->data.npcSkillLevels[contestantID] != 0) {
                     v6 += Unk_ov17_02253C30[v1].unk_04[0];
                 }
 
                 switch (Unk_ov17_02253C30[v1].unk_02) {
                 case 240:
                     for (v3 = 0; v3 < 4; v3++) {
-                        if (param0->unk_00->unk_00.contestType == param1->unk_00[v3].moveContestType) {
+                        if (param0->unk_00->data.contestType == param1->unk_00[v3].moveContestType) {
                             param1->unk_00[v3].unk_02 += v6;
 
                             for (v4 = 0; v4 < (1 + 2); v4++) {
@@ -1352,7 +1352,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                     break;
                 case 241:
                     for (v3 = 0; v3 < 4; v3++) {
-                        if (sub_02095734(param1->unk_00[v3].moveContestEffect) >= 10 * 2) {
+                        if (Contest_GetMoveEffectAppeal(param1->unk_00[v3].moveContestEffect) >= 10 * 2) {
                             param1->unk_00[v3].unk_02 += v6;
 
                             for (v4 = 0; v4 < (1 + 2); v4++) {
@@ -1434,8 +1434,8 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
 
                 v18 = Contest_GetRNGNext(param0->unk_00) & 0xff;
 
-                if (v18 < v20[param0->unk_00->unk_00.contestRank]) {
-                    v19 = param0->unk_220.unk_0E[param0->unk_00->unk_00.playerContestantID];
+                if (v18 < v20[param0->unk_00->data.contestRank]) {
+                    v19 = param0->unk_220.unk_0E[param0->unk_00->data.playerContestantID];
                     param1->unk_00[v15].unk_04[v19] -= 100;
                 }
             }

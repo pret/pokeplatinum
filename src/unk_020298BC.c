@@ -5,6 +5,7 @@
 
 #include "constants/accessories.h"
 #include "constants/charcode.h"
+#include "constants/graphics.h"
 #include "generated/backdrops.h"
 #include "generated/pokemon_contest_types.h"
 
@@ -36,35 +37,35 @@ static BOOL IsValidMagic(u32 value)
     return FALSE;
 }
 
-static inline BOOL DressUpPhoto_IsValid(const DressUpPhoto *photo)
+static inline BOOL DressUpPhoto_IsValid(const DressUpPhoto *duPhoto)
 {
-    return IsValidMagic(photo->integrity);
+    return IsValidMagic(duPhoto->integrity);
 }
 
-static inline BOOL inline_02029CD0(const UnkStruct_02029C88 *param0)
+static inline BOOL ContestPhoto_IsValid(const ContestPhoto *contestPhoto)
 {
-    return IsValidMagic(param0->integrity);
+    return IsValidMagic(contestPhoto->integrity);
 }
 
-static inline void DressUpPhoto_InitInternal(DressUpPhoto *photo)
+static inline void DressUpPhoto_InitInternal(DressUpPhoto *duPhoto)
 {
-    memset(photo, 0, sizeof(DressUpPhoto));
-    photo->integrity = PHOTO_EMPTY_MAGIC;
+    memset(duPhoto, 0, sizeof(DressUpPhoto));
+    duPhoto->integrity = PHOTO_EMPTY_MAGIC;
 }
 
-static inline void inline_02029BFC_1(UnkStruct_02029C88 *param0)
+static inline void ContestPhoto_InitInternal(ContestPhoto *contestPhoto)
 {
-    memset(param0, 0, sizeof(UnkStruct_02029C88));
-    param0->integrity = PHOTO_EMPTY_MAGIC;
+    memset(contestPhoto, 0, sizeof(ContestPhoto));
+    contestPhoto->integrity = PHOTO_EMPTY_MAGIC;
 }
 
-static void sub_020298D8(UnkStruct_020298D8 *param0, u8 *xPos, u8 *yPos, s8 *priority)
+static void DressUpMonSprite_GetPhotoPosition(DressUpMonSprite *duMonSprite, u8 *xPos, u8 *yPos, s8 *priority)
 {
     int spriteX, spriteY;
     int spritePriority;
 
-    ov22_02259250(param0, &spriteX, &spriteY);
-    spritePriority = ov22_022591E0(param0);
+    ov22_02259250(duMonSprite, &spriteX, &spriteY);
+    spritePriority = ov22_022591E0(duMonSprite);
 
     GF_ASSERT(spriteX < 256);
     GF_ASSERT(spriteY < 256);
@@ -89,12 +90,12 @@ static void PhotoPokemon_SetDataFromMon(PhotoPokemon *photoMon, Pokemon *mon, u8
     photoMon->priority = priority;
 }
 
-static void sub_02029990(PhotoPokemon *photoMon, Pokemon *mon, UnkStruct_020298D8 *param2)
+static void PhotoPokemon_SetFromDressUpMonSprite(PhotoPokemon *photoMon, Pokemon *mon, DressUpMonSprite *duMonSprite)
 {
     u8 xPos, yPos;
     s8 priority;
 
-    sub_020298D8(param2, &xPos, &yPos, &priority);
+    DressUpMonSprite_GetPhotoPosition(duMonSprite, &xPos, &yPos, &priority);
     PhotoPokemon_SetDataFromMon(photoMon, mon, xPos, yPos, priority);
 }
 
@@ -111,9 +112,9 @@ static void PhotoPokemon_CopyToPokemonInternal(const PhotoPokemon *photoMon, Pok
     Pokemon_SetValue(mon, MON_DATA_FORM, &photoMon->form);
 }
 
-static void PhotoAccessory_SetData(PhotoAccessory *accessory, u8 param1, u8 xPos, u8 yPos, u8 priority)
+static void PhotoAccessory_SetData(PhotoAccessory *accessory, u8 accessoryID, u8 xPos, u8 yPos, u8 priority)
 {
-    accessory->unk_00 = param1;
+    accessory->accessoryID = accessoryID;
     accessory->xPos = xPos;
     accessory->yPos = yPos;
     accessory->priority = priority;
@@ -123,88 +124,71 @@ static void NonUniqueAccessoryFlags_SetCount(u32 *flags, u8 count, u8 accessoryI
 {
     GF_ASSERT(accessoryID < NON_UNIQUE_ACCESSORY_COUNT);
 
-    u8 v0 = accessoryID / 8;
-    u8 v1 = accessoryID % 8;
+    u8 index = accessoryID / 8;
+    u8 shift = accessoryID % 8;
 
-    v1 *= 4;
+    shift *= 4;
 
-    flags[v0] &= ~(0xf << v1);
-    flags[v0] |= (count << v1);
+    flags[index] &= ~(0xf << shift);
+    flags[index] |= (count << shift);
 }
 
 static u8 NonUniqueAccessoryFlags_GetCount(const u32 *flags, u8 accessoryID)
 {
-    u8 v0;
-    u8 v1;
-    u8 v2;
-
     GF_ASSERT(accessoryID < NON_UNIQUE_ACCESSORY_COUNT);
 
-    v1 = accessoryID / 8;
-    v2 = accessoryID % 8;
-    v2 *= 4;
-    v0 = (flags[v1] >> v2) & 0xf;
+    u8 index = accessoryID / 8;
+    u8 shift = accessoryID % 8;
+    shift *= 4;
+    u8 count = (flags[index] >> shift) & 0xf;
 
-    if (v0 > MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE) {
-        v0 = MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE;
+    if (count > MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE) {
+        count = MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE;
     }
 
-    return v0;
+    return count;
 }
 
 static void UniqueAccessoryFlags_SetCount(u32 *flags, u8 count, u8 accessoryID)
 {
     GF_ASSERT(count < MAX_UNIQUE_ACCESSORIES_PER_TYPE + 1);
 
-    u8 v0 = accessoryID / 32;
-    u8 v1 = accessoryID % 32;
+    u8 index = accessoryID / 32;
+    u8 shift = accessoryID % 32;
 
-    v1 *= 1;
-
-    flags[v0] &= ~(0x1 << v1);
-    flags[v0] |= (count << v1);
+    flags[index] &= ~(0x1 << shift);
+    flags[index] |= (count << shift);
 }
 
 static u8 UniqueAccessoryFlags_GetCount(const u32 *flags, u8 accessoryID)
 {
-    u8 v0;
-    u8 v1;
+    u8 index = accessoryID / 32;
+    u8 shift = accessoryID % 32;
 
-    v0 = accessoryID / 32;
-    v1 = accessoryID % 32;
-
-    v1 *= 1;
-
-    return (flags[v0] >> v1) & 0x1;
+    return (flags[index] >> shift) & 0x1;
 }
 
 static void BackdropFlags_SetCount(u32 *flags, u8 count, u8 backdropID)
 {
-    u8 v0;
-    u8 v1;
-
     GF_ASSERT(count <= BACKDROP_COUNT);
 
-    v0 = backdropID / 4;
-    v1 = backdropID % 4;
+    u8 index = backdropID / 4;
+    u8 shift = backdropID % 4;
 
-    v1 *= 8;
+    shift *= 8;
 
-    flags[v0] &= ~(0xff << v1);
-    flags[v0] |= (count << v1);
+    flags[index] &= ~(0xff << shift);
+    flags[index] |= (count << shift);
 }
 
 static u8 BackdropFlags_GetCount(const u32 *flags, u8 backdropID)
 {
-    u8 v0;
-    u8 v1;
+    u8 index = backdropID / 4;
+    u8 shift = backdropID % 4;
 
-    v0 = backdropID / 4;
-    v1 = backdropID % 4;
+    shift *= 8;
 
-    v1 *= 8;
-
-    return (flags[v0] >> v1) & 0xff;
+    return (flags[index] >> shift) & 0xff;
 }
 
 static u8 BackdropFlags_GetTotalCount(const u32 *flags)
@@ -247,12 +231,12 @@ static void FashionCase_Init(FashionCase *fashionCase)
     }
 }
 
-static void GetMonXYPositions(Pokemon *mon, u8 *xPos, u8 *yPos)
+static void Pokemon_GetDefaultPhotoPosition(Pokemon *mon, u8 *xPos, u8 *yPos)
 {
     u8 yOffset = Pokemon_DPSpriteYOffset(mon, FACE_FRONT);
 
     *xPos = 192 - (8 * 8);
-    *yPos = (16 + 129) - ((80 / 2) - yOffset) + -4;
+    *yPos = (16 + 129) - ((MON_SPRITE_FRAME_HEIGHT / 2) - yOffset) + -4;
     *yPos += (5 * 8);
 }
 
@@ -264,8 +248,8 @@ void ImageClips_Init(ImageClips *imageClips)
         DressUpPhoto_InitInternal(&imageClips->savedPhotos[i]);
     }
 
-    for (i = 0; i < 5; i++) {
-        inline_02029BFC_1(&imageClips->unk_4C8[i]);
+    for (i = 0; i < CONTEST_TYPE_MAX; i++) {
+        ContestPhoto_InitInternal(&imageClips->contestPhotos[i]);
     }
 
     FashionCase_Init(&imageClips->fashionCase);
@@ -281,25 +265,25 @@ int DressUpPhoto_Size(void)
     return sizeof(DressUpPhoto);
 }
 
-int sub_02029C64(void)
+int ContestPhoto_Size(void)
 {
-    return sizeof(UnkStruct_02029C88);
+    return sizeof(ContestPhoto);
 }
 
 DressUpPhoto *DressUpPhoto_New(u32 heapID)
 {
-    DressUpPhoto *photo = Heap_Alloc(heapID, sizeof(DressUpPhoto));
-    DressUpPhoto_InitInternal(photo);
+    DressUpPhoto *duPhoto = Heap_Alloc(heapID, sizeof(DressUpPhoto));
+    DressUpPhoto_InitInternal(duPhoto);
 
-    return photo;
+    return duPhoto;
 }
 
-UnkStruct_02029C88 *sub_02029C88(u32 heapID)
+ContestPhoto *ContestPhoto_New(u32 heapID)
 {
-    UnkStruct_02029C88 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02029C88));
-    inline_02029BFC_1(v0);
+    ContestPhoto *contestPhoto = Heap_Alloc(heapID, sizeof(ContestPhoto));
+    ContestPhoto_InitInternal(contestPhoto);
 
-    return v0;
+    return contestPhoto;
 }
 
 DressUpPhoto *ImageClips_GetDressUpPhoto(ImageClips *imageClips, int slot)
@@ -310,12 +294,12 @@ DressUpPhoto *ImageClips_GetDressUpPhoto(ImageClips *imageClips, int slot)
     return &imageClips->savedPhotos[slot];
 }
 
-UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int contestType)
+ContestPhoto *ImageClips_GetContestPhoto(ImageClips *imageClips, int contestType)
 {
     GF_ASSERT(contestType < CONTEST_TYPE_MAX);
-    GF_ASSERT(inline_02029CD0(&imageClips->unk_4C8[contestType]));
+    GF_ASSERT(ContestPhoto_IsValid(&imageClips->contestPhotos[contestType]));
 
-    return &imageClips->unk_4C8[contestType];
+    return &imageClips->contestPhotos[contestType];
 }
 
 FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips)
@@ -329,10 +313,10 @@ BOOL ImageClips_DressUpPhotoHasData(const ImageClips *imageClips, int slot)
     return DressUpPhoto_HasData(&imageClips->savedPhotos[slot]);
 }
 
-BOOL sub_02029D2C(const ImageClips *imageClips, int param1)
+BOOL ImageClips_ContestPhotoHasData(const ImageClips *imageClips, int contestType)
 {
-    GF_ASSERT(param1 < 5);
-    return sub_0202A218(&imageClips->unk_4C8[param1]);
+    GF_ASSERT(contestType < CONTEST_TYPE_MAX);
+    return ContestPhoto_HasData(&imageClips->contestPhotos[contestType]);
 }
 
 BOOL FashionCase_CanFitAccessoryCount(const FashionCase *fashionCase, u32 accessoryID, u32 count)
@@ -483,66 +467,66 @@ void FashionCase_AddBackdrop(FashionCase *fashionCase, u32 backdropID)
     }
 }
 
-BOOL DressUpPhoto_HasData(const DressUpPhoto *photo)
+BOOL DressUpPhoto_HasData(const DressUpPhoto *duPhoto)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
 
-    if (photo->integrity == PHOTO_FULL_MAGIC) {
+    if (duPhoto->integrity == PHOTO_FULL_MAGIC) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void DressUpPhoto_SetLanguageAndMagic(DressUpPhoto *photo)
+void DressUpPhoto_SetLanguageAndMagic(DressUpPhoto *duPhoto)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
 
-    photo->integrity = PHOTO_FULL_MAGIC;
-    photo->language = gGameLanguage;
+    duPhoto->integrity = PHOTO_FULL_MAGIC;
+    duPhoto->language = gGameLanguage;
 }
 
-void DressUpPhoto_Init(DressUpPhoto *photo)
+void DressUpPhoto_Init(DressUpPhoto *duPhoto)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    DressUpPhoto_InitInternal(photo);
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    DressUpPhoto_InitInternal(duPhoto);
 }
 
-void sub_02029FAC(DressUpPhoto *photo, Pokemon *mon, UnkStruct_020298D8 *param2)
+void DressUpPhoto_SetMonFromSprite(DressUpPhoto *duPhoto, Pokemon *mon, DressUpMonSprite *duMonSprite)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    sub_02029990(&photo->photoMon, mon, param2);
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    PhotoPokemon_SetFromDressUpMonSprite(&duPhoto->photoMon, mon, duMonSprite);
 }
 
-void sub_02029FD0(DressUpPhoto *photo, const UnkStruct_ov22_02255040 *param1, int param2)
+void DressUpPhoto_SetAccessoryFromSprite(DressUpPhoto *duPhoto, const DressUpAccessorySprite *duaSprite, int slot)
 {
-    NNSG2dSVec2 v0 = SoftwareSprite_GetPosition(param1->unk_04);
-    int v1 = SoftwareSprite_GetPriority(param1->unk_04);
+    NNSG2dSVec2 pos = SoftwareSprite_GetPosition(duaSprite->sprite);
+    int priority = SoftwareSprite_GetPriority(duaSprite->sprite);
 
-    GF_ASSERT(param2 < (11 - 1));
-    GF_ASSERT(v0.x < 256);
-    GF_ASSERT(v0.y < 256);
-    GF_ASSERT(v1 > -128);
-    GF_ASSERT(!(photo->unk_3C & (1 << param2)));
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    GF_ASSERT(slot < PHOTO_ACCESSORY_COUNT);
+    GF_ASSERT(pos.x < 256);
+    GF_ASSERT(pos.y < 256);
+    GF_ASSERT(priority > -128);
+    GF_ASSERT(!(duPhoto->accessoryFlags & (1 << slot)));
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
 
-    PhotoAccessory_SetData(&photo->accessories[param2], param1->unk_00, v0.x, v0.y, v1);
+    PhotoAccessory_SetData(&duPhoto->accessories[slot], duaSprite->accessoryID, pos.x, pos.y, priority);
 
-    photo->unk_3C |= 1 << param2;
+    duPhoto->accessoryFlags |= 1 << slot;
 }
 
-void sub_0202A084(DressUpPhoto *photo, u8 param1)
+void DressUpPhoto_SetBackdrop(DressUpPhoto *duPhoto, u8 backdrop)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    photo->unk_70 = param1;
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    duPhoto->backdrop = backdrop;
 }
 
-void DressUpPhoto_SetTitle(DressUpPhoto *photo, u16 word)
+void DressUpPhoto_SetTitle(DressUpPhoto *duPhoto, u16 word)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
 
-    EasyChatSentence_Init(&photo->title);
-    EasyChatSentence_SetWord(&photo->title, 0, word);
+    EasyChatSentence_Init(&duPhoto->title);
+    EasyChatSentence_SetWord(&duPhoto->title, 0, word);
 }
 
 void DressUpPhoto_Copy(DressUpPhoto *dest, const DressUpPhoto *src)
@@ -551,233 +535,233 @@ void DressUpPhoto_Copy(DressUpPhoto *dest, const DressUpPhoto *src)
     memcpy(dest, src, sizeof(DressUpPhoto));
 }
 
-void DressUpPhoto_SetTrainerNameAndGender(DressUpPhoto *photo, const String *name, int gender)
+void DressUpPhoto_SetTrainerNameAndGender(DressUpPhoto *duPhoto, const String *name, int gender)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    PhotoPokemon_SetTrainerNameAndGender(&photo->photoMon, name, gender);
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    PhotoPokemon_SetTrainerNameAndGender(&duPhoto->photoMon, name, gender);
 }
 
-BOOL sub_0202A110(const DressUpPhoto *photo, int param1)
+BOOL DressUpPhoto_HasAccessory(const DressUpPhoto *duPhoto, int slot)
 {
-    GF_ASSERT(param1 < (11 - 1));
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    GF_ASSERT(slot < PHOTO_ACCESSORY_COUNT);
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
 
-    return photo->unk_3C & (1 << param1);
+    return duPhoto->accessoryFlags & (1 << slot);
 }
 
-const PhotoPokemon *DressUpPhoto_GetPhotoMon(const DressUpPhoto *photo)
+const PhotoPokemon *DressUpPhoto_GetPhotoMon(const DressUpPhoto *duPhoto)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    return &photo->photoMon;
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    return &duPhoto->photoMon;
 }
 
-const PhotoAccessory *sub_0202A150(const DressUpPhoto *photo, int param1)
+const PhotoAccessory *DressUpPhoto_GetAccessory(const DressUpPhoto *duPhoto, int slot)
 {
-    GF_ASSERT(param1 < (11 - 1));
-    GF_ASSERT(photo->unk_3C & (1 << param1));
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    GF_ASSERT(slot < PHOTO_ACCESSORY_COUNT);
+    GF_ASSERT(duPhoto->accessoryFlags & (1 << slot));
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
 
-    return &photo->accessories[param1];
+    return &duPhoto->accessories[slot];
 }
 
-u16 DressUpPhoto_GetMonSpecies(const DressUpPhoto *photo)
+u16 DressUpPhoto_GetMonSpecies(const DressUpPhoto *duPhoto)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    return PhotoPokemon_GetSpecies(&photo->photoMon);
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    return PhotoPokemon_GetSpecies(&duPhoto->photoMon);
 }
 
-void DressUpPhoto_SetTrainerName(const DressUpPhoto *photo, String *name)
+void DressUpPhoto_SetTrainerName(const DressUpPhoto *duPhoto, String *name)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    PhotoPokemon_SetTrainerName(&photo->photoMon, name);
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    PhotoPokemon_SetTrainerName(&duPhoto->photoMon, name);
 }
 
-u32 DressUpPhoto_GetTrainerGender(const DressUpPhoto *photo)
+u32 DressUpPhoto_GetTrainerGender(const DressUpPhoto *duPhoto)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    return PhotoPokemon_GetTrainerGender(&photo->photoMon);
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    return PhotoPokemon_GetTrainerGender(&duPhoto->photoMon);
 }
 
-u8 sub_0202A1DC(const DressUpPhoto *photo)
+enum Backdrop DressUpPhoto_GetBackdrop(const DressUpPhoto *duPhoto)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    return photo->unk_70;
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    return duPhoto->backdrop;
 }
 
-u16 DressUpPhoto_GetTitleWord(const DressUpPhoto *photo)
+u16 DressUpPhoto_GetTitleWord(const DressUpPhoto *duPhoto)
 {
-    return EasyChatSentence_GetWord(&photo->title, 0);
+    return EasyChatSentence_GetWord(&duPhoto->title, 0);
 }
 
-u8 DressUpPhoto_GetLanguage(const DressUpPhoto *photo)
+u8 DressUpPhoto_GetLanguage(const DressUpPhoto *duPhoto)
 {
-    GF_ASSERT(DressUpPhoto_IsValid(photo));
-    return photo->language;
+    GF_ASSERT(DressUpPhoto_IsValid(duPhoto));
+    return duPhoto->language;
 }
 
-BOOL sub_0202A218(const UnkStruct_02029C88 *param0)
+BOOL ContestPhoto_HasData(const ContestPhoto *contestPhoto)
 {
-    GF_ASSERT(inline_02029CD0(param0));
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
 
-    if (param0->integrity == PHOTO_FULL_MAGIC) {
+    if (contestPhoto->integrity == PHOTO_FULL_MAGIC) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void sub_0202A240(UnkStruct_02029C88 *param0)
+void ContestPhoto_SetMagic(ContestPhoto *contestPhoto)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    param0->integrity = PHOTO_FULL_MAGIC;
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    contestPhoto->integrity = PHOTO_FULL_MAGIC;
 }
 
-void sub_0202A25C(UnkStruct_02029C88 *param0)
+void ContestPhoto_Init(ContestPhoto *contestPhoto)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    inline_02029BFC_1(param0);
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    ContestPhoto_InitInternal(contestPhoto);
 }
 
-void sub_0202A284(UnkStruct_02029C88 *param0, Pokemon *param1, UnkStruct_020298D8 *param2)
+void ContestPhoto_SetMonFromSprite(ContestPhoto *contestPhoto, Pokemon *mon, DressUpMonSprite *duMonSprite)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    sub_02029990(&param0->photoMon, param1, param2);
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    PhotoPokemon_SetFromDressUpMonSprite(&contestPhoto->photoMon, mon, duMonSprite);
 }
 
-void sub_0202A2A8(UnkStruct_02029C88 *param0, const UnkStruct_ov22_02255040 *param1, int param2)
+void ContestPhoto_SetAccessoryFromSprite(ContestPhoto *contestPhoto, const DressUpAccessorySprite *duaSprite, int slot)
 {
-    NNSG2dSVec2 v0 = SoftwareSprite_GetPosition(param1->unk_04);
-    int v1 = SoftwareSprite_GetPriority(param1->unk_04);
+    NNSG2dSVec2 pos = SoftwareSprite_GetPosition(duaSprite->sprite);
+    int priority = SoftwareSprite_GetPriority(duaSprite->sprite);
 
-    GF_ASSERT(param2 < (21 - 1));
-    GF_ASSERT(v0.x < 256);
-    GF_ASSERT(v0.y < 256);
-    GF_ASSERT(v1 > -128);
-    GF_ASSERT(!(param0->unk_40 & (1 << param2)));
-    GF_ASSERT(inline_02029CD0(param0));
+    GF_ASSERT(slot < CONTEST_PHOTO_ACCESSORY_COUNT);
+    GF_ASSERT(pos.x < 256);
+    GF_ASSERT(pos.y < 256);
+    GF_ASSERT(priority > -128);
+    GF_ASSERT(!(contestPhoto->accessoryFlags & (1 << slot)));
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
 
-    PhotoAccessory_SetData(&param0->accessories[param2], param1->unk_00, v0.x, v0.y, v1);
+    PhotoAccessory_SetData(&contestPhoto->accessories[slot], duaSprite->accessoryID, pos.x, pos.y, priority);
 
-    param0->unk_40 |= 1 << param2;
+    contestPhoto->accessoryFlags |= 1 << slot;
 }
 
-void sub_0202A35C(UnkStruct_02029C88 *param0, u8 param1)
+void ContestPhoto_SetBackdrop(ContestPhoto *contestPhoto, u8 backdrop)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    param0->unk_94 = param1;
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    contestPhoto->backdrop = backdrop;
 }
 
-void sub_0202A378(UnkStruct_02029C88 *param0, enum PokemonContestRank contestRank)
+void ContestPhoto_SetContestRank(ContestPhoto *contestPhoto, enum PokemonContestRank contestRank)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    param0->unk_04 = contestRank;
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    contestPhoto->contestRank = contestRank;
 }
 
-void sub_0202A390(UnkStruct_02029C88 *param0, const UnkStruct_02029C88 *param1)
+void ContestPhoto_Copy(ContestPhoto *destContestPhoto, const ContestPhoto *srcContestPhoto)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    memcpy(param0, param1, sizeof(UnkStruct_02029C88));
+    GF_ASSERT(ContestPhoto_IsValid(destContestPhoto));
+    memcpy(destContestPhoto, srcContestPhoto, sizeof(ContestPhoto));
 }
 
-void sub_0202A3B0(UnkStruct_02029C88 *param0, Pokemon *mon, s8 priority)
+void ContestPhoto_SetMon(ContestPhoto *contestPhoto, Pokemon *mon, s8 priority)
 {
     u8 xPos;
     u8 yPos;
 
-    GF_ASSERT(inline_02029CD0(param0));
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
 
-    GetMonXYPositions(mon, &xPos, &yPos);
-    PhotoPokemon_SetDataFromMon(&param0->photoMon, mon, xPos, yPos, priority);
+    Pokemon_GetDefaultPhotoPosition(mon, &xPos, &yPos);
+    PhotoPokemon_SetDataFromMon(&contestPhoto->photoMon, mon, xPos, yPos, priority);
 }
 
-void sub_0202A3EC(UnkStruct_02029C88 *param0, u32 param1, u8 param2, u8 xPos, u8 yPos, s8 priority)
+void ContestPhoto_SetAccessory(ContestPhoto *contestPhoto, u32 slot, u8 accessoryID, u8 xPos, u8 yPos, s8 priority)
 {
-    GF_ASSERT(param1 < (21 - 1));
-    GF_ASSERT(param2 < 100);
+    GF_ASSERT(slot < CONTEST_PHOTO_ACCESSORY_COUNT);
+    GF_ASSERT(accessoryID < 100);
     GF_ASSERT(xPos < 256);
     GF_ASSERT(yPos < 256);
     GF_ASSERT(priority > -128);
-    GF_ASSERT(!(param0->unk_40 & (1 << param1)));
-    GF_ASSERT(inline_02029CD0(param0));
+    GF_ASSERT(!(contestPhoto->accessoryFlags & (1 << slot)));
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
 
-    if (param0->photoMon.priority >= priority) {
-        priority = param0->photoMon.priority + 1;
+    if (contestPhoto->photoMon.priority >= priority) {
+        priority = contestPhoto->photoMon.priority + 1;
     }
 
-    PhotoAccessory_SetData(&param0->accessories[param1], param2, xPos, yPos, priority);
-    param0->unk_40 |= 1 << param1;
+    PhotoAccessory_SetData(&contestPhoto->accessories[slot], accessoryID, xPos, yPos, priority);
+    contestPhoto->accessoryFlags |= 1 << slot;
 }
 
-BOOL sub_0202A488(const UnkStruct_02029C88 *param0, int param1)
+BOOL ContestPhoto_HasAccessory(const ContestPhoto *contestPhoto, int slot)
 {
-    GF_ASSERT(param1 < (21 - 1));
-    GF_ASSERT(inline_02029CD0(param0));
+    GF_ASSERT(slot < CONTEST_PHOTO_ACCESSORY_COUNT);
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
 
-    if ((param0->unk_40 & (1 << param1)) != 0) {
-        return 1;
+    if ((contestPhoto->accessoryFlags & (1 << slot)) != 0) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0202A4B4(UnkStruct_02029C88 *param0, const String *name, int gender)
+void ContestPhoto_SetTrainerNameAndGender(ContestPhoto *contestPhoto, const String *name, int gender)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    PhotoPokemon_SetTrainerNameAndGender(&param0->photoMon, name, gender);
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    PhotoPokemon_SetTrainerNameAndGender(&contestPhoto->photoMon, name, gender);
 }
 
-const PhotoPokemon *sub_0202A4D8(const UnkStruct_02029C88 *param0)
+const PhotoPokemon *ContestPhoto_GetPhotoMon(const ContestPhoto *contestPhoto)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    return &param0->photoMon;
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    return &contestPhoto->photoMon;
 }
 
-const PhotoAccessory *sub_0202A4F0(const UnkStruct_02029C88 *param0, int param1)
+const PhotoAccessory *ContestPhoto_GetAccessory(const ContestPhoto *contestPhoto, int slot)
 {
-    GF_ASSERT(param1 < (21 - 1));
-    GF_ASSERT(param0->unk_40 & (1 << param1));
-    GF_ASSERT(inline_02029CD0(param0));
+    GF_ASSERT(slot < CONTEST_PHOTO_ACCESSORY_COUNT);
+    GF_ASSERT(contestPhoto->accessoryFlags & (1 << slot));
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
 
-    return &param0->accessories[param1];
+    return &contestPhoto->accessories[slot];
 }
 
-void sub_0202A524(const UnkStruct_02029C88 *param0, String *param1)
+void ContestPhoto_SetTrainerName(const ContestPhoto *contestPhoto, String *name)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    PhotoPokemon_SetTrainerName(&param0->photoMon, param1);
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    PhotoPokemon_SetTrainerName(&contestPhoto->photoMon, name);
 }
 
-u32 sub_0202A544(const UnkStruct_02029C88 *param0)
+u32 ContestPhoto_GetTrainerGender(const ContestPhoto *contestPhoto)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    return PhotoPokemon_GetTrainerGender(&param0->photoMon);
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    return PhotoPokemon_GetTrainerGender(&contestPhoto->photoMon);
 }
 
-void sub_0202A560(const UnkStruct_02029C88 *param0, Pokemon *param1)
+void ContestPhoto_CopyToPokemon(const ContestPhoto *contestPhoto, Pokemon *mon)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    PhotoPokemon_CopyToPokemonInternal(&param0->photoMon, param1);
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    PhotoPokemon_CopyToPokemonInternal(&contestPhoto->photoMon, mon);
 }
 
-u8 sub_0202A580(const UnkStruct_02029C88 *param0, int param1)
+u8 ContestPhoto_GetAccessoryID(const ContestPhoto *contestPhoto, int slot)
 {
-    GF_ASSERT(param1 < (21 - 1));
-    GF_ASSERT(param0->unk_40 & (1 << param1));
-    GF_ASSERT(inline_02029CD0(param0));
+    GF_ASSERT(slot < CONTEST_PHOTO_ACCESSORY_COUNT);
+    GF_ASSERT(contestPhoto->accessoryFlags & (1 << slot));
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
 
-    return sub_0202A624(&param0->accessories[param1]);
+    return PhotoAccessory_GetAccessoryID(&contestPhoto->accessories[slot]);
 }
 
-u8 sub_0202A5B8(const UnkStruct_02029C88 *param0)
+enum Backdrop ContestPhoto_GetBackdrop(const ContestPhoto *contestPhoto)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    return param0->unk_94;
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    return contestPhoto->backdrop;
 }
 
-u32 sub_0202A5D0(const UnkStruct_02029C88 *param0)
+u32 ContestPhoto_GetContestRank(const ContestPhoto *contestPhoto)
 {
-    GF_ASSERT(inline_02029CD0(param0));
-    return param0->unk_04;
+    GF_ASSERT(ContestPhoto_IsValid(contestPhoto));
+    return contestPhoto->contestRank;
 }
 
 u16 PhotoPokemon_GetSpecies(const PhotoPokemon *photoMon)
@@ -815,9 +799,9 @@ void PhotoPokemon_CopyToPokemon(const PhotoPokemon *photoMon, Pokemon *mon)
     PhotoPokemon_CopyToPokemonInternal(photoMon, mon);
 }
 
-u8 sub_0202A624(const PhotoAccessory *accessory)
+u8 PhotoAccessory_GetAccessoryID(const PhotoAccessory *accessory)
 {
-    return accessory->unk_00;
+    return accessory->accessoryID;
 }
 
 u8 PhotoAccessory_GetXPos(const PhotoAccessory *accessory)
@@ -835,82 +819,80 @@ s8 PhotoAccessory_GetPriority(const PhotoAccessory *accessory)
     return accessory->priority;
 }
 
-static BOOL sub_0202A638(ImageClips *imageClips, const DressUpPhoto *photo)
+static BOOL ImageClips_IsNewDressUpPhoto(ImageClips *imageClips, const DressUpPhoto *duPhoto)
 {
     int i;
-    const void *v1;
-    u32 v2, v3;
-    MATHCRC32Table v4;
-    BOOL v5 = 1;
+    const void *savedPhoto;
+    u32 crc, savedCRC;
+    MATHCRC32Table crcTable;
+    BOOL isNew = TRUE;
 
-    if (DressUpPhoto_HasData(photo) == TRUE) {
-        MATH_CRC32InitTable(&v4);
-        v2 = MATH_CalcCRC32(&v4, photo, sizeof(DressUpPhoto));
+    if (DressUpPhoto_HasData(duPhoto) == TRUE) {
+        MATH_CRC32InitTable(&crcTable);
+        crc = MATH_CalcCRC32(&crcTable, duPhoto, sizeof(DressUpPhoto));
 
         for (i = 0; i < SAVED_PHOTOS_COUNT; i++) {
-            v1 = ImageClips_GetDressUpPhoto(imageClips, i);
-            MATH_CRC32InitTable(&v4);
-            v3 = MATH_CalcCRC32(&v4, v1, sizeof(DressUpPhoto));
+            savedPhoto = ImageClips_GetDressUpPhoto(imageClips, i);
+            MATH_CRC32InitTable(&crcTable);
+            savedCRC = MATH_CalcCRC32(&crcTable, savedPhoto, sizeof(DressUpPhoto));
 
-            if (v3 == v2) {
-                v5 = 0;
+            if (savedCRC == crc) {
+                isNew = FALSE;
                 break;
             }
         }
     } else {
-        v5 = 0;
+        isNew = FALSE;
     }
 
-    return v5;
+    return isNew;
 }
 
-void sub_0202A6A8(u8 param0, int param1, ImageClips *imageClips, const void **param3)
+void ImageClips_AddReceivedDressUpPhotos(u8 numPhotos, int skipIndex, ImageClips *imageClips, const void **photos)
 {
-    int v0;
-    DressUpPhoto *v1;
-    const DressUpPhoto *v2;
-    int v3;
-    int v4;
+    int numNew = 0;
+    DressUpPhoto *destPhoto;
+    const DressUpPhoto *srcPhoto;
+    int i;
+    int slot;
 
-    v0 = 0;
-
-    for (v3 = 0; v3 < param0; v3++) {
-        if (v3 == param1) {
+    for (i = 0; i < numPhotos; i++) {
+        if (i == skipIndex) {
             continue;
         }
 
-        if (param3[v3] != NULL) {
-            v2 = param3[v3];
+        if (photos[i] != NULL) {
+            srcPhoto = photos[i];
 
-            if (sub_0202A638(imageClips, v2) == 1) {
-                v0++;
+            if (ImageClips_IsNewDressUpPhoto(imageClips, srcPhoto) == TRUE) {
+                numNew++;
             }
         }
     }
 
-    for (v3 = 11 - 1; v3 >= 1; v3--) {
-        if (v3 + v0 < 11) {
-            v1 = ImageClips_GetDressUpPhoto(imageClips, v3 + v0);
-            v2 = ImageClips_GetDressUpPhoto(imageClips, v3);
+    for (i = SAVED_PHOTOS_COUNT - 1; i >= 1; i--) {
+        if (i + numNew < SAVED_PHOTOS_COUNT) {
+            destPhoto = ImageClips_GetDressUpPhoto(imageClips, i + numNew);
+            srcPhoto = ImageClips_GetDressUpPhoto(imageClips, i);
 
-            DressUpPhoto_Copy(v1, v2);
+            DressUpPhoto_Copy(destPhoto, srcPhoto);
         }
     }
 
-    v4 = 1;
+    slot = 1;
 
-    for (v3 = 0; v3 < param0; v3++) {
-        if (v3 == param1) {
+    for (i = 0; i < numPhotos; i++) {
+        if (i == skipIndex) {
             continue;
         }
 
-        if (param3[v3] != NULL) {
-            v2 = param3[v3];
+        if (photos[i] != NULL) {
+            srcPhoto = photos[i];
 
-            if (sub_0202A638(imageClips, v2) == 1) {
-                v1 = ImageClips_GetDressUpPhoto(imageClips, v4);
-                v4++;
-                DressUpPhoto_Copy(v1, v2);
+            if (ImageClips_IsNewDressUpPhoto(imageClips, srcPhoto) == TRUE) {
+                destPhoto = ImageClips_GetDressUpPhoto(imageClips, slot);
+                slot++;
+                DressUpPhoto_Copy(destPhoto, srcPhoto);
             }
         }
     }
@@ -921,74 +903,74 @@ ImageClips *SaveData_GetImageClips(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_IMAGE_CLIPS);
 }
 
-void sub_0202A75C(const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param1)
+void sub_0202A75C(const DressUpPhoto *duPhoto, UnkStruct_ov61_0222AE80 *param1)
 {
     int i;
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov61_0222AE80));
 
-    param1->integrity = photo->integrity;
+    param1->integrity = duPhoto->integrity;
 
-    param1->unk_04.personality = photo->photoMon.personality;
-    param1->unk_04.otID = photo->photoMon.otID;
-    param1->unk_04.species = photo->photoMon.species;
+    param1->unk_04.personality = duPhoto->photoMon.personality;
+    param1->unk_04.otID = duPhoto->photoMon.otID;
+    param1->unk_04.species = duPhoto->photoMon.species;
 
     for (i = 0; i < TRAINER_NAME_LEN + 1; i++) {
-        param1->unk_04.trainerName[i] = photo->photoMon.trainerName[i];
+        param1->unk_04.trainerName[i] = duPhoto->photoMon.trainerName[i];
     }
 
-    param1->unk_04.priority = photo->photoMon.priority;
-    param1->unk_04.xPos = photo->photoMon.xPos;
-    param1->unk_04.yPos = photo->photoMon.yPos;
-    param1->unk_04.form = photo->photoMon.form;
+    param1->unk_04.priority = duPhoto->photoMon.priority;
+    param1->unk_04.xPos = duPhoto->photoMon.xPos;
+    param1->unk_04.yPos = duPhoto->photoMon.yPos;
+    param1->unk_04.form = duPhoto->photoMon.form;
 
-    param1->unk_24 = photo->unk_3C;
-    param1->title = photo->title;
+    param1->unk_24 = duPhoto->accessoryFlags;
+    param1->title = duPhoto->title;
 
-    for (i = 0; i < (11 - 1); i++) {
-        param1->unk_30[i] = *((UnkStruct_ov61_0222AE80_sub2 *)(&photo->accessories[i]));
+    for (i = 0; i < PHOTO_ACCESSORY_COUNT; i++) {
+        param1->unk_30[i] = *((UnkStruct_ov61_0222AE80_sub2 *)(&duPhoto->accessories[i]));
     }
 
-    param1->unk_58 = photo->unk_70;
-    param1->language = photo->language;
+    param1->unk_58 = duPhoto->backdrop;
+    param1->language = duPhoto->language;
 }
 
-void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *photo)
+void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *duPhoto)
 {
     int v0;
     int i;
 
     v0 = DressUpPhoto_Size();
-    MI_CpuClear8(photo, v0);
+    MI_CpuClear8(duPhoto, v0);
 
-    photo->integrity = param0->integrity;
+    duPhoto->integrity = param0->integrity;
 
-    photo->photoMon.personality = param0->unk_04.personality;
-    photo->photoMon.otID = param0->unk_04.otID;
-    photo->photoMon.species = param0->unk_04.species;
+    duPhoto->photoMon.personality = param0->unk_04.personality;
+    duPhoto->photoMon.otID = param0->unk_04.otID;
+    duPhoto->photoMon.species = param0->unk_04.species;
 
     for (i = 0; i < TRAINER_NAME_LEN + 1; i++) {
-        photo->photoMon.trainerName[i] = param0->unk_04.trainerName[i];
+        duPhoto->photoMon.trainerName[i] = param0->unk_04.trainerName[i];
     }
 
-    photo->photoMon.priority = param0->unk_04.priority;
-    photo->photoMon.xPos = param0->unk_04.xPos;
-    photo->photoMon.yPos = param0->unk_04.yPos;
-    photo->photoMon.form = param0->unk_04.form;
+    duPhoto->photoMon.priority = param0->unk_04.priority;
+    duPhoto->photoMon.xPos = param0->unk_04.xPos;
+    duPhoto->photoMon.yPos = param0->unk_04.yPos;
+    duPhoto->photoMon.form = param0->unk_04.form;
 
-    photo->unk_3C = param0->unk_24;
-    photo->title = *((EasyChatSentence *)(&param0->title));
+    duPhoto->accessoryFlags = param0->unk_24;
+    duPhoto->title = *((EasyChatSentence *)(&param0->title));
 
-    for (i = 0; i < (11 - 1); i++) {
-        photo->accessories[i] = *((PhotoAccessory *)(&param0->unk_30[i]));
+    for (i = 0; i < PHOTO_ACCESSORY_COUNT; i++) {
+        duPhoto->accessories[i] = *((PhotoAccessory *)(&param0->unk_30[i]));
     }
 
-    photo->unk_70 = param0->unk_58;
-    photo->language = param0->language;
+    duPhoto->backdrop = param0->unk_58;
+    duPhoto->language = param0->language;
 
     for (i = 0; i < MON_NAME_LEN + 1; i++) {
-        photo->photoMon.nickname[i] = CHAR_EOS;
+        duPhoto->photoMon.nickname[i] = CHAR_EOS;
     }
 
-    photo->photoMon.trainerGender = 0;
+    duPhoto->photoMon.trainerGender = 0;
 }

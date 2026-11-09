@@ -1501,7 +1501,7 @@ void PokemonSummaryScreen_PrintContestMoveAttributes(PokemonSummaryScreen *summa
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_CONTEST_MOVE_DESCRIPTION], 0);
 
     u32 contestEffect = MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT);
-    u32 descEntryID = sub_0209577C(contestEffect);
+    u32 descEntryID = Contest_GetMoveEffectDescriptionMessageID(contestEffect);
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     MessageLoader_GetString(msgLoader, descEntryID, summaryScreen->string);

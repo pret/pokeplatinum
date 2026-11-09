@@ -86,7 +86,7 @@ static void *ov59_021D2FE0(SaveData *saveData, enum HeapID heapID, u32 param2)
 static void ov59_021D300C(const UnkStruct_ov59_021D2FBC *param0)
 {
     ImageClips *imageClips = SaveData_GetImageClips(param0->saveData);
-    sub_0202A6A8(param0->unk_08, param0->unk_0C, imageClips, param0->unk_10);
+    ImageClips_AddReceivedDressUpPhotos(param0->unk_08, param0->unk_0C, imageClips, param0->unk_10);
 }
 
 static void ov59_021D3028(const UnkStruct_ov59_021D2FBC *param0)

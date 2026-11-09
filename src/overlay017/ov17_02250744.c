@@ -200,7 +200,7 @@ void ov17_02250744(UnkStruct_ov17_0224FCA0 *param0)
         GF_ASSERT(param0->unk_10.pokemonSpriteDataArray[v1].tiles == NULL);
 
         param0->unk_10.pokemonSpriteDataArray[v1].tiles = Heap_Alloc(HEAP_ID_24, (32 * 10 * 10));
-        param0->unk_10.unk_08[v1] = sub_02095484(param0->unk_10.unk_04, v0, param0->unk_10.unk_00->contestMons[v1], 2, &param0->unk_10.pokemonSpriteDataArray[v1], HEAP_ID_24, Unk_ov17_02254BF4[v0][0], Unk_ov17_02254BF4[v0][1], Unk_ov17_02254BF4[v0][2]);
+        param0->unk_10.unk_08[v1] = Contestant_CreateMonSprite(param0->unk_10.unk_04, v0, param0->unk_10.unk_00->contestMons[v1], 2, &param0->unk_10.pokemonSpriteDataArray[v1], HEAP_ID_24, Unk_ov17_02254BF4[v0][0], Unk_ov17_02254BF4[v0][1], Unk_ov17_02254BF4[v0][2]);
     }
 }
 
@@ -227,16 +227,16 @@ static void FormatContestAnnouncerMessage(UnkStruct_ov17_0224FCA0 *param0, enum 
     case CONTEST_ANNOUNCER_MESSAGE_FORMATTING_NONE:
         break;
     case CONTEST_ANNOUNCER_MESSAGE_FORMATTING_UNUSED1:
-        messageID = Contest_GetContestRankTitleMessageID(param0->unk_00->unk_00.contestRank, param0->unk_00->unk_00.competitionType, param0->unk_00->isLinkContest);
+        messageID = Contest_GetContestRankTitleMessageID(param0->unk_00->data.contestRank, param0->unk_00->data.competitionType, param0->unk_00->isLinkContest);
         StringTemplate_SetContestRankName(param0->unk_10.contestResultsTemplate, 0, messageID);
         break;
     case CONTEST_ANNOUNCER_MESSAGE_FORMATTING_UNUSED2:
-        StringTemplate_SetString(param0->unk_10.contestResultsTemplate, 0, param0->unk_00->unk_00.trainerNames[param2->contestantID], param0->unk_00->unk_00.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_10.contestResultsTemplate, 0, param0->unk_00->data.trainerNames[param2->contestantID], param0->unk_00->data.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_10.contestResultsTemplate, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->contestMons[param2->contestantID]));
         break;
     case CONTEST_ANNOUNCER_MESSAGE_FORMATTING_WINNER_ANNOUNCEMENT:
         StringTemplate_SetNumber(param0->unk_10.contestResultsTemplate, 0, param2->contestantEntryNum, 1, 0, 1);
-        StringTemplate_SetString(param0->unk_10.contestResultsTemplate, 1, param0->unk_00->unk_00.trainerNames[param2->contestantID], param0->unk_00->unk_00.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_10.contestResultsTemplate, 1, param0->unk_00->data.trainerNames[param2->contestantID], param0->unk_00->data.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_10.contestResultsTemplate, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->contestMons[param2->contestantID]));
         break;
     default:
@@ -349,7 +349,7 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
             Window_FillTilemap(&param0->unk_10.unk_24[1 + v3], 0x0);
             Window_FillTilemap(&param0->unk_10.unk_24[5 + v3], 0x0);
             Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], FONT_SYSTEM, v2, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], FONT_SYSTEM, param0->unk_00->unk_00.trainerNames[v4], 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], FONT_SYSTEM, param0->unk_00->data.trainerNames[v4], 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         String_Free(v2);
@@ -412,13 +412,13 @@ void ov17_02250DB0(UnkStruct_ov17_0224FCA0 *param0)
     v0 = Unk_ov17_02254C5C;
 
     for (v2 = 0; v2 < CONTEST_NUM_PARTICIPANTS; v2++) {
-        SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->unk_10.unk_18, param0->unk_10.unk_1C, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param0->unk_00->unk_00.contestMons[v2]), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 33002 + v2);
+        SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->unk_10.unk_18, param0->unk_10.unk_1C, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param0->unk_00->data.contestMons[v2]), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 33002 + v2);
 
         v0.resources[0] = 33002 + v2;
         param0->unk_10.unk_128[v2] = SpriteSystem_NewSprite(param0->unk_10.unk_18, param0->unk_10.unk_1C, &v0);
 
         ManagedSprite_SetAnim(param0->unk_10.unk_128[v2], 1);
-        Sprite_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10.unk_128[v2]->sprite, Pokemon_IconPaletteIndex(param0->unk_00->unk_00.contestMons[v2]));
+        Sprite_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10.unk_128[v2]->sprite, Pokemon_IconPaletteIndex(param0->unk_00->data.contestMons[v2]));
         ManagedSprite_TickFrame(param0->unk_10.unk_128[v2]);
     }
 
@@ -878,7 +878,7 @@ static void ov17_022517F0(SysTask *param0, void *param1)
 
 static int ov17_02251860(Contest *contest, int param1)
 {
-    switch (contest->unk_00.competitionType) {
+    switch (contest->data.competitionType) {
     case CONTEST_COMPETITION_UNK0:
         switch (param1) {
         case 0:
@@ -953,13 +953,13 @@ void ov17_02251930(Contest *param0, int param1, s16 param2[])
     for (v4 = 0; v4 < 4; v4++) {
         switch (param1) {
         case 0:
-            v0[v4] = sub_02095928(param0, v4) + sub_0209598C(param0, v4);
+            v0[v4] = Contest_CalcConditionRating(param0, v4) + Contest_CalcDressUpRating(param0, v4);
             break;
         case 1:
-            v0[v4] = param0->unk_00.unk_118[v4].unk_04;
+            v0[v4] = param0->data.results[v4].danceScore;
             break;
         case 2:
-            v0[v4] = param0->unk_00.unk_118[v4].unk_06;
+            v0[v4] = param0->data.results[v4].actingScore;
             break;
         default:
             GF_ASSERT(FALSE);
@@ -1002,7 +1002,7 @@ void ov17_02251A1C(UnkStruct_ov17_0224FCA0 *param0)
 {
     int v0;
 
-    switch (param0->unk_00->unk_00.competitionType) {
+    switch (param0->unk_00->data.competitionType) {
     case CONTEST_COMPETITION_UNK0:
         ov17_02251930(param0->unk_00, 0, param0->unk_39A.unk_3A);
         ov17_02251930(param0->unk_00, 2, param0->unk_39A.unk_4A);
@@ -1138,7 +1138,7 @@ void ov17_02251A1C(UnkStruct_ov17_0224FCA0 *param0)
 
         for (v7 = 0; v7 < CONTEST_NUM_PARTICIPANTS; v7++) {
             param0->unk_39A.unk_35[v7] = v5[v7];
-            param0->unk_00->unk_00.unk_118[v5[v7]].contestPlacement = v7;
+            param0->unk_00->data.results[v5[v7]].contestPlacement = v7;
         }
     }
 }

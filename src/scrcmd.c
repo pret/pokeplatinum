@@ -2939,7 +2939,7 @@ static BOOL ImageClipsSlotHasData(FieldSystem *fieldSystem, int param1, int slot
             return FALSE;
         }
     } else {
-        if (!sub_02029D2C(imageClips, slot)) {
+        if (!ImageClips_ContestPhotoHasData(imageClips, slot)) {
             return FALSE;
         }
     }

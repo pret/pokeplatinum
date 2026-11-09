@@ -1,14 +1,15 @@
 #ifndef POKEPLATINUM_STRUCT_020951B0_H
 #define POKEPLATINUM_STRUCT_020951B0_H
 
-#include "struct_defs/struct_020951B0_sub1.h"
+#include "struct_defs/photo_accessory.h"
+#include "struct_defs/struct_02029C88.h"
 
-typedef struct {
-    UnkStruct_020951B0_sub1 unk_00[20];
-    u8 unk_50;
-    s8 unk_51;
-    s8 unk_52;
+typedef struct OpponentDressUp {
+    PhotoAccessory accessories[CONTEST_PHOTO_ACCESSORY_COUNT];
+    u8 numAccessories;
+    s8 monPriority;
+    s8 backdrop;
     u8 padding_53;
-} UnkStruct_020951B0;
+} OpponentDressUp;
 
 #endif // POKEPLATINUM_STRUCT_020951B0_H

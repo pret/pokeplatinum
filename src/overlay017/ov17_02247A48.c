@@ -150,8 +150,8 @@ void ov17_02247A48(UnkStruct_ov17_02247A48 *param0)
 
     v0.unk_00 = Unk_ov17_02254488;
     v0.unk_04 = NELEMS(Unk_ov17_02254488);
-    v0.playerContestantID = param0->unk_00->unk_00.playerContestantID;
-    v0.unk_08 = param0->unk_00->unk_00.unk_10C;
+    v0.playerContestantID = param0->unk_00->data.playerContestantID;
+    v0.unk_08 = param0->unk_00->data.hostContestantID;
     v0.isLinkContest = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_4F8, &v0);
@@ -189,7 +189,7 @@ static void ov17_02247AC4(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     v0->unk_F14 = 1;
 
-    if (sub_02094EDC(v0->unk_00) == FALSE) {
+    if (Contest_IsPlayerHost(v0->unk_00) == FALSE) {
         ov17_0224F26C(param0, param2, NULL, 0);
     }
 }
@@ -236,7 +236,7 @@ static void ov17_02247B00(UnkStruct_ov17_0224F30C *param0, void *param1, const U
         v5.unk_08 = (96 - 32) + 80 / 2;
         v0->unk_F18[v1->unk_00].unk_04 = 128;
         v0->unk_F18[v1->unk_00].unk_08 = (96 - 32) + 80 / 2;
-        v0->unk_F18[v1->unk_00].unk_00 = ov22_0225AFD4(&v5, v0->unk_00->unk_00.unk_E8[v1->unk_00]);
+        v0->unk_F18[v1->unk_00].unk_00 = ov22_0225AFD4(&v5, v0->unk_00->data.photos[v1->unk_00]);
 
         ov22_0225B074(v0->unk_F18[v1->unk_00].unk_00, 0);
     }
@@ -904,7 +904,7 @@ static void ov17_02248860(SysTask *param0, void *param1)
             v1.heapID = HEAP_ID_22;
             v1.unk_04 = 128;
             v1.unk_08 = (96 - 32) + v2;
-            v0->unk_38.unk_00->unk_F18[v0->unk_38.contestantID].unk_00 = ov22_0225AFD4(&v1, v0->unk_38.unk_00->unk_00->unk_00.unk_E8[v0->unk_38.contestantID]);
+            v0->unk_38.unk_00->unk_F18[v0->unk_38.contestantID].unk_00 = ov22_0225AFD4(&v1, v0->unk_38.unk_00->unk_00->data.photos[v0->unk_38.contestantID]);
 
             ov22_0225B074(v0->unk_38.unk_00->unk_F18[v0->unk_38.contestantID].unk_00, 0);
         }

@@ -1,48 +1,38 @@
 #ifndef POKEPLATINUM_STRUCT_OV6_02248BE8_H
 #define POKEPLATINUM_STRUCT_OV6_02248BE8_H
 
+#include "constants/contests.h"
 #include "constants/moves.h"
 
-typedef struct {
-    u32 unk_00;
-    u32 unk_04;
-    u16 unk_08;
-    u16 unk_0A;
-    u16 unk_0C[LEARNED_MOVES_MAX];
-    u16 unk_14;
-    u16 unk_16;
-    u16 unk_18;
+typedef struct Contestant {
+    u32 unused_00;
+    u32 unused_04;
+    u16 objEventGFX;
+    u16 trainerSprite;
+    u16 moves[LEARNED_MOVES_MAX];
+    u16 species;
+    u16 nicknameID;
+    u16 otNameID;
     u8 cool;
     u8 beauty;
     u8 cute;
     u8 smart;
     u8 tough;
     u8 sheen;
-    u16 unk_20_0 : 3;
-    u16 unk_20_3 : 1;
-    u16 unk_20_4 : 1;
-    u16 unk_20_5 : 1;
-    u16 unk_20_6 : 1;
-    u16 unk_20_7 : 1;
-    u16 unk_20_8 : 1;
-    u16 unk_20_9 : 1;
-    u16 unk_20_10 : 2;
-    u16 unk_20_12 : 2;
-    u16 unk_20_14 : 2;
-    u8 unk_22;
-    u8 unk_23;
-    u8 unk_24;
-    u8 unk_25;
-    u8 unk_26;
-    u8 unk_27;
-    u8 unk_28;
-    u8 unk_29;
-    u8 unk_2A;
-    u8 unk_2B;
-    u8 unk_2C;
-    u8 unk_2D;
-    u8 unk_2E;
+    u16 rank : 3;
+    u16 inCoolContests : 1;
+    u16 inBeautyContests : 1;
+    u16 inCuteContests : 1;
+    u16 inSmartContests : 1;
+    u16 inToughContests : 1;
+    u16 inSingleCompetitions : 1;
+    u16 inPracticeCompetitions : 1;
+    u16 availability : 2;
+    u16 gender : 2;
+    u16 npcSkillLevel : 2;
+    u8 dressUpIDs[DRESS_UP_THEME_MAX];
+    u8 monContestFame;
     u8 padding_2F;
-} UnkStruct_ov6_02248BE8;
+} Contestant;
 
 #endif // POKEPLATINUM_STRUCT_OV6_02248BE8_H

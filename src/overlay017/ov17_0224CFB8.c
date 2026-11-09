@@ -134,8 +134,8 @@ void ov17_0224CFB8(UnkStruct_ov17_0224DF54 *param0)
 
     v0.unk_00 = Unk_ov17_022549E4;
     v0.unk_04 = NELEMS(Unk_ov17_022549E4);
-    v0.playerContestantID = param0->unk_00->unk_00.playerContestantID;
-    v0.unk_08 = param0->unk_00->unk_00.unk_10C;
+    v0.playerContestantID = param0->unk_00->data.playerContestantID;
+    v0.unk_08 = param0->unk_00->data.hostContestantID;
     v0.isLinkContest = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_109C, &v0);
@@ -411,7 +411,7 @@ static void ov17_0224D41C(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        ov17_0224C6B0(v0->unk_00, v0->unk_00->unk_00->unk_00.playerContestantID, &v0->unk_11);
+        ov17_0224C6B0(v0->unk_00, v0->unk_00->unk_00->data.playerContestantID, &v0->unk_11);
         v0->unk_10++;
         break;
     case 5:
@@ -443,10 +443,10 @@ static void ov17_0224D500(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     v0->unk_1B24 = 1;
 
     for (v2 = 0; v2 < 4; v2++) {
-        v0->unk_00->unk_156[v2] = v1->unk_00[v2];
+        v0->unk_00->performanceOrder[v2] = v1->unk_00[v2];
     }
 
-    if (sub_02094EDC(v0->unk_00) == FALSE) {
+    if (Contest_IsPlayerHost(v0->unk_00) == FALSE) {
         ov17_0224F26C(param0, param2, NULL, 0);
     }
 }
@@ -477,7 +477,7 @@ static void ov17_0224D558(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     SysTask_Start(ov17_0224D710, v2, 30000);
 
     for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
-        if (contestantID < v0->unk_00->unk_00.connectionCount) {
+        if (contestantID < v0->unk_00->data.connectionCount) {
             v2->unk_140[contestantID] = ov17_0224D668(v0, 0);
         } else {
             v2->unk_140[contestantID] = ov17_0224D668(v0, 1);
@@ -486,7 +486,7 @@ static void ov17_0224D558(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     {
         for (v4 = 0; v4 < 4; v4++) {
-            if (v2->unk_18.unk_02[v4] == v2->unk_00->unk_00->unk_00.playerContestantID) {
+            if (v2->unk_18.unk_02[v4] == v2->unk_00->unk_00->data.playerContestantID) {
                 v2->unk_00->unk_14.unk_A2C = v4;
                 break;
             }
@@ -495,7 +495,7 @@ static void ov17_0224D558(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     ov17_0224DF54(v0);
 
-    for (contestantID = v0->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+    for (contestantID = v0->unk_00->data.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
         {
             for (v4 = 0; v4 < CONTEST_NUM_PARTICIPANTS; v4++) {
                 if (v2->unk_18.unk_02[v4] == contestantID) {
@@ -503,7 +503,7 @@ static void ov17_0224D558(UnkStruct_ov17_0224F30C *param0, void *param1, const U
                 }
             }
         }
-        ov17_0224E930(&v2->unk_58[contestantID], contestantID, v4, v1->unk_14[contestantID], v0->unk_00->unk_00.unk_FC[contestantID]);
+        ov17_0224E930(&v2->unk_58[contestantID], contestantID, v4, v1->unk_14[contestantID], v0->unk_00->data.npcSkillLevels[contestantID]);
     }
 }
 
@@ -556,7 +556,7 @@ static void ov17_0224D710(SysTask *param0, void *param1)
     u32 v4;
     int v5;
 
-    if (v0->unk_00->unk_00->unk_00.playerContestantID == v0->unk_18.unk_00) {
+    if (v0->unk_00->unk_00->data.playerContestantID == v0->unk_18.unk_00) {
         v2 = 0;
     } else {
         v2 = 1;
@@ -628,7 +628,7 @@ static void ov17_0224D710(SysTask *param0, void *param1)
 
                 v0->unk_17 = 0;
 
-                for (int contestantID = v0->unk_00->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+                for (int contestantID = v0->unk_00->unk_00->data.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
                     ov17_0224E958(&v0->unk_58[contestantID]);
                 }
 
@@ -678,8 +678,8 @@ static void ov17_0224D710(SysTask *param0, void *param1)
                 }
 
                 if (v1 != 0xffffffff) {
-                    ov17_0224DE54(v0->unk_00->unk_00->unk_00.playerContestantID, v1, v4, v0->unk_18.unk_08, &v0->unk_18.unk_24.unk_08, &v8, NULL, v3, v0->unk_17, v0->unk_18.unk_24.unk_05, v0->unk_00->unk_A3C.unk_2F);
-                    ov17_0224D6B0(v0->unk_140[v0->unk_00->unk_00->unk_00.playerContestantID], &v8);
+                    ov17_0224DE54(v0->unk_00->unk_00->data.playerContestantID, v1, v4, v0->unk_18.unk_08, &v0->unk_18.unk_24.unk_08, &v8, NULL, v3, v0->unk_17, v0->unk_18.unk_24.unk_05, v0->unk_00->unk_A3C.unk_2F);
+                    ov17_0224D6B0(v0->unk_140[v0->unk_00->unk_00->data.playerContestantID], &v8);
                     v0->unk_17++;
                 }
             } else {
@@ -695,14 +695,14 @@ static void ov17_0224D710(SysTask *param0, void *param1)
                 }
 
                 if (v1 != 0xffffffff) {
-                    ov17_0224DE54(v0->unk_00->unk_00->unk_00.playerContestantID, v1, v4, v0->unk_18.unk_08, &v0->unk_18.unk_24.unk_08, &v8, v0->unk_00->unk_1AD4, v3, v0->unk_17, v0->unk_18.unk_24.unk_05, v0->unk_00->unk_A3C.unk_2F);
-                    ov17_0224D6B0(v0->unk_140[v0->unk_00->unk_00->unk_00.playerContestantID], &v8);
+                    ov17_0224DE54(v0->unk_00->unk_00->data.playerContestantID, v1, v4, v0->unk_18.unk_08, &v0->unk_18.unk_24.unk_08, &v8, v0->unk_00->unk_1AD4, v3, v0->unk_17, v0->unk_18.unk_24.unk_05, v0->unk_00->unk_A3C.unk_2F);
+                    ov17_0224D6B0(v0->unk_140[v0->unk_00->unk_00->data.playerContestantID], &v8);
                     v0->unk_17++;
                 }
             }
         }
 
-        for (int contestantID = v0->unk_00->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+        for (int contestantID = v0->unk_00->unk_00->data.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
             ov17_0224ED8C(v5, v0->unk_00, &v0->unk_58[contestantID], v4, v0->unk_18.unk_0C, v0->unk_18.unk_08, &v0->unk_18.unk_24, v0->unk_140[contestantID]);
         }
 
@@ -1068,7 +1068,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
 
             v3.unk_04 = v0->unk_C8.unk_24.unk_05;
 
-            if (v0->unk_C8.unk_02[1] == v0->unk_00->unk_00->unk_00.playerContestantID) {
+            if (v0->unk_C8.unk_02[1] == v0->unk_00->unk_00->data.playerContestantID) {
                 ov17_0224C5A0(v0->unk_00, 4, &v3);
             } else {
                 ov17_0224C5A0(v0->unk_00, 5, &v3);

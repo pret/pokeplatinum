@@ -5,6 +5,8 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
+#include "struct_defs/struct_020F568C.h"
+
 #include "battle/pokemon_sprite_data.h"
 #include "overlay006/struct_ov6_02248BE8.h"
 
@@ -12,29 +14,39 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 
-BOOL sub_02094EDC(Contest *contest);
-void sub_02094F04(Contest *contest, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int competitionType, BOOL isGameCompleted, BOOL isNatDexObtained);
-void sub_020951B0(Contest *contest, enum HeapID heapID);
-void sub_02095338(Contest *contest);
-void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, enum HeapID heapID);
-PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, PokemonSpriteData *pokemonSpriteData, enum HeapID heapID, int param6, int param7, int param8);
-void sub_020954F0(Contest *contest, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank);
-s8 sub_02095734(enum MoveContestEffect contestEffect);
-void Contest_LoadTwoLineContestEffectMessages(int moveContestEffectID, u32 *lineOneEffectMessageID, u32 *lineTwoEffectMessageID);
-u32 sub_0209577C(int param0);
-void sub_02095790(int contestMoveEffect, int param1, u32 *param2, u32 *param3);
-u32 Contest_GetContestRankTitleMessageID(enum PokemonContestRank contestRank, int competitionType, BOOL isLinkContest);
+#define CONTESTANT_POKEMON_LEVEL 10
+
+#define CONTEST_CANDIDATES_TERMINATOR 0xFF
+
+enum ContestDataNarcMember {
+    CONTEST_DATA_OPPONENTS = 0,
+    CONTEST_DATA_JUDGES,
+    CONTEST_DATA_OPPONENT_DRESS_UPS,
+};
+
+BOOL Contest_IsPlayerHost(Contest *contest);
+void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOpponents, enum PokemonContestType contestType, enum PokemonContestRank contestRank, enum ContestCompetition competitionType, BOOL isGameCompleted, BOOL isNatDexObtained);
+void Contest_DressUpOpponentPhotos(Contest *contest, enum HeapID heapID);
+void Contest_InitPhotosWithoutAccessories(Contest *contest);
+void Contestant_InitPokemon(const Contestant *contestant, Pokemon *mon, enum HeapID heapID);
+PokemonSprite *Contestant_CreateMonSprite(PokemonSpriteManager *monSpriteMan, int polygonID, Pokemon *mon, int face, PokemonSpriteData *pokemonSpriteData, enum HeapID heapID, int x, int y, int z);
+void Contest_SelectJudges(Contest *contest, enum HeapID heapID, int numOpponents, enum PokemonContestType contestType, enum PokemonContestRank contestRank);
+s8 Contest_GetMoveEffectAppeal(enum MoveContestEffect contestEffect);
+void Contest_LoadTwoLineContestEffectMessages(enum MoveContestEffect moveContestEffectID, u32 *lineOneEffectMessageID, u32 *lineTwoEffectMessageID);
+u32 Contest_GetMoveEffectDescriptionMessageID(enum MoveContestEffect contestEffect);
+void Contest_GetEffectActingMessage(enum MoveContestEffect contestMoveEffect, enum ContestEffectActingMessage index, u32 *destMessageID, u32 *destFormat);
+u32 Contest_GetContestRankTitleMessageID(enum PokemonContestRank contestRank, enum ContestCompetition competitionType, BOOL isLinkContest);
 u32 Contest_GetRankMessageID(enum PokemonContestRank contestRank);
 u32 Contest_GetContestTypeMessageID(enum PokemonContestType contestType);
-u32 Contest_GetFullContestTypeMessageID(enum PokemonContestType contestType, int competitionType);
+u32 Contest_GetFullContestTypeMessageID(enum PokemonContestType contestType, enum ContestCompetition competitionType);
 int Contest_ContestantIDToContestantEntryNum(int contestantID);
 int Contest_ContestantEntryNumToContestantID(int contestantEntryNum);
 BOOL Contest_IsPracticeCompetition(Contest *contest);
-int sub_02095928(Contest *contest, int param1);
-int sub_0209598C(Contest *contest, int param1);
+int Contest_CalcConditionRating(Contest *contest, int contestantID);
+int Contest_CalcDressUpRating(Contest *contest, int contestantID);
 void SetLockTextWithAutoScroll(BOOL lockTextWithAutoScroll);
-void LockTextSpeed();
+void LockTextSpeed(void);
 u32 CalcMonDataRibbon(enum PokemonContestRank contestRank, enum PokemonContestType contestType);
-u32 sub_02095A74(enum PokemonContestRank contestRank, BOOL isLinkContest);
+u32 Contest_GetRandomDressUpTheme(enum PokemonContestRank contestRank, BOOL isLinkContest);
 
 #endif // POKEPLATINUM_UNK_02094EDC_H
