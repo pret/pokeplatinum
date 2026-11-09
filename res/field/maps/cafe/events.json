@@ -1,0 +1,111 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_RANCHER",
+            "graphics_id": "OBJ_EVENT_GFX_RANCHER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Cafe_Rancher",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WAITRESS",
+            "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Cafe_Waitress",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COLLECTOR_FERNANDO",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_COLLECTOR_FERNANDO",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 1,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COLLECTOR_EDWIN",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_COLLECTOR_EDWIN",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WAITRESS_KATI",
+            "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_WAITRESS_KATI",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OLD_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Cafe_OldMan",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ROUTE_210_SOUTH",
+            "x": 5,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_ROUTE_210_SOUTH",
+            "dest_warp_id": "WARP_CAFE"
+        }
+    ],
+    "coord_events": []
+}

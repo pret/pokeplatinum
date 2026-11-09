@@ -1,0 +1,38 @@
+#include "macros/scrcmd.inc"
+#include "res/field/maps/locals/mt_coronet_1f_north_room_2.h"
+
+
+    ScriptEntry MtCoronet1FNorthRoom2_Dummy1
+    ScriptEntry MtCoronet1FNorthRoom2_OnTransition
+    ScriptEntry MtCoronet1FNorthRoom2_OnLoad
+    ScriptEntryEnd
+
+MtCoronet1FNorthRoom2_OnTransition:
+    CallIfNe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, MtCoronet1FNorthRoom2_ResetIcebergRuinsState
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice
+    End
+
+MtCoronet1FNorthRoom2_ResetIcebergRuinsState:
+    SetVar VAR_ICEBERG_RUINS_STATE, 0
+    Return
+
+MtCoronet1FNorthRoom2_OnLoad:
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice
+    End
+
+MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice:
+    SetWarpEventPos WARP_ICEBERG_RUINS, 17, 16
+    End
+
+MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice:
+    SetWarpEventPos WARP_MT_CORONET_ICEBERG_RUINS, 17, 16
+    End
+
+MtCoronet1FNorthRoom2_Dummy1:
+    End
+
+    .balign 4, 0

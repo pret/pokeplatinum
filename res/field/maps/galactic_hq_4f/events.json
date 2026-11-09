@@ -1,0 +1,144 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_4F_RAZOR_CLAW",
+            "x": 20,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GalacticHQ4F_BgSignWarpPanels",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 21,
+            "z": 14,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQ4F_Report",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 1,
+            "z": 6,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_WEST"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_CYRUS",
+            "graphics_id": "OBJ_EVENT_GFX_CYRUS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_4F_CYRUS",
+            "script": "GalacticHQ4F_CoordEvent_Cyrus",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GALACTIC_HQ_DOOR_WEST",
+            "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_4F_DOOR",
+            "script": "GalacticHQ4F_Door",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GALACTIC_HQ_DOOR_EAST",
+            "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_4F_DOOR",
+            "script": "GalacticHQ4F_Door",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BOLLARD_WEST",
+            "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 18,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BOLLARD_EAST",
+            "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 19,
+            "z": 14,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_GALACTIC_HQ_3F",
+            "x": 3,
+            "z": 15,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_4F"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_LABORATORY",
+            "x": 22,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_LABORATORY",
+            "dest_warp_id": "WARP_GALACTIC_HQ_4F"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_1F",
+            "x": 21,
+            "z": 17,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_4F"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_HALL",
+            "x": 8,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_HALL",
+            "dest_warp_id": "WARP_GALACTIC_HQ_4F"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "GalacticHQ4F_CoordEvent_Cyrus",
+            "x": 8,
+            "z": 11,
+            "y": 0,
+            "width": 2,
+            "length": 1,
+            "var": "VAR_GALACTIC_HQ_4F_STATE",
+            "value": 0
+        }
+    ]
+}

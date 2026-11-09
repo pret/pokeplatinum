@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_052",
+  "mapGroup": "SurvivalAreaBattleground",
+  "locationName": "LocationNames_Text_Battleground",
+  "textBank": "TEXT_BANK_BATTLEGROUND",
+  "popupStyle": "MAP_LABEL_WINDOW_TOWN",
+  "weather": "OVERWORLD_WEATHER_26",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_CITY11_D_sseq",
+  "musicNight": "SEQ_CITY11_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

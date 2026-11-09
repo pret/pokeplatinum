@@ -1,0 +1,260 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_3F_ELIXIR",
+            "x": 39,
+            "z": 21,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_3F_RARE_CANDY",
+            "x": 2,
+            "z": 18,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_3F_NUGGET",
+            "x": 21,
+            "z": 14,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GalacticHQ3F_BgSign",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 19,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_GRUNT_M",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "script": "GalacticHQ3F_GruntM",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 15,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_TM21",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_3F_TM21",
+            "script": "VisibleItems_GalacticHQ3F_TM21",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 36,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GALACTIC_GRUNT_2",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_FACE_SIDES",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2",
+                "sight_range": 2,
+                "interval_steps": 2
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 8,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 20,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GALACTIC_GRUNT_3",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 42,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GALACTIC_GRUNT_4",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 42,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GALACTIC_HQ_DOOR_WEST",
+            "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_3F_DOOR",
+            "script": "GalacticHQ3F_Door",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 27,
+            "z": 19,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GALACTIC_HQ_DOOR_EAST",
+            "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_3F_DOOR",
+            "script": "GalacticHQ3F_Door",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 28,
+            "z": 19,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GALACTIC_GRUNT_1",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "trainer": {
+                "id": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_MAX_ELIXIR",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR",
+            "script": "VisibleItems_GalacticHQ3F_MaxElixir",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 50,
+            "z": 21,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_PROTEIN",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN",
+            "script": "VisibleItems_GalacticHQ3F_Protein",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 38,
+            "z": 20,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_GALACTIC_HQ_2F_1",
+            "x": 15,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_1"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_2F_2",
+            "x": 47,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_2"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_4F",
+            "x": 10,
+            "z": 11,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_3F_1",
+            "x": 6,
+            "z": 14,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_2"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_3F_2",
+            "x": 15,
+            "z": 13,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_1"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_3F_3",
+            "x": 17,
+            "z": 11,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_4"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_3F_4",
+            "x": 52,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_3"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_3F_5",
+            "x": 19,
+            "z": 11,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_6"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_3F_6",
+            "x": 32,
+            "z": 22,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_3F_5"
+        }
+    ],
+    "coord_events": []
+}

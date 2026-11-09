@@ -1,0 +1,32 @@
+{
+    "bg_events": [],
+    "object_events": [],
+    "warp_events": [
+        {
+            "id": "WARP_POKEMON_LEAGUE_AARON_ROOM",
+            "x": 4,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_AARON_ROOM",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM"
+        },
+        {
+            "id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
+            "x": 4,
+            "z": 15,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "PokemonLeagueElevatorToAaronRoom_CoordEvent_PlatformLift",
+            "x": 4,
+            "z": 11,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x00",
+            "value": 0
+        }
+    ]
+}

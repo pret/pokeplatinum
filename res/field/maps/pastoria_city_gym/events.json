@@ -1,0 +1,265 @@
+{
+    "bg_events": [
+        {
+            "script": "PastoriaGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 11,
+            "z": 38,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "PastoriaGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 38,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_CRASHER_WAKE",
+            "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE",
+            "script": "PastoriaGym_Wake",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GYM_GUIDE",
+            "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PastoriaGym_GymGuide",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 15,
+            "z": 40,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TUBER_JACKY",
+            "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_TUBER_JACKY",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 33,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SAILOR_DAMIAN",
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_SAILOR_DAMIAN",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 22,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TUBER_CAITLYN",
+            "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_TUBER_CAITLYN",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 21,
+            "z": 33,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SAILOR_SAMSON",
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_SAILOR_SAMSON",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_FISHERMAN_ERICK",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_ERICK",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 19,
+            "z": 18,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_FISHERMAN_WALTER",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_WALTER",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 11,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_PASTORIA_CITY",
+            "x": 13,
+            "z": 42,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY",
+            "dest_warp_id": "WARP_PASTORIA_CITY_GYM"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "PastoriaGym_BlueButton",
+            "x": 3,
+            "z": 6,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x01",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_GreenButton",
+            "x": 19,
+            "z": 24,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x02",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_BlueButton",
+            "x": 9,
+            "z": 24,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x01",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_GreenButton",
+            "x": 17,
+            "z": 9,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x02",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_GreenButton",
+            "x": 10,
+            "z": 30,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x02",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_GreenButton",
+            "x": 19,
+            "z": 13,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x02",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_YellowButton",
+            "x": 9,
+            "z": 14,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x03",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_YellowButton",
+            "x": 23,
+            "z": 31,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x03",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_YellowButton",
+            "x": 19,
+            "z": 22,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x03",
+            "value": 0
+        },
+        {
+            "script": "PastoriaGym_YellowButton",
+            "x": 3,
+            "z": 34,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x03",
+            "value": 0
+        }
+    ]
+}

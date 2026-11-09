@@ -1,0 +1,98 @@
+{
+    "bg_events": [
+        {
+            "script": "SafariGame_QuickTramStationArea3",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 62,
+            "z": 80,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_GREAT_MARSH_3_LEAF_STONE",
+            "x": 49,
+            "z": 75,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ITEM_GREAT_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_GREAT_MARSH_3_GREAT_BALL",
+            "script": "VisibleItems_GreatMarsh3_GreatBall",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 38,
+            "z": 79,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GreatMarsh3_SignboardArea3",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 59,
+            "z": 86,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COLLECTOR",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GreatMarsh3_Collector",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 38,
+            "z": 75,
+            "y": 0
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "clone": {
+                "map": "MAP_HEADER_GREAT_MARSH_1",
+                "id": "LOCALID_RUIN_MANIAC"
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 55,
+            "z": 58,
+            "y": 0
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "clone": {
+                "map": "MAP_HEADER_GREAT_MARSH_4",
+                "id": "LOCALID_SIGNBOARD"
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 71,
+            "z": 86,
+            "y": 0
+        }
+    ],
+    "warp_events": [],
+    "coord_events": []
+}

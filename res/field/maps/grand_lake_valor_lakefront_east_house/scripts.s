@@ -1,0 +1,34 @@
+#include "macros/scrcmd.inc"
+#include "res/text/bank/grand_lake_valor_lakefront_east_house.h"
+
+
+    ScriptEntry GrandLakeValorLakefrontEastHouse_Beauty
+    ScriptEntryEnd
+
+GrandLakeValorLakefrontEastHouse_Beauty:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_RECEIVED_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE_WHITE_FLUTE, GrandLakeValorLakefrontEastHouse_BlowToAttractPokemon
+    Message GrandLakeValorLakefrontEastHouse_Text_ThanksForHelping
+    SetVar VAR_0x8004, ITEM_WHITE_FLUTE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, GrandLakeValorLakefrontEastHouse_BagIsFull
+    SetFlag FLAG_RECEIVED_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE_WHITE_FLUTE
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
+    CloseMessage
+    ReleaseAll
+    End
+
+GrandLakeValorLakefrontEastHouse_BagIsFull:
+    CallCommonScript CommonScript_BagIsFull
+    CloseMessage
+    ReleaseAll
+    End
+
+GrandLakeValorLakefrontEastHouse_BlowToAttractPokemon:
+    Message GrandLakeValorLakefrontEastHouse_Text_BlowToAttractPokemon
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End

@@ -1,0 +1,128 @@
+{
+    "bg_events": [
+        {
+            "script": "VeilstoneStore3F_Directory",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 13,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_RECEPTIONIST",
+            "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneStore3F_Attendant",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 18,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TWIN",
+            "graphics_id": "OBJ_EVENT_GFX_TWIN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneStore3F_Twin",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GUITARIST",
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneStore3F_Guitarist",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CASHIER_F",
+            "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneStore3F_TopVendor",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CASHIER_M",
+            "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneStore3F_BottomVendor",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEMON_BREEDER_F",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneStore3F_Breeder",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 18,
+            "z": 10,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_VEILSTONE_STORE_2F",
+            "x": 7,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_2F",
+            "dest_warp_id": "WARP_VEILSTONE_STORE_3F"
+        },
+        {
+            "id": "WARP_VEILSTONE_STORE_4F",
+            "x": 12,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_4F",
+            "dest_warp_id": "WARP_VEILSTONE_STORE_3F"
+        },
+        {
+            "id": "WARP_VEILSTONE_STORE_ELEVATOR",
+            "x": 15,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
+            "dest_warp_id": "WARP_DYNAMIC"
+        }
+    ],
+    "coord_events": []
+}

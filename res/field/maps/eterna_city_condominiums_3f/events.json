@@ -1,0 +1,82 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_POKEFAN_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaCityCondominiums3F_PokefanM",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 5,
+            "z": 9,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_SCHOOL_KID_M",
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+            "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_WEST_NORTH_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaCityCondominiums3F_SchoolKidM",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 3,
+            "movement_range_z": 3,
+            "x": 16,
+            "z": 7,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_BUG_CATCHER",
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaCityCondominiums3F_BugCatcher",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 10,
+            "z": 7,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_NINJA_BOY",
+            "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+            "movement_type": "MOVEMENT_TYPE_WALK_NORTH_EAST_SOUTH_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaCityCondominiums3F_NinjaBoy",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 3,
+            "movement_range_z": 3,
+            "x": 13,
+            "z": 10,
+            "y": 1
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ETERNA_CITY_CONDOMINIUMS_2F",
+            "x": 8,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F",
+            "dest_warp_id": "WARP_ETERNA_CITY_CONDOMINIUMS_3F"
+        },
+        {
+            "id": "WARP_UNUSED_ETERNA_CITY_CONDOMINIUMS_4F",
+            "x": 1,
+            "z": 1,
+            "dest_header_id": "MAP_HEADER_UNUSED_ETERNA_CITY_CONDOMINIUMS_4F",
+            "dest_warp_id": "WARP_ETERNA_CITY_CONDOMINIUMS_3F"
+        }
+    ],
+    "coord_events": []
+}

@@ -1,0 +1,500 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_WAYWARD_CAVE_1F_YELLOW_SHARD",
+            "x": 72,
+            "z": 15,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_WAYWARD_CAVE_1F_GREAT_BALL",
+            "x": 74,
+            "z": 34,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_207_OR_WAYWARD_CAVE_1F_RED_SHARD",
+            "x": 17,
+            "z": 43,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_WAYWARD_CAVE_1F_GREEN_SHARD",
+            "x": 43,
+            "z": 29,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_WAYWARD_CAVE_1F_SUPER_POTION",
+            "x": 55,
+            "z": 41,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_WAYWARD_CAVE_1F_BLUE_SHARD",
+            "x": 92,
+            "z": 51,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ITEM_TM26",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_TM26",
+            "script": "VisibleItems_WaywardCave1F_TM26",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 56,
+            "z": 55,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_TM32",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_TM32",
+            "script": "VisibleItems_WaywardCave1F_TM32",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 44,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_REVIVE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_REVIVE",
+            "script": "VisibleItems_WaywardCave1F_Revive",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_ESCAPE_ROPE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_ESCAPE_ROPE",
+            "script": "VisibleItems_WaywardCave1F_EscapeRope",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 44,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MIRA",
+            "graphics_id": "OBJ_EVENT_GFX_MIRA",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_WAYWARD_CAVE_1F_MIRA",
+            "script": "WaywardCave1F_Mira",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 72,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CAMPER_DIEGO",
+            "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CAMPER_DIEGO",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 2,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PICNICKER_TORI",
+            "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_PICNICKER_TORI",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LASS_CASSIDY",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_LASS_CASSIDY",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 2,
+            "z": 42,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER_WAYNE",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_WAYNE",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 42,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_HIKER_REGINALD",
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_HIKER_REGINALD",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 17,
+            "z": 38,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COLLECTOR_TERRY",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_COLLECTOR_TERRY",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 91,
+            "z": 48,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PICNICKER_ANA",
+            "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_PICNICKER_ANA",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 73,
+            "z": 30,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CAMPER_PARKER",
+            "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CAMPER_PARKER",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 77,
+            "z": 30,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_RUIN_MANIAC_GERALD",
+            "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_RUIN_MANIAC_GERALD",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 93,
+            "z": 48,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_HIKER_LORENZO",
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_HIKER_LORENZO",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 20,
+            "z": 38,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_1",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 38,
+            "z": 42,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_2",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 35,
+            "z": 29,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_3",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 16,
+            "z": 29,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_4",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 44,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_5",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_5",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 26,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_6",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_6",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_7",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_7",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 31,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_8",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_8",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 54,
+            "z": 29,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_9",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_9",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 57,
+            "z": 40,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_10",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_10",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 66,
+            "z": 52,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_11",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_11",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 88,
+            "z": 27,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ROUTE_206_1",
+            "x": 30,
+            "z": 55,
+            "dest_header_id": "MAP_HEADER_ROUTE_206",
+            "dest_warp_id": "WARP_WAYWARD_CAVE_1F_1"
+        },
+        {
+            "id": "WARP_ROUTE_206_2",
+            "x": 41,
+            "z": 53,
+            "dest_header_id": "MAP_HEADER_ROUTE_206",
+            "dest_warp_id": "WARP_WAYWARD_CAVE_1F_2"
+        },
+        {
+            "id": "WARP_WAYWARD_CAVE_B1F_1",
+            "x": 28,
+            "z": 54,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_B1F",
+            "dest_warp_id": "WARP_WAYWARD_CAVE_1F_2"
+        },
+        {
+            "id": "WARP_WAYWARD_CAVE_B1F_2",
+            "x": 55,
+            "z": 54,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_B1F",
+            "dest_warp_id": "WARP_WAYWARD_CAVE_1F_1"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "WaywardCave1F_CoordEvent_Exit",
+            "x": 41,
+            "z": 53,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE",
+            "value": 1
+        }
+    ]
+}

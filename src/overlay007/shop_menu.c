@@ -17,6 +17,7 @@
 #include "bag.h"
 #include "bag_context.h"
 #include "ball_seal_info.h"
+#include "battle_tower_save.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_message.h"
@@ -59,7 +60,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_0208C098.h"
 #include "vars_flags.h"
-#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"
 #include "res/graphics/sprite_templates/shop_menu.h"
@@ -1217,7 +1217,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
 
     if (shopMenu->martType == MART_TYPE_NORMAL) {
         Bag_TryAddItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELD2);
-        FieldSystem_SaveTVSegment_SinnohShoppingChampCorner(shopMenu->saveData, shopMenu->itemId, shopMenu->itemAmount);
+        TVSegment_Save_SinnohShoppingChampCorner(shopMenu->saveData, shopMenu->itemId, shopMenu->itemAmount);
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         Bag_TryAddItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELD2);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {

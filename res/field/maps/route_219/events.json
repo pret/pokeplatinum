@@ -1,0 +1,79 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_219_ZINC",
+            "x": 175,
+            "z": 889,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_TUBER_TRENTON",
+            "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_TUBER_TRENTON",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 4,
+            "movement_range_z": 0,
+            "x": 171,
+            "z": 887,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TUBER_MARIEL",
+            "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_TUBER_MARIEL",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 176,
+            "z": 887,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST_SANDGEM_BEACH",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route219_ArrowSignpostSandgemBeach",
+            "signpost": "route_map_04_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 179,
+            "z": 866,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_ANTIDOTE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_219_ANTIDOTE",
+            "script": "VisibleItems_Route219_Antidote",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 169,
+            "z": 877,
+            "y": 0
+        }
+    ],
+    "warp_events": [],
+    "coord_events": []
+}

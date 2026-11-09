@@ -1,0 +1,52 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_WORKER",
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route222GateToSunyshoreCity_Worker",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEFAN_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route222GateToSunyshoreCity_PokefanM",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 3,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 8,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ROUTE_222",
+            "x": 1,
+            "z": 7,
+            "dest_header_id": "MAP_HEADER_ROUTE_222",
+            "dest_warp_id": "WARP_ROUTE_222_GATE_TO_SUNYSHORE_CITY_1"
+        },
+        {
+            "id": "WARP_SUNYSHORE_CITY",
+            "x": 10,
+            "z": 7,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY",
+            "dest_warp_id": "WARP_ROUTE_222_GATE_TO_SUNYSHORE_CITY_1"
+        }
+    ],
+    "coord_events": []
+}

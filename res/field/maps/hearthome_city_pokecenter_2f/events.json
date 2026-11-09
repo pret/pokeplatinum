@@ -1,0 +1,67 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_TEALA_MIDDLE",
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonCenter2FCommon_AttendantUnionRoom",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TEALA_EAST",
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonCenter2FCommon_AttendantColosseum",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 12,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TEALA_WEST",
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonCenter2FCommon_AttendantSignTrainerCard",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 4,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_HEARTHOME_CITY_POKECENTER_1F",
+            "x": 2,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F",
+            "dest_warp_id": "WARP_HEARTHOME_CITY_POKECENTER_2F"
+        },
+        {
+            "id": "WARP_UNION_ROOM",
+            "x": 8,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_UNION_ROOM",
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKECENTER_2F"
+        }
+    ],
+    "coord_events": []
+}

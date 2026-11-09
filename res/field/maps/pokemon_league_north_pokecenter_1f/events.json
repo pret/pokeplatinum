@@ -1,0 +1,151 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_LEAGUE_NORTH_DOOR_GUARD",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueNorthPokecenter1F_DoorGuard",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEAGUE_NORTH_CASHIER_F",
+            "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueNorthPokecenter1F_VendorCommon",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 16,
+            "z": 1,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEAGUE_NORTH_CASHIER_M",
+            "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueNorthPokecenter1F_VendorSpecial",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 17,
+            "z": 1,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEAGUE_NORTH_NURSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueNorthPokecenter1F_Nurse",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 1,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEAGUE_NORTH_ACE_TRAINER_F",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueNorthPokecenter1F_AceTrainerF",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEAGUE_NORTH_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEAGUE_NORTH_GUITARIST",
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueNorthPokecenter1F_Guitarist",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 17,
+            "z": 8,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM",
+            "x": 11,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_LEAGUE_NORTH_EXIT",
+            "x": 11,
+            "z": 11,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_2F",
+            "x": 2,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_2F",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_B1F",
+            "x": 6,
+            "z": 14,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_B1F",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_NORTH_POKECENTER_1F"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "PokemonLeagueNorthPokecenter1F_CoordEvent_Rival",
+            "x": 10,
+            "z": 4,
+            "y": 0,
+            "width": 3,
+            "length": 1,
+            "var": "VAR_RIVAL_BEAT_SUNYSHORE_GYM",
+            "value": 0
+        }
+    ]
+}

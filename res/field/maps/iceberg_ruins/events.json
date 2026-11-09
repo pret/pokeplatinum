@@ -1,0 +1,110 @@
+{
+    "bg_events": [
+        {
+            "script": "IcebergRuins_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 7,
+            "z": 1,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "IcebergRuins_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 1,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "IcebergRuins_Statue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 8,
+            "z": 1,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [],
+    "warp_events": [
+        {
+            "id": "WARP_MT_CORONET_1F_NORTH_ROOM_2",
+            "x": 7,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2",
+            "dest_warp_id": "WARP_ICEBERG_RUINS"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "IcebergRuins_DotSouth",
+            "x": 7,
+            "z": 9,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x07",
+            "value": 0
+        },
+        {
+            "script": "IcebergRuins_DotMiddle",
+            "x": 7,
+            "z": 7,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x04",
+            "value": 0
+        },
+        {
+            "script": "IcebergRuins_DotNorth",
+            "x": 7,
+            "z": 5,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x01",
+            "value": 0
+        },
+        {
+            "script": "IcebergRuins_DotMiddleWest",
+            "x": 5,
+            "z": 7,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x03",
+            "value": 0
+        },
+        {
+            "script": "IcebergRuins_DotFarWest",
+            "x": 3,
+            "z": 7,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x02",
+            "value": 0
+        },
+        {
+            "script": "IcebergRuins_DotMiddleEast",
+            "x": 9,
+            "z": 7,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x05",
+            "value": 0
+        },
+        {
+            "script": "IcebergRuins_DotFarEast",
+            "x": 11,
+            "z": 7,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x06",
+            "value": 0
+        }
+    ]
+}

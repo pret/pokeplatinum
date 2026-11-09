@@ -367,7 +367,7 @@ static BOOL CapsuleMenu_FieldTaskCB(FieldTask *fieldTask)
             int sealIndex = CapsuleMenu_GetSealNameIndex(sealType);
             TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-            FieldSystem_SaveTVSegment_SealClubShow(broadcast, pokemon, sealIndex);
+            TVSegment_Save_SealClubShow(broadcast, pokemon, sealIndex);
         }
     }
         capsuleFieldTask->state = CAPSULE_MENU_RUN_APP_STATE_ID;

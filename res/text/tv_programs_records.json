@@ -2,7 +2,7 @@
   "key": 33003,
   "messages": [
     {
-      "id": "pl_msg_00000417_00000",
+      "id": "TVProgramRecords_Text_BattleTowerMasterSingles",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000417_00001",
+      "id": "TVProgramRecords_Text_BattleTowerMasterDoubles",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000417_00002",
+      "id": "TVProgramRecords_Text_PokemonSize",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000417_00003",
+      "id": "TVProgramRecords_Text_SlotGameMaster",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000417_00004",
+      "id": "TVProgramRecords_Text_RibbonMaster",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",
@@ -118,15 +118,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000417_00005",
+      "id": "TVProgramRecords_Text_Unused5",
       "garbage": 228
     },
     {
-      "id": "pl_msg_00000417_00006",
+      "id": "TVProgramRecords_Text_Unused6",
       "garbage": 243
     },
     {
-      "id": "pl_msg_00000417_00007",
+      "id": "TVProgramRecords_Text_TrapBustingMaster",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000417_00008",
+      "id": "TVProgramRecords_Text_FlagCapturingMaster",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000417_00009",
+      "id": "TVProgramRecords_Text_BattlePointScoringMaster",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000417_00010",
+      "id": "TVProgramRecords_Text_GTSMaster",
       "en_US": [
         "Serge: It’s time for Rack ’Em Up\n",
         "Records!\r",

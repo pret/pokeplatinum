@@ -1,0 +1,52 @@
+#include "macros/scrcmd.inc"
+#include "res/text/bank/jubilife_city_condominiums_1f.h"
+
+
+    ScriptEntry JubilifeCityCondominiums1F_ExpertF
+    ScriptEntry JubilifeCityCondominiums1F_Pikachu
+    ScriptEntry JubilifeCityCondominiums1F_Pachirisu
+    ScriptEntry JubilifeCityCondominiums1F_Beauty
+    ScriptEntryEnd
+
+JubilifeCityCondominiums1F_ExpertF:
+    NPCMessage JubilifeCityCondominiums1F_Text_IsntMyPoketchQuiteFetching
+    End
+
+JubilifeCityCondominiums1F_Pikachu:
+    PokemonCryAndMessage SPECIES_PIKACHU, JubilifeCityCondominiums1F_Text_PikachuCry
+    End
+
+JubilifeCityCondominiums1F_Pachirisu:
+    PokemonCryAndMessage SPECIES_PACHIRISU, JubilifeCityCondominiums1F_Text_PachirisuCry
+    End
+
+JubilifeCityCondominiums1F_Beauty:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_RECEIVED_JUBILIFE_CITY_CONDOMINIUMS_1F_QUICK_CLAW, JubilifeCityCondominiums1F_ObtainedQuickClaw
+    BufferItemName 0, ITEM_QUICK_CLAW
+    Message JubilifeCityCondominiums1F_Text_MakePokemonHoldThis
+    SetVar VAR_0x8004, ITEM_QUICK_CLAW
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, JubilifeCityCondominiums1F_BagIsFull
+    SetFlag FLAG_RECEIVED_JUBILIFE_CITY_CONDOMINIUMS_1F_QUICK_CLAW
+    CallCommonScript CommonScript_AddItemQuantityNoLineFeed
+    CloseMessage
+    ReleaseAll
+    End
+
+JubilifeCityCondominiums1F_BagIsFull:
+    CallCommonScript CommonScript_BagIsFull
+    CloseMessage
+    ReleaseAll
+    End
+
+JubilifeCityCondominiums1F_ObtainedQuickClaw:
+    Message JubilifeCityCondominiums1F_Text_SometimesAttackFirst
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

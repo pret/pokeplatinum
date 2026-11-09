@@ -1,0 +1,212 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_205_NORTH_SUPER_POTION",
+            "x": 285,
+            "z": 520,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_FISHERMAN_ANDREW",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_ANDREW",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 274,
+            "z": 531,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_FISHERMAN_JOSEPH",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_JOSEPH",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 270,
+            "z": 532,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_FISHERMAN_ZACHARY",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_FISHERMAN_ZACHARY",
+                "sight_range": 0
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 277,
+            "z": 535,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST_ETERNA_FOREST",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route205North_ArrowSignpostEternaForest",
+            "signpost": "route_map_02_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 262,
+            "z": 523,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST_ETERNA_CITY",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route205North_ArrowSignpostEternaCity",
+            "signpost": "route_map_01_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 281,
+            "z": 532,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_FISHERMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route205North_Fisherman",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 267,
+            "z": 532,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_ITEM_GUARD_SPEC",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC",
+            "script": "VisibleItems_Route205North_GuardSpec",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 274,
+            "z": 541,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BERRY_SOIL_1",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "berry_tree": 14,
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 277,
+            "z": 519,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BERRY_SOIL_2",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "berry_tree": 15,
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 278,
+            "z": 519,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BERRY_SOIL_3",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "berry_tree": 16,
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 279,
+            "z": 519,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BERRY_SOIL_4",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "berry_tree": 17,
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 280,
+            "z": 519,
+            "y": 0
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "clone": {
+                "map": "MAP_HEADER_ETERNA_CITY",
+                "id": "LOCALID_MAP_SIGNPOST_WEST"
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 293,
+            "z": 530,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ETERNA_FOREST_1",
+            "x": 259,
+            "z": 525,
+            "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
+            "dest_warp_id": "WARP_ROUTE_205_NORTH_2"
+        },
+        {
+            "id": "WARP_ETERNA_FOREST_2",
+            "x": 259,
+            "z": 524,
+            "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
+            "dest_warp_id": "WARP_ROUTE_205_NORTH_1"
+        }
+    ],
+    "coord_events": []
+}

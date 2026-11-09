@@ -1,0 +1,46 @@
+{
+    "bg_events": [
+        {
+            "script": "TwinleafTownRivalHouse2F_Wii",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "TwinleafTownRivalHouse2F_PC",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 9,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_RIVAL_HOUSE_2F_RIVAL",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 5,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
+            "x": 3,
+            "z": 4,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
+            "dest_warp_id": "WARP_TWINLEAF_TOWN_RIVAL_HOUSE_2F"
+        }
+    ],
+    "coord_events": []
+}

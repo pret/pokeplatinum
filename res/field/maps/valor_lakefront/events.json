@@ -1,0 +1,276 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VALOR_LAKEFRONT_SUN_STONE",
+            "x": 720,
+            "z": 794,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VALOR_LAKEFRONT_PP_UP",
+            "x": 730,
+            "z": 773,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_213_MAX_REVIVE",
+            "x": 692,
+            "z": 801,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VALOR_LAKEFRONT_BIG_MUSHROOM",
+            "x": 716,
+            "z": 745,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_CYNTHIA",
+            "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_CYNTHIA",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 723,
+            "z": 760,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CAMERAMAN_NORTH",
+            "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_CAMERAMEN",
+            "script": "ValorLakefront_CameramanNorth",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 718,
+            "z": 760,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CAMERAMAN_SOUTH",
+            "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_CAMERAMEN",
+            "script": "ValorLakefront_CameramanSouth",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 718,
+            "z": 761,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_TM85",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_VALOR_LAKEFRONT_TM85",
+            "script": "VisibleItems_ValorLakefront_TM85",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 712,
+            "z": 783,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_ULTRA_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_VALOR_LAKEFRONT_ULTRA_BALL",
+            "script": "VisibleItems_ValorLakefront_UltraBall",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 717,
+            "z": 748,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GRUNT_M",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_GRUNT_M",
+            "script": "ValorLakefront_GruntM",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 719,
+            "z": 790,
+            "y": 0
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_213",
+                "id": "LOCALID_BEAUTY"
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 694,
+            "z": 804,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD_SEVEN_STARS_RESTAURANT",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "ValorLakefront_SignboardSevenStarsRestaurant",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 704,
+            "z": 792,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BEAUTY",
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_BEAUTY",
+            "script": "ValorLakefront_Beauty",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 715,
+            "z": 782,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COLLECTOR",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_COLLECTOR",
+            "script": "ValorLakefront_Collector",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 724,
+            "z": 788,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_RIVAL",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 723,
+            "z": 777,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_IRON",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_VALOR_LAKEFRONT_IRON",
+            "script": "VisibleItems_ValorLakefront_Iron",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 712,
+            "z": 780,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_RESTAURANT",
+            "x": 706,
+            "z": 790,
+            "dest_header_id": "MAP_HEADER_RESTAURANT",
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT"
+        },
+        {
+            "id": "WARP_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE",
+            "x": 715,
+            "z": 781,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE",
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT"
+        },
+        {
+            "id": "WARP_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE",
+            "x": 690,
+            "z": 791,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE",
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT"
+        },
+        {
+            "id": "WARP_LAKE_VALOR_DRAINED_1",
+            "x": 717,
+            "z": 760,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR_DRAINED",
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT_1"
+        },
+        {
+            "id": "WARP_LAKE_VALOR_DRAINED_2",
+            "x": 717,
+            "z": 761,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR_DRAINED",
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT_2"
+        },
+        {
+            "id": "WARP_LAKE_VALOR_1",
+            "x": 717,
+            "z": 760,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR",
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT_3"
+        },
+        {
+            "id": "WARP_LAKE_VALOR_2",
+            "x": 717,
+            "z": 761,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR",
+            "dest_warp_id": "WARP_VALOR_LAKEFRONT_4"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "ValorLakefront_CoordEvent_BlockSunyshore",
+            "x": 724,
+            "z": 789,
+            "y": 0,
+            "width": 1,
+            "length": 3,
+            "var": "VAR_VALOR_LAKEFRONT_BLOCK_SUNYSHORE_STATE",
+            "value": 0
+        }
+    ]
+}
+

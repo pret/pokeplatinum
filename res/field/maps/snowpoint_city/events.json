@@ -1,0 +1,256 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_SNOWPOINT_CITY_RARE_CANDY",
+            "x": 381,
+            "z": 220,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ACE_TRAINER_SNOW_F",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCity_AceTrainerSnowF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 365,
+            "z": 243,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_MAP_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCity_MapSignpost",
+            "signpost": "city_map_snowpoint_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 360,
+            "z": 240,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GYM_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCity_GymSignpost",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 363,
+            "z": 222,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_NPC_M",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCity_SnowpointNPCM",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 361,
+            "z": 216,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_NPC_F_1",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCity_SnowpointNPCF1",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 376,
+            "z": 211,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_SAILOR",
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCity_Sailor",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 373,
+            "z": 228,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_TEMPLE_GUARD",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCity_TempleGuard",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 367,
+            "z": 198,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_CANDICE",
+            "graphics_id": "OBJ_EVENT_GFX_CANDICE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_SNOWPOINT_CITY_CANDICE",
+            "script": "SnowpointCity_Candice",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 366,
+            "z": 208,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_SAILOR_SS_SPIRAL",
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_SNOWPOINT_CITY_SAILOR_SS_SPIRAL",
+            "script": "SnowpointCity_SailorSSSpiral",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 356,
+            "z": 247,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_NPC_F_2",
+            "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCity_SnowpointNPCF2",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 355,
+            "z": 221,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_CYNTHIA",
+            "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_SNOWPOINT_CITY_CYNTHIA",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 366,
+            "z": 241,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_ITEM_ULTRA_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_SNOWPOINT_CITY_ULTRA_BALL",
+            "script": "VisibleItems_SnowpointCity_UltraBall",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 372,
+            "z": 245,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_SNOWPOINT_CITY_WEST_HOUSE",
+            "x": 353,
+            "z": 208,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
+        },
+        {
+            "id": "WARP_SNOWPOINT_CITY_EAST_HOUSE",
+            "x": 379,
+            "z": 208,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
+        },
+        {
+            "id": "WARP_SNOWPOINT_TEMPLE_1F_1",
+            "x": 366,
+            "z": 197,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
+        },
+        {
+            "id": "WARP_SNOWPOINT_CITY_MART",
+            "x": 353,
+            "z": 232,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_MART",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
+        },
+        {
+            "id": "WARP_SNOWPOINT_CITY_POKECENTER_1F",
+            "x": 379,
+            "z": 233,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
+        },
+        {
+            "id": "WARP_SNOWPOINT_CITY_GYM",
+            "x": 367,
+            "z": 222,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_GYM",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
+        },
+        {
+            "id": "WARP_SNOWPOINT_TEMPLE_1F_2",
+            "x": 367,
+            "z": 197,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "SnowpointCity_CoordEvent_TempleGuard",
+            "x": 366,
+            "z": 198,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_SNOWPOINT_CITY_STATE",
+            "value": 0
+        }
+    ]
+}
+

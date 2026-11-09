@@ -1,0 +1,29 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_GYM_GUIDE",
+            "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_CITY_HARBOR_INN_GYM_GUIDE",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 7,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_CANALAVE_CITY",
+            "x": 4,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY",
+            "dest_warp_id": "WARP_CANALAVE_CITY_HARBOR_INN"
+        }
+    ],
+    "coord_events": []
+}

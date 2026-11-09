@@ -1,0 +1,392 @@
+{
+    "bg_events": [
+        {
+            "script": "MiningMuseum_HowCoalIsMade1",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 10,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "MiningMuseum_HowCoalIsMade1",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 11,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "MiningMuseum_HowCoalIsMade2",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 12,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "MiningMuseum_HowCoalIsMade2",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 13,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "MiningMuseum_HowCoalIsMade3",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 14,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "MiningMuseum_HowCoalIsMade3",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "MiningMuseum_DisplayCoalDifferentRegions",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 14,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayCoalDifferentRegions",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayCategorizedSamples",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 14,
+            "z": 13,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayCategorizedSamples",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 13,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayLamps",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayLamps",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayLamps",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayTools",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayTools",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayTools",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayItems",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 13,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayItems",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 13,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayItems",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 13,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayCoalDifferentRegions",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 14,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayCoalDifferentRegions",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayLamps",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 6,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayLamps",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 6,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayLamps",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 6,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayTools",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayTools",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayTools",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayItems",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 12,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayItems",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 12,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayItems",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 12,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayCategorizedSamples",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 14,
+            "z": 12,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "MiningMuseum_DisplayCategorizedSamples",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 12,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_HIKER",
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "MiningMuseum_Hiker",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TWIN",
+            "graphics_id": "OBJ_EVENT_GFX_TWIN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "MiningMuseum_Twin",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SCHOOL_KID_M",
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "MiningMuseum_SchoolKidM",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SCIENTIST_M",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "MiningMuseum_FossilResearcher",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACE_TRAINER_F",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "MiningMuseum_AceTrainerF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEMON_BREEDER_F",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "MiningMuseum_PokemonBreederF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COLLECTOR",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "MiningMuseum_Collector",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_EXPERT_M",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "MiningMuseum_ExpertM",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 16,
+            "z": 15,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_OREBURGH_CITY",
+            "x": 5,
+            "z": 13,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
+            "dest_warp_id": "WARP_MINING_MUSEUM"
+        }
+    ],
+    "coord_events": []
+}

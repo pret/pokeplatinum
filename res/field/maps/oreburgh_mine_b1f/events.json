@@ -1,0 +1,110 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_WORKER",
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "OreburghMineB1F_Worker",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_POKE_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_OREBURGH_MINE_B1F_POKE_BALL",
+            "script": "VisibleItems_OreburghMineB1F_PokeBall",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 19,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TWIN",
+            "graphics_id": "OBJ_EVENT_GFX_TWIN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "OreburghMineB1F_Twin",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_HIKER",
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_OREBURGH_MINE_B1F_HIKER",
+            "script": "OreburghMineB1F_Hiker",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 4,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_OREBURGH_CITY_1",
+            "x": 11,
+            "z": 1,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F_2"
+        },
+        {
+            "id": "WARP_OREBURGH_CITY_2",
+            "x": 12,
+            "z": 1,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F_3"
+        },
+        {
+            "id": "WARP_OREBURGH_CITY_3",
+            "x": 13,
+            "z": 1,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F_4"
+        },
+        {
+            "id": "WARP_OREBURGH_MINE_B2F_1",
+            "x": 12,
+            "z": 21,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F"
+        },
+        {
+            "id": "WARP_OREBURGH_MINE_B2F_2",
+            "x": 11,
+            "z": 21,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F"
+        },
+        {
+            "id": "WARP_OREBURGH_MINE_B2F_3",
+            "x": 13,
+            "z": 21,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
+            "dest_warp_id": "WARP_OREBURGH_MINE_B1F"
+        }
+    ],
+    "coord_events": []
+}

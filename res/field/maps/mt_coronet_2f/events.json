@@ -1,0 +1,211 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_2F_STAR_PIECE",
+            "x": 25,
+            "z": 11,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_2F_RED_SHARD",
+            "x": 16,
+            "z": 35,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ITEM_MAX_REVIVE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_2F_MAX_REVIVE",
+            "script": "VisibleItems_MtCoronet2F_MaxRevive",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 31,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_MAX_REPEL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_2F_MAX_REPEL",
+            "script": "VisibleItems_MtCoronet2F_MaxRepel",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 23,
+            "z": 37,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_TM80",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_2F_TM80",
+            "script": "VisibleItems_MtCoronet2F_TM80",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 55,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_ESCAPE_ROPE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE",
+            "script": "VisibleItems_MtCoronet2F_EscapeRope",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 60,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CAVE_PAINTING",
+            "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING",
+            "script": "MtCoronet2F_CavePainting",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 23,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LOOKER",
+            "graphics_id": "OBJ_EVENT_GFX_LOOKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_2F_LOOKER",
+            "script": "MtCoronet2F_Looker",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 10,
+            "z": 26,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CAVE_PAINTING_SHARDS_LEFT",
+            "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING_SHARDS_LEFT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING_SHARDS",
+            "script": "MtCoronet2F_CavePaintingShards",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 24,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CAVE_PAINTING_SHARDS_RIGHT",
+            "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING_SHARDS_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING_SHARDS",
+            "script": "MtCoronet2F_CavePaintingShards",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 24,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_STRENGTH_BOULDER",
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
+            "script": "FieldMoves_Boulder",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 45,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_MT_CORONET_1F_SOUTH",
+            "x": 27,
+            "z": 48,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_SOUTH",
+            "dest_warp_id": "WARP_MT_CORONET_2F"
+        },
+        {
+            "id": "WARP_ROUTE_207",
+            "x": 2,
+            "z": 59,
+            "dest_header_id": "MAP_HEADER_ROUTE_207",
+            "dest_warp_id": "WARP_MT_CORONET_2F"
+        },
+        {
+            "id": "WARP_MT_CORONET_2F_1",
+            "x": 7,
+            "z": 23,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
+            "dest_warp_id": "WARP_MT_CORONET_2F_2"
+        },
+        {
+            "id": "WARP_MT_CORONET_2F_2",
+            "x": 7,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
+            "dest_warp_id": "WARP_MT_CORONET_2F_1"
+        },
+        {
+            "id": "WARP_MT_CORONET_3F_1",
+            "x": 11,
+            "z": 4,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_3F",
+            "dest_warp_id": "WARP_MT_CORONET_2F_1"
+        },
+        {
+            "id": "WARP_MT_CORONET_3F_2",
+            "x": 21,
+            "z": 4,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_3F",
+            "dest_warp_id": "WARP_MT_CORONET_2F_2"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "MtCoronet2F_CoordEvent_Looker",
+            "x": 11,
+            "z": 24,
+            "y": 0,
+            "width": 1,
+            "length": 3,
+            "var": "VAR_MT_CORONET_2F_STATE",
+            "value": 1
+        }
+    ]
+}

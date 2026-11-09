@@ -1,0 +1,329 @@
+{
+    "bg_events": [
+        {
+            "script": "CommonScript_Geonet",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 9,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CommonScript_Geonet",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 10,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GlobalTerminal1F_BattleVideoRankingsMachine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GlobalTerminal1F_BattleVideoRankingsMachine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GlobalTerminal1F_TrainerRankingsMachine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 14,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GlobalTerminal1F_TrainerRankingsMachine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 15,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GlobalTerminal1F_BattleVideoRankingsMachine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 21,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GlobalTerminal1F_BattleVideoRankingsMachine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 21,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GlobalTerminal1F_TrainerRankingsMachine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 21,
+            "z": 15,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GlobalTerminal1F_TrainerRankingsMachine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 21,
+            "z": 14,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "GlobalTerminal1F_BgSign",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_RECEPTIONIST_GTS",
+            "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_ReceptionistGTS",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COLLECTOR",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_Collector",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BUG_CATCHER",
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_BugCatcher",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 6,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GUITARIST",
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_Guitarist",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 2,
+            "x": 3,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_EXPERT_M",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_ExpertM",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 24,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACE_TRAINER_M",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_AceTrainerM",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 6,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BEAUTY_1",
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_Beauty1",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 12,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_RECEPTIONIST_ENTRY_NORTH",
+            "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_RepectionistEntryNorth",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_RECEPTIONIST_ENTRY_SOUTH",
+            "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_RepectionistEntrySouth",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PICNICKER",
+            "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_Picnicker",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 25,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_Youngster",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 16,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEMON_BREEDER_F",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_PokemonBreederF",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEMON_BREEDER_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_PokemonBreederM",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 12,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BEAUTY_2",
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "GlobalTerminal1F_Beauty2",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 15,
+            "z": 10,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_JUBILIFE_CITY",
+            "x": 13,
+            "z": 18,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
+            "dest_warp_id": "WARP_GLOBAL_TERMINAL_1F"
+        },
+        {
+            "id": "WARP_GLOBAL_TERMINAL_2F",
+            "x": 16,
+            "z": 4,
+            "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_2F",
+            "dest_warp_id": "WARP_GLOBAL_TERMINAL_1F"
+        },
+        {
+            "id": "WARP_GLOBAL_TERMINAL_3F",
+            "x": 20,
+            "z": 4,
+            "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_3F",
+            "dest_warp_id": "WARP_GLOBAL_TERMINAL_1F"
+        }
+    ],
+    "coord_events": []
+}
+

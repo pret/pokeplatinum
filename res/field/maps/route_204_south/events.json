@@ -1,0 +1,170 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_LASS_SARAH",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_LASS_SARAH",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 172,
+            "z": 725,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_LASS_SAMANTHA",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_LASS_SAMANTHA",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 171,
+            "z": 712,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_YOUNGSTER_TYLER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_TYLER",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 167,
+            "z": 722,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_YOUNGSTER_SOUTH",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route204South_Youngster",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 173,
+            "z": 706,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route204South_ArrowSignpostJubilifeCity",
+            "signpost": "route_map_04_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 174,
+            "z": 721,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route204South_SignboardRavagedPath",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 170,
+            "z": 706,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER_NORTH",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 175,
+            "z": 700,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_SEA_INCENSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_204_SOUTH_SEA_INCENSE",
+            "script": "VisibleItems_Route204South_SeaIncense",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 162,
+            "z": 732,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_HP_UP",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_204_SOUTH_HP_UP",
+            "script": "VisibleItems_Route204South_HPUp",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 189,
+            "z": 716,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_PARLYZ_HEAL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_204_SOUTH_PARLYZ_HEAL",
+            "script": "VisibleItems_Route204South_ParlyzHeal",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 177,
+            "z": 722,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_RAVAGED_PATH",
+            "x": 171,
+            "z": 705,
+            "dest_header_id": "MAP_HEADER_RAVAGED_PATH",
+            "dest_warp_id": "WARP_ROUTE_204_SOUTH"
+        }
+    ],
+    "coord_events": []
+}

@@ -1,0 +1,192 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_STAR_PIECE_1",
+            "x": 41,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_STAR_PIECE_2",
+            "x": 44,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_SOUTH_BLUE_SHARD",
+            "x": 13,
+            "z": 29,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_SOUTH_MAX_POTION",
+            "x": 31,
+            "z": 33,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_SOUTH_REVIVAL_HERB",
+            "x": 15,
+            "z": 22,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_MT_CORONET_OUTSIDE_SOUTH_ENERGY_ROOT",
+            "x": 34,
+            "z": 13,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ROCK_SMASH_1",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 31,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_2",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 42,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_3",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 43,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_4",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 45,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_5",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_5",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 45,
+            "z": 2,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_6",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_6",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 42,
+            "z": 0,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROCK_SMASH_7",
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_7",
+            "script": "FieldMoves_Rock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 47,
+            "z": 0,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_STRENGTH_BOULDER",
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_8",
+            "script": "FieldMoves_Boulder",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 25,
+            "z": 29,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_MT_CORONET_3F",
+            "x": 12,
+            "z": 35,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_3F",
+            "dest_warp_id": "WARP_MT_CORONET_OUTSIDE_SOUTH"
+        },
+        {
+            "id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_1",
+            "x": 11,
+            "z": 17,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
+            "dest_warp_id": "WARP_MT_CORONET_OUTSIDE_SOUTH_1"
+        },
+        {
+            "id": "WARP_MT_CORONET_4F_ROOMS_1_AND_2_2",
+            "x": 39,
+            "z": 18,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
+            "dest_warp_id": "WARP_MT_CORONET_OUTSIDE_SOUTH_2"
+        }
+    ],
+    "coord_events": []
+}

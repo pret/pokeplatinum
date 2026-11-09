@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_022",
+  "mapGroup": "FlowerShop",
+  "locationName": "LocationNames_Text_FlowerShop",
+  "textBank": "TEXT_BANK_FLOWER_SHOP",
+  "popupStyle": "MAP_LABEL_WINDOW_TOWN",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_TOWN03_D_sseq",
+  "musicNight": "SEQ_TOWN03_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

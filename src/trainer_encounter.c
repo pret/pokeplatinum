@@ -5,6 +5,7 @@
 
 #include "constants/approach_type.h"
 #include "constants/field/dynamic_map_features.h"
+#include "constants/field/script_ranges.h"
 #include "constants/map_object.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"

@@ -919,7 +919,7 @@ void TrapsEnv_Free(void)
     ov5_021EB184(&trapsEnv->fieldSystem->unk_8C);
 
     if (trapsEnv->retrievedTrapCount >= 10) {
-        sub_0206DEEC(trapsEnv->fieldSystem, trapsEnv->retrievedTrapID, trapsEnv->retrievedTrapCount);
+        TVSegment_Save_TrapBustingMaster(trapsEnv->fieldSystem, trapsEnv->retrievedTrapID, trapsEnv->retrievedTrapCount);
     }
 
     if (trapsEnv->trapEffectTask) {

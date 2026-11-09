@@ -1,0 +1,104 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_BEAUTY",
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "JubilifeTV1F_Beauty",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GYM_GUIDE",
+            "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "JubilifeTV1F_GymGuide",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKETCH_CO_PRESIDENT",
+            "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "JubilifeTV1F_MiddleAgedMan",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACE_TRAINER_SNOW_F",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "JubilifeTV1F_AceTrainerSnowF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACE_TRAINER_M",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "JubilifeTV1F_AceTrainerM",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 10,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_JUBILIFE_CITY",
+            "x": 9,
+            "z": 18,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
+            "dest_warp_id": "WARP_JUBILIFE_TV_1F"
+        },
+        {
+            "id": "WARP_JUBILIFE_TV_2F",
+            "x": 14,
+            "z": 4,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_2F",
+            "dest_warp_id": "WARP_JUBILIFE_TV_1F"
+        },
+        {
+            "id": "WARP_JUBILIFE_TV_ELEVATOR",
+            "x": 18,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_ELEVATOR",
+            "dest_warp_id": "WARP_DYNAMIC"
+        }
+    ],
+    "coord_events": []
+}

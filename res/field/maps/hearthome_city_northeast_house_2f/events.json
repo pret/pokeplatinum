@@ -1,0 +1,75 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_EXPERT_M",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "HearthomeCityNortheastHouse2F_ExpertM",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_EXPERT_F",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "HearthomeCityNortheastHouse2F_ExpertF",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 12,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OLD_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "HearthomeCityNortheastHouse2F_OldMan",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 3,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OLD_WOMAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "HearthomeCityNortheastHouse2F_OldWoman",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 3,
+            "z": 5,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR",
+            "x": 18,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR",
+            "dest_warp_id": "WARP_DYNAMIC"
+        }
+    ],
+    "coord_events": []
+}

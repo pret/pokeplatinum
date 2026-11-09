@@ -1,0 +1,75 @@
+{
+    "bg_events": [
+        {
+            "script": "HearthomeGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 2,
+            "z": 6,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "HearthomeGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 6,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_GYM_GUIDE",
+            "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "HearthomeGym_GymGuide",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_HEARTHOME_CITY_GYM_TRAINER_ROOM_2",
+            "x": 11,
+            "z": 7,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2",
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM"
+        },
+        {
+            "id": "WARP_HEARTHOME_CITY_GYM_TRAINER_ROOM_1",
+            "x": 4,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1",
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM"
+        },
+        {
+            "id": "WARP_HEARTHOME_CITY_GYM_LEADER_ROOM_1",
+            "x": 12,
+            "z": 7,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM_1"
+        },
+        {
+            "id": "WARP_HEARTHOME_CITY",
+            "x": 4,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM"
+        },
+        {
+            "id": "WARP_HEARTHOME_CITY_GYM_LEADER_ROOM_2",
+            "x": 11,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
+            "dest_warp_id": "WARP_HEARTHOME_CITY_GYM_ENTRANCE_ROOM_2"
+        }
+    ],
+    "coord_events": []
+}

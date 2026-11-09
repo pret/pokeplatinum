@@ -738,7 +738,7 @@ BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx)
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), slot);
 
     Pokemon_SetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), &value);
-    sub_0206DDB8(ctx->fieldSystem->saveData, mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM));
+    TVSegment_Save_RibbonMaster(ctx->fieldSystem->saveData, mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM));
 
     return FALSE;
 }

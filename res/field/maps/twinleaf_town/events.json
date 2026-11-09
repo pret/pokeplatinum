@@ -1,0 +1,184 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_TWINLEAF_TOWN_ODD_KEYSTONE",
+            "x": 107,
+            "z": 893,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_POKEMON_BREEDER_F",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "TwinleafTown_BreederF",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 119,
+            "z": 878,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_COLLECTOR",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "TwinleafTown_Collector",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 2,
+            "x": 108,
+            "z": 889,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_RIVAL",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 105,
+            "z": 875,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GUITARIST",
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "TwinleafTown_Guitarist",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 108,
+            "z": 869,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MAP_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "TwinleafTown_MapSignpost",
+            "signpost": "city_map_twinleaf_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 112,
+            "z": 878,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MAILBOX_PLAYER",
+            "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "TwinleafTown_MailboxPlayer",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 114,
+            "z": 885,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MAILBOX_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "TwinleafTown_MailboxRival",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 109,
+            "z": 875,
+            "y": 0
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_201",
+                "id": "LOCALID_ARROW_SIGNPOST_TWINLEAF_TOWN"
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 109,
+            "z": 856,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
+            "x": 105,
+            "z": 875,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
+            "dest_warp_id": "WARP_TWINLEAF_TOWN"
+        },
+        {
+            "id": "WARP_TWINLEAF_TOWN_PLAYER_HOUSE_1F",
+            "x": 116,
+            "z": 885,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F",
+            "dest_warp_id": "WARP_TWINLEAF_TOWN"
+        },
+        {
+            "id": "WARP_TWINLEAF_TOWN_NORTHEAST_HOUSE",
+            "x": 116,
+            "z": 875,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_NORTHEAST_HOUSE",
+            "dest_warp_id": "WARP_TWINLEAF_TOWN"
+        },
+        {
+            "id": "WARP_TWINLEAF_TOWN_SOUTHWEST_HOUSE",
+            "x": 106,
+            "z": 885,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE",
+            "dest_warp_id": "WARP_TWINLEAF_TOWN"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "TwinleafTown_CoordEvent_RivalWasLookingForYou",
+            "x": 108,
+            "z": 867,
+            "y": 0,
+            "width": 8,
+            "length": 1,
+            "var": "VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE",
+            "value": 1
+        },
+        {
+            "script": "TwinleafTown_CoordEvent_RivalThud",
+            "x": 105,
+            "z": 876,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_TWINLEAF_TOWN_RIVAL_TRIGGER_STATE",
+            "value": 0
+        }
+    ]
+}

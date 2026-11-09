@@ -1,0 +1,13 @@
+{
+    "bg_events": [],
+    "object_events": [],
+    "warp_events": [
+        {
+            "id": "WARP_DYNAMIC",
+            "x": 3,
+            "z": 6,
+            "dest_header_id": "MAP_HEADER_DYNAMIC"
+        }
+    ],
+    "coord_events": []
+}

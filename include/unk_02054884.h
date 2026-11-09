@@ -12,7 +12,7 @@ void Party_ResetMonMoveSlot(Party *party, int partySlot, int moveSlot, u16 moveI
 int Party_HasMonWithMove(Party *party, u16 moveID);
 int Party_AliveMonsCount(const Party *party);
 Pokemon *Party_FindFirstEligibleBattler(const Party *party);
-Pokemon *Party_FindFirstHatchedMon(const Party *party);
+Pokemon *Party_FindFirstNonEggMon(const Party *party);
 BOOL Party_HasTwoAliveMons(const Party *party);
 void Party_GiveChampionRibbons(Party *party);
 int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID);

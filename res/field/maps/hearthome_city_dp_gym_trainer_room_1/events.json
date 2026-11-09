@@ -1,0 +1,32 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_CAMPER_DREW",
+            "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CAMPER_DREW",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_HEARTHOME_CITY_GYM_LEADER_ROOM",
+            "x": 7,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
+            "dest_warp_id": "WARP_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_1"
+        }
+    ],
+    "coord_events": []
+}

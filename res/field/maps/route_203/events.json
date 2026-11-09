@@ -1,0 +1,260 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_YOUNGSTER_SEBASTIAN",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_SEBASTIAN",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 234,
+            "z": 757,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER_MICHAEL",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_MICHAEL",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 204,
+            "z": 750,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_LASS_KAITLIN",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_LASS_KAITLIN",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 243,
+            "z": 757,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER_DALLAS",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_YOUNGSTER_DALLAS",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 222,
+            "z": 756,
+            "y": 4
+        },
+        {
+            "id": "LOCALID_LASS_MADELINE",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_LASS_MADELINE",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 240,
+            "z": 748,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_ROUTE_203_RIVAL",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 201,
+            "z": 757,
+            "y": 1
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST_JUBILIFE_CITY",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route203_ArrowSignpostJubilifeCity",
+            "signpost": "route_map_02_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 200,
+            "z": 756,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST_OREBURGH_CITY",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route203_ArrowSignpostOreburghCity",
+            "signpost": "route_map_01_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 244,
+            "z": 747,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TRAINER_TIPS_SIGNPOST_EAST",
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route203_TrainerTipsSignpostEast",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 238,
+            "z": 752,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TRAINER_TIPS_SIGNPOST_WEST",
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route203_TrainerTipsSignpostWest",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 217,
+            "z": 750,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_REPEL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_UNK_003",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_203_REPEL",
+            "script": "VisibleItems_Route203_Repel",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 222,
+            "z": 745,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_POKE_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_UNK_003",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_203_POKE_BALL",
+            "script": "VisibleItems_Route203_PokeBall",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 211,
+            "z": 750,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LASS",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route203_Lass",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 206,
+            "z": 757,
+            "y": 0
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "clone": {
+                "map": "MAP_HEADER_JUBILIFE_CITY",
+                "id": "LOCALID_MAP_SIGNPOST_2"
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 187,
+            "z": 756,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_X_DEFENSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_UNK_003",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_203_X_DEFENSE",
+            "script": "VisibleItems_Route203_XDefense",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 231,
+            "z": 754,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_OREBURGH_GATE_1F",
+            "x": 246,
+            "z": 749,
+            "dest_header_id": "MAP_HEADER_OREBURGH_GATE_1F",
+            "dest_warp_id": "WARP_ROUTE_203"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "Route203_CoordEvent_Rival",
+            "x": 196,
+            "z": 757,
+            "y": 0,
+            "width": 1,
+            "length": 4,
+            "var": "VAR_ROUTE_203_RIVAL_STATE",
+            "value": 0
+        }
+    ]
+}

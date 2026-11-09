@@ -1,0 +1,173 @@
+{
+    "bg_events": [
+        {
+            "script": "FrontierRecords_BattleFactory",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 22,
+            "z": 6,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_SINGLE_ATTENDANT",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_SingleAttendant",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 21,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MULTI_ATTENDANT",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_MultiAttendant",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 23,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_Youngster",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 16,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BEAUTY",
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_Beauty",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 15,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POLICEMAN",
+            "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_Policeman",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 25,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SAILOR",
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_Sailor",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 1,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEMON_BREEDER_F",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_PokemonBreederF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 1,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CLOWN",
+            "graphics_id": "OBJ_EVENT_GFX_CLOWN",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_Clown",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 18,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LADY",
+            "graphics_id": "OBJ_EVENT_GFX_LADY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFactory_Lady",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 22,
+            "z": 11,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_BATTLE_FRONTIER_1",
+            "x": 1,
+            "z": 7,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_FACTORY_3"
+        },
+        {
+            "id": "WARP_BATTLE_FRONTIER_2",
+            "x": 1,
+            "z": 6,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_FACTORY_3"
+        },
+        {
+            "id": "WARP_BATTLE_FRONTIER_3",
+            "x": 1,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_FACTORY_3"
+        }
+    ],
+    "coord_events": []
+}

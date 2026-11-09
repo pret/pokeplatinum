@@ -53,6 +53,7 @@
 
 #include "battle_frontier.h"
 #include "battle_frontier_stats.h"
+#include "battle_tower_save.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "comm_manager.h"
@@ -90,7 +91,6 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "vars_flags.h"
-#include "wifi_battle_tower_save.h"
 #include "wifi_list.h"
 
 #include "constdata/const_020EA358.h"
@@ -1573,7 +1573,7 @@ static BOOL FrontierScrCmd_GiveBattlePoints(FrontierScriptContext *ctx)
 
     broadcast = SaveData_GetTVBroadcast(fieldData->saveData);
 
-    sub_0206D0C8(broadcast, battlePoints);
+    TVBroadcast_UpdateBattlePointData(broadcast, battlePoints);
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(fieldData->saveData), RECORD_BATTLE_POINTS_RECEIVED, battlePoints);
     WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(fieldData->saveData), battlePoints, BATTLE_POINTS_FUNC_ADD);
 

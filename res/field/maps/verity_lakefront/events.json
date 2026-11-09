@@ -1,0 +1,72 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VERITY_LAKEFRONT_TINYMUSHROOM",
+            "x": 86,
+            "z": 849,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_TRAINER_TIPS_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VerityLakefront_TrainerTipsSignpost",
+            "initial_dir": "DIR_NORTH",
+            "data": [
+                3
+            ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 79,
+            "z": 846,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_LAKE_VERITY_LOW_WATER_1",
+            "x": 81,
+            "z": 843,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY_LOW_WATER",
+            "dest_warp_id": "WARP_VERITY_LAKEFRONT_2"
+        },
+        {
+            "id": "WARP_LAKE_VERITY_LOW_WATER_2",
+            "x": 80,
+            "z": 843,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY_LOW_WATER",
+            "dest_warp_id": "WARP_VERITY_LAKEFRONT_1"
+        },
+        {
+            "id": "WARP_LAKE_VERITY_1",
+            "x": 80,
+            "z": 843,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY",
+            "dest_warp_id": "WARP_VERITY_LAKEFRONT_1"
+        },
+        {
+            "id": "WARP_LAKE_VERITY_2",
+            "x": 81,
+            "z": 843,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY",
+            "dest_warp_id": "WARP_VERITY_LAKEFRONT_2"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "VerityLakefront_CoordEvent_WereAtTheLake",
+            "x": 80,
+            "z": 844,
+            "y": 0,
+            "width": 2,
+            "length": 1,
+            "var": "VAR_VERITY_LAKEFRONT_STATE",
+            "value": 0
+        }
+    ]
+}

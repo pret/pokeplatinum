@@ -1,0 +1,173 @@
+{
+    "bg_events": [
+        {
+            "script": "FrontierRecords_BattleCastle",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 8,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_SINGLE_ATTENDANT",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_SingleAttendant",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MULTI_ATTENDANT",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_MultiAttendant",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROUGHNECK",
+            "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_Roughneck",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BLACK_BELT",
+            "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_BlackBelt",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 2,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GENTLEMAN",
+            "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_Gentleman",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 8,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COLLECTOR",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_Waitress",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 2,
+            "x": 12,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ARTIST",
+            "graphics_id": "OBJ_EVENT_GFX_ARTIST",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_Artist",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 20,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SOCIALITE",
+            "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_Socialite",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 2,
+            "x": 14,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WAITRESS",
+            "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleCastle_Collector",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 7,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_BATTLE_FRONTIER_1",
+            "x": 21,
+            "z": 9,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_CASTLE_3"
+        },
+        {
+            "id": "WARP_BATTLE_FRONTIER_2",
+            "x": 21,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_CASTLE_3"
+        },
+        {
+            "id": "WARP_BATTLE_FRONTIER_3",
+            "x": 21,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_CASTLE_3"
+        }
+    ],
+    "coord_events": []
+}

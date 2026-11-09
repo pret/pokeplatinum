@@ -3,10 +3,11 @@
 #include <nitro.h>
 
 #include "constants/battle.h"
+#include "constants/field/script_ranges.h"
+#include "constants/fieldmap.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
 #include "generated/game_records.h"
-#include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/tv_broadcast.h"
@@ -186,7 +187,7 @@ static BOOL FieldTask_Encounter(FieldTask *task)
         if (encounter->dto->battleType == BATTLE_TYPE_WILD_MON
             || encounter->dto->battleType == BATTLE_TYPE_ROAMER
             || encounter->dto->battleType == BATTLE_TYPE_AI_PARTNER) {
-            FieldSystem_SaveTVSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
+            TVSegment_Save_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
         }
 
         if (CheckPlayerWonEncounter(encounter) == FALSE) {
@@ -386,7 +387,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        FieldSystem_SaveTVSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
+        TVSegment_Save_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
 
         if (CheckPlayerWonBattle(encounter->dto->resultMask) == 0) {
             FreeWildEncounter(encounter);

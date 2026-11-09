@@ -44,9 +44,9 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
+#include "union_room.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02095E98.h"
 #include "vram_transfer.h"
@@ -214,7 +214,7 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
         NetworkIcon_Init();
 
         if (CommSys_CurNetId() == 0) {
-            sub_0205BEA8(1);
+            UnionRoom_SetStatus(UR_STATUS_DRAWING);
             sub_02033ED4(1);
         }
 
@@ -333,7 +333,7 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
 
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-        sub_0205BEA8(0);
+        UnionRoom_SetStatus(UR_STATUS_NONE);
         sub_02033ED4(0);
         (*param1)++;
         break;
@@ -1776,7 +1776,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
     case 2:
     case 3:
     case 4:
-        sub_0205BEA8(1);
+        UnionRoom_SetStatus(UR_STATUS_DRAWING);
 
         if (v0 < param0->unk_378) {
             if (param0->unk_9458 == 2) {
@@ -1787,7 +1787,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
         }
         break;
     case 5:
-        sub_0205BEA8(8);
+        UnionRoom_SetStatus(UR_STATUS_UNK_08);
         break;
     }
 

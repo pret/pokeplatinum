@@ -4,12 +4,13 @@
 #include <string.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/fieldmap.h"
 #include "constants/narc.h"
 #include "constants/scrcmd.h"
-#include "generated/map_headers.h"
 
 #include "field/field_system.h"
 
+#include "battle_tower_save.h"
 #include "bg_window.h"
 #include "coins.h"
 #include "font.h"
@@ -29,7 +30,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/unk_0543.h"

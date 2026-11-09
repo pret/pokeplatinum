@@ -1,0 +1,14 @@
+{
+    "bg_events": [],
+    "object_events": [],
+    "warp_events": [
+        {
+            "id": "WARP_SOLACEON_RUINS_ROOM_6",
+            "x": 4,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END"
+        }
+    ],
+    "coord_events": []
+}

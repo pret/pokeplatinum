@@ -1540,7 +1540,7 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
             }
 
             Pokemon_SetValue(contest->playerMon, monDataRibbon, &hasRibbon);
-            sub_0206DDB8(contest->saveData, contest->playerMon, monDataRibbon);
+            TVSegment_Save_RibbonMaster(contest->saveData, contest->playerMon, monDataRibbon);
         }
 
         TVBroadcast *broadcast = SaveData_GetTVBroadcast(contest->saveData);

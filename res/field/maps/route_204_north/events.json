@@ -1,0 +1,202 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_BUG_CATCHER_BRANDON",
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_BUG_CATCHER_BRANDON",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 4,
+            "movement_range_z": 0,
+            "x": 182,
+            "z": 685,
+            "y": 5
+        },
+        {
+            "id": "LOCALID_AROMA_LADY_TAYLOR",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_AROMA_LADY_TAYLOR",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 177,
+            "z": 692,
+            "y": 5
+        },
+        {
+            "id": "LOCALID_TWIN_LIV",
+            "graphics_id": "OBJ_EVENT_GFX_TWIN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_TWINS_LIV_AND_LIZ",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 175,
+            "z": 679,
+            "y": 5
+        },
+        {
+            "id": "LOCALID_TWIN_LIZ",
+            "graphics_id": "OBJ_EVENT_GFX_TWIN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_TWINS_LIV_AND_LIZ",
+                "sight_range": 4,
+                "depends_on": "LOCALID_TWIN_LIV"
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 176,
+            "z": 679,
+            "y": 5
+        },
+        {
+            "id": "LOCALID_YOUNGSTER_NORTH",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route204North_Youngster",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 175,
+            "z": 700,
+            "y": 5
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route204North_ArrowSignpostFloaromaTown",
+            "signpost": "route_map_13_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 177,
+            "z": 681,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 170,
+            "z": 706,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER_SOUTH",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 173,
+            "z": 706,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 181,
+            "z": 678,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_TM09",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_204_NORTH_TM09",
+            "script": "VisibleItems_Route204North_TM09",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 162,
+            "z": 682,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACE_TRAINER_F",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route204North_AceTrainerF",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 191,
+            "z": 676,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_AWAKENING",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_204_NORTH_AWAKENING",
+            "script": "VisibleItems_Route204North_Awakening",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 180,
+            "z": 695,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_RAVAGED_PATH",
+            "x": 180,
+            "z": 698,
+            "dest_header_id": "MAP_HEADER_RAVAGED_PATH",
+            "dest_warp_id": "WARP_ROUTE_204_NORTH"
+        }
+    ],
+    "coord_events": []
+}

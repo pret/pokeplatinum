@@ -1,0 +1,74 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_LEAGUE_SOUTH_NURSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueSouthPokecenter1F_Nurse",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEAGUE_SOUTH_POKEFAN_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueSouthPokecenter1F_Pokefan",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEAGUE_SOUTH_ACE_TRAINER_F",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PokemonLeagueSouthPokecenter1F_AceTrainer",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 8,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_LEAGUE_SOUTH_EXIT",
+            "x": 8,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_2F",
+            "x": 2,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F",
+            "x": 14,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F",
+            "dest_warp_id": "WARP_POKEMON_LEAGUE_SOUTH_POKECENTER_1F"
+        }
+    ],
+    "coord_events": []
+}

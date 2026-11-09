@@ -1,0 +1,473 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ETERNA_FOREST_INSECT_PLATE",
+            "x": 80,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_CHERYL",
+            "graphics_id": "OBJ_EVENT_GFX_CHERYL",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_ETERNA_FOREST_CHERYL",
+            "script": "FollowerPartners_Cheryl",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 28,
+            "z": 83,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BUG_CATCHER",
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaForest_BugCatcher",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 24,
+            "z": 80,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BUG_CATCHER_JACK",
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_BUG_CATCHER_JACK",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 37,
+            "z": 67,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BUG_CATCHER_PHILLIP",
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_BUG_CATCHER_PHILLIP",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 65,
+            "z": 87,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PSYCHIC_KODY",
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_KODY",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 74,
+            "z": 67,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PSYCHIC_LINDSEY",
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_LINDSEY",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 50,
+            "z": 67,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LASS_BRIANA",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_LASS_BRIANA",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 40,
+            "z": 67,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BUG_CATCHER_DONALD",
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_BUG_CATCHER_DONALD",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 65,
+            "z": 83,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_ANTIDOTE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_ANTIDOTE",
+            "script": "VisibleItems_EternaForest_Antidote",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 15,
+            "z": 81,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_PARLYZ_HEAL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_PARLYZ_HEAL",
+            "script": "VisibleItems_EternaForest_ParlyzHeal",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 41,
+            "z": 59,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_NET_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_NET_BALL",
+            "script": "VisibleItems_EternaForest_NetBall",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 50,
+            "z": 85,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_GREEN_SHARD",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_GREEN_SHARD",
+            "script": "VisibleItems_EternaForest_GreenShard",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 66,
+            "z": 42,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaForest_SignboardEternaForest",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 29,
+            "z": 82,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TRAINER_TIPS_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaForest_TrainerTipsSignpost",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 76,
+            "z": 72,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PSYCHIC_ELIJAH",
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_ELIJAH",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 55,
+            "z": 67,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PSYCHIC_RACHAEL",
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_PSYCHIC_RACHAEL",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 77,
+            "z": 67,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MOSS_ROCK",
+            "graphics_id": "OBJ_EVENT_GFX_MOSS_ROCK",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaForest_MossRock",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 17,
+            "z": 66,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_ETHER",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_ETHER",
+            "script": "VisibleItems_EternaForest_Ether",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 81,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_POTION",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_POTION",
+            "script": "VisibleItems_EternaForest_Potion",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 84,
+            "z": 82,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE_1",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 74,
+            "z": 33,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE_2",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 75,
+            "z": 33,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE_3",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 77,
+            "z": 33,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE_4",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 36,
+            "z": 64,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE_5",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_5",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 36,
+            "z": 65,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GARDENIA",
+            "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_ETERNA_FOREST_GARDENIA",
+            "script": "EternaForest_Gardenia",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 73,
+            "z": 33,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ROUTE_205_SOUTH_1",
+            "x": 28,
+            "z": 86,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_SOUTH",
+            "dest_warp_id": "WARP_ETERNA_FOREST_1"
+        },
+        {
+            "id": "WARP_ROUTE_205_SOUTH_2",
+            "x": 29,
+            "z": 86,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_SOUTH",
+            "dest_warp_id": "WARP_ETERNA_FOREST_2"
+        },
+        {
+            "id": "WARP_ROUTE_205_NORTH_1",
+            "x": 86,
+            "z": 36,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_NORTH",
+            "dest_warp_id": "WARP_ETERNA_FOREST_2"
+        },
+        {
+            "id": "WARP_ROUTE_205_NORTH_2",
+            "x": 86,
+            "z": 37,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_NORTH",
+            "dest_warp_id": "WARP_ETERNA_FOREST_1"
+        },
+        {
+            "id": "WARP_OLD_CHATEAU",
+            "x": 74,
+            "z": 15,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU",
+            "dest_warp_id": "WARP_ETERNA_FOREST"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "EternaForest_CoordEvent_CherylStartFollowing",
+            "x": 28,
+            "z": 85,
+            "y": 0,
+            "width": 2,
+            "length": 1,
+            "var": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE",
+            "value": 0
+        },
+        {
+            "script": "EternaForest_CoordEvent_PlayerLeaveCheryl",
+            "x": 28,
+            "z": 86,
+            "y": 0,
+            "width": 2,
+            "length": 1,
+            "var": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE",
+            "value": 1
+        },
+        {
+            "script": "EternaForest_CoordEvent_CherylLeavePlayer",
+            "x": 82,
+            "z": 34,
+            "y": 0,
+            "width": 1,
+            "length": 6,
+            "var": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE",
+            "value": 1
+        }
+    ]
+}

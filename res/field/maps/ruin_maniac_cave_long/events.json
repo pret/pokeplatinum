@@ -1,0 +1,45 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_RUIN_MANIAC",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "RuinManiacCaveLong_RuinManiac",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_TM28",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28",
+            "script": "VisibleItems_RuinManiacCaveOrTunnel_TM28",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 58,
+            "z": 3,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ROUTE_214",
+            "x": 60,
+            "z": 7,
+            "dest_header_id": "MAP_HEADER_ROUTE_214",
+            "dest_warp_id": "WARP_RUIN_MANIAC_CAVE_LONG"
+        }
+    ],
+    "coord_events": []
+}

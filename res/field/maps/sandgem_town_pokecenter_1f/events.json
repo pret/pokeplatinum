@@ -1,0 +1,104 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_SANDGEM_POKEMON_BREEDER_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SandgemTownPokecenter1F_BreederM",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SANDGEM_EXPERT_M",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SandgemTownPokecenter1F_ExpertM",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SANDGEM_LASS",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SandgemTownPokecenter1F_Lass",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SANDGEM_NURSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SandgemTownPokecenter1F_Nurse",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SANDGEM_TEALA",
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POKECENTER_BASEMENT_BLOCKADE",
+            "script": "CommonScript_BlockPokecenterBasement",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 10,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_SANDGEM_TOWN",
+            "x": 8,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_SANDGEM_TOWN",
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_SANDGEM_TOWN_POKECENTER_2F",
+            "x": 2,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F",
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_SANDGEM_TOWN_POKECENTER_B1F",
+            "x": 14,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKECENTER_B1F",
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKECENTER_1F"
+        }
+    ],
+    "coord_events": []
+}

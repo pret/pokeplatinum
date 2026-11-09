@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "field/field_system.h"
 #include "overlay005/villa_furniture.h"

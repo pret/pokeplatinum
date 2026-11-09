@@ -1,0 +1,67 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_POKEMON_BREEDER_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "OreburghCityNorthwestHouse1F_BreederM",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "OreburghCityNorthwestHouse1F_Youngster",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEFAN_F",
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "OreburghCityNorthwestHouse1F_PokefanF",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 10,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_OREBURGH_CITY",
+            "x": 11,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
+            "dest_warp_id": "WARP_OREBURGH_CITY_NORTHWEST_HOUSE_1F"
+        },
+        {
+            "id": "WARP_OREBURGH_CITY_NORTHWEST_HOUSE_2F",
+            "x": 15,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_2F",
+            "dest_warp_id": "WARP_OREBURGH_CITY_NORTHWEST_HOUSE_1F"
+        }
+    ],
+    "coord_events": []
+}

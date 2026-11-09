@@ -1,0 +1,136 @@
+{
+    "bg_events": [
+        {
+            "script": "TeamGalacticEternaBuilding4F_BgSign",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 16,
+            "z": 10,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_JUPITER",
+            "graphics_id": "OBJ_EVENT_GFX_JUPITER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
+            "script": "TeamGalacticEternaBuilding4F_Jupiter",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CLEFAIRY",
+            "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_TEAM_GALACTIC_ETERNA_BUILDING_4F_HOSTAGES",
+            "script": "TeamGalacticEternaBuilding4F_Clefairy",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEFAN_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_TEAM_GALACTIC_ETERNA_BUILDING_4F_HOSTAGES",
+            "script": "TeamGalacticEternaBuilding4F_PokefanM",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BUNEARY",
+            "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_TEAM_GALACTIC_ETERNA_BUILDING_4F_HOSTAGES",
+            "script": "TeamGalacticEternaBuilding4F_Buneary",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 15,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_REVIVE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_4F_REVIVE",
+            "script": "VisibleItems_TeamGalacticEternaBuilding4F_Revive",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_BLUE_SHARD",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_4F_BLUE_SHARD",
+            "script": "VisibleItems_TeamGalacticEternaBuilding4F_BlueShard",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_UPGRADE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_4F_UPGRADE",
+            "script": "VisibleItems_TeamGalacticEternaBuilding4F_Upgrade",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 21,
+            "z": 5,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_TEAM_GALACTIC_ETERNA_BUILDING_3F_1",
+            "x": 8,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F",
+            "dest_warp_id": "WARP_TEAM_GALACTIC_ETERNA_BUILDING_4F_1"
+        },
+        {
+            "id": "WARP_TEAM_GALACTIC_ETERNA_BUILDING_3F_2",
+            "x": 3,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F",
+            "dest_warp_id": "WARP_TEAM_GALACTIC_ETERNA_BUILDING_4F_2"
+        }
+    ],
+    "coord_events": []
+}

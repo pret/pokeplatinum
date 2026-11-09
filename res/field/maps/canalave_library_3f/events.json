@@ -1,0 +1,264 @@
+{
+    "bg_events": [
+        {
+            "script": "CanalaveLibrary3F_SinnohMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 9,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 10,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohRegionsMythology",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 11,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohRegionsMythology",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 12,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohsMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 17,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohsMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_VeilstonesMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_VeilstonesMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_TheOriginalStory",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_TheOriginalStory",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 16,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_HorrificMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 17,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_HorrificMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohFolkStories",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohFolkStories",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_BgSign",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 14,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary3F_TheOriginalStory",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 8,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_TheOriginalStory",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_TheOriginalStory",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 16,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_HorrificMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 17,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_HorrificMyth",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohFolkStories",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary3F_SinnohFolkStories",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_SCIENTIST_F",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "CanalaveLibrary3F_ScientistF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 15,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "CanalaveLibrary3F_Youngster",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 3,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PROF_ROWAN",
+            "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_LIBRARY_ROWAN",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 8,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COUNTERPART",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_LIBRARY_COUNTERPART",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 7,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_LIBRARY_RIVAL",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 2,
+            "z": 3,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_CANALAVE_LIBRARY_2F",
+            "x": 4,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_CANALAVE_LIBRARY_2F",
+            "dest_warp_id": "WARP_CANALAVE_LIBRARY_3F"
+        }
+    ],
+    "coord_events": []
+}

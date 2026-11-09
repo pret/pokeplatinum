@@ -1,0 +1,138 @@
+{
+    "bg_events": [
+        {
+            "script": "SandgemTownLab_BookshelfAdventureRuleNo1",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 3,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "SandgemTownLab_BookshelfAdventureRuleNo2",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 4,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "SandgemTownLab_BookshelfBooks",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 5,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "SandgemTownLab_BookshelfReferenceMaterial",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "SandgemTownLab_PC",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 11,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "SandgemTownLab_Refrigerator",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 2,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_PROF_ROWAN",
+            "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN",
+            "script": "SandgemTownLab_ProfRowan",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SCIENTIST_M",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SandgemTownLab_ScientistM",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SCIENTIST_F",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SandgemTownLab_ScientistF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 10,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_COUNTERPART",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_COUNTERPART",
+            "script": "CounterpartTalk_Counterpart",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PROF_OAK",
+            "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_OAK",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 7,
+            "z": 14,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_SANDGEM_TOWN",
+            "x": 7,
+            "z": 15,
+            "dest_header_id": "MAP_HEADER_SANDGEM_TOWN",
+            "dest_warp_id": "WARP_SANDGEM_TOWN_POKEMON_RESEARCH_LAB"
+        }
+    ],
+    "coord_events": []
+}

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/script_ranges.h"
+
 #include "field/field_system_decl.h"
 
 #include "savedata.h"

@@ -1,0 +1,134 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_SNOWPOINT_NURSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCityPokecenter1F_Nurse",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_LASS",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCityPokecenter1F_Lass",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 3,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_BATTLE_GIRL",
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCityPokecenter1F_BattleGirl",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 12,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_PSYDUCK",
+            "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "SnowpointCityPokecenter1F_Psyduck",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 10,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_MAYLENE",
+            "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_SNOWPOINT_CITY_POKECENTER_1F_MAYLENE",
+            "script": "SnowpointCityPokecenter1F_Maylene",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 7,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_DAILY_TRAINER_1",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_A",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POKECENTER_DAILY_TRAINER_1",
+            "script": "PokemonCenterDailyTrainers_FirstNPC",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SNOWPOINT_DAILY_TRAINER_2",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_B",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POKECENTER_DAILY_TRAINER_2",
+            "script": "PokemonCenterDailyTrainers_SecondNPC",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_SNOWPOINT_CITY",
+            "x": 8,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_SNOWPOINT_CITY_POKECENTER_2F",
+            "x": 2,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_2F",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_SNOWPOINT_CITY_POKECENTER_B1F",
+            "x": 14,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_B1F",
+            "dest_warp_id": "WARP_SNOWPOINT_CITY_POKECENTER_1F"
+        }
+    ],
+    "coord_events": []
+}

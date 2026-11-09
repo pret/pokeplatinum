@@ -1,0 +1,216 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FUEGO_IRONWORKS_BUILDING_STAR_PIECE",
+            "x": 44,
+            "z": 15,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_FUEGO_IRONWORKS_BUILDING_PROTEIN",
+            "x": 22,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ITEM_TM35",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35",
+            "script": "VisibleItems_FuegoIronworksBuilding_TM35",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 21,
+            "z": 21,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_CALCIUM",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_CALCIUM",
+            "script": "VisibleItems_FuegoIronworksBuilding_Calcium",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_ROCK_INCENSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_ROCK_INCENSE",
+            "script": "VisibleItems_FuegoIronworksBuilding_RockIncense",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 46,
+            "z": 20,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_FIRE_STONE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE",
+            "script": "VisibleItems_FuegoIronworksBuilding_FireStone",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 51,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MR_FUEGO",
+            "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "FuegoIronworksBuilding_MrFuego",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 25,
+            "z": 19,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WORKER_DILLAN",
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_WORKER_DILLAN",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WORKER_HOLDEN",
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_WORKER_HOLDEN",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 26,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WORKER_CONRAD",
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_WORKER_CONRAD",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 35,
+            "z": 25,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_BLUE_SHARD",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_BLUE_SHARD",
+            "script": "VisibleItems_FuegoIronworksBuilding_BlueShard",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 40,
+            "z": 18,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_RED_SHARD",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_RED_SHARD",
+            "script": "VisibleItems_FuegoIronworksBuilding_RedShard",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 27,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_GREEN_SHARD",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_GREEN_SHARD",
+            "script": "VisibleItems_FuegoIronworksBuilding_GreenShard",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 44,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_YELLOW_SHARD",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_YELLOW_SHARD",
+            "script": "VisibleItems_FuegoIronworksBuilding_YellowShard",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 18,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_FUEGO_IRONWORKS_OUTSIDE",
+            "x": 26,
+            "z": 26,
+            "dest_header_id": "MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE",
+            "dest_warp_id": "WARP_FUEGO_IRONWORKS_BUILDING_1"
+        }
+    ],
+    "coord_events": []
+}

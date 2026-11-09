@@ -1,0 +1,105 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_IDOL",
+            "graphics_id": "OBJ_EVENT_GFX_IDOL",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PoffinHouse_Idol",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 1,
+            "x": 6,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OLD_WOMAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PoffinHouse_OldWoman",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OLD_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PoffinHouse_OldMan",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEFAN_F",
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PoffinCommon_PokefanF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 5,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_REPORTER",
+            "graphics_id": "OBJ_EVENT_GFX_REPORTER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POFFIN_HOUSE_REPORTER",
+            "script": "TVReporterInterviews_PoffinHouse",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 10,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SCHOOL_KID_F",
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "PoffinHouse_SchoolKidF",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 8,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_HEARTHOME_CITY",
+            "x": 8,
+            "z": 13,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
+            "dest_warp_id": "WARP_POFFIN_HOUSE"
+        }
+    ],
+    "coord_events": []
+}

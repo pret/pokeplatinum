@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/script_ranges.h"
+
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/ov5_021D1A94.h"

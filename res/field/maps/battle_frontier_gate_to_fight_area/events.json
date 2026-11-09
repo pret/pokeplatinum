@@ -1,0 +1,201 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_POKEMON_BREEDER_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_PokemonBreederM",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_EXPERT_M",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_ExpertM",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_RUIN_MANIAC",
+            "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_RuinManiac",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 3,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ATTENDANT_BATTLE_CASTLE",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_AttendantBattleCastle",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ATTENDANT_BATTLE_FACTORY",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_AttendantBattleFactory",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ATTENDANT_GENERAL",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_AttendantGeneral",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 17,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ATTENDANT_BATTLE_ARCADE",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_AttendantBattleArcade",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ATTENDANT_BATTLE_HALL",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_AttendantBattleHall",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ATTENDANT_BATTLE_TOWER",
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_AttendantBattleTower",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 17,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BEAUTY",
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "BattleFrontierGateToFightArea_Beauty",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 3,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_BATTLE_FRONTIER_1",
+            "x": 7,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_1"
+        },
+        {
+            "id": "WARP_BATTLE_FRONTIER_2",
+            "x": 6,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_1"
+        },
+        {
+            "id": "WARP_BATTLE_FRONTIER_3",
+            "x": 8,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_1"
+        },
+        {
+            "id": "WARP_FIGHT_AREA_1",
+            "x": 7,
+            "z": 20,
+            "dest_header_id": "MAP_HEADER_FIGHT_AREA",
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_1"
+        },
+        {
+            "id": "WARP_FIGHT_AREA_2",
+            "x": 6,
+            "z": 20,
+            "dest_header_id": "MAP_HEADER_FIGHT_AREA",
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_1"
+        },
+        {
+            "id": "WARP_FIGHT_AREA_3",
+            "x": 8,
+            "z": 20,
+            "dest_header_id": "MAP_HEADER_FIGHT_AREA",
+            "dest_warp_id": "WARP_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_1"
+        }
+    ],
+    "coord_events": []
+}
+

@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_065",
+  "mapGroup": "SnowpointTemple_B5F",
+  "locationName": "LocationNames_Text_SnowpointTemple",
+  "textBank": "TEXT_BANK_SNOWPOINT_TEMPLE_B5F",
+  "popupStyle": "MAP_LABEL_WINDOW_CAVE",
+  "weather": "OVERWORLD_WEATHER_29",
+  "cameraType": "CAMERA_TYPE_CAVE",
+  "battleBackground": "BACKGROUND_CAVE_2",
+  "mapType": "MAP_TYPE_CAVE",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_02_sseq",
+  "musicNight": "SEQ_D_02_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": true,
+  "isFlyAllowed": false
+}

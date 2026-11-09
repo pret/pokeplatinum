@@ -1,0 +1,91 @@
+#include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
+#include "res/text/bank/newmoon_island_forest.h"
+#include "res/field/maps/locals/newmoon_island_forest.h"
+
+
+    ScriptEntry NewmoonIslandForest_OnTransition
+    ScriptEntry NewmoonIslandForest_OnLoad
+    ScriptEntry NewmoonIslandForest_Darkrai
+    ScriptEntryEnd
+
+NewmoonIslandForest_OnTransition:
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
+    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
+    GoToIfSet FLAG_CAUGHT_DARKRAI, NewmoonIslandForest_HideDarkrai
+    ClearFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
+    End
+
+NewmoonIslandForest_HideDarkrai:
+    SetFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
+    End
+
+NewmoonIslandForest_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, NewmoonIslandForest_RemoveDarkrai
+    End
+
+NewmoonIslandForest_RemoveDarkrai:
+    SetFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
+    RemoveObject LOCALID_DARKRAI
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    End
+
+NewmoonIslandForest_Darkrai:
+    LockAll
+    PlaySE SE_CONFIRM_sseq_3
+    WaitSE SE_CONFIRM_sseq_3
+    Message NewmoonIslandForest_Text_Ellipses
+    CloseMessage
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    StartLegendaryBattle SPECIES_DARKRAI, 50
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, NewmoonIslandForest_BlackOut
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, NewmoonIslandForest_DidNotCatchDarkrai
+    SetFlag FLAG_CAUGHT_DARKRAI
+NewmoonIslandForest_PostDarkraiBattle:
+    SetFlag FLAG_HIDE_CANALAVE_CITY_HARBOR_INN_GYM_GUIDE
+    GoToIfEq VAR_DARKRAI_EVENT_STATE, 2, NewmoonIslandForest_ReturnToHarborInn
+    Message NewmoonIslandForest_Text_VoiceFromSomewhere2
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+NewmoonIslandForest_DidNotCatchDarkrai:
+    Message NewmoonIslandForest_Text_DarkraiMeltedAway
+    CloseMessage
+    GoTo NewmoonIslandForest_PostDarkraiBattle
+
+NewmoonIslandForest_ReturnToHarborInn:
+    Message NewmoonIslandForest_Text_VoiceFromSomewhere
+    CloseMessage
+    WaitTime 30, VAR_RESULT
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    FadeScreenOut FADE_SCREEN_SPEED_SLOW
+    WaitFadeScreen
+    WaitTime 120, VAR_RESULT
+    Warp MAP_HEADER_CANALAVE_CITY_HARBOR_INN, 8, 6, DIR_SOUTH
+    FadeScreenIn FADE_SCREEN_SPEED_SLOW
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+NewmoonIslandForest_BlackOut:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+    .balign 4, 0

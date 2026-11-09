@@ -1,0 +1,234 @@
+{
+    "bg_events": [
+        {
+            "script": "Contests_LinkContestRecordsDisplay",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 9,
+            "z": 5,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "ContestHallLobby_Frame0",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 2,
+            "z": 11,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "ContestHallLobby_Frame1",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 4,
+            "z": 11,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "ContestHallLobby_Frame2",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 11,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "ContestHallLobby_Frame3",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 8,
+            "z": 11,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "ContestHallLobby_Frame4",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 10,
+            "z": 11,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_CONTEST_LOBBY_RECEPTIONIST_OFFICIAL_CONTEST",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Contests_ReceptionistOfficialContest",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 16,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CONTEST_LOBBY_RECEPTIONIST_LINK_CONTEST",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Contests_ReceptionistLinkContest",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CONTEST_LOBBY_RECEPTIONIST_PRACTICE_CONTEST",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Contests_ReceptionistPracticeContest",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 27,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACE_TRAINER_F",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "ContestHallLobby_AceTrainerF",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 28,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CLOWN",
+            "graphics_id": "OBJ_EVENT_GFX_CLOWN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "ContestHallLobby_Clown",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 25,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MOM",
+            "graphics_id": "OBJ_EVENT_GFX_MOM",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_MOM",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 16,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_KEIRA",
+            "graphics_id": "OBJ_EVENT_GFX_IDOL",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_KEIRA",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 17,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_REPORTER",
+            "graphics_id": "OBJ_EVENT_GFX_REPORTER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_REPORTER",
+            "script": "TVReporterInterviews_ContestHallLobby",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 18,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SCHOOL_KID_F",
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "ContestHallLobby_SchoolKidF",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CONTEST_LOBBY_RICH_BOY",
+            "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "ContestHallLobby_RichBoy",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 2,
+            "x": 16,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_FANTINA",
+            "graphics_id": "OBJ_EVENT_GFX_FANTINA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_FANTINA",
+            "script": "ContestHallLobby_Fantina",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 22,
+            "z": 9,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_HEARTHOME_CITY",
+            "x": 16,
+            "z": 13,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
+            "dest_warp_id": "WARP_CONTEST_HALL_LOBBY"
+        },
+        {
+            "id": "WARP_CONTEST_HALL_STAGE_NO_CONTEST",
+            "x": 23,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_CONTEST_HALL_STAGE_NO_CONTEST",
+            "dest_warp_id": "WARP_CONTEST_HALL_LOBBY"
+        }
+    ],
+    "coord_events": []
+}

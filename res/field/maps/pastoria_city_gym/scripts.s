@@ -1,0 +1,148 @@
+#include "macros/scrcmd.inc"
+#include "res/text/bank/pastoria_city_gym.h"
+
+
+    ScriptEntry PastoriaGym_Init
+    ScriptEntry PastoriaGym_BlueButton
+    ScriptEntry PastoriaGym_GreenButton
+    ScriptEntry PastoriaGym_YellowButton
+    ScriptEntry PastoriaGym_Wake
+    ScriptEntry PastoriaGym_GymGuide
+    ScriptEntry PastoriaGym_GymStatue
+    ScriptEntryEnd
+
+PastoriaGym_Init:
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    InitPersistedMapFeaturesForPastoriaGym
+    End
+
+PastoriaGym_BlueButton:
+    PressPastoriaGymButton
+    SetVar VAR_MAP_LOCAL_0x01, 1
+    SetVar VAR_MAP_LOCAL_0x02, 0
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    End
+
+PastoriaGym_GreenButton:
+    PressPastoriaGymButton
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    End
+
+PastoriaGym_YellowButton:
+    PressPastoriaGymButton
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 0
+    SetVar VAR_MAP_LOCAL_0x03, 1
+    End
+
+PastoriaGym_Wake:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_WakeAlreadyHaveFenBadge
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_PASTORIA_CITY_GYM
+    Message PastoriaGym_Text_WakeIntro
+    CloseMessage
+    StartTrainerBattle TRAINER_LEADER_WAKE
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PastoriaGym_LostBattle
+    Message PastoriaGym_Text_BeatWake
+    BufferPlayerName 0
+    Message PastoriaGym_Text_WakeReveiveFenBadge
+    PlayFanfare SEQ_BADGE_sseq
+    WaitFanfare
+    GiveBadge BADGE_ID_FEN
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
+    SetTrainerFlag TRAINER_FISHERMAN_ERICK
+    SetTrainerFlag TRAINER_SAILOR_DAMIAN
+    SetTrainerFlag TRAINER_FISHERMAN_WALTER
+    SetTrainerFlag TRAINER_SAILOR_SAMSON
+    SetTrainerFlag TRAINER_TUBER_JACKY
+    SetTrainerFlag TRAINER_TUBER_CAITLYN
+    SetVar VAR_PASTORIA_CITY_STATE, 3
+    SetFlag FLAG_HIDE_PASTORIA_CITY_GRUNT_M
+    SetFlag FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_PASTORIA_CITY_GYM, TRAINER_LEADER_WAKE
+    Message PastoriaGym_Text_WakeExplainFenBadge
+    GoTo PastoriaGym_WakeTryGiveTM55
+    End
+
+PastoriaGym_WakeTryGiveTM55:
+    SetVar VAR_0x8004, ITEM_TM55
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaGym_WakeCannotGiveTM55
+    CallCommonScript CommonScript_AddItemQuantity
+    SetFlag FLAG_RECEIVED_WAKE_TM55
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
+    Message PastoriaGym_Text_WakeExplainTM55
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaGym_WakeCannotGiveTM55:
+    CallCommonScript CommonScript_BagIsFull
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaGym_WakeAlreadyHaveFenBadge:
+    GoToIfUnset FLAG_RECEIVED_WAKE_TM55, PastoriaGym_WakeTryGiveTM55
+    Message PastoriaGym_Text_WakeAfterbadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaGym_LostBattle:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+PastoriaGym_GymGuide:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_GymGuideAfterBadge
+    Message PastoriaGym_Text_GymGuideBeforebadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaGym_GymGuideAfterBadge:
+    BufferPlayerName 0
+    Message PastoriaGym_Text_GymGuideAfterbadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaGym_GymStatue:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_GymStatueAfterBadge
+    BufferRivalName 0
+    BufferRivalName 1
+    Message PastoriaGym_Text_GymStatueBeforeBadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaGym_GymStatueAfterBadge:
+    BufferRivalName 0
+    BufferPlayerName 1
+    BufferRivalName 2
+    Message PastoriaGym_Text_GymStatueAfterBadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

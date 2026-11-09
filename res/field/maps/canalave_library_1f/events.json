@@ -1,0 +1,236 @@
+{
+    "bg_events": [
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 1,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 3,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 2,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 3,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 4,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 5,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 2,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 1,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 4,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 15,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 16,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 17,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 19,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Bookshelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 20,
+            "z": 4,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 4,
+            "z": 8,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 4,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 1,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 2,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "CanalaveLibrary1F_Shelves",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 3,
+            "z": 7,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_RECEPTIONIST",
+            "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "CanalaveLibrary1F_Receptionist",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 14,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LASS",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "CanalaveLibrary1F_Lass",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 2,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LUCIAN",
+            "graphics_id": "OBJ_EVENT_GFX_LUCIAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_LIBRARY_1F_LUCIAN",
+            "script": "CanalaveLibrary1F_Lucian",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 16,
+            "z": 5,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_CANALAVE_CITY",
+            "x": 11,
+            "z": 11,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY",
+            "dest_warp_id": "WARP_CANALAVE_LIBRARY_1F"
+        },
+        {
+            "id": "WARP_CANALAVE_LIBRARY_2F",
+            "x": 11,
+            "z": 4,
+            "dest_header_id": "MAP_HEADER_CANALAVE_LIBRARY_2F",
+            "dest_warp_id": "WARP_CANALAVE_LIBRARY_1F"
+        }
+    ],
+    "coord_events": []
+}

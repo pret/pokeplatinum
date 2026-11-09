@@ -1,0 +1,666 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VEILSTONE_CITY_CALCIUM",
+            "x": 688,
+            "z": 592,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VEILSTONE_CITY_PP_UP",
+            "x": 698,
+            "z": 599,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "VeilstoneCity_DeoxysMeteoriteSpeed",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 729,
+            "z": 616,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "VeilstoneCity_DeoxysMeteoriteDefense",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 730,
+            "z": 629,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "VeilstoneCity_DeoxysMeteoriteAttack",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 732,
+            "z": 628,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "script": "VeilstoneCity_DeoxysMeteoriteNormal",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 731,
+            "z": 622,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_VEILSTONE_CITY_STAR_PIECE",
+            "x": 732,
+            "z": 630,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_GUITARIST_1",
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_Guitarist1",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 3,
+            "x": 722,
+            "z": 614,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_POKEFAN_M",
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_PokefanM",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 2,
+            "x": 706,
+            "z": 614,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_BATTLE_GIRL_1",
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_BattleGirl1",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 701,
+            "z": 618,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_LADY",
+            "graphics_id": "OBJ_EVENT_GFX_LADY",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_Lady",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 699,
+            "z": 606,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_BATTLE_GIRL_2",
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_BattleGirl2",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 710,
+            "z": 605,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_ROUGHNECK_1",
+            "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_Roughneck1",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 709,
+            "z": 612,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_COUNTERPART",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VEILSTONE_COUNTERPART",
+            "script": "VeilstoneCity_Counterpart",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 682,
+            "z": 614,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_GRUNT_M_WAREHOUSE_NORTH",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VEILSTONE_GALACTIC_GRUNTS",
+            "script": "VeilstoneCity_GruntMWarehouseNorth",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 697,
+            "z": 595,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_MAP_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_MapSignpost",
+            "signpost": "city_map_veilstone_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 697,
+            "z": 612,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD_GALACTIC_WAREHOUSE",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_SignboardGalacticWarehouse",
+            "initial_dir": "DIR_NORTH",
+            "data": [
+                14
+            ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 696,
+            "z": 594,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD_GALACTIC_BUILDING",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_SignboardGalacticBuilding",
+            "initial_dir": "DIR_NORTH",
+            "data": [
+                14
+            ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 719,
+            "z": 593,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD_DEPARTMENT_STORE",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_SignboardDepartmentStore",
+            "initial_dir": "DIR_NORTH",
+            "data": [
+                14
+            ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 704,
+            "z": 603,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GYM_SIGNPOST",
+            "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_GymSignpost",
+            "initial_dir": "DIR_NORTH",
+            "data": [
+                14
+            ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 688,
+            "z": 611,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD_GAME_CORNER",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_SignboardGameCorner",
+            "initial_dir": "DIR_NORTH",
+            "data": [
+                14
+            ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 709,
+            "z": 623,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD_PRIZE_EXCHANGE",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_SignboardPrizeExchange",
+            "initial_dir": "DIR_NORTH",
+            "data": [
+                14
+            ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 714,
+            "z": 623,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SIGNBOARD_LAKE_VALOR",
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_SignboardLakeValor",
+            "initial_dir": "DIR_NORTH",
+            "data": [
+                14
+            ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 715,
+            "z": 635,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_VENT_1",
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 710,
+            "z": 635,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_VENT_2",
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "CommonScript_Vent",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 712,
+            "z": 637,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_FULL_INCENSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_VEILSTONE_CITY_FULL_INCENSE",
+            "script": "VisibleItems_VeilstoneCity_FullIncense",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 690,
+            "z": 613,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_RARE_CANDY",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_VEILSTONE_CITY_RARE_CANDY",
+            "script": "VisibleItems_VeilstoneCity_RareCandy",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 710,
+            "z": 584,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GRUNT_M_WAREHOUSE_SOUTH",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VEILSTONE_GALACTIC_GRUNTS",
+            "script": "VeilstoneCity_GruntMWarehouseSouth",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 697,
+            "z": 597,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_GUITARIST_2",
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_Guitarist2",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 711,
+            "z": 625,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ROUGHNECK_2",
+            "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_Roughneck2",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 687,
+            "z": 624,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GRUNT_M_STORAGE_KEY",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VEILSTONE_CITY_GRUNT_M_STORAGE_KEY",
+            "script": "VeilstoneCity_GruntMStorageKey",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 721,
+            "z": 593,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_GRUNT_M_SOUTHEAST",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VEILSTONE_GALACTIC_GRUNTS",
+            "script": "VeilstoneCity_GruntMSoutheast",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 2,
+            "x": 720,
+            "z": 632,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_CRASHER_WAKE",
+            "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VEILSTONE_CRASHER_WAKE",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 684,
+            "z": 611,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_LOOKER",
+            "graphics_id": "OBJ_EVENT_GFX_LOOKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_VEILSTONE_CITY_LOOKER",
+            "script": "VeilstoneCity_Looker",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 692,
+            "z": 603,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_ITEM_STAR_PIECE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_VEILSTONE_CITY_STAR_PIECE",
+            "script": "VisibleItems_VeilstoneCity_StarPiece",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 693,
+            "z": 584,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BATTLE_GIRL_3",
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_BattleGirl3",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 705,
+            "z": 632,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_GUITARIST_3",
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "VeilstoneCity_Guitarist3",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 695,
+            "z": 613,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ROUTE_215_GATE_TO_VEILSTONE_CITY_1",
+            "x": 678,
+            "z": 598,
+            "dest_header_id": "MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_ROUTE_215_GATE_TO_VEILSTONE_CITY_2",
+            "x": 678,
+            "z": 599,
+            "dest_header_id": "MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_GAME_CORNER",
+            "x": 706,
+            "z": 623,
+            "dest_header_id": "MAP_HEADER_GAME_CORNER",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_STORE_1F",
+            "x": 701,
+            "z": 603,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_1F",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_CITY_GALACTIC_WAREHOUSE",
+            "x": 701,
+            "z": 591,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_CITY_PRIZE_EXCHANGE",
+            "x": 716,
+            "z": 623,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_CITY_SOUTHWEST_HOUSE",
+            "x": 690,
+            "z": 623,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_SOUTHWEST_HOUSE",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_CITY_SOUTHEAST_HOUSE",
+            "x": 696,
+            "z": 623,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_SOUTHEAST_HOUSE",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_CITY_NORTHWEST_HOUSE",
+            "x": 711,
+            "z": 602,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_NORTHWEST_HOUSE",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_CITY_NORTHEAST_HOUSE",
+            "x": 717,
+            "z": 602,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_NORTHEAST_HOUSE",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_CITY_POKECENTER_1F",
+            "x": 717,
+            "z": 611,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_ROUTE_214_GATE_TO_VEILSTONE_CITY_1",
+            "x": 718,
+            "z": 638,
+            "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_ROUTE_214_GATE_TO_VEILSTONE_CITY_2",
+            "x": 719,
+            "z": 638,
+            "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_VEILSTONE_CITY_GYM",
+            "x": 684,
+            "z": 611,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_GYM",
+            "dest_warp_id": "WARP_VEILSTONE_CITY"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_1F_1",
+            "x": 714,
+            "z": 589,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
+            "dest_warp_id": "WARP_VEILSTONE_CITY_1"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_1F_2",
+            "x": 717,
+            "z": 589,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
+            "dest_warp_id": "WARP_VEILSTONE_CITY_2"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_1F_3",
+            "x": 720,
+            "z": 589,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
+            "dest_warp_id": "WARP_VEILSTONE_CITY_3"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "VeilstoneCity_CoordEvent_GruntBlockWarehouse",
+            "x": 697,
+            "z": 596,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE",
+            "value": 0
+        },
+        {
+            "script": "VeilstoneCity_CoordEvent_CrasherWake",
+            "x": 681,
+            "z": 616,
+            "y": 0,
+            "width": 4,
+            "length": 1,
+            "var": "VAR_VEILSTONE_CITY_CRASHER_WAKE_STATE",
+            "value": 0
+        }
+    ]
+}
+

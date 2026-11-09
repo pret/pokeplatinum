@@ -1,0 +1,132 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_209_LOST_TOWER_4F_GREAT_BALL",
+            "x": 2,
+            "z": 11,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ITEM_TM27",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_209_LOST_TOWER_4F_TM27",
+            "script": "VisibleItems_Route209LostTower4F_TM27",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEFAN_REBEKAH",
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_POKEFAN_REBEKAH",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNG_COUPLE_TRAINER_MIKE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_YOUNG_COUPLE_MIKE_AND_NAT",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_YOUNG_COUPLE_TRAINER_NAT",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_YOUNG_COUPLE_MIKE_AND_NAT",
+                "sight_range": 1,
+                "depends_on": "LOCALID_YOUNG_COUPLE_TRAINER_MIKE"
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PA_BOB",
+            "graphics_id": "OBJ_EVENT_GFX_RANCHER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_BELLE_AND_PA_BETH_AND_BOB",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BELLE_BETH",
+            "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_BELLE_AND_PA_BETH_AND_BOB",
+                "sight_range": 2,
+                "depends_on": "LOCALID_PA_BOB"
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 14,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ROUTE_209_LOST_TOWER_3F",
+            "x": 11,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_ROUTE_209_LOST_TOWER_3F",
+            "dest_warp_id": "WARP_ROUTE_209_LOST_TOWER_4F"
+        },
+        {
+            "id": "WARP_ROUTE_209_LOST_TOWER_5F",
+            "x": 4,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_ROUTE_209_LOST_TOWER_5F",
+            "dest_warp_id": "WARP_ROUTE_209_LOST_TOWER_4F"
+        }
+    ],
+    "coord_events": []
+}

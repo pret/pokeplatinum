@@ -1,0 +1,100 @@
+{
+    "bg_events": [
+        {
+            "script": "SolaceonRuinsRoom7_Inscription",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 4,
+            "z": 1,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "SolaceonRuinsRoom7_Inscription",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 5,
+            "z": 1,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "SolaceonRuinsRoom7_Inscription",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 6,
+            "z": 1,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ITEM_MIND_PLATE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_MIND_PLATE",
+            "script": "VisibleItems_SolaceonRuinsRoom7_MindPlate",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_ODD_INCENSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_ODD_INCENSE",
+            "script": "VisibleItems_SolaceonRuinsRoom7_OddIncense",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_NUGGET",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_NUGGET",
+            "script": "VisibleItems_SolaceonRuinsRoom7_Nugget",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_HM05",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_HM05",
+            "script": "VisibleItems_SolaceonRuinsRoom7_HM05",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 7,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_SOLACEON_RUINS_ROOM_6",
+            "x": 8,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_7"
+        }
+    ],
+    "coord_events": []
+}

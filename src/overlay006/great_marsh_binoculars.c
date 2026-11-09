@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/map_headers.h"
+#include "constants/fieldmap.h"
 
 #include "field/field_system.h"
 #include "overlay006/dual_slot_encounters.h"

@@ -1,0 +1,136 @@
+#include "macros/scrcmd.inc"
+#include "res/text/bank/veilstone_city_gym.h"
+
+
+    ScriptEntry VeilstoneGym_Init
+    ScriptEntry VeilstoneGym_Maylene
+    ScriptEntry VeilstoneGym_GymGuide
+    ScriptEntry VeilstoneGym_GymStatue
+    ScriptEntry VeilstoneGym_LeftPoster
+    ScriptEntry VeilstoneGym_RightPoster
+    ScriptEntry VeilstoneGym_MiddlePoster
+    ScriptEntryEnd
+
+VeilstoneGym_Init:
+    InitPersistedMapFeaturesForVeilstoneGym
+    End
+
+VeilstoneGym_Maylene:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_MayleneAfterBadge
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_VEILSTONE_CITY_GYM
+    Message VeilstoneGym_Text_MayleneIntro
+    CloseMessage
+    StartTrainerBattle TRAINER_LEADER_MAYLENE
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, VeilstoneGym_LostBattle
+    Message VeilstoneGym_Text_BeatMaylene
+    BufferPlayerName 0
+    Message VeilstoneGym_Text_MayleneReceiveBadge
+    PlayFanfare SEQ_BADGE_sseq
+    WaitFanfare
+    GiveBadge BADGE_ID_COBBLE
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
+    SetTrainerFlag TRAINER_BLACK_BELT_COLBY
+    SetTrainerFlag TRAINER_BLACK_BELT_DARREN
+    SetTrainerFlag TRAINER_BLACK_BELT_RAFAEL
+    SetTrainerFlag TRAINER_BLACK_BELT_JEFFERY
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_VEILSTONE_CITY_GYM, TRAINER_LEADER_MAYLENE
+    SetFlag FLAG_HIDE_GAME_CORNER_LOOKER
+    ClearFlag FLAG_HIDE_VEILSTONE_COUNTERPART
+    SetVar VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE, TRUE
+    SetVar VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE, 1
+    Message VeilstoneGym_Text_MayleneExplainBadge
+    GoTo VeilstoneGym_MayleneTryGiveTM60
+    End
+
+VeilstoneGym_MayleneTryGiveTM60:
+    SetVar VAR_0x8004, ITEM_TM60
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, VeilstoneGym_MayleneCannotGiveTM60
+    CallCommonScript CommonScript_AddItemQuantity
+    SetFlag FLAG_RECEIVED_MAYLENE_TM60
+    BufferItemName 0, VAR_0x8004
+    BufferTMHMMoveName 1, VAR_0x8004
+    Message VeilstoneGym_Text_MayleneExplainTM60
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VeilstoneGym_MayleneCannotGiveTM60:
+    CallCommonScript CommonScript_BagIsFull
+    CloseMessage
+    ReleaseAll
+    End
+
+VeilstoneGym_MayleneAfterBadge:
+    GoToIfUnset FLAG_RECEIVED_MAYLENE_TM60, VeilstoneGym_MayleneTryGiveTM60
+    BufferPlayerName 0
+    Message VeilstoneGym_Text_MayleneAfterBadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VeilstoneGym_LostBattle:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+VeilstoneGym_GymGuide:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_GymGuideAfterbadge
+    Message VeilstoneGym_Text_GymGuideBeforeBadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VeilstoneGym_GymGuideAfterbadge:
+    BufferPlayerName 0
+    Message VeilstoneGym_Text_GymGuideAfterBadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VeilstoneGym_GymStatue:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_GymStatueAfterBadge
+    BufferRivalName 0
+    BufferRivalName 1
+    Message VeilstoneGym_Text_GymStatueBeforeBadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VeilstoneGym_GymStatueAfterBadge:
+    BufferRivalName 0
+    BufferPlayerName 1
+    BufferRivalName 2
+    Message VeilstoneGym_Text_GymStatueAfterBadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VeilstoneGym_LeftPoster:
+    EventMessage VeilstoneGym_Text_GoodDeedEveryDay
+    End
+
+VeilstoneGym_RightPoster:
+    EventMessage VeilstoneGym_Text_TreasureEveryEncounter
+    End
+
+VeilstoneGym_MiddlePoster:
+    EventMessage VeilstoneGym_Text_OneDayAtATime
+    End
+
+    .balign 4, 0

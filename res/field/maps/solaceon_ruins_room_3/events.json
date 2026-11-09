@@ -1,0 +1,53 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_RUIN_MANIAC_KARL",
+            "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_RUIN_MANIAC_KARL",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_SOLACEON_RUINS_ROOM_2",
+            "x": 6,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_3"
+        },
+        {
+            "id": "WARP_SOLACEON_RUINS_ROOM_4",
+            "x": 6,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_3"
+        },
+        {
+            "id": "WARP_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+            "x": 4,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_3"
+        },
+        {
+            "id": "WARP_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+            "x": 4,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+            "dest_warp_id": "WARP_SOLACEON_RUINS_ROOM_3"
+        }
+    ],
+    "coord_events": []
+}

@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_020",
+  "mapGroup": "GenericInterior001",
+  "locationName": "LocationNames_Text_Route222",
+  "textBank": "TEXT_BANK_ROUTE_222_EAST_HOUSE",
+  "popupStyle": "MAP_LABEL_WINDOW_ROUTE",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_INTERIOR_ORTHOGRAPHIC",
+  "battleBackground": "BACKGROUND_INDOORS_1",
+  "mapType": "MAP_TYPE_INDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_ROAD_E_D_sseq",
+  "musicNight": "SEQ_ROAD_E_N_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": false,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

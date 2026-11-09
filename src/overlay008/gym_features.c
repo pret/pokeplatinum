@@ -6,6 +6,7 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/field_effect_renderer.h"
 #include "constants/field/map.h"
+#include "constants/field/script_ranges.h"
 #include "constants/graphics.h"
 #include "constants/scrcmd.h"
 #include "constants/sunyshore_gym_buttons.h"

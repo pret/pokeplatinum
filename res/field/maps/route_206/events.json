@@ -1,0 +1,495 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_206_ETHER",
+            "x": 313,
+            "z": 647,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_ROUTE_206_TINYMUSHROOM",
+            "x": 295,
+            "z": 635,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_CYCLIST_AXEL",
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CYCLIST_AXEL",
+                "sight_range": 4
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 302,
+            "z": 601,
+            "y": 9
+        },
+        {
+            "id": "LOCALID_CYCLIST_MEGAN",
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CYCLIST_MEGAN",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 299,
+            "z": 611,
+            "y": 8
+        },
+        {
+            "id": "LOCALID_CYCLIST_JAMES",
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CYCLIST_JAMES",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 304,
+            "z": 622,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_CYCLIST_NICOLE",
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CYCLIST_NICOLE",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 7,
+            "movement_range_z": 0,
+            "x": 299,
+            "z": 631,
+            "y": 7
+        },
+        {
+            "id": "LOCALID_CYCLIST_JOHN",
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CYCLIST_JOHN",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 303,
+            "z": 644,
+            "y": 6
+        },
+        {
+            "id": "LOCALID_CYCLIST_KAYLA",
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CYCLIST_KAYLA",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 306,
+            "z": 675,
+            "y": 3
+        },
+        {
+            "id": "LOCALID_CYCLIST_RYAN",
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CYCLIST_RYAN",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 300,
+            "z": 660,
+            "y": 4
+        },
+        {
+            "id": "LOCALID_CYCLIST_RACHEL",
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_CYCLIST_RACHEL",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 299,
+            "z": 669,
+            "y": 4
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST_OREBURGH_CITY",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route206_ArrowSignpostOreburghCity",
+            "signpost": "route_map_04_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 305,
+            "z": 700,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ARROW_SIGNPOST_ETERNA_CITY",
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route206_ArrowSignpostEternaCity",
+            "signpost": "route_map_03_NCGR",
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 302,
+            "z": 578,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE_1",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 310,
+            "z": 690,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE_2",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 311,
+            "z": 690,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CUT_TREE_3",
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
+            "script": "FieldMoves_CutTree",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 312,
+            "z": 679,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_POISON_BARB",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_206_POISON_BARB",
+            "script": "VisibleItems_Route206_PoisonBarb",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 292,
+            "z": 623,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_PP_UP",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_206_PP_UP",
+            "script": "VisibleItems_Route206_PPUp",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 313,
+            "z": 679,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BERRY_SOIL_1",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "berry_tree": 18,
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 293,
+            "z": 627,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BERRY_SOIL_2",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "berry_tree": 19,
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 294,
+            "z": 627,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BERRY_SOIL_3",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "berry_tree": 20,
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 295,
+            "z": 691,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BERRY_SOIL_4",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "berry_tree": 21,
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 296,
+            "z": 691,
+            "y": 0
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "clone": {
+                "map": "MAP_HEADER_ROUTE_207",
+                "id": "LOCALID_TRAINER_TIPS_SIGNPOST"
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 313,
+            "z": 711,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_BURN_HEAL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_206_BURN_HEAL",
+            "script": "VisibleItems_Route206_BurnHeal",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 302,
+            "z": 652,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_SUPER_REPEL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_206_SUPER_REPEL",
+            "script": "VisibleItems_Route206_SuperRepel",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 314,
+            "z": 631,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_HIKER_THEODORE",
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_HIKER_THEODORE",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 311,
+            "z": 622,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_HIKER",
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "Route206_Hiker",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 292,
+            "z": 643,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_1",
+            "x": 302,
+            "z": 688,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_5"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_2",
+            "x": 303,
+            "z": 688,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_5"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_3",
+            "x": 302,
+            "z": 681,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_3"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_4",
+            "x": 303,
+            "z": 681,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_3"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_NORTH_GATE_1",
+            "x": 304,
+            "z": 576,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_1"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_NORTH_GATE_2",
+            "x": 305,
+            "z": 576,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_1"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_5",
+            "x": 300,
+            "z": 681,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_1"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_6",
+            "x": 301,
+            "z": 681,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_3"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_7",
+            "x": 304,
+            "z": 681,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_3"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_8",
+            "x": 305,
+            "z": 681,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_4"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_9",
+            "x": 301,
+            "z": 688,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_2"
+        },
+        {
+            "id": "WARP_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_10",
+            "x": 304,
+            "z": 688,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
+            "dest_warp_id": "WARP_ROUTE_206_6"
+        },
+        {
+            "id": "WARP_WAYWARD_CAVE_1F_1",
+            "x": 299,
+            "z": 611,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
+            "dest_warp_id": "WARP_ROUTE_206_1"
+        },
+        {
+            "id": "WARP_WAYWARD_CAVE_1F_2",
+            "x": 310,
+            "z": 607,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
+            "dest_warp_id": "WARP_ROUTE_206_2"
+        }
+    ],
+    "coord_events": []
+}

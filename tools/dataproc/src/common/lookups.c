@@ -99,6 +99,23 @@ void Lookups_Register(const char *type, const dp_symbol *symbols, size_t count)
     free(copy);
 }
 
+long Lookups_ValueOf(const char *type, const char *name)
+{
+    // Do a lookup against a throwaway JSON document that only contains the input string,
+    // just to give us consistent error messages.
+    char    *src   = String_Format("\"%s\"", name);
+    dp_file *file  = dp_parse(Driver_Context(), type, src, strlen(src), &dp_json_reader);
+    long     value = dp_int(dp_lookup(dp_root(file), type));
+
+    if (dp_report(file) == DP_LEVEL_ERROR) {
+        Driver_Fail("no symbol '%s' in lookup '%s'", name, type);
+    }
+
+    dp_close(file);
+    free(src);
+    return value;
+}
+
 #define ASCII_SEP_RECORD 0x1E
 #define ASCII_SEP_UNIT   0x1F
 

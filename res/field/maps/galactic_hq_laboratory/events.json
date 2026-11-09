@@ -1,0 +1,148 @@
+{
+    "bg_events": [
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 10,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 11,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 17,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 18,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 21,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 22,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 25,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 26,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 29,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "GalacticHQLaboratory_Machine",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 30,
+            "z": 9,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_SCIENTIST_M",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "script": "GalacticHQLaboratory_ScientistM",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SCIENTIST_F",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
+            "script": "GalacticHQLaboratory_ScientistF",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 3,
+            "x": 36,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_FULL_RESTORE",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_LABORATORY_FULL_RESTORE",
+            "script": "VisibleItems_GalacticHQLaboratory_FullRestore",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 8,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_GALACTIC_HQ_4F",
+            "x": 1,
+            "z": 11,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
+            "dest_warp_id": "WARP_GALACTIC_HQ_LABORATORY"
+        },
+        {
+            "id": "WARP_GALACTIC_HQ_CONTROL_ROOM",
+            "x": 36,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_CONTROL_ROOM",
+            "dest_warp_id": "WARP_GALACTIC_HQ_LABORATORY"
+        }
+    ],
+    "coord_events": []
+}

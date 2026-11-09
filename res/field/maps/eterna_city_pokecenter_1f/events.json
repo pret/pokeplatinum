@@ -1,0 +1,134 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_ETERNA_SCHOOL_KID_M",
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaCityPokecenter1F_SchoolKidM",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ETERNA_BATTLE_GIRL",
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaCityPokecenter1F_BattleGirl",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 2,
+            "x": 14,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ETERNA_BUNEARY",
+            "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_POKECENTER_1F_BUNEARY",
+            "script": "EternaCityPokecenter1F_Buneary",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ETERNA_NURSE",
+            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaCityPokecenter1F_Nurse",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ETERNA_POKEMON_BREEDER_F",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaCityPokecenter1F_PokemonBreederF",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 1,
+            "x": 10,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ETERNA_DAILY_TRAINER_1",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_A",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POKECENTER_DAILY_TRAINER_1",
+            "script": "PokemonCenterDailyTrainers_FirstNPC",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ETERNA_DAILY_TRAINER_2",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_B",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POKECENTER_DAILY_TRAINER_2",
+            "script": "PokemonCenterDailyTrainers_SecondNPC",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ETERNA_CITY",
+            "x": 8,
+            "z": 12,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY",
+            "dest_warp_id": "WARP_ETERNA_CITY_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_ETERNA_CITY_POKECENTER_2F",
+            "x": 2,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY_POKECENTER_2F",
+            "dest_warp_id": "WARP_ETERNA_CITY_POKECENTER_1F"
+        },
+        {
+            "id": "WARP_ETERNA_CITY_POKECENTER_B1F",
+            "x": 14,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY_POKECENTER_B1F",
+            "dest_warp_id": "WARP_ETERNA_CITY_POKECENTER_1F"
+        }
+    ],
+    "coord_events": []
+}

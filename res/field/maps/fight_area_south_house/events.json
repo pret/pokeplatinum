@@ -1,0 +1,75 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_OLD_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "FightAreaSouthHouse_OldMan",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TORCHIC",
+            "graphics_id": "OBJ_EVENT_GFX_TORCHIC",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "FightAreaSouthHouse_Torchic",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 2,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OLD_WOMAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "FightAreaSouthHouse_OldWoman",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 2,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_EXPERT",
+            "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "FightAreaSouthHouse_ItemExpert",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_FIGHT_AREA",
+            "x": 4,
+            "z": 8,
+            "dest_header_id": "MAP_HEADER_FIGHT_AREA",
+            "dest_warp_id": "WARP_FIGHT_AREA_SOUTH_HOUSE"
+        }
+    ],
+    "coord_events": []
+}

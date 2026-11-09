@@ -1,0 +1,85 @@
+{
+    "bg_events": [
+        {
+            "script": "JubilifeTV3FGroupRankingRoom_RecordMachinePokemon",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 8,
+            "z": 5,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "JubilifeTV3FGroupRankingRoom_RecordMachineBattles",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 3,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "JubilifeTV3FGroupRankingRoom_RecordMachineContests",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 13,
+            "z": 3,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "JubilifeTV3FGroupRankingRoom_Youngster",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BATTLE_GIRL",
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "JubilifeTV3FGroupRankingRoom_BattleGirl",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WORKER",
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_JUBILIFE_TV_3F_GROUP_RANKING_ROOM_WORKER",
+            "script": "JubilifeTV3FGroupRankingRoom_Worker",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_JUBILIFE_TV_3F",
+            "x": 8,
+            "z": 10,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_3F",
+            "dest_warp_id": "WARP_JUBILIFE_TV_3F_GROUP_RANKING_ROOM"
+        }
+    ],
+    "coord_events": []
+}

@@ -1,0 +1,356 @@
+{
+    "bg_events": [
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_LEFT_ROOM_IRON_PLATE",
+            "x": 32,
+            "z": 40,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_LEFT_ROOM_STAR_PIECE_1",
+            "x": 29,
+            "z": 29,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        },
+        {
+            "hidden_item": "FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_LEFT_ROOM_STAR_PIECE_2",
+            "x": 14,
+            "z": 31,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_ITEM_ULTRA_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B2F_LEFT_ROOM_ULTRA_BALL",
+            "script": "VisibleItems_IronIslandB2FLeftRoom_UltraBall",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 38,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_DUSK_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B2F_LEFT_ROOM_DUSK_BALL",
+            "script": "VisibleItems_IronIslandB2FLeftRoom_DuskBall",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_MAX_POTION",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B2F_LEFT_ROOM_MAX_POTION",
+            "script": "VisibleItems_IronIslandB2FLeftRoom_MaxPotion",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_HP_UP",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B2F_LEFT_ROOM_HP_UP",
+            "script": "VisibleItems_IronIslandB2FLeftRoom_HPUp",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 21,
+            "z": 38,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_RILEY",
+            "graphics_id": "OBJ_EVENT_GFX_RILEY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_IRON_ISLAND_B2F_LEFT_ROOM_RILEY",
+            "script": "IronIslandB2FLeftRoom_Riley",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 34,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GRUNT_M_WEST",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_IRON_ISLAND_B2F_LEFT_ROOM_GRUNTS",
+            "script": "IronIslandB2FLeftRoom_CoordEvent_Grunts",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 19,
+            "z": 40,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GRUNT_M_EAST",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_IRON_ISLAND_B2F_LEFT_ROOM_GRUNTS",
+            "script": "IronIslandB2FLeftRoom_CoordEvent_Grunts",
+            "initial_dir": "DIR_EAST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 19,
+            "z": 41,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_HIKER_DAMON",
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_HIKER_DAMON",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 26,
+            "z": 2,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_HIKER_MAURICE",
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_HIKER_MAURICE",
+                "sight_range": 5
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 21,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BLACK_BELT_KENDAL",
+            "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_BLACK_BELT_KENDAL",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_SOUTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 36,
+            "z": 18,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BATTLE_GIRL_TYLER",
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_BATTLE_GIRL_TYLER",
+                "sight_range": 2
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 36,
+            "z": 21,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WORKER_BRENDON",
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_WORKER_BRENDON",
+                "sight_range": 1
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 15,
+            "z": 25,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_WORKER_QUENTIN",
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_WORKER_QUENTIN",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_NORTH",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 28,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACE_TRAINER_JONAH",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_JONAH",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_EAST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 23,
+            "z": 31,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACE_TRAINER_BRENDA",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "trainer": {
+                "id": "TRAINER_ACE_TRAINER_BRENDA",
+                "sight_range": 3
+            },
+            "initial_dir": "DIR_WEST",
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 27,
+            "z": 31,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_RED_SHARD",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B2F_LEFT_ROOM_RED_SHARD",
+            "script": "VisibleItems_IronIslandB2FLeftRoom_RedShard",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 17,
+            "z": 19,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ITEM_NUGGET",
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B2F_LEFT_ROOM_NUGGET",
+            "script": "VisibleItems_IronIslandB2FLeftRoom_Nugget",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 1,
+            "z": 23,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_IRON_ISLAND_B1F_RIGHT_ROOM",
+            "x": 38,
+            "z": 3,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM",
+            "dest_warp_id": "WARP_IRON_ISLAND_B2F_LEFT_ROOM"
+        },
+        {
+            "id": "WARP_IRON_ISLAND_B3F",
+            "x": 14,
+            "z": 48,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B3F",
+            "dest_warp_id": "WARP_IRON_ISLAND_B2F_LEFT_ROOM"
+        }
+    ],
+    "coord_events": [
+        {
+            "script": "IronIslandB2FLeftRoom_CoordEvent_RileyStartFollowing",
+            "x": 35,
+            "z": 2,
+            "y": 0,
+            "width": 1,
+            "length": 2,
+            "var": "VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE",
+            "value": 0
+        },
+        {
+            "script": "IronIslandB2FLeftRoom_CoordEvent_PlayerLeaveRiley",
+            "x": 36,
+            "z": 2,
+            "y": 0,
+            "width": 1,
+            "length": 2,
+            "var": "VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE",
+            "value": 1
+        },
+        {
+            "script": "IronIslandB2FLeftRoom_CoordEvent_PlatformLift",
+            "x": 19,
+            "z": 44,
+            "y": 0,
+            "width": 1,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x00",
+            "value": 0
+        },
+        {
+            "script": "IronIslandB2FLeftRoom_CoordEvent_Grunts",
+            "x": 21,
+            "z": 40,
+            "y": 0,
+            "width": 1,
+            "length": 2,
+            "var": "VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE",
+            "value": 1
+        }
+    ]
+}

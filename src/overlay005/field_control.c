@@ -4,7 +4,9 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/field/script_ranges.h"
 #include "constants/field_poison.h"
+#include "constants/map_object.h"
 #include "constants/player_avatar.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
@@ -62,11 +64,11 @@
 #include "terrain_collision_manager.h"
 #include "trainer_encounter.h"
 #include "trainer_info.h"
+#include "union_room.h"
 #include "unk_0203C954.h"
 #include "unk_02054884.h"
 #include "unk_02056B30.h"
 #include "unk_0205A0D8.h"
-#include "unk_0205B33C.h"
 #include "vars_flags.h"
 #include "wireless_manager.h"
 
@@ -477,7 +479,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
     if (input->menu && CommSys_ConnectedCount() <= 1) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_OpenUnionRoom(fieldSystem);
-        sub_0205BEA8(4);
+        UnionRoom_SetStatus(UR_STATUS_BUSY);
         CommManager_PauseUnionServer();
         return TRUE;
     }
@@ -1006,11 +1008,11 @@ static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int
         return FALSE;
     }
 
-    if (warpEvent->destWarpID == 0x100) {
-        GF_ASSERT(warpEvent->destHeaderID == 0xfff);
+    if (warpEvent->destWarpID == WARP_ID_DYNAMIC) {
+        GF_ASSERT(warpEvent->destHeaderID == MAP_HEADER_DYNAMIC);
         *nextMap = *(FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
     } else {
-        Location_Set(nextMap, warpEvent->destHeaderID, warpEvent->destWarpID, warpEvent->x, warpEvent->z, 1);
+        Location_Set(nextMap, warpEvent->destHeaderID, warpEvent->destWarpID, warpEvent->x, warpEvent->z, DIR_SOUTH);
     }
 
     Location *entrance = FieldOverworldState_GetEntranceLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));

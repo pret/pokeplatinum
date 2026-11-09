@@ -1,0 +1,114 @@
+{
+    "bg_events": [
+        {
+            "script": "EternaGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 8,
+            "z": 25,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        },
+        {
+            "script": "EternaGym_GymStatue",
+            "type": "BG_EVENT_TYPE_FACING",
+            "x": 14,
+            "z": 25,
+            "y": 0,
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
+        }
+    ],
+    "object_events": [
+        {
+            "id": "LOCALID_GYM_GUIDE",
+            "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaGym_GymGuide",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 9,
+            "z": 25,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_GARDENIA",
+            "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GYM_GARDENIA",
+            "script": "EternaGym_Gardenia",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LASS_CAROLINE",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaGym_LassCaroline",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 22,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_AROMA_LADY_JENNA",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaGym_AromaLadyJenna",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 20,
+            "z": 17,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_AROMA_LADY_ANGELA",
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "EternaGym_AromaLadyAngela",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 2,
+            "z": 7,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_ETERNA_CITY",
+            "x": 11,
+            "z": 27,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY",
+            "dest_warp_id": "WARP_ETERNA_CITY_GYM"
+        },
+        {
+            "id": "WARP_ETERNA_CITY_DP_GYM",
+            "x": 11,
+            "z": 0,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY_DP_GYM",
+            "dest_warp_id": "WARP_ETERNA_CITY_GYM"
+        }
+    ],
+    "coord_events": []
+}

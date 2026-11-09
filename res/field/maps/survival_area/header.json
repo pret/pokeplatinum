@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_017",
+  "mapGroup": "TownsAndRoutes",
+  "locationName": "LocationNames_Text_SurvivalArea",
+  "textBank": "TEXT_BANK_SURVIVAL_AREA",
+  "popupStyle": "MAP_LABEL_WINDOW_TOWN",
+  "weather": "OVERWORLD_WEATHER_CLEAR",
+  "cameraType": "CAMERA_TYPE_DEFAULT",
+  "battleBackground": "BACKGROUND_MOUNTAIN",
+  "mapType": "MAP_TYPE_TOWN_CITY",
+  "preloaded": 11,
+  "musicDay": "SEQ_CITY11_D_sseq",
+  "musicNight": "SEQ_CITY11_N_sseq",
+  "isBikeAllowed": true,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": true
+}

@@ -1,0 +1,18 @@
+{
+  "areaData": "area_data_060",
+  "mapGroup": "Unknown242",
+  "locationName": "LocationNames_Text_HallOfOrigin",
+  "textBank": "TEXT_BANK_JUBILIFE_CITY",
+  "popupStyle": "MAP_LABEL_WINDOW_WATER",
+  "weather": "OVERWORLD_WEATHER_CLEAR_13",
+  "cameraType": "CAMERA_TYPE_HALL_OF_ORIGIN",
+  "battleBackground": "BACKGROUND_CAVE_1",
+  "mapType": "MAP_TYPE_OUTDOORS",
+  "preloaded": 15,
+  "musicDay": "SEQ_D_MOUNT2_sseq",
+  "musicNight": "SEQ_D_MOUNT2_sseq",
+  "isBikeAllowed": false,
+  "isRunningAllowed": true,
+  "isEscapeRopeAllowed": false,
+  "isFlyAllowed": false
+}

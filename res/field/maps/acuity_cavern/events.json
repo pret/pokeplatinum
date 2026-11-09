@@ -1,0 +1,30 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_UXIE",
+            "graphics_id": "OBJ_EVENT_GFX_UXIE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_ACUITY_CAVERN_UXIE",
+            "script": "AcuityCavern_Uxie",
+            "initial_dir": "DIR_SOUTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 10,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_LAKE_ACUITY",
+            "x": 14,
+            "z": 29,
+            "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
+            "dest_warp_id": "WARP_ACUITY_CAVERN"
+        }
+    ],
+    "coord_events": []
+}

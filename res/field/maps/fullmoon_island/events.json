@@ -1,0 +1,79 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_SAILOR",
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": "FullmoonIsland_Sailor",
+            "initial_dir": "DIR_WEST",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 40,
+            "z": 277,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BOLLARD_1",
+            "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 40,
+            "z": 276,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BOLLARD_2",
+            "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 40,
+            "z": 275,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BOLLARD_3",
+            "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "initial_dir": "DIR_NORTH",
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 40,
+            "z": 278,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "id": "WARP_FULLMOON_ISLAND_FOREST_1",
+            "x": 53,
+            "z": 268,
+            "dest_header_id": "MAP_HEADER_FULLMOON_ISLAND_FOREST",
+            "dest_warp_id": "WARP_FULLMOON_ISLAND_1"
+        },
+        {
+            "id": "WARP_FULLMOON_ISLAND_FOREST_2",
+            "x": 54,
+            "z": 268,
+            "dest_header_id": "MAP_HEADER_FULLMOON_ISLAND_FOREST",
+            "dest_warp_id": "WARP_FULLMOON_ISLAND_2"
+        }
+    ],
+    "coord_events": []
+}

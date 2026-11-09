@@ -1,0 +1,14 @@
+{
+    "bg_events": [],
+    "object_events": [],
+    "warp_events": [
+        {
+            "id": "WARP_JUBILIFE_CITY",
+            "x": 4,
+            "z": 14,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
+            "dest_warp_id": "WARP_POKETCH_CO_1F_1"
+        }
+    ],
+    "coord_events": []
+}
