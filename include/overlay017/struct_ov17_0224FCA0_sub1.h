@@ -3,7 +3,7 @@
 
 #include "constants/contests.h"
 
-#include "struct_defs/struct_02095C48_sub1_sub1.h"
+#include "contest/common.h"
 
 typedef struct {
     ContestantResult unk_00[CONTEST_NUM_PARTICIPANTS];

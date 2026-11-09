@@ -5,10 +5,11 @@
 
 #include "constants/graphics.h"
 
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/dress_up_photo.h"
-#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_02041DC8.h"
 
+#include "contest/logic.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_0225AF8C.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
@@ -20,6 +21,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
@@ -30,8 +32,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_020298BC.h"
-#include "unk_02094EDC.h"
 
 typedef struct {
     const DressUpPhoto *photo;

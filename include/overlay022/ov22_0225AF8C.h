@@ -3,8 +3,8 @@
 
 #include <nitro/gx.h>
 
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/dress_up_photo.h"
-#include "struct_defs/struct_02029C88.h"
 
 #include "overlay022/struct_ov22_0225AF8C.h"
 #include "overlay022/struct_ov22_0225B1BC_decl.h"

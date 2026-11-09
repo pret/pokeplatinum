@@ -1,12 +1,9 @@
-#ifndef POKEPLATINUM_OV6_022489E4_H
-#define POKEPLATINUM_OV6_022489E4_H
+#ifndef POKEPLATINUM_CONTEST_LINK_COMM_H
+#define POKEPLATINUM_CONTEST_LINK_COMM_H
 
-#include "struct_defs/struct_020954F0.h"
+#include "contest/common.h"
+#include "contest/manager.h"
 
-#include "overlay006/struct_ov6_02248BE8.h"
-#include "overlay006/struct_ov6_02248DD8.h"
-
-#include "contest.h"
 #include "pokemon.h"
 #include "string_gf.h"
 
@@ -27,4 +24,4 @@ BOOL Contest_SendChatotCry(Contest *contest, int contestantID, void *chatotCry);
 void Contest_RecvContestantLinkInfo(int netID, int size, void *src, void *param);
 BOOL Contest_SendContestantLinkInfo(Contest *unused, int contestantID, const ContestantLinkInfo *linkInfo);
 
-#endif // POKEPLATINUM_OV6_022489E4_H
+#endif // POKEPLATINUM_CONTEST_LINK_COMM_H

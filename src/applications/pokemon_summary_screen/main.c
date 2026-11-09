@@ -17,6 +17,7 @@
 #include "applications/pokemon_summary_screen/sprites.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "applications/pokemon_summary_screen/window.h"
+#include "contest/logic.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -52,7 +53,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0208C098.h"
-#include "unk_02094EDC.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 

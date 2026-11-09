@@ -11,6 +11,7 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
 
+#include "contest/manager.h"
 #include "overlay017/ov17_02252A70.h"
 #include "overlay017/struct_ov17_0223F2E4.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
@@ -19,7 +20,6 @@
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "char_transfer.h"
-#include "contest.h"
 #include "font.h"
 #include "g3d_pipeline.h"
 #include "game_overlay.h"

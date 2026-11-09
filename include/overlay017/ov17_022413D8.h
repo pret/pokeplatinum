@@ -5,6 +5,7 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
+#include "contest/manager.h"
 #include "overlay017/struct_ov17_0223F88C.h"
 #include "overlay017/struct_ov17_0224145C.h"
 #include "overlay017/struct_ov17_0224365C.h"
@@ -13,7 +14,6 @@
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
 
-#include "contest.h"
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"

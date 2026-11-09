@@ -1,15 +1,15 @@
-#ifndef POKEPLATINUM_UNK_020298BC_H
-#define POKEPLATINUM_UNK_020298BC_H
+#ifndef POKEPLATINUM_IMAGE_CLIPS_H
+#define POKEPLATINUM_IMAGE_CLIPS_H
 
 #include "generated/backdrops.h"
 #include "generated/pokemon_contest_ranks.h"
 
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/image_clips.h"
 #include "struct_defs/photo_accessory.h"
 #include "struct_defs/photo_pokemon.h"
 #include "struct_defs/struct_020298D8.h"
-#include "struct_defs/struct_02029C88.h"
 
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay061/struct_ov61_0222AE80.h"
@@ -92,4 +92,4 @@ ImageClips *SaveData_GetImageClips(SaveData *saveData);
 void sub_0202A75C(const DressUpPhoto *duPhoto, UnkStruct_ov61_0222AE80 *param1);
 void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *duPhoto);
 
-#endif // POKEPLATINUM_UNK_020298BC_H
+#endif // POKEPLATINUM_IMAGE_CLIPS_H

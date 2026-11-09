@@ -2,10 +2,10 @@
 #define POKEPLATINUM_STRUCT_OV17_0223F88C_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/struct_02095C48_sub1.h"
 
 #include "battle/pokemon_sprite_data.h"
 #include "battle_anim/battle_anim_system.h"
+#include "contest/common.h"
 #include "overlay017/struct_ov17_0223F2E4.h"
 
 #include "bg_window.h"

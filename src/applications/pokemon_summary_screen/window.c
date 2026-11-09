@@ -10,6 +10,7 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprites.h"
+#include "contest/logic.h"
 
 #include "bg_window.h"
 #include "dexmode_checker.h"
@@ -25,7 +26,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_02092494.h"
-#include "unk_02094EDC.h"
 
 #include "res/text/bank/pokemon_summary_screen.h"
 

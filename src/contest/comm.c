@@ -1,21 +1,21 @@
-#include "unk_02095AF0.h"
+#include "contest/comm.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/comm_cmd_table.h"
-#include "struct_defs/struct_02029C88.h"
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/struct_02095B28.h"
 #include "struct_defs/struct_02095C60.h"
 
-#include "overlay006/ov6_022489E4.h"
+#include "contest/link_comm.h"
+#include "contest/manager.h"
 #include "overlay017/ov17_02252CEC.h"
 #include "overlay017/struct_ov17_0224EDE0.h"
 
 #include "communication_system.h"
-#include "contest.h"
 #include "heap.h"
-#include "unk_020298BC.h"
+#include "image_clips.h"
 #include "unk_02032798.h"
 
 static void Contest_Dummy(int unused1, int unused2, void *unused3, void *unused4);

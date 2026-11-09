@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "contest/logic.h"
+#include "contest/manager.h"
 #include "overlay011/particle_helper.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_022492DC.h"
@@ -21,7 +23,6 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "comm_manager.h"
-#include "contest.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -49,7 +50,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_02012744.h"
-#include "unk_02094EDC.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay11);

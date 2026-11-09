@@ -7,13 +7,14 @@
 
 #include "struct_defs/contest_player_mon_dto.h"
 
+#include "contest/manager.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
 #include "overlay006/link_contest_record_display.h"
 
-#include "contest.h"
 #include "field_script_context.h"
 #include "field_system.h"
+#include "image_clips.h"
 #include "inlines.h"
 #include "map_header.h"
 #include "party.h"
@@ -25,7 +26,6 @@
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_020298BC.h"
 #include "vars_flags.h"
 
 static BOOL ResumeWhenContestSynced(ScriptContext *ctx);

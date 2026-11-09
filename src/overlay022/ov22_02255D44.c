@@ -5,12 +5,14 @@
 
 #include "generated/trainer_score_events.h"
 
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/dress_up_photo.h"
-#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_02095C60.h"
 #include "struct_defs/visual_competition_app_args.h"
 
+#include "contest/comm.h"
+#include "contest/logic.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_022578F4.h"
@@ -52,6 +54,7 @@
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "message.h"
 #include "network_icon.h"
 #include "overlay_manager.h"
@@ -71,10 +74,7 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_020298BC.h"
 #include "unk_020363E8.h"
-#include "unk_02094EDC.h"
-#include "unk_02095AF0.h"
 #include "yes_no_touch_menu.h"
 
 typedef struct {

@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/photo_accessory.h"
 #include "struct_defs/photo_pokemon.h"
-#include "struct_defs/struct_02029C88.h"
 
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"
@@ -26,11 +26,11 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "resource_collection.h"
 #include "software_sprite.h"
-#include "unk_020298BC.h"
 
 typedef struct UnkStruct_ov22_0225B1BC_t {
     UnkStruct_ov22_0225A0E4 unk_00;

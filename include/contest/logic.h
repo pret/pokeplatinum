@@ -1,16 +1,14 @@
-#ifndef POKEPLATINUM_UNK_02094EDC_H
-#define POKEPLATINUM_UNK_02094EDC_H
+#ifndef POKEPLATINUM_CONTEST_LOGIC_H
+#define POKEPLATINUM_CONTEST_LOGIC_H
 
 #include "generated/move_contest_effects.h"
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_defs/struct_020F568C.h"
-
 #include "battle/pokemon_sprite_data.h"
-#include "overlay006/struct_ov6_02248BE8.h"
+#include "contest/common.h"
+#include "contest/manager.h"
 
-#include "contest.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 
@@ -49,4 +47,4 @@ void LockTextSpeed(void);
 u32 CalcMonDataRibbon(enum PokemonContestRank contestRank, enum PokemonContestType contestType);
 u32 Contest_GetRandomDressUpTheme(enum PokemonContestRank contestRank, BOOL isLinkContest);
 
-#endif // POKEPLATINUM_UNK_02094EDC_H
+#endif // POKEPLATINUM_CONTEST_LOGIC_H

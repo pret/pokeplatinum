@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "contest/logic.h"
+#include "contest/manager.h"
 #include "overlay017/ov17_022413D8.h"
 #include "overlay017/ov17_02243AC4.h"
 #include "overlay017/struct_ov17_022444BC.h"
@@ -10,9 +12,7 @@
 #include "overlay017/struct_ov17_02246540.h"
 #include "overlay017/struct_ov17_02246F24.h"
 
-#include "contest.h"
 #include "move_table.h"
-#include "unk_02094EDC.h"
 
 typedef int (*UnkFuncPtr_ov17_02253AF8)(UnkStruct_ov17_02246F24 *, UnkStruct_ov17_02246540 *, int, int, int);
 

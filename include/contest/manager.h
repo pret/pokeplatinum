@@ -1,12 +1,13 @@
-#ifndef POKEPLATINUM_CONTEST_H
-#define POKEPLATINUM_CONTEST_H
+#ifndef POKEPLATINUM_CONTEST_MANAGER_H
+#define POKEPLATINUM_CONTEST_MANAGER_H
 
 #include "struct_defs/contest_camera_flash_task.h"
 #include "struct_defs/contest_player_mon_dto.h"
 #include "struct_defs/image_clips.h"
-#include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"
 #include "struct_defs/visual_competition_app_args.h"
+
+#include "contest/common.h"
 
 #include "field_task.h"
 #include "game_options.h"
@@ -231,4 +232,4 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
 u16 Contest_GetRNGNext(Contest *contest);
 u16 Contest_GetSeededRNGNext(u32 seed, u32 *destRNGVal);
 
-#endif // POKEPLATINUM_CONTEST_H
+#endif // POKEPLATINUM_CONTEST_MANAGER_H

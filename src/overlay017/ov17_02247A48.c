@@ -5,6 +5,8 @@
 
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/struct_ov12_02237728.h"
+#include "contest/logic.h"
+#include "contest/manager.h"
 #include "overlay017/ov17_022476F8.h"
 #include "overlay017/ov17_0224F18C.h"
 #include "overlay017/struct_ov17_02243C28.h"
@@ -36,7 +38,6 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
-#include "contest.h"
 #include "graphics.h"
 #include "heap.h"
 #include "palette.h"
@@ -48,7 +49,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02094EDC.h"
 
 static int ov17_02247A88(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
 static void ov17_02247A9C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_02029C88_DECL_H
-#define POKEPLATINUM_STRUCT_02029C88_DECL_H
+#ifndef POKEPLATINUM_STRUCT_CONTEST_PHOTO_H
+#define POKEPLATINUM_STRUCT_CONTEST_PHOTO_H
 
 #include "struct_defs/photo_accessory.h"
 #include "struct_defs/photo_pokemon.h"
@@ -15,4 +15,4 @@ typedef struct ContestPhoto {
     u8 backdrop;
 } ContestPhoto;
 
-#endif // POKEPLATINUM_STRUCT_02029C88_DECL_H
+#endif // POKEPLATINUM_STRUCT_CONTEST_PHOTO_H

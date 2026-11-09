@@ -1,4 +1,4 @@
-#include "contest.h"
+#include "contest/manager.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -14,14 +14,16 @@
 
 #include "struct_decls/tv_broadcast.h"
 #include "struct_defs/contest_camera_flash_task.h"
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/contest_player_mon_dto.h"
 #include "struct_defs/image_clips.h"
-#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/visual_competition_app_args.h"
 
+#include "contest/comm.h"
+#include "contest/common.h"
+#include "contest/link_comm.h"
+#include "contest/logic.h"
 #include "field/field_system.h"
-#include "overlay006/ov6_022489E4.h"
-#include "overlay006/struct_ov6_02248DD8.h"
 #include "overlay017/ov17_0223B140.h"
 #include "overlay017/ov17_0223CB1C.h"
 #include "overlay017/ov17_0223DAD0.h"
@@ -39,6 +41,7 @@
 #include "field_transition.h"
 #include "game_records.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "journal.h"
 #include "link_contest_records.h"
 #include "math_util.h"
@@ -56,10 +59,7 @@
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "tv_segment.h"
-#include "unk_020298BC.h"
 #include "unk_020363E8.h"
-#include "unk_02094EDC.h"
-#include "unk_02095AF0.h"
 #include "vars_flags.h"
 
 FS_EXTERN_OVERLAY(overlay17);

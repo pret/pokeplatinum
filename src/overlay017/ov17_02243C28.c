@@ -7,6 +7,7 @@
 
 #include "battle/battle_anim_battler_context.h"
 #include "battle_anim/battle_anim_system.h"
+#include "contest/logic.h"
 #include "overlay017/ov17_0223F7E4.h"
 #include "overlay017/ov17_022413D8.h"
 #include "overlay017/ov17_0224F18C.h"
@@ -38,7 +39,6 @@
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02094EDC.h"
 
 static int ov17_02243C68(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
 static void ov17_02243C80(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);

@@ -1,16 +1,13 @@
-#include "overlay006/ov6_022489E4.h"
+#include "contest/link_comm.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020954F0.h"
-
-#include "overlay006/struct_ov6_02248BE8.h"
-#include "overlay006/struct_ov6_02248DD8.h"
+#include "contest/common.h"
+#include "contest/manager.h"
 
 #include "chatot_cry.h"
 #include "communication_system.h"
-#include "contest.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "string_gf.h"

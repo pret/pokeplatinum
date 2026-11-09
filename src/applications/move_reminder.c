@@ -8,6 +8,7 @@
 #include "generated/pokemon_types.h"
 
 #include "applications/pokemon_summary_screen/main.h"
+#include "contest/logic.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -36,7 +37,6 @@
 #include "text.h"
 #include "type_icon.h"
 #include "unk_0208C098.h"
-#include "unk_02094EDC.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"

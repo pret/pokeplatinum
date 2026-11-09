@@ -1,4 +1,4 @@
-#include "unk_02094EDC.h"
+#include "contest/logic.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -9,17 +9,14 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_defs/struct_020951B0.h"
-#include "struct_defs/struct_020954F0.h"
-#include "struct_defs/struct_020F568C.h"
-
 #include "battle/pokemon_sprite_data.h"
-#include "overlay006/struct_ov6_02248BE8.h"
+#include "contest/common.h"
+#include "contest/manager.h"
 
 #include "character_sprite.h"
-#include "contest.h"
 #include "graphics.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "math_util.h"
 #include "message.h"
 #include "narc.h"
@@ -27,7 +24,6 @@
 #include "pokemon_sprite.h"
 #include "render_text.h"
 #include "string_gf.h"
-#include "unk_020298BC.h"
 
 #include "res/text/bank/contest_effects.h"
 #include "res/text/bank/contest_text.h"

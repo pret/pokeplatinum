@@ -5,6 +5,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/battle_system.h"
 #include "battle_sub_menus/battle_party.h"
+#include "contest/logic.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -21,7 +22,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0208C098.h"
-#include "unk_02094EDC.h"
 
 #include "res/text/bank/battle_party.h"
 

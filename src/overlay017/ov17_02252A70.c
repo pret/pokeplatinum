@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02029C88.h"
+#include "struct_defs/contest_photo.h"
 
 #include "graphics.h"
-#include "unk_020298BC.h"
+#include "image_clips.h"
 
 u32 ov17_02252A70(const ContestPhoto *param0, const u8 *param1)
 {

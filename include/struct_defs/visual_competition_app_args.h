@@ -4,8 +4,8 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/fashion_case.h"
-#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_02095C60.h"
 
 #include "game_options.h"

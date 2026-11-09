@@ -5,6 +5,8 @@
 
 #include "constants/narc.h"
 
+#include "contest/logic.h"
+#include "contest/manager.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/struct_ov17_0224FCA0.h"
 #include "overlay017/struct_ov17_022507C4.h"
@@ -12,7 +14,6 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "contest.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
@@ -32,7 +33,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02094EDC.h"
 
 #include "res/text/bank/contest_results.h"
 

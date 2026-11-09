@@ -3,16 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "contest/logic.h"
+#include "contest/manager.h"
 #include "overlay017/ov17_022413D8.h"
 #include "overlay017/struct_ov17_0223BE58.h"
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
 
-#include "contest.h"
 #include "heap.h"
 #include "move_table.h"
 #include "pokemon.h"
-#include "unk_02094EDC.h"
 
 typedef struct {
     u16 moveID;

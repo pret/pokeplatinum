@@ -6,6 +6,7 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
+#include "contest/manager.h"
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_0224CFB8.h"
 #include "overlay017/struct_ov17_0224D69C.h"
@@ -13,8 +14,6 @@
 #include "overlay017/struct_ov17_0224E958.h"
 #include "overlay017/struct_ov17_0224EDE0.h"
 #include "overlay017/struct_ov17_02253084.h"
-
-#include "contest.h"
 
 static int ov17_0224EBE0(int contestRank, int param1);
 static int ov17_0224EC24(int contestRank, int contestType, int param2, int param3, int param4, int param5, int param6);

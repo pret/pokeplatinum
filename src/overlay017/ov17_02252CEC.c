@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "contest/manager.h"
 #include "overlay017/ov17_0224A0FC.h"
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_02247A48.h"
@@ -10,8 +11,6 @@
 #include "overlay017/struct_ov17_0224EDE0.h"
 #include "overlay017/struct_ov17_0224F30C.h"
 #include "overlay017/struct_ov17_0224FCA0.h"
-
-#include "contest.h"
 
 void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
 {

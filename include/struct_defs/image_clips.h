@@ -3,9 +3,9 @@
 
 #include "generated/pokemon_contest_types.h"
 
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/fashion_case.h"
-#include "struct_defs/struct_02029C88.h"
 
 #define SAVED_PHOTOS_COUNT 11
 

@@ -1,4 +1,4 @@
-#include "unk_020298BC.h"
+#include "image_clips.h"
 
 #include <nitro.h>
 #include <string.h>

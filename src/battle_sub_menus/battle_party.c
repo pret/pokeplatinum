@@ -14,6 +14,7 @@
 #include "battle_sub_menus/battle_party_sprites.h"
 #include "battle_sub_menus/battle_party_text.h"
 #include "battle_sub_menus/battle_sub_menu_cursor.h"
+#include "contest/logic.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -40,7 +41,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_0208C098.h"
-#include "unk_02094EDC.h"
 
 #include "res/text/bank/battle_party.h"
 
