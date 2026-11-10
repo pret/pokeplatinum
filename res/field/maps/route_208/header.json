@@ -4,7 +4,7 @@
   "locationName": "LocationNames_Text_Route208",
   "textBank": "TEXT_BANK_ROUTE_208",
   "popupStyle": "MAP_LABEL_WINDOW_ROUTE",
-  "weather": "OVERWORLD_WEATHER_CLEAR_8",
+  "weather": "OVERWORLD_WEATHER_LOW_FOG",
   "cameraType": "CAMERA_TYPE_DEFAULT",
   "battleBackground": "BACKGROUND_MOUNTAIN",
   "mapType": "MAP_TYPE_OUTDOORS",
