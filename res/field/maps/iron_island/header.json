@@ -4,7 +4,7 @@
   "locationName": "LocationNames_Text_IronIsland",
   "textBank": "TEXT_BANK_IRON_ISLAND",
   "popupStyle": "MAP_LABEL_WINDOW_CAVE",
-  "weather": "OVERWORLD_WEATHER_CLEAR_8",
+  "weather": "OVERWORLD_WEATHER_LOW_FOG",
   "cameraType": "CAMERA_TYPE_DEFAULT",
   "battleBackground": "BACKGROUND_PLAIN",
   "mapType": "MAP_TYPE_OUTDOORS",

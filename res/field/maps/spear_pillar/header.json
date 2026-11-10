@@ -4,7 +4,7 @@
   "locationName": "LocationNames_Text_SpearPillar",
   "textBank": "TEXT_BANK_SPEAR_PILLAR",
   "popupStyle": "MAP_LABEL_WINDOW_CAVE",
-  "weather": "OVERWORLD_WEATHER_CLEAR_13",
+  "weather": "OVERWORLD_WEATHER_SPEAR_PILLAR",
   "cameraType": "CAMERA_TYPE_SPEAR_PILLAR",
   "battleBackground": "BACKGROUND_MOUNTAIN",
   "mapType": "MAP_TYPE_OUTDOORS",
