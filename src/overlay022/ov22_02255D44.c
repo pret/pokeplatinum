@@ -631,7 +631,7 @@ int VisualCompetition_Exit(ApplicationManager *appMan, int *param1)
     u32 v1;
     VisualCompetitionAppArgs *appArgs = ApplicationManager_Args(appMan);
 
-    ov22_02256FD8(appArgs->unk_04, &v0->unk_458, v0->contestRank, appArgs->trainerInfo);
+    ov22_02256FD8(appArgs->playerPhoto, &v0->unk_458, v0->contestRank, appArgs->trainerInfo);
 
     YesNoTouchMenu_Free(v0->unk_714);
     Windows_Delete(v0->unk_718, 1);

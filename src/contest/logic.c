@@ -364,25 +364,25 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
         }
 
         if (isPostgame == TRUE) {
-            if (opponentEntries[i].availability == 1) {
+            if (opponentEntries[i].availability == CONTESTANT_AVAILABILITY_PRE_POSTGAME) {
                 continue;
             }
         } else {
-            if ((opponentEntries[i].availability == 2) || (opponentEntries[i].availability == 3)) {
+            if ((opponentEntries[i].availability == CONTESTANT_AVAILABILITY_POSTGAME) || (opponentEntries[i].availability == CONTESTANT_AVAILABILITY_POSTGAME_GUEST)) {
                 continue;
             }
         }
 
         if (isPracticeCompetition == TRUE) {
-            if (opponentEntries[i].inPracticeCompetitions == 0) {
+            if (opponentEntries[i].inPracticeCompetitions == FALSE) {
                 continue;
             }
         } else if (isSingleCompetition == TRUE) {
-            if (opponentEntries[i].inSingleCompetitions == 0) {
+            if (opponentEntries[i].inSingleCompetitions == FALSE) {
                 continue;
             }
         } else {
-            if ((opponentEntries[i].inPracticeCompetitions == 1) || (opponentEntries[i].inSingleCompetitions == 1)) {
+            if ((opponentEntries[i].inPracticeCompetitions == TRUE) || (opponentEntries[i].inSingleCompetitions == TRUE)) {
                 continue;
             }
         }
@@ -404,7 +404,7 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
         numGuests = 0;
 
         for (i = 0; i < numCandidates; i++) {
-            if (opponentEntries[candidates[i]].availability == 3) {
+            if (opponentEntries[candidates[i]].availability == CONTESTANT_AVAILABILITY_POSTGAME_GUEST) {
                 numGuests++;
             }
         }
@@ -413,7 +413,7 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
             guestIdx = Contest_GetRNGNext(contest) % numGuests;
 
             for (i = 0; i < numCandidates; i++) {
-                if (opponentEntries[candidates[i]].availability == 3) {
+                if (opponentEntries[candidates[i]].availability == CONTESTANT_AVAILABILITY_POSTGAME_GUEST) {
                     if (guestIdx == 0) {
                         guest = opponentEntries[candidates[i]];
                         break;
@@ -427,7 +427,7 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
         for (i = CONTEST_NUM_PARTICIPANTS - numOpponents; i < CONTEST_NUM_PARTICIPANTS; i++) {
             candidateIdx = Contest_GetRNGNext(contest) % numCandidates;
 
-            if (opponentEntries[candidates[candidateIdx]].availability == 3) {
+            if (opponentEntries[candidates[candidateIdx]].availability == CONTESTANT_AVAILABILITY_POSTGAME_GUEST) {
                 i--;
                 continue;
             }

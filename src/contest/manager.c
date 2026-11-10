@@ -76,14 +76,14 @@ static void Contest_SetLCRNGSeed(Contest *contest);
 u16 Contest_GetRNGNext(Contest *contest);
 BOOL Contest_SetUpLinkContest(Contest *contest);
 static BOOL Contest_IsCommTaskDoneInternal(Contest *contest);
-static void SysTask_LinkContestSetup(SysTask *param0, void *param1);
-static BOOL FieldTask_RunContest(FieldTask *param0);
-static BOOL FieldTask_RunPracticeCompetition(FieldTask *param0);
+static void SysTask_LinkContestSetup(SysTask *sysTask, void *param);
+static BOOL FieldTask_RunContest(FieldTask *fieldTask);
+static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask);
 void Contest_GetVisualCompetitionAppArgs(Contest *contest);
 void Contest_VisualCompetitionAppArgsFree(Contest *contest);
 static void Contest_StartPhotoExchangeTask(Contest *contest);
-static void SysTask_ExchangePhotos(SysTask *param0, void *param1);
-static void Contest_GetContestantLinkInfo(Contest *contest, int contestantID, ContestantLinkInfo *param2);
+static void SysTask_ExchangePhotos(SysTask *sysTask, void *param);
+static void Contest_GetContestantLinkInfo(Contest *contest, int contestantID, ContestantLinkInfo *destLinkInfo);
 static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam);
 static int CalcMonContestFame(Pokemon *mon, enum PokemonContestType contestType);
 static void Contest_InitOpponents(Contest *contest, int isGameCompleted, int isNatDexObtained);
@@ -550,7 +550,7 @@ static int CalcMonContestFame(Pokemon *mon, enum PokemonContestType contestType)
             break;
         }
 
-        if (ribbon == 0) {
+        if (ribbon == FALSE) {
             break;
         }
 
@@ -570,7 +570,7 @@ void Contest_GetVisualCompetitionAppArgs(Contest *contest)
     MI_CpuClear8(appArgs, sizeof(VisualCompetitionAppArgs));
 
     appArgs->mon = contest->data.contestMons[contest->data.playerContestantID];
-    appArgs->unk_04 = contest->data.photos[contest->data.playerContestantID];
+    appArgs->playerPhoto = contest->data.photos[contest->data.playerContestantID];
     appArgs->dressUpTheme = contest->data.dressUpTheme;
 
     if (contest->isLinkContest == TRUE) {
@@ -933,7 +933,7 @@ static void SysTask_LinkContestSetup(SysTask *sysTask, void *param)
         }
 
         contest->unk_1984.unk_14 = contest->data.hostContestantID;
-        contest->unk_1984.unk_15 = contest->data.unk_114;
+        contest->unk_1984.unk_15 = contest->data.netID;
         contest->unk_1984.unk_16 = 1;
         contest->unk_1984.unk_17 = contest->data.connectionCount;
 
@@ -999,7 +999,7 @@ BOOL Contest_SetUpLinkContest(Contest *contest)
         }
     }
 
-    contest->data.unk_114 = netID;
+    contest->data.netID = netID;
     contest->data.npcCount = CONTEST_NUM_PARTICIPANTS - connectionCount;
     contest->data.connectionCount = connectionCount;
     contest->data.playerContestantID = netID;
@@ -1535,7 +1535,7 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
             u8 hasRibbon = TRUE;
             int monDataRibbon = CalcMonDataRibbon(contest->data.contestRank, contest->data.contestType);
 
-            if (Pokemon_GetValue(contest->playerMon, monDataRibbon, NULL) == 0) {
+            if (Pokemon_GetValue(contest->playerMon, monDataRibbon, NULL) == FALSE) {
                 ribbonWon = TRUE;
             }
 

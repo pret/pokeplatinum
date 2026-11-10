@@ -32,6 +32,13 @@ typedef struct ContestJudge {
     u16 padding_06;
 } ContestJudge;
 
+enum ContestantAvailability {
+    CONTESTANT_AVAILABILITY_ALWAYS = 0,
+    CONTESTANT_AVAILABILITY_PRE_POSTGAME,
+    CONTESTANT_AVAILABILITY_POSTGAME,
+    CONTESTANT_AVAILABILITY_POSTGAME_GUEST,
+};
+
 typedef struct Contestant {
     u32 unused_00;
     u32 unused_04;
@@ -89,7 +96,7 @@ typedef struct ContestData {
     u8 competitionType;
     u8 dressUpTheme;
     u8 playerContestantID;
-    u8 unk_114;
+    u8 netID;
     u8 linkVersion;
     u8 npcCount;
     u8 connectionCount;
