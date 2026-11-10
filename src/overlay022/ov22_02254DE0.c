@@ -13,15 +13,15 @@
 #include "system.h"
 #include "touch_screen.h"
 
-static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0);
+static DressUpAccessorySprite *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0);
 static SoftwareSprite *ov22_0225500C(UnkStruct_ov22_0225500C *param0);
-static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *hitTable);
+static void ov22_02255040(DressUpAccessorySprite *param0, TouchScreenHitTable *hitTable);
 
 UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, enum HeapID heapID)
 {
     UnkStruct_ov22_02254DE0 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02254DE0));
-    v0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02255040) * param0);
-    memset(v0->unk_00, 0, sizeof(UnkStruct_ov22_02255040) * param0);
+    v0->unk_00 = Heap_Alloc(heapID, sizeof(DressUpAccessorySprite) * param0);
+    memset(v0->unk_00, 0, sizeof(DressUpAccessorySprite) * param0);
     v0->unk_04 = param0;
 
     return v0;
@@ -34,18 +34,18 @@ void ov22_02254E0C(UnkStruct_ov22_02254DE0 *param0)
     param0 = NULL;
 }
 
-UnkStruct_ov22_02255040 *ov22_02254E20(UnkStruct_ov22_0225500C *param0)
+DressUpAccessorySprite *ov22_02254E20(UnkStruct_ov22_0225500C *param0)
 {
-    UnkStruct_ov22_02255040 *v0 = ov22_02254FE0(param0->unk_00);
+    DressUpAccessorySprite *v0 = ov22_02254FE0(param0->unk_00);
     GF_ASSERT(v0);
 
-    v0->unk_00 = param0->unk_18;
-    v0->unk_04 = ov22_0225500C(param0);
+    v0->accessoryID = param0->unk_18;
+    v0->sprite = ov22_0225500C(param0);
 
     return v0;
 }
 
-BOOL ov22_02254E44(UnkStruct_ov22_02255040 *param0)
+BOOL ov22_02254E44(DressUpAccessorySprite *param0)
 {
     TouchScreenHitTable v0;
 
@@ -53,7 +53,7 @@ BOOL ov22_02254E44(UnkStruct_ov22_02255040 *param0)
     return TouchScreen_LocationHeld(&v0);
 }
 
-BOOL ov22_02254E54(UnkStruct_ov22_02255040 *param0, int *param1, int *param2, NNSG2dCharacterData *param3)
+BOOL ov22_02254E54(DressUpAccessorySprite *param0, int *param1, int *param2, NNSG2dCharacterData *param3)
 {
     BOOL v0;
     int v1, v2;
@@ -87,7 +87,7 @@ BOOL ov22_02254E54(UnkStruct_ov22_02255040 *param0, int *param1, int *param2, NN
     return 0;
 }
 
-BOOL ov22_02254EDC(UnkStruct_ov22_02255040 *param0, int param1, int param2)
+BOOL ov22_02254EDC(DressUpAccessorySprite *param0, int param1, int param2)
 {
     TouchScreenHitTable v0;
 
@@ -95,45 +95,45 @@ BOOL ov22_02254EDC(UnkStruct_ov22_02255040 *param0, int param1, int param2)
     return TouchScreen_IsTouchInHitTable(&v0, param1, param2);
 }
 
-void ov22_02254EF4(UnkStruct_ov22_02255040 *param0, s16 param1, s16 param2)
+void ov22_02254EF4(DressUpAccessorySprite *param0, s16 param1, s16 param2)
 {
-    SoftwareSprite_SetPosition(param0->unk_04, param1, param2);
+    SoftwareSprite_SetPosition(param0->sprite, param1, param2);
 }
 
-void ov22_02254F00(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
+void ov22_02254F00(DressUpAccessorySprite *param0, int *param1, int *param2)
 {
     NNSG2dSVec2 v0;
 
-    v0 = SoftwareSprite_GetPosition(param0->unk_04);
+    v0 = SoftwareSprite_GetPosition(param0->sprite);
     *param1 = v0.x;
     *param2 = v0.y;
 }
 
-void ov22_02254F30(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
+void ov22_02254F30(DressUpAccessorySprite *param0, int *param1, int *param2)
 {
     NNSG2dSVec2 v0;
 
-    v0 = SoftwareSprite_GetDimensions(param0->unk_04);
+    v0 = SoftwareSprite_GetDimensions(param0->sprite);
     *param1 = v0.x;
     *param2 = v0.y;
 }
 
-void ov22_02254F60(UnkStruct_ov22_02255040 *param0, BOOL param1)
+void ov22_02254F60(DressUpAccessorySprite *param0, BOOL param1)
 {
-    SoftwareSprite_SetVisible(param0->unk_04, param1);
+    SoftwareSprite_SetVisible(param0->sprite, param1);
 }
 
-void ov22_02254F6C(UnkStruct_ov22_02255040 *param0, int param1)
+void ov22_02254F6C(DressUpAccessorySprite *param0, int param1)
 {
-    SoftwareSprite_SetPriority(param0->unk_04, param1);
+    SoftwareSprite_SetPriority(param0->sprite, param1);
 }
 
-int ov22_02254F78(UnkStruct_ov22_02255040 *param0)
+int ov22_02254F78(DressUpAccessorySprite *param0)
 {
-    return SoftwareSprite_GetPriority(param0->unk_04);
+    return SoftwareSprite_GetPriority(param0->sprite);
 }
 
-void ov22_02254F84(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
+void ov22_02254F84(DressUpAccessorySprite *param0, int *param1, int *param2)
 {
     int v0, v1;
 
@@ -164,12 +164,12 @@ void ov22_02254F84(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
     }
 }
 
-static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0)
+static DressUpAccessorySprite *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0)
 {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0].unk_04 == NULL) {
+        if (param0->unk_00[v0].sprite == NULL) {
             return param0->unk_00 + v0;
         }
     }
@@ -194,10 +194,10 @@ static SoftwareSprite *ov22_0225500C(UnkStruct_ov22_0225500C *param0)
     return SoftwareSprite_Load(&v0);
 }
 
-static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *hitTable)
+static void ov22_02255040(DressUpAccessorySprite *param0, TouchScreenHitTable *hitTable)
 {
-    NNSG2dSVec2 v0 = SoftwareSprite_GetPosition(param0->unk_04);
-    NNSG2dSVec2 v1 = SoftwareSprite_GetDimensions(param0->unk_04);
+    NNSG2dSVec2 v0 = SoftwareSprite_GetPosition(param0->sprite);
+    NNSG2dSVec2 v1 = SoftwareSprite_GetDimensions(param0->sprite);
 
     hitTable->rect.top = v0.y;
     hitTable->rect.bottom = v0.y + v1.y;

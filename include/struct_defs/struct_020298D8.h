@@ -7,11 +7,11 @@
 #include "pokemon_sprite.h"
 #include "touch_screen.h"
 
-typedef struct {
-    PokemonSprite *unk_00;
-    TouchScreenHitTable unk_04;
-    UnkStruct_ov22_022596B0 unk_08;
-    Pokemon *unk_0C;
-} UnkStruct_020298D8;
+typedef struct DressUpMonSprite {
+    PokemonSprite *sprite;
+    TouchScreenHitTable hitTable;
+    SpriteMargins margins;
+    Pokemon *mon;
+} DressUpMonSprite;
 
 #endif // POKEPLATINUM_STRUCT_020298D8_H

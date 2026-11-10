@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_OV17_02250744_H
 #define POKEPLATINUM_OV17_02250744_H
 
+#include "contest/manager.h"
 #include "overlay017/struct_ov17_0224FCA0.h"
 #include "overlay017/struct_ov17_022507C4.h"
 #include "overlay017/struct_ov17_022508E4.h"
 
-#include "contest.h"
 #include "narc.h"
 
 enum ContestAnnouncerMessagesIDs {

@@ -17,6 +17,7 @@
 #include "applications/pokemon_summary_screen/sprites.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "applications/pokemon_summary_screen/window.h"
+#include "contest/logic.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -52,7 +53,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0208C098.h"
-#include "unk_02094EDC.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 
@@ -1940,7 +1940,7 @@ static void UpdateAppealHearts(PokemonSummaryScreen *summaryScreen, u32 move)
 
     if (move != SUMMARY_MOVE_NONE) {
         effect = MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT);
-        numHearts = sub_02095734(effect) / POINTS_PER_APPEAL_HEART;
+        numHearts = Contest_GetMoveEffectAppeal(effect) / POINTS_PER_APPEAL_HEART;
 
         for (i = 0; i < numHearts; i++) {
             DrawAppealHeart(summaryScreen, FILLED_HEART_BASE_TILE, i);

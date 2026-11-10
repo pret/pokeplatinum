@@ -26,6 +26,7 @@
 #include "struct_defs/tv_segment_contest_hall_showcased_pokemon.h"
 
 #include "applications/poketch/poketch_system.h"
+#include "contest/logic.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay006/swarm.h"
@@ -39,6 +40,7 @@
 #include "field_overworld_weather.h"
 #include "field_system.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "inlines.h"
 #include "map_header.h"
 #include "map_header_util.h"
@@ -59,11 +61,9 @@
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_020298BC.h"
 #include "unk_0202E2CC.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
-#include "unk_02094EDC.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/tv_programs_interviews.h"

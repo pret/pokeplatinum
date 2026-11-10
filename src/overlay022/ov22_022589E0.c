@@ -232,7 +232,7 @@ static void ov22_02258BB8(UnkStruct_ov22_02258A48 *param0)
                 Sound_PlayEffect(SEQ_SE_DP_BOX01_sseq);
             }
         } else {
-            UnkStruct_ov22_02255040 *v12 = v0->unk_10->unk_00;
+            DressUpAccessorySprite *v12 = v0->unk_10->unk_00;
 
             ov22_02258EF8(param0, &v3, &v4, &v5, &v6);
 
@@ -257,7 +257,7 @@ static void ov22_02258BB8(UnkStruct_ov22_02258A48 *param0)
             }
 
             if (v0->unk_20 == 1) {
-                v0->unk_21 = ov22_02257FB0(v0->unk_10->unk_04, v12->unk_00, v0->unk_08->unk_00.unk_04);
+                v0->unk_21 = ov22_02257FB0(v0->unk_10->unk_04, v12->accessoryID, v0->unk_08->unk_00.unk_04);
             }
 
             ov22_02258F4C(v0, 4, v9, v10, v0->unk_10->unk_04, v0->unk_21);
@@ -352,7 +352,7 @@ static void ov22_02258DAC(UnkStruct_ov22_02258A48 *param0)
 static void ov22_02258E5C(UnkStruct_ov22_02258A48 *param0)
 {
     UnkStruct_ov22_02258EE4 *v0 = param0->unk_00;
-    UnkStruct_ov22_02255040 *v1;
+    DressUpAccessorySprite *v1;
     int v2;
 
     if (v0->unk_10) {
@@ -361,7 +361,7 @@ static void ov22_02258E5C(UnkStruct_ov22_02258A48 *param0)
         v1 = v0->unk_10->unk_00;
 
         ov22_02257CD4(v0->unk_04);
-        ov22_02257C88(v0->unk_04, v1->unk_00, HEAP_ID_14);
+        ov22_02257C88(v0->unk_04, v1->accessoryID, HEAP_ID_14);
     }
 }
 
@@ -481,11 +481,11 @@ static void ov22_02258FC0(SysTask *param0, void *param1)
 static void ov22_02259040(UnkStruct_ov22_02258EE4 *param0)
 {
     if (param0->unk_10->unk_04 == 0) {
-        UnkStruct_ov22_02255040 *v0 = param0->unk_10->unk_00;
-        ov22_0225A628(param0->unk_0C, 26, 386, v0->unk_00);
+        DressUpAccessorySprite *v0 = param0->unk_10->unk_00;
+        ov22_0225A628(param0->unk_0C, 26, 386, v0->accessoryID);
     } else if (param0->unk_10->unk_04 == 1) {
-        UnkStruct_ov22_02255040 *v0 = param0->unk_10->unk_00;
-        ov22_0225A628(param0->unk_0C, 26, 388, v0->unk_00);
+        DressUpAccessorySprite *v0 = param0->unk_10->unk_00;
+        ov22_0225A628(param0->unk_0C, 26, 388, v0->accessoryID);
     }
 }
 

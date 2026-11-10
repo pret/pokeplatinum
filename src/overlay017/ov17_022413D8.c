@@ -3,9 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020954F0.h"
-
 #include "battle_anim/is_form_symmetrical.h"
+#include "contest/common.h"
+#include "contest/logic.h"
+#include "contest/manager.h"
 #include "overlay017/const_ov17_022536B4.h"
 #include "overlay017/ov17_0223B140.h"
 #include "overlay017/ov17_0223F118.h"
@@ -20,7 +21,6 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "contest.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
@@ -42,7 +42,6 @@
 #include "text.h"
 #include "unk_02012744.h"
 #include "unk_0208C098.h"
-#include "unk_02094EDC.h"
 
 #include "res/text/bank/contest_text.h"
 
@@ -479,7 +478,7 @@ void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int contestantID)
     GF_ASSERT(param0->pokemonSpriteDataArray[contestantID].tiles != NULL);
     MI_CpuClear8(param0->pokemonSpriteDataArray[contestantID].tiles, (32 * 10 * 10));
 
-    param0->unk_08[contestantID] = sub_02095484(param0->unk_04, contestantID, param0->unk_00->contestMons[contestantID], 0, &param0->pokemonSpriteDataArray[contestantID], HEAP_ID_21, (256 - 40) - 32 * contestantID, (104 + 8) - 32 * contestantID, -0x200);
+    param0->unk_08[contestantID] = Contestant_CreateMonSprite(param0->unk_04, contestantID, param0->unk_00->contestMons[contestantID], 0, &param0->pokemonSpriteDataArray[contestantID], HEAP_ID_21, (256 - 40) - 32 * contestantID, (104 + 8) - 32 * contestantID, -0x200);
 
     PokemonSprite_SetAttribute(param0->unk_08[contestantID], MON_SPRITE_HIDE, 1);
     PokemonSprite_SetAttribute(param0->unk_08[contestantID], MON_SPRITE_HIDE_2, 1);
@@ -498,7 +497,7 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
         GF_ASSERT(param0->pokemonSpriteDataArray[i].tiles == NULL);
 
         param0->pokemonSpriteDataArray[i].tiles = Heap_Alloc(HEAP_ID_21, (32 * 10 * 10));
-        param0->unk_08[i] = sub_02095484(param0->unk_04, i, param0->unk_00->contestMons[i], 0, &param0->pokemonSpriteDataArray[i], HEAP_ID_21, (256 - 40) - 32 * i, (104 + 8) - 32 * i, -0x200);
+        param0->unk_08[i] = Contestant_CreateMonSprite(param0->unk_04, i, param0->unk_00->contestMons[i], 0, &param0->pokemonSpriteDataArray[i], HEAP_ID_21, (256 - 40) - 32 * i, (104 + 8) - 32 * i, -0x200);
 
         PokemonSprite_SetAttribute(param0->unk_08[i], MON_SPRITE_HIDE, 1);
         PokemonSprite_SetAttribute(param0->unk_08[i], MON_SPRITE_HIDE_2, 1);
@@ -532,7 +531,7 @@ void ov17_022416E4(UnkStruct_ov17_0223F88C *param0)
     param0->pokemonSpriteData.tiles = NULL;
 }
 
-static ManagedSprite *ov17_02241720(PaletteData *param0, SpriteSystem *param1, SpriteManager *param2, const UnkStruct_020954F0 *param3, int param4, NARC *param5)
+static ManagedSprite *ov17_02241720(PaletteData *param0, SpriteSystem *param1, SpriteManager *param2, const ContestJudge *param3, int param4, NARC *param5)
 {
     ManagedSprite *v0;
     SpriteTemplate v1;
@@ -639,7 +638,7 @@ void ov17_02241928(UnkStruct_ov17_0223F88C *param0, Contest *param1, NARC *param
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
         param0->unk_B4[v0] = ov17_022418A4(param0->unk_18, param0->unk_1C, v0);
-        param0->unk_A8[v0] = ov17_02241720(param0->unk_50, param0->unk_18, param0->unk_1C, &param1->unk_00.unk_C0[v0], v0, param2);
+        param0->unk_A8[v0] = ov17_02241720(param0->unk_50, param0->unk_18, param0->unk_1C, &param1->data.judges[v0], v0, param2);
     }
 }
 
@@ -1369,7 +1368,7 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
         break;
     case 6:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->judges[param2->judgeID].judgeNameMessageID);
         break;
     case 7:
         StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
@@ -1385,7 +1384,7 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
         break;
     case 10:
         StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->judges[param2->judgeID].judgeNameMessageID);
         break;
     case 11:
         StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
@@ -1436,31 +1435,31 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
         StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 23:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->judges[param2->judgeID].judgeNameMessageID);
         StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 24:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->judges[param2->judgeID].judgeNameMessageID);
         StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
         break;
     case 25:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->judges[param2->judgeID].judgeNameMessageID);
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->moveID);
         break;
     case 26:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->judges[param2->judgeID].judgeNameMessageID);
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 27:
         StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->judges[param2->judgeID].judgeNameMessageID);
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 2, param2->moveID);
         break;
     case 28: {
         const UnkStruct_ov17_0224290C *v0 = param3;
         int v1;
 
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[v0->unk_00].judgeNameMessageID);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->judges[v0->unk_00].judgeNameMessageID);
 
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_01[v1] == 4) {
@@ -1532,7 +1531,7 @@ void ov17_02242E9C(UnkStruct_ov17_02246F24 *param0, int contestMoveEffect, int p
 {
     u32 messageID, v1;
 
-    sub_02095790(contestMoveEffect, param2, &messageID, &v1);
+    Contest_GetEffectActingMessage(contestMoveEffect, param2, &messageID, &v1);
     ov17_02242DC0(param0, param0->unk_0C.contestActingCompetitionMessages, messageID, v1, param3, param4, FALSE);
 }
 
@@ -1553,14 +1552,14 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int contestantID)
 
     Pokemon_GetValue(param0->unk_0C.unk_00->contestMons[contestantID], MON_DATA_NICKNAME_STRING, monName);
 
-    if (contestantID == param0->unk_00->unk_00.playerContestantID) {
+    if (contestantID == param0->unk_00->data.playerContestantID) {
         color = TEXT_COLOR(1, 2, 0);
     } else {
         color = TEXT_COLOR(5, 6, 0);
     }
 
     ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[contestantID], monName, FONT_SYSTEM, color, 0, 33005, 0, 0, 0, 0, 15);
-    ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[contestantID], param0->unk_00->unk_00.trainerNames[contestantID], FONT_SYSTEM, color, 0, 33005, 0, 0, 0, 0, 15);
+    ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[contestantID], param0->unk_00->data.trainerNames[contestantID], FONT_SYSTEM, color, 0, 33005, 0, 0, 0, 0, 15);
 
     String_Free(monName);
 }
@@ -2104,8 +2103,8 @@ void ov17_022439C8(Contest *param0, int contestantID, enum Move moveID, UnkStruc
     case MOVE_CURSE: {
         int type1, type2;
 
-        type1 = Pokemon_GetValue(param0->unk_00.contestMons[contestantID], MON_DATA_TYPE_1, NULL);
-        type2 = Pokemon_GetValue(param0->unk_00.contestMons[contestantID], MON_DATA_TYPE_2, NULL);
+        type1 = Pokemon_GetValue(param0->data.contestMons[contestantID], MON_DATA_TYPE_1, NULL);
+        type2 = Pokemon_GetValue(param0->data.contestMons[contestantID], MON_DATA_TYPE_2, NULL);
 
         if (type1 == TYPE_GHOST || type2 == TYPE_GHOST) {
             param3->unk_07 = 1;

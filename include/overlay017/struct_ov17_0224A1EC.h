@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_OV17_0224A1EC_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/struct_02095C48_sub1.h"
 
 #include "battle/pokemon_sprite_data.h"
+#include "contest/common.h"
 #include "overlay017/struct_ov17_0223F2E4.h"
 #include "overlay017/struct_ov17_0224A1EC_sub1.h"
 #include "overlay017/struct_ov17_0224A8D4.h"
@@ -26,7 +26,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    UnkStruct_02095C48_sub1 *unk_00;
+    ContestData *unk_00;
     UnkStruct_ov17_0224B09C unk_04[4];
     PokemonSpriteManager *unk_44;
     PokemonSprite *unk_48[4];

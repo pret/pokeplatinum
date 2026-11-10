@@ -5,6 +5,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/battle_system.h"
 #include "battle_sub_menus/battle_party.h"
+#include "contest/logic.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -21,7 +22,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0208C098.h"
-#include "unk_02094EDC.h"
 
 #include "res/text/bank/battle_party.h"
 
@@ -1692,7 +1692,7 @@ static void PrintMoveDescription(BattleParty *battleParty, u32 windowIndex, u32 
 static void PrintMoveContestEffect(BattleParty *battleParty, u32 windowIndex, enum Move move)
 {
     Window *window = &battleParty->windows[windowIndex];
-    u32 textID = sub_0209577C(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT));
+    u32 textID = Contest_GetMoveEffectDescriptionMessageID(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT));
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(messageLoader, textID);
 

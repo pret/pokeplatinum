@@ -5,12 +5,14 @@
 
 #include "generated/trainer_score_events.h"
 
+#include "struct_defs/contest_photo.h"
 #include "struct_defs/dress_up_photo.h"
-#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_02095C60.h"
 #include "struct_defs/visual_competition_app_args.h"
 
+#include "contest/comm.h"
+#include "contest/logic.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_022578F4.h"
@@ -52,6 +54,7 @@
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "message.h"
 #include "network_icon.h"
 #include "overlay_manager.h"
@@ -71,10 +74,7 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_020298BC.h"
 #include "unk_020363E8.h"
-#include "unk_02094EDC.h"
-#include "unk_02095AF0.h"
 #include "yes_no_touch_menu.h"
 
 typedef struct {
@@ -154,7 +154,7 @@ static void ov22_02256DB8(UnkStruct_ov22_02255D44 *param0, BOOL *param1);
 static void ov22_02256DE0(SysTask *param0, void *param1);
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 *param0, int param1, int param2, int param3);
 static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *info);
-static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *param1, enum PokemonContestRank contestRank, const TrainerInfo *trainerInfo);
+static void ov22_02256FD8(ContestPhoto *param0, UnkStruct_ov22_02257964 *param1, enum PokemonContestRank contestRank, const TrainerInfo *trainerInfo);
 static void ov22_02257104(UnkStruct_ov22_02255D44 *param0);
 static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0);
 static void ov22_022571D4(UnkStruct_ov22_02255D44 *param0);
@@ -421,7 +421,7 @@ int VisualCompetition_Init(ApplicationManager *appMan, int *param1)
     v0->contestRank = appArgs->contestRank;
     v0->unk_728 = appArgs->competitionType;
     v0->contestType = appArgs->contestType;
-    v0->unk_730 = appArgs->unk_08;
+    v0->unk_730 = appArgs->dressUpTheme;
     v0->unk_734 = appArgs->unk_1C;
 
     EnableTouchPad();
@@ -454,7 +454,7 @@ int VisualCompetition_Init(ApplicationManager *appMan, int *param1)
     ov22_022567FC(v0);
     ov22_02256948(v0, 0);
     ov22_02256A28(v0);
-    ov22_02256BF4(v0, v0->unk_720, appArgs->unk_08, appArgs->unk_1C, appArgs->options);
+    ov22_02256BF4(v0, v0->unk_720, appArgs->dressUpTheme, appArgs->unk_1C, appArgs->options);
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 0);
 
     v0->unk_714 = YesNoTouchMenu_New(HEAP_ID_13);
@@ -631,7 +631,7 @@ int VisualCompetition_Exit(ApplicationManager *appMan, int *param1)
     u32 v1;
     VisualCompetitionAppArgs *appArgs = ApplicationManager_Args(appMan);
 
-    ov22_02256FD8(appArgs->unk_04, &v0->unk_458, v0->contestRank, appArgs->trainerInfo);
+    ov22_02256FD8(appArgs->playerPhoto, &v0->unk_458, v0->contestRank, appArgs->trainerInfo);
 
     YesNoTouchMenu_Free(v0->unk_714);
     Windows_Delete(v0->unk_718, 1);
@@ -722,12 +722,12 @@ static void ov22_02256708(UnkStruct_ov22_02255D44 *param0, Pokemon *mon, int par
 static void ov22_02256790(UnkStruct_ov22_02255D44 *param0, Pokemon *mon, int param2)
 {
     int v0, v1;
-    UnkStruct_ov22_022596B0 v2;
+    SpriteMargins v2;
 
     ov22_02256708(param0, mon, param2, 1);
     ov22_02259270(&param0->unk_458.unk_2C.unk_4C, &v0, &v1);
     ov22_02259358(&param0->unk_458.unk_2C.unk_4C, &v2);
-    ov22_022591EC(&param0->unk_458.unk_2C.unk_4C, 192, (16 + 129) - ((v1 / 2) - v2.unk_03) + -4);
+    ov22_022591EC(&param0->unk_458.unk_2C.unk_4C, 192, (16 + 129) - ((v1 / 2) - v2.bottom) + -4);
 }
 
 static void ov22_022567D8(UnkStruct_ov22_02255D44 *param0)
@@ -1127,7 +1127,7 @@ static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, 
     int gender;
 
     DressUpPhoto_Init(photo);
-    sub_02029FAC(photo, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
+    DressUpPhoto_SetMonFromSprite(photo, param1->unk_2C.unk_4C.mon, &param1->unk_2C.unk_4C);
 
     if (info != NULL) {
         name = TrainerInfo_NameNewString(info, HEAP_ID_13);
@@ -1141,7 +1141,7 @@ static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, 
 
     while (v0 != &param1->unk_00.unk_14) {
         if (v0->unk_04 == 0) {
-            sub_02029FD0(photo, v0->unk_00, v1);
+            DressUpPhoto_SetAccessoryFromSprite(photo, v0->unk_00, v1);
             v1++;
         }
 
@@ -1152,18 +1152,18 @@ static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, 
 
     while (v0 != &param1->unk_00.unk_04) {
         if (v0->unk_04 == 0) {
-            sub_02029FD0(photo, v0->unk_00, v1);
+            DressUpPhoto_SetAccessoryFromSprite(photo, v0->unk_00, v1);
             v1++;
         }
 
         v0 = v0->unk_08;
     }
 
-    sub_0202A084(photo, param1->unk_2C.unk_48);
+    DressUpPhoto_SetBackdrop(photo, param1->unk_2C.unk_48);
     DressUpPhoto_SetLanguageAndMagic(photo);
 }
 
-static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *param1, enum PokemonContestRank contestRank, const TrainerInfo *trainerInfo)
+static void ov22_02256FD8(ContestPhoto *param0, UnkStruct_ov22_02257964 *param1, enum PokemonContestRank contestRank, const TrainerInfo *trainerInfo)
 {
     int v0;
     int v1;
@@ -1175,12 +1175,12 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     v2 = Heap_Alloc(HEAP_ID_13, sizeof(UnkStruct_ov22_02256FD8));
     ov22_0225764C(v2);
 
-    sub_0202A284(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
+    ContestPhoto_SetMonFromSprite(param0, param1->unk_2C.unk_4C.mon, &param1->unk_2C.unk_4C);
 
     if (trainerInfo) {
         name = TrainerInfo_NameNewString(trainerInfo, 13);
         gender = TrainerInfo_Gender(trainerInfo);
-        sub_0202A4B4(param0, name, gender);
+        ContestPhoto_SetTrainerNameAndGender(param0, name, gender);
         String_Free(name);
     }
 
@@ -1193,14 +1193,14 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     for (v1 = 0; v1 < 21; v1++) {
         if (ov22_022576FC(v2, v1) == 1) {
             v3 = ov22_022576E8(v2, v1);
-            sub_0202A2A8(param0, v3->unk_00, v0);
+            ContestPhoto_SetAccessoryFromSprite(param0, v3->unk_00, v0);
             v0++;
         }
     }
 
-    sub_0202A35C(param0, param1->unk_2C.unk_48);
-    sub_0202A378(param0, contestRank);
-    sub_0202A240(param0);
+    ContestPhoto_SetBackdrop(param0, param1->unk_2C.unk_48);
+    ContestPhoto_SetContestRank(param0, contestRank);
+    ContestPhoto_SetMagic(param0);
     Heap_Free(v2);
 }
 

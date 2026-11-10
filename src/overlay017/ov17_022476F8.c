@@ -173,7 +173,7 @@ void ov17_022478D0(UnkStruct_ov17_02247A48 *param0, int param1)
 
     GF_ASSERT(param0->unk_0C.unk_18 == NULL);
 
-    SpriteSystem_SetTrainerFrontSpriteTemplate(&v0, param0->unk_00->unk_00.unk_10[param1].unk_0A);
+    SpriteSystem_SetTrainerFrontSpriteTemplate(&v0, param0->unk_00->data.contestants[param1].trainerSprite);
     param0->unk_0C.unk_18 = PokemonSpriteManager_CreateSprite(param0->unk_0C.unk_04, &v0, 320, 32, (-0x200 - 0x40), 3, NULL, NULL);
 }
 
@@ -197,7 +197,7 @@ static void ov17_VisualContest_FormatString(UnkStruct_ov17_02247A48 *param0, enu
     case VISUAL_CONTEST_MESSAGE_FORMAT_NONE:
         break;
     case VISUAL_CONTEST_MESSAGE_FORMAT_STRING_NICKNAME:
-        StringTemplate_SetString(param0->unk_0C.unk_3C, 0, param0->unk_00->unk_00.trainerNames[param2->contestantID], param0->unk_00->unk_00.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_0C.unk_3C, 0, param0->unk_00->data.trainerNames[param2->contestantID], param0->unk_00->data.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_0C.unk_3C, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->contestantID]));
         break;
     default:

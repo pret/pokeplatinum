@@ -186,7 +186,7 @@
       "en_US": "worst: +3"
     },
     {
-      "id": "pl_msg_00000210_00046",
+      "id": "ContestEffects_Text_DescriptionFirstNextTurn",
       "en_US": [
         "Enables the user to\n",
         "perform first in the\n",
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00047",
+      "id": "ContestEffects_Text_DescriptionLastNextTurn",
       "en_US": [
         "Enables the user to\n",
         "perform last in the\n",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00048",
+      "id": "ContestEffects_Text_DescriptionDoubledJudge",
       "en_US": [
         "Earn +2 for each\n",
         "time the same Judge\n",
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00049",
+      "id": "ContestEffects_Text_Description2HeartsWhenVoltageUp",
       "en_US": [
         "Earn +2 if the\n",
         "Judge’s Voltage goes\n",
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00050",
+      "id": "ContestEffects_Text_DescriptionBasic",
       "en_US": [
         "A basic performance\n",
         "using a move known\n",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00051",
+      "id": "ContestEffects_Text_DescriptionUniqueJudge",
       "en_US": [
         "Earn +3 if no other\n",
         "Pokémon has chosen\n",
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00052",
+      "id": "ContestEffects_Text_DescriptionConsecutiveUse",
       "en_US": [
         "Allows performance\n",
         "of the same move\n",
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00053",
+      "id": "ContestEffects_Text_DescriptionVoltage",
       "en_US": [
         "Increased Voltage is\n",
         "added to the\n",
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00054",
+      "id": "ContestEffects_Text_DescriptionAllSameJudge",
       "en_US": [
         "Earn +15 if all the\n",
         "Pokémon choose the\n",
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00055",
+      "id": "ContestEffects_Text_DescriptionLowersVoltage",
       "en_US": [
         "Lowers the Voltage\n",
         "of all Judges by one\n",
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00056",
+      "id": "ContestEffects_Text_DescriptionDoubleNextTurn",
       "en_US": [
         "Earn double the\n",
         "score in the next\n",
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00057",
+      "id": "ContestEffects_Text_DescriptionStealVoltage",
       "en_US": [
         "Steals the Voltage\n",
         "of the Pokémon that\n",
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00058",
+      "id": "ContestEffects_Text_DescriptionSuppressVoltage",
       "en_US": [
         "Prevents the Voltage\n",
         "from going up in the\n",
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00059",
+      "id": "ContestEffects_Text_DescriptionRandomOrder",
       "en_US": [
         "Makes the order of\n",
         "contestants random\n",
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00060",
+      "id": "ContestEffects_Text_DescriptionDoubleFinalAct",
       "en_US": [
         "Earns double the\n",
         "score on the final\n",
@@ -306,14 +306,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00061",
+      "id": "ContestEffects_Text_DescriptionLowVoltageAdvantage",
       "en_US": [
         "Raises the score if\n",
         "the Voltage is low."
       ]
     },
     {
-      "id": "pl_msg_00000210_00062",
+      "id": "ContestEffects_Text_DescriptionFirstPerformanceAdvantage",
       "en_US": [
         "Earn +2 if the\n",
         "Pokémon performs\n",
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00063",
+      "id": "ContestEffects_Text_DescriptionFinalPerformanceAdvantage",
       "en_US": [
         "Earn +2 if the\n",
         "Pokémon performs\n",
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00064",
+      "id": "ContestEffects_Text_DescriptionNoVoltageDown",
       "en_US": [
         "Prevents the Voltage\n",
         "from going down in\n",
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00065",
+      "id": "ContestEffects_Text_DescriptionTwoVoltageInARowAdvantage",
       "en_US": [
         "Earn +3 if two\n",
         "Pokémon raise the\n",
@@ -345,7 +345,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00066",
+      "id": "ContestEffects_Text_DescriptionHighScoreLaterTurn",
       "en_US": [
         "Earn a higher score\n",
         "the later the\n",
@@ -353,7 +353,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00067",
+      "id": "ContestEffects_Text_DescriptionMaxVoltageAdvantage",
       "en_US": [
         "Earn +3 if the\n",
         "Pokémon that just\n",
@@ -361,7 +361,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000210_00068",
+      "id": "ContestEffects_Text_DescriptionPityPoints",
       "en_US": [
         "Earn +3 if the\n",
         "Pokémon gets the\n",

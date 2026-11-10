@@ -119,7 +119,7 @@ Static main
 	Object src/pal_pad.c
 	Object src/mail.c
 	Object src/underground.c
-	Object src/unk_020298BC.c
+	Object src/image_clips.c
 	Object src/poffin.c
 	Object src/wifi_list.c
 	Object src/record_mixed_rng.c
@@ -324,9 +324,9 @@ Static main
 	Object src/applications/pokemon_summary_screen/subscreen.c
 	Object src/ribbon.c
 	Object src/unk_02092494.c
-	Object src/contest.c
-	Object src/unk_02094EDC.c
-	Object src/unk_02095AF0.c
+	Object src/contest/manager.c
+	Object src/contest/logic.c
+	Object src/contest/comm.c
 	Object src/applications/trade_room/comm.c
 	Object src/unk_02095E98.c
 	Object src/unk_020961E8.c
@@ -587,7 +587,7 @@ Overlay overlay6
 	Object src/overlay006/lake_guardian_containment_units.c
 	Object src/overlay006/ov6_02248050.c
 	Object src/overlay006/ov6_02248948.c
-	Object src/overlay006/ov6_022489E4.c
+	Object src/contest/link_comm.c
 }
 
 Overlay overlay7

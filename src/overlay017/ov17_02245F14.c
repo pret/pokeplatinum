@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "contest/logic.h"
+#include "contest/manager.h"
 #include "overlay017/ov17_022413D8.h"
 #include "overlay017/ov17_02243AC4.h"
 #include "overlay017/struct_ov17_022444BC.h"
@@ -10,9 +12,7 @@
 #include "overlay017/struct_ov17_02246540.h"
 #include "overlay017/struct_ov17_02246F24.h"
 
-#include "contest.h"
 #include "move_table.h"
-#include "unk_02094EDC.h"
 
 typedef int (*UnkFuncPtr_ov17_02253AF8)(UnkStruct_ov17_02246F24 *, UnkStruct_ov17_02246540 *, int, int, int);
 
@@ -198,9 +198,9 @@ void ov17_022460DC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246540 *par
     ov17_02246090(param1, contestantID);
 
     if (Unk_ov17_02253AF8[param1->unk_00[contestantID].contestMoveEffect].unk_05 == 0) {
-        sub_02095790(param1->unk_00[contestantID].contestMoveEffect, 4, &v0, &v1);
+        Contest_GetEffectActingMessage(param1->unk_00[contestantID].contestMoveEffect, CONTEST_EFFECT_ACTING_MESSAGE_PREVIEW, &v0, &v1);
 
-        if (v0 != 0xffff) {
+        if (v0 != CONTEST_EFFECT_ACTING_MESSAGE_NONE) {
             ov17_02245F14(&param1->unk_00[contestantID], param1->unk_00[contestantID].contestMoveEffect, 4, contestantID, 30000, 30000, 30000);
         }
     }
@@ -210,7 +210,7 @@ void ov17_02246138(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246540 *par
 {
     ov17_02246090(param1, contestantID);
 
-    param1->unk_00[contestantID].unk_04 = sub_02095734(param1->unk_00[contestantID].contestMoveEffect);
+    param1->unk_00[contestantID].unk_04 = Contest_GetMoveEffectAppeal(param1->unk_00[contestantID].contestMoveEffect);
     param1->unk_00[contestantID].unk_18 = param1->unk_00[contestantID].unk_04;
 }
 
@@ -311,7 +311,7 @@ void ov17_022463C4(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246540 *par
     param3->actingMessagesID2 = ACTING_COMPETITION_MESSAGE_NONE;
 
     v1 = param0->unk_220.unk_0E[contestantID];
-    v2 = ov17_02243AF0(param0->unk_00->unk_00.contestType, param1->unk_00[contestantID].moveID, v1, param0->unk_00->unk_00.unk_10E);
+    v2 = ov17_02243AF0(param0->unk_00->data.contestType, param1->unk_00[contestantID].moveID, v1, param0->unk_00->data.headJudgeID);
 
     if ((v2 > 0) && (param1->unk_00[contestantID].unk_28_1 == 0)) {
         param1->unk_B3[v1] += v2;
@@ -330,7 +330,7 @@ void ov17_022463C4(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246540 *par
     }
 
     if (param1->unk_B3[v1] >= (10 * 5)) {
-        if (v1 == param0->unk_00->unk_00.unk_10E) {
+        if (v1 == param0->unk_00->data.headJudgeID) {
             param1->unk_00[contestantID].unk_08 = (10 * 8);
         } else {
             param1->unk_00[contestantID].unk_08 = (10 * 5);
@@ -533,7 +533,7 @@ static int ov17_022467CC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0224654
     int v1;
 
     v0 = param1->unk_00[param3].unk_03;
-    v1 = ov17_02243AF0(param0->unk_00->unk_00.contestType, param1->unk_00[param3].moveID, v0, param0->unk_00->unk_00.unk_10E);
+    v1 = ov17_02243AF0(param0->unk_00->data.contestType, param1->unk_00[param3].moveID, v0, param0->unk_00->data.headJudgeID);
 
     if ((v1 > 0) && (param1->unk_00[param3].unk_28_1 == 0)) {
         param1->unk_00[param3].unk_1E += (10 * 2);
@@ -778,8 +778,8 @@ static int ov17_02246CDC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0224654
         return 0;
     }
 
-    v1 = ov17_02243AF0(param0->unk_00->unk_00.contestType, param1->unk_00[param3].moveID, param1->unk_00[param3].unk_03, param0->unk_00->unk_00.unk_10E);
-    v2 = ov17_02243AF0(param0->unk_00->unk_00.contestType, param1->unk_00[v0].moveID, param1->unk_00[v0].unk_03, param0->unk_00->unk_00.unk_10E);
+    v1 = ov17_02243AF0(param0->unk_00->data.contestType, param1->unk_00[param3].moveID, param1->unk_00[param3].unk_03, param0->unk_00->data.headJudgeID);
+    v2 = ov17_02243AF0(param0->unk_00->data.contestType, param1->unk_00[v0].moveID, param1->unk_00[v0].unk_03, param0->unk_00->data.headJudgeID);
 
     if ((v2 > 0) && (v1 > 0)) {
         param1->unk_00[param3].unk_1E += (10 * 3);
