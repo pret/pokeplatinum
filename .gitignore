@@ -16,7 +16,6 @@
 /subprojects/meson-*/
 /subprojects/yyjson-*/
 /subprojects/.wraplock
-/subprojects/rapidjson-*/
 
 # Metroskrew
 /tools/metroskrew/
