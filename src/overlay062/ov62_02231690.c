@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/graphics.h"
 #include "constants/geonet_globe.h"
+#include "constants/graphics.h"
 #include "constants/narc.h"
 #include "constants/string.h"
 
