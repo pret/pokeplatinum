@@ -11732,28 +11732,28 @@
                                                        54](sub_02030BFC,func) found in global src_unk_02030A80.c.o
                                                        54](sub_02030C08,func) found in global src_unk_02030A80.c.o
                                                         55](GeonetLocations_GetLocationCountFromCountry,func) found in global src_geonet_locations.c.o
-                                                         56](sCountryStateData,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableUnitedStatesStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableSwedenStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableRussiaStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectablePolandStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableNorwayStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableJapanStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableItalyStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableIndiaStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableGreatBritainStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableFranceStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableFinlandStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableSpainStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableGermanyStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableChinaStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableCanadaStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableBrazilStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableAustraliaStates,object) found in local src_geonet_locations.c.o
-                                                          57](sSelectableArgentinaStates,object) found in local src_geonet_locations.c.o
+                                                         56](sCountryRegionData,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableUnitedStatesRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableSwedenRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableRussiaRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectablePolandRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableNorwayRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableJapanRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableItalyRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableIndiaRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableGreatBritainRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableFranceRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableFinlandRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableSpainRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableGermanyRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableChinaRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableCanadaRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableBrazilRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableAustraliaRegions,object) found in local src_geonet_locations.c.o
+                                                          57](sSelectableArgentinaRegions,object) found in local src_geonet_locations.c.o
                                                           57](sSelectableCountries,object) found in local src_geonet_locations.c.o
                                                        54](StringTemplate_SetCountryName,func) found in global src_string_template.c.o
-                                                       54](StringTemplate_SetCityName,func) found in global src_string_template.c.o
+                                                       54](StringTemplate_SetRegionName,func) found in global src_string_template.c.o
                                                         55](GeonetLocations_GetBankIDFromCountry,func) found in global src_geonet_locations.c.o
                                                          56](GeonetLocations_GetIndexFromCountry,func) found in global src_geonet_locations.c.o
                                                          56](GeonetLocations_GetBankID,func) found in global src_geonet_locations.c.o
@@ -40665,7 +40665,7 @@
   0200BDD0 00000000 .text   $t	(src_string_template.c.o)
   0200BDD0 00000038 .text   StringTemplate_SetCountryName	(src_string_template.c.o)
   0200BE04 00000000 .text   $d	(src_string_template.c.o)
-  0200BE08 00000040 .text   StringTemplate_SetCityName	(src_string_template.c.o)
+  0200BE08 00000040 .text   StringTemplate_SetRegionName	(src_string_template.c.o)
   0200BE08 00000000 .text   $t	(src_string_template.c.o)
   0200BE48 0000001C .text   StringTemplate_SetEasyChatWord	(src_string_template.c.o)
   0200BE48 00000000 .text   $t	(src_string_template.c.o)
@@ -67453,26 +67453,26 @@
   020F6DF0 00000010 .rodata gRebootIntoWFCSettingsAppTemplate	(src_wifi_overlays.c.o)
   020F6E00 00000000 .rodata .rodata	(src_poffin_berry_selection_context.c.o)
   020F6E00 00000010 .rodata @19213	(src_poffin_berry_selection_context.c.o)
-  020F6E10 00000006 .rodata sSelectableFinlandStates	(src_geonet_locations.c.o)
-  020F6E18 00000007 .rodata sSelectableAustraliaStates	(src_geonet_locations.c.o)
-  020F6E20 00000007 .rodata sSelectableRussiaStates	(src_geonet_locations.c.o)
-  020F6E28 0000000C .rodata sSelectableGreatBritainStates	(src_geonet_locations.c.o)
-  020F6E34 0000000D .rodata sSelectableCanadaStates	(src_geonet_locations.c.o)
-  020F6E44 00000010 .rodata sSelectablePolandStates	(src_geonet_locations.c.o)
-  020F6E54 00000010 .rodata sSelectableGermanyStates	(src_geonet_locations.c.o)
-  020F6E64 00000011 .rodata sSelectableSpainStates	(src_geonet_locations.c.o)
-  020F6E78 00000014 .rodata sSelectableNorwayStates	(src_geonet_locations.c.o)
-  020F6E8C 00000014 .rodata sSelectableItalyStates	(src_geonet_locations.c.o)
-  020F6EA0 00000016 .rodata sSelectableFranceStates	(src_geonet_locations.c.o)
-  020F6EB8 00000018 .rodata sSelectableArgentinaStates	(src_geonet_locations.c.o)
-  020F6ED0 00000018 .rodata sSelectableSwedenStates	(src_geonet_locations.c.o)
-  020F6EE8 0000001B .rodata sSelectableBrazilStates	(src_geonet_locations.c.o)
-  020F6F04 0000001F .rodata sSelectableChinaStates	(src_geonet_locations.c.o)
-  020F6F24 00000023 .rodata sSelectableIndiaStates	(src_geonet_locations.c.o)
-  020F6F48 00000032 .rodata sSelectableJapanStates	(src_geonet_locations.c.o)
-  020F6F7C 00000033 .rodata sSelectableUnitedStatesStates	(src_geonet_locations.c.o)
+  020F6E10 00000006 .rodata sSelectableFinlandRegions	(src_geonet_locations.c.o)
+  020F6E18 00000007 .rodata sSelectableAustraliaRegions	(src_geonet_locations.c.o)
+  020F6E20 00000007 .rodata sSelectableRussiaRegions	(src_geonet_locations.c.o)
+  020F6E28 0000000C .rodata sSelectableGreatBritainRegions	(src_geonet_locations.c.o)
+  020F6E34 0000000D .rodata sSelectableCanadaRegions	(src_geonet_locations.c.o)
+  020F6E44 00000010 .rodata sSelectablePolandRegions	(src_geonet_locations.c.o)
+  020F6E54 00000010 .rodata sSelectableGermanyRegions	(src_geonet_locations.c.o)
+  020F6E64 00000011 .rodata sSelectableSpainRegions	(src_geonet_locations.c.o)
+  020F6E78 00000014 .rodata sSelectableNorwayRegions	(src_geonet_locations.c.o)
+  020F6E8C 00000014 .rodata sSelectableItalyRegions	(src_geonet_locations.c.o)
+  020F6EA0 00000016 .rodata sSelectableFranceRegions	(src_geonet_locations.c.o)
+  020F6EB8 00000018 .rodata sSelectableArgentinaRegions	(src_geonet_locations.c.o)
+  020F6ED0 00000018 .rodata sSelectableSwedenRegions	(src_geonet_locations.c.o)
+  020F6EE8 0000001B .rodata sSelectableBrazilRegions	(src_geonet_locations.c.o)
+  020F6F04 0000001F .rodata sSelectableChinaRegions	(src_geonet_locations.c.o)
+  020F6F24 00000023 .rodata sSelectableIndiaRegions	(src_geonet_locations.c.o)
+  020F6F48 00000032 .rodata sSelectableJapanRegions	(src_geonet_locations.c.o)
+  020F6F7C 00000033 .rodata sSelectableUnitedStatesRegions	(src_geonet_locations.c.o)
   020F6FB0 00000000 .rodata .rodata	(src_geonet_locations.c.o)
-  020F6FB0 000000E4 .rodata sCountryStateData	(src_geonet_locations.c.o)
+  020F6FB0 000000E4 .rodata sCountryRegionData	(src_geonet_locations.c.o)
   020F7094 000000E9 .rodata sSelectableCountries	(src_geonet_locations.c.o)
   020F7180 00000004 .rodata sOtherWords	(src_easy_chat_word_list.c.o)
   020F7180 00000000 .rodata .rodata	(src_easy_chat_word_list.c.o)
