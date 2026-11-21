@@ -443,11 +443,11 @@ void StringTemplate_SetCountryName(StringTemplate *template, u32 idx, u32 countr
     SetArgFromArchive(template, idx, country, TEXT_BANK_COUNTRY_NAMES);
 }
 
-void StringTemplate_SetCityName(StringTemplate *template, u32 idx, u32 country, u32 city)
+void StringTemplate_SetRegionName(StringTemplate *template, u32 idx, u32 country, u32 region)
 {
     u32 bankID = GeonetLocations_GetBankIDFromCountry(country);
-    if (bankID && city) {
-        SetArgFromArchive(template, idx, city, bankID);
+    if (bankID != 0 && region != 0) {
+        SetArgFromArchive(template, idx, region, bankID);
     }
 }
 

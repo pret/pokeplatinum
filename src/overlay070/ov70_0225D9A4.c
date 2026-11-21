@@ -279,8 +279,8 @@ static void ov70_0225F2C8(UnkStruct_ov70_0225F208 *param0, const TrainerInfo *pa
 static void ov70_0225F2D8(UnkStruct_ov70_0225F208 *param0, enum PlazaMinigame param1, u32 param2);
 static void ov70_0225F2E8(UnkStruct_ov70_0225F208 *param0, int param1, u32 param2);
 static void ov70_0225F2F8(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param2);
-static void ov70_0225F308(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param2);
-static void ov70_0225F318(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param2, u32 param3);
+static void ov70_0225F308(UnkStruct_ov70_0225F208 *param0, u32 country, u32 param2);
+static void ov70_0225F318(UnkStruct_ov70_0225F208 *param0, u32 country, u32 region, u32 param3);
 static void ov70_0225F32C(UnkStruct_ov70_0225F208 *param0, u32 param1, u16 param2);
 static void ov70_0225F338(UnkStruct_ov70_0225F208 *param0);
 static void ov70_0225F344(UnkStruct_ov70_0225DEE8 *param0);
@@ -1993,14 +1993,14 @@ static void ov70_0225F2F8(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param
     StringTemplate_SetPlazaItemName(param0->unk_00, param2, param1);
 }
 
-static void ov70_0225F308(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param2)
+static void ov70_0225F308(UnkStruct_ov70_0225F208 *param0, u32 country, u32 param2)
 {
-    StringTemplate_SetCountryName(param0->unk_00, param2, param1);
+    StringTemplate_SetCountryName(param0->unk_00, param2, country);
 }
 
-static void ov70_0225F318(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param2, u32 param3)
+static void ov70_0225F318(UnkStruct_ov70_0225F208 *param0, u32 country, u32 region, u32 param3)
 {
-    StringTemplate_SetCityName(param0->unk_00, param3, param1, param2);
+    StringTemplate_SetRegionName(param0->unk_00, param3, country, region);
 }
 
 static void ov70_0225F32C(UnkStruct_ov70_0225F208 *param0, u32 param1, u16 param2)
@@ -2848,14 +2848,11 @@ static void ov70_02260370(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F2
 
 static void ov70_02260380(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, const WiFiPlazaProfile *param2)
 {
-    u32 v0;
-    u32 v1;
+    u32 country = ov66_0222E880(param2);
+    u32 region = ov66_0222E8A4(param2);
 
-    v0 = ov66_0222E880(param2);
-    v1 = ov66_0222E8A4(param2);
-
-    ov70_0225F308(param1, v0, 0);
-    ov70_0225F318(param1, v0, v1, 1);
+    ov70_0225F308(param1, country, 0);
+    ov70_0225F318(param1, country, region, 1);
 }
 
 static void ov70_022603B0(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, const UnkStruct_ov66_02230914 *param2)
