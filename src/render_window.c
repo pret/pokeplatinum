@@ -364,7 +364,7 @@ static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile)
     u8 *cursorTiles;
     void *cursorCharPtr;
 
-    u32 heapID = BgConfig_GetHeapID(window->bgConfig);
+    enum HeapID heapID = BgConfig_GetHeapID(window->bgConfig);
     u8 bgLayer = Window_GetBgLayer(window);
     u8 *cursorBlit = Heap_Alloc(heapID, SCROLL_CURSOR_GRAPHICS_SIZE);
     u8 *bgGfx = Bg_GetCharPtr(bgLayer);
@@ -596,7 +596,7 @@ void Window_EraseSignpost(Window *window, u8 signpostType, u8 skipTransfer)
 void *Window_AddWaitDial(Window *window, u32 baseTile)
 {
     WaitDial *dial;
-    u32 heapID;
+    enum HeapID heapID;
     u8 *bgCharPtr;
     u8 *dialTiles;
     u8 *tmp;

@@ -222,6 +222,6 @@ void MessageLoader_Get(const MessageLoader *loader, u32 entryID, charcode_t *dst
  * @param heapID    Heap on which to allocate the temporary message bank load.
  * @param dst       The destination buffer.
  */
-void MessageLoader_GetSpeciesName(u32 species, u32 heapID, charcode_t *dst);
+void MessageLoader_GetSpeciesName(u32 species, enum HeapID heapID, charcode_t *dst);
 
 #endif // POKEPLATINUM_MESSAGE_H

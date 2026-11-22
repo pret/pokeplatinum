@@ -40,7 +40,7 @@ typedef struct Easy3DObject {
 } Easy3DObject;
 
 void Easy3DModel_Load(Easy3DModel *model, enum NarcID narcID, u32 memberIndex, enum HeapID heapID);
-void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID);
+void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, enum HeapID heapID);
 void Easy3DModel_Release(Easy3DModel *model);
 
 void Easy3DAnim_LoadFrom(Easy3DAnim *anim, const Easy3DModel *model, NARC *narc, u32 memberIndex, enum HeapID heapID, NNSFndAllocator *allocator);

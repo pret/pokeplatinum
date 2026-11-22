@@ -10,7 +10,7 @@
 
 static void BattleFactoryAppPokeballSprite_SetSelected(BattleFactoryAppPokeballSprite *ballSprite, u8 isSelected);
 
-BattleFactoryAppPokeballSprite *BattleFactoryAppPokeballSprite_New(BattleFactoryAppSpriteManager *spriteMan, int x, int y, u32 heapID)
+BattleFactoryAppPokeballSprite *BattleFactoryAppPokeballSprite_New(BattleFactoryAppSpriteManager *spriteMan, int x, int y, enum HeapID heapID)
 {
     BattleFactoryAppPokeballSprite *ballSprite = Heap_Alloc(heapID, sizeof(BattleFactoryAppPokeballSprite));
     memset(ballSprite, 0, sizeof(BattleFactoryAppPokeballSprite));

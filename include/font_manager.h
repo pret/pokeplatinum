@@ -51,7 +51,7 @@ struct FontManager {
 
 FontManager *FontManager_New(enum NarcID narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, enum HeapID heapID);
 void FontManager_Delete(FontManager *fontManager);
-void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID);
+void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, enum HeapID heapID);
 void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph);
 u32 FontManager_CalcStringWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing);
 BOOL FontManager_AreAllCharsValid(const FontManager *fontManager, const charcode_t *str);

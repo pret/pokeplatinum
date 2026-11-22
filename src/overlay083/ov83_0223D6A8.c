@@ -80,14 +80,14 @@ typedef struct {
     u8 unk_1A;
 } UnkStruct_ov83_022404B0;
 
-static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 heapID);
+static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, enum HeapID heapID);
 static void ov83_0223E138(UnkStruct_ov83_0223E138 *param0);
-static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *param2);
+static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, enum HeapID heapID, NARC *param2);
 static void ov83_0223E208(UnkStruct_ov83_0223E138 *param0);
 static void ov83_0223E21C(Window *param0, String *param1, int param2, int param3);
-static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID);
+static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, enum HeapID heapID);
 static void ov83_0223E824(UnkStruct_ov83_0223E824 *param0);
-static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 heapID, NARC *param2);
+static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, enum HeapID heapID, NARC *param2);
 static UnkStruct_ov83_0223F054 *ov83_0223EFF4(UnkStruct_ov83_0223ED3C *param0);
 static UnkStruct_ov83_0223F054 *ov83_0223F018(UnkStruct_ov83_0223ED3C *param0);
 static void ov83_0223F054(UnkStruct_ov83_0223F054 *param0);
@@ -527,7 +527,7 @@ void ov83_0223DEC4(UnkStruct_ov83_0223E138 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E138));
 }
 
-void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, u32 heapID, NARC *param3)
+void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, enum HeapID heapID, NARC *param3)
 {
     GF_ASSERT(param0->unk_30 == 0);
 
@@ -609,7 +609,7 @@ void ov83_0223DFAC(UnkStruct_ov83_0223E138 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_04, 5);
 }
 
-static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 heapID)
+static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, enum HeapID heapID)
 {
     param0->unk_08 = Window_New(heapID, 1);
     param0->unk_0C = Window_New(heapID, 1);
@@ -631,7 +631,7 @@ static void ov83_0223E138(UnkStruct_ov83_0223E138 *param0)
     Windows_Delete(param0->unk_0C, 1);
 }
 
-static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 heapID, NARC *param2)
+static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, enum HeapID heapID, NARC *param2)
 {
     int v0;
 
@@ -1011,7 +1011,7 @@ void ov83_0223E6F8(UnkStruct_ov83_0223E824 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E824));
 }
 
-void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, u32 heapID, NARC *param3)
+void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, enum HeapID heapID, NARC *param3)
 {
     GF_ASSERT(param0->unk_28 == 0);
 
@@ -1035,7 +1035,7 @@ void ov83_0223E760(UnkStruct_ov83_0223E824 *param0)
     param0->unk_28 = 0;
 }
 
-static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID)
+static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, enum HeapID heapID)
 {
     int v0;
     static u16 v1[4][6] = {
@@ -1067,7 +1067,7 @@ static void ov83_0223E824(UnkStruct_ov83_0223E824 *param0)
     }
 }
 
-static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 heapID, NARC *param2)
+static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, enum HeapID heapID, NARC *param2)
 {
     void *v0;
     NNSG2dScreenData *v1;

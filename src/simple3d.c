@@ -24,7 +24,7 @@ static void LoadModelFromSet(Simple3DModel *model, NNSG3dResFileHeader *modelSet
 static void BindModelTexture(Simple3DModel *model);
 static void FreeMdlSetHeader(Simple3DModel *model);
 static void UnloadModelTexture(Simple3DModel *model);
-static void BindAnimToModel(Simple3DAnimation *anim, const NNSG3dResMdl *model, u32 heapID);
+static void BindAnimToModel(Simple3DAnimation *anim, const NNSG3dResMdl *model, enum HeapID heapID);
 static void InitG3DAnimObject(Simple3DAnimation *anim, const NNSG3dResMdl *model, const NNSG3dResTex *texture);
 static void ZeroOutRenderObj(Simple3DRenderObj *renderObj);
 static void BindModelToRenderObj(Simple3DRenderObj *renderObj, NNSG3dResMdl *model);
@@ -60,7 +60,7 @@ static void LoadModelFromSet(Simple3DModel *dest, NNSG3dResFileHeader *modelSetH
     dest->texture = NNS_G3dGetTex(modelSetHeader);
 }
 
-void Simple3D_LoadModelFromSet(Simple3DModel *dest, u32 modelIdx, NARC *narc, u32 modelSetNarcIdx, u32 heapID, BOOL allocAtEnd)
+void Simple3D_LoadModelFromSet(Simple3DModel *dest, u32 modelIdx, NARC *narc, u32 modelSetNarcIdx, enum HeapID heapID, BOOL allocAtEnd)
 {
     NNSG3dResFileHeader *modelSetHeader = LoadMemberFromOpenNARC(narc, modelSetNarcIdx, FALSE, heapID, allocAtEnd);
     LoadModelFromSet(dest, modelSetHeader, modelIdx);
@@ -142,7 +142,7 @@ static void CreateAnimCopy(Simple3DAnimation *dest, Simple3DAnimation *src, u32 
     Simple3D_LoadFromAllocatedSet(dest, v0, unused);
 }
 
-void Simple3D_LoadAnimFromOpenNARC(Simple3DAnimation *anim, u32 unused, NARC *narc, u32 animSetNarcIdx, u32 heapID, BOOL allocAtEnd)
+void Simple3D_LoadAnimFromOpenNARC(Simple3DAnimation *anim, u32 unused, NARC *narc, u32 animSetNarcIdx, enum HeapID heapID, BOOL allocAtEnd)
 {
     void *v0 = LoadMemberFromOpenNARC(narc, animSetNarcIdx, FALSE, heapID, allocAtEnd);
     LoadAnimFromSet_NewAlloc(anim, v0, unused);
@@ -167,7 +167,7 @@ void Simple3D_FreeAnimationSet(Simple3DAnimation *anim)
     anim->g3DAnim = NULL;
 }
 
-static void BindAnimToModel(Simple3DAnimation *anim, const NNSG3dResMdl *model, u32 heapID)
+static void BindAnimToModel(Simple3DAnimation *anim, const NNSG3dResMdl *model, enum HeapID heapID)
 {
     HeapExp_FndInitAllocator(&anim->allocator, heapID, 4);
     anim->animObj = NNS_G3dAllocAnmObj(&anim->allocator, anim->g3DAnim, model);
@@ -175,7 +175,7 @@ static void BindAnimToModel(Simple3DAnimation *anim, const NNSG3dResMdl *model, 
     GF_ASSERT(anim->animObj != NULL);
 }
 
-void Simple3D_BindModelToAnim(Simple3DAnimation *anim, const Simple3DModel *model, u32 heapID)
+void Simple3D_BindModelToAnim(Simple3DAnimation *anim, const Simple3DModel *model, enum HeapID heapID)
 {
     BindAnimToModel(anim, model->g3DModel, heapID);
 }
@@ -190,7 +190,7 @@ void Simple3D_InitG3DAnimObject(Simple3DAnimation *anim, const Simple3DModel *mo
     InitG3DAnimObject(anim, model->g3DModel, model->texture);
 }
 
-void Simple3D_ApplyAnimCopyToModel(Simple3DAnimation *dest, const Simple3DModel *model, Simple3DAnimation *src, u32 unused, u32 heapID)
+void Simple3D_ApplyAnimCopyToModel(Simple3DAnimation *dest, const Simple3DModel *model, Simple3DAnimation *src, u32 unused, enum HeapID heapID)
 {
     CreateAnimCopy(dest, src, unused);
     Simple3D_BindModelToAnim(dest, model, heapID);

@@ -152,11 +152,11 @@ static void ov70_02269488(const UnkStruct_ov70_022692B4 *param0, fx32 *param1, f
 static void ov70_0226949C(UnkStruct_ov70_0226949C *param0, u16 param1, u16 param2, fx32 param3);
 static void ov70_022694D0(UnkStruct_ov70_0226949C *param0);
 static void ov70_02269508(const UnkStruct_ov70_0226949C *param0, fx32 *param1);
-static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 heapID);
+static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, enum HeapID heapID);
 static void ov70_022695C4(UnkStruct_ov70_02269204 *param0);
-static void ov70_022695E0(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 param2);
+static void ov70_022695E0(UnkStruct_ov70_02269204 *param0, NARC *param1, enum HeapID heapID);
 static void ov70_02269608(UnkStruct_ov70_02269204 *param0);
-static void ov70_0226965C(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 param2);
+static void ov70_0226965C(UnkStruct_ov70_02269204 *param0, NARC *param1, enum HeapID heapID);
 static void ov70_02269700(UnkStruct_ov70_02269204 *param0);
 static void ov70_02269738(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1, UnkStruct_ov70_0225CC54 *param2, u32 param3);
 static void ov70_0226978C(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1);
@@ -625,7 +625,7 @@ static const UnkStruct_ov70_0226E5A4 Unk_ov70_0226E5A4[39] = {
     },
 };
 
-UnkStruct_ov70_02269204 *ov70_02269190(WiFiPlazaSystem *param0, UnkStruct_ov70_0225C894 *param1, UnkStruct_ov70_02260AD4 *param2, UnkStruct_ov70_0225CA20 *param3, enum HeapID heapID, u32 heapID2)
+UnkStruct_ov70_02269204 *ov70_02269190(WiFiPlazaSystem *param0, UnkStruct_ov70_0225C894 *param1, UnkStruct_ov70_02260AD4 *param2, UnkStruct_ov70_0225CA20 *param3, enum HeapID heapID, enum HeapID heapID2)
 {
     UnkStruct_ov70_02269204 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_02269204));
     memset(v0, 0, sizeof(UnkStruct_ov70_02269204));
@@ -785,7 +785,7 @@ static void ov70_02269510(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
     }
 }
 
-static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 heapID)
+static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, enum HeapID heapID)
 {
     int v0;
 
@@ -808,7 +808,7 @@ static void ov70_022695C4(UnkStruct_ov70_02269204 *param0)
     }
 }
 
-static void ov70_022695E0(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 heapID)
+static void ov70_022695E0(UnkStruct_ov70_02269204 *param0, NARC *param1, enum HeapID heapID)
 {
     int v0;
 
@@ -838,7 +838,7 @@ static void ov70_02269608(UnkStruct_ov70_02269204 *param0)
     }
 }
 
-static void ov70_0226965C(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 param2)
+static void ov70_0226965C(UnkStruct_ov70_02269204 *param0, NARC *param1, enum HeapID heapID)
 {
     int v0, v1;
 
@@ -847,7 +847,7 @@ static void ov70_0226965C(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 par
             if (Unk_ov70_0226E5A4[v0].unk_02[v1] != 17) {
                 if (param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]].data == NULL) {
                     param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00].texture = NNS_G3dGetTex(param0->unk_10640[Unk_ov70_0226E5A4[v0].unk_01]);
-                    Easy3DAnim_LoadFrom(&param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]], &param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00], param1, 183 + Unk_ov70_0226E5A4[v0].unk_02[v1], param2, &param0->unk_1081C);
+                    Easy3DAnim_LoadFrom(&param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]], &param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00], param1, 183 + Unk_ov70_0226E5A4[v0].unk_02[v1], heapID, &param0->unk_1081C);
                 }
             }
         }

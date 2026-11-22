@@ -277,25 +277,25 @@ static u32 ov69_0225D194(const VecFx32 *param0, const VecFx32 *param1);
 static u32 ov69_0225D1E0(const UnkStruct_ov69_0225CE64 *param0, u32 param1, UnkStruct_ov66_02231428 param2);
 static BOOL ov69_0225D268(UnkStruct_ov69_0225CE64 *param0, u8 country, u8 region);
 static void ov69_0225D2A8(UnkStruct_ov69_0225CE64 *param0, const UnkStruct_ov66_02230F50 *param1);
-static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *options, u32 heapID);
+static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *options, enum HeapID heapID);
 static void ov69_0225D35C(UnkStruct_ov69_0225D35C *param0);
 static void ov69_0225D384(UnkStruct_ov69_0225D35C *param0);
 static void ov69_0225D390(UnkStruct_ov69_0225D35C *param0);
-static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *options, u32 param2);
+static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *options, enum HeapID heapID);
 static void ov69_0225D504(UnkStruct_ov69_0225D35C *param0);
-static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, u32 heapID);
+static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, enum HeapID heapID);
 static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0);
-static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 heapID);
+static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, enum HeapID heapID);
 static void ov69_0225D63C(UnkStruct_ov69_0225D35C *param0);
 static void ov69_0225D64C(void);
-static void ov69_0225D6D8(UnkStruct_ov69_0225D71C *param0, UnkStruct_ov69_0225D35C *param1, u32 heapID);
+static void ov69_0225D6D8(UnkStruct_ov69_0225D71C *param0, UnkStruct_ov69_0225D35C *param1, enum HeapID heapID);
 static void ov69_0225D71C(UnkStruct_ov69_0225D71C *param0);
 static void ov69_0225D728(UnkStruct_ov69_0225D71C *param0);
 static void ov69_0225D760(const UnkStruct_ov69_0225D71C *param0, VecFx32 *param1);
 static void ov69_0225D770(const UnkStruct_ov69_0225D71C *param0, MtxFx33 *param1);
 static void ov69_0225D780(const UnkStruct_ov69_0225D71C *param0, VecFx32 *param1);
 static void ov69_0225D790(UnkStruct_ov69_0225D71C *param0, const VecFx32 *param1);
-static void ov69_0225D7A0(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_02231560 *param1, UnkStruct_ov69_0225D35C *param2, UnkStruct_ov69_0225DA74 param3, u32 heapID);
+static void ov69_0225D7A0(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_02231560 *param1, UnkStruct_ov69_0225D35C *param2, UnkStruct_ov69_0225DA74 param3, enum HeapID heapID);
 static void ov69_0225D838(UnkStruct_ov69_0225CA7C *param0);
 static void ov69_0225D854(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov69_0225D71C *param1);
 static u32 ov69_0225D91C(const UnkStruct_ov66_02231560 *param0, u16 country, u16 region);
@@ -312,13 +312,13 @@ static void ov69_0225DAF8(const UnkStruct_ov69_0225DAEC *param0);
 static void ov69_0225DB00(UnkStruct_ov69_0225DAEC *param0);
 static BOOL ov69_0225DB2C(UnkStruct_ov69_0225DAEC *param0, UnkStruct_ov69_0225CA7C *param1);
 static u32 ov69_0225DBB0(const UnkStruct_ov69_0225DAEC *param0);
-static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, u32 heapID);
+static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, enum HeapID heapID);
 static void ov69_0225DC48(UnkStruct_ov69_0225DC48 *param0);
 static void ov69_0225DC54(UnkStruct_ov69_0225DC48 *param0);
 static int ov69_0225DD10(const UnkStruct_ov69_0225DC48 *param0, u32 param1);
 static void ov69_0225DD2C(UnkStruct_ov69_0225DC48 *param0);
 static void ov69_0225DD44(UnkStruct_ov69_0225DC48 *param0);
-static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *saveData, u32 heapID);
+static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *saveData, enum HeapID heapID);
 static void ov69_0225DDC8(UnkStruct_ov69_0225DDC8 *param0);
 static void ov69_0225DDFC(UnkStruct_ov69_0225DDC8 *param0);
 static u32 ov69_0225DE40(UnkStruct_ov69_0225DDC8 *param0);
@@ -380,7 +380,7 @@ static void ov69_0225EE68(const UnkStruct_ov69_0225ED90 *param0, UnkStruct_ov69_
 static void ov69_0225EEC4(UnkStruct_ov69_0225EB60 *param0, u32 param1);
 static u16 ov69_0225EEEC(u32 param0);
 static u16 ov69_0225EF04(u32 param0);
-static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 *param0, u32 heapID);
+static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 *param0, enum HeapID heapID);
 static void ov69_0225EF54(UnkStruct_ov69_0225EF54 *param0);
 static String *ov69_0225EF74(UnkStruct_ov69_0225EF54 *param0, u32 param1);
 static String *ov69_0225EF90(UnkStruct_ov69_0225EF54 *param0, u32 country);
@@ -779,7 +779,7 @@ int ov69_0225C8FC(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov69_0225C980(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_02231560 *param1, u32 heapID)
+static void ov69_0225C980(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_02231560 *param1, enum HeapID heapID)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH_PLACE, heapID);
 
@@ -1349,7 +1349,7 @@ static void ov69_0225D2A8(UnkStruct_ov69_0225CE64 *param0, const UnkStruct_ov66_
     }
 }
 
-static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *options, u32 heapID)
+static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *options, enum HeapID heapID)
 {
     param0->unk_1A8 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTIMER, heapID);
 
@@ -1383,7 +1383,7 @@ static void ov69_0225D390(UnkStruct_ov69_0225D35C *param0)
     VramTransfer_Process();
 }
 
-static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *options, u32 heapID)
+static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *options, enum HeapID heapID)
 {
     SetAllGraphicsModes(&Unk_ov69_0225F040);
 
@@ -1435,7 +1435,7 @@ static void ov69_0225D504(UnkStruct_ov69_0225D35C *param0)
     GXLayers_SwapDisplay();
 }
 
-static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, u32 heapID)
+static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, enum HeapID heapID)
 {
     int i;
 
@@ -1477,7 +1477,7 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
     RenderOam_Free();
 }
 
-static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 heapID)
+static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, enum HeapID heapID)
 {
     param0->unk_1A4 = G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov69_0225D64C);
     NNS_G3dGlbLightVector(0, 0, 0, -(FX32_ONE - 1));
@@ -1503,7 +1503,7 @@ static void ov69_0225D64C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov69_0225D6D8(UnkStruct_ov69_0225D71C *param0, UnkStruct_ov69_0225D35C *param1, u32 heapID)
+static void ov69_0225D6D8(UnkStruct_ov69_0225D71C *param0, UnkStruct_ov69_0225D35C *param1, enum HeapID heapID)
 {
     VEC_Set(&param0->unk_00, 0, 0, 0);
     VEC_Set(&param0->unk_0C, FX32_ONE, FX32_ONE, FX32_ONE);
@@ -1549,7 +1549,7 @@ static void ov69_0225D790(UnkStruct_ov69_0225D71C *param0, const VecFx32 *param1
     param0->unk_18 = *param1;
 }
 
-static void ov69_0225D7A0(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_02231560 *param1, UnkStruct_ov69_0225D35C *param2, UnkStruct_ov69_0225DA74 param3, u32 heapID)
+static void ov69_0225D7A0(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_02231560 *param1, UnkStruct_ov69_0225D35C *param2, UnkStruct_ov69_0225DA74 param3, enum HeapID heapID)
 {
     int v0;
 
@@ -1783,7 +1783,7 @@ static u32 ov69_0225DBB0(const UnkStruct_ov69_0225DAEC *param0)
     return param0->unk_10;
 }
 
-static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, u32 heapID)
+static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, enum HeapID heapID)
 {
     memset(param0, 0, sizeof(UnkStruct_ov69_0225DC48));
 
@@ -1897,7 +1897,7 @@ static void ov69_0225DD44(UnkStruct_ov69_0225DC48 *param0)
     Window_DrawStandardFrame(&param0->unk_1C, 0, 1 + (18 + 12), 0);
 }
 
-static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *saveData, u32 heapID)
+static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *saveData, enum HeapID heapID)
 {
     memset(param0, 0, sizeof(UnkStruct_ov69_0225DC48));
 
@@ -2854,7 +2854,7 @@ static u16 ov69_0225EF04(u32 param0)
     return Unk_ov69_0225F0E8[param0].unk_01;
 }
 
-static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 *param0, u32 heapID)
+static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 *param0, enum HeapID heapID)
 {
     param0->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0696, heapID);
     param0->unk_04 = StringTemplate_New(8, 64, heapID);

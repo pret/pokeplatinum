@@ -132,7 +132,7 @@ static const UnkStruct_ov66_02258B38 Unk_ov66_02258B38[20] = {
     { 0xEA, 0x18D, 0x0 }
 };
 
-UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, enum HeapID heapID, u32 heapID2)
+UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, enum HeapID heapID, enum HeapID heapID2)
 {
     UnkStruct_ov66_02234548 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02234548));
     memset(v0, 0, sizeof(UnkStruct_ov66_02234548));
