@@ -75,7 +75,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0);
 void ov62_022339A0(UnkStruct_0208C06C *param0);
 void ov62_022339DC(UnkStruct_0208C06C *param0);
 void ov62_02233A44(UnkStruct_0208C06C *param0);
-NARC *ov62_02233A68(int param0);
+NARC *ov62_02233A68(enum HeapID heapIDUnused);
 void ov62_02233A74(NARC *param0);
 ManagedSprite *ov62_02233A7C(UnkStruct_0208C06C *param0, NARC *param1, int param2, int param3, int param4, int param5);
 void ov62_02233B24(UnkStruct_0208C06C *param0, int param1, ManagedSprite *param2);

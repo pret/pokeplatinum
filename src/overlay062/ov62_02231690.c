@@ -1893,7 +1893,7 @@ void ov62_02233A44(UnkStruct_0208C06C *param0)
     SpriteManager_UnloadAnimObjById(param0->unk_14.unk_08, 100000);
 }
 
-NARC *ov62_02233A68(int param0)
+NARC *ov62_02233A68(enum HeapID heapIDUnused)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_102);
     return v0;

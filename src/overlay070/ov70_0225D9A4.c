@@ -180,7 +180,7 @@ typedef struct {
     u8 unk_152;
     u8 unk_153;
     u16 unk_154;
-    u16 unk_156;
+    u16 heapID;
 } UnkStruct_ov70_0225F350;
 
 typedef struct {
@@ -2379,7 +2379,7 @@ static void ov70_0225F934(UnkStruct_ov70_0225F350 *param0, BOOL param1)
 static void ov70_0225F940(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, enum HeapID heapID)
 {
     param0->unk_154 = param2;
-    param0->unk_156 = heapID;
+    param0->heapID = heapID;
 
     SysTask_ExecuteAfterVBlank(ov70_0225F95C, param0, 0);
 }
@@ -2389,15 +2389,15 @@ static void ov70_0225F95C(SysTask *param0, void *param1)
     UnkStruct_ov70_0225F350 *v0 = param1;
 
     {
-        Graphics_LoadPaletteFromOpenNARC(v0->unk_14C, v0->unk_154, 4, 0, 0, v0->unk_156);
+        Graphics_LoadPaletteFromOpenNARC(v0->unk_14C, v0->unk_154, 4, 0, 0, v0->heapID);
     }
 
     {
-        Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(5), v0->unk_156);
+        Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(5), v0->heapID);
     }
 
     {
-        Graphics_LoadPalette(TypeIcon_GetNARC(), TypeIcon_GetPlttSrc(), 4, 11 * 32, 3 * 32, v0->unk_156);
+        Graphics_LoadPalette(TypeIcon_GetNARC(), TypeIcon_GetPlttSrc(), 4, 11 * 32, 3 * 32, v0->heapID);
     }
 
     SysTask_Done(param0);

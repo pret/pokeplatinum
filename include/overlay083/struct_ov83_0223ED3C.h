@@ -9,7 +9,7 @@ typedef struct {
     int unk_00;
     UnkStruct_ov83_0223D784 *unk_04;
     UnkStruct_ov83_0223D95C *unk_08;
-    u32 unk_0C;
+    enum HeapID heapID;
     UnkStruct_ov83_0223F054 unk_10[8];
     int unk_410;
 } UnkStruct_ov83_0223ED3C;

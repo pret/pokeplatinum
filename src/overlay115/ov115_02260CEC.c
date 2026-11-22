@@ -429,9 +429,9 @@ static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, enum HeapID heapID);
 static void ov115_02263CC0(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263CD0(UnkStruct_ov115_02261ADC *param0);
-static void ov115_02263CD8(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2, u32 param3);
+static void ov115_02263CD8(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2, enum HeapID heapID);
 static void ov115_02263DF4(UnkStruct_ov115_02261ADC *param0);
-static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2);
+static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, enum HeapID heapID);
 static void ov115_02263B78(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, enum HeapID heapID, NNSFndAllocator *param3);
 static void ov115_02263FF4(UnkStruct_ov115_02263DF8 *param0, NNSFndAllocator *param1);
@@ -3184,15 +3184,15 @@ static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0)
     RenderOam_Free();
 }
 
-static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2)
+static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, enum HeapID heapID)
 {
     BOOL v0;
 
     {
-        param0->unk_1E0[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1AC[0], param1, 2, 0, 200, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
-        param0->unk_1E0[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1AC[1], param1, 3, 0, 200, NNS_G2D_VRAM_TYPE_2DMAIN, 8, param2);
-        param0->unk_1E0[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 1, 0, 200, 2, param2);
-        param0->unk_1E0[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 0, 0, 200, 3, param2);
+        param0->unk_1E0[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1AC[0], param1, 2, 0, 200, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+        param0->unk_1E0[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1AC[1], param1, 3, 0, 200, NNS_G2D_VRAM_TYPE_2DMAIN, 8, heapID);
+        param0->unk_1E0[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 1, 0, 200, 2, heapID);
+        param0->unk_1E0[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 0, 0, 200, 3, heapID);
 
         v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_1E0[0]);
         GF_ASSERT(v0);
@@ -3269,7 +3269,7 @@ static void ov115_02263CD0(UnkStruct_ov115_02261ADC *param0)
     Camera_ComputeViewMatrix();
 }
 
-static void ov115_02263CD8(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2, u32 param3)
+static void ov115_02263CD8(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2, enum HeapID heapID)
 {
     static const u8 v0[4] = {
         0,
@@ -3278,12 +3278,12 @@ static void ov115_02263CD8(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
         11,
     };
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 4, 0, 0, 0, param3);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_00, 7, 0, 0, 0, param3);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->unk_00, 6, 0, 0, 0, param3);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 16, param0->unk_00, 5, 0, 0, 0, param3);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_00, 4, 0, 0, 0, param3);
-    Graphics_LoadPaletteFromOpenNARC(param1, 13, 4, 0, 12 * 32, param3);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 4, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_00, 7, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->unk_00, 6, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 16, param0->unk_00, 5, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_00, 4, 0, 0, 0, heapID);
+    Graphics_LoadPaletteFromOpenNARC(param1, 13, 4, 0, 12 * 32, heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_00, 7, 0, 0, 32, 32, v0[param2]);
     Bg_ChangeTilemapRectPalette(param0->unk_00, 6, 0, 0, 32, 32, 2 + (param2 * 2));
     Bg_ChangeTilemapRectPalette(param0->unk_00, 5, 0, 0, 32, 32, 1 + (param2 * 2));
