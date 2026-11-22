@@ -4659,9 +4659,9 @@
     .short \furniture
     .endm
 
-    .macro ScrCmd_30E arg0
-    .short SCRCMD_30E
-    .short \arg0
+    .macro OpenIntroMessageScreen destVar
+    .short SCRCMD_OPENINTROMESSAGESCREEN
+    .short \destVar
     .endm
 
     .macro CheckMetFurnitureRequirements furniture, destVar

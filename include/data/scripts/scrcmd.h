@@ -787,7 +787,7 @@ ScriptCommand(SCRCMD_INCREMENTTRAINERSCORE,                                ScrCm
 ScriptCommand(SCRCMD_SAVETVSEGMENTPOKEMONSTORAGEBULLETIN,                  ScrCmd_SaveTVSegmentPokemonStorageBulletin)
 ScriptCommand(SCRCMD_SAVETVSEGMENTHOMEANDMANORNOFURNITURE,                 ScrCmd_SaveTVSegmentHomeAndManorNoFurniture)
 ScriptCommand(SCRCMD_SAVETVSEGMENTHOMEANDMANOR,                            ScrCmd_SaveTVSegmentHomeAndManor)
-ScriptCommand(SCRCMD_30E,                                                  ScrCmd_30E)
+ScriptCommand(SCRCMD_OPENINTROMESSAGESCREEN,                               ScrCmd_OpenIntroMessageScreen)
 ScriptCommand(SCRCMD_CHECKMETFURNITUREREQUIREMENTS,                        ScrCmd_CheckMetFurnitureRequirements)
 ScriptCommand(SCRCMD_STARTLIBRARYTV,                                       ScrCmd_StartLibraryTV)
 ScriptCommand(SCRCMD_ADDDISTORTIONWORLDMAPOBJECT,                          ScrCmd_AddDistortionWorldMapObject)
