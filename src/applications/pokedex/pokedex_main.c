@@ -981,6 +981,7 @@ static void InitG2(enum HeapID heapID)
             32,
             0x14000,
             0x4000,
+            HEAP_ID_SYSTEM,
         };
 
         charTransferTemplate.heapID = heapID;

@@ -829,7 +829,7 @@ static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, enum HeapID heapID)
 
     {
         CharTransferTemplate v1 = {
-            4, 128 * 1024, 16 * 1024, 0
+            4, 128 * 1024, 16 * 1024, HEAP_ID_SYSTEM
         };
 
         v1.heapID = heapID;

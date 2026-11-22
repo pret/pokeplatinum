@@ -547,7 +547,7 @@ static const CharTransferTemplate Unk_ov70_0226D5DC = {
     0x18,
     0x8000,
     0x4000,
-    0x70,
+    HEAP_ID_112,
 };
 
 static const ListMenuTemplate Unk_ov70_0226D644 = {

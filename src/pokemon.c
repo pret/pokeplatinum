@@ -1061,7 +1061,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_NICKNAME:
         if (boxMon->checksumFailed) {
             // TODO confirm this should be SPECIES_BAD_EGG (lines up with checksum failure check but not throughly checked this call tree)
-            MessageLoader_GetSpeciesName(SPECIES_BAD_EGG, 0, dest);
+            MessageLoader_GetSpeciesName(SPECIES_BAD_EGG, HEAP_ID_SYSTEM, dest);
         } else {
             charcode_t *buf = dest;
 

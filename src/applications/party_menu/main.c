@@ -629,7 +629,7 @@ static int DrawYesNoChoice(PartyMenuApplication *application)
 
 static int sub_0207E714(PartyMenuApplication *application)
 {
-    switch (Menu_ProcessInputAndHandleExit(application->contextMenu, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(application->contextMenu, HEAP_ID_PARTY_MENU)) {
     case 0:
         return application->yesnoCallbacks.onYes(application);
     case 0xfffffffe:

@@ -585,7 +585,7 @@ static void CommClubTask_WaitConfirmLeaveGroup(SysTask *task, void *data)
     }
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
+        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
         CommClubMan_SetTask(CommClubTask_LeaveGroup);
     }
 }
@@ -596,12 +596,12 @@ static void CommClubTask_LeaveGroup(SysTask *task, void *data)
     u32 v1;
 
     if (ov7_0224A244(task, data)) {
-        Menu_DestroyForExit(v0->unk_60, 4);
+        Menu_DestroyForExit(v0->unk_60, HEAP_ID_FIELD1);
         v0->unk_60 = NULL;
         return;
     }
 
-    v1 = Menu_ProcessInputAndHandleExit(v0->unk_60, 4);
+    v1 = Menu_ProcessInputAndHandleExit(v0->unk_60, HEAP_ID_FIELD1);
 
     if (v1 == 0) {
         CommClubMan_DestroyList(task, v0);
@@ -961,11 +961,11 @@ static void ov7_0224A97C(SysTask *task, void *param1)
     ov7_0224A64C(commClubMan);
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
-    v1 = Menu_ProcessInputAndHandleExit(commClubMan->unk_60, 4);
+    v1 = Menu_ProcessInputAndHandleExit(commClubMan->unk_60, HEAP_ID_FIELD1);
 
     if (!CommSys_IsPlayerConnected(commClubMan->unk_95)) {
         if (v1 == 0xffffffff) {
-            Menu_DestroyForExit(commClubMan->unk_60, 4);
+            Menu_DestroyForExit(commClubMan->unk_60, HEAP_ID_FIELD1);
         }
 
         if (commClubMan->commType == COMM_TYPE_CONTEST) {
@@ -985,7 +985,7 @@ static void ov7_0224A97C(SysTask *task, void *param1)
         }
     } else if (CommSys_CheckError() || ov7_0224B4E4()) {
         if (v1 == 0xffffffff) {
-            Menu_DestroyForExit(commClubMan->unk_60, 4);
+            Menu_DestroyForExit(commClubMan->unk_60, HEAP_ID_FIELD1);
         }
 
         CommInfo_InitPlayer(commClubMan->unk_95);
@@ -1133,7 +1133,7 @@ static void ov7_0224AC48(SysTask *task, void *param1)
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
+        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
         CommClubMan_SetTask(ov7_0224ACA4);
     }
 }
@@ -1147,11 +1147,11 @@ static void ov7_0224ACA4(SysTask *task, void *param1)
     ov7_0224A64C(commClubMan);
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
-    v1 = Menu_ProcessInputAndHandleExit(commClubMan->unk_60, 4);
+    v1 = Menu_ProcessInputAndHandleExit(commClubMan->unk_60, HEAP_ID_FIELD1);
 
     if (CommSys_CheckError() || (CommSys_ConnectedCount() != commClubMan->connectedCnt)) {
         if (v1 == 0xffffffff) {
-            Menu_DestroyForExit(commClubMan->unk_60, 4);
+            Menu_DestroyForExit(commClubMan->unk_60, HEAP_ID_FIELD1);
         }
 
         commClubMan->unk_60 = NULL;
@@ -1298,7 +1298,7 @@ static void ov7_0224AE78(SysTask *task, void *param1)
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
+        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
         CommClubMan_SetTask(ov7_0224AECC);
     }
 }
@@ -1311,7 +1311,7 @@ static void ov7_0224AECC(SysTask *task, void *param1)
     ov7_0224A64C(commClubMan);
 
     ListMenu_ProcessInput(commClubMan->unk_5C);
-    v1 = Menu_ProcessInputAndHandleExit(commClubMan->unk_60, 4);
+    v1 = Menu_ProcessInputAndHandleExit(commClubMan->unk_60, HEAP_ID_FIELD1);
 
     if (CommSys_CheckError()) {
         v1 = 0xfffffffe;
@@ -1354,7 +1354,7 @@ static void ov7_0224AF84(SysTask *task, void *param1)
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
+        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
         CommClubMan_SetTask(ov7_0224A97C);
     }
 }

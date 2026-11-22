@@ -473,7 +473,7 @@ static const CharTransferTemplate Unk_ov114_0226017C = {
     0x0,
     0x4000,
     0x4000,
-    0x0
+    HEAP_ID_SYSTEM
 };
 
 static const GXBanks Unk_ov114_022601B4 = {

@@ -282,7 +282,7 @@ static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, S
     SpriteListTemplate v1;
     int v2, v3;
 
-    ov22_0225AA34(param0->unk_00, param2, 14, param4, 103, 225, 102, 101, 2, 2000);
+    ov22_0225AA34(param0->unk_00, param2, HEAP_ID_14, param4, 103, 225, 102, 101, 2, 2000);
     ov22_0225AAF4(param0->unk_00, param2, &v0, 0);
 
     v1.list = param1;
@@ -375,7 +375,7 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, S
     SpriteListTemplate v1;
     int v2;
 
-    ov22_0225AA34(param0->unk_00, param2, 14, param6, 229, 230, 228, 227, 2, 3000);
+    ov22_0225AA34(param0->unk_00, param2, HEAP_ID_14, param6, 229, 230, 228, 227, 2, 3000);
     ov22_0225AAF4(param0->unk_00, param2, &v0, 0);
 
     v1.list = param1;

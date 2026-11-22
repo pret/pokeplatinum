@@ -245,7 +245,7 @@ static void WifiBattleTower_InitSpriteResources(WifiBattleTowerAppState *appStat
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_68);
 
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 68);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, HEAP_ID_68);
 
     appState->spriteList = SpriteList_InitRendering(10, &appState->renderer, HEAP_ID_68);
 

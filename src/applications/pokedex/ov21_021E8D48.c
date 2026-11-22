@@ -751,7 +751,7 @@ static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param
 static void ov21_021E9A0C(int param0)
 {
     CharTransferTemplate v0 = {
-        32, 1024 * 0x40, 512 * 0x20, 0
+        32, 1024 * 0x40, 512 * 0x20, HEAP_ID_SYSTEM
     };
 
     v0.heapID = param0;

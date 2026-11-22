@@ -126,7 +126,7 @@ static void sub_0208BAAC(ApplicationManager *appMan, int param1)
         return;
     }
 
-    sub_0208BA8C(v0->saveData, 119, eventType);
+    sub_0208BA8C(v0->saveData, HEAP_ID_119, eventType);
 }
 
 static int sub_0208BB6C(ApplicationManager *appMan, int *param1)

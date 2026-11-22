@@ -499,7 +499,7 @@ static const CharTransferTemplate Unk_ov69_0225F050 = {
     0x20,
     0x4000,
     0x4000,
-    0x69
+    HEAP_ID_105
 };
 
 static const VecFx32 Unk_ov69_0225F034 = {

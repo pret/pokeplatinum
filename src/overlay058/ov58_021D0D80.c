@@ -300,7 +300,7 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        journalEntryOnlineEvent = JournalEntry_CreateEventDrewPictures(39);
+        journalEntryOnlineEvent = JournalEntry_CreateEventDrewPictures(HEAP_ID_DRAWING);
 
         JournalEntry_SaveData(v1->unk_04, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
         SetVBlankCallback(NULL, NULL);
@@ -609,7 +609,7 @@ static void ov58_021D1554(UnkStruct_02095EAC *param0, NARC *param1)
 
     NNS_G2dInitOamManagerModule();
 
-    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 39);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, HEAP_ID_DRAWING);
     param0->unk_34 = SpriteList_InitRendering(50 + 3, &param0->unk_38, HEAP_ID_DRAWING);
     SetSubScreenViewRect(&param0->unk_38, 0, 256 * FX32_ONE);
 

@@ -471,7 +471,7 @@ static void FlyLanding_LoadPaletteResources(FlyResources *flyResources, NARC *na
         if (flyResources->paletteSourceWrapper[i].resourceId == flyResources->resource2ID) {
             flyResources->paletteSourceWrapper[i].resourceId = resourceId;
             flyResources->paletteSourceWrapper[i].memberIdx = 0;
-            flyResources->paletteSourceWrapper[i].spriteResource = SpriteResourceCollection_AddPaletteFrom(flyResources->paletteLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
+            flyResources->paletteSourceWrapper[i].spriteResource = SpriteResourceCollection_AddPaletteFrom(flyResources->paletteLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
             return;
         }
     }
@@ -509,7 +509,7 @@ static void FlyLanding_LoadCellResources(FlyResources *flyResources, NARC *narc,
         if (flyResources->cellSourceWrapper[i].resourceId == flyResources->resource3ID) {
             flyResources->cellSourceWrapper[i].resourceId = resourceId;
             flyResources->cellSourceWrapper[i].memberIdx = 0;
-            flyResources->cellSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(flyResources->cellLocation, narc, memberIdx, FALSE, resourceId, 2, 4);
+            flyResources->cellSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(flyResources->cellLocation, narc, memberIdx, FALSE, resourceId, 2, HEAP_ID_FIELD1);
             return;
         }
     }
@@ -523,7 +523,7 @@ static void FlyLanding_LoadAnimResources(FlyResources *flyResources, NARC *narc,
         if (flyResources->animSourceWrapper[i].resourceId == flyResources->resource4ID) {
             flyResources->animSourceWrapper[i].resourceId = resourceId;
             flyResources->animSourceWrapper[i].memberIdx = 0;
-            flyResources->animSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(flyResources->animLocation, narc, memberIdx, FALSE, resourceId, 3, 4);
+            flyResources->animSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(flyResources->animLocation, narc, memberIdx, FALSE, resourceId, 3, HEAP_ID_FIELD1);
             return;
         }
     }

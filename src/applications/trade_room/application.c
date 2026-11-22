@@ -404,8 +404,8 @@ static void TradeRoom_PrintHeaderLabels(TradeRoom *tradeRoom)
 {
     TrainerInfo *ownTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId());
     TrainerInfo *partnerTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    String *ownName = TrainerInfo_NameNewString(ownTrainerInfo, 26);
-    String *partnerName = TrainerInfo_NameNewString(partnerTrainerInfo, 26);
+    String *ownName = TrainerInfo_NameNewString(ownTrainerInfo, HEAP_ID_TRADE_ROOM);
+    String *partnerName = TrainerInfo_NameNewString(partnerTrainerInfo, HEAP_ID_TRADE_ROOM);
     String *quitMsg = MessageLoader_GetNewString(tradeRoom->msgLoader, TradeRoom_Text_Quit);
 
     TradeRoom_PrintStringInWindow(&tradeRoom->windows[0], ownName, 10, TEXT_SPEED_INSTANT, 1, 1);
@@ -1152,7 +1152,7 @@ static void TradeRoom_InitState(TradeRoom *tradeRoom, ApplicationManager *appMan
     Party_InitWithCapacity(tradeRoom->partnerParty, MAX_PARTY_SIZE);
     memset(tradeRoom->partnerParty, 0xff, Party_SaveSize());
 
-    tradeRoom->playerNameStr = TrainerInfo_NameNewString(trArgs->trainerInfo, 26);
+    tradeRoom->playerNameStr = TrainerInfo_NameNewString(trArgs->trainerInfo, HEAP_ID_TRADE_ROOM);
     tradeRoom->itemLabelStr = MessageLoader_GetNewString(tradeRoom->msgLoader, TradeRoom_Text_ItemLabel);
 
     WiFiHistory_FlagGeonetLinkInfo(trArgs->wiFiHistory);
@@ -1236,7 +1236,7 @@ static void TradeRoom_InitTransferSystems(void)
 static void TradeRoom_InitSpriteRendering(TradeRoom *tradeRoom, NARC *narc)
 {
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 127, 0, 32, 0, 127, 0, 32, 26);
+    RenderOam_Init(0, 127, 0, 32, 0, 127, 0, 32, HEAP_ID_TRADE_ROOM);
 
     tradeRoom->spriteList = SpriteList_InitRendering(2 + 12 + 12 + 12 + 2 + 2 + 2 + 1, &tradeRoom->spriteRenderer, HEAP_ID_TRADE_ROOM);
 
@@ -2477,7 +2477,7 @@ static void TradeRoom_RecordTradeInJournal(JournalEntry *journalEntry, Pokemon *
     u16 nickname[MON_NAME_LEN + 1];
 
     Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
-    void *journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonFromTrade((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), nickname, Pokemon_GetGender(mon), 26);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonFromTrade((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), nickname, Pokemon_GetGender(mon), HEAP_ID_TRADE_ROOM);
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 

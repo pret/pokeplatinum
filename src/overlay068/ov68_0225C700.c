@@ -175,7 +175,7 @@ static const CharTransferTemplate Unk_ov68_0225DD58 = {
     0x20,
     0x4000,
     0x0,
-    0x7A
+    HEAP_ID_PARTY_MENU2,
 };
 
 static const WindowTemplate Unk_ov68_0225DD38 = {
@@ -318,12 +318,12 @@ int ov68_0225C700(ApplicationManager *appMan, int *param1)
     v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov68_0225C700), HEAP_ID_PARTY_MENU2);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
 
-    ov68_0225C91C(&v0->unk_00, v1->saveData, 122);
-    ov68_0225CB70(&v0->unk_1A8, v1->unk_04, 122);
-    ov68_0225D128(&v0->unk_2CC, &v0->unk_00, v1->saveData, 122);
+    ov68_0225C91C(&v0->unk_00, v1->saveData, HEAP_ID_PARTY_MENU2);
+    ov68_0225CB70(&v0->unk_1A8, v1->unk_04, HEAP_ID_PARTY_MENU2);
+    ov68_0225D128(&v0->unk_2CC, &v0->unk_00, v1->saveData, HEAP_ID_PARTY_MENU2);
 
     GF_ASSERT(v1->unk_08 < 2);
-    Unk_ov68_0225DEB0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, v1, 122);
+    Unk_ov68_0225DEB0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, v1, HEAP_ID_PARTY_MENU2);
 
     SetVBlankCallback(ov68_0225C914, v0);
     DisableHBlank();
@@ -367,7 +367,7 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
             }
         }
 
-        v2 = Unk_ov68_0225DEA8[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, &v0->unk_2CC, v1, 122);
+        v2 = Unk_ov68_0225DEA8[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, &v0->unk_2CC, v1, HEAP_ID_PARTY_MENU2);
 
         if (v2 == 1) {
             (*param1)++;
@@ -401,7 +401,7 @@ int ov68_0225C8A8(ApplicationManager *appMan, int *param1)
 
     Unk_ov68_0225DEA0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00);
 
-    ov68_0225D178(&v0->unk_2CC, 122);
+    ov68_0225D178(&v0->unk_2CC, HEAP_ID_PARTY_MENU2);
     ov68_0225CBC0(&v0->unk_1A8);
     ov68_0225C960(&v0->unk_00);
 

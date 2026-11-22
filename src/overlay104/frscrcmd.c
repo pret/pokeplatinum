@@ -1352,7 +1352,7 @@ static BOOL FrontierScrCmd_6E(FrontierScriptContext *ctx)
     dto = Heap_Alloc(HEAP_ID_FIELD2, sizeof(FieldBattleDTO));
     MI_CpuClear8(dto, sizeof(FieldBattleDTO));
 
-    sub_0202F298(fieldData->saveData, 11, &v0, dto, 0);
+    sub_0202F298(fieldData->saveData, HEAP_ID_FIELD2, &v0, dto, 0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
     BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 1, NULL);
 
@@ -1371,7 +1371,7 @@ static BOOL FrontierScrCmd_70(FrontierScriptContext *ctx)
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u16 *v2 = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    *v2 = sub_0202F330(fieldData->saveData, 11, &v0, 0);
+    *v2 = sub_0202F330(fieldData->saveData, HEAP_ID_FIELD2, &v0, 0);
     return FALSE;
 }
 

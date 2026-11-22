@@ -702,7 +702,7 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
     ov65_0222E638(param0->unk_15C);
     ov65_0222ECA8(param0, v0);
 
-    inline_ov61_0222C3B0(&param0->unk_E2C, v0, 4, 54);
+    inline_ov61_0222C3B0(&param0->unk_E2C, v0, 4, HEAP_ID_54);
 
     SetVBlankCallback(ov65_0222E5E0, param0);
 
@@ -1461,7 +1461,7 @@ static void ov65_0222EDD0(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 128 * 1024, 16 * 1024, 54
+            20, 128 * 1024, 16 * 1024, HEAP_ID_54
         };
 
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -1479,7 +1479,7 @@ static void ov65_0222EE18(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 54);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, HEAP_ID_54);
 
     param0->unk_18C = SpriteList_InitRendering(8, &param0->unk_190, HEAP_ID_54);
 
@@ -1617,7 +1617,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
             ov65_02232CA8(param0, 18);
 
-            param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_02238954, (512 - (18 + 12)) - 9, 11, 54);
+            param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_02238954, (512 - (18 + 12)) - 9, 11, HEAP_ID_54);
             param0->unk_3A8 = 6;
         } else if (!DWC_CheckValidConsole(WiFiList_GetUserData(param0->unk_00))) {
             ov65_02232CA8(param0, 20);
@@ -1634,7 +1634,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_0222F164(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_02238944, (512 - (18 + 12)) - 9, 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_02238944, (512 - (18 + 12)) - 9, 11, HEAP_ID_54);
         param0->unk_3A8 = 2;
     }
 
@@ -1644,7 +1644,7 @@ static int ov65_0222F164(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_0222F1A8(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     int v0;
-    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -1672,7 +1672,7 @@ static int ov65_0222F21C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         Bg_SetPriority(BG_LAYER_MAIN_1, 0);
         Bg_SetPriority(BG_LAYER_MAIN_0, 3);
 
-        param0->unk_184 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_15C, &Unk_ov65_02238954, (512 - (18 + 12)) - 9, 11, 1, 54);
+        param0->unk_184 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_15C, &Unk_ov65_02238954, (512 - (18 + 12)) - 9, 11, 1, HEAP_ID_54);
         param0->unk_3A8 = 4;
     }
 
@@ -1682,7 +1682,7 @@ static int ov65_0222F21C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_0222F288(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     int v0;
-    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -1692,7 +1692,7 @@ static int ov65_0222F288(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         if (v1 == 0) {
             ov65_02232CA8(param0, 22);
-            param0->unk_184 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_15C, &Unk_ov65_02238954, (512 - (18 + 12)) - 9, 11, 1, 54);
+            param0->unk_184 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_15C, &Unk_ov65_02238954, (512 - (18 + 12)) - 9, 11, 1, HEAP_ID_54);
             param0->unk_3A8 = 5;
         } else {
             param0->unk_3A8 = 34;
@@ -1705,7 +1705,7 @@ static int ov65_0222F288(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     int v0;
-    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -1738,7 +1738,7 @@ static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_0222F3DC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     int v0;
-    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -1984,7 +1984,7 @@ static int ov65_0222F808(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_0222F868(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, HEAP_ID_54);
         param0->unk_3A8 = 12;
     }
 
@@ -1994,7 +1994,7 @@ static int ov65_0222F868(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_0222F8AC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     int v0;
-    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -2029,8 +2029,8 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
                 param0->unk_B4C[v0] = NULL;
             }
 
-            RenderOam_ClearMain(54);
-            RenderOam_ClearSub(54);
+            RenderOam_ClearMain(HEAP_ID_54);
+            RenderOam_ClearSub(HEAP_ID_54);
         }
 
         if (ov65_02232FCC(param0) == 1) {
@@ -2226,7 +2226,7 @@ static void ov65_0222FD70(UnkStruct_ov65_0222EBE0 *param0)
     TextColor v0;
     int v1, v2, v3;
     TrainerInfo *v4 = SaveData_GetTrainerInfo(param0->saveData);
-    String *v5 = TrainerInfo_NameNewString(v4, 54);
+    String *v5 = TrainerInfo_NameNewString(v4, HEAP_ID_54);
     u32 v6;
 
     if (!Window_IsInUse(&param0->unk_340)) {
@@ -2330,7 +2330,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     v3 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_54);
 
-    ov65_0222E90C(param0->unk_15C, &param0->unk_BD0, v3, 54);
+    ov65_0222E90C(param0->unk_15C, &param0->unk_BD0, v3, HEAP_ID_54);
     ov65_02232F30(param0);
     ov65_02232DFC(param0);
 
@@ -2353,7 +2353,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         param0->unk_115A = sub_0202AFB4(param0->unk_00);
 
-        ov65_02235060(&param0->unk_3EC, 54, v3, param0->unk_15C, v5, param0->unk_115A);
+        ov65_02235060(&param0->unk_3EC, HEAP_ID_54, v3, param0->unk_15C, v5, param0->unk_115A);
         v4 = ov65_02235380(&param0->unk_3EC, v5);
         ov65_0222E87C(param0, v4);
     }
@@ -2823,7 +2823,7 @@ static int ov65_022309D0(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
         WiFiList_SetHostFriendCurrentDate(param0->unk_00, NintendoWFC_GetHostFriendIdx());
 
-        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, HEAP_ID_54);
         param0->unk_3A8 = 26;
     }
 
@@ -2833,14 +2833,14 @@ static int ov65_022309D0(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_02230A30(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     int v0;
-    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
     if (v1 == 0xffffffff) {
         if ((CommManager_GetMatchmakingState() >= 4) || CommManager_GetDisconnectedWifi() || !CommSys_IsPlayerConnected(0)) {
             ov65_02232DFC(param0);
 
             ov65_02232E58(param0, 16);
-            Menu_DestroyForExit(param0->unk_184, 54);
+            Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
             param0->unk_3D0 = -1;
             param0->unk_3BC = 20;
             param0->unk_3A8 = 65;
@@ -3010,7 +3010,7 @@ static int ov65_02230D20(UnkStruct_ov65_0222EBE0 *param0, int param1)
     ov65_022355FC(&param0->unk_3EC);
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, HEAP_ID_54);
         param0->unk_3A8 = 41;
     }
 
@@ -3020,7 +3020,7 @@ static int ov65_02230D20(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_02230D6C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     int v0;
-    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
     ov65_022355FC(&param0->unk_3EC);
 
@@ -3028,7 +3028,7 @@ static int ov65_02230D6C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         NintendoWFC_SetVoiceChatEnabled(param0->unk_04->unk_00.unk_21);
 
         if (v1 == 0xffffffff) {
-            Menu_DestroyForExit(param0->unk_184, 54);
+            Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
         }
 
         v1 = 1;
@@ -3764,7 +3764,7 @@ static BOOL ov65_02231A54(void)
 static void ov65_02231A74(UnkStruct_ov65_0222EBE0 *param0, u32 unused)
 {
     JournalEntry *journalEntry = SaveData_GetJournal(param0->saveData);
-    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(54, ONLINE_EVENT_WIFI_CLUB);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(HEAP_ID_54, ONLINE_EVENT_WIFI_CLUB);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
@@ -4367,7 +4367,7 @@ static int ov65_022325AC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_022325C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, HEAP_ID_54);
         param0->unk_3A8 = 58;
     }
 
@@ -4377,7 +4377,7 @@ static int ov65_022325C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_02232608(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     int v0;
-    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
     if (Text_IsPrinterActive(param0->unk_180) != 0) {
         return param1;
@@ -4385,7 +4385,7 @@ static int ov65_02232608(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if (0 != ov65_02230140(param0)) {
         if (v1 == 0xffffffff) {
-            Menu_DestroyForExit(param0->unk_184, 54);
+            Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
         }
 
         v1 = 0xfffffffe;
@@ -4454,7 +4454,7 @@ static int ov65_02232734(UnkStruct_ov65_0222EBE0 *param0, int param1)
     CommManager_SetErrorHandling(0, 1);
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, HEAP_ID_54);
         param0->unk_3A8 = 62;
     }
 
@@ -4471,14 +4471,14 @@ static int ov65_0223278C(UnkStruct_ov65_0222EBE0 *param0, int param1)
     }
 
     if (CommManager_IsLoginBattleWifi() || CommManager_GetDisconnectedWifi() || (CommManager_GetMatchmakingState() >= 3)) {
-        Menu_DestroyForExit(param0->unk_184, 54);
+        Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
         ov65_02232B58(param0, 101, 0);
         param0->unk_3A8 = 28;
     } else if (CommManager_CheckWifiError()) {
-        Menu_DestroyForExit(param0->unk_184, 54);
+        Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
         ov65_0222F6EC(param0);
     } else {
-        v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+        v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
         if (v1 == 0xffffffff) {
             return param1;
@@ -4534,7 +4534,7 @@ static int ov65_0223288C(UnkStruct_ov65_0222EBE0 *param0, int param1)
     }
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, HEAP_ID_54);
         param0->unk_3A8 = 64;
     }
 
@@ -4555,7 +4555,7 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         v5 = ov65_0222E8D4(param0, v3);
 
         if (v5 == NULL) {
-            Menu_DestroyForExit(param0->unk_184, 54);
+            Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
             ov65_02232DC0(param0, v3 - 1);
             ov65_02232B58(param0, 16, 0);
             param0->unk_3A8 = 29;
@@ -4566,7 +4566,7 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
             v4 = v6->unk_21;
 
             if ((param0->unk_3DE != v2) || (param0->unk_3E0 != v4)) {
-                Menu_DestroyForExit(param0->unk_184, 54);
+                Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
                 ov65_02232DC0(param0, v3 - 1);
                 ov65_02232B58(param0, 16, 0);
                 param0->unk_3A8 = 29;
@@ -4576,16 +4576,16 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
     }
 
     if (CommManager_GetMatchmakingState() >= 3) {
-        Menu_DestroyForExit(param0->unk_184, 54);
+        Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
         ov65_02232B58(param0, 18, 0);
         CommManager_EndWifiMatch();
         param0->unk_3A8 = 29;
         return param1;
     } else if (CommManager_CheckWifiError()) {
-        Menu_DestroyForExit(param0->unk_184, 54);
+        Menu_DestroyForExit(param0->unk_184, HEAP_ID_54);
         ov65_0222F6EC(param0);
     } else {
-        v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
+        v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, HEAP_ID_54);
 
         if (v1 == 0xffffffff) {
             return param1;
