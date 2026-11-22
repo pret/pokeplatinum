@@ -50,7 +50,7 @@ static void Diploma_LoadText(Diploma *data);
 BOOL Diploma_Init(ApplicationManager *appMan, int *state)
 {
     Diploma *data;
-    int heapID = HEAP_ID_DIPLOMA;
+    enum HeapID heapID = HEAP_ID_DIPLOMA;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
 
@@ -147,7 +147,7 @@ int Diploma_Main(ApplicationManager *appMan, int *state)
 BOOL Diploma_Exit(ApplicationManager *appMan, int *state)
 {
     Diploma *data = ApplicationManager_Data(appMan);
-    int heapID = data->heapID;
+    enum HeapID heapID = data->heapID;
 
     Diploma_Free(data);
     Diploma_FreeBgs(data);

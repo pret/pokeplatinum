@@ -146,7 +146,7 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
 int sub_02099F54(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02099DFC *v0 = ApplicationManager_Data(appMan);
-    int heapID = v0->heapID;
+    enum HeapID heapID = v0->heapID;
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);

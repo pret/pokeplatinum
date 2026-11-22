@@ -91,7 +91,7 @@ static fx32 Unk_ov77_021D79A4[2] = {
 
 static void ov77_021D54B0()
 {
-    const int heapID = HEAP_ID_76;
+    const enum HeapID heapID = HEAP_ID_76;
 
     {
         CharTransferTemplate v1 = {
@@ -135,7 +135,7 @@ const int ov77_021D555C(void)
 void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
 {
     int i;
-    const int heapID = HEAP_ID_76;
+    const enum HeapID heapID = HEAP_ID_76;
 
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);

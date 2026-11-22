@@ -276,7 +276,7 @@ static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, enum Flavor flavor);
 static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
 static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
-static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, int heapID);
+static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
@@ -4657,12 +4657,12 @@ static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *tr
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_TERRAIN, &metTerrain);
 }
 
-void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, int heapID)
+void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID)
 {
     PostCaptureBoxPokemonProcessing(&mon->box, trainer, monPokeball, metLocation, metTerrain, heapID);
 }
 
-static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, int heapID)
+static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID)
 {
     InitializeBoxPokemonAfterCapture(boxMon, trainer, monPokeball, metLocation, metTerrain, heapID);
 }

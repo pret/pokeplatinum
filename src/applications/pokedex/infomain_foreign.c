@@ -85,16 +85,16 @@ static void SetupGraphics(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGr
 static void CleanupGraphics(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData);
 static void LoadBackground(PokedexGraphicData **graphicsData, enum HeapID heapID);
 static void RenderAllText(PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, enum HeapID heapID);
-static void RenderDexEntry(PokedexGraphicData **graphicsData, int heapID, enum Species species, int languageID, int entryOffset);
+static void RenderDexEntry(PokedexGraphicData **graphicsData, enum HeapID heapID, enum Species species, int languageID, int entryOffset);
 static int LanguageMessage(int languageID);
-static void RenderNameNumber(PokedexGraphicData **graphicsData, int heapID, enum Species species, int languageID);
-static void RenderCategory(PokedexGraphicData **graphicsData, int heapID, enum Species species, int languageID);
-static void CreateCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, int heapID);
+static void RenderNameNumber(PokedexGraphicData **graphicsData, enum HeapID heapID, enum Species species, int languageID);
+static void RenderCategory(PokedexGraphicData **graphicsData, enum HeapID heapID, enum Species species, int languageID);
+static void CreateCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, enum HeapID heapID);
 static void DeleteCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct);
-static Window *CreateCategoryWindow(PokedexGraphicData **graphicsData, int species, int heapID);
-static void LoadTypeIconSprites(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, int heapID);
+static Window *CreateCategoryWindow(PokedexGraphicData **graphicsData, int species, enum HeapID heapID);
+static void LoadTypeIconSprites(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, enum HeapID heapID);
 static void UnloadTypeIconSprites(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData);
-static void RenderEntryName(PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, int heapID);
+static void RenderEntryName(PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, enum HeapID heapID);
 static void ConfigureLabel(PokedexGraphicData **graphicsData);
 static void ShowPokemonSprite(PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState);
 static void HidePokemonSprite(PokedexGraphicData **graphicsData);
@@ -433,7 +433,7 @@ static void RenderAllText(PokedexGraphicData **graphicsData, const PokedexEntryD
     RenderCategory(graphicsData, heapID, species, displayState->languageID);
 }
 
-static void RenderDexEntry(PokedexGraphicData **graphicsData, int heapID, enum Species species, int languageID, int entryOffset)
+static void RenderDexEntry(PokedexGraphicData **graphicsData, enum HeapID heapID, enum Species species, int languageID, int entryOffset)
 {
     String *entryText = PokedexText_DexEntry(species, languageID, entryOffset, heapID);
     u32 textWidth = Font_CalcMaxLineWidth(FONT_SYSTEM, entryText, 0);
@@ -443,7 +443,7 @@ static void RenderDexEntry(PokedexGraphicData **graphicsData, int heapID, enum S
     PokedexText_Free(entryText);
 }
 
-static void RenderEntryName(PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, int heapID)
+static void RenderEntryName(PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, enum HeapID heapID)
 {
     PokedexMain_EntryNameNumber(*graphicsData, displayState->sortData, heapID, PokedexSort_CurrentStatusIndex(displayState->sortData), (172 * FX32_ONE), (32 * FX32_ONE));
     PokedexGraphics_SetSpeciesLabelPriority(*graphicsData, 0);
@@ -472,7 +472,7 @@ static void HidePokemonSprite(PokedexGraphicData **graphicsData)
     PokemonSprite_ClearFade(pokemonSprite);
 }
 
-static void LoadTypeIconSprites(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, int heapID)
+static void LoadTypeIconSprites(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, enum HeapID heapID)
 {
     PokedexGraphicData *pokedexGraphicData = *graphicsData;
     NARC *narc = PokedexGraphics_GetNARC(*graphicsData);
@@ -504,7 +504,7 @@ static void UnloadTypeIconSprites(PokedexEntryDisplayGraphics *graphicsStruct, P
     SpriteResourceCollection_Remove(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], graphicsStruct->spriteResources[SPRITE_RESOURCE_ANIM]);
 }
 
-static void CreateCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, int heapID)
+static void CreateCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, enum HeapID heapID)
 {
     SpriteResourcesHeader spriteResourcesHeader;
     SpriteListTemplate spriteListTemplate;
@@ -551,7 +551,7 @@ static void CreateCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct, Poked
     PokedexTextManager_FreeWindow(categoryWindow);
 }
 
-static Window *CreateCategoryWindow(PokedexGraphicData **graphicsData, int species, int heapID)
+static Window *CreateCategoryWindow(PokedexGraphicData **graphicsData, int species, enum HeapID heapID)
 {
     Window *window = PokedexTextManager_NewWindow((*graphicsData)->textMan, 18, 2);
     String *categoryText = PokedexText_Category(species, GAME_LANGUAGE, heapID);
@@ -799,7 +799,7 @@ static int LanguageMessage(int languageID)
     return entryID;
 }
 
-static void RenderNameNumber(PokedexGraphicData **graphicsData, int heapID, enum Species species, int languageID)
+static void RenderNameNumber(PokedexGraphicData **graphicsData, enum HeapID heapID, enum Species species, int languageID)
 {
     String *nameNumberText = PokedexText_NameNumber(species, languageID, heapID);
 
@@ -807,7 +807,7 @@ static void RenderNameNumber(PokedexGraphicData **graphicsData, int heapID, enum
     PokedexText_Free(nameNumberText);
 }
 
-static void RenderCategory(PokedexGraphicData **graphicsData, int heapID, enum Species species, int languageID)
+static void RenderCategory(PokedexGraphicData **graphicsData, enum HeapID heapID, enum Species species, int languageID)
 {
     String *categoryText = PokedexText_Category(species, languageID, heapID);
     u32 xPosition = 240 - Font_CalcStringWidth(FONT_SYSTEM, categoryText, 0);
