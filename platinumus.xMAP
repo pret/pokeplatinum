@@ -25311,14 +25311,14 @@
                                        38](ScrCmd_StartLibraryTV,func) found in local src_scrcmd.c.o
                                         39](FieldSystem_StartLibraryTV,func) found in global src_unk_0203D1B8.c.o
                                        38](ScrCmd_CheckMetFurnitureRequirements,func) found in global src_overlay005_ov5_021F6454.c.o
-                                       38](ScrCmd_30E,func) found in local src_scrcmd.c.o
-                                        39](sub_0209B344,func) found in global src_unk_0209B344.c.o
+                                       38](ScrCmd_OpenIntroMessageScreen,func) found in local src_scrcmd.c.o
+                                        39](OpenIntroMessageScreen,func) found in global src_intro_message_screen.c.o
                                          40](sub_02097520,func) found in global src_easy_chat_args.c.o
-                                         40](sub_0209B3C4,func) found in local src_unk_0209B344.c.o
+                                         40](IntroMessageScreen_FieldTask,func) found in local src_intro_message_screen.c.o
                                           41](EasyChatArgs_FlagAsUnmodified,func) found in global src_easy_chat_args.c.o
                                           41](FieldSystem_OpenEasyChat,func) found in global src_unk_0203D1B8.c.o
                                           41](MiscSaveBlock_SetIntroMsg,func) found in global src_savedata_misc.c.o
-                                          41](sub_0209B3AC,func) found in local src_unk_0209B344.c.o
+                                          41](IntroMessageScreen_Free,func) found in local src_intro_message_screen.c.o
                                        38](ScrCmd_SaveTVSegmentHomeAndManor,func) found in global src_scrcmd_tv_broadcast.c.o
                                         39](TVSegment_Save_HomeAndManor,func) found in global src_tv_segment.c.o
                                        38](ScrCmd_SaveTVSegmentHomeAndManorNoFurniture,func) found in global src_scrcmd_tv_broadcast.c.o
@@ -49799,7 +49799,7 @@
   0204205C 00000000 .text   $t	(src_scrcmd.c.o)
   020420A0 0000000C .text   ScrCmd_0A5	(src_scrcmd.c.o)
   020420A0 00000000 .text   $t	(src_scrcmd.c.o)
-  020420AC 00000020 .text   ScrCmd_30E	(src_scrcmd.c.o)
+  020420AC 00000020 .text   ScrCmd_OpenIntroMessageScreen	(src_scrcmd.c.o)
   020420AC 00000000 .text   $t	(src_scrcmd.c.o)
   020420CC 00000056 .text   ScrCmd_0A6	(src_scrcmd.c.o)
   020420CC 00000000 .text   $t	(src_scrcmd.c.o)
@@ -61033,13 +61033,13 @@
   0209B288 00000000 .text   $t	(src_unk_0209ACF4.c.o)
   0209B288 000000BC .text   sub_0209B288	(src_unk_0209ACF4.c.o)
   0209B33C 00000000 .text   $d	(src_unk_0209ACF4.c.o)
-  0209B344 00000000 .text   $t	(src_unk_0209B344.c.o)
-  0209B344 00000068 .text   sub_0209B344	(src_unk_0209B344.c.o)
-  0209B3A8 00000000 .text   $d	(src_unk_0209B344.c.o)
-  0209B3AC 00000018 .text   sub_0209B3AC	(src_unk_0209B344.c.o)
-  0209B3AC 00000000 .text   $t	(src_unk_0209B344.c.o)
-  0209B3C4 000000B8 .text   sub_0209B3C4	(src_unk_0209B344.c.o)
-  0209B3C4 00000000 .text   $t	(src_unk_0209B344.c.o)
+  0209B344 00000000 .text   $t	(src_intro_message_screen.c.o)
+  0209B344 00000068 .text   OpenIntroMessageScreen	(src_intro_message_screen.c.o)
+  0209B3A8 00000000 .text   $d	(src_intro_message_screen.c.o)
+  0209B3AC 00000018 .text   IntroMessageScreen_Free	(src_intro_message_screen.c.o)
+  0209B3AC 00000000 .text   $t	(src_intro_message_screen.c.o)
+  0209B3C4 000000B8 .text   IntroMessageScreen_FieldTask	(src_intro_message_screen.c.o)
+  0209B3C4 00000000 .text   $t	(src_intro_message_screen.c.o)
   0209B47C 00000000 .text   $t	(src_error_message_reset.c.o)
   0209B47C 00000020 .text   VBlankIntr	(src_error_message_reset.c.o)
   0209B490 00000000 .text   $d	(src_error_message_reset.c.o)
