@@ -77,17 +77,17 @@ static const u8 Unk_ov77_021D7930[4] = {
 
 static void ov77_021D6670()
 {
-    const enum HeapID heapId = HEAP_ID_76;
+    const enum HeapID heapID = HEAP_ID_76;
 
     {
         CharTransferTemplate v1 = {
-            1, 0, 0, heapId
+            1, 0, 0, heapID
         };
 
         CharTransfer_Init(&v1);
     }
 
-    PlttTransfer_Init(1, heapId);
+    PlttTransfer_Init(1, heapID);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
