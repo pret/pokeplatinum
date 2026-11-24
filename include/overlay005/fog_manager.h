@@ -5,6 +5,8 @@
 
 #include "constants/graphics.h"
 
+#define FOG_MAX_DENSITY 127
+
 typedef struct FogManager {
     BOOL enabled;
     GXFogBlend mode;

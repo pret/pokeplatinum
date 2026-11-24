@@ -4,7 +4,7 @@
   "locationName": "LocationNames_Text_EternaForest",
   "textBank": "TEXT_BANK_ETERNA_FOREST",
   "popupStyle": "MAP_LABEL_WINDOW_FOREST",
-  "weather": "OVERWORLD_WEATHER_23",
+  "weather": "OVERWORLD_WEATHER_FOREST_SHADOWS",
   "cameraType": "CAMERA_TYPE_ZOOMED_IN",
   "battleBackground": "BACKGROUND_FOREST",
   "mapType": "MAP_TYPE_CAVE",

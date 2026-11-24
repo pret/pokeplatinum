@@ -6609,7 +6609,7 @@ static void sub_020462C0(SysTask *ctx, void *param1)
     FieldSystem *fieldSystem = param1;
 
     if (fieldSystem->unk_04->unk_0C) {
-        ov5_021D5F24(fieldSystem->unk_04->unk_0C, 26);
+        ov5_021D5F24(fieldSystem->unk_04->unk_0C, OVERWORLD_WEATHER_26);
         SysTask_Done(ctx);
     }
 }
@@ -6625,9 +6625,9 @@ static BOOL ScrCmd_2CD(ScriptContext *ctx)
 static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 weather = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    ov5_021D5F24(fieldSystem->unk_04->unk_0C, v1);
+    ov5_021D5F24(fieldSystem->unk_04->unk_0C, weather);
     return TRUE;
 }
 
