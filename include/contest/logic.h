@@ -37,8 +37,8 @@ u32 Contest_GetContestRankTitleMessageID(enum PokemonContestRank contestRank, en
 u32 Contest_GetRankMessageID(enum PokemonContestRank contestRank);
 u32 Contest_GetContestTypeMessageID(enum PokemonContestType contestType);
 u32 Contest_GetFullContestTypeMessageID(enum PokemonContestType contestType, enum ContestCompetition competitionType);
-int Contest_ContestantIDToContestantEntryNum(int contestantID);
-int Contest_ContestantEntryNumToContestantID(int contestantEntryNum);
+int Contestant_IDToEntryNum(int contestantID);
+int Contestant_EntryNumToID(int contestantEntryNum);
 BOOL Contest_IsPracticeCompetition(Contest *contest);
 int Contest_CalcConditionRating(Contest *contest, int contestantID);
 int Contest_CalcDressUpRating(Contest *contest, int contestantID);

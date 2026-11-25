@@ -16,7 +16,7 @@ typedef struct ContestHostElectionData {
     u8 linkVersion;
     u8 contestantID;
     u8 dressUpTheme;
-    u8 padding_03[1];
+    u8 padding_03;
 } ContestHostElectionData;
 
 static int ElectHost(ContestHostElectionData *candidates[CONTEST_NUM_PARTICIPANTS], int connectionCount, u8 *destHostLinkVersion);
@@ -75,13 +75,10 @@ static int ElectHost(ContestHostElectionData *candidates[CONTEST_NUM_PARTICIPANT
 void Contest_RecvMon(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int monSize;
-    int contestantID;
-    u8 *data;
 
-    monSize = Pokemon_StructSize();
-    data = src;
-    contestantID = data[monSize];
+    int monSize = Pokemon_StructSize();
+    u8 *data = src;
+    int contestantID = data[monSize];
 
     MI_CpuCopy8(src, contest->data.contestMons[contestantID], monSize);
 
@@ -90,12 +87,10 @@ void Contest_RecvMon(int unused1, int unused2, void *src, void *param)
 
 BOOL Contest_SendMon(Contest *unused, int contestantID, const Pokemon *mon)
 {
-    u8 *buffer;
-    int monSize;
     BOOL result;
 
-    monSize = Pokemon_StructSize();
-    buffer = Heap_Alloc(HEAP_ID_20, monSize + 1);
+    int monSize = Pokemon_StructSize();
+    u8 *buffer = Heap_Alloc(HEAP_ID_20, monSize + 1);
     MI_CpuCopy8(mon, buffer, monSize);
     buffer[monSize] = contestantID;
 
@@ -112,15 +107,12 @@ BOOL Contest_SendMon(Contest *unused, int contestantID, const Pokemon *mon)
 void Contest_RecvAllMons(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int monSize, unread;
-    u8 *data;
-    int i;
 
-    monSize = Pokemon_StructSize();
-    unread = monSize * CONTEST_NUM_PARTICIPANTS;
-    data = src;
+    int monSize = Pokemon_StructSize();
+    int unread = monSize * CONTEST_NUM_PARTICIPANTS;
+    u8 *data = src;
 
-    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+    for (int i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
         MI_CpuCopy8(&data[monSize * i], contest->data.contestMons[i], monSize);
     }
 
@@ -130,15 +122,13 @@ void Contest_RecvAllMons(int unused1, int unused2, void *src, void *param)
 BOOL Contest_SendAllMons(Contest *contest, Pokemon **mons)
 {
     u8 *buffer;
-    int monSize, totalSize;
     BOOL result;
-    int i;
 
-    monSize = Pokemon_StructSize();
-    totalSize = monSize * CONTEST_NUM_PARTICIPANTS;
+    int monSize = Pokemon_StructSize();
+    int totalSize = monSize * CONTEST_NUM_PARTICIPANTS;
     buffer = contest->commSendBuffer;
 
-    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+    for (int i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
         MI_CpuCopy8(mons[i], &buffer[monSize * i], monSize);
     }
 
@@ -154,13 +144,10 @@ BOOL Contest_SendAllMons(Contest *contest, Pokemon **mons)
 void Contest_RecvContestant(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int opponentSize;
-    int contestantID;
-    u8 *data;
 
-    opponentSize = sizeof(Contestant);
-    data = src;
-    contestantID = data[opponentSize];
+    int opponentSize = sizeof(Contestant);
+    u8 *data = src;
+    int contestantID = data[opponentSize];
 
     MI_CpuCopy8(src, &contest->data.contestants[contestantID], opponentSize);
 
@@ -169,12 +156,10 @@ void Contest_RecvContestant(int unused1, int unused2, void *src, void *param)
 
 BOOL Contest_SendContestant(Contest *unused, int contestantID, const Contestant *contestant)
 {
-    u8 *buffer;
-    int opponentSize;
     BOOL result;
 
-    opponentSize = sizeof(Contestant);
-    buffer = Heap_Alloc(HEAP_ID_20, opponentSize + 1);
+    int opponentSize = sizeof(Contestant);
+    u8 *buffer = Heap_Alloc(HEAP_ID_20, opponentSize + 1);
     MI_CpuCopy8(contestant, buffer, opponentSize);
     buffer[opponentSize] = contestantID;
 
@@ -191,14 +176,11 @@ BOOL Contest_SendContestant(Contest *unused, int contestantID, const Contestant 
 void Contest_RecvJudges(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int packetSize;
-    u8 *data;
-    int i;
 
-    packetSize = sizeof(ContestJudge) * CONTEST_NUM_JUDGES + 1;
-    data = src;
+    int packetSize = sizeof(ContestJudge) * CONTEST_NUM_JUDGES + 1;
+    u8 *data = src;
 
-    for (i = 0; i < CONTEST_NUM_JUDGES; i++) {
+    for (int i = 0; i < CONTEST_NUM_JUDGES; i++) {
         MI_CpuCopy8(&data[sizeof(ContestJudge) * i], &contest->data.judges[i], sizeof(ContestJudge));
     }
 
@@ -208,16 +190,13 @@ void Contest_RecvJudges(int unused1, int unused2, void *src, void *param)
 
 BOOL Contest_SendJudges(Contest *contest, int unused, const ContestJudge *judges)
 {
-    u8 *buffer;
-    int packetSize;
     BOOL result;
-    int i;
     const ContestJudge *judge = judges;
 
-    packetSize = sizeof(ContestJudge) * CONTEST_NUM_JUDGES + 1;
-    buffer = Heap_Alloc(HEAP_ID_20, packetSize);
+    int packetSize = sizeof(ContestJudge) * CONTEST_NUM_JUDGES + 1;
+    u8 *buffer = Heap_Alloc(HEAP_ID_20, packetSize);
 
-    for (i = 0; i < CONTEST_NUM_JUDGES; i++) {
+    for (int i = 0; i < CONTEST_NUM_JUDGES; i++) {
         MI_CpuCopy8(judge, &buffer[sizeof(ContestJudge) * i], sizeof(ContestJudge));
         judge++;
     }
@@ -237,15 +216,11 @@ BOOL Contest_SendJudges(Contest *contest, int unused, const ContestJudge *judges
 void Contest_RecvTrainerName(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int contestantID, unread, headerSize;
-    u8 *data;
-    u16 *name;
 
-    headerSize = 4;
-    data = src;
-    contestantID = data[0];
-    unread = data[1];
-    name = (u16 *)(&data[headerSize]);
+    int headerSize = 4;
+    u8 *data = src;
+    int contestantID = data[0];
+    u16 *name = (u16 *)(&data[headerSize]);
 
     String_Clear(contest->data.trainerNames[contestantID]);
     String_CopyChars(contest->data.trainerNames[contestantID], name);
@@ -255,17 +230,15 @@ void Contest_RecvTrainerName(int unused1, int unused2, void *src, void *param)
 
 BOOL Contest_SendTrainerName(Contest *contest, int contestantID, const String *trainerName)
 {
-    int nameSize, headerSize;
-    u8 *buffer;
     BOOL result;
-    u16 name[TRAINER_NAME_LEN + 1];
+    charcode_t name[TRAINER_NAME_LEN + 1];
 
-    nameSize = (TRAINER_NAME_LEN + 1) * sizeof(u16);
-    headerSize = 4;
+    int nameSize = (TRAINER_NAME_LEN + 1) * sizeof(charcode_t);
+    int headerSize = 4;
 
     String_ToChars(trainerName, name, TRAINER_NAME_LEN + 1);
 
-    buffer = Heap_Alloc(HEAP_ID_20, nameSize + headerSize);
+    u8 *buffer = Heap_Alloc(HEAP_ID_20, nameSize + headerSize);
     MI_CpuCopy8(name, &buffer[headerSize], nameSize);
     buffer[0] = contestantID;
     buffer[1] = nameSize;
@@ -285,13 +258,10 @@ BOOL Contest_SendTrainerName(Contest *contest, int contestantID, const String *t
 void Contest_RecvChatotCry(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int chatotCrySize;
-    int contestantID;
-    u8 *data;
 
-    chatotCrySize = ChatotCry_SaveSize();
-    data = src;
-    contestantID = data[chatotCrySize];
+    int chatotCrySize = ChatotCry_SaveSize();
+    u8 *data = src;
+    int contestantID = data[chatotCrySize];
 
     MI_CpuCopy8(src, contest->chatotCry[contestantID], chatotCrySize);
 
@@ -301,10 +271,9 @@ void Contest_RecvChatotCry(int unused1, int unused2, void *src, void *param)
 BOOL Contest_SendChatotCry(Contest *contest, int contestantID, void *chatotCry)
 {
     u8 *buffer;
-    int chatotCrySize;
     BOOL result;
 
-    chatotCrySize = ChatotCry_SaveSize();
+    int chatotCrySize = ChatotCry_SaveSize();
     buffer = contest->commSendBuffer;
 
     if (chatotCry != NULL) {
@@ -325,15 +294,11 @@ BOOL Contest_SendChatotCry(Contest *contest, int contestantID, void *chatotCry)
 void Contest_RecvContestantLinkInfo(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int linkInfoSize;
-    int contestantID;
-    u8 *data;
-    ContestantLinkInfo *linkInfo;
 
-    linkInfoSize = sizeof(ContestantLinkInfo);
-    linkInfo = src;
-    data = src;
-    contestantID = data[linkInfoSize];
+    int linkInfoSize = sizeof(ContestantLinkInfo);
+    ContestantLinkInfo *linkInfo = src;
+    u8 *data = src;
+    int contestantID = data[linkInfoSize];
 
     contest->data.trainerGenders[contestantID] = linkInfo->trainerGender;
     contest->data.npcSkillLevels[contestantID] = linkInfo->npcSkillLevel;
@@ -344,12 +309,10 @@ void Contest_RecvContestantLinkInfo(int unused1, int unused2, void *src, void *p
 
 BOOL Contest_SendContestantLinkInfo(Contest *unused, int contestantID, const ContestantLinkInfo *linkInfo)
 {
-    u8 *buffer;
-    int linkInfoSize;
     BOOL result;
 
-    linkInfoSize = sizeof(ContestantLinkInfo);
-    buffer = Heap_Alloc(HEAP_ID_20, linkInfoSize + 1);
+    int linkInfoSize = sizeof(ContestantLinkInfo);
+    u8 *buffer = Heap_Alloc(HEAP_ID_20, linkInfoSize + 1);
     MI_CpuCopy8(linkInfo, buffer, linkInfoSize);
     buffer[linkInfoSize] = contestantID;
 

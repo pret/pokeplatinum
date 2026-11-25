@@ -314,7 +314,7 @@ static const ContestEffectData sContestEffects[CONTEST_EFFECT_MAX] = {
 
 BOOL Contest_IsPlayerHost(Contest *contest)
 {
-    if (contest->isLinkContest == FALSE || (contest->isLinkContest == TRUE && contest->data.hostContestantID == contest->data.playerContestantID)) {
+    if (!contest->isLinkContest || (contest->isLinkContest == TRUE && contest->data.hostContestantID == contest->data.playerContestantID)) {
         return TRUE;
     }
 
@@ -323,12 +323,10 @@ BOOL Contest_IsPlayerHost(Contest *contest)
 
 void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOpponents, enum PokemonContestType contestType, enum PokemonContestRank contestRank, enum ContestCompetition competitionType, BOOL isGameCompleted, BOOL isNatDexObtained)
 {
-    int i, j;
-    u8 *candidates;
+    int i;
     u8 numCandidates = 0;
     u16 candidateIdx;
     BOOL isPostgame = FALSE;
-    int numOpponentEntries;
     BOOL isSingleCompetition, isPracticeCompetition;
     Contestant *opponentEntries;
     int numGuests, guestIdx;
@@ -351,8 +349,8 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
     }
 
     opponentEntries = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_OPPONENTS, FALSE, heapID, TRUE);
-    numOpponentEntries = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_OPPONENTS) / sizeof(Contestant);
-    candidates = Heap_AllocAtEnd(heapID, numOpponentEntries + 1);
+    int numOpponentEntries = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_OPPONENTS) / sizeof(Contestant);
+    u8 *candidates = Heap_AllocAtEnd(heapID, numOpponentEntries + 1);
 
     if (isGameCompleted == TRUE && isNatDexObtained == TRUE) {
         isPostgame = TRUE;
@@ -374,11 +372,11 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
         }
 
         if (isPracticeCompetition == TRUE) {
-            if (opponentEntries[i].inPracticeCompetitions == FALSE) {
+            if (!opponentEntries[i].inPracticeCompetitions) {
                 continue;
             }
         } else if (isSingleCompetition == TRUE) {
-            if (opponentEntries[i].inSingleCompetitions == FALSE) {
+            if (!opponentEntries[i].inSingleCompetitions) {
                 continue;
             }
         } else {
@@ -398,7 +396,7 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
 
     candidates[numCandidates] = CONTEST_CANDIDATES_TERMINATOR;
 
-    if (isSingleCompetition == FALSE) {
+    if (!isSingleCompetition) {
         GF_ASSERT(numCandidates >= numOpponents);
 
         numGuests = 0;
@@ -434,7 +432,7 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
 
             contest->data.contestants[i] = opponentEntries[candidates[candidateIdx]];
 
-            for (j = candidateIdx; candidates[j] != CONTEST_CANDIDATES_TERMINATOR; j++) {
+            for (int j = candidateIdx; candidates[j] != CONTEST_CANDIDATES_TERMINATOR; j++) {
                 candidates[j] = candidates[j + 1];
             }
 
@@ -460,13 +458,10 @@ void Contest_SelectOpponents(Contest *contest, enum HeapID heapID, int numOppone
 
 void Contest_DressUpOpponentPhotos(Contest *contest, enum HeapID heapID)
 {
-    int i, j;
-    OpponentDressUp *dressUps;
+    OpponentDressUp *dressUps = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_OPPONENT_DRESS_UPS, FALSE, heapID, TRUE);
     OpponentDressUp *dressUp;
     int firstOpponentID;
     int dressUpID;
-
-    dressUps = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_OPPONENT_DRESS_UPS, FALSE, heapID, TRUE);
 
     switch (contest->data.competitionType) {
     case CONTEST_COMPETITION_VISUAL:
@@ -479,7 +474,7 @@ void Contest_DressUpOpponentPhotos(Contest *contest, enum HeapID heapID)
         break;
     }
 
-    for (i = firstOpponentID; i < CONTEST_NUM_PARTICIPANTS; i++) {
+    for (int i = firstOpponentID; i < CONTEST_NUM_PARTICIPANTS; i++) {
         switch (contest->data.dressUpTheme) {
         case DRESS_UP_THEME_SHAPELY:
             dressUpID = contest->data.contestants[i].dressUpIDs[DRESS_UP_THEME_SHAPELY];
@@ -528,7 +523,7 @@ void Contest_DressUpOpponentPhotos(Contest *contest, enum HeapID heapID)
         ContestPhoto_Init(contest->data.photos[i]);
         ContestPhoto_SetMon(contest->data.photos[i], contest->data.contestMons[i], dressUp->monPriority);
 
-        for (j = 0; j < dressUp->numAccessories; j++) {
+        for (int j = 0; j < dressUp->numAccessories; j++) {
             ContestPhoto_SetAccessory(contest->data.photos[i], j, dressUp->accessories[j].accessoryID, dressUp->accessories[j].xPos, dressUp->accessories[j].yPos, dressUp->accessories[j].priority);
         }
 
@@ -541,9 +536,7 @@ void Contest_DressUpOpponentPhotos(Contest *contest, enum HeapID heapID)
 
 void Contest_InitPhotosWithoutAccessories(Contest *contest)
 {
-    int i;
-
-    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+    for (int i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
         ContestPhoto_Init(contest->data.photos[i]);
         ContestPhoto_SetMon(contest->data.photos[i], contest->data.contestMons[i], -1);
         ContestPhoto_SetBackdrop(contest->data.photos[i], 0);
@@ -553,12 +546,11 @@ void Contest_InitPhotosWithoutAccessories(Contest *contest)
 
 void Contestant_InitPokemon(const Contestant *contestant, Pokemon *mon, enum HeapID heapID)
 {
-    int i;
     u16 move;
     u32 personality = Pokemon_CreatePersonalityWithGenderAndNature(contestant->species, contestant->gender, NATURE_HARDY);
     Pokemon_InitWith(mon, contestant->species, CONTESTANT_POKEMON_LEVEL, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SHINY, 0xf0f0f0f);
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         move = contestant->moves[i];
         Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &move);
     }
@@ -612,15 +604,12 @@ void Contest_SelectJudges(Contest *contest, enum HeapID heapID, int mainJudgeID,
 {
     int i;
     u8 numJudges = 0, numMainJudges = 0;
-    u16 mainJudgeIdx;
     int numJudgeEntries;
-    ContestJudge *judges;
-    u8 *judgeCandidates, *mainJudgeCandidates;
+    ContestJudge *judges = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_JUDGES, FALSE, heapID, TRUE);
 
-    judges = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_JUDGES, FALSE, heapID, TRUE);
     numJudgeEntries = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, CONTEST_DATA_JUDGES) / sizeof(ContestJudge);
-    judgeCandidates = Heap_AllocAtEnd(heapID, numJudgeEntries + 1);
-    mainJudgeCandidates = Heap_AllocAtEnd(heapID, numJudgeEntries + 1);
+    u8 *judgeCandidates = Heap_AllocAtEnd(heapID, numJudgeEntries + 1);
+    u8 *mainJudgeCandidates = Heap_AllocAtEnd(heapID, numJudgeEntries + 1);
 
     for (i = 0; i < numJudgeEntries; i++) {
         if (contestRank != judges[i].rank) {
@@ -670,7 +659,7 @@ void Contest_SelectJudges(Contest *contest, enum HeapID heapID, int mainJudgeID,
     }
 
     GF_ASSERT(numMainJudges >= 1);
-    mainJudgeIdx = Contest_GetRNGNext(contest) % numMainJudges;
+    u16 mainJudgeIdx = Contest_GetRNGNext(contest) % numMainJudges;
     contest->data.judges[CONTEST_NUM_JUDGES - 1] = judges[mainJudgeCandidates[mainJudgeIdx]];
 
     contest->data.headJudgeID = mainJudgeID;
@@ -827,12 +816,12 @@ u32 Contest_GetFullContestTypeMessageID(enum PokemonContestType contestType, enu
     return messageID;
 }
 
-int Contest_ContestantIDToContestantEntryNum(int contestantID)
+int Contestant_IDToEntryNum(int contestantID)
 {
     return CONTEST_NUM_PARTICIPANTS - contestantID - 1;
 }
 
-int Contest_ContestantEntryNumToContestantID(int contestantEntryNum)
+int Contestant_EntryNumToID(int contestantEntryNum)
 {
     return CONTEST_NUM_PARTICIPANTS - contestantEntryNum - 1;
 }
@@ -921,7 +910,7 @@ int Contest_CalcDressUpRating(Contest *contest, int contestantID)
 
 void SetLockTextWithAutoScroll(BOOL lockTextWithAutoScroll)
 {
-    if (lockTextWithAutoScroll == FALSE) {
+    if (!lockTextWithAutoScroll) {
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
         RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_NO_WAIT);
         RenderControlFlags_SetSpeedUpOnTouch(TRUE);

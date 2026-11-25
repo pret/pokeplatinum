@@ -818,7 +818,7 @@ static int ov17_02250284(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_11 = 1;
         param0->unk_434.unk_10 = 1;
         param0->unk_434.unk_08.contestantID = param0->unk_39A.unk_30[0];
-        param0->unk_434.unk_08.contestantEntryNum = Contest_ContestantIDToContestantEntryNum(param0->unk_39A.unk_30[0]) + 1;
+        param0->unk_434.unk_08.contestantEntryNum = Contestant_IDToEntryNum(param0->unk_39A.unk_30[0]) + 1;
         param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_DANCE_COMPETITION_RESULTS;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
@@ -874,7 +874,7 @@ static int ov17_022503B0(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_11 = 1;
         param0->unk_434.unk_10 = 1;
         param0->unk_434.unk_08.contestantID = param0->unk_39A.unk_30[0];
-        param0->unk_434.unk_08.contestantEntryNum = Contest_ContestantIDToContestantEntryNum(param0->unk_39A.unk_30[0]) + 1;
+        param0->unk_434.unk_08.contestantEntryNum = Contestant_IDToEntryNum(param0->unk_39A.unk_30[0]) + 1;
         param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_ACTING_COMPETITION_RESULTS;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
@@ -940,7 +940,7 @@ static int ov17_02250548(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_11 = 1;
         param0->unk_434.unk_10 = 1;
         param0->unk_434.unk_08.contestantID = param0->unk_434.winningContestantID;
-        param0->unk_434.unk_08.contestantEntryNum = Contest_ContestantIDToContestantEntryNum(param0->unk_434.winningContestantID) + 1;
+        param0->unk_434.unk_08.contestantEntryNum = Contestant_IDToEntryNum(param0->unk_434.winningContestantID) + 1;
         param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_WINNER_IS;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {

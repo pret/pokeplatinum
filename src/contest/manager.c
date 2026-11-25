@@ -76,7 +76,7 @@ static void Contest_SetLCRNGSeed(Contest *contest);
 u16 Contest_GetRNGNext(Contest *contest);
 BOOL Contest_SetUpLinkContest(Contest *contest);
 static BOOL Contest_IsCommTaskDoneInternal(Contest *contest);
-static void SysTask_LinkContestSetup(SysTask *sysTask, void *param);
+static void SysTask_SetupLinkContest(SysTask *sysTask, void *param);
 static BOOL FieldTask_RunContest(FieldTask *fieldTask);
 static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask);
 void Contest_GetVisualCompetitionAppArgs(Contest *contest);
@@ -562,11 +562,9 @@ static int CalcMonContestFame(Pokemon *mon, enum PokemonContestType contestType)
 
 void Contest_GetVisualCompetitionAppArgs(Contest *contest)
 {
-    VisualCompetitionAppArgs *appArgs;
-
     ContestPhoto_Init(contest->data.photos[contest->data.playerContestantID]);
 
-    appArgs = Heap_Alloc(HEAP_ID_20, sizeof(VisualCompetitionAppArgs));
+    VisualCompetitionAppArgs *appArgs = Heap_Alloc(HEAP_ID_20, sizeof(VisualCompetitionAppArgs));
     MI_CpuClear8(appArgs, sizeof(VisualCompetitionAppArgs));
 
     appArgs->mon = contest->data.contestMons[contest->data.playerContestantID];
@@ -595,7 +593,7 @@ void Contest_VisualCompetitionAppArgsFree(Contest *contest)
     contest->visualCompetitionAppArgs = NULL;
 }
 
-static void SysTask_LinkContestSetup(SysTask *sysTask, void *param)
+static void SysTask_SetupLinkContest(SysTask *sysTask, void *param)
 {
     Contest *contest = param;
 
@@ -1008,7 +1006,7 @@ BOOL Contest_SetUpLinkContest(Contest *contest)
 
     Contest_InitCommCommands(contest);
 
-    contest->commTask = SysTask_Start(SysTask_LinkContestSetup, contest, 10);
+    contest->commTask = SysTask_Start(SysTask_SetupLinkContest, contest, 10);
 
     return TRUE;
 }
@@ -1101,15 +1099,14 @@ void Contest_BufferJudgeName(Contest *contest, int judgeID, StringTemplate *strT
 
 void Contest_BufferContestantTrainerName(Contest *contest, int contestantEntryNum, StringTemplate *strTemplate, u32 idx)
 {
-    int contestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
+    int contestantID = Contestant_EntryNumToID(contestantEntryNum);
     StringTemplate_SetString(strTemplate, idx, contest->data.trainerNames[contestantID], contest->data.trainerGenders[contestantID], 1, GAME_LANGUAGE);
 }
 
 void Contest_BufferMonNickname(Contest *contest, int contestantEntryNum, StringTemplate *strTemplate, u32 idx)
 {
-    BoxPokemon *boxMon;
-    int contestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
-    boxMon = Pokemon_GetBoxPokemon(contest->data.contestMons[contestantID]);
+    int contestantID = Contestant_EntryNumToID(contestantEntryNum);
+    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(contest->data.contestMons[contestantID]);
 
     StringTemplate_SetNickname(strTemplate, idx, boxMon);
 }
@@ -1137,14 +1134,13 @@ void Contest_BufferWinningContestantTrainerName(Contest *contest, StringTemplate
     }
 
     int contestantID = i;
-    int contestantEntryNum = Contest_ContestantIDToContestantEntryNum(contestantID);
+    int contestantEntryNum = Contestant_IDToEntryNum(contestantID);
 
     Contest_BufferContestantTrainerName(contest, contestantEntryNum, strTemplate, idx);
 }
 
 void Contest_BufferWinningContestantMonName(Contest *contest, StringTemplate *strTemplate, u32 idx)
 {
-    int contestantID, contestantEntryNum;
     int i;
 
     for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
@@ -1153,8 +1149,8 @@ void Contest_BufferWinningContestantMonName(Contest *contest, StringTemplate *st
         }
     }
 
-    contestantID = i;
-    contestantEntryNum = Contest_ContestantIDToContestantEntryNum(contestantID);
+    int contestantID = i;
+    int contestantEntryNum = Contestant_IDToEntryNum(contestantID);
 
     Contest_BufferMonNickname(contest, contestantEntryNum, strTemplate, idx);
 }
@@ -1193,11 +1189,9 @@ int Contest_GetPlayerContestPlacement(Contest *contest)
 
 int Contest_GetWinningContestantEntryNum(Contest *contest)
 {
-    int contestantID;
-
-    for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+    for (int contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
         if (contest->data.results[contestantID].contestPlacement == CONTEST_PLACEMENT_FIRST) {
-            return Contest_ContestantIDToContestantEntryNum(contestantID);
+            return Contestant_IDToEntryNum(contestantID);
         }
     }
 
@@ -1206,12 +1200,12 @@ int Contest_GetWinningContestantEntryNum(Contest *contest)
 
 int Contest_GetPlayerContestantEntryNum(Contest *contest)
 {
-    return Contest_ContestantIDToContestantEntryNum(contest->data.playerContestantID);
+    return Contestant_IDToEntryNum(contest->data.playerContestantID);
 }
 
 int Contest_GetContestantObjEventGFX(Contest *contest, int contestantEntryNum)
 {
-    int contestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
+    int contestantID = Contestant_EntryNumToID(contestantEntryNum);
     int contestantObjEventGFX = contest->data.contestantObjEventGFX[contestantID];
 
     return contestantObjEventGFX;
@@ -1219,7 +1213,7 @@ int Contest_GetContestantObjEventGFX(Contest *contest, int contestantEntryNum)
 
 int Contest_GetContestantMonContestFame(Contest *contest, int contestantEntryNum)
 {
-    int ContestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
+    int ContestantID = Contestant_EntryNumToID(contestantEntryNum);
     return contest->data.monContestFame[ContestantID];
 }
 
@@ -1267,7 +1261,7 @@ BOOL Contest_CheckPlayerMonHasRibbon(Contest *contest)
 
 void Contest_SetRibbonName(Contest *contest, StringTemplate *string, u32 idx, int unused)
 {
-    u32 ribbonID, ribbon;
+    u32 ribbonID;
 
     switch (contest->data.contestType) {
     case CONTEST_TYPE_COOL:
@@ -1290,7 +1284,7 @@ void Contest_SetRibbonName(Contest *contest, StringTemplate *string, u32 idx, in
         return;
     }
 
-    ribbon = Ribbon_GetData(ribbonID, RIBBON_DATA_NAME_ID);
+    u32 ribbon = Ribbon_GetData(ribbonID, RIBBON_DATA_NAME_ID);
     StringTemplate_SetRibbonName(string, idx, ribbon);
 }
 
@@ -1399,13 +1393,11 @@ u32 Contest_CalcFirstTimeVictoryAccessoryReward(Contest *contest)
 
 void Contest_StartCameraFlashTask(Contest *contest, int contestantEntryNum)
 {
-    ContestCameraFlashTask *cameraFlashTask;
-
     GF_ASSERT(contest->cameraFlashTask == NULL);
 
-    cameraFlashTask = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(ContestCameraFlashTask));
+    ContestCameraFlashTask *cameraFlashTask = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(ContestCameraFlashTask));
     MI_CpuClear8(cameraFlashTask, sizeof(ContestCameraFlashTask));
-    cameraFlashTask->contestantID = Contest_ContestantEntryNumToContestantID(contestantEntryNum);
+    cameraFlashTask->contestantID = Contestant_EntryNumToID(contestantEntryNum);
 
     int varianceIndex = contest->data.npcSkillLevels[cameraFlashTask->contestantID] & 1;
 
@@ -1472,7 +1464,6 @@ static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *param)
 
 void Contest_GetAwardCeremonyConditions(Contest *contest, int *destWinningContestantEntryNum, BOOL *destIsLinkContest, BOOL *destIsNPCWinner, BOOL *destIsPracticeCompetition, BOOL *destIsSingleCompetition)
 {
-    int winningContestantID;
     int contestantID;
 
     for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
@@ -1481,9 +1472,9 @@ void Contest_GetAwardCeremonyConditions(Contest *contest, int *destWinningContes
         }
     }
 
-    winningContestantID = contestantID;
+    int winningContestantID = contestantID;
 
-    *destWinningContestantEntryNum = Contest_ContestantIDToContestantEntryNum(winningContestantID);
+    *destWinningContestantEntryNum = Contestant_IDToEntryNum(winningContestantID);
     *destIsLinkContest = contest->isLinkContest;
 
     if (winningContestantID >= contest->data.connectionCount) {

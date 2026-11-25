@@ -78,13 +78,10 @@ static void Contest_Dummy(int unused1, int unused2, void *unused3, void *unused4
 static void Contest_RecvPhoto(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int photoSize;
-    int contestantID;
-    u8 *data;
 
-    photoSize = ContestPhoto_Size();
-    data = src;
-    contestantID = data[photoSize];
+    int photoSize = ContestPhoto_Size();
+    u8 *data = src;
+    int contestantID = data[photoSize];
 
     MI_CpuCopy8(src, contest->data.photos[contestantID], photoSize);
 
@@ -93,12 +90,10 @@ static void Contest_RecvPhoto(int unused1, int unused2, void *src, void *param)
 
 BOOL Contest_SendPhoto(Contest *unused, int contestantID, const ContestPhoto *contestPhoto)
 {
-    u8 *buffer;
-    int photoSize;
     BOOL result;
 
-    photoSize = ContestPhoto_Size();
-    buffer = Heap_Alloc(HEAP_ID_20, photoSize + 1);
+    int photoSize = ContestPhoto_Size();
+    u8 *buffer = Heap_Alloc(HEAP_ID_20, photoSize + 1);
     MI_CpuCopy8(contestPhoto, buffer, photoSize);
     buffer[photoSize] = contestantID;
 
@@ -115,17 +110,14 @@ BOOL Contest_SendPhoto(Contest *unused, int contestantID, const ContestPhoto *co
 static void Contest_RecvAllPhotos(int unused1, int unused2, void *src, void *param)
 {
     Contest *contest = param;
-    int photoSize, totalSize;
-    u8 *data;
-    int i;
 
-    photoSize = ContestPhoto_Size();
-    totalSize = photoSize * CONTEST_NUM_PARTICIPANTS;
-    data = src;
+    int photoSize = ContestPhoto_Size();
+    int totalSize = photoSize * CONTEST_NUM_PARTICIPANTS;
+    u8 *data = src;
 
     GF_ASSERT(totalSize < CONTEST_COMM_BUFFER_SIZE);
 
-    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+    for (int i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
         MI_CpuCopy8(&data[photoSize * i], contest->data.photos[i], photoSize);
     }
 
@@ -135,18 +127,16 @@ static void Contest_RecvAllPhotos(int unused1, int unused2, void *src, void *par
 BOOL Contest_SendAllPhotos(Contest *contest, ContestPhoto **contestPhotos)
 {
     u8 *buffer;
-    int photoSize, totalSize;
     BOOL result;
-    int i;
 
-    photoSize = ContestPhoto_Size();
-    totalSize = photoSize * CONTEST_NUM_PARTICIPANTS;
+    int photoSize = ContestPhoto_Size();
+    int totalSize = photoSize * CONTEST_NUM_PARTICIPANTS;
 
     GF_ASSERT(totalSize < CONTEST_COMM_BUFFER_SIZE);
 
     buffer = contest->commSendBuffer;
 
-    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+    for (int i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
         MI_CpuCopy8(contestPhotos[i], &buffer[photoSize * i], photoSize);
     }
 
