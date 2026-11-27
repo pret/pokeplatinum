@@ -31,7 +31,7 @@ void SecretBases_ResetAllBaseInfo(void);
 void SecretBases_ClearAllBaseInfo(void);
 int SecretBasesEnv_Size(void);
 void SecretBases_ClearBaseEntranceData(int netID);
-void SecretBases_RemoveEntrance(int netID);
+void SecretBases_RemoveBaseEntrance(int netID);
 void SecretBases_ProcessBaseTransitionPromptEvent(int unused0, int unused1, void *data, void *unused3);
 void SecretBases_ProcessFailedBaseEnter(int unused0, int unused1, void *data, void *unused3);
 int CommPacketSizeOf_BaseTransitionPromptEvent(void);

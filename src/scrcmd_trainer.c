@@ -1,5 +1,6 @@
+#include "scrcmd_trainer.h"
+
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/heap.h"
 #include "generated/trainer_message_types.h"

@@ -1,6 +1,7 @@
+#include "unk_0207C63C.h"
+
 #include <nitro.h>
 #include <nnsys.h>
-#include <string.h>
 
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_0207C8C4.h"

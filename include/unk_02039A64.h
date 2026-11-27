@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_02039A64_H
 #define POKEPLATINUM_UNK_02039A64_H
 
+#include "constants/heap.h"
+
 void sub_02039A64(enum HeapID heapID, int unused);
 
 #endif // POKEPLATINUM_UNK_02039A64_H

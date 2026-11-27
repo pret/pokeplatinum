@@ -22,11 +22,11 @@ void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int battler, i
 void BattleController_EmitSlideHealthBoxIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay);
 void BattleController_EmitSlideHealthBoxOut(BattleSystem *battleSys, int battler);
 void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
-void ov16_022656D4(BattleSystem *battleSys, int battler, int command);
+void BattleController_EmitSelectedCommand(BattleSystem *battleSys, int battler, int command);
 void BattleController_EmitShowMoveSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-void ov16_02265790(BattleSystem *battleSys, int battler, int command);
-void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler);
-void ov16_022658CC(BattleSystem *battleSys, int battler, int command);
+void BattleController_EmitSelectedMove(BattleSystem *battleSys, int battler, int command);
+void BattleController_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler);
+void BattleController_EmitSelectedTarget(BattleSystem *battleSys, int battler, int command);
 void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void BattleController_EmitSelectedBagItem(BattleSystem *battleSys, int battler, BattleItemUse message);
 void BattleController_EmitShowPartyMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doublesSelection);

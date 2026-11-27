@@ -1,5 +1,6 @@
+#include "unk_02039A64.h"
+
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/graphics.h"
 

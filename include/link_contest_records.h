@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_CONTEST_H
-#define POKEPLATINUM_CONTEST_H
+#ifndef POKEPLATINUM_LINK_CONTEST_RECORDS_H
+#define POKEPLATINUM_LINK_CONTEST_RECORDS_H
 
 #include "constants/contests.h"
 #include "generated/pokemon_contest_types.h"
@@ -15,4 +15,4 @@ void LinkContestRecords_Init(LinkContestRecords *linkContestRecords);
 void LinkContestRecords_IncrementSavaData(SaveData *saveData, enum PokemonContestType contestType, int placement);
 u16 LinkContestRecords_GetSavaData(SaveData *saveData, enum PokemonContestType contestType, int placement);
 
-#endif // POKEPLATINUM_CONTEST_H
+#endif // POKEPLATINUM_LINK_CONTEST_RECORDS_H

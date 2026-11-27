@@ -1,7 +1,8 @@
 #include "underground/text_printer.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "underground/manager.h"
 
 #include "bg_window.h"
 #include "heap.h"

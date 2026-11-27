@@ -1,5 +1,6 @@
+#include "scrcmd_sound.h"
+
 #include <nitro.h>
-#include <string.h>
 
 #include "field/field_system.h"
 
@@ -10,7 +11,6 @@
 #include "sound.h"
 #include "sound_chatot.h"
 #include "sound_playback.h"
-#include "system.h"
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);

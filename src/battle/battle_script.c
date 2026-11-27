@@ -1,10 +1,10 @@
-#include "constants/battle/battle_script.h"
+#include "battle/battle_script.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
+#include "constants/battle/battle_script.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/narc.h"

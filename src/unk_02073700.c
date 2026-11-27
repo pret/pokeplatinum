@@ -1,5 +1,6 @@
+#include "unk_02073700.h"
+
 #include <nitro.h>
-#include <string.h>
 
 #include "struct_defs/wi_fi_history.h"
 #include "struct_defs/wifi_battle_tower_data.h"

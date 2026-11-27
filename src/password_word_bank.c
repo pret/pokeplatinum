@@ -4,10 +4,10 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "generated/abilities.h"
-#include "generated/pokemon_types.h"
 
 #include "easy_chat_words.h"
+#include "graphics.h"
+#include "heap.h"
 
 #include "res/words/word_bank.naix"
 
@@ -36,7 +36,7 @@ u32 PasswordWordBank_GetLength(const PasswordWordBank *wordBank)
 
 u16 PasswordWordBank_GetWordAtIndex(const PasswordWordBank *wordBank, u32 index)
 {
-    GF_ASSERT(wordBank);
+    GF_ASSERT(wordBank != NULL);
 
     if (wordBank->length <= index) {
         return WORD_NONE;
@@ -47,7 +47,7 @@ u16 PasswordWordBank_GetWordAtIndex(const PasswordWordBank *wordBank, u32 index)
 
 s16 PasswordWordBank_FindWord(const PasswordWordBank *wordBank, u16 word)
 {
-    GF_ASSERT(wordBank);
+    GF_ASSERT(wordBank != NULL);
 
     for (int i = 0; i < wordBank->length; i++) {
         if (wordBank->words[i] == word) {

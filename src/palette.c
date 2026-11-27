@@ -1,7 +1,7 @@
 #include "palette.h"
 
 #include <nitro.h>
-#include <string.h>
+#include <stdlib.h>
 
 #include "constants/heap.h"
 

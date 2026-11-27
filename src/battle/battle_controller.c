@@ -1,8 +1,8 @@
-#include "constants/battle/battle_controller.h"
+#include "battle/battle_controller.h"
 
 #include <nitro.h>
-#include <string.h>
 
+#include "constants/battle/battle_controller.h"
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "generated/genders.h"
@@ -788,7 +788,7 @@ void BattleController_EmitSelectedMove(BattleSystem *battleSys, int battler, int
  * @param range
  * @param battler
  */
-void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler)
+void BattleController_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler)
 {
     TargetSelectMenuMessage message;
     int i;

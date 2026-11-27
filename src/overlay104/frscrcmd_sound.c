@@ -1,5 +1,6 @@
+#include "overlay104/frscrcmd_sound.h"
+
 #include <nitro.h>
-#include <string.h>
 
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"

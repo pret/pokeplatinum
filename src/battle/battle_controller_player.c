@@ -534,7 +534,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
         case COMMAND_SELECTION_TARGET_SELECT_INIT:
             int target;
             if (BattleControllerPlayer_MustSelectTarget(battleSys, battleCtx, i, battleType, &target, battleCtx->moveSlot[i], &battleCtx->battlerActions[i][1])) {
-                BattleCommand_EmitShowTargetSelectMenu(battleSys, battleCtx, target, i);
+                BattleController_EmitShowTargetSelectMenu(battleSys, battleCtx, target, i);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_TARGET_SELECT;
             } else {
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
