@@ -6,8 +6,8 @@
 #include <string.h>
 
 #include "constants/charcode.h"
+#include "constants/game_records.h"
 #include "constants/versions.h"
-#include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/journal_online_events.h"
 #include "generated/species.h"

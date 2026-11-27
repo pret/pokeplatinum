@@ -1,12 +1,12 @@
-﻿#include "gts_application/screens/deposit.h"
+#include "gts_application/screens/deposit.h"
 
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/species.h"
+#include "constants/species_data_params.h"
 #include "generated/gender_ratios.h"
-#include "generated/species_data_params.h"
 
 #include "gts_application/application.h"
 #include "gts_application/gts.h"

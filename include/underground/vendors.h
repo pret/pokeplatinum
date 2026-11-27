@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNDERGROUND_VENDORS_H
 #define POKEPLATINUM_UNDERGROUND_VENDORS_H
 
-#include "generated/traps.h"
+#include "constants/traps.h"
 
 #include "field/field_system_decl.h"
 #include "underground/menus.h"

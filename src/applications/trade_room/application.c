@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "constants/communication/comm_error.h"
-#include "generated/game_records.h"
+#include "constants/game_records.h"
+#include "constants/species_data_params.h"
 #include "generated/species.h"
-#include "generated/species_data_params.h"
 
 #include "struct_decls/wi_fi_list.h"
 #include "struct_defs/chatot_cry.h"

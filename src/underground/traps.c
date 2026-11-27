@@ -5,8 +5,8 @@
 #include <string.h>
 
 #include "constants/map_object.h"
-#include "generated/trainer_score_events.h"
-#include "generated/traps.h"
+#include "constants/trainer_score_events.h"
+#include "constants/traps.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EAFA4.h"

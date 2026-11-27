@@ -5,8 +5,8 @@
 
 #include "constants/battle.h"
 #include "constants/species.h"
+#include "constants/trainer_score_events.h"
 #include "generated/pal_park_land_area.h"
-#include "generated/trainer_score_events.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"

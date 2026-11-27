@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/trainer_score_events.h"
+#include "constants/trainer_score_events.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay065/struct_ov65_0222F6EC.h"

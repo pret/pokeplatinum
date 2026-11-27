@@ -5,7 +5,6 @@
 
 #include "constants/accessories.h"
 #include "constants/charcode.h"
-#include "generated/backdrops.h"
 #include "generated/pokemon_contest_types.h"
 
 #include "struct_defs/image_clips.h"

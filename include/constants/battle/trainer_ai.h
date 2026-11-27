@@ -1,10 +1,38 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 
-#include "generated/ai_action_choices.h"
 #include "generated/ai_flags.h"
-#include "generated/ai_load_type_targets.h"
-#include "generated/ai_weather_types.h"
+
+enum AIActionChoice {
+    AI_ENEMY_ATTACK_1 = 0,
+    AI_ENEMY_ATTACK_2,
+    AI_ENEMY_ATTACK_3,
+    AI_ENEMY_ATTACK_4,
+    AI_ENEMY_ESCAPE,
+    AI_ENEMY_SAFARI,
+    AI_ENEMY_SWITCH,
+};
+
+enum AILoadTypeTarget {
+    LOAD_DEFENDER_TYPE_1 = 0,
+    LOAD_ATTACKER_TYPE_1,
+    LOAD_DEFENDER_TYPE_2,
+    LOAD_ATTACKER_TYPE_2,
+    LOAD_MOVE_TYPE,
+    LOAD_DEFENDER_PARTNER_TYPE_1,
+    LOAD_ATTACKER_PARTNER_TYPE_1,
+    LOAD_DEFENDER_PARTNER_TYPE_2,
+    LOAD_ATTACKER_PARTNER_TYPE_2,
+};
+
+enum AIWeatherType {
+    AI_WEATHER_CLEAR = 0,
+    AI_WEATHER_SUNNY,
+    AI_WEATHER_RAINING,
+    AI_WEATHER_SANDSTORM,
+    AI_WEATHER_HAILING,
+    AI_WEATHER_DEEP_FOG,
+};
 
 #define AI_INIT_SCORE_MOVE_1 (1 << 0)
 #define AI_INIT_SCORE_MOVE_2 (1 << 1)

@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/trainer_score_events.h"
+#include "constants/trainer_score_events.h"
 
 #include "struct_defs/comm_player_location.h"
 

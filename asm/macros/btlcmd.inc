@@ -2,17 +2,17 @@
     .set ASM_BATTLE_SCRIPT_INC, 1
 
 #include "constants/battle.h"
+#include "constants/game_records.h"
 #include "constants/items.h"
+#include "constants/species_data_params.h"
 #include "constants/species.h"
 #include "generated/abilities.h"
 #include "generated/battle_subscripts.h"
-#include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/move_attributes.h"
 #include "generated/moves.h"
 #include "generated/pokemon_types.h"
 #include "res/sound/pl_sound_data.naix"
-#include "generated/species_data_params.h"
 #include "battle/btlcmd.h"
 #include "res/text/bank/battle_strings.h"
 

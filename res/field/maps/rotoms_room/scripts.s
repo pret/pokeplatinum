@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
+#include "constants/distribution_events.h"
 #include "constants/moves.h"
 #include "res/text/bank/rotoms_room.h"
 #include "res/field/maps/locals/rotoms_room.h"

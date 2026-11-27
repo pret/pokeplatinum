@@ -3,11 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/game_records.h"
 #include "constants/heap.h"
-#include "generated/game_records.h"
+#include "constants/trainer_score_events.h"
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
-#include "generated/trainer_score_events.h"
 
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/clear_game_player_info.h"
