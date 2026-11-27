@@ -164,7 +164,13 @@ static void SortScriptLabels(Buffer *labels, const char *source)
 
 static void EnsureDir(const char *path)
 {
-    if (mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) && errno != EEXIST) {
+    if (
+        #ifdef _WIN32
+        mkdir(path)
+        #else
+        mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO)
+        #endif
+         && errno != EEXIST) {
         Driver_Fail("failed to ensure directory '%s': %s", path, strerror(errno));
     }
 }
@@ -789,12 +795,11 @@ static void ScanLocalScriptLabels(const char *filename)
     FILE *f = fopen(filename, "r");
     if (!f) Driver_Fail("cannot open '%s': %s", filename, strerror(errno));
 
-    char  *line    = NULL;
-    size_t cap     = 0;
+    char   line[4096];
     size_t lineNum = 0;
     long   id      = 1;
 
-    while (getline(&line, &cap, f) != -1) {
+    while (fgets(line, sizeof(line), f)) {
         lineNum++;
         line[strcspn(line, "\r\n")] = '\0';
 
@@ -808,7 +813,6 @@ static void ScanLocalScriptLabels(const char *filename)
         }
     }
 
-    free(line);
     fclose(f);
 
     SortScriptLabels(&sLocalScriptLabels, filename);
