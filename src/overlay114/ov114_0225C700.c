@@ -8,6 +8,7 @@
 
 #include "struct_decls/wi_fi_list.h"
 
+#include "contest/logic.h"
 #include "nintendo_wfc/main.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_02230DBC.h"
@@ -52,7 +53,6 @@
 #include "trainer_info.h"
 #include "unk_020363E8.h"
 #include "unk_0203909C.h"
-#include "unk_02094EDC.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"
 #include "yes_no_touch_menu.h"

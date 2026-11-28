@@ -11,10 +11,10 @@
 typedef struct DressUpPhoto {
     u32 integrity;
     PhotoPokemon photoMon;
-    u32 unk_3C;
+    u32 accessoryFlags;
     EasyChatSentence title;
     PhotoAccessory accessories[PHOTO_ACCESSORY_COUNT];
-    u8 unk_70;
+    u8 backdrop;
     u8 language;
 } DressUpPhoto;
 

@@ -17,10 +17,10 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "rankings.h"
 #include "record_mixed_rng.h"
 #include "savedata.h"
-#include "unk_020298BC.h"
 #include "unk_0202E2CC.h"
 #include "unk_02073700.h"
 
@@ -86,7 +86,7 @@ static void *ov59_021D2FE0(SaveData *saveData, enum HeapID heapID, u32 param2)
 static void ov59_021D300C(const UnkStruct_ov59_021D2FBC *param0)
 {
     ImageClips *imageClips = SaveData_GetImageClips(param0->saveData);
-    sub_0202A6A8(param0->unk_08, param0->unk_0C, imageClips, param0->unk_10);
+    ImageClips_AddReceivedDressUpPhotos(param0->unk_08, param0->unk_0C, imageClips, param0->unk_10);
 }
 
 static void ov59_021D3028(const UnkStruct_ov59_021D2FBC *param0)

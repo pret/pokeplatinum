@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224EDE0_H
 #define POKEPLATINUM_STRUCT_OV17_0224EDE0_H
 
-typedef struct {
+typedef struct UnkStruct_ov17_0224EDE0 {
     u16 unk_00;
     u8 unk_02;
     u8 unk_03;

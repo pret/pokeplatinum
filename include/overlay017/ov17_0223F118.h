@@ -3,12 +3,12 @@
 
 #include "struct_decls/struct_02012744_decl.h"
 
+#include "contest/manager.h"
 #include "overlay017/struct_ov17_0223F2E4.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
 #include "overlay017/struct_ov17_0223F744.h"
 
 #include "bg_window.h"
-#include "contest.h"
 #include "g3d_pipeline.h"
 #include "palette.h"
 #include "sprite_system.h"

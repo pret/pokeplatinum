@@ -53,7 +53,7 @@ static UnkStruct_ov22_02259560 *ov22_02258584(UnkStruct_ov22_02257F50 *param0, i
 static int ov22_022585A8(UnkStruct_ov22_02257F50 *param0, int param1, int param2);
 static UnkStruct_ov22_02259560 *ov22_022585C4(UnkStruct_ov22_02257F50 *param0, int param1, int param2, int param3);
 static void ov22_022584E0(UnkStruct_ov22_02257F50 *param0, int param1);
-static void ov22_022585E8(UnkStruct_ov22_02257F50 *param0, UnkStruct_ov22_02255040 *param1, int param2, int param3);
+static void ov22_022585E8(UnkStruct_ov22_02257F50 *param0, DressUpAccessorySprite *param1, int param2, int param3);
 static void ov22_02258610(int param0, int *param1, int *param2);
 static void ov22_0225864C(UnkStruct_ov22_02257F50 *param0, int param1, int param2, int param3, int param4);
 static void ov22_022586C4(SysTask *param0, void *param1);
@@ -160,7 +160,7 @@ void ov22_0225804C(int param0, int param1, int *param2, int *param3, int param4,
 void ov22_022580A4(UnkStruct_ov22_02257F50 *param0, int param1, int param2)
 {
     UnkStruct_ov22_0225500C v0;
-    UnkStruct_ov22_02255040 *v1;
+    DressUpAccessorySprite *v1;
     UnkStruct_ov22_02259560 *v2;
     int v3;
     int v4, v5;
@@ -569,7 +569,7 @@ static UnkStruct_ov22_02259560 *ov22_022585C4(UnkStruct_ov22_02257F50 *param0, i
     return NULL;
 }
 
-static void ov22_022585E8(UnkStruct_ov22_02257F50 *param0, UnkStruct_ov22_02255040 *param1, int param2, int param3)
+static void ov22_022585E8(UnkStruct_ov22_02257F50 *param0, DressUpAccessorySprite *param1, int param2, int param3)
 {
     if ((param0->unk_00.unk_00 != param2) || (param0->unk_00.unk_0C[param2].unk_08 != param3)) {
         ov22_02254F60(param1, 0);

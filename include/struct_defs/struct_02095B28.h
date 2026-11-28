@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02095B28_H
 #define POKEPLATINUM_STRUCT_02095B28_H
 
-typedef struct {
+typedef struct UnkStruct_02095B28 {
     u32 unk_00;
     u8 unk_04;
     u8 padding_05[3];

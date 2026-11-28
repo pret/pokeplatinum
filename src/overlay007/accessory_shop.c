@@ -14,6 +14,7 @@
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
+#include "image_clips.h"
 #include "message.h"
 #include "narc.h"
 #include "render_window.h"
@@ -23,7 +24,6 @@
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020298BC.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"
 #include "res/text/bank/flower_shop.h"

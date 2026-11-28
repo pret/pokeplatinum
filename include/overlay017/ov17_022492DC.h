@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_OV17_022492DC_H
 #define POKEPLATINUM_OV17_022492DC_H
 
+#include "contest/manager.h"
 #include "overlay017/struct_ov17_022492DC_decl.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
 
 #include "bg_window.h"
-#include "contest.h"
 
 void ov17_02249300(BgConfig *param0);
 void ov17_02249358(BgConfig *param0);

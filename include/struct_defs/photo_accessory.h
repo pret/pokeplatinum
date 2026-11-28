@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_PHOTO_ACCESSORY_H
 
 typedef struct PhotoAccessory {
-    u8 unk_00;
+    u8 accessoryID;
     u8 xPos;
     u8 yPos;
     s8 priority;

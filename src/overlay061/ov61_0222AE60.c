@@ -13,10 +13,10 @@
 #include "overlay062/struct_ov62_02239DA4.h"
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
+#include "image_clips.h"
 #include "pc_boxes.h"
 #include "savedata.h"
 #include "string_gf.h"
-#include "unk_020298BC.h"
 
 void ov61_0222AE60(SaveData *saveData, const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param2)
 {

@@ -8,6 +8,7 @@
 #include "generated/pokemon_types.h"
 
 #include "applications/pokemon_summary_screen/main.h"
+#include "contest/logic.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -36,7 +37,6 @@
 #include "text.h"
 #include "type_icon.h"
 #include "unk_0208C098.h"
-#include "unk_02094EDC.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
@@ -1195,7 +1195,7 @@ static void MoveReminder_DrawContestMovesText(MoveReminderController *controller
     Window_FillTilemap(&controller->windows[MOVE_REMINDER_WIN_MOVE_CONTEST_DESCRIPTION], 0);
 
     if (move != MENU_CANCEL) {
-        u32 entryID = sub_0209577C(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT));
+        u32 entryID = Contest_GetMoveEffectDescriptionMessageID(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT));
         MessageLoader *moveDescLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_MOVE_REMINDER);
 
         MessageLoader_GetString(moveDescLoader, entryID, controller->string);
@@ -1233,7 +1233,7 @@ static void MoveReminder_DrawAppealPointHearts(MoveReminderController *controlle
     MoveReminder_DrawEmptyHearts(controller);
 
     if (move != LEVEL_UP_MOVESET_TERMINATOR) {
-        s8 numHearts = sub_02095734(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT)) / POINTS_PER_APPEAL_HEART;
+        s8 numHearts = Contest_GetMoveEffectAppeal(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT)) / POINTS_PER_APPEAL_HEART;
 
         for (u16 i = 0; i < numHearts; i++) {
             MoveReminder_DrawHeart(controller, 14, i);

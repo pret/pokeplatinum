@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224DF54_H
 #define POKEPLATINUM_STRUCT_OV17_0224DF54_H
 
+#include "contest/manager.h"
 #include "overlay017/struct_ov17_0223E838.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
 #include "overlay017/struct_ov17_0224B5C8.h"
@@ -13,7 +14,6 @@
 #include "overlay017/struct_ov17_0224EDE0.h"
 #include "overlay017/struct_ov17_0224F30C.h"
 
-#include "contest.h"
 #include "g3d_pipeline.h"
 #include "particle_system.h"
 #include "sys_task_manager.h"

@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "contest/logic.h"
+#include "contest/manager.h"
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
@@ -30,7 +32,6 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "contest.h"
 #include "game_options.h"
 #include "heap.h"
 #include "inlines.h"
@@ -52,7 +53,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_02094EDC.h"
 
 #include "res/text/bank/contest_dance_competition.h"
 
@@ -353,7 +353,7 @@ void ov17_0224A134(UnkStruct_ov17_0224DF54 *param0)
         int v3;
 
         v3 = param0->unk_A3C.unk_05[i];
-        v2 = Pokemon_DPSpriteYOffset(param0->unk_00->unk_00.contestMons[v3], 2);
+        v2 = Pokemon_DPSpriteYOffset(param0->unk_00->data.contestMons[v3], 2);
 
         v1.unk_04 = Unk_ov17_022546F4[i][0];
         v1.unk_08 = Unk_ov17_022546F4[i][1] + v2;
@@ -361,7 +361,7 @@ void ov17_0224A134(UnkStruct_ov17_0224DF54 *param0)
         param0->unk_14.unk_04[v3].unk_04 = v1.unk_04;
         param0->unk_14.unk_04[v3].unk_08 = v1.unk_08;
         param0->unk_14.unk_04[v3].unk_0C = Unk_ov17_022546F4[i][2];
-        param0->unk_14.unk_04[v3].unk_00 = ov22_0225AFD4(&v1, param0->unk_00->unk_00.unk_E8[v3]);
+        param0->unk_14.unk_04[v3].unk_00 = ov22_0225AFD4(&v1, param0->unk_00->data.photos[v3]);
 
         ov22_0225B100(param0->unk_14.unk_04[v3].unk_00, param0->unk_14.unk_04[v3].unk_04, param0->unk_14.unk_04[v3].unk_08);
 
@@ -797,7 +797,7 @@ static void ov17_0224AA68(SysTask *param0, void *param1)
     UnkStruct_ov17_0224DF54 *v0 = param1;
     int v1, v2, v3;
 
-    v3 = v0->unk_00->unk_00.playerContestantID;
+    v3 = v0->unk_00->data.playerContestantID;
     v1 = v0->unk_14.unk_04[v3].unk_04;
     v2 = v0->unk_14.unk_04[v3].unk_08;
 
@@ -1162,9 +1162,9 @@ static BOOL ov17_0224B0E8(UnkStruct_ov17_0224DF54 *param0, int param1, const Unk
 
     if ((param2->unk_07 == 0) && (v0 == 1)) {
         v1 += 256 / 2 - v5;
-        v2 = Unk_ov17_022549BC[param0->unk_A3C.unk_05[param0->unk_00->unk_00.playerContestantID]];
+        v2 = Unk_ov17_022549BC[param0->unk_A3C.unk_05[param0->unk_00->data.playerContestantID]];
 
-        ov17_0224A46C(&param0->unk_14, param0->unk_14.unk_58, param0->unk_14.unk_5C, 2, param2->unk_03, v1, v2, param0->unk_A3C.unk_05[param0->unk_00->unk_00.playerContestantID]);
+        ov17_0224A46C(&param0->unk_14, param0->unk_14.unk_58, param0->unk_14.unk_5C, 2, param2->unk_03, v1, v2, param0->unk_A3C.unk_05[param0->unk_00->data.playerContestantID]);
     }
 
     return 1;
@@ -1176,7 +1176,7 @@ void ov17_0224B20C(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_0224EDE
 
     v1 = param1->unk_02;
 
-    if (param0->unk_00->unk_00.playerContestantID == param0->unk_00->unk_00.unk_10C) {
+    if (param0->unk_00->data.playerContestantID == param0->unk_00->data.hostContestantID) {
         (void)0;
     }
 
@@ -1247,12 +1247,12 @@ void ov17_0224B20C(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_0224EDE
     }
 
     ov17_0224A7E0(&param0->unk_14, param0->unk_14.unk_58, param0->unk_14.unk_5C, param1->unk_04, param1->unk_02, param1->unk_07);
-    ov17_0224B0E8(param0, param0->unk_00->unk_00.playerContestantID, param1);
+    ov17_0224B0E8(param0, param0->unk_00->data.playerContestantID, param1);
     ov17_0224B528(param0, param1->unk_02, param1->unk_07, param1->unk_03, param1->unk_08_0, param0->unk_A3C.unk_0A[v1]);
     ov17_0224AF3C(param0, param1->unk_02, param1->unk_04, param1->unk_07);
     ov17_0224C89C(param0, param1);
 
-    if (param1->unk_02 == param0->unk_00->unk_00.playerContestantID) {
+    if (param1->unk_02 == param0->unk_00->data.playerContestantID) {
         if (param1->unk_04 == 0) {
             ov17_0224CB00(param0, param1->unk_06, 1);
         } else if (param1->unk_04 == 1) {
@@ -1282,7 +1282,7 @@ void ov17_0224B20C(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_0224EDE
         Sound_PlayEffect(SEQ_SE_DP_CON_027_3_sseq);
     }
 
-    if ((param0->unk_14.unk_A2C == 0) || ((param0->unk_14.unk_A2C > 0) && ((param1->unk_07 == 0) || (param1->unk_02 == param0->unk_00->unk_00.playerContestantID)))) {
+    if ((param0->unk_14.unk_A2C == 0) || ((param0->unk_14.unk_A2C > 0) && ((param1->unk_07 == 0) || (param1->unk_02 == param0->unk_00->data.playerContestantID)))) {
         switch (param1->unk_04) {
         case 0:
             if (param0->unk_14.unk_A1D[param1->unk_02] == param0->unk_A3C.unk_2E) {
@@ -1878,14 +1878,14 @@ static void ov17_0224C0C0(UnkStruct_ov17_0224DF54 *param0, int param1, const Unk
         StringTemplate_SetNickname(param0->unk_14.unk_88, 0, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->contestMons[param2->contestantID]));
         break;
     case 2:
-        messageID = Contest_GetContestRankTitleMessageID(param0->unk_00->unk_00.contestRank, param0->unk_00->unk_00.competitionType, param0->unk_00->isLinkContest);
+        messageID = Contest_GetContestRankTitleMessageID(param0->unk_00->data.contestRank, param0->unk_00->data.competitionType, param0->unk_00->isLinkContest);
         StringTemplate_SetContestRankName(param0->unk_14.unk_88, 0, messageID);
         break;
     case 3:
         StringTemplate_SetNumber(param0->unk_14.unk_88, 0, param2->unk_04, 1, 0, 1);
         break;
     case 4:
-        StringTemplate_SetString(param0->unk_14.unk_88, 0, param0->unk_00->unk_00.trainerNames[param2->contestantID], param0->unk_00->unk_00.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_14.unk_88, 0, param0->unk_00->data.trainerNames[param2->contestantID], param0->unk_00->data.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_14.unk_88, 1, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->contestMons[param2->contestantID]));
         break;
     case 5:
@@ -1893,10 +1893,10 @@ static void ov17_0224C0C0(UnkStruct_ov17_0224DF54 *param0, int param1, const Unk
         StringTemplate_SetNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
         break;
     case 6:
-        messageID = Contest_GetContestRankTitleMessageID(param0->unk_00->unk_00.contestRank, param0->unk_00->unk_00.competitionType, param0->unk_00->isLinkContest);
+        messageID = Contest_GetContestRankTitleMessageID(param0->unk_00->data.contestRank, param0->unk_00->data.competitionType, param0->unk_00->isLinkContest);
         StringTemplate_SetContestRankName(param0->unk_14.unk_88, 0, messageID);
         StringTemplate_SetNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetString(param0->unk_14.unk_88, 2, param0->unk_00->unk_00.trainerNames[param2->contestantID], param0->unk_00->unk_00.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_14.unk_88, 2, param0->unk_00->data.trainerNames[param2->contestantID], param0->unk_00->data.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_14.unk_88, 3, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->contestMons[param2->contestantID]));
         break;
     default:

@@ -8,7 +8,7 @@
 
 #include "overlay022/struct_ov22_0225899C.h"
 
-#include "unk_020298BC.h"
+#include "image_clips.h"
 
 void ov22_0225894C(const FashionCase *fashionCase, UnkStruct_ov22_0225899C *param1)
 {

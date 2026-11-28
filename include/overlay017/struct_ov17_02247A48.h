@@ -3,6 +3,7 @@
 
 #include "constants/contests.h"
 
+#include "contest/manager.h"
 #include "overlay017/struct_ov17_0223D60C.h"
 #include "overlay017/struct_ov17_022476F8.h"
 #include "overlay017/struct_ov17_02247A48_sub1.h"
@@ -11,7 +12,6 @@
 #include "overlay017/struct_ov17_0224B09C.h"
 #include "overlay017/struct_ov17_0224F30C.h"
 
-#include "contest.h"
 #include "g3d_pipeline.h"
 #include "sys_task_manager.h"
 

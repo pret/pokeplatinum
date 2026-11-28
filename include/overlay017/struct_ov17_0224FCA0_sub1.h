@@ -3,10 +3,10 @@
 
 #include "constants/contests.h"
 
-#include "struct_defs/struct_02095C48_sub1_sub1.h"
+#include "contest/common.h"
 
 typedef struct {
-    UnkStruct_02095C48_sub1_sub1 unk_00[CONTEST_NUM_PARTICIPANTS];
+    ContestantResult unk_00[CONTEST_NUM_PARTICIPANTS];
     u8 unk_30[CONTEST_NUM_PARTICIPANTS];
     u8 unk_34;
     u8 unk_35[4];

@@ -94,7 +94,7 @@ void ov22_022579F0(UnkStruct_ov22_02257964 *param0)
 BOOL ov22_022579FC(UnkStruct_ov22_02257964 *param0, int param1, int param2, int param3, int param4)
 {
     UnkStruct_ov22_0225500C v0;
-    UnkStruct_ov22_02255040 *v1;
+    DressUpAccessorySprite *v1;
 
     if (param0->unk_00.unk_24 < param0->unk_00.unk_28) {
         v0.unk_00 = param0->unk_2C.unk_18;
@@ -328,8 +328,8 @@ void ov22_02257CD4(UnkStruct_ov22_02257964 *param0)
 
 void ov22_02257CE0(UnkStruct_ov22_02257964 *param0, int *param1, int *param2)
 {
-    *param1 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.unk_00, MON_SPRITE_X_CENTER);
-    *param2 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.unk_00, MON_SPRITE_Y_CENTER);
+    *param1 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.sprite, MON_SPRITE_X_CENTER);
+    *param2 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.sprite, MON_SPRITE_Y_CENTER);
 }
 
 int ov22_02257D00(UnkStruct_ov22_02257964 *param0)
@@ -371,15 +371,15 @@ void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
 
     while (v0 != &param0->unk_00.unk_14) {
         if (v0->unk_04 == 0) {
-            UnkStruct_ov22_02255040 *v1 = v0->unk_00;
+            DressUpAccessorySprite *v1 = v0->unk_00;
 
-            SoftwareSprite_SetDiffuse(v1->unk_04, param1);
+            SoftwareSprite_SetDiffuse(v1->sprite, param1);
         } else {
-            UnkStruct_020298D8 *v2 = v0->unk_00;
+            DressUpMonSprite *v2 = v0->unk_00;
 
-            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_R, (param1 >> 10) & 0x1f);
-            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_G, (param1 >> 5) & 0x1f);
-            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_B, (param1 >> 0) & 0x1f);
+            PokemonSprite_SetAttribute(v2->sprite, MON_SPRITE_DIFFUSE_R, (param1 >> 10) & 0x1f);
+            PokemonSprite_SetAttribute(v2->sprite, MON_SPRITE_DIFFUSE_G, (param1 >> 5) & 0x1f);
+            PokemonSprite_SetAttribute(v2->sprite, MON_SPRITE_DIFFUSE_B, (param1 >> 0) & 0x1f);
         }
 
         v0 = v0->unk_08;
@@ -388,9 +388,9 @@ void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
     v0 = param0->unk_00.unk_04.unk_08;
 
     while (v0 != &param0->unk_00.unk_04) {
-        UnkStruct_ov22_02255040 *v3 = v0->unk_00;
+        DressUpAccessorySprite *v3 = v0->unk_00;
 
-        SoftwareSprite_SetDiffuse(v3->unk_04, param1);
+        SoftwareSprite_SetDiffuse(v3->sprite, param1);
         v0 = v0->unk_08;
     }
 }
