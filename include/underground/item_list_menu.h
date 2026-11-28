@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_UNDERGROUND_ITEM_LIST_MENU_H
 #define POKEPLATINUM_UNDERGROUND_ITEM_LIST_MENU_H
 
-#include "colored_arrow.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu_cursor.h"
 #include "string_list.h"
 #include "underground.h"
 
@@ -14,7 +14,7 @@ typedef struct UndergroundItemListMenu {
     Underground *underground;
     StringList *choices;
     ListMenu *listMenu;
-    ColoredArrow *arrow;
+    MenuCursor *cursor;
     u16 initialListPos;
     u16 initialCursorPos;
     u16 listPos;

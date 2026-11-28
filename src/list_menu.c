@@ -5,9 +5,9 @@
 #include <string.h>
 
 #include "bg_window.h"
-#include "colored_arrow.h"
 #include "font.h"
 #include "heap.h"
+#include "menu_cursor.h"
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
@@ -26,7 +26,7 @@ ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 s
     ListMenu *menu = Heap_Alloc(heapID, sizeof(ListMenu));
 
     menu->template = *template;
-    menu->cursor = ColoredArrow_New(heapID);
+    menu->cursor = MenuCursor_New(heapID);
     menu->listPos = startListPos;
     menu->cursorPos = startCursorPos;
     menu->dummy2C = 0;
@@ -46,7 +46,7 @@ ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 s
         menu->template.maxDisplay = menu->template.count;
     }
 
-    ColoredArrow_SetColor(menu->cursor, TEXT_COLOR(menu->template.textColorFg, menu->template.textColorShadow, menu->template.textColorBg));
+    MenuCursor_SetColor(menu->cursor, TEXT_COLOR(menu->template.textColorFg, menu->template.textColorShadow, menu->template.textColorBg));
     Window_FillTilemap(menu->template.window, menu->template.textColorBg);
     PrintEntries(menu, menu->listPos, 0, menu->template.maxDisplay);
     PrintCursor(menu);
@@ -132,7 +132,7 @@ void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos)
         *outCursorPos = menu->cursorPos;
     }
 
-    ColoredArrow_Free(menu->cursor);
+    MenuCursor_Free(menu->cursor);
     Heap_FreeExplicit(menu->heapID, menu);
 }
 
@@ -369,7 +369,7 @@ static void PrintCursor(ListMenu *menu)
     // This does not match as a basic if-check.
     switch (menu->template.cursorType) {
     case 0:
-        ColoredArrow_Print(menu->cursor, menu->template.window, x, y);
+        MenuCursor_Print(menu->cursor, menu->template.window, x, y);
         break;
 
     case 1:

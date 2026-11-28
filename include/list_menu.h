@@ -4,7 +4,7 @@
 #include "constants/menu.h"
 
 #include "bg_window.h"
-#include "colored_arrow.h"
+#include "menu_cursor.h"
 #include "string_list.h"
 
 #define LIST_MENU_NO_SELECTION_YET 0xEEEE // Only used outside of list_menu, as a placeholder for before the player makes a choice
@@ -84,7 +84,7 @@ struct ListMenu {
         u8 fontID : 7;
         u8 prefer : 1;
     } altFont;
-    ColoredArrow *cursor;
+    MenuCursor *cursor;
     u16 listPos;
     u16 cursorPos;
     u8 dummy2C;

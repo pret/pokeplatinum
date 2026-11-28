@@ -17,7 +17,6 @@
 #include "overlay098/struct_ov98_02246E88.h"
 
 #include "bg_window.h"
-#include "colored_arrow.h"
 #include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
@@ -27,6 +26,7 @@
 #include "inlines.h"
 #include "list_menu.h"
 #include "menu.h"
+#include "menu_cursor.h"
 #include "message.h"
 #include "narc.h"
 #include "network_icon.h"
@@ -90,7 +90,7 @@ typedef struct {
     int unk_C0;
     Window unk_C4;
     Window unk_D4;
-    ColoredArrow *unk_E4;
+    MenuCursor *unk_E4;
     s32 unk_E8;
     UnkStruct_ov61_0222C3B0 unk_EC;
 } UnkStruct_ov98_02247704;
@@ -910,7 +910,7 @@ static void ov98_02247F08(UnkStruct_ov98_02247704 *param0)
     v0 = MessageLoader_GetNewString(param0->unk_34, 43);
     Text_AddPrinterWithParams(&param0->unk_D4, FONT_SYSTEM, v0, Unk_ov98_02249D60[1][0] + 12, Unk_ov98_02249D60[1][1], TEXT_SPEED_NO_TRANSFER, NULL);
     String_Free(v0);
-    ColoredArrow_Print(param0->unk_E4, &param0->unk_D4, Unk_ov98_02249D60[param0->unk_B0][0], Unk_ov98_02249D60[param0->unk_B0][1]);
+    MenuCursor_Print(param0->unk_E4, &param0->unk_D4, Unk_ov98_02249D60[param0->unk_B0][0], Unk_ov98_02249D60[param0->unk_B0][1]);
     Window_CopyToVRAM(&param0->unk_D4);
 }
 
@@ -1007,7 +1007,7 @@ static int ov98_02248350(UnkStruct_ov98_02247704 *param0)
         Window_DrawStandardFrame(&param0->unk_D4, TRUE, 31, 11);
         Window_CopyToVRAM(&param0->unk_D4);
 
-        param0->unk_E4 = ColoredArrow_New(HEAP_ID_109);
+        param0->unk_E4 = MenuCursor_New(HEAP_ID_109);
 
         Window_FillTilemap(&param0->unk_48, 15);
         Window_EraseMessageBox(&param0->unk_48, TRUE);
@@ -1080,7 +1080,7 @@ static int ov98_02248350(UnkStruct_ov98_02247704 *param0)
         Window_ClearAndCopyToVRAM(&param0->unk_D4);
         Window_Remove(&param0->unk_D4);
 
-        ColoredArrow_Free(param0->unk_E4);
+        MenuCursor_Free(param0->unk_E4);
 
         Bg_ClearTilemap(param0->unk_04, BG_LAYER_MAIN_3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, FALSE);

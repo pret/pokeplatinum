@@ -100,12 +100,12 @@ typedef struct PartyBallAnimState {
     u8 bounceCount;
 } PartyBallAnimState;
 
-typedef struct MenuCursor {
+typedef struct BattleMenuCursor {
     u8 isActive;
     s8 y;
     s8 x;
     u8 unused_03;
-} MenuCursor;
+} BattleMenuCursor;
 
 typedef struct ActionSelectData {
     u8 battlerType;
@@ -217,7 +217,7 @@ typedef struct BattleSubscreen {
     s32 slideSpeed;
     s32 targetOffset;
     CursorRenderer *cursorRenderer;
-    MenuCursor cursor;
+    BattleMenuCursor cursor;
     u8 suppressActivationSfx;
     u8 isWaitingForPartner;
     struct {

@@ -4,7 +4,7 @@
 #include "constants/menu.h"
 
 #include "bg_window.h"
-#include "colored_arrow.h"
+#include "menu_cursor.h"
 #include "string_list.h"
 
 enum MenuAction {
@@ -37,7 +37,7 @@ typedef struct MenuTemplate {
 
 typedef struct Menu {
     MenuTemplate template;
-    ColoredArrow *cursor;
+    MenuCursor *cursor;
     u32 cancelKeys;
     u8 dummy14;
     u8 cursorPos;

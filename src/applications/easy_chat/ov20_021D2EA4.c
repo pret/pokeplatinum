@@ -9,12 +9,12 @@
 
 #include "bg_window.h"
 #include "charcode.h"
-#include "colored_arrow.h"
 #include "easy_chat_word_list.h"
 #include "easy_chat_words.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
+#include "menu_cursor.h"
 #include "message.h"
 #include "narc.h"
 #include "render_window.h"
@@ -46,7 +46,7 @@ typedef struct UnkStruct_ov20_021D30F8_t {
     Sprite *unk_44;
     MessageLoader *unk_48;
     String *unk_4C;
-    ColoredArrow *unk_50;
+    MenuCursor *unk_50;
     UnkStruct_ov20_021D34CC unk_54[2];
     u32 unk_5C;
     u32 unk_60;
@@ -80,7 +80,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Ea
     v0->unk_44 = NULL;
     v0->unk_4C = String_Init(128, HEAP_ID_35);
     v0->unk_48 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EASY_CHAT, HEAP_ID_35);
-    v0->unk_50 = ColoredArrow_New(HEAP_ID_35);
+    v0->unk_50 = MenuCursor_New(HEAP_ID_35);
 
     return v0;
 }
@@ -88,7 +88,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Ea
 void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0)
 {
     if (param0->unk_50) {
-        ColoredArrow_Free(param0->unk_50);
+        MenuCursor_Free(param0->unk_50);
     }
 
     if (param0->unk_3C) {
@@ -540,7 +540,7 @@ void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1)
     Text_AddPrinterWithParamsAndColor(&param0->unk_2C, FONT_SYSTEM, param0->unk_4C, 14, 0 + 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
 
     Window_DrawStandardFrame(&param0->unk_2C, 0, param0->unk_60, 14);
-    ColoredArrow_Print(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
+    MenuCursor_Print(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
 
     Window_CopyToVRAM(&param0->unk_2C);
 }
@@ -548,7 +548,7 @@ void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1)
 void ov20_021D381C(UnkStruct_ov20_021D30F8 *param0, int param1)
 {
     Window_FillRectWithColor(&param0->unk_2C, 9, 0, 0, 14, 4 * 8);
-    ColoredArrow_Print(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
+    MenuCursor_Print(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
 }
 
 void ov20_021D384C(UnkStruct_ov20_021D30F8 *param0)

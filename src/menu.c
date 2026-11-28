@@ -1,9 +1,9 @@
 #include "menu.h"
 
 #include "bg_window.h"
-#include "colored_arrow.h"
 #include "font.h"
 #include "heap.h"
+#include "menu_cursor.h"
 #include "message.h"
 #include "render_window.h"
 #include "sound_playback.h"
@@ -25,7 +25,7 @@ Menu *Menu_New(const MenuTemplate *template, u8 xOffset, u8 yOffset, u8 cursorSt
     Menu *menu = Heap_Alloc(heapID, sizeof(Menu));
 
     menu->template = *template;
-    menu->cursor = ColoredArrow_New(heapID);
+    menu->cursor = MenuCursor_New(heapID);
     menu->cancelKeys = cancelKeys;
     menu->cursorPos = cursorStart;
     menu->width = CalcMaxEntryWidth(menu);
@@ -60,7 +60,7 @@ void Menu_Free(Menu *menu, u8 *outCursorPos)
         *outCursorPos = menu->cursorPos;
     }
 
-    ColoredArrow_Free(menu->cursor);
+    MenuCursor_Free(menu->cursor);
     Heap_FreeExplicit(menu->heapID, menu);
 }
 
@@ -339,7 +339,7 @@ static void DrawCursor(Menu *menu)
 
     u8 x, y;
     CalcCursorDrawCoords(menu, &x, &y, menu->cursorPos);
-    ColoredArrow_Print(menu->cursor, menu->template.window, x, y);
+    MenuCursor_Print(menu->cursor, menu->template.window, x, y);
 }
 
 static void CalcCursorDrawCoords(Menu *menu, u8 *outX, u8 *outY, u8 cursorPos)
