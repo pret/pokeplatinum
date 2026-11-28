@@ -79,7 +79,7 @@ static void ov20_021D390C(BgConfig *param0, const WindowTemplate *param1, u32 pa
     Window_PutToTilemap(&v0);
     Window_FillTilemap(&v0, 14);
 
-    v1 = MessageBank_GetNewStringFromNARC(26, 438, param2, 35);
+    v1 = MessageBank_GetNewStringFromNARC(26, 438, param2, HEAP_ID_35);
     v2 = ((param1->width * 8) - Font_CalcStringWidth(FONT_SYSTEM, v1, 0)) / 2;
 
     Text_AddPrinterWithParamsAndColor(&v0, FONT_SYSTEM, v1, v2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 14), NULL);

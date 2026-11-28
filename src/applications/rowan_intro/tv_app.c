@@ -61,7 +61,7 @@ BOOL RowanIntroTv_Init(ApplicationManager *appMan, enum RowanIntroTvAppState *un
 {
     RowanIntroTv *tv;
     // changing this to enum HeapID breaks the checksum.
-    int heapID = HEAP_ID_ROWAN_INTRO_TV;
+    enum HeapID heapID = HEAP_ID_ROWAN_INTRO_TV;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
 

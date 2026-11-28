@@ -190,14 +190,14 @@ BOOL BoxGraphics_Load(BoxGraphics **dest, const BoxApplication *boxApp, const Bo
             GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
             NNS_G2dInitOamManagerModule();
 
-            RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
+            RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, HEAP_ID_BOX_GRAPHICS);
             boxGraphics->spriteList = SpriteList_InitRendering(128, &boxGraphics->renderer, HEAP_ID_BOX_GRAPHICS);
             SetSubScreenViewRect(&(boxGraphics->renderer), 0, 384 << FX32_SHIFT);
 
             NNS_G2dInitImagePaletteProxy(&(boxGraphics->imagePaletteProxy));
 
-            Graphics_LoadPartialPaletteFromOpenNARC(boxGraphicsNarc, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(boxGraphics->imagePaletteProxy));
-            Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
+            Graphics_LoadPartialPaletteFromOpenNARC(boxGraphicsNarc, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, HEAP_ID_BOX_GRAPHICS, &(boxGraphics->imagePaletteProxy));
+            Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_BOX_GRAPHICS);
 
             boxGraphics->monSpriteManager = PokemonSpriteManager_New(HEAP_ID_BOX_GRAPHICS);
 

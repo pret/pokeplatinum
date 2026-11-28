@@ -139,16 +139,16 @@ static String *ov68_0225DC58(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov
 static void ov68_0225DC74(UnkStruct_ov68_0225DC74 *param0);
 static u32 ov68_0225DCA4(const UnkStruct_ov68_0225DC74 *param0, u32 param1, u32 param2);
 static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const WiFiPlazaSystem *param1);
-static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4);
+static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, enum HeapID heapID);
 static BOOL ov68_0225CCB4(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID);
 static void ov68_0225CCC8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
-static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3);
-static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5);
+static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, enum HeapID heapID);
+static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID);
 static void ov68_0225D02C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
 static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
 static void ov68_0225D0F8(UnkStruct_ov68_0225D0F8 *param0);
 static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0);
-static void ov68_0225D35C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4);
+static void ov68_0225D35C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, enum HeapID heapID);
 static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID);
 static void ov68_0225D380(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
 static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, enum HeapID heapID);
@@ -158,24 +158,24 @@ static void ov68_0225D89C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
 static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DB8C *param1, UnkStruct_ov68_0225CB70 *param2, UnkStruct_ov68_0225C91C *param3, const UnkStruct_ov66_0222E908 *param4, enum HeapID heapID, u32 param6, u32 param7, BOOL param8);
 static void ov68_0225DA30(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DC74 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3);
 static BOOL ov68_0225DA74(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225C91C *param1);
-static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3);
+static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, enum HeapID heapID);
 static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *saveData, enum HeapID heapID);
-static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, u32 param1);
+static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, enum HeapID heapID);
 static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const String *param1);
 static void ov68_0225D218(UnkStruct_ov68_0225D128 *param0, const String *param1);
 static void ov68_0225D284(UnkStruct_ov68_0225D128 *param0);
 static void ov68_0225D2A0(UnkStruct_ov68_0225D128 *param0);
 static BOOL ov68_0225D2B4(const UnkStruct_ov68_0225D128 *param0);
 static void ov68_0225D2CC(UnkStruct_ov68_0225D128 *param0);
-static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, u32 param2);
-static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1);
-static void ov68_0225D348(UnkStruct_ov68_0225D128 *param0, u32 param1);
+static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, enum HeapID heapID);
+static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, enum HeapID heapID);
+static void ov68_0225D348(UnkStruct_ov68_0225D128 *param0, enum HeapID heapID);
 
 static const CharTransferTemplate Unk_ov68_0225DD58 = {
     0x20,
     0x4000,
     0x0,
-    0x7A
+    HEAP_ID_PARTY_MENU2,
 };
 
 static const WindowTemplate Unk_ov68_0225DD38 = {
@@ -293,7 +293,7 @@ static const BgTemplate Unk_ov68_0225DE18[4] = {
     },
 };
 
-static void (*Unk_ov68_0225DEB0[2])(UnkUnion_ov68_0225CCA8 *, UnkStruct_ov68_0225CB70 *, UnkStruct_ov68_0225C91C *, UnkStruct_ov66_02231374 *, u32) = {
+static void (*Unk_ov68_0225DEB0[2])(UnkUnion_ov68_0225CCA8 *, UnkStruct_ov68_0225CB70 *, UnkStruct_ov68_0225C91C *, UnkStruct_ov66_02231374 *, enum HeapID) = {
     ov68_0225CCA8,
     ov68_0225D35C
 };
@@ -318,12 +318,12 @@ int ov68_0225C700(ApplicationManager *appMan, int *param1)
     v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov68_0225C700), HEAP_ID_PARTY_MENU2);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
 
-    ov68_0225C91C(&v0->unk_00, v1->saveData, 122);
-    ov68_0225CB70(&v0->unk_1A8, v1->unk_04, 122);
-    ov68_0225D128(&v0->unk_2CC, &v0->unk_00, v1->saveData, 122);
+    ov68_0225C91C(&v0->unk_00, v1->saveData, HEAP_ID_PARTY_MENU2);
+    ov68_0225CB70(&v0->unk_1A8, v1->unk_04, HEAP_ID_PARTY_MENU2);
+    ov68_0225D128(&v0->unk_2CC, &v0->unk_00, v1->saveData, HEAP_ID_PARTY_MENU2);
 
     GF_ASSERT(v1->unk_08 < 2);
-    Unk_ov68_0225DEB0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, v1, 122);
+    Unk_ov68_0225DEB0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, v1, HEAP_ID_PARTY_MENU2);
 
     SetVBlankCallback(ov68_0225C914, v0);
     DisableHBlank();
@@ -367,7 +367,7 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
             }
         }
 
-        v2 = Unk_ov68_0225DEA8[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, &v0->unk_2CC, v1, 122);
+        v2 = Unk_ov68_0225DEA8[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, &v0->unk_2CC, v1, HEAP_ID_PARTY_MENU2);
 
         if (v2 == 1) {
             (*param1)++;
@@ -401,7 +401,7 @@ int ov68_0225C8A8(ApplicationManager *appMan, int *param1)
 
     Unk_ov68_0225DEA0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00);
 
-    ov68_0225D178(&v0->unk_2CC, 122);
+    ov68_0225D178(&v0->unk_2CC, HEAP_ID_PARTY_MENU2);
     ov68_0225CBC0(&v0->unk_1A8);
     ov68_0225C960(&v0->unk_00);
 
@@ -617,9 +617,9 @@ static void ov68_0225CC78(UnkStruct_ov68_0225CB70 *param0, u32 param1, enum Heap
     Heap_Free(v0);
 }
 
-static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4)
+static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, enum HeapID heapID)
 {
-    ov68_0225CCD0(&param0->val1, param1, param2, param4);
+    ov68_0225CCD0(&param0->val1, param1, param2, heapID);
 }
 
 static BOOL ov68_0225CCB4(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID)
@@ -632,19 +632,19 @@ static void ov68_0225CCC8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB7
     ov68_0225D02C(&param0->val1, param1, param2);
 }
 
-static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3)
+static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, enum HeapID heapID)
 {
     {
-        Graphics_LoadPaletteFromOpenNARC(param2->unk_1A4, 199, 0, 0, 4 * 32, param3);
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param2->unk_1A4, 200, param2->unk_00, 0, 0, 0, 0, param3);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 201, param2->unk_00, 0, 0, 0, 0, param3);
+        Graphics_LoadPaletteFromOpenNARC(param2->unk_1A4, 199, 0, 0, 4 * 32, heapID);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param2->unk_1A4, 200, param2->unk_00, 0, 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 201, param2->unk_00, 0, 0, 0, 0, heapID);
     }
 
     {
         BOOL v0;
 
-        param0->unk_18[0] = SpriteResourceCollection_AddTilesFrom(param2->unk_194[0], param2->unk_1A4, 205, 0, 20, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
-        param0->unk_18[1] = SpriteResourceCollection_AddPaletteFrom(param2->unk_194[1], param2->unk_1A4, 204, 0, 20, NNS_G2D_VRAM_TYPE_2DMAIN, 3, param3);
+        param0->unk_18[0] = SpriteResourceCollection_AddTilesFrom(param2->unk_194[0], param2->unk_1A4, 205, 0, 20, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+        param0->unk_18[1] = SpriteResourceCollection_AddPaletteFrom(param2->unk_194[1], param2->unk_1A4, 204, 0, 20, NNS_G2D_VRAM_TYPE_2DMAIN, 3, heapID);
 
         v0 = SpriteTransfer_RequestCharAtEnd(param0->unk_18[0]);
         GF_ASSERT(v0);
@@ -655,8 +655,8 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         SpriteResource_ReleaseData(param0->unk_18[0]);
         SpriteResource_ReleaseData(param0->unk_18[1]);
 
-        param0->unk_18[2] = SpriteResourceCollection_AddFrom(param2->unk_194[2], param2->unk_1A4, 206, 0, 20, 2, param3);
-        param0->unk_18[3] = SpriteResourceCollection_AddFrom(param2->unk_194[3], param2->unk_1A4, 207, 0, 20, 3, param3);
+        param0->unk_18[2] = SpriteResourceCollection_AddFrom(param2->unk_194[2], param2->unk_1A4, 206, 0, 20, 2, heapID);
+        param0->unk_18[3] = SpriteResourceCollection_AddFrom(param2->unk_194[3], param2->unk_1A4, 207, 0, 20, 3, heapID);
     }
 
     {
@@ -669,7 +669,7 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         v2.resourceData = &v1;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.heapID = param3;
+        v2.heapID = heapID;
 
         param0->unk_14 = SpriteList_Add(&v2);
         Sprite_SetDrawFlag(param0->unk_14, FALSE);
@@ -683,10 +683,10 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         }
     }
 
-    ov68_0225DB8C(&param0->unk_2C, 1, param3);
+    ov68_0225DB8C(&param0->unk_2C, 1, heapID);
 }
 
-static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5)
+static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID)
 {
     u32 v0;
     String *v1;
@@ -699,13 +699,13 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         param0->unk_28 = 10;
         break;
     case 1:
-        ov68_0225D304(param3, param2, param5);
+        ov68_0225D304(param3, param2, heapID);
         param0->unk_28 = 2;
         break;
     case 2: {
         u32 v2;
 
-        v2 = ov68_0225D330(param3, param5);
+        v2 = ov68_0225D330(param3, heapID);
 
         switch (v2) {
         case 0:
@@ -880,7 +880,7 @@ static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C9
     param0->unk_04 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
 }
 
-static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, u32 param1)
+static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, enum HeapID heapID)
 {
     if (Text_IsPrinterActive(param0->unk_00)) {
         Text_RemovePrinter(param0->unk_00);
@@ -891,7 +891,7 @@ static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, u32 param1)
     String_Free(param0->unk_18);
     Window_Remove(&param0->unk_08);
 
-    ov68_0225D348(param0, param1);
+    ov68_0225D348(param0, heapID);
 }
 
 static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const String *param1)
@@ -954,15 +954,15 @@ static void ov68_0225D2CC(UnkStruct_ov68_0225D128 *param0)
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
 }
 
-static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, u32 param2)
+static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, enum HeapID heapID)
 {
     GF_ASSERT(param0->unk_20 == NULL);
-    param0->unk_20 = Menu_MakeYesNoChoice(param1->unk_00, &Unk_ov68_0225DD38, 1 + (18 + 12), 6, param2);
+    param0->unk_20 = Menu_MakeYesNoChoice(param1->unk_00, &Unk_ov68_0225DD38, 1 + (18 + 12), 6, heapID);
 }
 
-static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1)
+static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, enum HeapID heapID)
 {
-    u32 v0 = Menu_ProcessInputAndHandleExit(param0->unk_20, param1);
+    u32 v0 = Menu_ProcessInputAndHandleExit(param0->unk_20, heapID);
 
     if (v0 != 0xffffffff) {
         param0->unk_20 = NULL;
@@ -971,17 +971,17 @@ static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1)
     return v0;
 }
 
-static void ov68_0225D348(UnkStruct_ov68_0225D128 *param0, u32 param1)
+static void ov68_0225D348(UnkStruct_ov68_0225D128 *param0, enum HeapID heapID)
 {
     if (param0->unk_20 != NULL) {
-        Menu_DestroyForExit(param0->unk_20, param1);
+        Menu_DestroyForExit(param0->unk_20, heapID);
         param0->unk_20 = NULL;
     }
 }
 
-static void ov68_0225D35C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4)
+static void ov68_0225D35C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, enum HeapID heapID)
 {
-    ov68_0225D388(&param0->val2, param1, param2, param3, param4);
+    ov68_0225D388(&param0->val2, param1, param2, param3, heapID);
 }
 
 static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID)
@@ -1383,10 +1383,10 @@ static BOOL ov68_0225DA74(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225C9
     return 0;
 }
 
-static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3)
+static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, enum HeapID heapID)
 {
     {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 203, param2->unk_00, 0, 0, 0, 0, param3);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 203, param2->unk_00, 0, 0, 0, 0, heapID);
     }
 
     {

@@ -141,9 +141,9 @@ static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
     NNSG2dCharacterData *v3;
 
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_SYSTEM);
-    v0 = MessageBank_GetNewStringFromNARC(0x1A, 0x1B5, 0xB, 0x23);
-    v1 = MessageBank_GetNewStringFromNARC(0x1A, 0x1B5, 0xC, 0x23);
-    v2 = Graphics_GetCharDataFromOpenNARC(param1, 20, 1, &v3, 0x23);
+    v0 = MessageBank_GetNewStringFromNARC(0x1A, 0x1B5, 0xB, HEAP_ID_35);
+    v1 = MessageBank_GetNewStringFromNARC(0x1A, 0x1B5, 0xC, HEAP_ID_35);
+    v2 = Graphics_GetCharDataFromOpenNARC(param1, 20, 1, &v3, HEAP_ID_35);
     if (v2) {
         Window v4;
 
@@ -203,8 +203,8 @@ static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
     NNS_G2dInitImagePaletteProxy(&v0);
     NNS_G2dInitImageProxy(&v1);
 
-    Graphics_LoadPartialPaletteFromOpenNARC(param1, 25, NNS_G2D_VRAM_TYPE_2DSUB, 0, 35, &v0);
-    Graphics_LoadImageMappingFromOpenNARC(param1, 24, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 35, &v1);
+    Graphics_LoadPartialPaletteFromOpenNARC(param1, 25, NNS_G2D_VRAM_TYPE_2DSUB, 0, HEAP_ID_35, &v0);
+    Graphics_LoadImageMappingFromOpenNARC(param1, 24, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, HEAP_ID_35, &v1);
 
     ov20_021D4AF8(&(param0->unk_1C), param1, 22, 23);
 

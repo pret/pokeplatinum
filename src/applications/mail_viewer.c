@@ -177,7 +177,7 @@ BOOL MailViewer_Exit(ApplicationManager *appMan, int *state)
 
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
 
-    int heapID = mailViewerApp->heapID;
+    enum HeapID heapID = mailViewerApp->heapID;
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);

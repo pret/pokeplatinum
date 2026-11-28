@@ -1755,7 +1755,7 @@ static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx)
 
     LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
 
-    *menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, 1024 - (18 + 12) - 9, 11, 4);
+    *menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
     ctx->data[0] = destVarID;
 
     ScriptContext_Pause(ctx, ScriptContext_WaitForYesNoResult);

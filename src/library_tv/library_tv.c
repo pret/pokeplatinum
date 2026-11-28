@@ -145,7 +145,7 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
 BOOL LibraryTV_Exit(ApplicationManager *appMan, int *state)
 {
     LibraryTV *ltv = ApplicationManager_Data(appMan);
-    int heapID = ltv->heapID;
+    enum HeapID heapID = ltv->heapID;
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);

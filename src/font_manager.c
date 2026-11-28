@@ -64,7 +64,7 @@ void FontManager_Delete(FontManager *fontManager)
     Heap_Free(fontManager);
 }
 
-void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID)
+void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, enum HeapID heapID)
 {
     if (fontManager->glyphAccessMode != glyphAccessMode) {
         FontManager_FreeGlyphs(fontManager);

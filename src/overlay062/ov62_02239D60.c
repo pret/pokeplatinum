@@ -1045,7 +1045,7 @@ static void ov62_0223ADC0(UnkStruct_0208C06C *param0, int param1)
         v4 = SPECIES_EGG;
     }
 
-    MessageLoader_GetSpeciesName(v4, 102, v5);
+    MessageLoader_GetSpeciesName(v4, HEAP_ID_102, v5);
     String_CopyChars(v2, v5);
 
     v3 = ov62_0223429C(v1, v2);

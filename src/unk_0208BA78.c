@@ -76,10 +76,10 @@ void sub_0208BA84(UnkStruct_0208BA84 *param0, BOOL param1, int param2)
     param0->unk_04 = param2;
 }
 
-static void sub_0208BA8C(SaveData *saveData, int param1, u32 param2)
+static void sub_0208BA8C(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
     JournalEntry *journalEntry = SaveData_GetJournal(saveData);
-    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(param1, param2);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(heapID, param2);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
@@ -126,7 +126,7 @@ static void sub_0208BAAC(ApplicationManager *appMan, int param1)
         return;
     }
 
-    sub_0208BA8C(v0->saveData, 119, eventType);
+    sub_0208BA8C(v0->saveData, HEAP_ID_119, eventType);
 }
 
 static int sub_0208BB6C(ApplicationManager *appMan, int *param1)

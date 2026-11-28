@@ -241,7 +241,6 @@ static BOOL ov5_021D6548(UnkStruct_ov5_021D6538 *param0);
 static void ov5_021D6594(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2);
 static void ov5_021D6A2C(UnkStruct_ov5_021D6594 *param0, int param1);
 static void ov5_021D6690(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2);
-static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5);
 static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0);
 static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2);
 static void ov5_021D62BC(UnkStruct_ov5_021D61D0 *param0);
@@ -1020,7 +1019,7 @@ static void ov5_021D6594(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
     ov5_021D6CA0(param0, param1, param2);
 }
 
-static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5)
+static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, BOOL allocAtEnd)
 {
     SpriteResourceTable *v0;
     SpriteResource *v1;
@@ -1039,10 +1038,10 @@ static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int
 
     switch (param1) {
     case 0:
-        v1 = SpriteResourceCollection_AddTilesFromEx(param3, param4, v2, v3, v6, v4, 4, param5);
+        v1 = SpriteResourceCollection_AddTilesFromEx(param3, param4, v2, v3, v6, v4, HEAP_ID_FIELD1, allocAtEnd);
         break;
     case 1:
-        v1 = SpriteResourceCollection_AddPaletteFromEx(param3, param4, v2, v3, v6, v4, v5, 4, param5);
+        v1 = SpriteResourceCollection_AddPaletteFromEx(param3, param4, v2, v3, v6, v4, v5, HEAP_ID_FIELD1, allocAtEnd);
         break;
     case 2:
         v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 2, HEAP_ID_FIELD1);
@@ -1409,21 +1408,21 @@ static BOOL ov5_021D6BC4(UnkStruct_ov5_021D69B8 *param0)
 static void ov5_021D6BFC(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2)
 {
     if (param1 != 0xffff) {
-        param2->unk_00[2] = ov5_021D65C0(param0->unk_08.unk_10, 2, param1, param0->unk_08.unk_00[2], param0->unk_144, 0);
+        param2->unk_00[2] = ov5_021D65C0(param0->unk_08.unk_10, 2, param1, param0->unk_08.unk_00[2], param0->unk_144, FALSE);
     }
 }
 
 static void ov5_021D6C30(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2)
 {
     if (param1 != 0xffff) {
-        param2->unk_00[3] = ov5_021D65C0(param0->unk_08.unk_10, 3, param1, param0->unk_08.unk_00[3], param0->unk_144, 0);
+        param2->unk_00[3] = ov5_021D65C0(param0->unk_08.unk_10, 3, param1, param0->unk_08.unk_00[3], param0->unk_144, FALSE);
     }
 }
 
 static void ov5_021D6C64(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2)
 {
     if (param1 != 0xffff) {
-        param2->unk_00[0] = ov5_021D65C0(param0->unk_08.unk_10, 0, param1, param0->unk_08.unk_00[0], param0->unk_144, 1);
+        param2->unk_00[0] = ov5_021D65C0(param0->unk_08.unk_10, 0, param1, param0->unk_08.unk_00[0], param0->unk_144, TRUE);
 
         SpriteTransfer_RequestCharAtEnd(param2->unk_00[0]);
         SpriteResource_ReleaseData(param2->unk_00[0]);
@@ -1433,7 +1432,7 @@ static void ov5_021D6C64(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
 static void ov5_021D6CA0(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2)
 {
     if (param1 != 0xffff) {
-        param2->unk_00[1] = ov5_021D65C0(param0->unk_08.unk_10, 1, param1, param0->unk_08.unk_00[1], param0->unk_144, 1);
+        param2->unk_00[1] = ov5_021D65C0(param0->unk_08.unk_10, 1, param1, param0->unk_08.unk_00[1], param0->unk_144, TRUE);
 
         SpriteTransfer_RequestPlttFreeSpace(param2->unk_00[1]);
         SpriteResource_ReleaseData(param2->unk_00[1]);

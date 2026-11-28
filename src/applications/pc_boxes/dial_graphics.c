@@ -422,7 +422,7 @@ static void BoxDialGraphics_LoadSpriteResources(BoxDialGraphics *dialGraphics, N
     dialGraphics->markingButtonAnimBankBuffer = Graphics_GetAnimBankFromOpenNARC(narc, 143, TRUE, &dialGraphics->markingButtonAnimBank, HEAP_ID_BOX_GRAPHICS);
 
     NNS_G2dInitImagePaletteProxy(&dialGraphics->plttProxy);
-    Graphics_LoadPartialPaletteFromOpenNARC(narc, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &dialGraphics->plttProxy);
+    Graphics_LoadPartialPaletteFromOpenNARC(narc, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, HEAP_ID_BOX_GRAPHICS, &dialGraphics->plttProxy);
 }
 
 static SysTask *BoxDialGraphics_StartAnimTask(BoxDialGraphics *dialGraphics, SysTaskFunc taskFunc, void *taskData)

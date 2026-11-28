@@ -86,7 +86,7 @@ int PoffinBerrySelection_Main(ApplicationManager *appMan, int *state)
 
 int PoffinBerrySelection_Exit(ApplicationManager *appMan, int *state)
 {
-    int heapID = HEAP_ID_SYSTEM;
+    enum HeapID heapID = HEAP_ID_SYSTEM;
     PoffinBerrySelectionData *data = ApplicationManager_Data(appMan);
     PoffinBerrySelectionContext *ctx = ApplicationManager_Args(appMan);
 

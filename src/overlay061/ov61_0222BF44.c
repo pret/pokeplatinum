@@ -435,7 +435,7 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
-    inline_ov61_0222C3B0(&param0->unk_A4, v1, 4, 117);
+    inline_ov61_0222C3B0(&param0->unk_A4, v1, 4, HEAP_ID_117);
 
     NARC_dtor(v1);
 }
@@ -547,7 +547,7 @@ static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return Menu_MakeYesNoChoice(param0, &v0, 1 + (18 + 12), 11, 117);
+    return Menu_MakeYesNoChoice(param0, &v0, 1 + (18 + 12), 11, HEAP_ID_117);
 }
 
 static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4)
@@ -622,7 +622,7 @@ static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0)
         param0->unk_90++;
         break;
     case 3: {
-        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_84, 117);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_84, HEAP_ID_117);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {

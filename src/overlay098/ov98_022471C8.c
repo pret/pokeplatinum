@@ -640,7 +640,7 @@ static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
-    inline_ov61_0222C3B0(&param0->unk_EC, v1, 4, 109);
+    inline_ov61_0222C3B0(&param0->unk_EC, v1, 4, HEAP_ID_109);
 
     NARC_dtor(v1);
 
@@ -706,7 +706,7 @@ static Menu *ov98_02247B24(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return Menu_MakeYesNoChoice(param0, &v0, 1 + (18 + 12), 11, 109);
+    return Menu_MakeYesNoChoice(param0, &v0, 1 + (18 + 12), 11, HEAP_ID_109);
 }
 
 static Menu *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
@@ -717,7 +717,7 @@ static Menu *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return Menu_MakeYesNoChoiceWithCursorAt(param0, &v0, 1 + (18 + 12), 11, param3, 109);
+    return Menu_MakeYesNoChoiceWithCursorAt(param0, &v0, 1 + (18 + 12), 11, param3, HEAP_ID_109);
 }
 
 static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
@@ -820,7 +820,7 @@ static int ov98_02247D50(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
-        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, HEAP_ID_109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -858,7 +858,7 @@ static int ov98_02247E38(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
-        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, HEAP_ID_109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1107,7 +1107,7 @@ static int ov98_02248684(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
-        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, HEAP_ID_109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1133,7 +1133,7 @@ static int ov98_02248684(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     default: {
-        int v2 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        int v2 = Menu_ProcessInputAndHandleExit(param0->unk_88, HEAP_ID_109);
 
         if (v2 != 0xffffffff) {
             if (v2 == 0xfffffffe) {
@@ -1196,7 +1196,7 @@ static int ov98_02248804(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 3: {
-        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, HEAP_ID_109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1223,7 +1223,7 @@ static int ov98_02248804(UnkStruct_ov98_02247704 *param0)
 
 static int ov98_022488F8(UnkStruct_ov98_02247704 *param0)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, HEAP_ID_109);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1587,7 +1587,7 @@ static int ov98_02248DF4(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
-        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, HEAP_ID_109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1631,7 +1631,7 @@ static int ov98_02248EE0(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
-        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, HEAP_ID_109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {

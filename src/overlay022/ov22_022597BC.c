@@ -123,7 +123,7 @@ void ov22_022598A0(UnkStruct_ov22_02259820 *param0)
 
 void ov22_022598F4(UnkStruct_ov22_022597BC *param0, UnkStruct_ov22_022599A0 *param1, int param2, int param3, int param4, BOOL *param5)
 {
-    SysTask *v1 = SysTask_StartAndAllocateParam(ov22_02259A4C, sizeof(UnkStruct_ov22_022598F4), 0, 13);
+    SysTask *v1 = SysTask_StartAndAllocateParam(ov22_02259A4C, sizeof(UnkStruct_ov22_022598F4), 0, HEAP_ID_13);
     UnkStruct_ov22_022598F4 *v0 = SysTask_GetParam(v1);
 
     v0->unk_00 = param0;

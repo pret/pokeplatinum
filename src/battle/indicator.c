@@ -10,7 +10,7 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
+void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum HeapID heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
 void Indicator_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
 void Indicator_Delete(Indicator *indicator);
 void Indicator_Show(Indicator *indicator, int x, int y, fx32 subscreenOffset);
@@ -31,7 +31,7 @@ static const SpriteTemplate sIndicatorSpriteTemplate = {
     0x0
 };
 
-void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID)
+void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum HeapID heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID)
 {
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, heapID);
 

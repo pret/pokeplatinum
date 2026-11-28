@@ -1214,7 +1214,7 @@ static BOOL ov62_0223F760(UnkStruct_0208C06C *param0)
 
         ov62_022339DC(param0);
 
-        v0->unk_2008.unk_00 = ov62_02233A68(102);
+        v0->unk_2008.unk_00 = ov62_02233A68(HEAP_ID_102);
         v0->unk_2008.unk_08 = 500;
 
         Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
@@ -1370,7 +1370,7 @@ static BOOL ov62_0223FB74(UnkStruct_0208C06C *a0)
     case 2:
         ov62_02231688(&r4->unk_08);
         ov62_0223146C(r5);
-        NetworkIcon_CreateOnSubScreen(1, 0x66);
+        NetworkIcon_CreateOnSubScreen(1, HEAP_ID_102);
         ov62_0223376C(r5, 1);
         r5->unk_08++;
         break;
@@ -1760,8 +1760,8 @@ static BOOL ov62_022403F8(UnkStruct_0208C06C *a0)
                 ManagedSprite_SetAnim(r5->unk_114[1].unk_08, 3);
             }
             ov62_02240900(r4);
-            Graphics_LoadTilesToBgLayerFromOpenNARC(r4->unk_14.unk_00, 0x3e, r4->unk_14.unk_10, 3, 0, 0, 0, 0x66);
-            Graphics_LoadTilesToBgLayerFromOpenNARC(r4->unk_14.unk_00, 0x3e, r4->unk_14.unk_10, 7, 0, 0, 0, 0x66);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(r4->unk_14.unk_00, 0x3e, r4->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(r4->unk_14.unk_00, 0x3e, r4->unk_14.unk_10, 7, 0, 0, 0, HEAP_ID_102);
             ov62_02234540(r4, 1);
             if (r5->unk_10 == 0) {
                 ov62_02234214(&r5->unk_220, r4);
@@ -1770,10 +1770,10 @@ static BOOL ov62_022403F8(UnkStruct_0208C06C *a0)
             } else {
                 ov62_02232378(&r5->unk_194, r4);
                 ov62_022323B8(&r5->unk_194, 0);
-                Graphics_LoadTilemapToBgLayerFromOpenNARC(r4->unk_14.unk_00, 0x50, r4->unk_14.unk_10, 3, 0, 0, 0, 0x66);
+                Graphics_LoadTilemapToBgLayerFromOpenNARC(r4->unk_14.unk_00, 0x50, r4->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
             }
             ov62_02234540(r4, 0);
-            Graphics_LoadTilemapToBgLayerFromOpenNARC(r4->unk_14.unk_00, 6, r4->unk_14.unk_10, 7, 0, 0, 0, 0x66);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(r4->unk_14.unk_00, 6, r4->unk_14.unk_10, 7, 0, 0, 0, HEAP_ID_102);
             r4->unk_08++;
             break;
         case 6:

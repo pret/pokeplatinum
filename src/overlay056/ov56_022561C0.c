@@ -145,7 +145,7 @@ static void ov56_022561C0(SysTask *param0, void *param1)
     case 1:
         ov56_02256634(v0);
         ov56_02256704(v0);
-        Font_UseImmediateGlyphAccess(FONT_MESSAGE, 4);
+        Font_UseImmediateGlyphAccess(FONT_MESSAGE, HEAP_ID_FIELD1);
         ov56_022562EC(v0->unk_14, v0->unk_22C);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -216,7 +216,7 @@ static void ov56_022563E8(UnkStruct_ov56_022562EC *param0)
 
 UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
 {
-    SysTask *v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
+    SysTask *v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, HEAP_ID_FIELD1);
     UnkStruct_ov56_02256468 *v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;

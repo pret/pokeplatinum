@@ -117,7 +117,7 @@ static void InitCharPlttTransferBuffers(void)
         .maxTasks = 32,
         .sizeMain = 1024,
         .sizeSub = 1024,
-        HEAP_ID_BATTLE_ARCADE_APP
+        .heapID = HEAP_ID_BATTLE_ARCADE_APP,
     };
 
     CharTransfer_InitWithVramModes(&transferTemplate, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);

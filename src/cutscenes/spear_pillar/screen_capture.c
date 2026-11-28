@@ -47,7 +47,7 @@ static void ScreenScrollTask_Update(SysTask *unused, void *param)
     ssTask->swapCounter++;
 }
 
-void ScreenScrollTask_Init(ScreenScrollTask *ssTask, u32 heapID)
+void ScreenScrollTask_Init(ScreenScrollTask *ssTask, enum HeapID heapID)
 {
     ssTask->screenScrollMgr = ScreenScrollManager_New(heapID);
     ssTask->swapCounter = 0;

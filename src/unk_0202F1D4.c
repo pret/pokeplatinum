@@ -94,7 +94,7 @@ void *sub_0202F27C(void)
     return &v0[sizeof(u32)];
 }
 
-BOOL sub_0202F298(SaveData *saveData, int param1, int *param2, FieldBattleDTO *param3, int param4)
+BOOL sub_0202F298(SaveData *saveData, enum HeapID heapID, int *param2, FieldBattleDTO *param3, int param4)
 {
     UnkStruct_0202F298 *v0;
     UnkStruct_0202F41C *v1;
@@ -104,7 +104,7 @@ BOOL sub_0202F298(SaveData *saveData, int param1, int *param2, FieldBattleDTO *p
         gBattleRecording = NULL;
     }
 
-    gBattleRecording = SaveData_GetBattleRecording(saveData, param1, param2, param4);
+    gBattleRecording = SaveData_GetBattleRecording(saveData, heapID, param2, param4);
 
     if (*param2 != 1) {
         *param2 = 3;
@@ -134,11 +134,11 @@ BOOL sub_0202F298(SaveData *saveData, int param1, int *param2, FieldBattleDTO *p
     return 1;
 }
 
-BOOL sub_0202F330(SaveData *saveData, int param1, int *param2, int param3)
+BOOL sub_0202F330(SaveData *saveData, enum HeapID heapID, int *param2, int param3)
 {
     UnkStruct_0202F298 *v0;
     UnkStruct_0202F41C *v1;
-    BattleRecording *v2 = SaveData_GetBattleRecording(saveData, param1, param2, param3);
+    BattleRecording *v2 = SaveData_GetBattleRecording(saveData, heapID, param2, param3);
 
     if (*param2 != 1) {
         *param2 = 3;

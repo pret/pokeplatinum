@@ -21,7 +21,7 @@ typedef struct Indicator {
     u8 exitFrameCount;
 } Indicator;
 
-void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
+void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum HeapID heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
 void Indicator_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
 Indicator *Indicator_New(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum HeapID heapID, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID, u32 priority, u32 bgPriority);
 void Indicator_Delete(Indicator *indicator);

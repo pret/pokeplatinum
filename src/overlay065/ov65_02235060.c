@@ -61,15 +61,15 @@ static void ov65_0223582C(UnkStruct_ov65_02235130 *param0, enum HeapID heapID, N
 static void ov65_0223586C(UnkStruct_ov65_02235130 *param0);
 static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, enum HeapID heapID, NARC *param2);
 static void ov65_022358CC(UnkStruct_ov65_022358CC *param0);
-static void ov65_022358F8(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2);
+static void ov65_022358F8(UnkStruct_ov65_022358CC *param0, enum HeapID heapID, NARC *param2);
 static void ov65_02235900(UnkStruct_ov65_022358CC *param0);
 static void ov65_02235908(UnkStruct_ov65_022358CC *param0, u32 param1);
 static void ov65_02235910(UnkStruct_ov65_022358CC *param0);
 static void ov65_02235918(BgConfig *param0, u32 param1);
 static void ov65_0223591C(BgConfig *param0);
-static void ov65_02235920(BgConfig *param0, u32 param1, NARC *param2);
+static void ov65_02235920(BgConfig *param0, enum HeapID heapID, NARC *param2);
 static BOOL ov65_02235BE8(UnkStruct_ov65_02235130 *param0);
-static void ov65_02235960(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2);
+static void ov65_02235960(UnkStruct_ov65_022358CC *param0, enum HeapID heapID, NARC *param2);
 static void ov65_02235A60(UnkStruct_ov65_022358CC *param0);
 static void ov65_02235A94(UnkStruct_ov65_022358CC *param0, u32 param1);
 static void ov65_02235B14(UnkStruct_ov65_022358CC *param0);
@@ -597,9 +597,9 @@ static void ov65_022358CC(UnkStruct_ov65_022358CC *param0)
     SpriteList_Delete(param0->unk_00);
 }
 
-static void ov65_022358F8(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2)
+static void ov65_022358F8(UnkStruct_ov65_022358CC *param0, enum HeapID heapID, NARC *param2)
 {
-    ov65_02235960(param0, param1, param2);
+    ov65_02235960(param0, heapID, param2);
 }
 
 static void ov65_02235900(UnkStruct_ov65_022358CC *param0)
@@ -627,21 +627,21 @@ static void ov65_0223591C(BgConfig *param0)
     return;
 }
 
-static void ov65_02235920(BgConfig *param0, u32 param1, NARC *param2)
+static void ov65_02235920(BgConfig *param0, enum HeapID heapID, NARC *param2)
 {
-    Graphics_LoadPaletteFromOpenNARC(param2, 30, 0, 0, 8 * 32, param1);
+    Graphics_LoadPaletteFromOpenNARC(param2, 30, 0, 0, 8 * 32, heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 29, param0, 0, 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 29, param0, 0, 0, 0, 0, heapID);
 }
 
-static void ov65_02235960(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2)
+static void ov65_02235960(UnkStruct_ov65_022358CC *param0, enum HeapID heapID, NARC *param2)
 {
     BOOL v0;
 
-    param0->unk_1A0.unk_00[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], param2, 37, 0, 50, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
-    param0->unk_1A0.unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_190[1], param2, 36, 0, 50, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param1);
-    param0->unk_1A0.unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, 38, 0, 50, 2, param1);
-    param0->unk_1A0.unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, 39, 0, 50, 3, param1);
+    param0->unk_1A0.unk_00[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], param2, 37, 0, 50, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    param0->unk_1A0.unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_190[1], param2, 36, 0, 50, NNS_G2D_VRAM_TYPE_2DMAIN, 1, heapID);
+    param0->unk_1A0.unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, 38, 0, 50, 2, heapID);
+    param0->unk_1A0.unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, 39, 0, 50, 3, heapID);
 
     v0 = SpriteTransfer_RequestCharAtEnd(param0->unk_1A0.unk_00[0]);
     GF_ASSERT(v0 == 1);

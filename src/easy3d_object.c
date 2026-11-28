@@ -20,7 +20,7 @@ void Easy3DModel_Load(Easy3DModel *model, enum NarcID narcID, u32 memberIndex, e
     Easy3DModel_LoadInternal(model);
 }
 
-void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID)
+void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, enum HeapID heapID)
 {
     model->data = LoadMemberFromOpenNARC(narc, memberIndex, FALSE, heapID, 0);
     Easy3DModel_LoadInternal(model);

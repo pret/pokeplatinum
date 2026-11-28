@@ -695,7 +695,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     if (param4 == 4) {
         u32 trainerId = TrainerInfo_ID(trainerInfo);
         u32 gender = TrainerInfo_Gender(trainerInfo);
-        String *otName = TrainerInfo_NameNewString(trainerInfo, 32);
+        String *otName = TrainerInfo_NameNewString(trainerInfo, HEAP_ID_FIELD3);
 
         Pokemon_SetValue(egg, MON_DATA_OT_NAME_STRING, otName);
         Pokemon_SetValue(egg, MON_DATA_OT_ID, &trainerId);

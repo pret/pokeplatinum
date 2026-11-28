@@ -673,7 +673,7 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
             8,
             0x8000,
             0x4000,
-            14
+            HEAP_ID_14
         };
 
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -685,7 +685,7 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
 
     NNS_G2dInitOamManagerModule();
 
-    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 14);
+    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, HEAP_ID_14);
     param0->unk_44 = SpriteList_InitRendering(48, &param0->unk_58, HEAP_ID_14);
     SetSubScreenViewRect(&param0->unk_58, 0, 512 * FX32_ONE);
 

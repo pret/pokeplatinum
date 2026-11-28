@@ -105,7 +105,7 @@ int TradeSequence_Init(ApplicationManager *appMan, int *unused)
 
             NNS_G2dInitOamManagerModule();
 
-            RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
+            RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, HEAP_ID_TRADE_SEQUENCE);
             sequenceData->spriteList = SpriteList_InitRendering(64, &sequenceData->renderer, HEAP_ID_TRADE_SEQUENCE);
             SetSubScreenViewRect(&(sequenceData->renderer), 0, 192 + 40 << FX32_SHIFT);
 

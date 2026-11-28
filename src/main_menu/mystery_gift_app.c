@@ -1202,7 +1202,7 @@ static void LoadParticleSpriteResources(MysteryGiftAnimationManager *animMan)
     int compressed = TRUE;
     int vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     int resourceID = 20000 + vramType;
-    int heapID = HEAP_ID_MYSTERY_GIFT_APP;
+    enum HeapID heapID = HEAP_ID_MYSTERY_GIFT_APP;
     int baseIndex = 0;
 
     vramType = NNS_G2D_VRAM_TYPE_2DMAIN;

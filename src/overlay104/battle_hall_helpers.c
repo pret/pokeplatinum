@@ -32,7 +32,7 @@ typedef struct {
 } BattleHallGroupRange;
 
 static u32 BattleHall_GetBattleType(u8 challengeType);
-static void BattleHall_LoadOpponentMonData(FrontierPokemon *monDto, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, int heapID, int narcID);
+static void BattleHall_LoadOpponentMonData(FrontierPokemon *monDto, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, enum HeapID heapID, int narcID);
 static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 unused);
 static u8 BattleHall_GetIVsOfOpponentAtRank(u8 typeRank);
 static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 battleNum, u8 rank);
@@ -1475,7 +1475,7 @@ u8 BattleHall_GetOpponentPartySize(u8 challengeType)
     return 1;
 }
 
-static void BattleHall_LoadOpponentMonData(FrontierPokemon *frontierMon, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, int heapID, int narcID)
+static void BattleHall_LoadOpponentMonData(FrontierPokemon *frontierMon, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, enum HeapID heapID, int narcID)
 {
     u32 ivs;
     if (trainerID == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER) {

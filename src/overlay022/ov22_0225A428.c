@@ -52,7 +52,7 @@ static void ov22_0225ACE4(UnkStruct_ov22_0225AB54 *param0);
 static void ov22_0225ADC0(UnkStruct_ov22_0225AB54 *param0, UnkStruct_ov22_0225AE9C *param1);
 static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C *param0);
 static BOOL ov22_0225AF34(const UnkStruct_ov22_0225AE9C *param0);
-static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
+static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, enum HeapID heapID, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1);
 static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, SpriteResourcesHeader *param2, int param3);
 static void ov22_0225AD68(UnkStruct_ov22_0225AD68 *param0, fx32 param1, fx32 param2, int param3);
@@ -282,7 +282,7 @@ static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, S
     SpriteListTemplate v1;
     int v2, v3;
 
-    ov22_0225AA34(param0->unk_00, param2, 14, param4, 103, 225, 102, 101, 2, 2000);
+    ov22_0225AA34(param0->unk_00, param2, HEAP_ID_14, param4, 103, 225, 102, 101, 2, 2000);
     ov22_0225AAF4(param0->unk_00, param2, &v0, 0);
 
     v1.list = param1;
@@ -338,20 +338,20 @@ static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollect
     ov22_0225AAC0(param0->unk_00, param1);
 }
 
-static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
+static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, enum HeapID heapID, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
-    param0[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
 
     SpriteTransfer_RequestCharAtEnd(param0[0]);
     SpriteResource_ReleaseData(param0[0]);
 
-    param0[1] = SpriteResourceCollection_AddPaletteFrom(param1[1], param3, param5, 0, param9 + param5, NNS_G2D_VRAM_TYPE_2DSUB, param8, param2);
+    param0[1] = SpriteResourceCollection_AddPaletteFrom(param1[1], param3, param5, 0, param9 + param5, NNS_G2D_VRAM_TYPE_2DSUB, param8, heapID);
 
     SpriteTransfer_RequestPlttFreeSpace(param0[1]);
     SpriteResource_ReleaseData(param0[1]);
 
-    param0[2] = SpriteResourceCollection_AddFrom(param1[2], param3, param6, 0, param9 + param6, 2, param2);
-    param0[3] = SpriteResourceCollection_AddFrom(param1[3], param3, param7, 0, param9 + param7, 3, param2);
+    param0[2] = SpriteResourceCollection_AddFrom(param1[2], param3, param6, 0, param9 + param6, 2, heapID);
+    param0[3] = SpriteResourceCollection_AddFrom(param1[3], param3, param7, 0, param9 + param7, 3, heapID);
 }
 
 static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1)
@@ -375,7 +375,7 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, S
     SpriteListTemplate v1;
     int v2;
 
-    ov22_0225AA34(param0->unk_00, param2, 14, param6, 229, 230, 228, 227, 2, 3000);
+    ov22_0225AA34(param0->unk_00, param2, HEAP_ID_14, param6, 229, 230, 228, 227, 2, 3000);
     ov22_0225AAF4(param0->unk_00, param2, &v0, 0);
 
     v1.list = param1;

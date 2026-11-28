@@ -44,7 +44,7 @@ typedef struct Simple3DRenderObj {
  * @param heapID          A heap to allocate the model set data to.
  * @param allocAtEnd      Whether to allocate from the end of the heap.
  */
-void Simple3D_LoadModelFromSet(Simple3DModel *model, u32 modelIdx, NARC *narc, u32 modelSetNarcIdx, u32 heapID, BOOL allocAtEnd);
+void Simple3D_LoadModelFromSet(Simple3DModel *model, u32 modelIdx, NARC *narc, u32 modelSetNarcIdx, enum HeapID heapID, BOOL allocAtEnd);
 
 /*
  * @brief Schedule a model's texture to be bound on the next VBlank interrupt.
@@ -88,7 +88,7 @@ void Simple3D_LoadFromAllocatedSet(Simple3DAnimation *anim, void *animSet, u32 u
  * @param heapID          A heap to allocate the animation set data on.
  * @param allocAtEnd      Whether to allocate from the end of the heap.
  */
-void Simple3D_LoadAnimFromOpenNARC(Simple3DAnimation *anim, u32 unused, NARC *narc, u32 animSetNarcIdx, u32 heapID, BOOL allocAtEnd);
+void Simple3D_LoadAnimFromOpenNARC(Simple3DAnimation *anim, u32 unused, NARC *narc, u32 animSetNarcIdx, enum HeapID heapID, BOOL allocAtEnd);
 
 /*
  * @brief Free the animation's G3D animation data.
@@ -104,7 +104,7 @@ void Simple3D_FreeAnimationSet(Simple3DAnimation *anim);
  * @param model
  * @param heapID
  */
-void Simple3D_BindModelToAnim(Simple3DAnimation *anim, const Simple3DModel *model, u32 heapID);
+void Simple3D_BindModelToAnim(Simple3DAnimation *anim, const Simple3DModel *model, enum HeapID heapID);
 
 /*
  * @brief Initialize the G3D animation object allocated by BindModelToAnim. Must be passed the same model.
@@ -124,7 +124,7 @@ void Simple3D_InitG3DAnimObject(Simple3DAnimation *anim, const Simple3DModel *mo
  * @param unused    Unused. Probably intended to be an index into the source animation's set.
  * @param heapID    A heap to allocate the G3D animation object on.
  */
-void Simple3D_ApplyAnimCopyToModel(Simple3DAnimation *dest, const Simple3DModel *model, Simple3DAnimation *src, u32 unused, u32 heapID);
+void Simple3D_ApplyAnimCopyToModel(Simple3DAnimation *dest, const Simple3DModel *model, Simple3DAnimation *src, u32 unused, enum HeapID heapID);
 
 /*
  * @brief Free an animation's G3D animation object.

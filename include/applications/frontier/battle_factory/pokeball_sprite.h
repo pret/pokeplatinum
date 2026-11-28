@@ -16,7 +16,7 @@ typedef struct BattleFactoryAppPokeballSprite {
     Sprite *sprite;
 } BattleFactoryAppPokeballSprite;
 
-BattleFactoryAppPokeballSprite *BattleFactoryAppPokeballSprite_New(BattleFactoryAppSpriteManager *spriteMan, int x, int y, u32 heapID);
+BattleFactoryAppPokeballSprite *BattleFactoryAppPokeballSprite_New(BattleFactoryAppSpriteManager *spriteMan, int x, int y, enum HeapID heapID);
 void *BattleFactoryAppPokeballSprite_Free(BattleFactoryAppPokeballSprite *ballSprite);
 void BattleFactoryAppPokeballSprite_SetDrawFlag(BattleFactoryAppPokeballSprite *ballSprite, BOOL draw);
 VecFx32 BattleFactoryAppPokeballSprite_ShiftPosition(BattleFactoryAppPokeballSprite *ballSprite, int x, int y);

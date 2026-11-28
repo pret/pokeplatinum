@@ -70,7 +70,7 @@ static BOOL ov66_02231E30(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static UnkEnum_ov66_02231E54 ov66_02231E54(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static enum WiFiPlazaPlayerEvent ov66_02231E6C(const UnkStruct_ov66_02231D38 *param0);
 static BOOL ov66_02231E74(const UnkStruct_ov66_02231D38 *param0, u32 param1);
-static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 heapID);
+static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, enum HeapID heapID);
 static void ov66_02231EEC(UnkStruct_ov66_02231E94 *param0);
 static void ov66_02231F1C(UnkStruct_ov66_02231E94 *param0);
 static void ov66_02231F58(UnkStruct_ov66_02231E94 *param0);
@@ -79,14 +79,14 @@ static void ov66_02231FB0(UnkStruct_ov66_02231FB0 *param0, UnkStruct_ov66_02231F
 static void ov66_02231FC0(UnkStruct_ov66_02231E94 *param0, UnkStruct_ov66_02231FB0 *param1);
 static void ov66_02231FE8(UnkStruct_ov66_02231E94 *param0, UnkStruct_ov66_02231FB0 *param1);
 static void ov66_02231FFC(UnkStruct_ov66_02231FB0 *param0, u32 param1, u32 param2, u32 param3, const TrainerInfo *param4, const TrainerInfo *param5, const TrainerInfo *param6, const TrainerInfo *param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14);
-static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
-static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
-static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
-static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
-static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
-static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
-static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
-static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
+static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused);
+static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused);
+static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused);
+static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused);
+static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused);
+static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused);
+static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused);
+static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused);
 static u32 ov66_0223245C(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
 static u32 ov66_0223246C(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
 static u32 ov66_0223247C(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
@@ -97,7 +97,7 @@ static u32 ov66_022324B8(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
 static u32 ov66_022324BC(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
 static BOOL ov66_022324D0(enum PlazaMinigame param0, u32 param1);
 
-UnkStruct_ov66_0223177C *ov66_0223177C(u32 heapID)
+UnkStruct_ov66_0223177C *ov66_0223177C(enum HeapID heapID)
 {
     UnkStruct_ov66_0223177C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0223177C));
     memset(v0, 0, sizeof(UnkStruct_ov66_0223177C));
@@ -403,7 +403,7 @@ BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_0
     UnkStruct_ov66_02231FB0 *v2;
     BOOL v3;
 
-    static BOOL (*const v4[])(UnkStruct_ov66_02231FB0 *, const UnkStruct_ov66_02232068 *, StringTemplate *, MessageLoader *, String *, u32) = {
+    static BOOL (*const v4[])(UnkStruct_ov66_02231FB0 *, const UnkStruct_ov66_02232068 *, StringTemplate *, MessageLoader *, String *, enum HeapID) = {
         ov66_02232068,
         ov66_022320BC,
         ov66_0223211C,
@@ -572,7 +572,7 @@ static BOOL ov66_02231E74(const UnkStruct_ov66_02231D38 *param0, u32 param1)
     return 0;
 }
 
-static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 heapID)
+static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, enum HeapID heapID)
 {
     int v0, v1;
 
@@ -716,7 +716,7 @@ static void ov66_02231FFC(UnkStruct_ov66_02231FB0 *param0, u32 param1, u32 param
     }
 }
 
-static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
+static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused)
 {
     String *v0;
 
@@ -731,7 +731,7 @@ static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     return 1;
 }
 
-static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
+static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused)
 {
     String *v0;
 
@@ -747,7 +747,7 @@ static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     return 1;
 }
 
-static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
+static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused)
 {
     String *v0;
 
@@ -793,7 +793,7 @@ static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     return 1;
 }
 
-static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
+static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused)
 {
     String *v0;
 
@@ -809,7 +809,7 @@ static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     return 1;
 }
 
-static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
+static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused)
 {
     String *v0;
     int v1;
@@ -833,7 +833,7 @@ static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     return 1;
 }
 
-static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
+static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused)
 {
     String *v0;
     u32 v1;
@@ -868,7 +868,7 @@ static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     return 1;
 }
 
-static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
+static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused)
 {
     if (param0->unk_04[0] >= 20) {
         return 0;
@@ -883,7 +883,7 @@ static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     return 1;
 }
 
-static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
+static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, enum HeapID heapIDUnused)
 {
     String *v0;
     u32 v1;

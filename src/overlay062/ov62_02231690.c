@@ -993,7 +993,7 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
             u16 v17[255];
             int v18 = param0->unk_28->unk_00[v0].unk_04;
             v5 = String_Init(255, HEAP_ID_102);
-            MessageLoader_GetSpeciesName(v18, 102, v17);
+            MessageLoader_GetSpeciesName(v18, HEAP_ID_102, v17);
             String_CopyChars(v5, v17);
             StringTemplate_SetString(v7, 1, v5, 0, 1, GAME_LANGUAGE);
             break;
@@ -1811,7 +1811,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
     int v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0202F298(param0->saveData, 102, &v1, NULL, v0);
+        sub_0202F298(param0->saveData, HEAP_ID_102, &v1, NULL, v0);
 
         switch (v1) {
         case 0:
@@ -1893,7 +1893,7 @@ void ov62_02233A44(UnkStruct_0208C06C *param0)
     SpriteManager_UnloadAnimObjById(param0->unk_14.unk_08, 100000);
 }
 
-NARC *ov62_02233A68(int param0)
+NARC *ov62_02233A68(enum HeapID heapIDUnused)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_102);
     return v0;

@@ -286,7 +286,7 @@ int sub_02029C64(void)
     return sizeof(UnkStruct_02029C88);
 }
 
-DressUpPhoto *DressUpPhoto_New(u32 heapID)
+DressUpPhoto *DressUpPhoto_New(enum HeapID heapID)
 {
     DressUpPhoto *photo = Heap_Alloc(heapID, sizeof(DressUpPhoto));
     DressUpPhoto_InitInternal(photo);
@@ -294,7 +294,7 @@ DressUpPhoto *DressUpPhoto_New(u32 heapID)
     return photo;
 }
 
-UnkStruct_02029C88 *sub_02029C88(u32 heapID)
+UnkStruct_02029C88 *sub_02029C88(enum HeapID heapID)
 {
     UnkStruct_02029C88 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02029C88));
     inline_02029BFC_1(v0);

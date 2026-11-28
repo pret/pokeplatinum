@@ -47,7 +47,7 @@ typedef struct FieldEffectTexture {
     TextureResourceManager *texResMan;
 } FieldEffectTexture;
 
-static u32 GetHeapID(const FieldEffectManager *fieldEffMan);
+static enum HeapID GetHeapID(const FieldEffectManager *fieldEffMan);
 static void OpenArchive(FieldEffectManager *fieldEffMan);
 static void CloseArchive(FieldEffectManager *fieldEffMan);
 static void ResetAllRenderers(FieldEffectManager *fieldEffMan);
@@ -182,7 +182,7 @@ FieldEffectManager *MapObject_GetFieldEffectManager(const MapObject *mapObject)
     return fieldSystem->fieldEffMan;
 }
 
-static u32 GetHeapID(const FieldEffectManager *fieldEffMan)
+static enum HeapID GetHeapID(const FieldEffectManager *fieldEffMan)
 {
     return fieldEffMan->heapID;
 }

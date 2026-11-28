@@ -108,7 +108,7 @@ typedef struct ScreenCaptureTemplate {
     GXCaptureDest captureDest;
     int captureEva;
     int captureEvb;
-    int heapID;
+    enum HeapID heapID;
 } ScreenCaptureTemplate;
 
 typedef struct CutsceneGraphics {

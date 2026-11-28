@@ -77,17 +77,17 @@ static const u8 Unk_ov77_021D7930[4] = {
 
 static void ov77_021D6670()
 {
-    const int heapId = HEAP_ID_76;
+    const enum HeapID heapID = HEAP_ID_76;
 
     {
         CharTransferTemplate v1 = {
-            1, 0, 0, heapId
+            1, 0, 0, heapID
         };
 
         CharTransfer_Init(&v1);
     }
 
-    PlttTransfer_Init(1, heapId);
+    PlttTransfer_Init(1, heapID);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -182,7 +182,7 @@ void ov77_021D67B0(UnkStruct_ov77_021D670C *param0)
 static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
 {
     int i;
-    const int heapID = HEAP_ID_76;
+    const enum HeapID heapID = HEAP_ID_76;
 
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
