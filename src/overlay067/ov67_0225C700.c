@@ -172,11 +172,11 @@ int ov67_0225C700(ApplicationManager *appMan, int *param1)
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY_sseq, 0);
     v1->unk_10 = 0;
 
-    ov67_0225CE30(v0, 112);
-    ov67_0225D188(&v0->unk_40, v0->unk_0C, 1, 674, 2, 19, 27, 4, (1 + (18 + 12)) + 9, v0->saveData, 112);
-    ov67_0225D188(&v0->unk_70, v0->unk_0C, 1, 695, 2, 19, 27, 4, (1 + (18 + 12)) + 9, v0->saveData, 112);
-    ov67_0225D188(&v0->unk_A0, v0->unk_0C, 0, 695, 4, 4, 23, 16, ((1 + (18 + 12)) + 9) + (27 * 4), v0->saveData, 112);
-    ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4), v0->saveData, 112);
+    ov67_0225CE30(v0, HEAP_ID_112);
+    ov67_0225D188(&v0->unk_40, v0->unk_0C, 1, 674, 2, 19, 27, 4, (1 + (18 + 12)) + 9, v0->saveData, HEAP_ID_112);
+    ov67_0225D188(&v0->unk_70, v0->unk_0C, 1, 695, 2, 19, 27, 4, (1 + (18 + 12)) + 9, v0->saveData, HEAP_ID_112);
+    ov67_0225D188(&v0->unk_A0, v0->unk_0C, 0, 695, 4, 4, 23, 16, ((1 + (18 + 12)) + 9) + (27 * 4), v0->saveData, HEAP_ID_112);
+    ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4), v0->saveData, HEAP_ID_112);
     ov67_0225D37C(&v0->unk_10, 21);
 
     SetVBlankCallback(ov67_0225CE28, v0);
@@ -203,7 +203,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
     case 2:
         if (v1->unk_08 == 0) {
             ov67_0225D210(&v0->unk_70, 17);
-            v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, 1 + (18 + 12), 14, 112);
+            v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, 1 + (18 + 12), 14, HEAP_ID_112);
             (*param1)++;
         } else {
             (*param1) = 4;
@@ -211,7 +211,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         break;
     case 3: {
         u32 v2;
-        v2 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
+        v2 = Menu_ProcessInputAndHandleExit(v0->unk_D0, HEAP_ID_112);
 
         switch (v2) {
         case 0:
@@ -314,12 +314,12 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
     case 11:
         ov67_0225D294(&v0->unk_A0);
         ov67_0225D210(&v0->unk_40, 88);
-        v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, 1 + (18 + 12), 14, 112);
+        v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, 1 + (18 + 12), 14, HEAP_ID_112);
         (*param1)++;
         break;
     case 12: {
         u32 v11;
-        v11 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
+        v11 = Menu_ProcessInputAndHandleExit(v0->unk_D0, HEAP_ID_112);
 
         switch (v11) {
         case 0:
@@ -405,10 +405,10 @@ int ov67_0225CB8C(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_Args(appMan);
     v0->saveData = v1->saveData;
 
-    ov67_0225CE30(v0, 112);
-    ov67_0225D188(&v0->unk_40, v0->unk_0C, 1, 695, 2, 19, 27, 4, (1 + (18 + 12)) + 9, v0->saveData, 112);
-    ov67_0225D188(&v0->unk_A0, v0->unk_0C, 0, 695, 4, 4, 23, 16, ((1 + (18 + 12)) + 9) + (27 * 4), v0->saveData, 112);
-    ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4), v0->saveData, 112);
+    ov67_0225CE30(v0, HEAP_ID_112);
+    ov67_0225D188(&v0->unk_40, v0->unk_0C, 1, 695, 2, 19, 27, 4, (1 + (18 + 12)) + 9, v0->saveData, HEAP_ID_112);
+    ov67_0225D188(&v0->unk_A0, v0->unk_0C, 0, 695, 4, 4, 23, 16, ((1 + (18 + 12)) + 9) + (27 * 4), v0->saveData, HEAP_ID_112);
+    ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4), v0->saveData, HEAP_ID_112);
     ov67_0225D37C(&v0->unk_10, 21);
 
     NetworkIcon_Init();

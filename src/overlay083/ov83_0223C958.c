@@ -298,7 +298,7 @@ static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
         CharTransferTemplate v0 = {
             32,
             0x20000,
-            0x0,
+            HEAP_ID_SYSTEM,
         };
 
         v0.heapID = param0->heapID;

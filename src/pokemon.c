@@ -276,7 +276,7 @@ static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, enum Flavor flavor);
 static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
 static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
-static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, int heapID);
+static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
@@ -1061,7 +1061,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_NICKNAME:
         if (boxMon->checksumFailed) {
             // TODO confirm this should be SPECIES_BAD_EGG (lines up with checksum failure check but not throughly checked this call tree)
-            MessageLoader_GetSpeciesName(SPECIES_BAD_EGG, 0, dest);
+            MessageLoader_GetSpeciesName(SPECIES_BAD_EGG, HEAP_ID_SYSTEM, dest);
         } else {
             charcode_t *buf = dest;
 
@@ -4657,12 +4657,12 @@ static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *tr
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_TERRAIN, &metTerrain);
 }
 
-void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, int heapID)
+void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID)
 {
     PostCaptureBoxPokemonProcessing(&mon->box, trainer, monPokeball, metLocation, metTerrain, heapID);
 }
 
-static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, int heapID)
+static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID)
 {
     InitializeBoxPokemonAfterCapture(boxMon, trainer, monPokeball, metLocation, metTerrain, heapID);
 }

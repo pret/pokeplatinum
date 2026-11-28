@@ -175,7 +175,7 @@ void SetAllGraphicsModes(const GraphicsModes *graphicsModes);
 void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen);
 
 BgConfig *BgConfig_New(enum HeapID heapID);
-u32 BgConfig_GetHeapID(BgConfig *bgConfig);
+enum HeapID BgConfig_GetHeapID(BgConfig *bgConfig);
 void Bg_InitFromTemplate(BgConfig *bgConfig, u8 bgLayer, const BgTemplate *bgTemplate, u8 bgType);
 void Bg_SetControlParam(BgConfig *bgConfig, u8 bgLayer, enum BgControlParam bgControlParam, u8 val);
 void Bg_FreeTilemapBuffer(BgConfig *bgConfig, u8 bgLayer);

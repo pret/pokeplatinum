@@ -635,7 +635,7 @@ static void ov5_021D1524(BgConfig *bgl)
 static void ov5_021D154C(void)
 {
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 4);
+    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, HEAP_ID_FIELD1);
 }
 
 static void ov5_021D1570(void)
@@ -656,7 +656,7 @@ void ov5_021D15B4(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 0x8000, 0x4000, 4
+            20, 0x8000, 0x4000, HEAP_ID_FIELD1
         };
 
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);

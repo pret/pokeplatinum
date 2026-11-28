@@ -591,7 +591,7 @@ static void ov109_021D441C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 95);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, HEAP_ID_95);
 
     param0->unk_60 = SpriteList_InitRendering(30, &param0->unk_64, HEAP_ID_95);
     GF_ASSERT(param0->unk_60);
@@ -831,7 +831,7 @@ static const WindowTemplate Unk_ov109_021D5D94 = {
 
 static int ov109_021D4950(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, 1 + (18 + 12), 11, 95);
+    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, 1 + (18 + 12), 11, HEAP_ID_95);
     param0->unk_3B8 = 5;
 
     ov109_021D48D0(param0);
@@ -868,7 +868,7 @@ static int ov109_021D4980(UnkStruct_ov109_021D5140 *param0, int param1)
         return param1;
     }
 
-    v1 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
+    v1 = Menu_ProcessInputAndHandleExit(param0->unk_394, HEAP_ID_95);
 
     if (v1 != 0xffffffff) {
         if (v1 == 0xfffffffe) {
@@ -955,7 +955,7 @@ static int ov109_021D4B44(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4B64(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, 1 + (18 + 12), 11, 95);
+    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, 1 + (18 + 12), 11, HEAP_ID_95);
     param0->unk_3B8 = 23;
 
     ov109_021D48D0(param0);
@@ -977,7 +977,7 @@ static int ov109_021D4B94(UnkStruct_ov109_021D5140 *param0, int param1)
         return param1;
     }
 
-    v1 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
+    v1 = Menu_ProcessInputAndHandleExit(param0->unk_394, HEAP_ID_95);
 
     if (v1 != 0xffffffff) {
         if (v1 == 0xfffffffe) {
@@ -1043,10 +1043,10 @@ static int ov109_021D4CC8(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     gSystem.inhibitReset = 1;
 
-    void *journalEntryOnlineEvent = JournalEntry_CreateEventMixedRecords(95);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMixedRecords(HEAP_ID_95);
     JournalEntry_SaveData(param0->unk_0C->unk_14.journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 
-    journalEntryOnlineEvent = JournalEntry_CreateEventMisc(95, ONLINE_EVENT_SPIN_TRADE);
+    journalEntryOnlineEvent = JournalEntry_CreateEventMisc(HEAP_ID_95, ONLINE_EVENT_SPIN_TRADE);
     JournalEntry_SaveData(param0->unk_0C->unk_14.journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     GameRecords_IncrementTrainerScore(param0->unk_0C->unk_14.records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_414);
@@ -1111,7 +1111,7 @@ static int ov109_021D4DBC(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4DF8(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, 1 + (18 + 12), 11, 95);
+    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, 1 + (18 + 12), 11, HEAP_ID_95);
     param0->unk_3B8 = 12;
 
     ov109_021D48D0(param0);
@@ -1131,7 +1131,7 @@ static int ov109_021D4E28(UnkStruct_ov109_021D5140 *param0, int param1)
         return param1;
     }
 
-    v0 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
+    v0 = Menu_ProcessInputAndHandleExit(param0->unk_394, HEAP_ID_95);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1303,7 +1303,7 @@ void ov109_021D5140(UnkStruct_ov109_021D5140 *param0, int param1, u8 param2)
         break;
     case 13:
         if (param0->unk_394 != NULL) {
-            Menu_DestroyForExit(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, HEAP_ID_95);
             param0->unk_394 = NULL;
         }
 
@@ -1316,7 +1316,7 @@ void ov109_021D5140(UnkStruct_ov109_021D5140 *param0, int param1, u8 param2)
         ov109_021D55A8(param0, 12, 0);
 
         if (param0->unk_394 != NULL) {
-            Menu_DestroyForExit(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, HEAP_ID_95);
             param0->unk_394 = NULL;
         }
 
@@ -1333,7 +1333,7 @@ void ov109_021D5140(UnkStruct_ov109_021D5140 *param0, int param1, u8 param2)
         }
 
         if (param0->unk_394 != NULL) {
-            Menu_DestroyForExit(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, HEAP_ID_95);
             param0->unk_394 = NULL;
         }
 
@@ -1351,7 +1351,7 @@ void ov109_021D5140(UnkStruct_ov109_021D5140 *param0, int param1, u8 param2)
         }
 
         if (param0->unk_394 != NULL) {
-            Menu_DestroyForExit(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, HEAP_ID_95);
             param0->unk_394 = NULL;
         }
 
@@ -1730,7 +1730,7 @@ static int ov109_021D58AC(UnkStruct_ov109_021D5140 *param0, int param1)
         ov109_021D5858(param0, -1);
 
         if (param0->unk_394 != NULL) {
-            Menu_DestroyForExit(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, HEAP_ID_95);
             param0->unk_394 = NULL;
         }
         return 2;

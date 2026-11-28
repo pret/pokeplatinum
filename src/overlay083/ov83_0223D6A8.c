@@ -80,20 +80,20 @@ typedef struct {
     u8 unk_1A;
 } UnkStruct_ov83_022404B0;
 
-static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 heapID);
+static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, enum HeapID heapID);
 static void ov83_0223E138(UnkStruct_ov83_0223E138 *param0);
-static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *param2);
+static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, enum HeapID heapID, NARC *param2);
 static void ov83_0223E208(UnkStruct_ov83_0223E138 *param0);
 static void ov83_0223E21C(Window *param0, String *param1, int param2, int param3);
-static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID);
+static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, enum HeapID heapID);
 static void ov83_0223E824(UnkStruct_ov83_0223E824 *param0);
-static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 heapID, NARC *param2);
+static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, enum HeapID heapID, NARC *param2);
 static UnkStruct_ov83_0223F054 *ov83_0223EFF4(UnkStruct_ov83_0223ED3C *param0);
 static UnkStruct_ov83_0223F054 *ov83_0223F018(UnkStruct_ov83_0223ED3C *param0);
 static void ov83_0223F054(UnkStruct_ov83_0223F054 *param0);
 static void ov83_0223F074(UnkStruct_ov83_0223F054 *param0);
 static void ov83_0223F0F4(UnkStruct_ov83_0223F054 *param0, UnkStruct_ov83_0223FE50 *param1);
-static void ov83_0223F1C0(UnkStruct_ov83_0223F054 *param0, int param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, fx32 param8, fx32 param9, fx32 param10, BOOL param11, int param12, UnkStruct_ov83_0223D95C *param13, int param14, UnkStruct_ov83_0223D784 *param15, u32 param16, BOOL param17, u8 param18);
+static void ov83_0223F1C0(UnkStruct_ov83_0223F054 *param0, int param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, fx32 param8, fx32 param9, fx32 param10, BOOL param11, int param12, UnkStruct_ov83_0223D95C *param13, int param14, UnkStruct_ov83_0223D784 *param15, enum HeapID heapID, BOOL param17, u8 param18);
 static void ov83_0223F268(UnkStruct_ov83_0223F054 *param0);
 static void ov83_0223F410(UnkStruct_ov83_0223F410 *param0);
 static void ov83_0223F420(UnkStruct_ov83_0223F410 *param0);
@@ -113,14 +113,14 @@ static int ov83_0223D6A8(int param0, const String *param1, int param2)
     return param0;
 }
 
-static SoftwareSpriteChars *ov83_0223D6BC(SoftwareSpriteManager *param0, u32 param1, u32 param2, NARC *param3)
+static SoftwareSpriteChars *ov83_0223D6BC(SoftwareSpriteManager *param0, u32 param1, enum HeapID heapID, NARC *param3)
 {
     SoftwareSpriteCharsTemplate v0;
     void *v1;
     NNSG2dCharacterData *v2;
     SoftwareSpriteChars *v3;
 
-    v1 = Graphics_GetCharDataFromOpenNARC(param3, param1, 0, &v2, param2);
+    v1 = Graphics_GetCharDataFromOpenNARC(param3, param1, 0, &v2, heapID);
     v0.softSpriteMan = param0;
     v0.charsData = v2;
     v3 = SoftwareSprite_LoadChars(&v0);
@@ -130,14 +130,14 @@ static SoftwareSpriteChars *ov83_0223D6BC(SoftwareSpriteManager *param0, u32 par
     return v3;
 }
 
-static SoftwareSpritePalette *ov83_0223D6EC(SoftwareSpriteManager *param0, u32 param1, u32 param2, NARC *param3)
+static SoftwareSpritePalette *ov83_0223D6EC(SoftwareSpriteManager *param0, u32 param1, enum HeapID heapID, NARC *param3)
 {
     SoftwareSpritePaletteTemplate v0;
     void *v1;
     NNSG2dPaletteData *v2;
     SoftwareSpritePalette *v3;
 
-    v1 = Graphics_GetPlttDataFromOpenNARC(param3, param1, &v2, param2);
+    v1 = Graphics_GetPlttDataFromOpenNARC(param3, param1, &v2, heapID);
     v0.softSpriteMan = param0;
     v0.paletteData = v2;
     v0.paletteSlot = 1;
@@ -192,15 +192,15 @@ void ov83_0223D784(UnkStruct_ov83_0223D784 *param0)
     }
 }
 
-void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9)
+void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 heapID)
 {
     BOOL v0;
 
-    param1->unk_00[0] = SpriteResourceCollection_AddTilesFromEx(param0->unk_190[0], param2, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param9, HEAP_ID_SAVE);
-    param1->unk_00[1] = SpriteResourceCollection_AddPaletteFromEx(param0->unk_190[1], param2, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, param9, HEAP_ID_SAVE);
+    param1->unk_00[0] = SpriteResourceCollection_AddTilesFromEx(param0->unk_190[0], param2, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, heapID, TRUE);
+    param1->unk_00[1] = SpriteResourceCollection_AddPaletteFromEx(param0->unk_190[1], param2, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, heapID, TRUE);
     param1->unk_10 = 0;
-    param1->unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, param6, 0, param8, 2, param9);
-    param1->unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, param7, 0, param8, 3, param9);
+    param1->unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, param6, 0, param8, 2, heapID);
+    param1->unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, param7, 0, param8, 3, heapID);
 
     v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param1->unk_00[0]);
     GF_ASSERT(v0);
@@ -213,19 +213,19 @@ void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     SpriteResourcesHeader_Init(&param1->unk_14, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 }
 
-void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, SpriteResource *param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, SpriteResource *param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 heapID)
 {
     BOOL v0;
     u32 v1;
 
-    param1->unk_00[0] = SpriteResourceCollection_AddTilesFromEx(param0->unk_190[0], param2, param4, 0, param7, NNS_G2D_VRAM_TYPE_2DMAIN, param8, HEAP_ID_SAVE);
+    param1->unk_00[0] = SpriteResourceCollection_AddTilesFromEx(param0->unk_190[0], param2, param4, 0, param7, NNS_G2D_VRAM_TYPE_2DMAIN, heapID, HEAP_ID_SAVE);
     param1->unk_00[1] = param3;
     param1->unk_10 = 1;
 
     v1 = SpriteResource_GetID(param3);
 
-    param1->unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, param5, 0, param7, 2, param8);
-    param1->unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, param6, 0, param7, 3, param8);
+    param1->unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, param5, 0, param7, 2, heapID);
+    param1->unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, param6, 0, param7, 3, heapID);
 
     v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param1->unk_00[0]);
     GF_ASSERT(v0);
@@ -255,7 +255,7 @@ void ov83_0223D95C(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     }
 }
 
-Sprite *ov83_0223D9A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, fx32 param2, fx32 param3, fx32 param4, int param5, int param6)
+Sprite *ov83_0223D9A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, fx32 param2, fx32 param3, fx32 param4, int param5, enum HeapID heapID)
 {
     SpriteListTemplate v0;
     Sprite *v1;
@@ -267,7 +267,7 @@ Sprite *ov83_0223D9A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *
     v0.position.z = param4;
     v0.priority = param5;
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.heapID = param6;
+    v0.heapID = heapID;
 
     v1 = SpriteList_Add(&v0);
     GF_ASSERT(v1);
@@ -527,7 +527,7 @@ void ov83_0223DEC4(UnkStruct_ov83_0223E138 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E138));
 }
 
-void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, u32 heapID, NARC *param3)
+void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, enum HeapID heapID, NARC *param3)
 {
     GF_ASSERT(param0->unk_30 == 0);
 
@@ -609,7 +609,7 @@ void ov83_0223DFAC(UnkStruct_ov83_0223E138 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_04, 5);
 }
 
-static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 heapID)
+static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, enum HeapID heapID)
 {
     param0->unk_08 = Window_New(heapID, 1);
     param0->unk_0C = Window_New(heapID, 1);
@@ -631,7 +631,7 @@ static void ov83_0223E138(UnkStruct_ov83_0223E138 *param0)
     Windows_Delete(param0->unk_0C, 1);
 }
 
-static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 heapID, NARC *param2)
+static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, enum HeapID heapID, NARC *param2)
 {
     int v0;
 
@@ -676,9 +676,9 @@ void ov83_0223E260(UnkStruct_ov83_0223E244 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E244));
 }
 
-void ov83_0223E28C(UnkStruct_ov83_0223E244 *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, u32 param3, u32 param4, u32 param5)
+void ov83_0223E28C(UnkStruct_ov83_0223E244 *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, enum HeapID heapID, u32 param4, u32 param5)
 {
-    param0->unk_08 = ov83_0223D9A8(param1, &param2[param4], 128 * FX32_ONE , 96 * FX32_ONE , 0, 0, param3);
+    param0->unk_08 = ov83_0223D9A8(param1, &param2[param4], 128 * FX32_ONE , 96 * FX32_ONE , 0, 0, heapID);
     Sprite_SetDrawFlag(param0->unk_08, FALSE);
     Sprite_SetAnim(param0->unk_08, param5);
     param0->unk_00 = 1;
@@ -748,7 +748,7 @@ void ov83_0223E34C(UnkStruct_ov83_0223E340 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E340));
 }
 
-void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, SoftwareSpriteManager *param1, u32 param2, NARC *param3)
+void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, SoftwareSpriteManager *param1, enum HeapID heapID, NARC *param3)
 {
     int v0;
     static const u8 v1[] = {
@@ -813,11 +813,11 @@ void ov83_0223E368(UnkStruct_ov83_0223E340 *param0, SoftwareSpriteManager *param
     GF_ASSERT(param0->unk_74 == 0);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_00[v0] = ov83_0223D6BC(param1, v1[v0], param2, param3);
+        param0->unk_00[v0] = ov83_0223D6BC(param1, v1[v0], heapID, param3);
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        param0->unk_18[v0] = ov83_0223D6EC(param1, v2[v0], param2, param3);
+        param0->unk_18[v0] = ov83_0223D6EC(param1, v2[v0], heapID, param3);
     }
 
     for (v0 = 0; v0 < 8; v0++) {
@@ -933,7 +933,7 @@ void ov83_0223E5C0(UnkStruct_ov83_0223E5C0 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E5C0));
 }
 
-void ov83_0223E5DC(UnkStruct_ov83_0223E5C0 *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, u32 param3)
+void ov83_0223E5DC(UnkStruct_ov83_0223E5C0 *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, enum HeapID heapID)
 {
     int v0;
     VecFx32 v1;
@@ -942,7 +942,7 @@ void ov83_0223E5DC(UnkStruct_ov83_0223E5C0 *param0, UnkStruct_ov83_0223D784 *par
     v1.y = 96 * FX32_ONE;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = ov83_0223D9A8(param1, &param2[1], 128, 96, 0, 2, param3);
+        param0->unk_04[v0] = ov83_0223D9A8(param1, &param2[1], 128, 96, 0, 2, heapID);
         Sprite_SetDrawFlag(param0->unk_04[v0], FALSE);
         Sprite_SetAnim(param0->unk_04[v0], 4 + v0);
         Sprite_SetPosition(param0->unk_04[v0], &v1);
@@ -1011,7 +1011,7 @@ void ov83_0223E6F8(UnkStruct_ov83_0223E824 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E824));
 }
 
-void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, u32 heapID, NARC *param3)
+void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, enum HeapID heapID, NARC *param3)
 {
     GF_ASSERT(param0->unk_28 == 0);
 
@@ -1035,7 +1035,7 @@ void ov83_0223E760(UnkStruct_ov83_0223E824 *param0)
     param0->unk_28 = 0;
 }
 
-static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID)
+static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, enum HeapID heapID)
 {
     int v0;
     static u16 v1[4][6] = {
@@ -1067,7 +1067,7 @@ static void ov83_0223E824(UnkStruct_ov83_0223E824 *param0)
     }
 }
 
-static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 heapID, NARC *param2)
+static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, enum HeapID heapID, NARC *param2)
 {
     void *v0;
     NNSG2dScreenData *v1;
@@ -1292,11 +1292,11 @@ void ov83_0223ED4C(UnkStruct_ov83_0223ED3C *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223ED3C));
 }
 
-void ov83_0223ED6C(UnkStruct_ov83_0223ED3C *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, u32 param3)
+void ov83_0223ED6C(UnkStruct_ov83_0223ED3C *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, enum HeapID heapID)
 {
     param0->unk_04 = param1;
     param0->unk_08 = param2;
-    param0->unk_0C = param3;
+    param0->heapID = heapID;
     param0->unk_00 = 1;
 }
 
@@ -1367,7 +1367,7 @@ void ov83_0223EDDC(UnkStruct_ov83_0223ED3C *param0, int param1, int param2)
     v5 += 96 * FX32_ONE;
 
     v6 = v9.unk_00 + (MTRNG_Next() % v9.unk_04);
-    ov83_0223F1C0(v0, v9.unk_17, v2, v3, v7, v4, v5, v8, FX32_CONST(0.10f), v6, v9.unk_08, v9.unk_18, v9.unk_14, &param0->unk_08[v9.unk_15], v9.unk_16, param0->unk_04, param0->unk_0C, v9.unk_19, v9.unk_1A);
+    ov83_0223F1C0(v0, v9.unk_17, v2, v3, v7, v4, v5, v8, FX32_CONST(0.10f), v6, v9.unk_08, v9.unk_18, v9.unk_14, &param0->unk_08[v9.unk_15], v9.unk_16, param0->unk_04, param0->heapID, v9.unk_19, v9.unk_1A);
     v0->unk_7C = param0->unk_410;
 
     param0->unk_410++;
@@ -1491,7 +1491,7 @@ static void ov83_0223F0F4(UnkStruct_ov83_0223F054 *param0, UnkStruct_ov83_0223FE
     }
 }
 
-static void ov83_0223F1C0(UnkStruct_ov83_0223F054 *param0, int param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, fx32 param8, fx32 param9, fx32 param10, BOOL param11, int param12, UnkStruct_ov83_0223D95C *param13, int param14, UnkStruct_ov83_0223D784 *param15, u32 param16, BOOL param17, u8 param18)
+static void ov83_0223F1C0(UnkStruct_ov83_0223F054 *param0, int param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, fx32 param8, fx32 param9, fx32 param10, BOOL param11, int param12, UnkStruct_ov83_0223D95C *param13, int param14, UnkStruct_ov83_0223D784 *param15, enum HeapID heapID, BOOL param17, u8 param18)
 {
     param0->unk_00 = param1;
 
@@ -1506,7 +1506,7 @@ static void ov83_0223F1C0(UnkStruct_ov83_0223F054 *param0, int param1, fx32 para
     param0->unk_20.z = param8;
     param0->unk_0C = param11;
     param0->unk_10 = param17;
-    param0->unk_78 = ov83_0223D9A8(param15, param13, param2, param5, 0, param18, param16);
+    param0->unk_78 = ov83_0223D9A8(param15, param13, param2, param5, 0, param18, heapID);
 
     GF_ASSERT(param0->unk_78);
 
@@ -1544,7 +1544,7 @@ void ov83_0223F2A8(UnkStruct_ov83_0223F29C *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223F29C));
 }
 
-void ov83_0223F2C4(UnkStruct_ov83_0223F29C *param0, UnkStruct_ov83_0223D784 *param1, u32 param2, NARC *param3)
+void ov83_0223F2C4(UnkStruct_ov83_0223F29C *param0, UnkStruct_ov83_0223D784 *param1, enum HeapID heapID, NARC *param3)
 {
     int v0;
 
@@ -1552,10 +1552,10 @@ void ov83_0223F2C4(UnkStruct_ov83_0223F29C *param0, UnkStruct_ov83_0223D784 *par
 
     param0->unk_00 = param1;
 
-    ov83_0223D7A8(param1, &param0->unk_04, param3, 33, 2, 32, 31, 30, 7000, param2);
+    ov83_0223D7A8(param1, &param0->unk_04, param3, 33, 2, 32, 31, 30, 7000, heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_3C[v0].unk_00 = ov83_0223D9A8(param1, &param0->unk_04, 128 * FX32_ONE , 96 * FX32_ONE , 0, 0, param2);
+        param0->unk_3C[v0].unk_00 = ov83_0223D9A8(param1, &param0->unk_04, 128 * FX32_ONE , 96 * FX32_ONE , 0, 0, heapID);
 
         if (v0 >= 2) {
             Sprite_SetAnim(param0->unk_3C[v0].unk_00, 1);
@@ -1688,12 +1688,12 @@ void ov83_0223F4AC(UnkStruct_ov83_0223F4AC *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223F4AC));
 }
 
-void ov83_0223F4CC(UnkStruct_ov83_0223F4AC *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, u32 param3)
+void ov83_0223F4CC(UnkStruct_ov83_0223F4AC *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, enum HeapID heapID)
 {
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        param0->unk_0C[v0].unk_44 = ov83_0223D9A8(param1, &param2[1], 0, 0, 0, 5, param3);
+        param0->unk_0C[v0].unk_44 = ov83_0223D9A8(param1, &param2[1], 0, 0, 0, 5, heapID);
         Sprite_SetDrawFlag(param0->unk_0C[v0].unk_44, FALSE);
     }
 

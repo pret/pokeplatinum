@@ -202,7 +202,7 @@ int ov83_0223B65C(ApplicationManager *appMan, int *param1)
 
 int ov83_0223B710(ApplicationManager *appMan, int *param1)
 {
-    int heapID;
+    enum HeapID heapID;
     PoffinBerrySelectionData *v1 = ApplicationManager_Args(appMan);
     UnkStruct_ov83_0223B784 *v2 = (UnkStruct_ov83_0223B784 *)ApplicationManager_Data(appMan);
 

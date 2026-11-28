@@ -685,7 +685,7 @@ static void ov62_02241954(UnkStruct_0208C06C *param0, int param1)
         v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 125);
     } else {
         v2 = String_Init(255, HEAP_ID_102);
-        MessageLoader_GetSpeciesName(param1, 102, v3);
+        MessageLoader_GetSpeciesName(param1, HEAP_ID_102, v3);
         String_CopyChars(v2, v3);
     }
 
@@ -1408,7 +1408,7 @@ static BOOL ov62_02242748(UnkStruct_0208C06C *param0, int param1)
     v4 = Unk_ov62_02249944[param1 + 1];
     v3 = Unk_ov62_02249944[param1];
     v2 = v4 - v3;
-    v1 = ov62_Pokedex_Alphabetical(102, 0, &pokedexLength);
+    v1 = ov62_Pokedex_Alphabetical(HEAP_ID_102, 0, &pokedexLength);
 
     {
         int v7;
@@ -1451,8 +1451,8 @@ static void ov62_022427D0(UnkStruct_0208C06C *param0, int param1)
     v2 = Unk_ov62_02249944[param1];
     v1 = v3 - v2;
 
-    v4->unk_4C8.unk_08 = ov62_Pokedex_Alphabetical(102, 0, &v4->unk_4C8.unk_04);
-    v0 = ov62_Pokedex_Alphabetical(102, 0, &v4->unk_4C8.unk_04);
+    v4->unk_4C8.unk_08 = ov62_Pokedex_Alphabetical(HEAP_ID_102, 0, &v4->unk_4C8.unk_04);
+    v0 = ov62_Pokedex_Alphabetical(HEAP_ID_102, 0, &v4->unk_4C8.unk_04);
 
     {
         int v5;
@@ -1762,7 +1762,7 @@ static BOOL ov62_02242D90(UnkStruct_0208C06C *param0)
         v0->unk_4E0.unk_04 = param0->unk_8B4.unk_3900;
 
         ov62_022339DC(param0);
-        v0->unk_50C.unk_00 = ov62_02233A68(102);
+        v0->unk_50C.unk_00 = ov62_02233A68(HEAP_ID_102);
 
         ov62_022343B8(param0, 4, 3);
         ov62_022343B8(param0, 7, 7);
@@ -3487,7 +3487,7 @@ static BOOL ov62_0224536C(UnkStruct_0208C06C *param0)
         {
             int v2;
 
-            sub_0202F298(param0->saveData, 102, &v2, NULL, 0);
+            sub_0202F298(param0->saveData, HEAP_ID_102, &v2, NULL, 0);
             v0->unk_1D0 = sub_02030A80(HEAP_ID_102);
             sub_02030AA0(v0->unk_1D0, param0->saveData);
 

@@ -446,8 +446,8 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
     String *r7;
     String *sp1c;
     String *sp18;
-    String *sp14 = String_Init(0xff, 0x66);
-    StringTemplate *r6 = ov62_02231690(0x66);
+    String *sp14 = String_Init(0xff, HEAP_ID_102);
+    StringTemplate *r6 = ov62_02231690(HEAP_ID_102);
     Window_FillTilemap(&r4->unk_24[0], 0);
     r7 = (r4->unk_1C == 0)
         ? MessageLoader_GetNewString(r5->unk_14.unk_38, r4->unk_718->unk_00[r4->unk_0C].unk_00 - 1)
@@ -462,7 +462,7 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
     Text_AddPrinterWithParamsAndColor(&r4->unk_24[1], 0, r7, 0, 0, 0xff, 0x000f0d00, 0);
     Window_ScheduleCopyToVRAM(&r4->unk_24[1]);
     String_Free(r7);
-    sp18 = sub_02030B94(r5->unk_88C[0], 0x66);
+    sp18 = sub_02030B94(r5->unk_88C[0], HEAP_ID_102);
     ov62_022349A8(r5, sp18);
     switch (r4->unk_14) {
     case 0:
@@ -474,7 +474,7 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
     case 1:
         int sp24 = sub_02030CCC(r5->unk_88C[0]);
         r7 = MessageLoader_GetNewString(r5->unk_14.unk_34, 0x56);
-        sp1c = String_Init(0xff, 0x66);
+        sp1c = String_Init(0xff, HEAP_ID_102);
         StringTemplate_SetMonthName(r6, 0, sp24);
         break;
     case 2:
@@ -485,9 +485,9 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
             sp10 = 0x1ee;
         }
         if (sp10) {
-            sp1c = String_Init(0xff, 0x66);
+            sp1c = String_Init(0xff, HEAP_ID_102);
             charcode_t sp2c[0xff];
-            MessageLoader_GetSpeciesName(sp10, 0x66, sp2c);
+            MessageLoader_GetSpeciesName(sp10, HEAP_ID_102, sp2c);
             String_CopyChars(sp1c, sp2c);
         } else {
             sp1c = MessageLoader_GetNewString(r5->unk_14.unk_34, 0x15);

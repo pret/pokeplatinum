@@ -57,7 +57,7 @@ BgConfig *BgConfig_New(enum HeapID heapID)
     return bgConfig;
 }
 
-u32 BgConfig_GetHeapID(BgConfig *bgConfig)
+enum HeapID BgConfig_GetHeapID(BgConfig *bgConfig)
 {
     return bgConfig->heapID;
 }

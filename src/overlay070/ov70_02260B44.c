@@ -96,24 +96,24 @@ static void ov70_02261474(fx32 *param0, const Easy3DAnim *param1, fx32 param2);
 static BOOL ov70_02261498(fx32 *param0, const Easy3DAnim *param1, fx32 param2);
 static void ov70_022614C0(fx32 *param0, const Easy3DAnim *param1, fx32 param2);
 static BOOL ov70_022614DC(fx32 *param0, const Easy3DAnim *param1, fx32 param2);
-static void ov70_022614F4(UnkStruct_ov70_022615A4 *param0, NARC *param1, const UnkStruct_ov70_02261418 *param2, u32 heapID, NNSFndAllocator *param4);
+static void ov70_022614F4(UnkStruct_ov70_022615A4 *param0, NARC *param1, const UnkStruct_ov70_02261418 *param2, enum HeapID heapID, NNSFndAllocator *param4);
 static void ov70_022615A4(UnkStruct_ov70_022615A4 *param0, NNSFndAllocator *param1);
 static void ov70_022615E8(UnkStruct_ov70_022615E8 *param0, UnkStruct_ov70_022615A4 *param1);
 static void ov70_02261664(UnkStruct_ov70_022615E8 *param0, UnkStruct_ov70_022615A4 *param1);
 static void ov70_022616B0(UnkStruct_ov70_022615E8 *param0, UnkStruct_ov70_022615A4 *param1);
 static void ov70_022616FC(UnkStruct_ov70_022615E8 *param0, UnkStruct_ov70_022615A4 *param1);
 static UnkStruct_ov70_02260E8C *ov70_02261718(UnkStruct_ov70_02260BB8 *param0);
-static void ov70_0226174C(UnkStruct_ov70_022618C8 *param0, NARC *param1, NNSFndAllocator *param2, const UnkStruct_ov70_02261418 *param3, u32 param4);
+static void ov70_0226174C(UnkStruct_ov70_022618C8 *param0, NARC *param1, NNSFndAllocator *param2, const UnkStruct_ov70_02261418 *param3, enum HeapID heapID);
 static void ov70_022618C8(UnkStruct_ov70_022618C8 *param0, NNSFndAllocator *param1);
 static void ov70_02261968(UnkStruct_ov70_02260E8C *param0, UnkStruct_ov70_022618C8 *param1);
 static void ov70_022619F4(UnkStruct_ov70_02260E8C *param0, UnkStruct_ov70_022618C8 *param1);
 static UnkStruct_ov70_022610B8 *ov70_02261AF0(UnkStruct_ov70_02260BB8 *param0);
-static void ov70_02261B24(UnkStruct_ov70_02261BB4 *param0, NARC *param1, NNSFndAllocator *param2, const UnkStruct_ov70_02261418 *param3, u32 param4);
+static void ov70_02261B24(UnkStruct_ov70_02261BB4 *param0, NARC *param1, NNSFndAllocator *param2, const UnkStruct_ov70_02261418 *param3, enum HeapID heapID);
 static void ov70_02261BB4(UnkStruct_ov70_02261BB4 *param0, NNSFndAllocator *param1);
 static void ov70_02261C04(UnkStruct_ov70_02261BB4 *param0, UnkStruct_ov70_022610B8 *param1);
 static void ov70_02261C60(UnkStruct_ov70_02260BB8 *param0, UnkStruct_ov70_022610B8 *param1);
 
-UnkStruct_ov70_02260BB8 *ov70_02260B44(u32 param0, u32 param1, u32 heapID, u32 heapID2)
+UnkStruct_ov70_02260BB8 *ov70_02260B44(u32 param0, u32 param1, enum HeapID heapID, enum HeapID heapID2)
 {
     UnkStruct_ov70_02260BB8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_02260BB8));
     memset(v0, 0, sizeof(UnkStruct_ov70_02260BB8));
@@ -186,7 +186,7 @@ void ov70_02260CE0(UnkStruct_ov70_02260BB8 *param0)
     return;
 }
 
-void ov70_02260CE4(UnkStruct_ov70_02260BB8 *param0, int param1, int param2, u32 heapID, u32 heapID2)
+void ov70_02260CE4(UnkStruct_ov70_02260BB8 *param0, int param1, int param2, enum HeapID heapID, enum HeapID heapID2)
 {
     NARC *v0;
     UnkStruct_ov70_02261418 *v1;
@@ -571,7 +571,7 @@ static void ov70_02261418(UnkStruct_ov70_02261418 *param0)
     Heap_Free(param0);
 }
 
-static void ov70_02261420(Easy3DModel *param0, NARC *param1, u32 param2, u32 heapID)
+static void ov70_02261420(Easy3DModel *param0, NARC *param1, u32 param2, enum HeapID heapID)
 {
     ov70_0225C730(&param0->data, param1, param2, heapID);
 
@@ -650,7 +650,7 @@ static BOOL ov70_022614DC(fx32 *param0, const Easy3DAnim *param1, fx32 param2)
     return v0;
 }
 
-static void ov70_022614F4(UnkStruct_ov70_022615A4 *param0, NARC *param1, const UnkStruct_ov70_02261418 *param2, u32 heapID, NNSFndAllocator *param4)
+static void ov70_022614F4(UnkStruct_ov70_022615A4 *param0, NARC *param1, const UnkStruct_ov70_02261418 *param2, enum HeapID heapID, NNSFndAllocator *param4)
 {
     int v0, v1;
 
@@ -770,7 +770,7 @@ static UnkStruct_ov70_02260E8C *ov70_02261718(UnkStruct_ov70_02260BB8 *param0)
     return NULL;
 }
 
-static void ov70_0226174C(UnkStruct_ov70_022618C8 *param0, NARC *param1, NNSFndAllocator *param2, const UnkStruct_ov70_02261418 *param3, u32 heapID)
+static void ov70_0226174C(UnkStruct_ov70_022618C8 *param0, NARC *param1, NNSFndAllocator *param2, const UnkStruct_ov70_02261418 *param3, enum HeapID heapID)
 {
     int v0, v1, v2;
 
@@ -938,7 +938,7 @@ static UnkStruct_ov70_022610B8 *ov70_02261AF0(UnkStruct_ov70_02260BB8 *param0)
     return NULL;
 }
 
-static void ov70_02261B24(UnkStruct_ov70_02261BB4 *param0, NARC *param1, NNSFndAllocator *param2, const UnkStruct_ov70_02261418 *param3, u32 heapID)
+static void ov70_02261B24(UnkStruct_ov70_02261BB4 *param0, NARC *param1, NNSFndAllocator *param2, const UnkStruct_ov70_02261418 *param3, enum HeapID heapID)
 {
     int v0, v1;
 

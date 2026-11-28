@@ -118,7 +118,7 @@ static void ov21_021D63DC(PokedexGraphicData *param0, enum HeapID heapID, int pa
 static void ov21_021D64B0(PokedexGraphicData *param0, enum HeapID heapID, int param2);
 static void ov21_021D6538(UnkStruct_ov21_021D71A8 *param0, enum HeapID heapID);
 static void ov21_021D6580(UnkStruct_ov21_021D71A8 *param0);
-static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, int param2);
+static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, enum HeapID heapID);
 static void ov21_021D6744(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, int param2);
 static void ov21_021D695C(UnkStruct_ov21_021D71A8 *param0);
 static int ov21_021D70C0(PokedexGraphicData *param0, enum HeapID heapID);
@@ -779,30 +779,30 @@ static void ov21_021D6580(UnkStruct_ov21_021D71A8 *param0)
     SpriteResourceCollection_Delete(param0->unk_80[3]);
 }
 
-static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, int param2)
+static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, enum HeapID heapID)
 {
     SpriteResource *v0;
     NARC *v1 = PokedexGraphics_GetNARC(param1);
 
-    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_80[0], v1, search_body_shapes_NCGR_lz, TRUE, search_body_shapes_NCGR_lz, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_80[0], v1, search_body_shapes_NCGR_lz, TRUE, search_body_shapes_NCGR_lz, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(v0);
     SpriteResource_ReleaseData(v0);
 
-    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_80[1], v1, buttons_NCLR, FALSE, buttons_NCLR, NNS_G2D_VRAM_TYPE_2DMAIN, 12, param2);
+    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_80[1], v1, buttons_NCLR, FALSE, buttons_NCLR, NNS_G2D_VRAM_TYPE_2DMAIN, 12, heapID);
 
     SpriteTransfer_RequestPlttFreeSpace(v0);
     SpriteResource_ReleaseData(v0);
-    SpriteResourceCollection_AddFrom(param0->unk_80[2], v1, search_body_shapes_cell_NCER_lz, TRUE, search_body_shapes_cell_NCER_lz, 2, param2);
-    SpriteResourceCollection_AddFrom(param0->unk_80[3], v1, search_body_shapes_anim_NANR_lz, TRUE, search_body_shapes_anim_NANR_lz, 3, param2);
+    SpriteResourceCollection_AddFrom(param0->unk_80[2], v1, search_body_shapes_cell_NCER_lz, TRUE, search_body_shapes_cell_NCER_lz, 2, heapID);
+    SpriteResourceCollection_AddFrom(param0->unk_80[3], v1, search_body_shapes_anim_NANR_lz, TRUE, search_body_shapes_anim_NANR_lz, 3, heapID);
     SpriteResourcesHeader_Init(&param0->unk_90, search_body_shapes_NCGR_lz, buttons_NCLR, search_body_shapes_cell_NCER_lz, search_body_shapes_anim_NANR_lz, 0xffffffff, 0xffffffff, FALSE, 2, param0->unk_80[0], param0->unk_80[1], param0->unk_80[2], param0->unk_80[3], NULL, NULL);
 
-    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_80[0], v1, unseen_icon_NCGR_lz, TRUE, unseen_icon_NCGR_lz, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_80[0], v1, unseen_icon_NCGR_lz, TRUE, unseen_icon_NCGR_lz, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(v0);
     SpriteResource_ReleaseData(v0);
-    SpriteResourceCollection_AddFrom(param0->unk_80[2], v1, unseen_icon_cell_NCER_lz, TRUE, unseen_icon_cell_NCER_lz, 2, param2);
-    SpriteResourceCollection_AddFrom(param0->unk_80[3], v1, unseen_icon_anim_NANR_lz, TRUE, unseen_icon_anim_NANR_lz, 3, param2);
+    SpriteResourceCollection_AddFrom(param0->unk_80[2], v1, unseen_icon_cell_NCER_lz, TRUE, unseen_icon_cell_NCER_lz, 2, heapID);
+    SpriteResourceCollection_AddFrom(param0->unk_80[3], v1, unseen_icon_anim_NANR_lz, TRUE, unseen_icon_anim_NANR_lz, 3, heapID);
     SpriteResourcesHeader_Init(&param0->unk_B4, unseen_icon_NCGR_lz, buttons_NCLR, unseen_icon_cell_NCER_lz, unseen_icon_anim_NANR_lz, 0xffffffff, 0xffffffff, FALSE, 2, param0->unk_80[0], param0->unk_80[1], param0->unk_80[2], param0->unk_80[3], NULL, NULL);
 }
 

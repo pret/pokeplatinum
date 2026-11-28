@@ -740,7 +740,7 @@ void ov5_021DE4AC(UnkStruct_ov5_021DE47C *param0)
 
 void ov5_021DE4CC(NARC *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_021DE5A4 *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
-    param2->unk_00[0] = SpriteResourceCollection_AddTilesFromEx(param1->unk_190[0], param0, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, 4, HEAP_ID_SAVE);
+    param2->unk_00[0] = SpriteResourceCollection_AddTilesFromEx(param1->unk_190[0], param0, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1, TRUE);
     param2->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_190[1], param0, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, HEAP_ID_FIELD1);
     param2->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_190[2], param0, param6, 0, param8, 2, HEAP_ID_FIELD1);
     param2->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_190[3], param0, param7, 0, param8, 3, HEAP_ID_FIELD1);
@@ -813,7 +813,7 @@ static void ov5_021DE67C(Sprite *param0, void *param1, u32 param2)
     GX_LoadOBJPltt(param1, NNS_G2dGetImagePaletteLocation(v0, NNS_G2D_VRAM_TYPE_2DMAIN), param2);
 }
 
-UnkStruct_ov5_021DE6BC *ov5_021DE6A4(u32 heapID)
+UnkStruct_ov5_021DE6BC *ov5_021DE6A4(enum HeapID heapID)
 {
     UnkStruct_ov5_021DE6BC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021DE6BC));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DE6BC));
@@ -862,7 +862,7 @@ BOOL ov5_021DE71C(UnkStruct_ov5_021DE6BC *param0)
     return v0;
 }
 
-static UnkStruct_ov5_021DE79C *ov5_021DE784(u32 heapID)
+static UnkStruct_ov5_021DE79C *ov5_021DE784(enum HeapID heapID)
 {
     UnkStruct_ov5_021DE79C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021DE79C));
 
@@ -946,7 +946,7 @@ static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32
     Window_FillRectWithColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
-UnkStruct_ov5_021DE928 *ov5_021DE8F8(u32 heapID)
+UnkStruct_ov5_021DE928 *ov5_021DE8F8(enum HeapID heapID)
 {
     UnkStruct_ov5_021DE928 *v0;
     int v1;
@@ -1026,7 +1026,7 @@ BOOL ov5_021DE988(UnkStruct_ov5_021DE928 *param0)
     return 0;
 }
 
-UnkStruct_ov5_021DEA98 *ov5_021DEA80(u32 heapID)
+UnkStruct_ov5_021DEA98 *ov5_021DEA80(enum HeapID heapID)
 {
     UnkStruct_ov5_021DEA98 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021DEA98));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DEA98));
@@ -1111,7 +1111,7 @@ static void ov5_021DEB04(Window *param0, u16 param1, u16 param2, u8 param3)
     }
 }
 
-UnkStruct_ov5_021DEC18 *ov5_021DEBEC(u32 heapID)
+UnkStruct_ov5_021DEC18 *ov5_021DEBEC(enum HeapID heapID)
 {
     UnkStruct_ov5_021DEC18 *v0;
     int v1;

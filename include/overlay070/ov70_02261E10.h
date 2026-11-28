@@ -10,7 +10,7 @@
 
 #include "enums.h"
 
-UnkStruct_ov70_02261E10 *ov70_02261E10(int param0, int param1, const UnkStruct_ov70_0225C894 *param2, enum HeapID heapID, u32 heapID2);
+UnkStruct_ov70_02261E10 *ov70_02261E10(int param0, int param1, const UnkStruct_ov70_0225C894 *param2, enum HeapID heapID, enum HeapID heapID2);
 void ov70_022621AC(UnkStruct_ov70_02261E10 *param0);
 void ov70_02262210(UnkStruct_ov70_02261E10 *param0);
 void ov70_02262298(UnkStruct_ov70_02261E10 *param0);

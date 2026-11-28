@@ -94,7 +94,7 @@ PCHallOfFameApp *PCHallOfFame_InitApp(PCHallOfFameMan *pcHallOfFameMan, const PC
         pcHallOfFameApp->bgConfig = BgConfig_New(HEAP_ID_PC_HALL_OF_FAME);
 
         NNS_G2dInitOamManagerModule();
-        RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);
+        RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, HEAP_ID_PC_HALL_OF_FAME);
 
         pcHallOfFameApp->spriteList = SpriteList_InitRendering(64, &pcHallOfFameApp->g2dRenderer, HEAP_ID_PC_HALL_OF_FAME);
         pcHallOfFameApp->msgLoaderHallOfFame = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PC_HALL_OF_FAME, HEAP_ID_PC_HALL_OF_FAME);

@@ -90,21 +90,21 @@ static void RenderAllText(PokedexGraphicData **graphicsData, const InfoMainState
 static void RenderHeight(Window *window, enum HeapID heapID, int species, u32 textColor);
 static void RenderWeight(Window *window, enum HeapID heapID, int species, u32 textColor);
 static void RenderDexEntry(Window *window, enum HeapID heapID, int species, int entryOffset, u32 textColor);
-static void CreateFootprintSprite(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID);
+static void CreateFootprintSprite(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID);
 static void DeleteFootprintSprite(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData);
-static void LoadFootprintResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, int heapID, int footprintSpecies);
+static void LoadFootprintResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, enum HeapID heapID, int footprintSpecies);
 static void UnloadFootprintResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData);
-static void CreateFootprintSpriteFromResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, int heapID);
+static void CreateFootprintSpriteFromResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, enum HeapID heapID);
 static void DeleteFootprintSpriteInstance(InfoMainGraphics *graphicsStruct);
-static void RenderEntryName(PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID);
+static void RenderEntryName(PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID);
 static void ConfigureLabel(PokedexGraphicData **graphicsData);
 static void ShowPokemonSprite(PokedexGraphicData **graphicsData, const InfoMainState *displayState);
 static void HidePokemonSprite(PokedexGraphicData **graphicsData);
-static void LoadTypeIconResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, int heapID);
+static void LoadTypeIconResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, enum HeapID heapID);
 static void UnloadTypeIconResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData);
-static void CreateTypeIconSprites(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID);
+static void CreateTypeIconSprites(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID);
 static void DeleteTypeIconSprites(InfoMainGraphics *graphicsStruct);
-static void CreateCategoryBox(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID);
+static void CreateCategoryBox(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID);
 static void DeleteCategoryBox(InfoMainGraphics *graphicsStruct);
 
 void InfoMain_InitScreen(PokedexScreenManager *screenManager, PokedexApp *pokedexApp, enum HeapID heapID)
@@ -470,7 +470,7 @@ static void RenderDexEntry(Window *window, enum HeapID heapID, int species, int 
     PokedexText_Free(entryString);
 }
 
-static void CreateFootprintSprite(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID)
+static void CreateFootprintSprite(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID)
 {
     enum Species species = PokedexSort_CurrentSpecies(displayState->sortData);
     int form = PokedexSort_DefaultForm(displayState->sortData, species);
@@ -489,7 +489,7 @@ static void DeleteFootprintSprite(InfoMainGraphics *graphicsStruct, PokedexGraph
     UnloadFootprintResources(graphicsStruct, graphicsData);
 }
 
-static void LoadFootprintResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, int heapID, int footprintSpecies)
+static void LoadFootprintResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, enum HeapID heapID, int footprintSpecies)
 {
     PokedexGraphicData *gfxData = *graphicsData;
     int narcID = GetPokedexFootprintsNarcID();
@@ -528,7 +528,7 @@ static void UnloadFootprintResources(InfoMainGraphics *graphicsStruct, PokedexGr
     SpriteResourceCollection_Remove(gfxData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], graphicsStruct->footprintResources[SPRITE_RESOURCE_ANIM]);
 }
 
-static void CreateFootprintSpriteFromResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, int heapID)
+static void CreateFootprintSpriteFromResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, enum HeapID heapID)
 {
     SpriteResourcesHeader resourceHeader;
     SpriteListTemplate spriteTemplate;
@@ -554,7 +554,7 @@ static void DeleteFootprintSpriteInstance(InfoMainGraphics *graphicsStruct)
     }
 }
 
-static void RenderEntryName(PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID)
+static void RenderEntryName(PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID)
 {
     PokedexMain_EntryNameNumber(*graphicsData, displayState->sortData, heapID, PokedexSort_CurrentStatusIndex(displayState->sortData), (172 * FX32_ONE), (32 * FX32_ONE));
     PokedexGraphics_SetSpeciesLabelPriority(*graphicsData, 0);
@@ -583,7 +583,7 @@ static void HidePokemonSprite(PokedexGraphicData **graphicsData)
     PokemonSprite_ClearFade(pokemonSprite);
 }
 
-static void LoadTypeIconResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, int heapID)
+static void LoadTypeIconResources(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, enum HeapID heapID)
 {
     PokedexGraphicData *gfxData = *graphicsData;
     NARC *pokedexNarc = PokedexGraphics_GetNARC(*graphicsData);
@@ -614,7 +614,7 @@ static void UnloadTypeIconResources(InfoMainGraphics *graphicsStruct, PokedexGra
     SpriteResourceCollection_Remove(gfxData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], graphicsStruct->typeIconResources[SPRITE_RESOURCE_ANIM]);
 }
 
-static void CreateTypeIconSprites(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID)
+static void CreateTypeIconSprites(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID)
 {
     SpriteResourcesHeader resourceHeader;
     SpriteListTemplate spriteTemplate;
@@ -724,7 +724,7 @@ static void DeleteTypeIconSprites(InfoMainGraphics *graphicsStruct)
     }
 }
 
-static void CreateCategoryBox(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID)
+static void CreateCategoryBox(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID)
 {
     SpriteResourcesHeader resourceHeader;
     SpriteListTemplate spriteTemplate;

@@ -1718,17 +1718,17 @@ void ov66_0222EF94(WiFiPlazaSystem *param0, enum PlazaMinigame minigame)
     case UnkEnum_ov66_022324D0_00:
     case UnkEnum_ov66_022324D0_01:
     case UnkEnum_ov66_022324D0_02:
-        journalEntryOnlineEvent = JournalEntry_CreateEventPlazaMinigame(minigame, 112, ONLINE_EVENT_PLAZA_MINIGAME);
+        journalEntryOnlineEvent = JournalEntry_CreateEventPlazaMinigame(minigame, HEAP_ID_112, ONLINE_EVENT_PLAZA_MINIGAME);
         break;
     case UnkEnum_ov66_022324D0_03:
     case UnkEnum_ov66_022324D0_04:
-        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(112, ONLINE_EVENT_PLAYED_WITH_FOOTPRINT_STAMP);
+        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(HEAP_ID_112, ONLINE_EVENT_PLAYED_WITH_FOOTPRINT_STAMP);
         break;
     case UnkEnum_ov66_022324D0_05:
-        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(112, ONLINE_EVENT_VIEWED_PLAZA_VISITOR_PROFILES);
+        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(HEAP_ID_112, ONLINE_EVENT_VIEWED_PLAZA_VISITOR_PROFILES);
         break;
     case UnkEnum_ov66_022324D0_06:
-        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(112, ONLINE_EVENT_READ_PLAZA_NEWS);
+        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(HEAP_ID_112, ONLINE_EVENT_READ_PLAZA_NEWS);
         break;
     default:
         journalEntryOnlineEvent = NULL;
@@ -1743,7 +1743,7 @@ void ov66_0222EF94(WiFiPlazaSystem *param0, enum PlazaMinigame minigame)
 void ov66_0222F000(WiFiPlazaSystem *param0)
 {
     JournalEntry *journalEntry = SaveData_GetJournal(param0->saveData);
-    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(112, ONLINE_EVENT_JOINED_PARADE);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(HEAP_ID_112, ONLINE_EVENT_JOINED_PARADE);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }

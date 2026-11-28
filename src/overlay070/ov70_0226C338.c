@@ -94,7 +94,7 @@ static const UnkStruct_ov70_0226E670 Unk_ov70_0226E670[4] = {
     { GX_RGB(8, 8, 8) },
 };
 
-UnkStruct_ov70_0226C39C *ov70_0226C338(u32 heapID, int param1, int param2, int param3)
+UnkStruct_ov70_0226C39C *ov70_0226C338(enum HeapID heapID, int param1, int param2, int param3)
 {
     UnkStruct_ov70_0226C39C *v0;
     int v1;

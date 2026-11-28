@@ -298,8 +298,8 @@ static void sub_020105F4(UnkStruct_02010588 *param0);
 static UnkStruct_02010FC0 *sub_02010604(UnkStruct_02010588 *param0, int param1);
 static void sub_02010624(SysTask *param0, void *param1);
 static void sub_0201076C(UnkStruct_0201076C *param0);
-static void sub_02010784(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID);
-static void sub_0201079C(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 param2);
+static void sub_02010784(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, enum HeapID heapID);
+static void sub_0201079C(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, enum HeapID heapID);
 static void sub_020107AC(SysTask *param0, void *param1);
 static void sub_020107D8(void *param0);
 static void sub_02010238(ScreenFade *param0, int param1);
@@ -1738,12 +1738,12 @@ static void sub_0201076C(UnkStruct_0201076C *param0)
     SysTask_ExecuteAfterVBlank(sub_020107AC, param0, 1023);
 }
 
-static void sub_02010784(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID)
+static void sub_02010784(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, enum HeapID heapID)
 {
     RequestEnableScreenHBlank(param0, param1, sub_020107D8, param1->screen, heapID);
 }
 
-static void sub_0201079C(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID)
+static void sub_0201079C(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, enum HeapID heapID)
 {
     RequestDisableScreenHBlank(param0, param1->screen, heapID);
 }
