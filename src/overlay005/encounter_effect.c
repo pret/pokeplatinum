@@ -1026,7 +1026,7 @@ BOOL ov5_021DE988(UnkStruct_ov5_021DE928 *param0)
     return 0;
 }
 
-UnkStruct_ov5_021DEA98 *ov5_021DEA80(enum HeapID heapID)
+static UnkStruct_ov5_021DEA98 *ov5_021DEA80(enum HeapID heapID)
 {
     UnkStruct_ov5_021DEA98 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021DEA98));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DEA98));

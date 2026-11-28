@@ -204,7 +204,8 @@ main = executable('main',
     objects: trainer_ai_o,
     c_args: [
         pokeplatinum_args,
-        '-thumb'
+        '-thumb',
+        '-requireprotos'
     ],
     c_pch: 'include/pch/global_pch.h',
     include_directories: [

@@ -1,7 +1,6 @@
 #include "scrcmd_contests.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "struct_defs/contest_player_mon_dto.h"
 
@@ -9,6 +8,7 @@
 #include "overlay005/hblank_system.h"
 #include "overlay006/link_contest_record_display.h"
 
+#include "chatot_cry.h"
 #include "contest.h"
 #include "field_script_context.h"
 #include "field_system.h"

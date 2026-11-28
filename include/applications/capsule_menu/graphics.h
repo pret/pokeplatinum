@@ -70,13 +70,13 @@ void CapsuleGraphics_UpdateSealNameText(Window *window, int entryID);
 void CapsuleGraphics_StartDisplay(void);
 void CapsuleGraphics_FadeIn(void);
 void CapsuleGraphics_FadeOut(void);
-void CapsuleGraphics_InitBgLayer2Tilemap(CapsuleAppManager *appMan, NARC *narc);
+void CapsuleGraphics_LoadBgLayer2Tilemap(CapsuleAppManager *appMan, NARC *narc);
 void CapsuleGraphics_LoadBgLayer5Tilemap(CapsuleAppManager *appMan, NARC *narc);
 void CapsuleGraphics_LoadBgLayer7Tilemap(CapsuleAppManager *appMan, NARC *narc);
 void CapsuleGraphics_LoadCapsuleUI(CapsuleAppManager *appMan, NARC *narc);
 void CapsuleGraphics_InitCapsuleUI(CapsuleAppManager *appMan);
 void CapsuleGraphics_SetPageSpritesDrawFlag(CapsuleAppManager *appMan, int flag);
-void CapsuleGraphics_Unused(CapsuleAppManager *appMan);
+void CapsuleGraphics_Dummy(CapsuleAppManager *appMan);
 void CapsuleGraphics_FreeUISprites(CapsuleAppManager *appMan);
 
 #endif // POKEPLATINUM_APPLICATIONS_CAPSULE_MENU_GRAPHICS_H

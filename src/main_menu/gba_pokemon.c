@@ -785,7 +785,7 @@ static int ConvertBoxMonGBAtoDSAbility(GBABoxPokemon *gbaBoxMon, BoxPokemon *box
     return ability;
 }
 
-void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
+void GBABoxPokemon_ToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
 {
     BOOL reencrypt;
     u32 value;

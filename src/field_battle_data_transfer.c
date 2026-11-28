@@ -1,7 +1,6 @@
 #include "field_battle_data_transfer.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle.h"
 #include "constants/heap.h"
@@ -55,6 +54,7 @@
 #include "unk_0203266C.h"
 #include "unk_020559DC.h"
 #include "vars_flags.h"
+#include "wifi_history_save_data.h"
 
 #include "res/text/bank/location_names.h"
 

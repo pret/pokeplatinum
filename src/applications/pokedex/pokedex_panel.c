@@ -1,7 +1,8 @@
 #include "applications/pokedex/pokedex_panel.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "heap.h"
 
 static int inline CurrentButtonIndex(const PokedexPanelData *pokedexPanelData);
 static int inline CalcButtonIndex(const PokedexPanelData *pokedexPanelData, int col, int row);
