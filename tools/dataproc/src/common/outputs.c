@@ -46,6 +46,83 @@ static TextFileState *textFileState;
 static Buffer        *binaryFileState;
 static TextBankState *textBankState;
 
+#ifdef _WIN32
+static FILE *open_memstream(char **buffer, size_t *size)
+{
+    FILE *stream = tmpfile();
+    if (!stream)
+        return NULL;
+
+    *buffer = NULL;
+    *size = 0;
+
+    return stream;
+}
+
+static int close_memstream(FILE *stream, char **buffer, size_t *size)
+{
+    char *data = NULL;
+    size_t length = 0;
+    int error = 0;
+    long long end;
+
+    if (fflush(stream) != 0) {
+        error = errno ? errno : EIO;
+        goto cleanup;
+    }
+
+    if (_fseeki64(stream, 0, SEEK_END) != 0) {
+        error = errno ? errno : EIO;
+        goto cleanup;
+    }
+
+    end = _ftelli64(stream);
+    if (end < 0) {
+        error = errno ? errno : EIO;
+        goto cleanup;
+    }
+
+    if ((unsigned long long)end > (unsigned long long)SIZE_MAX - 1) {
+        error = EOVERFLOW;
+        goto cleanup;
+    }
+
+    length = (size_t)end;
+
+    if (_fseeki64(stream, 0, SEEK_SET) != 0) {
+        error = errno ? errno : EIO;
+        goto cleanup;
+    }
+
+    data = malloc(length + 1);
+    if (!data) {
+        error = errno ? errno : ENOMEM;
+        goto cleanup;
+    }
+
+    if (fread(data, 1, length, stream) != length) {
+        error = errno ? errno : EIO;
+        goto cleanup;
+    }
+
+    data[length] = '\0';
+
+cleanup:
+    if (fclose(stream) != 0 && error == 0)
+        error = errno ? errno : EIO;
+
+    if (error != 0) {
+        free(data);
+        errno = error;
+        return -1;
+    }
+
+    *buffer = data;
+    *size = length;
+    return 0;
+}
+#endif
+
 // Count the entries of an output table before its { 0 } terminator. A NULL
 // table is empty.
 #define TableCount(table, count)                            \
@@ -241,7 +318,6 @@ FILE* TextFile_Stream(int id)
     if (!state->stream && !(state->stream = open_memstream(&state->buffer, &state->size))) {
         abort();
     }
-
     return state->stream;
 }
 
@@ -249,7 +325,14 @@ static bool FlushStream(const char *path, TextFileState *state)
 {
     if (state->stream == NULL) return true;
 
-    if (fclose(state->stream) != 0) {
+    if (
+    #ifdef _WIN32
+        close_memstream(state->stream, &state->buffer, &state->size)
+    #else
+        fclose(state->stream) 
+    #endif
+        != 0
+    ) {
         fprintf(stderr, "error writing stream for file '%s': %s\n", path, strerror(errno));
         state->stream = NULL;
         return false;

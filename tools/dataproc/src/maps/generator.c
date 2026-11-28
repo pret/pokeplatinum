@@ -9,6 +9,10 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#ifdef _WIN32
+#include <ctype.h>
+#endif
+
 #include "buildgen.h"
 #include "common.h"
 #include "game_types.h"
@@ -83,7 +87,13 @@ static const ScriptRange sGlobalScriptRanges[] = {
 
 static void EnsureDir(const char *path)
 {
-    if (mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) && errno != EEXIST) {
+    if (
+        #ifdef _WIN32
+        mkdir(path)
+        #else
+        mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO)
+        #endif
+         && errno != EEXIST) {
         Driver_Fail("failed to ensure directory '%s': %s", path, strerror(errno));
     }
 }
@@ -434,9 +444,35 @@ static Buffer ScanGlobalScriptLabels(FILE *build)
     return outputs;
 }
 
+#ifdef _WIN32
+static char * FixupPath(const char * path) {
+    if(path) {
+        int newPathLen = strlen(path);
+        char * newPath = malloc(sizeof(char) * newPathLen + 1);
+        strcpy(newPath, path);
+
+        if(newPath[0] != '/' && isupper(newPath[0])) {
+            char driveLetter = newPath[0];
+            newPath[0] = '/';
+            newPath[1] = tolower(driveLetter);
+        }
+
+        return newPath;
+    }
+
+    return NULL;
+}
+#endif
+
 int main(int argc, char **argv)
 {
     Driver_Init(&driver, argc, argv);
+
+    #ifdef _WIN32
+    // Fixup the paths of python scripts on windows
+    zukanScriptPath = FixupPath(zukanScriptPath);
+    labelScannerPath = FixupPath(labelScannerPath);
+    #endif
 
     // NOTE: we need to record the build directory, because the paths given to
     // us by meson's generated build.ninja may be relative to the outer ninja's
