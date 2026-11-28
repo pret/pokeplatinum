@@ -18320,7 +18320,7 @@
                                                                       69](ov5_021D6F00,func) found in local src_overlay005_ov5_021D5EB8.c.o
                                                                        70](ov5_021D75E4,func) found in local src_overlay005_ov5_021D5EB8.c.o
                                                                        70](ov5_021D6EC8,func) found in local src_overlay005_ov5_021D5EB8.c.o
-                                                                      69](v8$21154,object) found in local src_overlay005_ov5_021D5EB8.c.o
+                                                                      69](v8$21148,object) found in local src_overlay005_ov5_021D5EB8.c.o
                                                                      68](ov5_021D7238,func) found in local src_overlay005_ov5_021D5EB8.c.o
                                                                      68](ov5_021D6FF0,func) found in local src_overlay005_ov5_021D5EB8.c.o
                                                                      68](ov5_021D717C,func) found in local src_overlay005_ov5_021D5EB8.c.o
@@ -24573,7 +24573,7 @@
                                                     51](ov21_021E8D48,func) found in global src_applications_pokedex_ov21_021E8D48.c.o
                                                      52](ov21_021E8E0C,func) found in local src_applications_pokedex_ov21_021E8D48.c.o
                                                       53](ov21_021E9A0C,func) found in local src_applications_pokedex_ov21_021E8D48.c.o
-                                                       54](@15780,object) found in local src_applications_pokedex_ov21_021E8D48.c.o
+                                                       54](@15760,object) found in local src_applications_pokedex_ov21_021E8D48.c.o
                                                       53](ov21_021E99E0,func) found in local src_applications_pokedex_ov21_021E8D48.c.o
                                                       53](ov21_021E90B0,func) found in local src_applications_pokedex_ov21_021E8D48.c.o
                                                       53](ov21_021E91B0,func) found in local src_applications_pokedex_ov21_021E8D48.c.o
@@ -36388,7 +36388,7 @@
                                              44](Unk_ov65_02239D2C,object) found in local src_overlay065_ov65_0222DCE0.c.o
                                               45](ov65_022343CC,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                46](ov65_022346C4,func) found in local src_overlay065_ov65_0222DCE0.c.o
-                                                47](v3$24047,object) found in local src_overlay065_ov65_0222DCE0.c.o
+                                                47](v3$24043,object) found in local src_overlay065_ov65_0222DCE0.c.o
                                                  48](ov65_0222FED8,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                46](ov65_02234694,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                 47](ov65_02234708,func) found in local src_overlay065_ov65_0222DCE0.c.o
@@ -36601,7 +36601,7 @@
                                                  48](ov65_02234E50,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                   49](Unk_ov65_02238930,object) found in local src_overlay065_ov65_0222DCE0.c.o
                                                 47](ov65_02234A10,func) found in local src_overlay065_ov65_0222DCE0.c.o
-                                                 48](v0$24152,object) found in local src_overlay065_ov65_0222DCE0.c.o
+                                                 48](v0$24148,object) found in local src_overlay065_ov65_0222DCE0.c.o
                                                 47](ov65_02234DD8,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                  48](ov65_02234E8C,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                   49](Unk_ov65_0223892C,object) found in local src_overlay065_ov65_0222DCE0.c.o
@@ -78732,15 +78732,15 @@
   021F8C7C 00000000 .rodata .rodata	(src_overlay005_ov5_021D5BC0.c.o)
   021F8C7C 00000040 .rodata sBottomScreenHandlers	(src_overlay005_ov5_021D5BC0.c.o)
   021F8CBC 00000000 .rodata .rodata	(src_overlay005_ov5_021D5EB8.c.o)
-  021F8CBC 00000010 .rodata @20894	(src_overlay005_ov5_021D5EB8.c.o)
-  021F8CCC 00000010 .rodata @20892	(src_overlay005_ov5_021D5EB8.c.o)
+  021F8CBC 00000010 .rodata @20888	(src_overlay005_ov5_021D5EB8.c.o)
+  021F8CCC 00000010 .rodata @20886	(src_overlay005_ov5_021D5EB8.c.o)
   021F8CDC 00000010 .rodata Unk_ov5_021F8CDC	(src_overlay005_ov5_021D5EB8.c.o)
   021F8CEC 00000010 .rodata Unk_ov5_021F8CEC	(src_overlay005_ov5_021D5EB8.c.o)
-  021F8CFC 00000014 .rodata v7$21669	(src_overlay005_ov5_021D5EB8.c.o)
-  021F8D10 00000020 .rodata v8$21194	(src_overlay005_ov5_021D5EB8.c.o)
-  021F8D30 00000020 .rodata v7$21153	(src_overlay005_ov5_021D5EB8.c.o)
-  021F8D50 00000020 .rodata v9$21195	(src_overlay005_ov5_021D5EB8.c.o)
-  021F8D70 00000020 .rodata v8$21154	(src_overlay005_ov5_021D5EB8.c.o)
+  021F8CFC 00000014 .rodata v7$21663	(src_overlay005_ov5_021D5EB8.c.o)
+  021F8D10 00000020 .rodata v8$21188	(src_overlay005_ov5_021D5EB8.c.o)
+  021F8D30 00000020 .rodata v7$21147	(src_overlay005_ov5_021D5EB8.c.o)
+  021F8D50 00000020 .rodata v9$21189	(src_overlay005_ov5_021D5EB8.c.o)
+  021F8D70 00000020 .rodata v8$21148	(src_overlay005_ov5_021D5EB8.c.o)
   021F8D90 00000084 .rodata Unk_ov5_021F8D90	(src_overlay005_ov5_021D5EB8.c.o)
   021F8E14 00000020 .rodata Unk_ov5_021F8E14	(src_overlay005_ov5_021D5EB8.c.o)
   021F8E34 00000008 .rodata sVsSeekerAnimSingleExclamationMark	(src_overlay005_vs_seeker.c.o)
@@ -102260,10 +102260,10 @@
   021E9DB0 00000000 .rodata .rodata	(src_applications_pokedex_ov21_021E737C.c.o)
   021E9DB0 00000154 .rodata Unk_ov21_021E9DB0	(src_applications_pokedex_ov21_021E737C.c.o)
   021E9F04 00000000 .rodata .rodata	(src_applications_pokedex_ov21_021E8D48.c.o)
-  021E9F04 00000010 .rodata @15780	(src_applications_pokedex_ov21_021E8D48.c.o)
-  021E9F14 0000001C .rodata @15503	(src_applications_pokedex_ov21_021E8D48.c.o)
-  021E9F30 0000001C .rodata @15501	(src_applications_pokedex_ov21_021E8D48.c.o)
-  021E9F4C 0000001C .rodata @15505	(src_applications_pokedex_ov21_021E8D48.c.o)
+  021E9F04 00000010 .rodata @15760	(src_applications_pokedex_ov21_021E8D48.c.o)
+  021E9F14 0000001C .rodata @15483	(src_applications_pokedex_ov21_021E8D48.c.o)
+  021E9F30 0000001C .rodata @15481	(src_applications_pokedex_ov21_021E8D48.c.o)
+  021E9F4C 0000001C .rodata @15485	(src_applications_pokedex_ov21_021E8D48.c.o)
 #>021E9F68          SDK_OVERLAY.pokedex.SINIT_START (linker command file)
 #>021E9F6C          SDK_OVERLAY.pokedex.SINIT_END (linker command file)
 #>021E9F80          SDK_OVERLAY.pokedex.TEXT_END (linker command file)
@@ -114840,7 +114840,7 @@
   0223892C 00000003 .rodata Unk_ov65_0223892C	(src_overlay065_ov65_0222DCE0.c.o)
   02238930 00000003 .rodata Unk_ov65_02238930	(src_overlay065_ov65_0222DCE0.c.o)
   02238934 00000004 .rodata Unk_ov65_02238934	(src_overlay065_ov65_0222DCE0.c.o)
-  02238938 00000004 .rodata v0$24152	(src_overlay065_ov65_0222DCE0.c.o)
+  02238938 00000004 .rodata v0$24148	(src_overlay065_ov65_0222DCE0.c.o)
   0223893C 00000005 .rodata Unk_ov65_0223893C	(src_overlay065_ov65_0222DCE0.c.o)
   02238944 00000000 .rodata .rodata	(src_overlay065_ov65_0222DCE0.c.o)
   02238944 00000008 .rodata Unk_ov65_02238944	(src_overlay065_ov65_0222DCE0.c.o)
@@ -114848,23 +114848,23 @@
   02238954 00000008 .rodata Unk_ov65_02238954	(src_overlay065_ov65_0222DCE0.c.o)
   0223895C 0000000C .rodata Unk_ov65_0223895C	(src_overlay065_ov65_0222DCE0.c.o)
   02238968 00000010 .rodata Unk_ov65_02238968	(src_overlay065_ov65_0222DCE0.c.o)
-  02238978 00000010 .rodata @21894	(src_overlay065_ov65_0222DCE0.c.o)
-  02238988 00000010 .rodata @21678	(src_overlay065_ov65_0222DCE0.c.o)
-  02238998 00000018 .rodata v3$24047	(src_overlay065_ov65_0222DCE0.c.o)
-  022389B0 0000001C .rodata @21680	(src_overlay065_ov65_0222DCE0.c.o)
-  022389CC 0000001C .rodata @21682	(src_overlay065_ov65_0222DCE0.c.o)
-  022389E8 0000001C .rodata @21686	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A04 0000001C .rodata @21688	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A20 0000001C .rodata @21690	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A3C 0000001C .rodata @21692	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A58 0000001C .rodata @21694	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A74 0000001C .rodata @21684	(src_overlay065_ov65_0222DCE0.c.o)
+  02238978 00000010 .rodata @21890	(src_overlay065_ov65_0222DCE0.c.o)
+  02238988 00000010 .rodata @21674	(src_overlay065_ov65_0222DCE0.c.o)
+  02238998 00000018 .rodata v3$24043	(src_overlay065_ov65_0222DCE0.c.o)
+  022389B0 0000001C .rodata @21676	(src_overlay065_ov65_0222DCE0.c.o)
+  022389CC 0000001C .rodata @21678	(src_overlay065_ov65_0222DCE0.c.o)
+  022389E8 0000001C .rodata @21682	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A04 0000001C .rodata @21684	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A20 0000001C .rodata @21686	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A3C 0000001C .rodata @21688	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A58 0000001C .rodata @21690	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A74 0000001C .rodata @21680	(src_overlay065_ov65_0222DCE0.c.o)
   02238A90 00000020 .rodata Unk_ov65_02238A90	(src_overlay065_ov65_0222DCE0.c.o)
-  02238AB0 00000020 .rodata v0$23696	(src_overlay065_ov65_0222DCE0.c.o)
+  02238AB0 00000020 .rodata v0$23692	(src_overlay065_ov65_0222DCE0.c.o)
   02238AD0 00000020 .rodata Unk_ov65_02238AD0	(src_overlay065_ov65_0222DCE0.c.o)
   02238AF0 00000020 .rodata Unk_ov65_02238AF0	(src_overlay065_ov65_0222DCE0.c.o)
-  02238B10 00000028 .rodata @21672	(src_overlay065_ov65_0222DCE0.c.o)
-  02238B38 00000090 .rodata @24175	(src_overlay065_ov65_0222DCE0.c.o)
+  02238B10 00000028 .rodata @21668	(src_overlay065_ov65_0222DCE0.c.o)
+  02238B38 00000090 .rodata @24171	(src_overlay065_ov65_0222DCE0.c.o)
   02238BC8 00000004 .rodata Unk_ov65_02238BC8	(src_overlay065_ov65_02235060.c.o)
   02238BC8 00000000 .rodata .rodata	(src_overlay065_ov65_02235060.c.o)
   02238BCC 0000000B .rodata @14157	(src_overlay065_ov65_02235060.c.o)
@@ -114898,7 +114898,7 @@
   02239C28 00000008 .data   Unk_ov65_02239C28	(src_overlay065_ov65_0222DCE0.c.o)
   02239C30 00000008 .data   Unk_ov65_02239C30	(src_overlay065_ov65_0222DCE0.c.o)
   02239C38 00000008 .data   Unk_ov65_02239C38	(src_overlay065_ov65_0222DCE0.c.o)
-  02239C40 0000001C .data   v0$23941	(src_overlay065_ov65_0222DCE0.c.o)
+  02239C40 0000001C .data   v0$23937	(src_overlay065_ov65_0222DCE0.c.o)
   02239C5C 00000020 .data   Unk_ov65_02239C5C	(src_overlay065_ov65_0222DCE0.c.o)
   02239C7C 00000020 .data   Unk_ov65_02239C7C	(src_overlay065_ov65_0222DCE0.c.o)
   02239C9C 00000020 .data   Unk_ov65_02239C9C	(src_overlay065_ov65_0222DCE0.c.o)
@@ -114917,7 +114917,7 @@
 # .overlay65.bss
 #>02239E60          SDK_OVERLAY.overlay65.BSS_START (linker command file)
   02239E60 00000000 .bss    .bss	(src_overlay065_ov65_0222DCE0.c.o)
-  02239E60 00000004 .bss    v1$21611	(src_overlay065_ov65_0222DCE0.c.o)
+  02239E60 00000004 .bss    v1$21607	(src_overlay065_ov65_0222DCE0.c.o)
 #>02239E80          SDK_OVERLAY.overlay65.BSS_END (linker command file)
 #>00000020          SDK_OVERLAY.overlay65.BSS_SIZE (linker command file)
 
@@ -122324,7 +122324,7 @@
   021D7914 00000004 .rodata Unk_ov77_021D7914	(src_game_opening_ov77_021D54B0.c.o)
   021D7918 00000004 .rodata heapID$13181	(src_game_opening_ov77_021D6670.c.o)
   021D7918 00000000 .rodata .rodata	(src_game_opening_ov77_021D6670.c.o)
-  021D791C 00000004 .rodata heapId$13119	(src_game_opening_ov77_021D6670.c.o)
+  021D791C 00000004 .rodata heapID$13119	(src_game_opening_ov77_021D6670.c.o)
   021D7920 00000010 .rodata @13121	(src_game_opening_ov77_021D6670.c.o)
   021D7930 00000004 .rodata Unk_ov77_021D7930	(src_game_opening_ov77_021D6670.c.o)
   021D7934 00000000 .rodata .rodata	(src_game_opening_ov77_021D6C70.c.o)
